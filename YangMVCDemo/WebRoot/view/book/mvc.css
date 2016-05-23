@@ -1,0 +1,50 @@
+.yangmvc_form label{
+	width:100px; 
+	font-size:20px;
+}
+.yangmvc_form div{
+	height:50px;
+	
+}
+.yangmvc_form input{
+	height:40px;
+	width:300px;
+}
+.yangmvc_form{
+	
+}
+.yangmvc_page{
+	width:100%;
+	font-size:20px;
+}
+.yangmvc_page li{
+	width:30px;
+	float:left;
+}
+
+#gtable
+{
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+width:100%;
+border-collapse:collapse;
+}
+#gtable td, #gtable th 
+{
+font-size:1em;
+border:1px solid #98bf21;
+padding:3px 7px 2px 7px;
+}
+#gtable th 
+{
+font-size:1.1em;
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#A7C942;
+color:#ffffff;
+}
+#gtable tr.alt td 
+{
+color:#000000;
+background-color:#EAF2D3;
+}
