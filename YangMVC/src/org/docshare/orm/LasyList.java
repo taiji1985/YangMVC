@@ -218,6 +218,7 @@ public class LasyList extends ListAdapter {
 
 			@Override
 			public boolean hasNext() {
+				if(rs == null)return false;
 				try {
 					return !rs.isLast();
 				} catch (SQLException e) {
@@ -405,5 +406,15 @@ public class LasyList extends ListAdapter {
 	public Model one() {
 		Model model = get(0);
 		return model;
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		try{
+			Log.d("LasyList finalized");
+			rs.close();
+			rs =null;
+		}catch(Exception e){}
+		super.finalize();
 	}
 }

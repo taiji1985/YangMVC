@@ -28,6 +28,13 @@ public class DBHelper {
 		return ins;
 	}
 	
+	public static void removeThreadLocal(){
+		try{
+		locals.remove();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//防止用户自己调用构造函数
 	private DBHelper(){
 		
@@ -37,7 +44,7 @@ public class DBHelper {
 
 	public void conn() {
 		try {
-			if(con !=null)return;
+			if(con !=null && ! con.isClosed())return;
 			
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -63,7 +70,7 @@ public class DBHelper {
 		Statement s;
 		conn();
 		s = con.createStatement();
-		Log.d("DBHelper exec sql : "+sql);
+		Log.d("DBHelper"+this.hashCode()+" exec sql : "+sql);
 		return s.executeQuery(sql);
 	}
 
@@ -174,5 +181,13 @@ public class DBHelper {
 		dh.conn();
 		// dh.listColumn("book");
 		System.out.println(dh.keyColumn("book"));
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		Log.d("DBHelper cleared");
+		close();
+		
+		super.finalize();
 	}
 }

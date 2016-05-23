@@ -179,6 +179,14 @@ public class DBTool {
 		
 	}
 	
+	@Override
+	protected void finalize() throws Throwable {
+		Log.d("dbtool finalize called");
+		
+		DBHelper.removeThreadLocal();
+		
+		super.finalize();
+	}
 
 
 }

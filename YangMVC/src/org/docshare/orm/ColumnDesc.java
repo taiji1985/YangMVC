@@ -19,4 +19,9 @@ public class ColumnDesc {
 	public ColumnDesc() {
 	}
 	
+	@Override
+	public String toString() {
+		
+		return "name["+typeName+"]";
+	}
 }
