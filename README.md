@@ -17,7 +17,7 @@ SSH¿ò¼ÜÅäÖÃ¸´ÔÓ¡¢ÄÑÓÃ¡£¸öÈËÈÏÎªÕâ²»ÊÇÒ»¸ö¿ò¼ÜÓ¦¸ÃÓĞµÄÑù×Ó¡£¿ò¼ÜÓ¦¸ÃÊ¹ÓÃ¼òµ¥¡¢ÅäÖ
 4. ºÍJSTLÎŞ·ì¼æÈİ
 
 #YangMVCµÄµÚÁã¸öÀı×Ó-HelloWorld³ÌĞò
-```
+```java
 public class IndexController extends Controller {
 	public void index(){
 		output("Hello¡¡YangMVC");
@@ -89,7 +89,7 @@ ModelºÍDBToolÊÇÕû¸öORM¿ò¼ÜµÄºËĞÄ¡£Model±íÊ¾Ä£ĞÍ£¬ËüÓÃÀ´ÓëÊı¾İ¿â±íÏà¶ÔÓ¦¡£ÔÚ´´½¨Ò
 »ï¼ÆÃÇ¿ì¿´£¬ÕâÊÇ¸öLasyList£¬Ò»¸öÖ§³ÖÀÁ¶è¼ÓÔØ»úÖÆµÄÁĞ±í¡£ËüÊÇListÀàµÄ×ÓÀà£¬ÕâÒ²¾ÍÊÇËüÎªÊ²Ã´ÄÜÔÚJSTLÖĞÊ¹ÓÃforeach±äÁ¿µÄÔ­Òò¡£
 
 Ê×ÏÈÎÒÃÇµ÷ÓÃÁËtoolµÄall()·½·¨£¬ÌìÄÄ£¬ÄÑµÀÒª¼ÓÔØbook±íµÄËùÓĞÊı¾İ£¬ĞÖµÜ²»ÓÃº¦ÅÂ£¬ÔÚÕâ¸öÊ±ºò£¬Ëü²¢Ã»ÓĞ½øĞĞÈÎºÎÊı¾İµÄ¶ÁĞ´£¬Ö¸Ê¾¼ÇÂ¼ÁËÏÖÔÚÒª·ÃÎÊbook±íµÄËùÓĞÊı¾İÕâÒ»ĞÅÏ¢¡£ all()·½·¨»á·µ»ØÒ»¸öLasyList¶ÔÏó¡£ÕâÃ´Éè¼ÆµÄÔ­ÒòÊÇÎÒÃÇºóÃæ¿ÉÒÔ¸úÒ»Á¬´®µÄ¹ıÂË·½·¨¡£·½±ãÎÒÃÇ±à³Ì¡£ÎÒÃÇ¿ÉÒÔĞ´³öÕâÑùµÄ¶«Î÷£º
-```
+```java
 list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","Íõ");
 ```
  Õâ¸öÀı×ÓÏàµ±ÓÚÖ´ĞĞÁËÈçÏÂSQLÓï¾ä£º
@@ -107,19 +107,19 @@ for(Model m : list){
 }
 ```
 Ò²¿ÉÒÔÊ¹ÓÃget·½·¨À´·ÃÎÊ¡£Èç
-```
+```java
 Model m = list.get(12)
 ```
 ÔÚÄã·ÃÎÊ¾ßÌåËüµÄÒ»¸öÔªËØ£¨Model£©Ê±£¬Êı¾İ¿â²éÑ¯²Å»áÆô¶¯¡£¶øÇÒÒ²²»ÊÇ½«ËùÓĞÊı¾İ·Åµ½ÄÚ´æÖĞ¡£±ÈÈçÄãÍ¨¹ıÉÏÃæforµÄ·½·¨Ã¶¾ÙÊ±£¬ÆäÊµËüÊÇÍ¨¹ıResultSetµÄnextÓÎ±êÔÚÒÆ¶¯£¬ËùÒÔËüºÜ¸ßĞ§£¡Ò²±ÜÃâÁËÎŞÓÃµÄÊı¾İ¿â²Ù×÷¡£
 
-```
+```java
 put("book",list)
 ```
 ¸Ã·½·¨½«²éÑ¯µÃµ½µÄbookÈûÈërequestÖĞ£¬ÔÚjspÍøÒ³ÖĞ¾Í¿ÉÒÔÊ¹ÓÃJSTLÀ´Ê¹ÓÃËü¡£ÒòÎªËüÊÇÒ»¸öList£¬ËùÒÔÓÃforEachÈ¥·ÃÎÊËû¡£
 
 Model µÄÒ»¸ö¶ÔÏó¶ÔÓ¦ÓÚÊı¾İ¿â±íµÄÒ»ĞĞ£¨Ò»Ìõ¼ÇÂ¼£©£¬ModelÊÇÒ»¸öMapµÄ×ÓÀà£¡£¡£¡£¬ËùÒÔÔÚJSTLÖĞ£¬Äã¿ÉÒÔÊ¹ÓÃ
 ${ b.name } µÄ·½Ê½À´·ÃÎÊÃûÎªbµÄModel µÄnameÏî¡£ ËüÏàµ±ÓÚ
-```
+```java
    Model m = ....
    m.get("name")
 ```
@@ -156,7 +156,7 @@ ${ b.name } µÄ·½Ê½À´·ÃÎÊÃûÎªbµÄModel µÄnameÏî¡£ ËüÏàµ±ÓÚ
 ÎÒÃÇ»¹ÊÇÊ¹ÓÃModel.tool»ñÈ¡Ò»¸öDBTool¡£ 
 
 ÏÈÀ´¿´ÏÔÊ¾±íµ¥£¬¾ÍÒ»¾ä»°
-```
+```java
 		renderForm(tool.create());
 ```
 toolµÄcreate·½·¨»á·µ»ØÒ»¸öModel¶ÔÏó£¬Õâ¸ö¶ÔÏóºÍbook±íÏà¹ØÁª£¨ÒòÎªtoolºÍbook±í¹ØÁª£©¡£
@@ -218,7 +218,7 @@ CREATE TABLE `book` (
 	}
 ```
 HTMLÒ³Ãæ·ÅÔÚ/view/book/edit.jspÖĞ£¬ºËĞÄ´úÂëÖ»ÊÇ½«add.jspÖĞµÄÌí¼Ó¶ş×Ö¸ÄÎªÁË"±à¼­¡°¶ş×Ö¡£
-```
+```html
   <div style="margin-left:100px">
   <h1>±à¼­Êé¼® ${msg }</h1>
   ${book_form }
@@ -266,7 +266,7 @@ yangmvc-1.0.jar
 fastjson-1.2.0.jar
 mysql-connector-java-5.1.23-bin.jar
 3. ÔÚweb.xmlÖĞ£¨web-app±êÇ©ÄÚ£©¼ÓÈë
-```
+```xml
   <filter>
     <filter-name>yangmvc</filter-name>
     <filter-class>org.docshare.mvc.MVCFilter</filter-class>
@@ -319,7 +319,7 @@ mysql-connector-java-5.1.23-bin.jar
 
 ËùÓĞµÄ¿ØÖÆÆ÷¶¼Òª¼Ì³Ğ org.docshare.mvc.Controller Õâ¸öÀà¡£³äµ±¿ØÖÆÆ÷·½·¨µÄ·½·¨Ó¦µ±ÊÇÃ»ÓĞ²ÎÊıÃ»ÓĞ·µ»ØÖµµÄ¡£ÈçÉÏÃædemoËùÊ¾¡£
 
-```
+```java
 public class IndexController extends Controller {
 	public void index(){
 		output("Hello¡¡YangMVC");
@@ -329,7 +329,7 @@ public class IndexController extends Controller {
 
 ÕâĞ©¿ØÖÆÆ÷¶¼ÒªĞ´ÔÚÅäÖÃËùÖÆ¶¨µÄpackageÖĞ£¬»òÕß×ÓpackageÖĞ¡£ÈçÔÚÉÏÃæµÄÅäÖÃÖĞ
 
-```
+```xml
     <init-param>
       <param-name>controller</param-name>
       <param-value>org.demo</param-value>
@@ -369,14 +369,14 @@ book £¨Â·¾¶Ãû£©-> Book -> BookController£¨ÀàÃû£©
 ##Êä³ö·½·¨
 ### output·½·¨
 
-```
+```java
 	output("Hello¡¡YangMVC");
 ```
 
 Õâ¸ö·½·¨Êä³öÒ»¸öÎÄ±¾µ½ÍøÒ³ÉÏ£¨Êä³öÁ÷ÖĞ£©£¬²¢¹Ø±ÕÊä³öÁ÷¡£ÒòÎªËü»á¹Ø±ÕÁ÷£¬ËùÒÔÄã²»Òªµ÷ÓÃËüÁ½´Î¡£ÄãÈç¹ûĞèÒªÊä³ö¶à´Î£¬ÒÔ½«ÄÚÈİ·Åµ½StringBufferÖĞ£¬È»ºóÍ³Ò»Êä³ö¡£
 ###render·½·¨
 
-```
+```java
 	public void paramDemo(){
 		put("a", "sss");
 		render("/testrd.jsp");
@@ -392,7 +392,7 @@ book £¨Â·¾¶Ãû£©-> Book -> BookController£¨ÀàÃû£©
 ### render()·½·¨
 	Õâ¸örender·½·¨ÊÇÃ»ÓĞ²ÎÊıµÄ£¬Ëü»áÊ¹ÓÃÄ¬ÈÏÄ£°å£¬Èç¹ûÕâ¸öÄ£°å²»´æÔÚ£¬¾Í»áÌáÊ¾´íÎó¡£
 
-```
+```java
 	public void renderDemo(){
 		request.setAttribute("a", "sss");
 		render();
@@ -425,7 +425,7 @@ book £¨Â·¾¶Ãû£©-> Book -> BookController£¨ÀàÃû£©
 	Õâ¸ö´úÂëÉÔ³¤£¬ÆäÊµÉÏÃæµÄËùÓĞ¶¼ÊÇÉú³ÉÒ»¸öMap£¬×îºóÒ»¾äÊä³ö¡£outputJSON¿ÉÒÔÊä³öList£¬MapºÍÈÎºÎJava¶ÔÏó¡£ÄÚ²¿×ª»»ÊÇÊ¹ÓÃfastjsonÊµÏÖµÄ¡£
 
 ####  ×Ô¶¯Éú³É²¢Êä³öÒ»¸ö±íµ¥
-```
+```java
 public void renderForm(Model m,String template,String postTo)
 ```
 ¸Ãº¯Êı»á¸ù¾İÄ£ĞÍ¶ÔÓ¦µÄ±í½á¹¹£¬×Ô¶¯Éú³ÉÒ»¸ö±íµ¥£¬²¢½«ÆäÄÚÈİ·ÅÈë ±í¸ñÃû_form ÖĞ£¬Èçbook±í»áÊä³öµ½ book_form ÖĞ¡£
@@ -452,7 +452,7 @@ public void checkNull(String name,Object obj)
 Model ¶ÔÏó¶ÔÓ¦Êı¾İ¿âµÄ±í¸ñ£¬Ëü»áÓëÒ»¸ö±í¸ñ½øĞĞ°ó¶¨¡£DBToolÏàµ±ÓÚÊÇËüµÄDAOÀà¡£
 ### ´´½¨Ò»¸öDBTool¶ÔÏó
 
-```
+```java
 		DBTool tool = Model.tool("book");
 ```
 
@@ -460,7 +460,7 @@ Model ¶ÔÏó¶ÔÓ¦Êı¾İ¿âµÄ±í¸ñ£¬Ëü»áÓëÒ»¸ö±í¸ñ½øĞĞ°ó¶¨¡£DBToolÏàµ±ÓÚÊÇËüµÄDAOÀà¡£
 
 ### ´´½¨Ò»¸ö¿ÕµÄModel
 
-```
+```java
 		DBTool tool = Model.tool("book");
 		Model m = tool.create(); //´´½¨ĞÂµÄ
 
@@ -468,21 +468,21 @@ Model ¶ÔÏó¶ÔÓ¦Êı¾İ¿âµÄ±í¸ñ£¬Ëü»áÓëÒ»¸ö±í¸ñ½øĞĞ°ó¶¨¡£DBToolÏàµ±ÓÚÊÇËüµÄDAOÀà¡£
 
 ### ¸ù¾İÖ÷¼ü¶ÁÈ¡Ò»¸öModel
 
-```
+```java
 			Model m = tool.get(12);
 
 ```
 
 ### ²éÑ¯±íÖĞËùÓĞµÄĞĞ
 
-```
+```java
 		LasyList list = tool.all();
 ```
 
 	all·µ»ØÒ»¸öLasyList¶ÔÏó¡£Õâ¸ö¶ÔÏóÔÚ´ËÊÂ²¢Ã»ÓĞÕæÕı½øĞĞÊı¾İ¿â²éÑ¯£¬Ö»ÓĞÔÚÒ³ÃæÕæÕı¶ÁÈ¡Ê±²Å»á¶ÁÈ¡Êı¾İ¿â¡£ÕâÊÇËü½Ğ×öLasyµÄÔ­Òò¡£´Ë´¦½è¼øÁËDjangoµÄÊµÏÖ»úÖÆ¡£
 ###²éÑ¯µÄlimitÓï¾ä
 
-```
+```java
 	LasyList list = tool.all().limit(30);
 	list = tool.all().limit(10,30);
 	
@@ -490,13 +490,13 @@ Model ¶ÔÏó¶ÔÓ¦Êı¾İ¿âµÄ±í¸ñ£¬Ëü»áÓëÒ»¸ö±í¸ñ½øĞĞ°ó¶¨¡£DBToolÏàµ±ÓÚÊÇËüµÄDAOÀà¡£
 
 ###²éÑ¯µÄµÈÊ½Ô¼Êø
 
-```
+```java
 	tool.all().eq("name","±¾²İ¸ÙÄ¿")
 ```
 
 ###²éÑ¯µÄ²»µÈÊ½Ô¼Êø
 
-```
+```java
 	tool.all().gt("id",12) //id < 12
 	tool.all().lt("id",33) //id <33
 	tool.all().gte("id",12) //id>=12
@@ -507,14 +507,14 @@ Model ¶ÔÏó¶ÔÓ¦Êı¾İ¿âµÄ±í¸ñ£¬Ëü»áÓëÒ»¸ö±í¸ñ½øĞĞ°ó¶¨¡£DBToolÏàµ±ÓÚÊÇËüµÄDAOÀà¡£
 
 ### Ä£ºı²éÑ¯
 
-```
+```java
 	tool.all().like("name","±¾²İ")
 ```
 
 	²éÕÒËùÓĞÃû×ÖÖĞ°üº¬±¾²İµÄÊé¡£·µ»ØÒ»¸öLasyList
 ###ÅÅĞò
 
-```
+```java
 	tool.all().orderby("id",true);
 ```
 
@@ -525,7 +525,7 @@ Model ¶ÔÏó¶ÔÓ¦Êı¾İ¿âµÄ±í¸ñ£¬Ëü»áÓëÒ»¸ö±í¸ñ½øĞĞ°ó¶¨¡£DBToolÏàµ±ÓÚÊÇËüµÄDAOÀà¡£
   ÒòÎªÕâĞ©ÉÏÃæµÄ¹ıÂËÆ÷º¯ÊıÈ«²¿¶¼»á·µ»ØÒ»¸öLasyList¶ÔÏó£¬ ËùÒÔ¿ÉÒÔ²ÉÓÃ¼¶ÁªµÄ·½Ê½½øĞĞ¸´ÔÓ²éÑ¯¡£Èç£º
 
   
-```
+```java
 list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","Íõ");
 ```
 
@@ -547,18 +547,18 @@ Model m;
 
 ### ·ÃÎÊËùÓĞµÄ¼üÖµ£¨¼´DAO¶ÔÏóµÄËùÓĞÊôĞÔ)
 
-```
+```java
 	model.keySet();
 ```
 
 ###·ÃÎÊÄ³Ò»¸öÊôĞÔµÄÖµ
 
-```
+```java
 	model.get(key)
 ```
 
 ###ÉèÖÃÄ³Ò»¸öÊôĞÔµÄÖµ
 
-```
+```java
 	model.put(key,value)
 ```
