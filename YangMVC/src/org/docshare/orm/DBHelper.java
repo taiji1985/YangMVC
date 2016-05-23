@@ -16,8 +16,8 @@ public class DBHelper {
 
 	static ThreadLocal<DBHelper> locals=new ThreadLocal<DBHelper>();
 	/**
-	 * Ê¹ÓÃ¸Ãº¯Êı»ñÈ¡DBHelper¶ÔÏó¡£ ±¾ÀàµÄÉè¼ÆÎªÍ¬Ò»¸öÏß³Ì¹«ÓÃÒ»¸öDBHelper
-	 * @return DBHelper¶ÔÏó
+	 * ä½¿ç”¨è¯¥å‡½æ•°è·å–DBHelperå¯¹è±¡ã€‚ æœ¬ç±»çš„è®¾è®¡ä¸ºåŒä¸€ä¸ªçº¿ç¨‹å…¬ç”¨ä¸€ä¸ªDBHelper
+	 * @return DBHelperå¯¹è±¡
 	 */
 	public static DBHelper getIns(){
 		DBHelper ins = locals.get();
@@ -28,7 +28,7 @@ public class DBHelper {
 		return ins;
 	}
 	
-	//·ÀÖ¹ÓÃ»§×Ô¼ºµ÷ÓÃ¹¹Ôìº¯Êı
+	//é˜²æ­¢ç”¨æˆ·è‡ªå·±è°ƒç”¨æ„é€ å‡½æ•°
 	private DBHelper(){
 		
 	}
@@ -95,9 +95,9 @@ public class DBHelper {
 	}
 	Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
 	/**
-	 * ·µ»Ø±í¸ñÖĞËùÓĞµÄÁĞ£¬ÒÔ¼°ÁĞµÄ×¢ÊÍ£¨Õâ¸ö×¢ÊÍ¿ÉÒÔÓÃÓÚÏÔÊ¾£©
-	 * @param tb ±í¸ñÃû³Æ
-	 * @return  ÁĞÃû->×¢ÊÍ µÄÓ³Éä±í
+	 * è¿”å›è¡¨æ ¼ä¸­æ‰€æœ‰çš„åˆ—ï¼Œä»¥åŠåˆ—çš„æ³¨é‡Šï¼ˆè¿™ä¸ªæ³¨é‡Šå¯ä»¥ç”¨äºæ˜¾ç¤ºï¼‰
+	 * @param tb è¡¨æ ¼åç§°
+	 * @return  åˆ—å->æ³¨é‡Š çš„æ˜ å°„è¡¨
 	 */
 	public HashMap<String,ColumnDesc> listColumn(String tb) {
 		if(desc_cached.containsKey(tb)){
@@ -112,8 +112,8 @@ public class DBHelper {
 				ColumnDesc desc=new ColumnDesc();
 				
 				desc.name = rs.getString("COLUMN_NAME");
-				desc.remark = rs.getString("REMARKS");//ÁĞÃèÊö  
-				desc.type = rs.getInt("DATA_TYPE");//ÁĞÃèÊö  
+				desc.remark = rs.getString("REMARKS");//åˆ—æè¿°  
+				desc.type = rs.getInt("DATA_TYPE");//åˆ—æè¿°  
 				desc.typeName = rs.getString("TYPE_NAME");
 				if(desc.remark!=null&&desc.remark.length()==0){
 					desc.remark = null;

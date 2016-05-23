@@ -1,7 +1,7 @@
 package org.docshare.orm;
 
 /**
- * 每一列的描述
+ * 姣忎竴鍒楃殑鎻忚堪
  * @author Administrator
  *
  */

@@ -9,11 +9,11 @@ import org.docshare.mvc.TextTool;
 import com.docshare.log.Log;
 
 /**
- * 使用了延迟加载技术的List
+ * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。
+ * 数据只有在真正读取时（调用get函数或者被枚举）才会从数据库中读取出来。
  * 
  * @author Administrator
  * 
- * @param <E>
  */
 public class LasyList extends ListAdapter {
 
@@ -79,7 +79,12 @@ public class LasyList extends ListAdapter {
 	private DBTool tool;
 	private ResultSet rs = null;
 
-	public LasyList(String from, DBTool tool) {
+	/**
+	 * 根据一个类似 from book 这样的sql片段生成LasyList
+	 * @param from 以from开头的sql语句片段，如from book
+	 * @param tool 与之关联的工具类 
+	 */
+	protected LasyList(String from, DBTool tool) {
 		from = from.toLowerCase();
 		if (from.contains("limit")) {
 			String limit_str = TextTool.getAfter(from, "limit")
@@ -100,6 +105,9 @@ public class LasyList extends ListAdapter {
 		this.tool = tool;
 	}
 
+	/**
+	 * 返回列表的大小，使用select count(*)的方式进行查询获取。并根据limit进行修正
+	 */
 	@Override
 	public int size() {
 		Log.d("size() called");
@@ -125,12 +133,17 @@ public class LasyList extends ListAdapter {
 			return sz;
 	}
 
+	/**判断列表是否为空
+	 * 
+	 */
 	@Override
 	public boolean isEmpty() {
 		Log.d("isEmpty() called");
 		return size() == 0;
 	}
-
+	/**
+	 * 判断列表中是否存在某个对象，该方法<red>暂未实现</red>。
+	 */
 	@Override
 	public boolean contains(Object o) {
 		return false;
@@ -138,6 +151,10 @@ public class LasyList extends ListAdapter {
 
 	HashMap<Integer, Model> row_maps = new HashMap<Integer, Model>();
 
+	/**
+	 * 根据索引获取相应的对象
+	 * @param index 索引值，以0开头
+	 */
 	@Override
 	public Model get(int index) {
 		Log.d("get called " + index);
@@ -190,6 +207,10 @@ public class LasyList extends ListAdapter {
 		}
 	}
 
+	/**
+	 * 枚举器。程序可以使用for-each写法来访问这个list。
+	 * JSTL可以使用&lt;c:forEach&gt;来访问
+	 */
 	@Override
 	public Iterator<Model> iterator() {
 		initRS();
@@ -234,6 +255,12 @@ public class LasyList extends ListAdapter {
 		};
 	}
 
+	/**
+	 * 根据分页来截取数据
+	 * @param pageno 分页索引，以1开始
+	 * @param pageSize 每页大小
+	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
+	 */
 	public LasyList page(int pageno, int pageSize) {
 		if (pageno == 0) {
 			pageno = 1;
@@ -243,6 +270,12 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
+	/**
+	 * 使用limit来截取数据
+	 * @param start 开始索引，以0开始
+	 * @param len 长度
+	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
+	 */
 	public LasyList limit(int start, int len) {
 		sqlstart = start;
 		sqllen = len;
@@ -250,10 +283,22 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
+	/**
+	 * 
+	 * 使用limit来截取数据
+	 * @param len 长度
+	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
+	 */
 	public LasyList limit(int len) {
 		return limit(0, len);
 	}
 
+	/**
+	 * 模糊查询，会使用 sql中的 a like '%b%'的方式来实现
+	 * @param column
+	 * @param q
+	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
+	 */
 	public LasyList like(String column, String q) {
 		String w = String.format("  %s like '$%s$' ", column, q).replace("$",
 				"%");
@@ -269,13 +314,26 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
+	/**
+	 * 大于 ,相当于sql中 column > val 
+	 * 会获取column制定的列大于val值的所有项 
+	 * @param column 列名
+	 * @param val    值
+	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
+	 */
 	public LasyList gt(String column, int val) {
 		String w = String.format("%s > %d", column, val);
 		sqlcons.add(w);
 
 		return this;
 	}
-
+	/**
+	 * 大于等于 ,相当于sql中 column >= val 
+	 * 会获取column制定的列大于或等于val值的所有项对象
+	 * @param column 列名
+	 * @param val    值
+	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
+	 */
 	public LasyList gte(String column, int val) {
 		String w = String.format("%s >= %d", column, val);
 		sqlcons.add(w);
@@ -283,20 +341,39 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
+	/**
+	 * 小于 ,相当于sql中 column <= val 
+	 * 会获取column制定的列小于或等于val值的所有项对象
+	 * @param column 列名
+	 * @param val    值
+	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
+	 */
 	public LasyList lt(String column, int val) {
 		String w = String.format("%s < %d", column, val);
 		sqlcons.add(w);
 
 		return this;
 	}
-
+	/**
+	 * 小于等于 ,相当于sql中 column <= val 
+	 * 会获取column制定的列小于或等于val值的所有项对象
+	 * @param column 列名
+	 * @param val    值
+	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
+	 */
 	public LasyList lte(String column, int val) {
 		String w = String.format("%s <= %d", column, val);
 		sqlcons.add(w);
 
 		return this;
 	}
-
+	/**
+	 * 不等于 ,相当于sql中 column <> val 
+	 * 会获取column制定的列不等于val值的所有项对象
+	 * @param column 列名
+	 * @param val    值
+	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
+	 */
 	public LasyList ne(String column, int val) {
 		String w = String.format("%s <> %d", column, val);
 		sqlcons.add(w);
@@ -321,6 +398,10 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
+	/**
+	 * 获取列表的第一个元素
+	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
+	 */
 	public Model one() {
 		Model model = get(0);
 		return model;

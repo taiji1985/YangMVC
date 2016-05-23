@@ -1,8 +1,8 @@
-package org.docshare.mvc;
+package org.docshare.orm;
 
 import java.util.Collection;
 
-public class ArrayTool {
+class ArrayTool {
 	@SuppressWarnings("rawtypes")
 	public static String join(String joiner,Collection c){
 		StringBuffer sb = new StringBuffer();

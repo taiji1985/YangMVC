@@ -8,7 +8,7 @@ import java.util.Set;
 public class Model implements Map<String,Object> {
 	private String tname;
 	private Map<String, Object> columns;
-	DBTool joined_tool=null;//ÓëÖ®Ïà¹ØµÄtoolÀà
+	DBTool joined_tool=null;//ä¸ä¹‹ç›¸å…³çš„toolç±»
 	public Model(String tname,Map<String,Object> columns){
 		this.tname = tname;
 		this.columns = columns;

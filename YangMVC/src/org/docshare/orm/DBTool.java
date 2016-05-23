@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.docshare.mvc.ArrayTool;
 
 import com.docshare.log.Log;
 
@@ -46,7 +45,7 @@ public class DBTool {
 	/**
 	 * 根据用户自定义的sql来获取list
 	 * @param sql
-	 * @return
+	 * @return 返回一个包含了该SQL结果的LasyList（并没有真正查询，在你读取数据时真正查询
 	 */
 	public LasyList fromSQL(String sql){
 		return new LasyList(sql, this);

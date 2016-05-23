@@ -43,7 +43,7 @@ public class Controller {
 	
 	/**
 	 * 获取当前控制器对应的URL路径
-	 * @return
+	 * @return 控制器对应的URL路径
 	 */
 	public String getPath(){
 		String uri = request.getRequestURI();
@@ -52,7 +52,7 @@ public class Controller {
 	}
 	/**
 	 * 获取默认的模板
-	 * @return
+	 * @return 模板路径
 	 */
 	private String getDefaultTemp(){
 		String uri = request.getRequestURI() +".jsp";
@@ -256,8 +256,8 @@ public class Controller {
 	}
 	/**
 	 * 获取URL参数或者Form提交的参数,并自动转换为int，如果不是整数则会报错。
-	 * @param p
-	 * @return
+	 * @param p 参数名称
+	 * @return int类型的参数值
 	 */
 	
 	public Integer paramInt(String p){

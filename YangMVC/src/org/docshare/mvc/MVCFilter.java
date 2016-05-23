@@ -98,7 +98,7 @@ public class MVCFilter implements Filter {
 		req2.setCharacterEncoding("utf-8");
 		String temp = getPureURI(uri,context);
 		/**
-		 * ´¦Àí¾²Ì¬ÎÄ¼ş
+		 * å¤„ç†é™æ€æ–‡ä»¶
 		 */
 		if(temp.startsWith("mvc_static")){
 			temp =TEMP_BASE + temp.replace("mvc_static", "");
