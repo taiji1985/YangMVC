@@ -302,6 +302,7 @@ mysql-connector-java-5.1.23-bin.jar
   </context-param>
   
 ```
+
 所有需要配置的都在这里了。这里做个简要说明
 **MVCFilter**是我们MVC框架的入口。（不管是啥MVC框架都免不了这个）
 它有controller和template两个参数。
@@ -317,6 +318,7 @@ mysql-connector-java-5.1.23-bin.jar
 控制器是一个Java类，类有若干方法。在YangMVC的设计中，控制器的每一个公共的方法都映射对应一个网页。这样一个Java类可以写很多的网页。 方便管理。（当然，你也可以在一个控制器中只写一个方法来支持网页，这没问题(⊙﹏⊙)b）
 
 所有的控制器都要继承 org.docshare.mvc.Controller 这个类。充当控制器方法的方法应当是没有参数没有返回值的。如上面demo所示。
+
 ```
 public class IndexController extends Controller {
 	public void index(){
@@ -324,13 +326,16 @@ public class IndexController extends Controller {
 	}
 }
 ```
+
 这些控制器都要写在配置所制定的package中，或者子package中。如在上面的配置中
+
 ```
     <init-param>
       <param-name>controller</param-name>
       <param-value>org.demo</param-value>
     </init-param>
 ```
+
 这个包为org.demo所有的控制器都要卸载这个包内。（你可以写到外面，但它不会管用O(∩_∩)O~）
 
 
@@ -363,11 +368,14 @@ book （路径名）-> Book -> BookController（类名）
 #控制器方法
 ##输出方法
 ### output方法
+
 ```
 	output("Hello　YangMVC");
 ```
+
 这个方法输出一个文本到网页上（输出流中），并关闭输出流。因为它会关闭流，所以你不要调用它两次。你如果需要输出多次，以将内容放到StringBuffer中，然后统一输出。
 ###render方法
+
 ```
 	public void paramDemo(){
 		put("a", "sss");
@@ -375,6 +383,7 @@ book （路径名）-> Book -> BookController（类名）
 		
 	}
 ```
+
 这里的testrd.jsp是模板目录（/view)目录下的。 /view/testrd.jsp
 这里的参数应该是相对于模板目录的相对路径。
 
@@ -382,6 +391,7 @@ book （路径名）-> Book -> BookController（类名）
 	
 ### render()方法
 	这个render方法是没有参数的，它会使用默认模板，如果这个模板不存在，就会提示错误。
+
 ```
 	public void renderDemo(){
 		request.setAttribute("a", "sss");
@@ -389,6 +399,7 @@ book （路径名）-> Book -> BookController（类名）
 		
 	}
 ```
+
 在配置 controller 为org.demo , template为/view  这种情况下。
 	org.demo.IndexController的renderDemo方法会对应/view/renderDemo.jsp
 	之所以模板存在于模板根目录下，是因为这个IndexController是处理应用根目录的。他们有对应关系。
@@ -399,6 +410,7 @@ book （路径名）-> Book -> BookController（类名）
 
 #### outputJSON 方法
 该方法将参数转化为JSON，并向网页输出。
+
 ```java
 	public void jsonDemo(){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -409,6 +421,7 @@ book （路径名）-> Book -> BookController（类名）
 		outputJSON(map);
 	}
 ```
+
 	这个代码稍长，其实上面的所有都是生成一个Map，最后一句输出。outputJSON可以输出List，Map和任何Java对象。内部转换是使用fastjson实现的。
 
 ####  自动生成并输出一个表单
@@ -438,38 +451,51 @@ public void checkNull(String name,Object obj)
 ## Model与DBTool
 Model 对象对应数据库的表格，它会与一个表格进行绑定。DBTool相当于是它的DAO类。
 ### 创建一个DBTool对象
+
 ```
 		DBTool tool = Model.tool("book");
 ```
+
 其中book是数据库表的名字。
 
 ### 创建一个空的Model
+
 ```
 		DBTool tool = Model.tool("book");
 		Model m = tool.create(); //创建新的
 
 ```
+
 ### 根据主键读取一个Model
+
 ```
 			Model m = tool.get(12);
 
 ```
+
 ### 查询表中所有的行
+
 ```
 		LasyList list = tool.all();
 ```
+
 	all返回一个LasyList对象。这个对象在此事并没有真正进行数据库查询，只有在页面真正读取时才会读取数据库。这是它叫做Lasy的原因。此处借鉴了Django的实现机制。
 ###查询的limit语句
+
 ```
 	LasyList list = tool.all().limit(30);
 	list = tool.all().limit(10,30);
 	
 ```
+
 ###查询的等式约束
+
 ```
 	tool.all().eq("name","本草纲目")
 ```
+
 ###查询的不等式约束
+
 ```
 	tool.all().gt("id",12) //id < 12
 	tool.all().lt("id",33) //id <33
@@ -478,28 +504,37 @@ Model 对象对应数据库的表格，它会与一个表格进行绑定。DBTool相当于是它的DAO类。
 	tool.all().ne("id",33) //不相等
 	
 ```
+
 ### 模糊查询
+
 ```
 	tool.all().like("name","本草")
 ```
+
 	查找所有名字中包含本草的书。返回一个LasyList
 ###排序
+
 ```
 	tool.all().orderby("id",true);
 ```
+
 	按照id的增序排列。 如果是false，则是降序。
 	
 	
 ###级联查询
   因为这些上面的过滤器函数全部都会返回一个LasyList对象， 所以可以采用级联的方式进行复杂查询。如：
+
   
 ```
 list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","王");
 ```
+
  这个例子相当于执行了如下SQL语句：
+
 ```java
  select * from book where id>12 and id<33 and name='haha' and author like '%王%'
 ```
+
 
 ##Model的相关功能
 model 是一个继承自Map&lt;String,Object&gt; 的类，所以对于
@@ -511,14 +546,19 @@ Model m;
 这就使得不管是LasyList还是Model在JSTL中访问都极为的便利。
 
 ### 访问所有的键值（即DAO对象的所有属性)
+
 ```
 	model.keySet();
 ```
+
 ###访问某一个属性的值
+
 ```
 	model.get(key)
 ```
+
 ###设置某一个属性的值
+
 ```
 	model.put(key,value)
 ```
