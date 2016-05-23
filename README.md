@@ -25,7 +25,9 @@ public class IndexController extends Controller {
 }
 ```
 他的作用就是显示一句话。如图
-![这里写图片描述](http://img.blog.csdn.net/20160520185330567)
+
+
+![第零个例子的显示](http://img.blog.csdn.net/20160520185330567)
 
 
 IndexController来处理应用的根目录下的请求。 index方法来处理这个目录下的默认请求。
