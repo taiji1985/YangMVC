@@ -3,15 +3,11 @@ package test;
 
 import java.util.List;
 
-import javax.tools.Tool;
-
 import junit.framework.TestCase;
 
 import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
-import org.junit.Test;
-
 import com.docshare.log.Log;
 
 public class TestDBTool  extends TestCase
@@ -50,6 +46,7 @@ public class TestDBTool  extends TestCase
 		
 	}
 	
+	@SuppressWarnings("unused")
 	public void testThreadLocal(){
 		DBTool tool = new DBTool("book");
 		DBTool captool = new DBTool("cap");

@@ -3,17 +3,9 @@ package org.docshare.orm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
-import javax.xml.stream.events.StartDocument;
-
 import org.docshare.mvc.TextTool;
-import org.jboss.weld.bean.CustomDecoratorWrapper;
-
 import com.docshare.log.Log;
 
 /**
@@ -56,11 +48,10 @@ public class LasyList extends ListAdapter {
 
 	private String sql() {
 		String r = sqlfrom;
-		String flimit = null;
 		// 如果已经有了limit且sqllimit有值 ,那么去掉limit
 		if (sqllen != null && r.contains("limit")) {
 			int p = r.indexOf("limit");
-			flimit = r.substring(p + "limit".length());
+			r.substring(p + "limit".length());
 			r = r.substring(0, p);
 		}
 
@@ -204,8 +195,6 @@ public class LasyList extends ListAdapter {
 		initRS();
 		return new Iterator<Model>() {
 
-			Model cached = null;
-
 			@Override
 			public boolean hasNext() {
 				try {
@@ -229,7 +218,6 @@ public class LasyList extends ListAdapter {
 					if (rs.next()) {
 						ret = tool.db2Table(rs);
 					} else {
-						cached = null;
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block

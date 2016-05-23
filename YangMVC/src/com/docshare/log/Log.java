@@ -32,6 +32,7 @@ public class Log {
 		return "";
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static void map(Map m){
 		StringBuffer stringBuffer = new StringBuffer();
 		for(Object k:m.keySet()){

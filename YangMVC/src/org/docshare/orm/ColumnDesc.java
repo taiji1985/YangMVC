@@ -1,7 +1,5 @@
 package org.docshare.orm;
 
-import java.sql.Types;
-
 /**
  * 每一列的描述
  * @author Administrator

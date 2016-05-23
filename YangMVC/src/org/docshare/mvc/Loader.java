@@ -7,14 +7,11 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.docshare.mvc.except.MVCException;
-
-
 import com.docshare.log.Log;
-import com.sun.mail.iap.Response;
 
 public class Loader {
 
+	@SuppressWarnings("rawtypes")
 	public static Class load(String p){
 		try {
 			return Class.forName(p);
@@ -27,6 +24,7 @@ public class Loader {
 		
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static boolean call(String cname,String method,HttpServletRequest req,HttpServletResponse resp){
 		if(cname == null || method == null){
 			return false;

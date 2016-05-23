@@ -2,7 +2,6 @@ package org.docshare.orm;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -92,6 +91,7 @@ public class Model implements Map<String,Object> {
 		
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Collection values() {
 		ArrayList<Object> list = new ArrayList<Object>();
@@ -101,6 +101,7 @@ public class Model implements Map<String,Object> {
 		return list;
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Set entrySet() {
 		return null;

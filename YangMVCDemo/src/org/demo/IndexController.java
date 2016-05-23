@@ -8,7 +8,6 @@ import java.util.Map;
 import org.docshare.mvc.Controller;
 
 import com.docshare.log.Log;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class IndexController extends Controller {
 

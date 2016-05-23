@@ -3,7 +3,6 @@ package org.docshare.mvc;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,6 @@ public class Controller {
 	 */
 	public String getPath(){
 		String uri = request.getRequestURI();
-		String context = request.getContextPath();
 		//uri = uri.replace(context, "");
 		return uri;
 	}
@@ -136,7 +134,8 @@ public class Controller {
 	}
 	
 	private boolean existFile(String path){
-		return new File(request.getRealPath(path)).exists();
+		String p = request.getServletContext().getRealPath(path);
+		return new File(p).exists();
 	}
 	/**
 	 * 渲染一个模板，模板为参数view指定，这个路径是相对于配置中的template目录的。
