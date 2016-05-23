@@ -1,8 +1,4 @@
 #YangMVC
-#下载地址
-
-类库与Demo程序
-http://download.csdn.net/detail/taiji1985/9526716
 
 # 开发目的
 
