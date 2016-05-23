@@ -133,6 +133,16 @@ public class Controller {
 		request.setAttribute(name, obj);
 	}
 	
+	/**
+	 * 将model中的每个字段以单独的变量形式加入request中
+	 * @param m
+	 */
+	public void putModelItem(Model m){
+		for(String k : m.keySet()){
+			put(k,m.get(k));
+		}
+	}
+	
 	private boolean existFile(String path){
 		String p = request.getServletContext().getRealPath(path);
 		return new File(p).exists();
