@@ -25,7 +25,7 @@ public class LasyList extends ListAdapter {
 	private String sqlorder = null;
 
 	public ArrayList<String> sqlcons = new ArrayList<String>();
-
+	private int sz = -1;
 	private String join(ArrayList<String> s) {
 		if (s.isEmpty())
 			return "";
@@ -127,12 +127,14 @@ public class LasyList extends ListAdapter {
 
 		if (sqllen != null) {
 			if (sqllen > sz - sqlstart)
-				return sz - sqlstart;
+				this.sz = sz - sqlstart;
 			else
 				return sqllen;
-		} else
-			return sz;
+		} else this.sz =  sz;
+		
+		return this.sz;
 	}
+	
 
 	/**判断列表是否为空
 	 * 
@@ -164,6 +166,12 @@ public class LasyList extends ListAdapter {
 			Log.d("Model from cache " + index);
 			return row_maps.get(index);
 		}
+		
+		if(sz == -1){
+			size();
+		}
+		if(index >= sz)return null;
+		
 
 		try {
 			int r = rs.getRow() - 1;
