@@ -202,16 +202,16 @@ public class Controller {
 		session = request.getSession();
 		application = session.getServletContext();
 		String contentType = request.getContentType();
-		if(contentType!=null && contentType.startsWith(M_FLAG)){
-			UploadProcesser processer  = new UploadProcesser(this, request, response);
-			try {
-				processer.process();
-			} catch (FileUploadException e) {
-				String s = Log.getErrMsg(e);
-				Log.e(s);
-				output(s);
-			}
-		}
+//		if(contentType!=null && contentType.startsWith(M_FLAG)){
+//			UploadProcesser processer  = new UploadProcesser(this, request, response);
+//			try {
+//				processer.process();
+//			} catch (FileUploadException e) {
+//				String s = Log.getErrMsg(e);
+//				Log.e(s);
+//				output(s);
+//			}
+//		}
 	}
 	void error(String s){
 		
@@ -240,6 +240,35 @@ public class Controller {
 	public void outputJSON(Object obj){
 		String string = JSON.toJSONString(obj);
 		output(string);
+	}
+	
+	/**
+	 * 将列表以表格方式输出到name指定request变量中
+	 * @param name 最后的表格将会存入这个字段中
+	 * @param list 需要输出的列表
+	 */
+	public void putListTable(String name,LasyList list){
+		StringBuffer sb = new StringBuffer();
+		sb.append("<table class='table table-bordered yangmvc_table '>");
+		for(Model m : list){
+			sb.append("<tr>");
+			for(String key: m.keySet()){
+				Object v = m.get(key);
+				if(v instanceof String){
+					String sv = (String)v;
+					if(sv!=null&& sv.length() > 20){
+						v = sv.substring(0, 20)+"...";
+					}
+				}
+				if(v == null){
+					v = "";
+				}
+				sb.append("\t<td>"+v+"</td>\r\n");
+			}
+			sb.append("</tr>\r\n");
+		}
+		sb.append("</table>");
+		put(name,sb.toString());
 	}
 	
 	

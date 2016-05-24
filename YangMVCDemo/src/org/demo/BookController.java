@@ -74,4 +74,15 @@ public class BookController extends Controller {
 		
 		
 	}
+	
+	public void testtable(){
+
+		DBTool tool = Model.tool("book");
+		LasyList list = tool.all().orderby("id", false);
+		LasyList plist = page(list);
+		
+		
+		this.putListTable("mylist", plist);
+		render();
+	}
 }

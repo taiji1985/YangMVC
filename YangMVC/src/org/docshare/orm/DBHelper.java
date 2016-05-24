@@ -31,9 +31,9 @@ public class DBHelper {
 	
 	public static void removeThreadLocal(){
 		try{
-		locals.remove();
+			locals.remove();
 		}catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	//防止用户自己调用构造函数
