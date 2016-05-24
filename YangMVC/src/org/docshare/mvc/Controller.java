@@ -202,16 +202,16 @@ public class Controller {
 		session = request.getSession();
 		application = session.getServletContext();
 		String contentType = request.getContentType();
-//		if(contentType!=null && contentType.startsWith(M_FLAG)){
-//			UploadProcesser processer  = new UploadProcesser(this, request, response);
-//			try {
-//				processer.process();
-//			} catch (FileUploadException e) {
-//				String s = Log.getErrMsg(e);
-//				Log.e(s);
-//				output(s);
-//			}
-//		}
+		if(contentType!=null && contentType.startsWith(M_FLAG)){
+			UploadProcesser processer  = new UploadProcesser(this, request, response);
+			try {
+				processer.process();
+			} catch (FileUploadException e) {
+				String s = Log.getErrMsg(e);
+				Log.e(s);
+				output(s);
+			}
+		}
 	}
 	void error(String s){
 		
