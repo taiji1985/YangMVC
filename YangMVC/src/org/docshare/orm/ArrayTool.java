@@ -19,10 +19,10 @@ class ArrayTool {
 		String val = "";
 		if(o==null){
 			val = "null";
-		}else if(!type.contains("VAR")){
-			val= o.toString();
-		}else{
+		}else if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
 			val= "'"+o.toString()+"'";
+		}else{
+			val= o.toString();
 		}
 		if(name == null)return val;
 		return name +"="+ val;	

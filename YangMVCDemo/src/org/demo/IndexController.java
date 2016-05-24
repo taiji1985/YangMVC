@@ -45,7 +45,7 @@ public class IndexController extends Controller {
 	}
 	
 	public void tt(){
-		LasyList list = Model.tool("kjkm").all().eq("type"	, "3");
+		LasyList list = Model.tool("book").all().eq("id"	,3);
 		for(Model m : list){
 			System.out.println(m);
 		}

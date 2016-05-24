@@ -72,6 +72,15 @@ public class TestORM extends TestCase{
 		list = tool.all().orderby("id", false).limit(30);
 		Log.i(list.get(0));
 	}
+	
+	public void testEq(){
+		LasyList list = list = tool.all().eq("id", 12);
+		Log.i(list);
+		list = tool.all().eq("id", 1112);
+		Log.i(list);
+		list = tool.all().eq("id", null);
+		Log.i(list);
+	}
 
 	
 }

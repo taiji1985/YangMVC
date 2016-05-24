@@ -217,10 +217,15 @@ public class LasyList extends ListAdapter {
 		initRS();
 		return new Iterator<Model>() {
 			boolean finished =false;
+			int sz = -1;
 			@Override
 			public boolean hasNext() {
+				if(sz == -1){
+					sz = LasyList.this.size();
+				}
+				
 				try {
-					if(rs == null || finished )return false;
+					if(sz== 0 || rs == null || finished )return false;
 					return !rs.isLast();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -310,8 +315,9 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
-	public LasyList eq(String column, String val) {
-		String w = String.format("%s = '%s'", column, val);
+	public LasyList eq(String column, Object val) {
+		
+		String w = ArrayTool.valueWrapper(column, val, tool.getColumnTypeName(column)); //String.format("%s = '%s'", column, val);
 		sqlcons.add(w);
 
 		return this;
@@ -418,5 +424,16 @@ public class LasyList extends ListAdapter {
 			rs =null;
 		}catch(Exception e){}
 		super.finalize();
+	}
+	
+	@Override
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");
+		for(Model m : this){
+			sb.append(m);
+		}
+		sb.append("]");
+		return sb.toString();
 	}
 }
