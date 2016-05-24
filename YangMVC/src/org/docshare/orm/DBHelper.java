@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 
-import com.docshare.log.Log;
 
 
 public class DBHelper {

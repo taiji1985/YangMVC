@@ -7,7 +7,8 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.docshare.log.Log;
+import org.docshare.log.Log;
+
 
 public class Loader {
 

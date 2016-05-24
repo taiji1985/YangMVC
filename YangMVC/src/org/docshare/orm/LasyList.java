@@ -5,8 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
-import com.docshare.log.Log;
 
 /**
  * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。

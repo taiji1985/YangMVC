@@ -4,28 +4,43 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileUploadException;
+import org.docshare.log.Log;
 import org.docshare.mvc.except.NullParamException;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
 import com.alibaba.fastjson.JSON;
-import com.docshare.log.Log;
 
 public class Controller {
 
+	public static final String M_FLAG="multipart/form-data";
+
+	
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 	protected HttpSession session; 
 	protected PrintWriter writer = null;
+	protected Map<String, Object> paramMap=new HashMap<String, Object>();
 
+
+	private ServletContext application;
+	protected void putParam(String key,Object val) {
+		Log.d("put param"+key+"= "+val);
+		paramMap.put(key, val);
+		
+	}
 	/**
 	 * 返回当前请求是否为Get请求，
 	 * @return 当为Get请求时返回真，否则返回假。
@@ -144,7 +159,7 @@ public class Controller {
 	}
 	
 	private boolean existFile(String path){
-		String p = request.getServletContext().getRealPath(path);
+		String p = request.getSession().getServletContext().getRealPath(path);
 		return new File(p).exists();
 	}
 	/**
@@ -185,6 +200,18 @@ public class Controller {
 		this.request = req;
 		this.response = resp;
 		session = request.getSession();
+		application = session.getServletContext();
+		String contentType = request.getContentType();
+		if(contentType!=null && contentType.startsWith(M_FLAG)){
+			UploadProcesser processer  = new UploadProcesser(this, request, response);
+			try {
+				processer.process();
+			} catch (FileUploadException e) {
+				String s = Log.getErrMsg(e);
+				Log.e(s);
+				output(s);
+			}
+		}
 	}
 	void error(String s){
 		
@@ -262,6 +289,7 @@ public class Controller {
 	 * @return
 	 */
 	public String param(String p){
+		if(paramMap.containsKey(p))return paramMap.get(p).toString();
 		return request.getParameter(p);
 	}
 	/**

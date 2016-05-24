@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import com.docshare.log.Log;
+import org.docshare.log.Log;
+
 
 public class ListAdapter implements List<Model> {
 

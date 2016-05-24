@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.docshare.log.Log;
 
-import com.docshare.log.Log;
+
 
 
 public class DBTool {

@@ -5,10 +5,10 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.docshare.log.Log;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
-import com.docshare.log.Log;
 
 public class TestDBTool  extends TestCase
 {  

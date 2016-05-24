@@ -1,10 +1,10 @@
 package org.docshare.test;
 
+import org.docshare.log.Log;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
-import com.docshare.log.Log;
 
 import junit.framework.TestCase;
 

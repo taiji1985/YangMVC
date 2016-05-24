@@ -16,6 +16,7 @@ public class ColumnDesc {
 		this.type = type;
 		this.remark = remark;
 	}
+	
 	public ColumnDesc() {
 	}
 	

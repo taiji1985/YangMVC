@@ -15,8 +15,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.docshare.log.Log;
 
-import com.docshare.log.Log;
+
 
 public class MVCFilter implements Filter {
 	private static MVCFilter ins;
@@ -24,8 +25,6 @@ public class MVCFilter implements Filter {
 		return ins;
 	}
 	
-	
-
 	@Override
 	public void destroy() {
 		
@@ -91,6 +90,8 @@ public class MVCFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req2 = (HttpServletRequest) req;
+		Log.i("contentType"+req2.getContentType());
+		
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
 		Log.i("filter>"+uri);
