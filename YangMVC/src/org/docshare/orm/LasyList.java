@@ -170,7 +170,7 @@ public class LasyList extends ListAdapter {
 		if(sz == -1){
 			size();
 		}
-		if(index >= sz)return null;
+		if(index >= sz || index < 0)return null;
 		
 
 		try {
