@@ -74,7 +74,7 @@ public class TestORM extends TestCase{
 	}
 	
 	public void testEq(){
-		LasyList list = list = tool.all().eq("id", 12);
+		LasyList list = tool.all().eq("id", 12);
 		Log.i(list);
 		list = tool.all().eq("id", 1112);
 		Log.i(list);
@@ -82,5 +82,12 @@ public class TestORM extends TestCase{
 		Log.i(list);
 	}
 
+	public void testByExample(){
+		Model m  = tool.create();
+		m.put("id", 12);
+		LasyList list = tool.all().byExample(m);
+		Log.i(list.size());
+		Log.i(list);
+	}
 	
 }

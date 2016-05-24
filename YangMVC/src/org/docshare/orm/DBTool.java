@@ -154,7 +154,7 @@ public class DBTool {
 		LasyList list = new LasyList("from "+tname, this);
 		return list;
 	}
-	
+
 	
 	public Model db2Table(ResultSet rs){
 		Model tb = new Model(tname,columns);

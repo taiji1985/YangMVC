@@ -79,7 +79,9 @@ public class LasyList extends ListAdapter {
 
 	private DBTool tool;
 	private ResultSet rs = null;
-
+	public DBTool getTool(){
+		return tool;
+	}
 	/**
 	 * 根据一个类似 from book 这样的sql片段生成LasyList
 	 * @param from 以from开头的sql语句片段，如from book
@@ -444,4 +446,16 @@ public class LasyList extends ListAdapter {
 		sb.append("]");
 		return sb.toString();
 	}
+	
+	public LasyList byExample(Model m){
+		for(String k : m.keySet()){
+			Object v = m.get(k);
+			if(v == null) continue;
+			
+			String cc = ArrayTool.valueWrapper(k, v, tool.getColumnTypeName(k));
+			sqlcons.add(cc);
+		}
+		return this;
+	}
+
 }
