@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Controller;
+import org.docshare.orm.LasyList;
+import org.docshare.orm.Model;
 
 
 public class IndexController extends Controller {
@@ -40,5 +42,12 @@ public class IndexController extends Controller {
 		map.put("addtm",new Date());
 		
 		outputJSON(map);
+	}
+	
+	public void tt(){
+		LasyList list = Model.tool("kjkm").all().eq("type"	, "3");
+		for(Model m : list){
+			System.out.println(m);
+		}
 	}
 }

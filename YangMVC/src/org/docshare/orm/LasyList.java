@@ -216,11 +216,11 @@ public class LasyList extends ListAdapter {
 	public Iterator<Model> iterator() {
 		initRS();
 		return new Iterator<Model>() {
-
+			boolean finished =false;
 			@Override
 			public boolean hasNext() {
-				if(rs == null)return false;
 				try {
+					if(rs == null || finished )return false;
 					return !rs.isLast();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -241,6 +241,7 @@ public class LasyList extends ListAdapter {
 					if (rs.next()) {
 						ret = tool.db2Table(rs);
 					} else {
+						finished = true;
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
