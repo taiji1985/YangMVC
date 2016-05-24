@@ -2,6 +2,7 @@ package org.docshare.orm;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -101,10 +102,45 @@ public class Model implements Map<String,Object> {
 		return list;
 	}
 	
+	class ModelEntry implements Entry{
+
+		private Object key;
+		private Object val;
+		public ModelEntry(Object key,Object val){
+			this.key = key;
+			this.val = val;
+		}
+		@Override
+		public Object getKey() {
+			// TODO Auto-generated method stub
+			return this.key;
+		}
+
+		@Override
+		public Object getValue() {
+			// TODO Auto-generated method stub
+			return this.val;
+		}
+
+		@Override
+		public Object setValue(Object value) {
+			// TODO Auto-generated method stub
+			this.val = value;
+			return value;
+		}
+		
+	}
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Set entrySet() {
-		return null;
+		Set s = new HashSet();
+		for(String key: this.keySet()){
+			Entry en = new ModelEntry(key,this.get(key));
+			s.add(en);
+		}
+		
+		return s;
 	}
 	
 	@Override

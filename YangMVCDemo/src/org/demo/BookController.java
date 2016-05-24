@@ -85,4 +85,11 @@ public class BookController extends Controller {
 		this.putListTable("mylist", plist);
 		render();
 	}
+	
+	public void testdbjson(){
+		DBTool tool = Model.tool("book");
+		LasyList list = tool.all().orderby("id", false);
+		LasyList plist = page(list);
+		this.outputJSON(plist);
+	}
 }
