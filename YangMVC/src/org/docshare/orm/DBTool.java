@@ -21,7 +21,7 @@ public class DBTool {
 	public DBTool(String tname){
 		this.tname = tname;
 		c_to_remarks = helper.listColumn(tname);
-		Log.map(c_to_remarks);
+		//Log.map(c_to_remarks);
 		columns = new HashMap<String, Object>();
 		for(String s:c_to_remarks.keySet()){
 			columns.put(s, null);
