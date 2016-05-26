@@ -62,7 +62,6 @@ public class BookController extends Controller {
 			tool.save(m);
 			put("msg","添加成功");
 		}
-
 		//显示数据
 		renderForm(tool.create());
 	}
@@ -71,8 +70,6 @@ public class BookController extends Controller {
 		Integer id = paramInt("id");
 		Model.tool("book").del(id);
 		jump("index");
-		
-		
 	}
 	
 	public void testtable(){

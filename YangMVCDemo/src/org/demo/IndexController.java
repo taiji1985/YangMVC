@@ -12,9 +12,19 @@ import org.docshare.orm.Model;
 
 
 public class IndexController extends Controller {
-
+	public IndexController(){
+		this.setSingle(true);
+	}
+	int ct = 0;
+	public void count(){
+		synchronized (this) {
+			ct++;	
+		}
+		output("count is "+ct);
+	}
 	public void index(){
 		Log.i("index called");
+		
 		output("Hello YangMVC");
 	}
 	
@@ -45,9 +55,15 @@ public class IndexController extends Controller {
 	}
 	
 	public void tt(){
-		LasyList list = Model.tool("book").all().eq("id"	,3);
-		for(Model m : list){
-			System.out.println(m);
-		}
+		LasyList list = Model.tool("book").all().lt("id"	,13);
+//		for(Model m : list){
+//			System.out.println(m);
+//		}
+		outputJSON(list);
+	}
+	
+	public void lang(){
+		String lng = getLang();
+		output(lng);
 	}
 }
