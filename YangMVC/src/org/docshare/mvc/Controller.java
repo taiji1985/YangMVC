@@ -36,6 +36,9 @@ public class Controller {
 
 
 	private ServletContext application;
+
+
+	private boolean single = false;
 	protected void putParam(String key,Object val) {
 		Log.d("put param"+key+"= "+val);
 		paramMap.put(key, val);
@@ -362,7 +365,11 @@ public class Controller {
 	 */
 	public void checkNull(String name,Object obj) throws NullParamException{
 		if(obj == null){
-			throw new NullParamException("Param should not be NULL: "+name);
+			String msg="Param should not be NULL: "+name;
+			if(getLang().contains("zh")){
+				msg ="参数不能为空.这个问题一般是缺少url参数或form表单参数所致"+name;
+			}
+			throw new NullParamException(msg);
 		}
 	}
 	
@@ -372,6 +379,33 @@ public class Controller {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	/**
+	 * 设置当前控制器为单例模式， 
+	 * @param single 设置为true为单例，否则每次请求创建一个该控制器对象
+	 */
+	public void setSingle(boolean single){
+		this.single = single;
+	}
+	public boolean isSingle(){
+		return single;
+	}
+	
+	/**
+	 * 获取当前请求所接受的语言种类
+	 * @return
+	 */
+	public String getLang(){
+		String lang = request.getHeader("Accept-Language");
+		if(lang == null){
+			return "en";
+		}else{
+			
+			if(lang.contains(";")){
+				lang=  TextTool.getBefore(lang, ";");
+			}
+			return lang;
 		}
 	}
 }

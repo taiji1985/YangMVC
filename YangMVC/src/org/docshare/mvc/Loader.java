@@ -3,6 +3,8 @@ package org.docshare.mvc;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,17 +15,14 @@ import org.docshare.log.Log;
 public class Loader {
 
 	@SuppressWarnings("rawtypes")
-	public static Class load(String p){
-		try {
-			return Class.forName(p);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		}
-		
-		return null;
+	public static Class load(String p) throws ClassNotFoundException{
+		return Class.forName(p);
 		
 	}
+	/**
+	 * 用以存储单例对象的Map。
+	 */
+	static Map<String, Object> singleMap = new HashMap<String, Object>();
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static boolean call(String cname,String method,HttpServletRequest req,HttpServletResponse resp){
@@ -40,40 +39,82 @@ public class Loader {
 		}
 		Log.i("Call "+cname +", method = "+method);
 		
-		Class cz = load(cname);
-		if(cz == null){
+		//load class
+		Class cz=null;
+		Object obj =null;
+		try{
+			if(singleMap.containsKey(cname)){
+				obj = singleMap.get(cname);
+				cz = obj.getClass();
+				Log.d("Single Mode:"+cname);
+			}else{
+				cz = load(cname);
+				if(cz == null){
+					return false;
+				}
+				obj = cz.newInstance();
+				if(! (obj instanceof Controller)){
+					Log.e("error : The Class is not subclass of Controller: "+cname);
+					return false;
+				}
+				
+				
+			}
+		}catch(Exception e){
+			Throwable cause = e.getCause();
+			if(cause == null){
+				cause=e;
+			}
+			String msg = Log.getErrMsg(cause);
+			Log.e(msg);
+			outMsg(msg,resp);
 			return false;
 		}
 		
+		//call the method
 		Method m;
 		try {
-			Object obj = cz.newInstance();
-			if(! (obj instanceof Controller)){
-				Log.e("error : The Class is not subclass of Controller: "+cname);
-				return false;
-			}
+			
 			Controller ins = (Controller) obj;
 			ins.setReq(req, resp);
 			m = cz.getMethod(method);
 			m.invoke(ins);
 			
+			if(ins.isSingle()){
+				singleMap.put(cname, ins);
+			}
 			Log.i("call success");
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
-			String msg = Log.getErrMsg(e);
-			PrintWriter pw;
-			try {
-				pw = resp.getWriter();
-				pw.print(msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;"));
-				pw.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			Throwable cause = e.getCause();
+			if(cause == null){
+				cause=e;
 			}
+			String msg = Log.getErrMsg(cause);
+			Log.e(msg);
+			outMsg(msg,resp);
 			
 			return false;
 		}
+		
+	}
+	public static void outMsg(String msg,HttpServletResponse resp){
+		PrintWriter pw;
+		try {
+			resp.setCharacterEncoding("utf-8");
+			resp.setContentType("text/html; charset=UTF-8");
+			pw = resp.getWriter();
+			pw.println("<html><head><meta charset='utf-8'/></head><body>");
+			String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
+			m = m.replace(Config.ctr_base, "<font color='red'>"+Config.ctr_base+"</font>");
+			pw.print(m);
+			pw.println("</body></html>");
+			pw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 	}
 }

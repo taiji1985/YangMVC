@@ -18,7 +18,7 @@ public class Log {
 		System.out.println("[debug]" + str);
 	}
 
-	public static String getErrMsg(Exception e){
+	public static String getErrMsg(Throwable e){
 		try {
 			ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
 			e.printStackTrace(new java.io.PrintWriter(buf, true));
@@ -44,4 +44,6 @@ public class Log {
 		String s= stringBuffer.toString();
 		Log.i(s);
 	}
+
+
 }
