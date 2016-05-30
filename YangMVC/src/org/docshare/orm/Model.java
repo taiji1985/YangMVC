@@ -2,15 +2,19 @@ package org.docshare.orm;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.docshare.mvc.TextTool;
 
+import com.alibaba.fastjson.JSON;
+
 public class Model implements Map<String,Object> {
 	private String tname;
 	private Map<String, Object> columns;
+	private Map<String,Object> extra; //在Model中追加的数据
 	DBTool joined_tool=null;//与之相关的tool类
 	protected Model(String tname,Map<String,Object> columns){
 		this.tname = tname;
@@ -82,6 +86,13 @@ public class Model implements Map<String,Object> {
 	@Override
 	public Object get(Object key) {
 		String ks = (String)key;
+		
+		//检查append,如果append中有这个key，则返回
+		if(extra!=null && extra.containsKey(ks)){
+			return extra.get(ks);
+		}
+		
+		
 		String k =null;
 		if(!columns.containsKey(key) && columns.containsKey(key+"_id")){
 			k=key+"_id";
@@ -174,6 +185,9 @@ public class Model implements Map<String,Object> {
 		for(String k:columns.keySet()){
 			stringBuffer.append(","+k+"="+columns.get(k));
 		}
+		if(extra !=null){
+			stringBuffer.append(",extra="+JSON.toJSONString(extra));
+		}
 		stringBuffer.append("]");
 		stringBuffer.setCharAt(0, '[');
 		stringBuffer.insert(0, "Model");
@@ -183,7 +197,12 @@ public class Model implements Map<String,Object> {
 	public Object put(String key, Object value) {
 		if(columns.containsKey(key)){
 			return columns.put((String)key, value);
-		}else return null;
+		}else{ //如果没有这个key，则添加入extra之中。
+			if(extra == null){
+				extra = new HashMap<String,Object>();
+			}
+			return extra.put(key, value);
+		}
 	}
 	@Override
 	public void putAll(Map<? extends String, ? extends Object> m) {

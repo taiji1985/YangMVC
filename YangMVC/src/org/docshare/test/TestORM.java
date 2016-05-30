@@ -1,6 +1,7 @@
 package org.docshare.test;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
@@ -13,7 +14,15 @@ public class TestORM extends TestCase{
 	private LasyList list;
 	@Override
 	public void setUp(){
+		Config.dbname ="mvc_demo";
 		tool = Model.tool("book");
+	}
+	public void testExtra(){
+		Log.i("testExtra");
+		Model m = tool.get(1);
+		m.put("haha", "sfsf");
+		Log.i(m);
+		
 	}
 	public void testGet(){
 		Log.i("testGet");
