@@ -59,9 +59,18 @@ public class DBTool {
 	 * @throws SQLException
 	 */
 	public Model get(int id){
+		return get(key,id);
+	}
+	/**
+	 * 获取column列等于id的所有集合的第一个
+	 * @param column
+	 * @param id
+	 * @return
+	 */
+	public Model get(String column, Object id) {
 		ResultSet rs;
 		try {
-			rs = helper.getRS(String.format("select * from %s where %s = %d",tname,key,id));
+			rs = helper.getPrepareRS(String.format("select * from %s where %s = ? limit 0,1",tname,column),id);
 			Model tb=null;
 			if(rs.next()){
 				tb = db2Table(rs);
@@ -74,7 +83,9 @@ public class DBTool {
 		}
 		
 		return null;
+		
 	}
+	
 	public Model create(){
 		Model model =new Model(tname, columns);
 		model.joined_tool = this;
@@ -190,6 +201,12 @@ public class DBTool {
 		}
 		super.finalize();
 	}
+
+	public ColumnDesc getColumnDesc(String column) {
+		return c_to_remarks.get(column);
+	}
+
+
 
 
 }

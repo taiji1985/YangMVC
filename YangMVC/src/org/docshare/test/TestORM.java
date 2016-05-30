@@ -15,6 +15,11 @@ public class TestORM extends TestCase{
 	public void setUp(){
 		tool = Model.tool("book");
 	}
+	public void testGet(){
+		Log.i("testGet");
+		Model m = tool.get(1);
+		Log.i(m);
+	}
 	public void testAll(){
 		LasyList list = tool.all();
 		Log.i("result1 "+list.size());

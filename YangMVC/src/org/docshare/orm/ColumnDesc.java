@@ -10,6 +10,9 @@ public class ColumnDesc {
 	public int type;
 	public String typeName;
 	public String remark;
+	public String pk_table = null; //如果是null,则不是外键
+	public String pk_column = null;
+	
 	public ColumnDesc(String name, int type, String remark) {
 		super();
 		this.name = name;

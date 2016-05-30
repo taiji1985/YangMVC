@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.docshare.mvc.TextTool;
+
 public class Model implements Map<String,Object> {
 	private String tname;
 	private Map<String, Object> columns;
 	DBTool joined_tool=null;//与之相关的tool类
-	public Model(String tname,Map<String,Object> columns){
+	protected Model(String tname,Map<String,Object> columns){
 		this.tname = tname;
 		this.columns = columns;
 	}
@@ -79,6 +81,29 @@ public class Model implements Map<String,Object> {
 
 	@Override
 	public Object get(Object key) {
+		String ks = (String)key;
+		String k =null;
+		if(!columns.containsKey(key) && columns.containsKey(key+"_id")){
+			k=key+"_id";
+		}
+		//如果原本的字段就以__obj开头，则不认为其为主键
+		if(ks.endsWith("__obj") && ! columns.containsKey(ks)){
+			k = TextTool.getBefore(ks, "__obj");
+			if(! columns.containsKey(k)){
+				return null; //想把这个作为外键但它不存在
+			}
+		}
+		if(k !=null){ //try to visit foreign key
+			ColumnDesc desc = joined_tool.getColumnDesc(k);
+			if(desc.pk_table == null){ //没有这个主键
+				return null;
+			}
+			
+			DBTool tool = Model.tool(desc.pk_table);
+			return tool.get(desc.pk_column, columns.get(k));
+			
+		}
+		
 		return columns.get(key);
 	}
 

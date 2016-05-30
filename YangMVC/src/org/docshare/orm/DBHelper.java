@@ -1,8 +1,11 @@
 package org.docshare.orm;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -10,6 +13,7 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
+
 
 
 
@@ -66,7 +70,56 @@ public class DBHelper {
 		}
 
 	}
-
+	/**
+	 * 获取该表的外键信息
+	 * @param table
+	 * @param map
+	 * @throws SQLException
+	 */
+	private void getFKey(String table ,HashMap<String,ColumnDesc> map) throws SQLException{
+		if(con==null){
+			conn();
+		}
+		
+		DatabaseMetaData dbmd = con.getMetaData();
+		ResultSet rs = dbmd.getImportedKeys(Config.dbname, "%", table);
+		
+		ResultSetMetaData meta = rs.getMetaData();
+//		Log.d("column count "+meta.getColumnCount());
+//		for(int i=1;i<=meta.getColumnCount();i++){
+//			Log.d(meta.getColumnName(i));
+//		}
+		while(rs.next()){
+			String pk_table = rs.getString("PKTABLE_NAME");
+			String pk_column = rs.getString("PKCOLUMN_NAME");
+			String my_column = rs.getString("FKCOLUMN_NAME");
+			ColumnDesc desc = map.get(my_column);
+			if(desc == null) continue;
+			
+			desc.pk_column = pk_column;
+			desc.pk_table = pk_table;
+		}
+		
+	}
+	public ResultSet getPrepareRS(String sql,Object obj) throws SQLException{
+		PreparedStatement s ;
+		conn();
+		Log.d("DBHelper"+this.hashCode()+" exec sql : "+sql +",param1 = "+obj);
+		s= con.prepareStatement(sql);
+		s.setObject(1, obj);
+		return s.executeQuery();
+	}
+	public ResultSet getPrepareRS(String sql,Object a,Object b) throws SQLException{
+		PreparedStatement s ;
+		conn();
+		Log.d("DBHelper"+this.hashCode()+" exec sql : "+sql +"param1 = "+a+",param2="+b);
+		s= con.prepareStatement(sql);
+		s.setObject(1, a);
+		s.setObject(2, b);
+		return s.executeQuery();
+	}
+	
+	
 	public ResultSet getRS(String sql) throws SQLException {
 		Statement s;
 		conn();
@@ -126,15 +179,18 @@ public class DBHelper {
 				if(desc.remark!=null&&desc.remark.length()==0){
 					desc.remark = null;
 				}
-				System.out.println("type "+desc.type +","+desc.name);
+				//System.out.println("type "+desc.type +","+desc.name);
 				ret.put(desc.name, desc);
 			}
+			getFKey(tb,ret);
 			desc_cached.put(tb, ret);
+		
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		return ret;
 	}
 
