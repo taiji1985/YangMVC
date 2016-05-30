@@ -14,10 +14,8 @@
   </head>
   
   <body>
-  这是在模板中。b<br>
- 测试传输数据:   ${a } <br>
+  
+  ${obj.catalog.name } <br>
 
-${map.name }
- 
   </body>
 </html>

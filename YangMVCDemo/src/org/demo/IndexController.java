@@ -66,4 +66,9 @@ public class IndexController extends Controller {
 		String lng = getLang();
 		output(lng);
 	}
+	
+	public void fr(){
+		Model m = Model.tool("book").get(1);
+		put("obj",m);
+	}
 }

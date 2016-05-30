@@ -181,17 +181,17 @@ public class Model implements Map<String,Object> {
 	
 	@Override
 	public String toString() {
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuffer sb = new StringBuffer();
 		for(String k:columns.keySet()){
-			stringBuffer.append(","+k+"="+columns.get(k));
+			sb.append(","+k+"="+columns.get(k));
 		}
 		if(extra !=null){
-			stringBuffer.append(",extra="+JSON.toJSONString(extra));
+			sb.append(",extra="+JSON.toJSONString(extra));
 		}
-		stringBuffer.append("]");
-		stringBuffer.setCharAt(0, '[');
-		stringBuffer.insert(0, "Model");
-		return stringBuffer.toString();
+		sb.append("]");
+		sb.setCharAt(0, '[');
+		sb.insert(0, "Model");
+		return sb.toString();
 	}
 	@Override
 	public Object put(String key, Object value) {
