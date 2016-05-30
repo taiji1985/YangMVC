@@ -141,7 +141,7 @@ public class DBTool {
 				vs+= valueWrapper(k, v);
 				first = false;
 			}
-			sql = String.format("insert into %s(%s) values(%s)", m.getTableName(),ks,vs);
+			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs);
 		}else{
 			ArrayList<String> sa=new ArrayList<String>();
 			for(String k: m.keySet()){
@@ -154,7 +154,7 @@ public class DBTool {
 				sa.add(s);
 			}
 			String ss = ArrayTool.join(",", sa);
-			sql=String.format("update %s set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper("id", id,getColumnTypeName("id")) );
+			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper("id", id,getColumnTypeName("id")) );
 		}
 		Log.d("DBTool run sql: "+sql);
 		int d = helper.update(sql);
