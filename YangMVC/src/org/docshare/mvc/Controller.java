@@ -85,8 +85,8 @@ public class Controller {
 	public LasyList page(LasyList list){
 		int total = list.size();
 		
-		Integer page =  paramWithDefault("page", 1);
-		Integer pagesz =  paramWithDefault("pagesz", 30);
+		Integer page =  (Integer) paramWithDefault("page", 1);
+		Integer pagesz =  (Integer) paramWithDefault("pagesz", 30);
 		int pagec = (int) Math.floor(total/pagesz)+1;
 		Log.d(total/pagesz);
 		
@@ -129,8 +129,14 @@ public class Controller {
 		return list.page(page, pagesz);
 		
 	}
-	public Integer paramWithDefault(String name,Integer def){
-		Integer ret = paramInt(name);
+	/**
+	 * 获取参数，如果该参数为null，则返回使用参数def给出的值
+	 * @param name 参数名
+	 * @param def 默认值
+	 * @return 
+	 */
+	public Object paramWithDefault(String name,Object def){
+		Object ret = param(name);
 		return ret == null?def:ret;
 	}
 	/**
