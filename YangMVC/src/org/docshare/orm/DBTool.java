@@ -115,11 +115,28 @@ public class DBTool {
 		return r;
 	}
 
-	
+	/**
+	 * 插入或保存数据。当m的主键为非空时，则为更新，主键为空是为插入。
+	 * @param m
+	 */
 	public void save(Model m){
+		save(m,false);
+	}
+	/**
+	 * 更新或保存数据。
+	 * 当主键为null 或isInsert为真时， 执行插入数据
+	 * 否则，执行更新操作。
+	 * @param m
+	 * @param isInsert 是否强制为插入操作
+	 */
+	public void save(Model m,boolean isInsert){
+		if(m == null){
+			Log.e("can not save a null object");
+			return;
+		}
 		Object id = m.get(key);
 		String sql = "";
-		if(id == null){
+		if(id == null|| isInsert){
 			//This is an insert
 			String ks="";
 			String vs="";
@@ -184,11 +201,14 @@ public class DBTool {
 		return tb;
 	}
 
-	public void del(Integer id) {
-		String sql = String.format("delete from %s where %s = %d", tname,key,id);
+	public void del(Object id) {
+		String sql = String.format("delete from %s where %s = ?", tname,key);
 		Log.d("DBTool run sql: "+sql);
-		helper.update(sql);
-		
+		helper.update(sql,id);		
+	}
+	
+	public void del(Model m){
+		Object kv = m.get(key);		
 	}
 	
 	@Override

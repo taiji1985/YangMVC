@@ -142,7 +142,21 @@ public class DBHelper {
 		return 0;
 
 	}
+	public int update(String sql,Object obj) {
+		
+		try {
+			conn();
+			PreparedStatement s = con.prepareStatement(sql);
+			s.setObject(1, obj);
+			return s.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 
+	}
 	public void close() {
 		try {
 			if(con!=null){
