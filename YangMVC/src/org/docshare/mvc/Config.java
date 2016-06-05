@@ -17,6 +17,14 @@ public class Config {
 	 * 数据库名称
 	 */
 	public static String dbname = "621m";
+	
+	/**
+	 * 
+	 */
+	public static String dbport = "3306";
+	
+	
+	
 	/**
 	 * 模板相对于WebRoot的目录路径
 	 */
@@ -28,7 +36,7 @@ public class Config {
 	
 	public static String str() {
 		return "Config [dbhost=" + dbhost +", dbname=" + dbname + ", dbusr=" + dbusr + ", dbpwd="
-				+ dbpwd + ", tpl_base=" + tpl_base + ", ctr_base=" + ctr_base
+				+ dbpwd + ", port = "+ dbport + ", tpl_base=" + tpl_base + ", ctr_base=" + ctr_base
 				+ "]";
 	}
 	

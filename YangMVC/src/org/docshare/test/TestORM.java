@@ -15,6 +15,7 @@ public class TestORM extends TestCase{
 	@Override
 	public void setUp(){
 		Config.dbname ="mvc_demo";
+		Config.dbport = "3306";
 		tool = Model.tool("book");
 	}
 	public void testDel(){

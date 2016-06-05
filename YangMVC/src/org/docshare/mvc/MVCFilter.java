@@ -140,6 +140,10 @@ public class MVCFilter implements Filter {
 		Config.dbhost = cfg.getServletContext().getInitParameter("dbhost");
 		Config.dbpwd = cfg.getServletContext().getInitParameter("dbpwd");
 		Config.dbname = cfg.getServletContext().getInitParameter("dbname");
+		Config.dbport = cfg.getServletContext().getInitParameter("dbport");
+		
+		Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
+		
 		
 		Log.i(Config.str());
 		

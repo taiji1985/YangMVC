@@ -136,9 +136,21 @@ public class Controller {
 	 * @return 
 	 */
 	public Object paramWithDefault(String name,Object def){
-		Object ret = param(name);
+		String ret = param(name);
+		if(def instanceof Integer && ret != null){
+			return Integer.parseInt(ret);
+		}
 		return ret == null?def:ret;
 	}
+	public int paramWithDefaultInt(String pname ,int def){
+		String ret = param(pname);
+		if(ret == null){
+			return def;
+		}else{
+			return Integer.parseInt(ret);
+		}
+	}
+	
 	/**
 	 * 使用模板目录中对应的文件进行渲染
 	 */
