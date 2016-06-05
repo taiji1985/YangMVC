@@ -300,7 +300,10 @@ mysql-connector-java-5.1.23-bin.jar
     <param-name>dbname</param-name>
     <param-value>mvc_demo</param-value>
   </context-param>
-  
+  <context-param>
+    <param-name>dbport</param-name>
+    <param-value>3306</param-value>
+  </context-param>  
 ```
 
 所有需要配置的都在这里了。这里做个简要说明
@@ -450,6 +453,16 @@ public void checkNull(String name,Object obj)
 
 ## Model与DBTool
 Model 对象对应数据库的表格，它会与一个表格进行绑定。DBTool相当于是它的DAO类。
+YangMVC的ORM组件可以单独使用。使用前需要先配置数据库:
+
+```java
+	Config.dbhost = "localhost";
+	Config.dbname = "dc2";
+	Config.dbpwd = "123456";
+	Config.dbusr ="root";
+	Config.dbport="3306";
+```
+
 ### 创建一个DBTool对象
 
 ```java

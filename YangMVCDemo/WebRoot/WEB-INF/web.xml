@@ -32,7 +32,10 @@
     <param-name>dbname</param-name>
     <param-value>mvc_demo</param-value>
   </context-param>
-  
+  <context-param>
+    <param-name>dbport</param-name>
+    <param-value>3306</param-value>
+  </context-param>  
   <filter-mapping>
     <filter-name>yangmvc</filter-name>
     <url-pattern>/*</url-pattern>
