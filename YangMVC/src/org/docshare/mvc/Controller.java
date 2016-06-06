@@ -426,4 +426,63 @@ public class Controller {
 			return lang;
 		}
 	}
+	
+	/**
+	 * 限制当前Controller类中的所有方法的访问权限。这个方法常用于权限判断
+	 * 如： session中存在uid字段，则说明已登录，如果没有，说明未登录，则跳转到登录页。
+	 * 如果value为空，要求session中存在某个key，如果value不为空，要求session中的值等于value
+	 * @param session_key
+	 * @param value
+	 * @param jump_url 如果不符合条件跳转到的地址
+	 * @param err 如果jump_url 为空，则不跳转，显示一个错误信息
+	 */
+	public void require(String session_key,Object value,String jump_url,String err){
+		require_obj =new Require();
+		require_obj.key = session_key;
+		require_obj.value = value;
+		require_obj.jump_url = jump_url;
+		require_obj.err= err;
+	}
+	
+	public class Require{
+		public String key;
+		public Object value;
+		public String jump_url;
+		public String err;
+	}
+	
+	Require require_obj= null;
+	
+	/**
+	 * 检查是否满足条件
+	 * @return
+	 */
+	boolean checkRequire(){
+		if(require_obj==null || require_obj.key == null){
+			return true;
+		}
+		Object obj = session.getAttribute(require_obj.key);
+		if(require_obj.value ==null){
+			return obj != null;
+		}
+		
+		return  require_obj.value.equals(obj);
+	}
+	
+	/**
+	 * 根据succ的值决定是否执行跳转或显示错误的操作。此方法提供给MVCFilter使用
+	 * @param succ
+	 */
+	void actionRequire(boolean succ){
+		if(succ){
+			return;
+		}else{
+			if(require_obj.jump_url == null){
+				output(require_obj.err);
+			}else{
+				jump(require_obj.jump_url);
+			}
+		}
+	}
+
 }
