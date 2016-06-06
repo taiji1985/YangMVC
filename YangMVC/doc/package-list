@@ -1,5 +1,1 @@
-com.docshare.log
 org.docshare.mvc
-org.docshare.mvc.except
-org.docshare.orm
-org.docshare.test
