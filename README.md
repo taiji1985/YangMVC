@@ -369,6 +369,12 @@ book （路径名）-> Book -> BookController（类名）
 需要注意的是，如果你写的是 http://localhost:8080/YangMVC/book/edit/  (比上一个网站多了一个斜杠）， 则它对应的是 book.EditController下的index方法 而不是BookController下的edit方法。
 
 #控制器方法
+##获取request中的参数
+```java
+String s = param("name");
+Integer id = paramInt("id");
+```
+
 ##输出方法
 ### output方法
 
