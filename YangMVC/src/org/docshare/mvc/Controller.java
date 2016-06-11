@@ -3,6 +3,7 @@ package org.docshare.mvc;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +32,7 @@ public class Controller {
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 	protected HttpSession session; 
+	
 	protected PrintWriter writer = null;
 	protected Map<String, Object> paramMap=new HashMap<String, Object>();
 
@@ -180,8 +182,17 @@ public class Controller {
 	}
 	
 	private boolean existFile(String path){
-		String p = request.getSession().getServletContext().getRealPath(path);
-		return new File(p).exists();
+		String p = request.getRealPath(path);
+		if(p==null){
+			//p = request.getServletContext().getRealPath(path);
+			try {
+				return  null !=  application.getResource(path);
+			} catch (MalformedURLException e) {
+				return false;
+			}
+		}else{
+			return new File(p).exists();
+		}
 	}
 	/**
 	 * 渲染一个模板，模板为参数view指定，这个路径是相对于配置中的template目录的。
@@ -191,6 +202,7 @@ public class Controller {
 		String path = Config.tpl_base + view;
 		
 		if(!existFile(path)){
+			Log.e("model file not found "+ path);
 			output("模板文件不存在:"+path);
 			return;
 		}
@@ -202,13 +214,12 @@ public class Controller {
 		
 		RequestDispatcher d = request.getRequestDispatcher(path);
 		try {
+			Log.d("dispatcher to " + path);
 			d.forward(request, response);
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 	}
 
@@ -250,8 +261,8 @@ public class Controller {
 			writer.write(s);
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			Log.e(e);
 		}
 	}
 	/**
@@ -395,8 +406,7 @@ public class Controller {
 		try {
 			response.sendRedirect(url);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 	}
 	/**

@@ -81,8 +81,8 @@ public class MVCFilter implements Filter {
 			pw.print("Error:"+msg);
 			pw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			Log.e(e);
 		}
 	}
 	public static final String TEMP_BASE= "/org/docshare/res";
@@ -125,7 +125,7 @@ public class MVCFilter implements Filter {
 			boolean ret = process(uri,context,req2,(HttpServletResponse)resp,chain);
 			if(ret)return;
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(e);
 		}
 		
 		
@@ -135,15 +135,15 @@ public class MVCFilter implements Filter {
 		ins = this;
 		Config.tpl_base = cfg.getInitParameter("template");
 		Config.ctr_base = cfg.getInitParameter("controller");
-		
-		Config.dbusr = cfg.getServletContext().getInitParameter("dbusr");
-		Config.dbhost = cfg.getServletContext().getInitParameter("dbhost");
-		Config.dbpwd = cfg.getServletContext().getInitParameter("dbpwd");
-		Config.dbname = cfg.getServletContext().getInitParameter("dbname");
-		Config.dbport = cfg.getServletContext().getInitParameter("dbport");
-		
-		Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
-		
+		if(cfg.getServletContext().getInitParameter("dbusr") != null){
+			Config.dbusr = cfg.getServletContext().getInitParameter("dbusr");
+			Config.dbhost = cfg.getServletContext().getInitParameter("dbhost");
+			Config.dbpwd = cfg.getServletContext().getInitParameter("dbpwd");
+			Config.dbname = cfg.getServletContext().getInitParameter("dbname");
+			Config.dbport = cfg.getServletContext().getInitParameter("dbport");
+			
+			Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
+		} 
 		
 		Log.i(Config.str());
 		

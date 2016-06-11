@@ -12,17 +12,24 @@ public class ColumnDesc {
 	public String remark;
 	public String pk_table = null; //如果是null,则不是外键
 	public String pk_column = null;
+	public String tb;
 	
 	public ColumnDesc(String name, int type, String remark) {
-		super();
-		this.name = name;
-		this.type = type;
-		this.remark = remark;
+		this(name,type,remark,null);
 	}
 	
 	public ColumnDesc() {
 	}
 	
+	public ColumnDesc(String name2, int columnType, String columnLabel,
+			String tb) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.remark = remark;
+		this.tb= tb;
+	}
+
 	@Override
 	public String toString() {
 		

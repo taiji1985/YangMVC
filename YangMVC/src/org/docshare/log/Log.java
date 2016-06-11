@@ -2,20 +2,41 @@ package org.docshare.log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
+import org.docshare.mvc.Config;
+
 public class Log {
+	public static final int LEVEL_DEBUG =0;
+	public static final int LEVEL_INFO = 1;
+	public static final int LEVEL_ERROR =2;
+	
+	static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	public static String now(){
+		return df.format(new Date());
+	}
+	
 	public static <T> void i(T str) {
-		System.out.println("[info ]" + str);
+		if(Config.level > LEVEL_INFO)return;
+		
+		System.out.println(now()+ "[info ]" + str);
 	}
 
 	public static <T> void e(T i) {
-		System.err.println("[error]" + i);
-
+		
+		String s = i.toString();
+		if(i instanceof Throwable){
+			s = getErrMsg((Throwable) i);
+		}
+		System.err.println(now()+ "[error]" + s);
+		
 	}
 
-	public static <T> void d(T str) {
-		System.out.println("[debug]" + str);
+	public static <T> void d(T str) { 
+		if(Config.level > LEVEL_DEBUG)return;
+		System.out.println(now()+ "[debug]" + str);
 	}
 
 	public static String getErrMsg(Throwable e){

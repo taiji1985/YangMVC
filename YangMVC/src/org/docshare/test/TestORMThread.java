@@ -28,8 +28,7 @@ public class TestORMThread extends TestCase {
 			try {
 				tlist.get(i).join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e(e);
 			}
 		}
 

@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
+import org.slf4j.MDC;
 
 
 
@@ -37,7 +38,7 @@ public class DBHelper {
 		try{
 			locals.remove();
 		}catch (Exception e) {
-			//e.printStackTrace();
+			//Log.e(e);
 		}
 	}
 	//防止用户自己调用构造函数
@@ -61,12 +62,9 @@ public class DBHelper {
 			con = DriverManager.getConnection(uri, user, password);
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
+			Log.e(e);
 		}
 
 	}
@@ -127,7 +125,25 @@ public class DBHelper {
 		Log.d("DBHelper"+this.hashCode()+" exec sql : "+sql);
 		return s.executeQuery(sql);
 	}
-
+	public HashMap<String,ColumnDesc> columeOfRs(ResultSet rs){
+		HashMap<String, ColumnDesc> ret = new HashMap<String, ColumnDesc>();
+		
+		ResultSetMetaData m;
+		try {
+			m = rs.getMetaData();
+			int c = m.getColumnCount();
+			for(int i=1;i<=c;i++){
+				String name =m.getColumnName(i);
+				//Object val = m.get
+				String tb = m.getTableName(i);
+				ColumnDesc cd = new ColumnDesc(name, m.getColumnType(i), m.getColumnLabel(i),tb);
+				ret.put(name, cd);
+			}
+		} catch (SQLException e) {
+			Log.e(e);
+		}
+		return ret;
+	}
 	public int update(String sql) {
 		Statement s;
 		try {
@@ -137,7 +153,7 @@ public class DBHelper {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 		return 0;
 
@@ -152,7 +168,7 @@ public class DBHelper {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 		return 0;
 
@@ -165,7 +181,7 @@ public class DBHelper {
 			con = null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 	}
 	Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
@@ -202,7 +218,7 @@ public class DBHelper {
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 		
 		return ret;
@@ -224,7 +240,7 @@ public class DBHelper {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 
 		return ret;
@@ -240,7 +256,7 @@ public class DBHelper {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 
 		return ret;

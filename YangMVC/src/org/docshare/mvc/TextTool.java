@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.docshare.log.Log;
+
 public class TextTool {
 
 	public static byte[] readAllBytes(String fname) {
@@ -32,11 +34,9 @@ public class TextTool {
 
 			fi.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 
 		return buffer;
@@ -76,13 +76,7 @@ public class TextTool {
 	}
 
 	public static String getBetweenOne(String str, String bs, String es) {
-		/*
-		 * if(bs == null || es == null || str == null) return "";
-		 * 
-		 * try{ String[] ret = getBetween(str,bs,es); if(ret == null)return
-		 * null; return ret[0]; }catch(Exception e) { e.printStackTrace();
-		 * return null; }
-		 */
+		
 		if (bs == null || es == null || str == null)
 			return null;
 		int b = -1, e = 0;

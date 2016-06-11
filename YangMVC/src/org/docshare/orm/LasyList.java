@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
@@ -196,23 +197,33 @@ public class LasyList extends ListAdapter {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 
 		return null;
 	}
-
+	Map<String, ?> column_desc = null;
+	public void printColumnDesc(){
+		if(column_desc == null){
+			column_desc = tool.c_to_remarks;
+		}
+		for(String k : column_desc.keySet()){
+			System.out.println(k+", "+column_desc.get(k));
+		}
+	}
 	private void initRS() {
 		if (rs == null) {
 			try {
 				String r = sql();
 				if (!r.contains("select")) {
 					r = "select * " + r;
+					rs = tool.helper.getRS(r);
+				}else{
+					rs = tool.helper.getRS(r);
+					column_desc = tool.helper.columeOfRs(rs);
 				}
-				rs = tool.helper.getRS(r);
-
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.e(e);
 				return;
 			}
 		}
@@ -239,7 +250,7 @@ public class LasyList extends ListAdapter {
 					return !rs.isLast();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.e(e);
 					return false;
 				}
 				
@@ -254,13 +265,13 @@ public class LasyList extends ListAdapter {
 						return null;
 					}
 					if (rs.next()) {
-						ret = tool.db2Table(rs);
+						ret = tool.db2Table(rs,column_desc);
 					} else {
 						finished = true;
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.e(e);
 					return null;
 				}
 				return ret;

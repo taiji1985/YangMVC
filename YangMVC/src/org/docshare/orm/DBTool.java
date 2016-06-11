@@ -79,7 +79,7 @@ public class DBTool {
 			return tb;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 		
 		return null;
@@ -182,23 +182,36 @@ public class DBTool {
 		LasyList list = new LasyList("from "+tname, this);
 		return list;
 	}
-
 	
-	public Model db2Table(ResultSet rs){
-		Model tb = new Model(tname,columns);
+	public Model db2Table(ResultSet rs,Map<String,?> c){
+		String key2 = null;
+		Model tb = new Model(tname,(Map<String, Object>) c);
 		tb.joined_tool = this;
-		for(String key : columns.keySet()){
+		for(String key : c.keySet()){
 			Object v=null;
+			key2 = key;
 			try {
+				Object object = c.get(key);
+				if(c!=columns && object instanceof ColumnDesc){
+					ColumnDesc desc = (ColumnDesc) object;
+					if(desc.tb!=null && ! desc.tb.equals(tname)){
+						key2 = desc.tb +"."+key;
+						Log.e(key);
+					}
+				}
 				v = rs.getObject(key);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e(e);
 			}
 			tb.put(key, v);
 		}
 		
 		return tb;
+	}
+	
+	public Model db2Table(ResultSet rs){
+		return db2Table(rs,columns);
 	}
 
 	public void del(Object id) {

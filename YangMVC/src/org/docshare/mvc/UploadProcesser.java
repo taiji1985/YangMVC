@@ -89,8 +89,7 @@ public class UploadProcesser {
 			item.write(uploadedFile);
 			Log.d("write param "+ fieldName +" file to "+ real);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 	    c.putParam(fieldName, path);
 	    

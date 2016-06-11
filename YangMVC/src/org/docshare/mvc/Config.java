@@ -33,6 +33,7 @@ public class Config {
 	 * 控制器根包名
 	 */
 	public static  String ctr_base;
+	public static int level=1;
 	
 	public static String str() {
 		return "Config [dbhost=" + dbhost +", dbname=" + dbname + ", dbusr=" + dbusr + ", dbpwd="
