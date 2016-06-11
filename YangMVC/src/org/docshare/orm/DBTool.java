@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javassist.runtime.Desc;
+
 import org.docshare.log.Log;
 
 
@@ -37,6 +39,11 @@ public class DBTool {
 		
 	}
 	public String getColumnTypeName(String column){
+		ColumnDesc d = c_to_remarks.get(column);
+		if(d == null){
+			Log.d("getColumnTypeName find null "+ column);
+			return "varchar";
+		}
 		return c_to_remarks.get(column).typeName;
 		
 	}
@@ -171,7 +178,7 @@ public class DBTool {
 				sa.add(s);
 			}
 			String ss = ArrayTool.join(",", sa);
-			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper("id", id,getColumnTypeName("id")) );
+			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,getColumnTypeName("id")) );
 		}
 		Log.d("DBTool run sql: "+sql);
 		int d = helper.update(sql);

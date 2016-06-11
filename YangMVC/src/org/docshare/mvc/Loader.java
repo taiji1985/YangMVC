@@ -77,6 +77,13 @@ public class Loader {
 			
 			Controller ins = (Controller) obj;
 			ins.setReq(req, resp);
+			
+			if(! ins.checkRequire()){ //如果未通过检测
+				ins.actionRequire(false);
+				return true;
+			}
+			
+			
 			m = cz.getMethod(method);
 			m.invoke(ins);
 			

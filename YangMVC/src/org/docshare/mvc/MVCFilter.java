@@ -124,6 +124,9 @@ public class MVCFilter implements Filter {
 		try {
 			boolean ret = process(uri,context,req2,(HttpServletResponse)resp,chain);
 			if(ret)return;
+			else{
+				outErr((HttpServletResponse) resp, "The Controller is not found ,see the log for detail");
+			}
 		} catch (Exception e) {
 			Log.e(e);
 		}
