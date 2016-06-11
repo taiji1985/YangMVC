@@ -30,7 +30,7 @@ public class IndexController extends Controller {
 	
 	public void paramDemo(){
 		put("a", "sss");
-		render("/testrd2.jsp");
+		render("/testrd.jsp");
 		
 	}
 	public void renderDemo(){
