@@ -158,12 +158,14 @@ public class DBHelper {
 		return 0;
 
 	}
-	public int update(String sql,Object obj) {
+	public int update(String sql,Object... objs) {
 		
 		try {
 			conn();
 			PreparedStatement s = con.prepareStatement(sql);
-			s.setObject(1, obj);
+			for(int i=0;i<objs.length;i++){
+				s.setObject(i+1, objs[i]);
+			}
 			return s.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -181,7 +183,7 @@ public class DBHelper {
 			con = null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			Log.e(e);
+			//Log.e(e);
 		}
 	}
 	Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();

@@ -18,6 +18,11 @@ public class TestORM extends TestCase{
 		Config.dbport = "3306";
 		tool = Model.tool("book");
 	}
+	
+	public void testRun(){
+		int r = tool.run("update book set author=? where id = ?", "haha",1);
+		Log.i(r);
+	}
 	public void testDel(){
 		Model m = tool.get(4);
 		tool.del(4);

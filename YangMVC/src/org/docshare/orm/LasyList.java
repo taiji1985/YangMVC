@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.docshare.log.Log;
@@ -434,16 +435,20 @@ public class LasyList extends ListAdapter {
 	 */
 	public Model one() {
 		Model model = get(0);
+		closeRS();
 		return model;
 	}
-	
-	@Override
-	protected void finalize() throws Throwable {
+	private void closeRS(){
 		try{
 			Log.d("LasyList finalized");
 			rs.close();
 			rs =null;
 		}catch(Exception e){}
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		closeRS();
 		super.finalize();
 	}
 	
@@ -467,6 +472,22 @@ public class LasyList extends ListAdapter {
 			sqlcons.add(cc);
 		}
 		return this;
+	}
+	
+	public List<Model> toArrayList(){
+		initRS();
+		List<Model> mList = new ArrayList<Model>();
+		try {
+			while(rs.next()){
+				Model m = tool.db2Table(rs,column_desc);
+				
+				mList.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mList;
 	}
 
 }

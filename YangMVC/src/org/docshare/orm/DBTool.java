@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import javassist.runtime.Desc;
-
 import org.docshare.log.Log;
 
 
@@ -190,7 +188,11 @@ public class DBTool {
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Model db2Table(ResultSet rs,Map<String,?> c){
+		if(c == null){
+			c = columns;
+		}
 		String key2 = null;
 		Model tb = new Model(tname,(Map<String, Object>) c);
 		tb.joined_tool = this;
@@ -246,7 +248,9 @@ public class DBTool {
 		return c_to_remarks.get(column);
 	}
 
-
+	public int run(String sql,Object...objects){
+		return helper.update(sql,objects);
+	}
 
 
 }
