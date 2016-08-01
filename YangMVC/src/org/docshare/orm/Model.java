@@ -18,7 +18,11 @@ public class Model implements Map<String,Object> {
 	DBTool joined_tool=null;//与之相关的tool类
 	protected Model(String tname,Map<String,Object> columns){
 		this.tname = tname;
-		this.columns = columns;
+		//this.columns = columns;
+		this.columns = new HashMap<String, Object>();
+		if(columns != null){
+			this.columns.putAll(columns);
+		}
 	}
 	public static DBTool tool(String tname){		
 		return new DBTool(tname);
