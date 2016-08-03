@@ -179,6 +179,13 @@ public class Model implements Map<String,Object> {
 			Entry en = new ModelEntry(key,this.get(key));
 			s.add(en);
 		}
+		if(extra != null)
+		{
+			for(String key: this.extra.keySet()){
+				Entry en = new ModelEntry(key,extra.get(key));
+				s.add(en);			
+			}
+		}
 		
 		return s;
 	}
