@@ -22,7 +22,7 @@ public class TestToArray  extends TestCase {
 	}
 	
 	public void test(){
-		List<Model> mlist = tool.all().toArrayList();
+		List<Model> mlist = tool.all();
 		for(Model m :mlist){
 			System.out.println(m);
 		}

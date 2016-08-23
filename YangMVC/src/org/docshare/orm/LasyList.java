@@ -164,44 +164,9 @@ public class LasyList extends ListAdapter {
 	 */
 	@Override
 	public Model get(int index) {
-		Log.d("get called " + index);
-		initRS();
-		if (row_maps.containsKey(index)) {
-			Log.d("Model from cache " + index);
-			return row_maps.get(index);
-		}
+		toArrayList();
 		
-		if(sz == -1){
-			size();
-		}
-		if(index >= sz || index < 0)return null;
-		
-
-		try {
-			int r = rs.getRow() - 1;
-
-			while (r < index) {
-				if (!rs.next()) {
-					return null;
-				}
-				row_maps.put(r, tool.db2Table(rs));
-				r++;
-			}
-			while (r > index) {
-				if (!rs.previous()) {
-					return null;
-				}
-				row_maps.put(r, tool.db2Table(rs));
-				r--;
-			}
-			return tool.db2Table(rs);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			Log.e(e);
-		}
-
-		return null;
+		return arrList.get(index);
 	}
 	Map<String, ?> column_desc = null;
 	public void printColumnDesc(){
@@ -229,58 +194,39 @@ public class LasyList extends ListAdapter {
 			}
 		}
 	}
-
+	List<Model> arrList=null; //枚举时直接放入此List中
+	int iterIndex = 0;//枚举所用的索引
 	/**
 	 * 枚举器。程序可以使用for-each写法来访问这个list。
 	 * JSTL可以使用&lt;c:forEach&gt;来访问
 	 */
 	@Override
 	public Iterator<Model> iterator() {
-		initRS();
+		
+		arrList = toArrayList();
+		iterIndex = 0;
 		return new Iterator<Model>() {
 			boolean finished =false;
-			int sz = -1;
+			
 			@Override
 			public boolean hasNext() {
-				if(sz == -1){
-					sz = LasyList.this.size();
-				}
-				
-				try {
-					if(sz== 0 || rs == null || finished )return false;
-					return !rs.isLast();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					Log.e(e);
+				if(arrList == null){
 					return false;
 				}
-				
+				return iterIndex < arrList.size();
 			}
 
 			@Override
 			public Model next() {
-				Model ret = null;
-				
-				try {
-					if (rs.isLast()) {
-						return null;
-					}
-					if (rs.next()) {
-						ret = tool.db2Table(rs,column_desc);
-					} else {
-						finished = true;
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					Log.e(e);
+				if(arrList == null || iterIndex>= arrList.size() ){
 					return null;
+				}else{
+					return arrList.get(iterIndex++);
 				}
-				return ret;
 			}
 
 			@Override
 			public void remove() {
-				// DO NOTHING銆�ERE
 			}
 		};
 	}
@@ -475,6 +421,9 @@ public class LasyList extends ListAdapter {
 	}
 	
 	public List<Model> toArrayList(){
+		if(arrList != null){
+			return arrList;
+		}
 		initRS();
 		List<Model> mList = new ArrayList<Model>();
 		try {
@@ -483,6 +432,7 @@ public class LasyList extends ListAdapter {
 				
 				mList.add(m);
 			}
+			arrList  = mList;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

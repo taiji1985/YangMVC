@@ -120,4 +120,12 @@ public class TestORM extends TestCase{
 		Log.i(list);
 	}
 	
+	public void testCustomSQL(){
+		LasyList list = tool.fromSQL("select name,author from book where id>30 limit 30").lt("id", 50);
+		int sz = list.size();
+		
+		Log.i("result5 "+sz);
+		Log.i(list.get(2));
+	}
+	
 }
