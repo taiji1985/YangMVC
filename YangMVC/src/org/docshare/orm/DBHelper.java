@@ -144,32 +144,34 @@ public class DBHelper {
 		}
 		return ret;
 	}
+	int last_id;
+	public int getLastId(){
+		return last_id;
+	}
 	public int update(String sql) {
-		Statement s;
-		try {
-			conn();
-			s = con.createStatement();
-			return s.executeUpdate(sql);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			Log.e(e);
-		}
-		return 0;
-
+		return update(sql,null);
 	}
 	public int update(String sql,Object... objs) {
 		
 		try {
 			conn();
 			PreparedStatement s = con.prepareStatement(sql);
-			for(int i=0;i<objs.length;i++){
+			if(objs!=null)for(int i=0;i<objs.length;i++){
 				s.setObject(i+1, objs[i]);
 			}
-			return s.executeUpdate();
+			
+			int ret  =  s.executeUpdate(sql);
+			ResultSet last = getRS("SELECT LAST_INSERT_ID()");
+			if(last !=null && last.next()){
+				last_id = last.getInt(1);
+			}else{
+				last_id = -1;
+			}
+			last.close();
+			return ret;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			Log.e("exec sql fail "+ sql);
 			Log.e(e);
 		}
 		return 0;
