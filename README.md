@@ -16,6 +16,68 @@ SSH¿ò¼ÜÅäÖÃ¸´ÔÓ¡¢ÄÑÓÃ¡£¸öÈËÈÏÎªÕâ²»ÊÇÒ»¸ö¿ò¼ÜÓ¦¸ÃÓĞµÄÑù×Ó¡£¿ò¼ÜÓ¦¸ÃÊ¹ÓÃ¼òµ¥¡¢ÅäÖ
 3. Ö§³ÖÑÓ³Ù¼ÓÔØ¼¼ÊõµÄList
 4. ºÍJSTLÎŞ·ì¼æÈİ
 
+#ÅäÖÃ
+
+
+1. ĞÂ½¨Ò»¸öWeb Project£¨MyEclipseÎªÀı£©
+2. ½«ÒÔÏÂjar·Åµ½WebRoot/Web-INFÏÂÃæ
+yangmvc-1.5.4-allinone.jar
+
+
+3. ÔÚweb.xmlÖĞ£¨web-app±êÇ©ÄÚ£©¼ÓÈë
+
+```xml
+  <filter>
+    <filter-name>yangmvc</filter-name>
+    <filter-class>org.docshare.mvc.MVCFilter</filter-class>
+    <init-param>
+      <param-name>controller</param-name>
+      <param-value>org.demo</param-value>
+    </init-param>
+    <init-param>
+      <param-name>template</param-name>
+      <param-value>/view</param-value>
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>yangmvc</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <context-param>
+    <param-name>dbhost</param-name>
+    <param-value>localhost</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbusr</param-name>
+    <param-value>root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbpwd</param-name>
+    <param-value>123456</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbname</param-name>
+    <param-value>mvc_demo</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbport</param-name>
+    <param-value>3306</param-value>
+  </context-param>  
+```
+
+ËùÓĞĞèÒªÅäÖÃµÄ¶¼ÔÚÕâÀïÁË¡£ÕâÀï×ö¸ö¼òÒªËµÃ÷
+**MVCFilter**ÊÇÎÒÃÇMVC¿ò¼ÜµÄÈë¿Ú¡££¨²»¹ÜÊÇÉ¶MVC¿ò¼Ü¶¼Ãâ²»ÁËÕâ¸ö£©
+ËüÓĞcontrollerºÍtemplateÁ½¸ö²ÎÊı¡£
+**controller** ÊÇÄã¿ØÖÆÆ÷´æ·ÅÎ»ÖÃµÄ°üÃû¡£ ±ÈÈçÕâÀïÊÇorg.demo Äã½¨Á¢µÄ¿ØÖÆÆ÷¶¼±ØĞëĞ´ÔÚÕâ¸ö°üÖĞ
+**template**ÊÇÄã´æ·ÅÄ£°å£¨ÊÓÍ¼£©µÄµØ·½¡£Õâ¸öÂ·¾¶ÊÇÏà¶ÔÓÚWebRoot¼´ÍøÕ¾¸ùÄ¿Â¼µÄ¡£
+±ÈÈçÕâÀïµÄÅäÖÃ(/view)ÊÇWebRootÏÂµÄviewÄ¿Â¼¡£ 
+
+**dbhost dbname dbusr dbpwd** ÊÇÊı¾İ¿âµÄ µØÖ·¡¢Êı¾İ¿âÃû¡¢ÓÃ»§ÃûºÍÃÜÂë¡£Ä¿Ç°Õâ¸öMVC¿ò¼ÜÖ»Ö§³ÖMySQL£¬ºóĞø»áÌí¼ÓÆäËûÊı¾İ¿âµÄÖ§³Ö¡£
+
+
+**×¢Òâ£¬Ä£°åÄ¿Â¼£¨template²ÎÊıËùÅäÖÃµÄÖµ£©ÒÔ/¿ªÍ·£¬Èç/view¡£**
+
 #YangMVCµÄµÚÁã¸öÀı×Ó-HelloWorld³ÌĞò
 ```java
 public class IndexController extends Controller {
@@ -258,68 +320,7 @@ renderForm´«ÈëÒ»¸ömodel£¬Õâ¸ömodelÖĞÓĞÊı¾İ£¬¾Í»á±»ÏÔÊ¾³öÀ´¡£
 
 
 
-#ÅäÖÃ
 
-
-1. ĞÂ½¨Ò»¸öWeb
-2.  Project£¨MyEclipseÎªÀı£©
-2. ½«ÒÔÏÂjar·Åµ½WebRoot/Web-INFÏÂÃæ
-yangmvc-1.5.4-allinone.jar
-
-
-3. ÔÚweb.xmlÖĞ£¨web-app±êÇ©ÄÚ£©¼ÓÈë
-
-```xml
-  <filter>
-    <filter-name>yangmvc</filter-name>
-    <filter-class>org.docshare.mvc.MVCFilter</filter-class>
-    <init-param>
-      <param-name>controller</param-name>
-      <param-value>org.demo</param-value>
-    </init-param>
-    <init-param>
-      <param-name>template</param-name>
-      <param-value>/view</param-value>
-    </init-param>
-  </filter>
-  
-  <filter-mapping>
-    <filter-name>yangmvc</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <context-param>
-    <param-name>dbhost</param-name>
-    <param-value>localhost</param-value>
-  </context-param>
-  <context-param>
-    <param-name>dbusr</param-name>
-    <param-value>root</param-value>
-  </context-param>
-  <context-param>
-    <param-name>dbpwd</param-name>
-    <param-value>123456</param-value>
-  </context-param>
-  <context-param>
-    <param-name>dbname</param-name>
-    <param-value>mvc_demo</param-value>
-  </context-param>
-  <context-param>
-    <param-name>dbport</param-name>
-    <param-value>3306</param-value>
-  </context-param>  
-```
-
-ËùÓĞĞèÒªÅäÖÃµÄ¶¼ÔÚÕâÀïÁË¡£ÕâÀï×ö¸ö¼òÒªËµÃ÷
-**MVCFilter**ÊÇÎÒÃÇMVC¿ò¼ÜµÄÈë¿Ú¡££¨²»¹ÜÊÇÉ¶MVC¿ò¼Ü¶¼Ãâ²»ÁËÕâ¸ö£©
-ËüÓĞcontrollerºÍtemplateÁ½¸ö²ÎÊı¡£
-**controller** ÊÇÄã¿ØÖÆÆ÷´æ·ÅÎ»ÖÃµÄ°üÃû¡£ ±ÈÈçÕâÀïÊÇorg.demo
-**template**ÊÇÄã´æ·ÅÄ£°å£¨ÊÓÍ¼£©µÄµØ·½¡£Õâ¸öÂ·¾¶ÊÇÏà¶ÔÓÚWebRoot¼´ÍøÕ¾¸ùÄ¿Â¼µÄ¡£
-±ÈÈçÕâÀïµÄÅäÖÃ(/view)ÊÇWebRootÏÂµÄviewÄ¿Â¼¡£ 
-
-**dbhost dbname dbusr dbpwd** ÊÇÊı¾İ¿âµÄ µØÖ·¡¢Êı¾İ¿âÃû¡¢ÓÃ»§ÃûºÍÃÜÂë¡£Ä¿Ç°Õâ¸öMVC¿ò¼ÜÖ»Ö§³ÖMySQL£¬ºóĞø»áÌí¼ÓÆäËûÊı¾İ¿âµÄÖ§³Ö¡£
-
-
-**×¢Òâ£¬Ä£°åÄ¿Â¼£¨template²ÎÊıËùÅäÖÃµÄÖµ£©ÒÔ/¿ªÍ·£¬Èç/view¡£**
 #¿ØÖÆÆ÷´´½¨
 ¿ØÖÆÆ÷ÊÇÒ»¸öJavaÀà£¬ÀàÓĞÈô¸É·½·¨¡£ÔÚYangMVCµÄÉè¼ÆÖĞ£¬¿ØÖÆÆ÷µÄÃ¿Ò»¸ö¹«¹²µÄ·½·¨¶¼Ó³Éä¶ÔÓ¦Ò»¸öÍøÒ³¡£ÕâÑùÒ»¸öJavaÀà¿ÉÒÔĞ´ºÜ¶àµÄÍøÒ³¡£ ·½±ã¹ÜÀí¡££¨µ±È»£¬ÄãÒ²¿ÉÒÔÔÚÒ»¸ö¿ØÖÆÆ÷ÖĞÖ»Ğ´Ò»¸ö·½·¨À´Ö§³ÖÍøÒ³£¬ÕâÃ»ÎÊÌâ(¡Ñ©n¡Ñ)b£©
 
