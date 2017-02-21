@@ -259,13 +259,16 @@ renderForm传入一个model，这个model中有数据，就会被显示出来。
 
 
 #配置
+
+
 1. 新建一个Web
 2.  Project（MyEclipse为例）
-2. 将以下三个jar放到WebRoot/Web-INF下面
-yangmvc-1.0.jar
-fastjson-1.2.0.jar
-mysql-connector-java-5.1.23-bin.jar
+2. 将以下jar放到WebRoot/Web-INF下面
+yangmvc-1.5.4-allinone.jar
+
+
 3. 在web.xml中（web-app标签内）加入
+
 ```xml
   <filter>
     <filter-name>yangmvc</filter-name>
@@ -444,6 +447,7 @@ template制定对应的模板文件，可以省略，省略后按照默认规则查找模板文件。
 postTo设定 表单提交的网页，可以省略，默认是"",即当前网页（Controller）。
 
 ##获取参数的方法
+
 1. param(String p)      获取参数p的值，以String类型返回
 2. paramInt(String p) 获取参数p的值，以Int类型返回，如果不是整数，则会出现异常
 3. public Model paramToModel(Model m)
@@ -468,6 +472,7 @@ YangMVC的ORM组件可以单独使用。使用前需要先配置数据库:
 	Config.dbusr ="root";
 	Config.dbport="3306";
 ```
+也可以和MVC框架一起使用。配置时在web.xml中配置
 
 ### 创建一个DBTool对象
 
@@ -553,7 +558,13 @@ list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","王"
 ```java
  select * from book where id>12 and id<33 and name='haha' and author like '%王%'
 ```
+###根据原始sql获取（version >=1.5.4)
 
+```java
+	LasyList list = LasyList.fromRawSql("select name from book");
+```
+
+使用原始的sql获取的List中的模型将和数据库表没有关联。
 
 ##Model的相关功能
 model 是一个继承自Map&lt;String,Object&gt; 的类，所以对于
