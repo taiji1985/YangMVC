@@ -133,6 +133,16 @@ public class BookController extends Controller {
 一个显示列表的网页就此搞定。访问应用目录下的book/目录即可显示出结果
 ![这里写图片描述](http://img.blog.csdn.net/20160520174109801)
 
+你作出的结果可能没那么好看，这完全取决于css。 
+在YangMVCDemo /  WebRoot /  view /  book /   mvc.css 中有一个漂亮的表格定义。
+你可以通过类似下面的语句来加入到网页中
+
+```html
+<link href="view/book/mvc.css" rel="stylesheet">
+```
+注意路径要对。
+
+
 说明：
 
 这个BookController是一个控制器，它的每一个公共方法都对应一个网页（如果不想对应，你需要将其设为私有的）
