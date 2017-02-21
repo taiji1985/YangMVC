@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.docshare.log.Log;
 
@@ -171,5 +172,30 @@ public class TextTool {
 		d = TextTool.getBetweenOne(d, s2, e2);
 		return d;
 
+	}
+	public static String firstUpper(String s){
+		if(s == null)return null;
+		
+		if(s.length()<=1){
+			return s.toUpperCase();
+		}else{
+			return s.substring(0,1).toUpperCase()+s.substring(1);
+		}
+		
+	}
+
+	public static String firstLower(String s) {
+		if(s == null)return null;
+		
+		if(s.length()<=1){
+			return s.toLowerCase();
+		}else{
+			return s.substring(0,1).toLowerCase()+s.substring(1);
+		}
+	}
+
+	public static String join(List<String> ret, String join_str) {
+		if(ret ==null || ret.size()==0) return "[]";
+		return join(ret.toArray(new String[ret.size()]),join_str);
 	}
 }

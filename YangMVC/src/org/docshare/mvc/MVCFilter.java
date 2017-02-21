@@ -37,7 +37,7 @@ public class MVCFilter implements Filter {
 	
 	private boolean process(String uri,String context,HttpServletRequest req, HttpServletResponse resp,FilterChain chain) throws Exception{
 		String temp = getPureURI(uri, context);
-		Log.i("temp = "+temp);
+		Log.d("process "+temp);
 		
 		if(!temp.contains("/")){
 			temp = "index/"+temp;

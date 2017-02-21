@@ -21,6 +21,7 @@ import org.docshare.log.Log;
 import org.docshare.mvc.except.NullParamException;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
+import org.docshare.util.BeanUtil;
 
 import com.alibaba.fastjson.JSON;
 
@@ -132,11 +133,13 @@ public class Controller {
 		
 	}
 	/**
+	 * @deprecated
 	 * 获取参数，如果该参数为null，则返回使用参数def给出的值
 	 * @param name 参数名
 	 * @param def 默认值
 	 * @return 
 	 */
+	@Deprecated
 	public Object paramWithDefault(String name,Object def){
 		String ret = param(name);
 		if(def instanceof Integer && ret != null){
@@ -144,6 +147,14 @@ public class Controller {
 		}
 		return ret == null?def:ret;
 	}
+	/**
+	 * 获取整形参数
+	 * @deprecated
+	 * @param pname
+	 * @param def
+	 * @return
+	 */
+	@Deprecated
 	public int paramWithDefaultInt(String pname ,int def){
 		String ret = param(pname);
 		if(ret == null){
@@ -353,6 +364,11 @@ public class Controller {
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
 		return request.getParameter(p);
 	}
+	
+	public String param(String p,String def){
+		return (String)paramWithDefault(p, def);
+	}
+	
 	/**
 	 * 获取URL参数或者Form提交的参数,并自动转换为int，如果不是整数则会报错。
 	 * @param p 参数名称
@@ -366,6 +382,9 @@ public class Controller {
 		}else{
 			return null;
 		}
+	}
+	public Integer paramInt(String p ,int def){
+		return paramWithDefaultInt(p, def);
 	}
 	/**
 	 * 根据名称匹配的原则，将与模型中参数名相同的参数的值放入模型中。并返回该模型<br>
@@ -385,6 +404,35 @@ public class Controller {
 		}
 		return m;
 	}
+	
+	/**
+	 * 将参数中的值拷贝到对象的对应属性中
+	 * 如 height参数拷贝到obj的height属性中
+	 * 当prefix 为haha_的时候， haha_height会拷贝到obj的height属性中
+	 * @param obj    要赋值的对象
+	 * @param prefix 参数的前缀
+	 * @return 赋值后的对象，将obj引用返回
+	 */
+	public <T> T paramToObj(T obj,String prefix){
+		List<String> props  = BeanUtil.propList(obj);
+		for(String p:props){
+			String v = param(prefix+p);
+			if(v !=null){
+				BeanUtil.set(obj, p, v);
+			}
+		}
+		return obj;
+	}
+	/**
+	 * 将参数中的值拷贝到对象的对应属性中 
+	 * 如 height参数拷贝到obj的height属性中
+	 * @param obj    要赋值的对象
+	 * @return 赋值后的对象，将obj引用返回
+	 */
+	public <T> T paramToObj(T obj){
+		return paramToObj(obj,"");
+	}
+	
 	/**
 	 * 检查obj是否为null，如果为null，则抛出NullParamException ，这个错误会最终在网页上显示。
 	 * 如果希望改变显示内容，可以提前捕获此异常并进行处理。
