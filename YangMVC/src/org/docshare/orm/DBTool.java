@@ -19,8 +19,13 @@ public class DBTool {
 	public Map<String, ColumnDesc> c_to_remarks;
 	String key ;
 	public DBTool(String tname){
+		
 		this.tname = tname;
-		c_to_remarks = helper.listColumn(tname);
+		if("rawsql".equals(tname)){
+			c_to_remarks = new HashMap<String, ColumnDesc>();
+		}else{
+			c_to_remarks = helper.listColumn(tname);
+		}
 		//Log.map(c_to_remarks);
 		columns = new HashMap<String, Object>();
 		for(String s:c_to_remarks.keySet()){
@@ -99,33 +104,35 @@ public class DBTool {
 	}
 	
 	private String valueWrapper(String c,Object v){
-		String type = getColumnTypeName(c);
-		String r ;
-		if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
-			if(v == null) r=  "null";
-			
-			String vv= v.toString();
-			if(vv.contains("'")){
-				vv = vv.replace("'", "''");
-			}
-			
-			r= "'"+v+"'";
-		}else{
-			if(v == null){
-				r=0+"";
-			}else{
-				r= v.toString();
-			}
-		}
-		return r;
+//		String type = getColumnTypeName(c);
+//		String r ;
+//		if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
+//			if(v == null) r=  "null";
+//			
+//			String vv= v.toString();
+//			if(vv.contains("'")){
+//				vv = vv.replace("'", "''");
+//			}
+//			
+//			r= "'"+v+"'";
+//		}else{
+//			if(v == null){
+//				r=0+"";
+//			}else{
+//				r= v.toString();
+//			}
+//		}
+		String s = v.toString();
+		s = s.replace("'", "''");
+		return "'"+s+"'";
 	}
 
 	/**
 	 * 插入或保存数据。当m的主键为非空时，则为更新，主键为空是为插入。
 	 * @param m
 	 */
-	public void save(Model m){
-		save(m,false);
+	public int save(Model m){
+		return save(m,false);
 	}
 	/**
 	 * 更新或保存数据。
@@ -134,10 +141,10 @@ public class DBTool {
 	 * @param m
 	 * @param isInsert 是否强制为插入操作
 	 */
-	public void save(Model m,boolean isInsert){
+	public int save(Model m,boolean isInsert){
 		if(m == null){
 			Log.e("can not save a null object");
-			return;
+			return -1;
 		}
 		Object id = m.get(key);
 		String sql = "";
@@ -181,6 +188,7 @@ public class DBTool {
 		Log.d("DBTool run sql: "+sql);
 		int d = helper.update(sql);
 		Log.d("return "+d);
+		return helper.getLastId();
 	}
 	
 	public LasyList all(){
@@ -203,7 +211,7 @@ public class DBTool {
 				Object object = c.get(key);
 				if(c!=columns && object instanceof ColumnDesc){
 					ColumnDesc desc = (ColumnDesc) object;
-					if(desc.tb!=null && ! desc.tb.equals(tname)){
+					if(desc.tb!=null && ! desc.tb.equals(tname) && !tname.equals("rawsql")){
 						key2 = desc.tb +"."+key;
 						Log.e(key);
 					}

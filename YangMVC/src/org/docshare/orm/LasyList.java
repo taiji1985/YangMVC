@@ -25,6 +25,7 @@ public class LasyList extends ListAdapter {
 	private Integer sqlstart = null;
 	private Integer sqllen = null;
 	private String sqlorder = null;
+	private String rawSql = null;
 
 	public ArrayList<String> sqlcons = new ArrayList<String>();
 	private int sz = -1;
@@ -50,6 +51,7 @@ public class LasyList extends ListAdapter {
 	}
 
 	private String sql() {
+		if(rawSql !=null)return rawSql;
 		String r = sqlfrom;
 		// 如果已经有了limit且sqllimit有值 ,那么去掉limit
 		if (sqllen != null && r.contains("limit")) {
@@ -83,6 +85,12 @@ public class LasyList extends ListAdapter {
 	private ResultSet rs = null;
 	public DBTool getTool(){
 		return tool;
+	}
+	private LasyList(String rawSql){
+		this.rawSql = rawSql;
+		tool = Model.tool("rawsql");
+		initRS();
+		toArrayList();
 	}
 	/**
 	 * 根据一个类似 from book 这样的sql片段生成LasyList
@@ -180,13 +188,14 @@ public class LasyList extends ListAdapter {
 	private void initRS() {
 		if (rs == null) {
 			try {
+				DBHelper helper=DBHelper.getIns();
 				String r = sql();
 				if (!r.contains("select")) {
 					r = "select * " + r;
-					rs = tool.helper.getRS(r);
+					rs = helper.getRS(r);
 				}else{
-					rs = tool.helper.getRS(r);
-					column_desc = tool.helper.columeOfRs(rs);
+					rs = helper.getRS(r);
+					column_desc = helper.columeOfRs(rs);
 				}
 			} catch (SQLException e) {
 				Log.e(e);
@@ -276,7 +285,7 @@ public class LasyList extends ListAdapter {
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
 	public LasyList like(String column, String q) {
-		String w = String.format("  %s like '$%s$' ", column, q).replace("$",
+		String w = String.format("  `%s` like '$%s$' ", column, q).replace("$",
 				"%");
 		sqlcons.add(w);
 
@@ -299,7 +308,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList gt(String column, int val) {
-		String w = String.format("%s > %d", column, val);
+		String w = String.format("`%s` > %d", column, val);
 		sqlcons.add(w);
 
 		return this;
@@ -312,7 +321,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList gte(String column, int val) {
-		String w = String.format("%s >= %d", column, val);
+		String w = String.format("`%s` >= %d", column, val);
 		sqlcons.add(w);
 
 		return this;
@@ -326,7 +335,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList lt(String column, int val) {
-		String w = String.format("%s < %d", column, val);
+		String w = String.format("`%s` < %d", column, val);
 		sqlcons.add(w);
 
 		return this;
@@ -339,7 +348,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList lte(String column, int val) {
-		String w = String.format("%s <= %d", column, val);
+		String w = String.format("`%s` <= %d", column, val);
 		sqlcons.add(w);
 
 		return this;
@@ -352,7 +361,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList ne(String column, int val) {
-		String w = String.format("%s <> %d", column, val);
+		String w = String.format("`%s` <> %d", column, val);
 		sqlcons.add(w);
 
 		return this;
@@ -366,7 +375,7 @@ public class LasyList extends ListAdapter {
 	 *            当asc为true时，是升序，否则为降序
 	 */
 	public LasyList orderby(String column, boolean asc) {
-		sqlorder = "order by " + column;
+		sqlorder = "order by `" + column+"`";
 		if (asc) {
 			sqlorder += " asc ";
 		} else {
@@ -432,6 +441,7 @@ public class LasyList extends ListAdapter {
 				
 				mList.add(m);
 			}
+			rs.close();
 			arrList  = mList;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -440,4 +450,14 @@ public class LasyList extends ListAdapter {
 		return mList;
 	}
 
+	/**
+	 * 直接根据sql语句获取列表
+	 * @param sql
+	 * @return
+	 */
+	public static LasyList fromRawSql(String sql){
+		LasyList list = new LasyList(sql);
+		return list;
+		
+	}
 }
