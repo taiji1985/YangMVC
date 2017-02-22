@@ -501,6 +501,14 @@ public class Controller {
 		require_obj.jump_url = jump_url;
 		require_obj.err= err;
 	}
+	/**
+	 * 限制当前类所有方法的访问权限，一般在构造函数中调用。
+	 * @param session_key session中需要存在的key，用来实现判断是否登录等功能
+	 * @param jump_url 如果session中不存在这样的key，就会直接跳转到该网址
+	 */
+	public void require(String session_key,String jump_url){
+		require(session_key, null,jump_url,"");
+	}
 	
 	public class Require{
 		public String key;
@@ -541,6 +549,10 @@ public class Controller {
 				jump(require_obj.jump_url);
 			}
 		}
+	}
+	
+	public void header(String name,String val){
+		response.addHeader(name,val);
 	}
 
 }
