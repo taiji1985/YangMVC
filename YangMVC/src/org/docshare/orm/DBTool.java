@@ -192,7 +192,7 @@ public class DBTool {
 	}
 	
 	public LasyList all(){
-		LasyList list = new LasyList("from "+tname, this);
+		LasyList list = new LasyList("from `"+tname+"`", this);
 		return list;
 	}
 	

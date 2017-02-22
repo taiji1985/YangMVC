@@ -53,7 +53,7 @@ public class MVCFilter implements Filter {
 			cname = action.substring(0, t);
 			method = action.substring(t+1);		
 		}
-		boolean r  = Loader.call(cname, method,req,resp);
+		boolean r  = Loader.call(uri,cname, method,req,resp);
 		if(r){
 			return true;
 		}
@@ -90,13 +90,18 @@ public class MVCFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req2 = (HttpServletRequest) req;
-		Log.i("contentType"+req2.getContentType());
+		req2.setCharacterEncoding("utf-8");
+		//Log.i("contentType"+req2.getContentType());
 		
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
 		Log.i("filter>"+uri);
+		boolean succ = CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
+		if(succ){
+			return;
+		}
 		
-		req2.setCharacterEncoding("utf-8");
+		
 		String temp = getPureURI(uri,context);
 		/**
 		 * 处理静态文件
@@ -115,11 +120,11 @@ public class MVCFilter implements Filter {
 			os.close();
 			return ;
 		}
-		
 		if(uri.contains(".")) {
 			chain.doFilter(req, resp);
 			return;
 		}
+		
 		
 		try {
 			boolean ret = process(uri,context,req2,(HttpServletResponse)resp,chain);

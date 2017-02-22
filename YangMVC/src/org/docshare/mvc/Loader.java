@@ -25,7 +25,7 @@ public class Loader {
 	static Map<String, Object> singleMap = new HashMap<String, Object>();
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static boolean call(String cname,String method,HttpServletRequest req,HttpServletResponse resp){
+	public static boolean call(String uri,String cname,String method,HttpServletRequest req,HttpServletResponse resp){
 		if(cname == null || method == null){
 			return false;
 		}
@@ -89,6 +89,9 @@ public class Loader {
 			
 			if(ins.isSingle()){
 				singleMap.put(cname, ins);
+				CallCacheMap.addCache(uri, cz, m, ins);
+			}else{
+				CallCacheMap.addCache(uri, cz, m, null);
 			}
 			Log.i("call success");
 			return true;
