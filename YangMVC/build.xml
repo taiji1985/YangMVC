@@ -3,7 +3,7 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="H:/项目/豆沙网/部署/yangmvc-1.6.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="H:/项目/豆沙网/部署/yangmvc-1.6.1.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="org.docshare.test.TestMain"/>
                 <attribute name="Class-Path" value="."/>

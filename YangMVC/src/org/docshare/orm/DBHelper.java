@@ -160,7 +160,7 @@ public class DBHelper {
 				s.setObject(i+1, objs[i]);
 			}
 			
-			int ret  =  s.executeUpdate(sql);
+			int ret  =  s.executeUpdate();
 			ResultSet last = getRS("SELECT LAST_INSERT_ID()");
 			if(last !=null && last.next()){
 				last_id = last.getInt(1);

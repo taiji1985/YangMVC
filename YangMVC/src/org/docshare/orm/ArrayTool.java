@@ -16,16 +16,9 @@ class ArrayTool {
 		return s;
 	}
 	public static String valueWrapper(String name,Object o,String type){
-		String val = "";
-		if(o==null){
-			val = "null";
-		}else if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
-			val= "'"+o.toString()+"'";
-		}else{
-			val= o.toString();
-		}
-		if(name == null)return val;
-		return name +"="+ val;	
+		if(name == null)return "";
+		if(o == null) return String.format(" `%s` is NULL ", name);
+		return String.format(" `%s`='%s' ", name,o.toString().replace("'", "''"));
 	}
 
 	

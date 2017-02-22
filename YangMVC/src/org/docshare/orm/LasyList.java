@@ -27,7 +27,7 @@ public class LasyList extends ListAdapter {
 	private String sqlorder = null;
 	private String rawSql = null;
 
-	public ArrayList<String> sqlcons = new ArrayList<String>();
+	private ArrayList<String> sqlcons = new ArrayList<String>();
 	private int sz = -1;
 	private String join(ArrayList<String> s) {
 		if (s.isEmpty())

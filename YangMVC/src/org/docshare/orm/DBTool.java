@@ -80,7 +80,7 @@ public class DBTool {
 	public Model get(String column, Object id) {
 		ResultSet rs;
 		try {
-			rs = helper.getPrepareRS(String.format("select * from %s where %s = ? limit 0,1",tname,column),id);
+			rs = helper.getPrepareRS(String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column),id);
 			Model tb=null;
 			if(rs.next()){
 				tb = db2Table(rs);
@@ -232,13 +232,16 @@ public class DBTool {
 	}
 
 	public void del(Object id) {
-		String sql = String.format("delete from %s where %s = ?", tname,key);
+		String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
 		Log.d("DBTool run sql: "+sql);
-		helper.update(sql,id);		
+		helper.update(sql,id);
 	}
 	
 	public void del(Model m){
-		Object kv = m.get(key);		
+		Object kv = m.get(key);
+		if(kv !=null){
+			del(kv);
+		}
 	}
 	
 	@Override
