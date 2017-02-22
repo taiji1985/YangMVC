@@ -21,8 +21,9 @@ SSH¿ò¼ÜÅäÖÃ¸´ÔÓ¡¢ÄÑÓÃ¡£¸öÈËÈÏÎªÕâ²»ÊÇÒ»¸ö¿ò¼ÜÓ¦¸ÃÓĞµÄÑù×Ó¡£¿ò¼ÜÓ¦¸ÃÊ¹ÓÃ¼òµ¥¡¢ÅäÖ
 
 1. ĞÂ½¨Ò»¸öWeb Project£¨MyEclipseÎªÀı£©
 2. ½«ÒÔÏÂjar·Åµ½WebRoot/Web-INFÏÂÃæ
-yangmvc-1.5.4-allinone.jar
-
+yangmvc-1.6-all-in-one.jar
+ÏÂÔØµØÖ·
+http://git.oschina.net/yangtf/YangMVC/attach_files
 
 3. ÔÚweb.xmlÖĞ£¨web-app±êÇ©ÄÚ£©¼ÓÈë
 
