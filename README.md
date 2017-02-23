@@ -578,6 +578,36 @@ list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","王"
 
 使用原始的sql获取的List中的模型将和数据库表没有关联。
 
+##LasyList的使用
+
+LasyList是一个List的子类。可以想一般的list一样使用。如
+
+```java
+
+LasyList list = Model.tool("book").all().limit(10);
+for(int i=0;i<list.size();i++){
+	Model m = list.get(i);
+	System.out.println(m.get("name"));
+}
+
+```
+
+又或者
+
+```java
+
+LasyList list = Model.tool("book").all().limit(10);
+for(Model m : list){
+	System.out.println(m.get("name"));
+}
+
+```
+
+又或者使用JSTL访问。例子见 YangMVC第一个Demo 小节
+
+
+
+
 ##Model的相关功能
 model 是一个继承自Map&lt;String,Object&gt; 的类，所以对于
 Model m;
@@ -603,4 +633,39 @@ Model m;
 
 ```java
 	model.put(key,value)
+```
+
+### Model转对象
+
+如果你习惯于使用对象映射的类，你可以将Model转换为对象
+
+
+```java
+	//我们建立了一个ORM映射类
+	public class Book{
+		public int id;
+		public String filename;
+		public String name;
+		public String author;
+	}
+
+```
+
+可以将Model转为Book对象
+
+```java
+		Model  m = Model.tool("book").all().one();
+		System.out.println(m);
+		Book b = m.toObject(new Book());
+		//System.out.println(JSON.toJSONString(b));
+```
+
+### LasyList转对象列表
+
+
+```java
+
+		List<Book>  books = Model.tool("book").all().toArrayList(Book.class);
+		//System.out.println(JSON.toJSONString(books));
+
 ```

@@ -8,14 +8,14 @@ import java.util.Map;
 import java.util.Set;
 
 import org.docshare.mvc.TextTool;
-
+import org.docshare.util.BeanUtil;
 import com.alibaba.fastjson.JSON;
 
 public class Model implements Map<String,Object> {
 	private String tname;
 	private Map<String, Object> columns;
-	private Map<String,Object> extra; //在Model中追加的数据
-	DBTool joined_tool=null;//与之相关的tool类
+	private Map<String,Object> extra; // append data of Model
+	DBTool joined_tool=null;// relate tool 
 	protected Model(String tname,Map<String,Object> columns){
 		this.tname = tname;
 		//this.columns = columns;
@@ -222,5 +222,20 @@ public class Model implements Map<String,Object> {
 	}
 	public Object getPrimaryKey() {
 		return joined_tool.key;
+	}
+	/**
+	 * 将数据拷贝到对象中
+	 * @param obj
+	 * @return
+	 */
+	public <T> T toObject(T obj){
+		for(String key: keySet()){
+			try {
+				BeanUtil.set(obj, key, get(key));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return obj;
 	}
 }

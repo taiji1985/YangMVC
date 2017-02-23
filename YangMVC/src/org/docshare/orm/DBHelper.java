@@ -13,7 +13,6 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
-import org.slf4j.MDC;
 
 
 

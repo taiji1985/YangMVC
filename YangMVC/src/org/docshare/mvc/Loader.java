@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.docshare.log.Log;
 
 
-public class Loader {
+class Loader {
 
 	@SuppressWarnings("rawtypes")
 	public static Class load(String p) throws ClassNotFoundException{

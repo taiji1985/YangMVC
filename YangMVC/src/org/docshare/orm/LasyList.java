@@ -444,16 +444,37 @@ public class LasyList extends ListAdapter {
 			rs.close();
 			arrList  = mList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return mList;
 	}
+	/**
+	 * 将结果转换为对象数组
+	 * 
+	 * @param clazz 要转化对象的类
+	 * @return 对象数组
+	 */
+	public <T> List<T> toArrayList(Class<T> clazz){
+		List<Model> models = toArrayList();
+		List<T> ret = new ArrayList<T>();
+		try {
+			for(Model m : models){
+				ret.add(m.toObject(clazz.newInstance()));
+			}
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
+
 
 	/**
 	 * 直接根据sql语句获取列表
 	 * @param sql
-	 * @return
+	 * @return LasyList对象
 	 */
 	public static LasyList fromRawSql(String sql){
 		LasyList list = new LasyList(sql);

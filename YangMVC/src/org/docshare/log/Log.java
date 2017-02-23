@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.Map;
 
 import org.docshare.mvc.Config;
@@ -32,6 +33,10 @@ public class Log {
 		}
 		System.err.println(now()+ "[error]" + s);
 		
+	}
+	public static <T> void e(String f , String...args){
+		String s = new Formatter().format(f, args).toString();
+		e(s);
 	}
 
 	public static <T> void d(T str) { 

@@ -3,3 +3,4 @@ org.docshare.mvc
 org.docshare.mvc.except
 org.docshare.orm
 org.docshare.test
+org.docshare.util

@@ -16,7 +16,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.docshare.log.Log;
 
-public class UploadProcesser {
+class UploadProcesser {
 
 	private HttpServletRequest request;
 	private HttpServletResponse response;

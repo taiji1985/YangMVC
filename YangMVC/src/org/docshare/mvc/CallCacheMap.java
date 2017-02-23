@@ -1,6 +1,5 @@
 package org.docshare.mvc;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
@@ -8,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
-
-import com.sun.faces.util.Cache;
 
 
 public class CallCacheMap {

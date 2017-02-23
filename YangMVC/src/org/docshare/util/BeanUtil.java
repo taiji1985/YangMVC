@@ -1,11 +1,13 @@
 package org.docshare.util;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
 
 public class BeanUtil {
@@ -53,8 +55,25 @@ public class BeanUtil {
 				set(fieldVal, sub, val);
 			}
 			return true;
-		} catch (Exception e) {
+		}catch (SecurityException e) {
+			Log.e("SecurityException");
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
 			//e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			String t ;
+			if(val == null) t = null;
+			else t = val.toString();
+			Log.e("arg type not match class=%s , fiend = %s , valtype = %s  val=  %s",obj.getClass().getName(),pname,val.getClass().getName(),t);
+			//e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			String getname = "get"+TextTool.firstUpper(pname);
+			Method getm = getMethod(obj, getname);
+			if(getm == null){
+				Log.e("IllegalAccessException of class %s ,field  %s    make sure the class and field are all public"
+						,obj.getClass().getName(),pname);
+				//e.printStackTrace();
+			}
 		}
 		
 		Method setm,getm;
@@ -82,7 +101,7 @@ public class BeanUtil {
 			}
 			return true;
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		return false;
 	}
