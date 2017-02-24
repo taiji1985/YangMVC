@@ -80,6 +80,9 @@ http://git.oschina.net/yangtf/YangMVC/attach_files
 **注意，模板目录（template参数所配置的值）以/开头，如/view。**
 
 #YangMVC的第零个例子-HelloWorld程序
+
+在org.demo包中建立以下类
+
 ```java
 public class IndexController extends Controller {
 	public void index(){
