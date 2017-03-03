@@ -153,6 +153,20 @@ public class MVCFilter implements Filter {
 			Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
 		} 
 		
+		try {
+			String initCls = Config.ctr_base+".Init";
+			Log.d("try load init class " + initCls);
+			Class.forName(initCls).newInstance();
+			
+		} catch (ClassNotFoundException e) {
+			Log.d("init class not found");
+		} catch (InstantiationException e) {
+			Log.d("init class can not Instantiation");
+		} catch (IllegalAccessException e) {
+			Log.d("init class can not Instantiation");
+		}
+		
+		
 		Log.i(Config.str());
 		
 	}
