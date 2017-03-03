@@ -81,7 +81,7 @@ http://git.oschina.net/yangtf/YangMVC/attach_files
 **注意，模板目录（template参数所配置的值）以/开头，如/view。**
 
 ##使用代码进行配置
-如果不愿意或者不方便在xml中配置数据库信息，可以在控制器的根目录下添加Init方法。
+如果不愿意或者不方便在xml中配置数据库信息，可以在控制器的根目录下添加Init类。
 如上面的例子中，控制器的根为org.demo这个包，创建一个org.demo.Init类，在该类的
 构造函数中做一些初始化的工作。如：
 
@@ -90,8 +90,11 @@ public class Init {
 	
 	public Init(){ 
 		Log.e("I can init something in Init class");
-		Config.dbname="haha";
-		//....其他数据库的配置
+		//可以配置数据库
+		Config.dbname="haha";//等等其他数据库的配置
+		//也可以启动后台线程，可以替代自动启动的Servlet
+		Thread t =new Thread(MyRunner()); //MyRunner是你自己定义的后台Runnable
+		t.start();
 	}
 }
 
