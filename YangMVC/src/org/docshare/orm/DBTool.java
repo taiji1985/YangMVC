@@ -104,27 +104,28 @@ public class DBTool {
 	}
 	
 	private String valueWrapper(String c,Object v){
-//		String type = getColumnTypeName(c);
-//		String r ;
-//		if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
-//			if(v == null) r=  "null";
-//			
-//			String vv= v.toString();
-//			if(vv.contains("'")){
-//				vv = vv.replace("'", "''");
-//			}
-//			
-//			r= "'"+v+"'";
-//		}else{
-//			if(v == null){
-//				r=0+"";
-//			}else{
-//				r= v.toString();
-//			}
-//		}
-		String s = v.toString();
-		s = s.replace("'", "''");
-		return "'"+s+"'";
+		String type = getColumnTypeName(c);
+		String r ;
+		if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
+			if(v == null) r=  "null";
+			
+			String vv= v.toString();
+			if(vv.contains("'")){
+				vv = vv.replace("'", "''");
+			}
+			
+			r= "'"+v+"'";
+		}else{
+			if(v == null){
+				r=0+"";
+			}else{
+				r= v.toString();
+			}
+		}
+		return r;
+//		String s = v.toString();
+//		s = s.replace("'", "''");
+//		return "'"+s+"'";
 	}
 
 	/**
