@@ -2,7 +2,7 @@ package org.docshare.orm;
 
 import java.util.Collection;
 
-class ArrayTool {
+public class ArrayTool {
 	@SuppressWarnings("rawtypes")
 	public static String join(String joiner,Collection c){
 		StringBuffer sb = new StringBuffer();
