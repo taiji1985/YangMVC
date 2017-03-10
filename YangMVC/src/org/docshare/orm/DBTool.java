@@ -21,6 +21,9 @@ public class DBTool {
 	public Map<String, ColumnDesc> c_to_remarks;
 	String key ;
 	IDBDelegate delegate = DelegateFactory.getIns("mysql");
+	public IDBDelegate getDelegate(){
+		return delegate;
+	}
 	public DBTool(String tname){
 		
 		this.tname = tname;
@@ -83,7 +86,7 @@ public class DBTool {
 	public Model get(String column, Object id) {
 		ResultSet rs;
 		try {
-			rs = delegate.resultById(helper, column, column, id);
+			rs = delegate.resultById(helper, tname, column, id);
 			Model tb=null;
 			if(rs.next()){
 				tb = db2Table(rs);

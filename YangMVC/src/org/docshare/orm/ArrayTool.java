@@ -15,10 +15,8 @@ public class ArrayTool {
 		s = s.substring(1);
 		return s;
 	}
+	
 	public static String valueWrapper(String name,Object o,String type){
-//		if(name == null)return "";
-//		if(o == null) return String.format(" `%s` is NULL ", name);
-//		return String.format(" `%s`='%s' ", name,o.toString().replace("'", "''"));
 		String val = "";
 		if(o==null){
 			val = "null";
@@ -30,6 +28,7 @@ public class ArrayTool {
 		if(name == null)return val;
 		return name +"="+ val;
 	}
+
 
 	
 }

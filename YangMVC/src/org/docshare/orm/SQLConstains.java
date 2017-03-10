@@ -2,12 +2,12 @@ package org.docshare.orm;
 
 public class SQLConstains {
 	public static final int TYPE_EQ = 1;
-	public static final int TYPE_LIKE = 2;
-	public static final int TYPE_GT = 3;
-	public static final int TYPE_LT = 4;
+	public static final int TYPE_GT = 2;
+	public static final int TYPE_LT = 3;
+	public static final int TYPE_GTE = 4;
 	public static final int TYPE_LTE = 5;
 	public static final int TYPE_NE = 6;
-	public static final int TYPE_GTE = 7;
+	public static final int TYPE_LIKE = 7;
 	public static final int TYPE_ORDER = 50;
 	public static final int TYPE_LIMIT = 100;
 	public int type ; 	  // 类型 

@@ -3,12 +3,15 @@ package org.docshare.orm.mysql;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.TextTool;
 import org.docshare.orm.ArrayTool;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.Model;
+import org.docshare.orm.SQLConstains;
 
 public class MySQLDelegate implements IDBDelegate {
 
@@ -59,7 +62,7 @@ public class MySQLDelegate implements IDBDelegate {
 					continue;
 				}
 				String type = tool.getColumnTypeName(k);
-				String s = k+"="+ArrayTool.valueWrapper(k, m.get(k),type);
+				String s = ArrayTool.valueWrapper(k, m.get(k),type);
 				sa.add(s);
 			}
 			String ss = ArrayTool.join(",", sa);
@@ -77,8 +80,68 @@ public class MySQLDelegate implements IDBDelegate {
 		Log.d("DBTool run sql: "+sql);
 		return helper.update(sql,id);
 	}
-	
-	public String buildSQL(){
+
+	public String buildSQLWithoutLimit(List<SQLConstains> cons,DBTool tool){
+		return buildSQL(cons, tool,false,null);
+	}
+	@Override
+	public String buildSQL(List<SQLConstains> cons,DBTool tool,String sqlfrom){
+		return buildSQL(cons, tool,true,sqlfrom);
+	}
+	public String buildSQL(List<SQLConstains> cons,DBTool tool,boolean withLimit,String sqlfrom){
+		ArrayList<String> sa = new ArrayList<String>();
+		final String[] fh = {"","=",">","<",">=","<=","<>"};
+		SQLConstains limitc=null;
+		SQLConstains orderc=null;
+		for(SQLConstains c: cons){
+			if(c.type<fh.length){
+				String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
+				sa.add(String.format("`%s` %s %s", c.column,fh[c.type],w));
+				continue;
+			}
+			switch(c.type){
+			case SQLConstains.TYPE_LIKE:
+				String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
+				sa.add(w);
+				break;
+			case SQLConstains.TYPE_LIMIT:
+				limitc = c;
+				break;
+			case SQLConstains.TYPE_ORDER:
+				orderc = c;
+				break;
+			}
+		}
+		
+		String tail ="";
+		if(orderc!=null){
+			tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
+		}
+		if(withLimit && limitc!=null){
+			tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
+		}
+		
+		
+		String c=  TextTool.join2(sa, " and ") +  tail;
+		if(sqlfrom == null) return c;
+		
+		if(c.trim().length() == 0){
+			return sqlfrom;
+		}else{
+			c = c.trim();
+			if(sqlfrom.contains("where")){
+				if(c.startsWith("limit") || c.startsWith("order")){
+					return sqlfrom + c;
+				}else return  sqlfrom +" and " + c;
+			}else{
+				if(c.startsWith("limit")|| c.startsWith("order")){
+					return sqlfrom + c ;
+				}else {
+					return  sqlfrom+ " where " + c;
+				}
+			}
+		}
+		
 		
 	}
 }

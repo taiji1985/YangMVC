@@ -19,7 +19,11 @@ public class TestORM extends TestCase{
 		Config.dbport = "3306";
 		tool = Model.tool("book");
 	}
-	
+	public void testOrder(){
+		Log.e("testOrder");
+		list = tool.all().orderby("id", false).limit(30);
+		Log.i(list.get(0));
+	}
 	public void testUpdate(){
 		Log.e("test update");
 		int r = tool.run("update book set author=? where id = ?", "haha",1);
@@ -28,13 +32,20 @@ public class TestORM extends TestCase{
 	}
 	public void testDel(){
 		Log.e("testDel");
-		Model m = tool.get(4);
+		Model m = tool.create();
+		m.put("id", 4);
+		m.put("name", "haha");
+		tool.save(m,true);
+		
+		m = tool.get(4);
 		tool.del(4);
 		Model m2 = tool.get(4);
 		String s = ( m2 ==null) ? "no exist": (String)m2.get("name");
 		Log.i("m is delete ?" + s);
 		
-		tool.save(m);
+		if(m !=null){
+			tool.save(m);
+		}
 		
 	}
 	public void testExtra(){
@@ -107,11 +118,7 @@ public class TestORM extends TestCase{
 		Log.i(m);
 	}
 
-	public void testOrder(){
-		Log.e("testOrder");
-		list = tool.all().orderby("id", false).limit(30);
-		Log.i(list.get(0));
-	}
+
 	
 	public void testEq(){
 		Log.e("testEq");

@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
+import org.docshare.orm.mysql.IDBDelegate;
 
 /**
  * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。
@@ -25,7 +26,7 @@ public class LasyList extends ListAdapter {
 	// private String sqllimit = "";
 	private Integer sqlstart = null;
 	private Integer sqllen = null;
-	private String sqlorder = null;
+	//private String sqlorder = null;
 	private String rawSql = null;
 
 	//private ArrayList<String> sqlcons = new ArrayList<String>();
@@ -43,54 +44,26 @@ public class LasyList extends ListAdapter {
 //		return sb.toString();
 //	}
 
-	private String sqllimit() {
-		if (sqlstart != null && sqllen != null) {
-			return "limit " + sqlstart + " , " + sqllen;
-		} else if (sqllen != null) {
-			return "limit " + sqllen;
-		}
-		return "";
-	}
+
 
 	private String sql() {
 		if(rawSql !=null)return rawSql;
-//		String r = sqlfrom;
-//		// 如果已经有了limit且sqllimit有值 ,那么去掉limit
-//		if (sqllen != null && r.contains("limit")) {
-//			int p = r.indexOf("limit");
-//			r.substring(p + "limit".length());
-//			r = r.substring(0, p);
-//		}
-//
-//		String joined = TextTool.join(sqlcons," and ");
-//		if (r.contains("where") && joined.length() > 0) {
-//			r += " and " + joined;
-//		} else if (joined.length() > 0) {
-//			r += " where " + joined;
-//		}
-//
-//		if (sqlorder != null) {
-//			r += " " + sqlorder;
-//		}
-//
-//		if (sqlstart != null) {
-//			r += " " + sqllimit();
-//		}
-//
-//		r = r.toLowerCase();
-//
-//		return r;
-		// return sqlfrom +" "+ join(sqlcons)+" "+ sqllimit;
+		
+		 
+		String c =   delegate.buildSQL(cons, tool,sqlfrom);
+		return c;
 	}
 
 	private DBTool tool;
 	private ResultSet rs = null;
+	private IDBDelegate delegate;
 	public DBTool getTool(){
 		return tool;
 	}
 	private LasyList(String rawSql){
 		this.rawSql = rawSql;
 		tool = Model.tool("rawsql");
+		delegate = tool.getDelegate();
 		initRS();
 		toArrayList();
 	}
@@ -101,6 +74,7 @@ public class LasyList extends ListAdapter {
 	 */
 	protected LasyList(String from, DBTool tool) {
 		from = from.toLowerCase();
+		int sqlstart,sqllen;
 		if (from.contains("limit")) {
 			String limit_str = TextTool.getAfter(from, "limit")
 					.replace(" ", "");
@@ -112,12 +86,14 @@ public class LasyList extends ListAdapter {
 				sqllen = Integer.parseInt(limit_str);
 				sqlstart = 0;
 			}
+			limit(sqlstart, sqllen);
 			from = TextTool.getBefore(from, "limit");
 		}
 
 		this.sqlfrom = from;
 
 		this.tool = tool;
+		delegate = tool.getDelegate();
 	}
 
 	/**
@@ -138,7 +114,7 @@ public class LasyList extends ListAdapter {
 
 		String sql = "select count(*) as ct " + s;
 		int sz = tool.helper.getVal(sql, "ct");
-
+		
 		if (sqllen != null) {
 			if (sqllen > sz - sqlstart)
 				this.sz = sz - sqlstart;
@@ -264,8 +240,8 @@ public class LasyList extends ListAdapter {
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
 	public LasyList limit(int start, int len) {
-//		sqlstart = start;
-//		sqllen = len;
+		sqlstart = start;
+		sqllen = len;
 //		// sqllimit = " limit "+start +" , "+len;
 		cons.add(new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len));
 		return this;

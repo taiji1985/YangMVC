@@ -198,4 +198,8 @@ public class TextTool {
 		if(ret ==null || ret.size()==0) return "[]";
 		return join(ret.toArray(new String[ret.size()]),join_str);
 	}
+	public static String join2(List<String> ret, String join_str) {
+		if(ret ==null || ret.size()==0) return "";
+		return join(ret.toArray(new String[ret.size()]),join_str);
+	}
 }
