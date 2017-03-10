@@ -3,6 +3,7 @@ package org.docshare.mvc;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -268,8 +269,8 @@ public class Controller {
 			response.setContentType("text/html; charset=UTF-8");
 			response.setCharacterEncoding("utf-8");
 			writer = response.getWriter();
-			
-			writer.write(s);
+			if(s == null)writer.write("null");
+			else writer.write(s);
 			writer.close();
 		} catch (IOException e) {
 
@@ -354,6 +355,17 @@ public class Controller {
 		sb.append("\n</form>\n");
 		put(m.getTableName()+"_form",sb.toString());
 		render(template);
+	}
+	public String urlParam(String p){
+		if(paramMap.containsKey(p))return paramMap.get(p).toString();
+		String s =  request.getParameter(p);
+		if(s == null)return s;
+		try {
+			s = new String(s.getBytes("ISO-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return s;
 	}
 	/**
 	 * 获取URL参数或者Form提交的参数

@@ -415,6 +415,9 @@ book （路径名）-> Book -> BookController（类名）
 String s = param("name");
 Integer id = paramInt("id");
 ```
+##获取url参数
+如果url中不存在中文，使用param("name")的方式就可以获取该参数。
+如果url存在中文，则要使用urlParam("name")这个函数来获取，其中参数会自动的转码为utf-8，保证中文的正常显示。
 
 ##输出方法
 ### output方法
