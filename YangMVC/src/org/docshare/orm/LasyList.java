@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
+import org.docshare.orm.mysql.IDBDelegate;
 
 /**
  * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。
@@ -20,75 +21,49 @@ import org.docshare.mvc.TextTool;
  */
 public class LasyList extends ListAdapter {
 
+
 	private String sqlfrom; // 主要是表格名称
 	// private String sqllimit = "";
 	private Integer sqlstart = null;
 	private Integer sqllen = null;
-	private String sqlorder = null;
+	//private String sqlorder = null;
 	private String rawSql = null;
 
-	private ArrayList<String> sqlcons = new ArrayList<String>();
+	//private ArrayList<String> sqlcons = new ArrayList<String>();
+	private ArrayList<SQLConstains> cons = new ArrayList<SQLConstains>();
 	private int sz = -1;
-	private String join(ArrayList<String> s) {
-		if (s.isEmpty())
-			return "";
+//	private String join(ArrayList<String> s) {
+//		if (s.isEmpty())
+//			return "";
+//
+//		StringBuffer sb = new StringBuffer();
+//		sb.append(s.get(0));
+//		for (int i = 1; i < s.size(); i++) {
+//			sb.append(" and " + s.get(i));
+//		}
+//		return sb.toString();
+//	}
 
-		StringBuffer sb = new StringBuffer();
-		sb.append(s.get(0));
-		for (int i = 1; i < s.size(); i++) {
-			sb.append(" and " + s.get(i));
-		}
-		return sb.toString();
-	}
 
-	private String sqllimit() {
-		if (sqlstart != null && sqllen != null) {
-			return "limit " + sqlstart + " , " + sqllen;
-		} else if (sqllen != null) {
-			return "limit " + sqllen;
-		}
-		return "";
-	}
 
 	private String sql() {
 		if(rawSql !=null)return rawSql;
-		String r = sqlfrom;
-		// 如果已经有了limit且sqllimit有值 ,那么去掉limit
-		if (sqllen != null && r.contains("limit")) {
-			int p = r.indexOf("limit");
-			r.substring(p + "limit".length());
-			r = r.substring(0, p);
-		}
-
-		String joined = join(sqlcons);
-		if (r.contains("where") && joined.length() > 0) {
-			r += " and " + joined;
-		} else if (joined.length() > 0) {
-			r += " where " + joined;
-		}
-
-		if (sqlorder != null) {
-			r += " " + sqlorder;
-		}
-
-		if (sqlstart != null) {
-			r += " " + sqllimit();
-		}
-
-		r = r.toLowerCase();
-
-		return r;
-		// return sqlfrom +" "+ join(sqlcons)+" "+ sqllimit;
+		
+		 
+		String c =   delegate.buildSQL(cons, tool,sqlfrom);
+		return c;
 	}
 
 	private DBTool tool;
 	private ResultSet rs = null;
+	private IDBDelegate delegate;
 	public DBTool getTool(){
 		return tool;
 	}
 	private LasyList(String rawSql){
 		this.rawSql = rawSql;
 		tool = Model.tool("rawsql");
+		delegate = tool.getDelegate();
 		initRS();
 		toArrayList();
 	}
@@ -99,6 +74,7 @@ public class LasyList extends ListAdapter {
 	 */
 	protected LasyList(String from, DBTool tool) {
 		from = from.toLowerCase();
+		int sqlstart,sqllen;
 		if (from.contains("limit")) {
 			String limit_str = TextTool.getAfter(from, "limit")
 					.replace(" ", "");
@@ -110,12 +86,14 @@ public class LasyList extends ListAdapter {
 				sqllen = Integer.parseInt(limit_str);
 				sqlstart = 0;
 			}
+			limit(sqlstart, sqllen);
 			from = TextTool.getBefore(from, "limit");
 		}
 
 		this.sqlfrom = from;
 
 		this.tool = tool;
+		delegate = tool.getDelegate();
 	}
 
 	/**
@@ -136,7 +114,7 @@ public class LasyList extends ListAdapter {
 
 		String sql = "select count(*) as ct " + s;
 		int sz = tool.helper.getVal(sql, "ct");
-
+		
 		if (sqllen != null) {
 			if (sqllen > sz - sqlstart)
 				this.sz = sz - sqlstart;
@@ -264,7 +242,8 @@ public class LasyList extends ListAdapter {
 	public LasyList limit(int start, int len) {
 		sqlstart = start;
 		sqllen = len;
-		// sqllimit = " limit "+start +" , "+len;
+//		// sqllimit = " limit "+start +" , "+len;
+		cons.add(new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len));
 		return this;
 	}
 
@@ -285,18 +264,19 @@ public class LasyList extends ListAdapter {
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
 	public LasyList like(String column, String q) {
-		String w = String.format("  `%s` like '$%s$' ", column, q).replace("$",
-				"%");
-		sqlcons.add(w);
-
+//		String w = String.format("  `%s` like '$%s$' ", column, q).replace("$",
+//				"%");
+//		sqlcons.add(w);
+		cons.add(new SQLConstains(SQLConstains.TYPE_LIKE, column, q));
 		return this;
 	}
 
 	public LasyList eq(String column, Object val) {
 		
-		String w = ArrayTool.valueWrapper(column, val, tool.getColumnTypeName(column)); //String.format("%s = '%s'", column, val);
-		sqlcons.add(w);
-
+//		String w = ArrayTool.valueWrapper(column, val, tool.getColumnTypeName(column)); //String.format("%s = '%s'", column, val);
+//		sqlcons.add(w);
+		cons.add(new SQLConstains(SQLConstains.TYPE_EQ, column, val));
+		
 		return this;
 	}
 
@@ -308,9 +288,10 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList gt(String column, int val) {
-		String w = String.format("`%s` > %d", column, val);
-		sqlcons.add(w);
-
+//		String w = String.format("`%s` > %d", column, val);
+//		sqlcons.add(w);
+		cons.add(new SQLConstains(SQLConstains.TYPE_GT, column, val));
+		
 		return this;
 	}
 	/**
@@ -321,9 +302,9 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList gte(String column, int val) {
-		String w = String.format("`%s` >= %d", column, val);
-		sqlcons.add(w);
-
+//		String w = String.format("`%s` >= %d", column, val);
+//		sqlcons.add(w);
+		cons.add(new SQLConstains(SQLConstains.TYPE_GTE, column, val));
 		return this;
 	}
 
@@ -335,9 +316,10 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList lt(String column, int val) {
-		String w = String.format("`%s` < %d", column, val);
-		sqlcons.add(w);
+//		String w = String.format("`%s` < %d", column, val);
+//		sqlcons.add(w);
 
+		cons.add(new SQLConstains(SQLConstains.TYPE_LT, column, val));
 		return this;
 	}
 	/**
@@ -348,9 +330,10 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList lte(String column, int val) {
-		String w = String.format("`%s` <= %d", column, val);
-		sqlcons.add(w);
+//		String w = String.format("`%s` <= %d", column, val);
+//		sqlcons.add(w);
 
+		cons.add(new SQLConstains(SQLConstains.TYPE_LTE, column, val));
 		return this;
 	}
 	/**
@@ -361,9 +344,10 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	public LasyList ne(String column, int val) {
-		String w = String.format("`%s` <> %d", column, val);
-		sqlcons.add(w);
+//		String w = String.format("`%s` <> %d", column, val);
+//		sqlcons.add(w);
 
+		cons.add(new SQLConstains(SQLConstains.TYPE_NE, column, val));
 		return this;
 	}
 
@@ -375,12 +359,14 @@ public class LasyList extends ListAdapter {
 	 *            当asc为true时，是升序，否则为降序
 	 */
 	public LasyList orderby(String column, boolean asc) {
-		sqlorder = "order by `" + column+"`";
-		if (asc) {
-			sqlorder += " asc ";
-		} else {
-			sqlorder += " desc ";
-		}
+//		sqlorder = "order by `" + column+"`";
+//		if (asc) {
+//			sqlorder += " asc ";
+//		} else {
+//			sqlorder += " desc ";
+//		}
+
+		cons.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
 		return this;
 	}
 
@@ -423,8 +409,9 @@ public class LasyList extends ListAdapter {
 			Object v = m.get(k);
 			if(v == null) continue;
 			
-			String cc = ArrayTool.valueWrapper(k, v, tool.getColumnTypeName(k));
-			sqlcons.add(cc);
+			//String cc = ArrayTool.valueWrapper(k, v, tool.getColumnTypeName(k));
+			//sqlcons.add(cc);
+			cons.add(new SQLConstains(SQLConstains.TYPE_EQ, k, v));
 		}
 		return this;
 	}

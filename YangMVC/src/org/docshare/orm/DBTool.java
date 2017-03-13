@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.docshare.log.Log;
+import org.docshare.orm.mysql.IDBDelegate;
+import org.docshare.orm.mysql.MySQLDelegate;
 
 
 
@@ -18,6 +20,10 @@ public class DBTool {
 	private Map<String,Object> columns; //所有列的列名,及其值（值都为空）
 	public Map<String, ColumnDesc> c_to_remarks;
 	String key ;
+	IDBDelegate delegate = DelegateFactory.getIns("mysql");
+	public IDBDelegate getDelegate(){
+		return delegate;
+	}
 	public DBTool(String tname){
 		
 		this.tname = tname;
@@ -80,7 +86,7 @@ public class DBTool {
 	public Model get(String column, Object id) {
 		ResultSet rs;
 		try {
-			rs = helper.getPrepareRS(String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column),id);
+			rs = delegate.resultById(helper, tname, column, id);
 			Model tb=null;
 			if(rs.next()){
 				tb = db2Table(rs);
@@ -103,30 +109,30 @@ public class DBTool {
 		return model;
 	}
 	
-	private String valueWrapper(String c,Object v){
-		String type = getColumnTypeName(c);
-		String r ;
-		if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
-			if(v == null) r=  "null";
-			
-			String vv= v.toString();
-			if(vv.contains("'")){
-				vv = vv.replace("'", "''");
-			}
-			
-			r= "'"+v+"'";
-		}else{
-			if(v == null){
-				r=0+"";
-			}else{
-				r= v.toString();
-			}
-		}
-		return r;
-//		String s = v.toString();
-//		s = s.replace("'", "''");
-//		return "'"+s+"'";
-	}
+//	private String valueWrapper(String c,Object v){
+//		String type = getColumnTypeName(c);
+//		String r ;
+//		if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
+//			if(v == null) r=  "null";
+//			
+//			String vv= v.toString();
+//			if(vv.contains("'")){
+//				vv = vv.replace("'", "''");
+//			}
+//			
+//			r= "'"+v+"'";
+//		}else{
+//			if(v == null){
+//				r=0+"";
+//			}else{
+//				r= v.toString();
+//			}
+//		}
+//		return r;
+////		String s = v.toString();
+////		s = s.replace("'", "''");
+////		return "'"+s+"'";
+//	}
 
 	/**
 	 * 插入或保存数据。当m的主键为非空时，则为更新，主键为空是为插入。
@@ -143,53 +149,7 @@ public class DBTool {
 	 * @param isInsert 是否强制为插入操作
 	 */
 	public int save(Model m,boolean isInsert){
-		if(m == null){
-			Log.e("can not save a null object");
-			return -1;
-		}
-		Object id = m.get(key);
-		String sql = "";
-		if(id == null|| isInsert){
-			//This is an insert
-			String ks="";
-			String vs="";
-			boolean first=true;
-			for(String k: m.keySet()){
-				if(k.equals(key)){
-					continue;
-				}
-				Object v = m.get(k);
-				if(v == null || v.toString().length() == 0){
-					continue;
-				}
-				if(!first){
-					ks+=',';
-					vs+=',';
-				}
-				
-				ks+= "`"+k+"`";
-				vs+= valueWrapper(k, v);
-				first = false;
-			}
-			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs);
-		}else{
-			ArrayList<String> sa=new ArrayList<String>();
-			for(String k: m.keySet()){
-				if(k == key)continue;
-				Object v = m.get(k);
-				if(v == null || v.toString().length() == 0){
-					continue;
-				}
-				String s = k+"="+valueWrapper(k, m.get(k));
-				sa.add(s);
-			}
-			String ss = ArrayTool.join(",", sa);
-			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,getColumnTypeName("id")) );
-		}
-		Log.d("DBTool run sql: "+sql);
-		int d = helper.update(sql);
-		Log.d("return "+d);
-		return helper.getLastId();
+		return delegate.save(this, helper, m, key, isInsert);
 	}
 	
 	public LasyList all(){
@@ -232,10 +192,8 @@ public class DBTool {
 		return db2Table(rs,columns);
 	}
 
-	public void del(Object id) {
-		String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
-		Log.d("DBTool run sql: "+sql);
-		helper.update(sql,id);
+	public int del(Object id) {
+		return delegate.delete(helper, tname, key, id);
 	}
 	
 	public void del(Model m){
