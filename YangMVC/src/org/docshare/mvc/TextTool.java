@@ -202,4 +202,19 @@ public class TextTool {
 		if(ret ==null || ret.size()==0) return "";
 		return join(ret.toArray(new String[ret.size()]),join_str);
 	}
+
+	public static String join(Object[] str, String join_str) {
+		String ret = "";
+		if (str == null) {
+			return "";
+		}
+		for (Object s : str) {
+			if (ret.length() > 0) {
+				ret += join_str;
+			}
+			ret += s.toString();
+		}
+
+		return ret;
+	}
 }

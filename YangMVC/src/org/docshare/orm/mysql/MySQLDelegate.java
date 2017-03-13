@@ -35,8 +35,8 @@ public class MySQLDelegate implements IDBDelegate {
 			String vs="";
 			boolean first=true;
 			for(String k: m.keySet()){
-				if(k.equals(key)){
-					continue;
+				if(k.equals(key)){ //这里不再跳过主键字段
+					//continue;    //不跳过主键字段了
 				}
 				Object v = m.get(k);
 				if(v == null || v.toString().length() == 0){
@@ -49,7 +49,7 @@ public class MySQLDelegate implements IDBDelegate {
 				
 				ks+= "`"+k+"`";
 				String type = tool.getColumnTypeName(k);
-				vs+= ArrayTool.valueWrapper(k, v,type);
+				vs+= ArrayTool.valueWrapper(null, v,type);
 				first = false;
 			}
 			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs);
@@ -77,7 +77,7 @@ public class MySQLDelegate implements IDBDelegate {
 	@Override
 	public int delete(DBHelper helper,String tname,String key,Object id){
 		String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
-		Log.d("DBTool run sql: "+sql);
+		Log.d("DBTool run sql: "+sql +" ,param  = "+id);
 		return helper.update(sql,id);
 	}
 
@@ -124,7 +124,7 @@ public class MySQLDelegate implements IDBDelegate {
 		
 		String c=  TextTool.join2(sa, " and ") +  tail;
 		if(sqlfrom == null) return c;
-		
+		sqlfrom = sqlfrom+ " ";
 		if(c.trim().length() == 0){
 			return sqlfrom;
 		}else{

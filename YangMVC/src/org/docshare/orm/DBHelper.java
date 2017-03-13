@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
+import org.docshare.mvc.TextTool;
 
 
 
@@ -170,7 +171,7 @@ public class DBHelper {
 			return ret;
 			
 		} catch (SQLException e) {
-			Log.e("exec sql fail "+ sql);
+			Log.e("exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") );
 			Log.e(e);
 		}
 		return 0;

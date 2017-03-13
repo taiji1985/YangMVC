@@ -18,28 +18,38 @@ public class TestORM extends TestCase{
 		Config.dbname ="mvc_demo";
 		Config.dbport = "3306";
 		tool = Model.tool("book");
+		assertNotNull(tool);
 	}
 	public void testOrder(){
 		Log.e("testOrder");
 		list = tool.all().orderby("id", false).limit(30);
 		Log.i(list.get(0));
+		assertNotNull(list.get(0));
 	}
 	public void testUpdate(){
 		Log.e("test update");
 		int r = tool.run("update book set author=? where id = ?", "haha",1);
 		Log.i(r);
 		
+		Model m = tool.get(1);
+		assertEquals(m.get("author"),"haha");		
 	}
-	public void testDel(){
-		Log.e("testDel");
+	public void testInsert1(){
+		Log.e("testInsert");
 		Model m = tool.create();
 		m.put("id", 4);
 		m.put("name", "haha");
-		tool.save(m,true);
+		int r = tool.save(m,true);
+		Log.i("insert return "+r);
+	}
+	public void testDel(){
+		Log.e("testDel");
 		
-		m = tool.get(4);
+		Model m = tool.get(4);
 		tool.del(4);
 		Model m2 = tool.get(4);
+
+		assertEquals(null,m2);
 		String s = ( m2 ==null) ? "no exist": (String)m2.get("name");
 		Log.i("m is delete ?" + s);
 		
@@ -53,6 +63,8 @@ public class TestORM extends TestCase{
 		Model m = tool.get(1);
 		m.put("haha", "sfsf");
 		Log.i(m);
+		assertEquals("sfsf", m.get("haha"));
+		Log.i("haha = "+ m.get("haha"));
 		
 	}
 	public void testGet(){
