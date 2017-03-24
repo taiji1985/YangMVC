@@ -2,6 +2,7 @@ package org.docshare.mvc;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -23,6 +24,7 @@ import org.docshare.mvc.except.NullParamException;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 import org.docshare.util.BeanUtil;
+import org.docshare.util.IOUtil;
 
 import com.alibaba.fastjson.JSON;
 
@@ -566,5 +568,17 @@ public class Controller {
 	public void header(String name,String val){
 		response.addHeader(name,val);
 	}
-
+	
+	/**
+	 * 读取请求中的正文部分
+	 * @return 成功返回正文内容，失败返回空字符串
+	 */
+	public String reqBody(){
+		try {
+			return IOUtil.readStream(request.getInputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 }
