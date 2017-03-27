@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +28,12 @@ import org.docshare.util.BeanUtil;
 import org.docshare.util.IOUtil;
 
 import com.alibaba.fastjson.JSON;
+
+import freemarker.core.ParseException;
+import freemarker.template.MalformedTemplateNameException;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateNotFoundException;
 
 public class Controller {
 
@@ -173,6 +180,7 @@ public class Controller {
 	public void render() {
 		render(getDefaultTemp());
 	}
+	Map<String,Object> root = new HashMap<String, Object>(); //渲染模板所用数据
 	/**
 	 * 向request中放入数据，方便在jsp中使用getAttribute获取，或者
 	 * 使用EL表达式读取<br>
@@ -183,6 +191,7 @@ public class Controller {
 	 */
 	public void put(String name,Object obj){
 		request.setAttribute(name, obj);
+		root.put(name, obj);
 	}
 	
 	/**
@@ -580,5 +589,20 @@ public class Controller {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	/**
+	 * 使用FreeMarker进行数据显示
+	 * @param path 基于web.xml中配置的tpl_base值的相对路径
+	 */
+	public void renderFreeMarker(String path){
+		try {
+			Template tpl = MVCFilter.getIns().getFmCfg().getTemplate(path);
+			response.setContentType("text/html;charset=utf-8");
+			Writer out = response.getWriter();
+			tpl.process(root, out);
+		} catch (Exception e) {
+			Log.e(e);
+		}
+		
 	}
 }

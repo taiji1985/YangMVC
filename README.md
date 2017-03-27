@@ -15,7 +15,7 @@ SSH¿ò¼ÜÅäÖÃ¸´ÔÓ¡¢ÄÑÓÃ¡£¸öÈËÈÏÎªÕâ²»ÊÇÒ»¸ö¿ò¼ÜÓ¦¸ÃÓĞµÄÑù×Ó¡£¿ò¼ÜÓ¦¸ÃÊ¹ÓÃ¼òµ¥¡¢ÅäÖ
 1. ´óÁ¿µÄÄ¬ÈÏÔ¼¶¨£¬±ÜÃâÁË´óÁ¿µÄÅäÖÃ
 2. Ê¹ÓÃ´Ë¿ò¼Ü¿ª·¢Ğ§ÂÊ»áºÜ¸ß
 3. Ö§³ÖÑÓ³Ù¼ÓÔØ¼¼ÊõµÄList
-4. ºÍJSTLÎŞ·ì¼æÈİ
+4. Ö§³ÖJSPºÍFreeMarkerÄ£°å¿â
 
 #ÅäÖÃ
 
@@ -476,7 +476,49 @@ Integer id = paramInt("id");
 ```
 
 	Õâ¸ö´úÂëÉÔ³¤£¬ÆäÊµÉÏÃæµÄËùÓĞ¶¼ÊÇÉú³ÉÒ»¸öMap£¬×îºóÒ»¾äÊä³ö¡£outputJSON¿ÉÒÔÊä³öList£¬MapºÍÈÎºÎJava¶ÔÏó¡£ÄÚ²¿×ª»»ÊÇÊ¹ÓÃfastjsonÊµÏÖµÄ¡£
+#### Ê¹ÓÃFreeMarkeräÖÈ¾ 
 
+ÔÚÉèÖÃºÃÊı¾İºóµ÷ÓÃrenderFreeMarker¼´¿ÉÊ¹ÓÃFreemarker½øĞĞäÖÈ¾¡£
+Èç
+```java
+	public void index(){
+		put("name","tomcat");
+		renderFreeMarker("/aa.html");
+	}
+
+```
+ÆäÖĞaa.htmlÊÇÏà¶ÔÓÚ web.xmlÖĞÅäÖÃµÄtemplateÂ·¾¶µÄ.»Ø¹ËÒ»ÏÂweb.xmlÖĞµÄĞ´·¨
+```xml
+  <filter>
+    <filter-name>yangmvc</filter-name>
+    <filter-class>org.docshare.mvc.MVCFilter</filter-class>
+    <init-param>
+      <param-name>controller</param-name>
+      <param-value>org.demo</param-value>
+    </init-param>
+    <init-param>
+      <param-name>template</param-name>
+      <param-value>/view</param-value>
+    </init-param>
+  </filter>
+```
+ÉÏÃæÀı×ÓÖĞaa.htmlµÄÄÚÈİ
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>aa.html</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  
+  <body>
+    Output is ${name} <br>
+  </body>
+</html>
+
+```
 ####  ×Ô¶¯Éú³É²¢Êä³öÒ»¸ö±íµ¥
 ```java
 public void renderForm(Model m,String template,String postTo)

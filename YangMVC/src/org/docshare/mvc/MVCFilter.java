@@ -9,6 +9,7 @@ import java.util.HashMap;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 
+import freemarker.template.Configuration;
+
 
 
 public class MVCFilter implements Filter {
@@ -24,12 +27,16 @@ public class MVCFilter implements Filter {
 	static MVCFilter getIns(){
 		return ins;
 	}
+	private Configuration fmCfg;
+	private ServletContext application;
 	
 	@Override
 	public void destroy() {
 		
 	}
-	
+	public Configuration getFmCfg(){
+		return fmCfg;
+	}
 	private String getPureURI(String Uri,String context){
 		return Uri.replaceFirst(context+"/", "");
 	}
@@ -141,6 +148,7 @@ public class MVCFilter implements Filter {
 	@Override
 	public void init(FilterConfig cfg) throws ServletException {
 		ins = this;
+		this.application = cfg.getServletContext();
 		Config.tpl_base = cfg.getInitParameter("template");
 		Config.ctr_base = cfg.getInitParameter("controller");
 		if(cfg.getServletContext().getInitParameter("dbusr") != null){
@@ -165,12 +173,17 @@ public class MVCFilter implements Filter {
 		} catch (IllegalAccessException e) {
 			Log.d("init class can not Instantiation");
 		}
-		
+		initFreeMarker();
 		
 		Log.i(Config.str());
 		
 	}
-
+	private void initFreeMarker(){
+		
+		fmCfg = new Configuration(Configuration.VERSION_2_3_25);  
+        // 指定FreeMarker模板文件的位置  
+		fmCfg.setServletContextForTemplateLoading(application, Config.tpl_base);
+	}
 	HashMap<String,Object> map = new HashMap<String,Object>();
 
 }
