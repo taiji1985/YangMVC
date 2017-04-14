@@ -96,10 +96,19 @@ public class Controller {
 	 * @return 返回所需的对象列表
 	 */
 	public LasyList page(LasyList list){
+		return page(list,30);
+	}
+	/**
+	 * 自动处理分页问题，对应URL参数 page 为页码， pagesz为页面大小（默认为30)
+	 * @param list 原列表
+	 * @param pagesize 每页的记录数
+	 * @return 返回所需的对象列表
+	 */
+	public LasyList page(LasyList list,int pagesize){
 		int total = list.size();
 		
-		Integer page =  (Integer) paramWithDefault("page", 1);
-		Integer pagesz =  (Integer) paramWithDefault("pagesz", 30);
+		Integer page =  (Integer) paramInt("page", 1);
+		Integer pagesz =  (Integer) paramInt("pagesz", pagesize);
 		int pagec = (int) Math.floor(total/pagesz)+1;
 		Log.d(total/pagesz);
 		
