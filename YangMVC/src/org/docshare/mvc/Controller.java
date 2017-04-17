@@ -347,17 +347,17 @@ public class Controller {
 		StringBuffer sb  = new StringBuffer();
 		sb.append("<form class='yangmvc_form' method='post' action='"+postTo+"'>");
 		for(String key : m.keySet()){
-			if(key.equals(m.getPrimaryKey())){
+			if(key.equals(m.key())){
 				continue;
 			}
 			sb.append("\n<div>\n<label>");
-			sb.append(m.getRemark(key));
+			sb.append(m.remark(key));
 			Object v = m.get(key);
 			if(v == null){
 				v = "";
 			}
 			sb.append(String.format("</label>\n<input type='text' name='%s' value='%s' ",key,v));
-			if(key.equals(m.getPrimaryKey())){
+			if(key.equals(m.key())){
 				sb.append(" readonly='true' "  );
 			}
 			sb.append("></input>\n");
@@ -365,7 +365,7 @@ public class Controller {
 			sb.append("\n</div>");
 		}
 		sb.append("\n<div>\n<label>");
-		if(m.get(m.getPrimaryKey()) == null){
+		if(m.get(m.key()) == null){
 			sb.append("</label>\n<input type='submit'  value='添加'></input>\n");
 		}else{
 			sb.append("</label>\n<input type='submit'  value='修改'></input>\n");
@@ -426,7 +426,7 @@ public class Controller {
 	 */
 	public Model paramToModel(Model m){
 		for(String k:m.keySet()){
-			if(k.equals(m.getPrimaryKey())){
+			if(k.equals(m.key())){
 				continue; //主键不允许修改
 			}
 			String v  = request.getParameter(k);

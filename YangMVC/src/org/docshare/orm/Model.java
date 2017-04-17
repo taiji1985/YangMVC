@@ -55,9 +55,14 @@ public class Model implements Map<String,Object> {
 		
 	}*/
 	
-	public String getRemark(String c){
+	public String remark(String c){
 		String r = joined_tool.getColumnRemark(c);
 		return r == null?c:r;
+	}
+	
+	@Deprecated
+	public String getRemark(String c){
+		return remark(c);
 	}
 	
 	@Override
@@ -220,7 +225,7 @@ public class Model implements Map<String,Object> {
 		
 		
 	}
-	public Object getPrimaryKey() {
+	public Object key() {
 		return joined_tool.key;
 	}
 	/**

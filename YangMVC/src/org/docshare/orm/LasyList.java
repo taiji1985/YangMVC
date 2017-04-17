@@ -3,6 +3,7 @@ package org.docshare.orm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -467,5 +468,12 @@ public class LasyList extends ListAdapter {
 		LasyList list = new LasyList(sql);
 		return list;
 		
+	}
+	
+	@Override
+	public boolean addAll(int index, Collection<? extends Model> c) {
+		List<Model> list = toArrayList();
+		list.addAll(c);
+		return true;
 	}
 }
