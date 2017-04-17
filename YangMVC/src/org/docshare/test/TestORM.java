@@ -20,6 +20,11 @@ public class TestORM extends TestCase{
 		tool = Model.tool("book");
 		assertNotNull(tool);
 	}
+	@Override
+	protected void tearDown() throws Exception {
+		tool.run("delete from book where id >909", null);
+		super.tearDown();
+	}
 	public void testOrder(){
 		Log.e("testOrder");
 		list = tool.all().orderby("id", false).limit(30);

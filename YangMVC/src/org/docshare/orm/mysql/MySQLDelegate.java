@@ -22,14 +22,15 @@ public class MySQLDelegate implements IDBDelegate {
 	}
 
 	@Override
-	public int save(DBTool tool,DBHelper helper,Model m,String key,boolean isInsert ){
+	public int save(DBTool tool,DBHelper helper,Model m,String key,boolean forceInsert ){
 		if(m == null){
 			Log.e("can not save a null object");
-			return -1;
+			return 0;
 		}
 		Object id = m.get(key);
 		String sql = "";
-		if(id == null|| isInsert){
+		
+		if(id == null|| forceInsert){
 			//This is an insert
 			String ks="";
 			String vs="";
@@ -71,7 +72,11 @@ public class MySQLDelegate implements IDBDelegate {
 		Log.d("DBTool run sql: "+sql);
 		int d = helper.update(sql);
 		Log.d("return "+d);
-		return helper.getLastId();
+		if(d != 0 &&(id == null|| forceInsert)){
+			id = helper.getLastId();			
+			m.put(key, id);
+		}
+		return d;//helper.getLastId();
 	}
 	
 	@Override

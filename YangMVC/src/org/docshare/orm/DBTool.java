@@ -219,6 +219,7 @@ public class DBTool {
 	}
 
 	public int run(String sql,Object...objects){
+		Log.i("DBTool run :" +sql );
 		return helper.update(sql,objects);
 	}
 

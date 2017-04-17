@@ -144,8 +144,8 @@ public class DBHelper {
 		}
 		return ret;
 	}
-	int last_id;
-	public int getLastId(){
+	Object last_id;
+	public Object getLastId(){
 		return last_id;
 	}
 	public int update(String sql) {
@@ -163,7 +163,7 @@ public class DBHelper {
 			int ret  =  s.executeUpdate();
 			ResultSet last = getRS("SELECT LAST_INSERT_ID()");
 			if(last !=null && last.next()){
-				last_id = last.getInt(1);
+				last_id = last.getObject(1);
 			}else{
 				last_id = -1;
 			}
