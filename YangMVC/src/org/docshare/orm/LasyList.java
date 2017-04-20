@@ -103,6 +103,9 @@ public class LasyList extends ListAdapter {
 	@Override
 	public int size() {
 		Log.d("size() called");
+		if(arrList!=null){
+			return arrList.size();
+		}
 
 		String s = sql();
 		if (s.contains("select")) { // 去除select
@@ -148,12 +151,20 @@ public class LasyList extends ListAdapter {
 	/**
 	 * 根据索引获取相应的对象
 	 * @param index 索引值，以0开头
+	 * @return 返回列表的第index个元素，如果index越界 ，返回null
 	 */
 	@Override
 	public Model get(int index) {
 		toArrayList();
-		
-		return arrList.get(index);
+		try{
+			if(arrList == null || index >= arrList.size() || index < 0){
+				return null;
+			}
+			return arrList.get(index);
+		}catch(IndexOutOfBoundsException e){
+			Log.d(e);
+			return null;
+		}
 	}
 	Map<String, ?> column_desc = null;
 	public void printColumnDesc(){
@@ -424,13 +435,13 @@ public class LasyList extends ListAdapter {
 		initRS();
 		List<Model> mList = new ArrayList<Model>();
 		try {
+			arrList  = mList;
 			while(rs.next()){
 				Model m = tool.db2Table(rs,column_desc);
 				
 				mList.add(m);
 			}
 			rs.close();
-			arrList  = mList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

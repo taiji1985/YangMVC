@@ -25,6 +25,10 @@ public class TestORM extends TestCase{
 		tool.run("delete from book where id >909", null);
 		super.tearDown();
 	}
+	public void testOne(){
+		Model m = tool.all().eq("id", 11111).one();
+		Log.i("m = "+m);
+	}
 	public void testOrder(){
 		Log.e("testOrder");
 		list = tool.all().orderby("id", false).limit(30);
