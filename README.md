@@ -541,6 +541,33 @@ public void checkNull(String name,Object obj)
 检查obj是否为null，如果是抛出NullParamException异常。
 
 
+##session相关操作
+###获取session
+```java
+Object v = sess("uid");
+```
+###设置session
+```java
+sess("uid","zhang");
+```
+###删除session
+```java
+removeSession("uid");
+```
+##application操作
+###获取application
+```java
+Object v = app("uid");
+```
+###设置application
+```java
+app("uid","zhang");
+```
+###删除application
+```java
+removeApp("uid");
+```
+
 #ORM框架
 
 ## Model与DBTool

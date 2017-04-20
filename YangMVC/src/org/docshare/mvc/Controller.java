@@ -277,6 +277,26 @@ public class Controller {
 			}
 		}
 	}
+	public Object sess(String key){
+		return session.getAttribute(key);
+	}
+	public void sess(String key,String val){
+		session.setAttribute(key, val);
+	}
+	public void removeSession(String key){
+		session.removeAttribute(key);
+	}
+	
+	public Object app(String key){
+		return application.getAttribute("key");
+	}
+	public void app(String key,String val){
+		application.setAttribute(key, val);
+	}
+	public void removeApp(String key){
+		application.removeAttribute(key);
+	}
+	
 	void error(String s){
 		
 	}
