@@ -20,10 +20,13 @@ public class ArrayTool {
 		String val = "";
 		if(o==null){
 			val = "null";
-		}else if(type.contains("VAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
+		}else if(type.contains("INT") || type.contains("FLOAT") || type.contains("DOUBLE") || type.contains("DECIMAL")){
+			val = o.toString();
+		}		
+		else {//if(type.contains("CHAR") || type.contains("TEXT") || type.contains("DATE") || type.contains("TIME")){
 			val= "'"+o.toString()+"'";
-		}else{
-			val= o.toString();
+		//}else{
+		//	val= o.toString();
 		}
 		if(name == null)return val;
 		return name +"="+ val;

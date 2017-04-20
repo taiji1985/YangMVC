@@ -43,14 +43,7 @@ public class TestORM extends TestCase{
 		Model m = tool.get(1);
 		assertEquals(m.get("author"),"haha");		
 	}
-	public void testInsert1(){
-		Log.e("testInsert");
-		Model m = tool.create();
-		m.put("id", 4);
-		m.put("name", "haha");
-		int r = tool.save(m,true);
-		Log.i("insert return "+r);
-	}
+	
 	public void testDel(){
 		Log.e("testDel");
 		
@@ -66,6 +59,14 @@ public class TestORM extends TestCase{
 			tool.save(m);
 		}
 		
+	}
+	public void testInsert1(){
+		Log.e("testInsert");
+		Model m = tool.create();
+		m.put("id", 4);
+		m.put("name", "haha");
+		int r = tool.save(m,true);
+		Log.i("insert return "+r);
 	}
 	public void testExtra(){
 		Log.e("testExtra");
