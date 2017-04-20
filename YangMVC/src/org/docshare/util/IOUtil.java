@@ -5,7 +5,10 @@ import java.util.Scanner;
 
 public class IOUtil {
 	public static String readStream(InputStream in){
-		Scanner sc = new Scanner(in,"utf-8");
+		return readStream(in,"utf-8");
+	}
+	public static String readStream(InputStream in,String charset){
+		Scanner sc = new Scanner(in,charset);
 		StringBuffer sb =new StringBuffer();
 		while(sc.hasNextLine()){
 			sb.append(sc.nextLine()+"\n");

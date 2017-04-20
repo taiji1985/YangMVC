@@ -9,6 +9,7 @@ import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 
 public class HttpHelper {
 	/**
@@ -17,9 +18,12 @@ public class HttpHelper {
 	 * @return 如果失败返回null，否则返回内容
 	 */
 	public static String get(String url) {
+		return get(url,"utf-8");
+	}
+	static HttpClient client = new HttpClient();
+	public static String get(String url,String charset) {
 		GetMethod method = new GetMethod(url);
 
-		HttpClient client = new HttpClient();
 		client.getHttpConnectionManager().getParams()
 				.setConnectionTimeout(10000);// 设置连接时间
 
@@ -28,7 +32,7 @@ public class HttpHelper {
 			int status = client.executeMethod(method);
 			if (status == HttpStatus.SC_OK) {
 				InputStream inputStream = method.getResponseBodyAsStream();
-				response = IOUtil.readStream(inputStream);
+				response = IOUtil.readStream(inputStream,charset);
 			} else {
 				response = null;
 			}
@@ -42,12 +46,22 @@ public class HttpHelper {
 		return response;
 	}
 	/**
-	 * 执行post请求
-	 * @param postUrl
-	 * @param params
+	 * 执行post请求，返回页面内容
+	 * @param postUrl 网址
+	 * @param params  参数
 	 * @return 如果失败返回null，否则返回内容
 	 */
 	public static String post(String postUrl, Map<String, Object> params) {
+		return post(postUrl,params,"utf-8");
+	}
+	/**
+	 * 执行post请求，返回页面内容
+	 * @param postUrl 网址
+	 * @param params  参数
+	 * @param charset 编码方式
+	 * @return 如果失败返回null，否则返回内容
+	 */
+	public static String post(String postUrl, Map<String, Object> params,String charset) {
 		String response = "";
 		PostMethod postMethod = new PostMethod(postUrl);
 		if (params != null) {
@@ -56,13 +70,13 @@ public class HttpHelper {
 			}
 		}
 		try {
-			HttpClient client = new HttpClient();
+			client.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, charset);
 			client.getHttpConnectionManager().getParams()
 					.setConnectionTimeout(10000);// 设置连接时间
 			int status = client.executeMethod(postMethod);
 			if (status == HttpStatus.SC_OK) {
 				InputStream inputStream = postMethod.getResponseBodyAsStream();
-				response = IOUtil.readStream(inputStream);
+				response = IOUtil.readStream(inputStream,charset);
 			} else {
 				response = null;
 			}
