@@ -11,6 +11,8 @@ import org.docshare.log.Log;
 import org.docshare.orm.mysql.IDBDelegate;
 import org.docshare.orm.mysql.MySQLDelegate;
 
+import com.alibaba.fastjson.JSON;
+
 
 
 
@@ -50,10 +52,16 @@ public class DBTool {
 	public String getColumnTypeName(String column){
 		ColumnDesc d = c_to_remarks.get(column);
 		if(d == null){
-			Log.d("getColumnTypeName find null "+ column);
+			Log.d("getColumnTypeName find null "+ column +" reload column info ");
+			c_to_remarks = helper.listColumn(tname,false);
+			Log.d("reload data = "+ JSON.toJSONString(c_to_remarks));
+			d = c_to_remarks.get(column);
+			if(d == null){
+				Log.d("getColumnTypeName is null again ,return varchar" + column );
+			}
 			return "varchar";
 		}
-		return c_to_remarks.get(column).typeName;
+		return d.typeName;
 		
 	}
 	public Set<String> listColumns(){

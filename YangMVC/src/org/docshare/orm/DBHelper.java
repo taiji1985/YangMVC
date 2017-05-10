@@ -189,13 +189,17 @@ public class DBHelper {
 		}
 	}
 	Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
+
+	public HashMap<String,ColumnDesc> listColumn(String tb) {
+		return listColumn(tb,true);
+	}
 	/**
 	 * 返回表格中所有的列，以及列的注释（这个注释可以用于显示）
 	 * @param tb 表格名称
 	 * @return  列名->注释 的映射表
 	 */
-	public HashMap<String,ColumnDesc> listColumn(String tb) {
-		if(desc_cached.containsKey(tb)){
+	public HashMap<String,ColumnDesc> listColumn(String tb,boolean useCache) {
+		if(useCache && desc_cached.containsKey(tb)){
 			return desc_cached.get(tb);
 		}
 		
