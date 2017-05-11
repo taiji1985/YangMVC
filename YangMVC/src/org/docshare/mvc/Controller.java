@@ -449,9 +449,9 @@ public class Controller {
 			if(k.equals(m.key())){
 				continue; //主键不允许修改
 			}
-			String v  = request.getParameter(k);
+			String v  = param(k);
 			if(v!=null){
-				m.put(k, request.getParameter(k));
+				m.put(k, v);
 			}
 		}
 		return m;
