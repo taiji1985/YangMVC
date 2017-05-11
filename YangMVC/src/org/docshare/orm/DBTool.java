@@ -177,14 +177,14 @@ public class DBTool {
 			Object v=null;
 			key2 = key;
 			try {
-				Object object = c.get(key);
-				if(c!=columns && object instanceof ColumnDesc){
-					ColumnDesc desc = (ColumnDesc) object;
-					if(desc.tb!=null && ! desc.tb.equals(tname) && !tname.equals("rawsql")){
-						key2 = desc.tb +"."+key;
-						Log.e(key);
-					}
-				}
+//				Object object = c.get(key);
+//				if(c!=columns && object instanceof ColumnDesc){
+//					ColumnDesc desc = (ColumnDesc) object;
+//					if(desc.tb!=null && ! desc.tb.equals(tname) && !tname.equals("rawsql")){
+//						key2 = desc.tb +"."+key;
+//						Log.e(key);
+//					}
+//				}
 				v = rs.getObject(key);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
