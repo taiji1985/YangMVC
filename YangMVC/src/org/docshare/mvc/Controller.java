@@ -53,7 +53,7 @@ public class Controller {
 
 	private boolean single = false;
 	protected void putParam(String key,Object val) {
-		Log.d("put param"+key+"= "+val);
+		Log.d("put param: "+key+"= "+val);
 		paramMap.put(key, val);
 		
 	}
@@ -397,6 +397,7 @@ public class Controller {
 		render(template);
 	}
 	public String urlParam(String p){
+		//如果paramMap中有。 这个paramMap是在UploadProcesser中调用putParam修改的。 
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
 		String s =  request.getParameter(p);
 		if(s == null)return s;

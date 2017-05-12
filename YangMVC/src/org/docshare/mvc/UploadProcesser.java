@@ -1,6 +1,7 @@
 package org.docshare.mvc;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -97,7 +98,16 @@ class UploadProcesser {
 	private void processFormField(FileItem item) {
 
 		String name = item.getFieldName();
-	    String value = item.getString();	
-	    c.putParam(name, value);
+	    String value = item.getString();
+	    
+	    c.putParam(name, transUtf8(value));
+	}
+	private String transUtf8(String p){
+		try {
+			return new String(p.getBytes("ISO-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return p;
 	}
 }
