@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,7 +103,7 @@ public class DBHelper {
 	public ResultSet getPrepareRS(String sql,Object obj) throws SQLException{
 		PreparedStatement s ;
 		conn();
-		Log.d("DBHelper"+this.hashCode()+" exec sql : "+sql +",param1 = "+obj);
+		Log.d("DBHelper"+" Exec : "+sql +",param1 = "+obj);
 		s= con.prepareStatement(sql);
 		s.setObject(1, obj);
 		return s.executeQuery();
@@ -110,7 +111,7 @@ public class DBHelper {
 	public ResultSet getPrepareRS(String sql,Object a,Object b) throws SQLException{
 		PreparedStatement s ;
 		conn();
-		Log.d("DBHelper"+this.hashCode()+" exec sql : "+sql +"param1 = "+a+",param2="+b);
+		Log.d("DBHelper"+" Exec : "+sql +"param1 = "+a+",param2="+b);
 		s= con.prepareStatement(sql);
 		s.setObject(1, a);
 		s.setObject(2, b);
@@ -122,7 +123,7 @@ public class DBHelper {
 		Statement s;
 		conn();
 		s = con.createStatement();
-		Log.d("DBHelper"+this.hashCode()+" exec sql : "+sql);
+		Log.d("DBHelper"+" Exec : "+sql);
 		return s.executeQuery(sql);
 	}
 	public HashMap<String,ColumnDesc> columeOfRs(ResultSet rs){
@@ -151,8 +152,8 @@ public class DBHelper {
 	public int update(String sql) {
 		return update(sql,null);
 	}
-	public int update(String sql,Object... objs) {
-		
+
+	public int updateWithArray(String sql,Object[] objs){
 		try {
 			conn();
 			PreparedStatement s = con.prepareStatement(sql);
@@ -175,7 +176,9 @@ public class DBHelper {
 			Log.e(e);
 		}
 		return 0;
-
+	}
+	public int update(String sql,Object... objs) {
+		return updateWithArray(sql,objs);
 	}
 	public void close() {
 		try {

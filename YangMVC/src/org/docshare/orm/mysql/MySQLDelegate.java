@@ -13,6 +13,8 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.Model;
 import org.docshare.orm.SQLConstains;
 
+import com.google.common.base.Objects;
+
 public class MySQLDelegate implements IDBDelegate {
 
 	@Override
@@ -29,11 +31,13 @@ public class MySQLDelegate implements IDBDelegate {
 		}
 		Object id = m.get(key);
 		String sql = "";
-		
+
+		ArrayList<Object> plist = new ArrayList<Object>(); //参数列表
 		if(id == null|| forceInsert){
 			//This is an insert
 			String ks="";
 			String vs="";
+			String vs2="";
 			boolean first=true;
 			for(String k: m.keySet()){
 				if(k.equals(key)){ //这里不再跳过主键字段
@@ -46,14 +50,17 @@ public class MySQLDelegate implements IDBDelegate {
 				if(!first){
 					ks+=',';
 					vs+=',';
+					vs2+=",";
 				}
 				
 				ks+= "`"+k+"`";
 				String type = tool.getColumnTypeName(k);
 				vs+= ArrayTool.valueWrapper(null, v,type);
+				vs2+="?";
+				plist.add(v);
 				first = false;
 			}
-			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs);
+			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs2);
 		}else{
 			ArrayList<String> sa=new ArrayList<String>();
 			for(String k: m.keySet()){
@@ -64,13 +71,16 @@ public class MySQLDelegate implements IDBDelegate {
 				}
 				String type = tool.getColumnTypeName(k);
 				String s = ArrayTool.valueWrapper(k, m.get(k),type);
-				sa.add(s);
+				//sa.add(s);
+				sa.add(k+"=?");
+				plist.add(m.get(k));
 			}
 			String ss = ArrayTool.join(",", sa);
 			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName("id")) );
 		}
-		Log.d("DBTool run sql: "+sql);
-		int d = helper.update(sql);
+		Log.d("DBTool run sql: "+sql+"  params=["+ArrayTool.join(",", plist)+"]");
+		Object[] objs = plist.toArray();
+		int d = helper.updateWithArray(sql,objs);
 		Log.d("return "+d);
 		if(d != 0 &&(id == null|| forceInsert)){
 			id = helper.getLastId();			

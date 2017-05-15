@@ -227,7 +227,7 @@ public class DBTool {
 	}
 
 	public int run(String sql,Object...objects){
-		Log.i("DBTool run :" +sql );
+		Log.i("DBTool run :" +sql +"  param=["+ArrayTool.join(",", objects)+"]" );
 		return helper.update(sql,objects);
 	}
 

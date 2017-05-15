@@ -169,5 +169,10 @@ public class TestORM extends TestCase{
 		Log.i("result5 "+sz);
 		Log.i(list.get(2));
 	}
-	
+	public void testPS(){
+		Model m = tool.create();
+		m.put("catalog_id","2");
+		m.put("name", "wwww");
+		tool.save(m);
+	}
 }

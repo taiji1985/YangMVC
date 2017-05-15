@@ -30,4 +30,8 @@ public class TestDBHelper  extends TestCase{
 		m.put("c", "ss");
 		tool.save(m);
 	}
+	public void testPS(){
+		int r= DBHelper.getIns().update("update book set catalog_id=? where id=?", "2","1");
+		System.out.println("r = "+r);
+	}
 }

@@ -32,6 +32,19 @@ public class ArrayTool {
 		return name +"="+ val;
 	}
 
+	public static String join(String joiner, Object[] c) {
+		StringBuffer sb = new StringBuffer();
+		if(c == null)return "";
+		for(Object o: c){
+			sb.append(joiner+o);
+		}
+		String s = sb.toString();
+		if(s.length()<=0)return s;
+		
+		s = s.substring(1);
+		return s;
+	}
+
 
 	
 }
