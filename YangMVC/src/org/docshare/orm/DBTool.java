@@ -160,6 +160,15 @@ public class DBTool {
 		return delegate.save(this, helper, m, key, isInsert);
 	}
 	
+	/**
+	 * 执行一次插入操作
+	 * @param m
+	 * @return 插入影响的行数
+	 */
+	public int insert(Model m){
+		return save(m,true);
+	}
+	
 	public LasyList all(){
 		LasyList list = new LasyList("from `"+tname+"`", this);
 		return list;
