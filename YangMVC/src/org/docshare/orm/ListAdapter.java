@@ -8,7 +8,7 @@ import java.util.ListIterator;
 import org.docshare.log.Log;
 
 
-public class ListAdapter implements List<Model> {
+class ListAdapter implements List<Model> {
 
 	@Override
 	public int size() {

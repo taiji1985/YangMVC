@@ -14,11 +14,11 @@ https://git.oschina.net/yangtf/YangMVC/attach_files
 
 
 
-SSH框架配置复杂、难用。个人认为这不是一个框架应该有的样子。框架应该使用简单、配置简单、代码简洁。于是参照Django的一些特性，编写了这个MVC+ORM框架。
+SSH框架配置复杂、难用,当你需要快速实现一个小中型项目时完全没有必要。一个框架应该使用简单、配置简单、代码简洁。于是作者参照Django的一些特性，编写了这个MVC+ORM框架。
 
 #特性
 1. 大量的默认约定，避免了大量的配置
-2. 使用此框架开发效率会很高
+2. 较高的编码效率
 3. 支持延迟加载技术的List
 4. 支持JSP和FreeMarker模板库
 
@@ -228,6 +228,49 @@ ${ b.name } 的方式来访问名为b的Model 的name项。 它相当于
    m.get("name")
 ```
 是不是很方便？？？ 真的是非常方便的。。
+
+#分页功能
+
+上面的例子中，将一个表格中的所有数据显示在同一个页面，当数据太多时就不合适了。一般我们需要实现分页，而分页功能相对复杂，YangMVC就提供了一个简单的分页实现。
+
+首先在上一个Demo的基础上做一个很小的修改。
+
+```java
+public class BookController extends Controller {
+	public void index(){
+		DBTool tool = Model.tool("book");
+		LasyList list = tool.all().limit(0, 30);
+		put("books", page(list));
+		render();
+	}
+}
+```
+就是在list上包裹上一个page的调用，即page(list) 。
+然后在视图页面中加入一个${page_data } ，这个page_data会输出一个跳转页的一组链接。
+
+```html
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+(此处省略一堆无关的HTML代码）
+<table class="table table-bordered">
+	<c:forEach var="b" items="${books }">
+	<tr>
+ 		<td>${b.id }</td>
+		<td>${b.name }</td>
+		<td>${b.author }</td>
+		<td>${b.chaodai }</td>
+		<td>${b.tm_year }</td>
+		<td>
+			<a href='book/edit?id=${b.id}'>编辑</a>
+			<a href='book/del?id=${b.id}'>删除</a>
+		
+		</td>
+	</tr>
+	</c:forEach>
+</table>
+{page_data }
+
+```
+
 
 #第二个Demo
 添加书籍页面

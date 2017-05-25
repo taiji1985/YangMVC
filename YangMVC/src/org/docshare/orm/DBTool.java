@@ -169,6 +169,13 @@ public class DBTool {
 		return save(m,true);
 	}
 	
+	/**
+	 * 获取表格所有行，这里采用了延迟加载技术，并不会真的查询所有的行，
+	 * 可以调用返回的LasyList的过滤器添加查询条件，在读取数据时才真正进行查询。
+	 * 如: tool.all().eq("id",12).gt("no",333) ; 相当于
+	 * select * from tablea where id = 12 and no>333 
+	 * @return LasyList对象
+	 */
 	public LasyList all(){
 		LasyList list = new LasyList("from `"+tname+"`", this);
 		return list;
@@ -208,11 +215,19 @@ public class DBTool {
 	protected Model db2Table(ResultSet rs){
 		return db2Table(rs,columns);
 	}
-
+	/**
+	 * 根据表的主键删除表格的一行
+	 * @param id
+	 * @return
+	 */
 	public int del(Object id) {
 		return delegate.delete(helper, tname, key, id);
 	}
 	
+	/**
+	 * 根据Model对象删除数据表的一行
+	 * @param m
+	 */
 	public void del(Model m){
 		Object kv = m.get(key);
 		if(kv !=null){
@@ -230,7 +245,11 @@ public class DBTool {
 		}
 		super.finalize();
 	}
-
+	/**
+	 * 获取当前数据表的某一行的信息
+	 * @param column
+	 * @return
+	 */
 	public ColumnDesc getColumnDesc(String column) {
 		return c_to_remarks.get(column);
 	}

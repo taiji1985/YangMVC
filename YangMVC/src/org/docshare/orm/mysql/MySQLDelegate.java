@@ -13,7 +13,6 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.Model;
 import org.docshare.orm.SQLConstains;
 
-import com.google.common.base.Objects;
 
 public class MySQLDelegate implements IDBDelegate {
 
