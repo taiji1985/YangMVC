@@ -175,7 +175,7 @@ public class DBTool {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Model db2Table(ResultSet rs,Map<String,?> c){
+	protected Model db2Table(ResultSet rs,Map<String,?> c){
 		if(c == null){
 			c = columns;
 		}
@@ -205,7 +205,7 @@ public class DBTool {
 		return tb;
 	}
 	
-	public Model db2Table(ResultSet rs){
+	protected Model db2Table(ResultSet rs){
 		return db2Table(rs,columns);
 	}
 

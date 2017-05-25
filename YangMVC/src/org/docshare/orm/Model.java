@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
 import org.docshare.util.BeanUtil;
 import com.alibaba.fastjson.JSON;
@@ -242,5 +243,43 @@ public class Model implements Map<String,Object> {
 			}
 		}
 		return obj;
+	}
+	/**
+	 * 将此Model插入到数据库中
+	 * @return
+	 */
+	public int insert(){
+		if(joined_tool == null){
+			Log.e("Model didn't connect to a tool ,can't save"+this);
+			return 0;
+		}
+		return joined_tool.insert(this);
+	}
+	/**
+	 * 将此Model更新到数据库中
+	 * @return
+	 */
+	public int update(){
+		if(joined_tool == null){
+			Log.e("Model didn't connect to a tool ,can't save"+this);
+			return 0;
+		}
+		return joined_tool.save(this,false);
+	}
+	
+	public void remove(){
+
+		if(joined_tool == null){
+			Log.e("Model didn't connect to a tool ,can't save"+this);
+			return;
+		}
+		joined_tool.del(this);
+	}
+	/**
+	 * 获取我的DBTool
+	 * @return
+	 */
+	public DBTool myTool(){
+		return joined_tool;
 	}
 }

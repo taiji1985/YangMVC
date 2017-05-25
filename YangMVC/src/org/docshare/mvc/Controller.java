@@ -277,12 +277,23 @@ public class Controller {
 			}
 		}
 	}
+	/**
+	 * 获取Session中key制定变量的值
+	 * @param key
+	 * @return
+	 */
 	public Object sess(String key){
 		return session.getAttribute(key);
 	}
-	public void sess(String key,String val){
+	/**
+	 * 设置Session中key变量的值为val
+	 * @param key
+	 * @param val
+	 */
+	public void sess(String key,Object val){
 		session.setAttribute(key, val);
 	}
+	
 	public void removeSession(String key){
 		session.removeAttribute(key);
 	}
@@ -290,7 +301,7 @@ public class Controller {
 	public Object app(String key){
 		return application.getAttribute("key");
 	}
-	public void app(String key,String val){
+	public void app(String key,Object val){
 		application.setAttribute(key, val);
 	}
 	public void removeApp(String key){
