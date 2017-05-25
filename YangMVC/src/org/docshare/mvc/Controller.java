@@ -120,11 +120,17 @@ public class Controller {
 		end  = (start +10)<pagec ? start+10:end;
 		start = (end - 10 )>=0 ? end-10:start;
 		List<Integer> pagelist = new ArrayList<Integer>();
-		
+		String query = request.getQueryString();
+		if(query == null){
+			query = "";
+		}else{
+			query = "&"+query;
+		}
 		StringBuffer sb = new StringBuffer();
 		sb.append("<ul class='yangmvc_page'>");
 		if(prev!=null){
-			sb.append("<li><a href='"+getPath()+"?page="+prev+"'>&lt;&lt;</a></li>");
+			sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>&lt;&lt;</a></li>", getPath(),page,pagesz,query));
+			//sb.append("<li><a href='"+getPath()+"?page="+prev+query+"'>&lt;&lt;</a></li>");
 		}else{
 			sb.append("<li>&lt;&lt;</li>");
 		}
@@ -133,11 +139,13 @@ public class Controller {
 			if(i== page.intValue()){
 				sb.append("<li>"+i+"</li>");
 			}else{
-				sb.append("<li><a href='"+getPath()+"?page="+i+"'>"+i+"</a></li>");
+				sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>%d</a></li>", getPath(),page,pagesz,query,page));
+				//sb.append("<li><a href='"+getPath()+"?page="+i+"'>"+i+"</a></li>");
 			}
 		}
 		if(next != null){
-			sb.append("<li><a href='"+getPath()+"?page="+next+"'>&gt;&gt;</a></li>");
+			sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>%d</a></li>",getPath(),page,pagesz,query,page));
+			//sb.append("<li><a href='"+getPath()+"?page="+next+"'>&gt;&gt;</a></li>");
 		}else{
 			sb.append("<li>&gt;&gt;</li>");
 		}
@@ -147,7 +155,7 @@ public class Controller {
 		put("page_next", next);
 		put("page_list",pagelist);
 		put("page_now", page);
-		
+		Log.i("page_data = "+sb);
 		return list.page(page, pagesz);
 		
 	}

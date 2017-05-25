@@ -29,5 +29,6 @@
     	</tr>
     </c:forEach>
     </table>
+    ${page_data }
   </body>
 </html>
