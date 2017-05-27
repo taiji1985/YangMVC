@@ -175,6 +175,13 @@ public class Controller {
 		return ret == null?def:ret;
 	}
 	/**
+	 * 内部使用的属性，为了防止用户反复输出，设置一个flag，在开始一次新的请求时清空flag。
+	 */
+	void clearOutFlag(){
+		can_out = true;
+	}
+	private boolean can_out =true;
+	/**
 	 * 获取整形参数
 	 * @deprecated
 	 * @param pname
@@ -239,6 +246,17 @@ public class Controller {
 	 * @param view
 	 */
 	public void render(String view) {
+		if(!can_out){
+			try {
+				outMutiOutErr();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
+		can_out = false;
+		
 		String path = Config.tpl_base + view;
 		
 		if(!existFile(path)){
@@ -319,12 +337,22 @@ public class Controller {
 	void error(String s){
 		
 	}
+	private void outMutiOutErr() throws IOException{
+		throw new IOException("童鞋，请不要在一个控制器方法中，写入多个输出语句。每个控制器每次执行只能输出一次。你是不是在if中忘了写return ?");
+		
+	}
 	/**
 	 * 输出字符串 并关闭流
 	 * @param s
 	 */
 	public void output(String s) {
 		try {
+			if(!can_out){
+				outMutiOutErr();
+				return;
+			}
+			can_out = false;
+			
 			response.setContentType("text/html; charset=UTF-8");
 			response.setCharacterEncoding("utf-8");
 			writer = response.getWriter();
@@ -341,6 +369,7 @@ public class Controller {
 	 * @param obj
 	 */
 	public void outputJSON(Object obj){
+		
 		String string = JSON.toJSONString(obj);
 		output(string);
 	}
@@ -524,6 +553,12 @@ public class Controller {
 	
 	public void jump(String url){
 		try {
+			if(!can_out){
+				outMutiOutErr();
+				return;
+			}
+			can_out = false;
+			
 			response.sendRedirect(url);
 		} catch (IOException e) {
 			Log.e(e);

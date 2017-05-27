@@ -46,6 +46,7 @@ class Loader {
 			if(singleMap.containsKey(cname)){
 				obj = singleMap.get(cname);
 				cz = obj.getClass();
+				((Controller)obj).clearOutFlag();
 				Log.d("Single Mode:"+cname);
 			}else{
 				cz = load(cname);
@@ -57,8 +58,6 @@ class Loader {
 					Log.e("error : The Class is not subclass of Controller: "+cname);
 					return false;
 				}
-				
-				
 			}
 		}catch(Exception e){
 			Throwable cause = e.getCause();

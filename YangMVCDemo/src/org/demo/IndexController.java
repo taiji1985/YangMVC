@@ -71,4 +71,10 @@ public class IndexController extends Controller {
 		Model m = Model.tool("book").get(1);
 		put("obj",m);
 	}
+	
+	public void outTwoTimes(){
+		output("first out");
+		output("first second times");
+		
+	}
 }
