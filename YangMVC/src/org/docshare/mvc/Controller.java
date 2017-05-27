@@ -98,6 +98,26 @@ public class Controller {
 	public LasyList page(LasyList list){
 		return page(list,30);
 	}
+	private String getClearQuery(String q){
+		if(q == null)return "";
+		String[] sa=q.split("&");
+		if(sa==null ) return "";
+		
+		int c = 0;
+		String r = "";
+		for(String s: sa){
+			if(s.length() == 0 || s.startsWith("page") || s.startsWith("pagesz")){
+				continue;
+			}
+			if(c == 0){
+				r = "&"+s;
+			}else{
+				r = r + "&"+s;
+			}
+			c++;
+		}
+		return r;
+	}
 	/**
 	 * 自动处理分页问题，对应URL参数 page 为页码， pagesz为页面大小（默认为30)
 	 * @param list 原列表
@@ -121,15 +141,12 @@ public class Controller {
 		start = (end - 10 )>=0 ? end-10:start;
 		List<Integer> pagelist = new ArrayList<Integer>();
 		String query = request.getQueryString();
-		if(query == null){
-			query = "";
-		}else{
-			query = "&"+query;
-		}
+		query  =getClearQuery(query);
+		
 		StringBuffer sb = new StringBuffer();
 		sb.append("<ul class='yangmvc_page'>");
 		if(prev!=null){
-			sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>&lt;&lt;</a></li>", getPath(),page,pagesz,query));
+			sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>&lt;&lt;</a></li>", getPath(),prev,pagesz,query));
 			//sb.append("<li><a href='"+getPath()+"?page="+prev+query+"'>&lt;&lt;</a></li>");
 		}else{
 			sb.append("<li>&lt;&lt;</li>");
@@ -139,12 +156,12 @@ public class Controller {
 			if(i== page.intValue()){
 				sb.append("<li>"+i+"</li>");
 			}else{
-				sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>%d</a></li>", getPath(),page,pagesz,query,page));
+				sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>%d</a></li>", getPath(),i,pagesz,query,i));
 				//sb.append("<li><a href='"+getPath()+"?page="+i+"'>"+i+"</a></li>");
 			}
 		}
 		if(next != null){
-			sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>%d</a></li>",getPath(),page,pagesz,query,page));
+			sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>&gt;&gt</a></li>",getPath(),next,pagesz,query));
 			//sb.append("<li><a href='"+getPath()+"?page="+next+"'>&gt;&gt;</a></li>");
 		}else{
 			sb.append("<li>&gt;&gt;</li>");
