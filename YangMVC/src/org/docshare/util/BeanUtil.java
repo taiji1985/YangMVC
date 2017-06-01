@@ -2,6 +2,7 @@ package org.docshare.util;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,33 @@ public class BeanUtil {
 		}
 		return null;
 	}
-	
+	public static Object get(Object obj,String pname){
+		String sub = null;
+		if(pname.contains(".")){ //这是一个复合参数
+			sub = TextTool.getAfter(pname, ".");
+			pname = TextTool.getBefore(pname, ".");
+		}
+		Class<?> clazz = obj.getClass();
+		try {
+			Field f = clazz.getField(pname);
+			if(f != null){
+				return f.get(obj);
+			}	
+		} catch (Exception e) {
+			//  handle exception
+		}
+
+		String getname = "get"+TextTool.firstUpper(pname);
+		Method getm = getMethod(obj, getname);
+		try {
+			Object fieldVal = getm.invoke(obj);
+			return fieldVal;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	public static boolean set(Object obj,String pname,Object val){
 		String sub = null;
 		if(pname.contains(".")){ //这是一个复合参数

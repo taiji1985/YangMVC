@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import javax.swing.JComboBox.KeySelectionManager;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
@@ -243,6 +244,14 @@ public class Model implements Map<String,Object> {
 			}
 		}
 		return obj;
+	}
+	public static Model fromObject(String tname,Object obj){
+		Model ret = Model.tool(tname).create();
+		for(String key: ret.keySet()){
+			Object val = BeanUtil.get(obj, key);
+			ret.put(key, val);
+		}
+		return ret;
 	}
 	/**
 	 * 将此Model插入到数据库中

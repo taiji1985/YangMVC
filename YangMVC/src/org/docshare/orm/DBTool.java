@@ -149,6 +149,13 @@ public class DBTool {
 	public int save(Model m){
 		return save(m,false);
 	}
+	public int save(Object obj,boolean isInsert ){
+		Model  m = Model.fromObject(tname, obj);
+		return save(m,isInsert);
+	}
+	public int save(Object obj){
+		return save(obj,false);
+	}
 	/**
 	 * 更新或保存数据。
 	 * 当主键为null 或isInsert为真时， 执行插入数据
