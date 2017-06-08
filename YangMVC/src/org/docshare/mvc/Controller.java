@@ -1,6 +1,8 @@
 package org.docshare.mvc;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -15,6 +17,7 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -674,7 +677,42 @@ public class Controller {
 			}
 		}
 	}
-	
+	public void download(String path){
+		String true_path = request.getRealPath(path);
+		response.setContentType("application/x-download");
+		String filedisplay = new File(path).getName();		
+		response.addHeader("Content-Disposition","attachment;filename=" + filedisplay); 
+		try {
+			request.getRequestDispatcher(path).forward(request, response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		try { 
+//			ServletOutputStream o = response.getOutputStream();
+//			InputStream in = new FileInputStream(true_path);
+//			byte[] buf=new byte[1024];
+//			int r = 0;
+//			while(true){
+//				r = in.read(buf);
+//				if(r <= 0) break;
+//				o.write(buf, 0, r);
+//			}
+//			o.flush();
+//			o.close();
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+
+	}
 	public void header(String name,String val){
 		response.addHeader(name,val);
 	}

@@ -77,4 +77,8 @@ public class IndexController extends Controller {
 		output("first second times");
 		
 	}
+	
+	public void down(){
+		download("/a.jpg");
+	}
 }
