@@ -28,11 +28,15 @@ public class DBHelper {
 	 */
 	public static DBHelper getIns(){
 		DBHelper ins = locals.get();
-		if(ins == null){
+		if(ins == null || ! useCache){
 			ins = new DBHelper();
 			locals.set(ins);
 		}
 		return ins;
+	}
+	public static boolean useCache = true; //默认使用缓存，如果不使用，设为false
+	public static void disableCache(){ //用于Bae这种变态的环境。
+		useCache = false;
 	}
 	
 	public static void removeThreadLocal(){
@@ -61,7 +65,7 @@ public class DBHelper {
 			String user = Config.dbusr;
 			String password = Config.dbpwd;
 			con = DriverManager.getConnection(uri, user, password);
-
+			
 		} catch (ClassNotFoundException e) {
 			Log.e(e);
 		} catch (SQLException e) {
