@@ -51,7 +51,7 @@ public class DBHelper {
 		
 	}
 	
-	Connection con = null;
+	private Connection con = null;
 
 	public void conn() {
 		try {
@@ -149,7 +149,7 @@ public class DBHelper {
 		}
 		return ret;
 	}
-	Object last_id;
+	private Object last_id;
 	public Object getLastId(){
 		return last_id;
 	}
@@ -195,7 +195,7 @@ public class DBHelper {
 			//Log.e(e);
 		}
 	}
-	Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
+	private Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
 
 	public HashMap<String,ColumnDesc> listColumn(String tb) {
 		return listColumn(tb,true);
@@ -291,5 +291,22 @@ public class DBHelper {
 		close();
 		
 		super.finalize();
+	}
+	private void printParams(String sql,ArrayList<Object> params){
+		System.out.println("PrintParams: "+sql);
+		for(int i=0;i<params.size();i++){
+			System.out.println("PrintParams: {"+i+"} "+params.get(i));
+		}
+		
+	}
+	public ResultSet getRS(String sql, ArrayList<Object> params) throws SQLException {
+		printParams(sql,params);
+		PreparedStatement s ;
+		conn();
+		s= con.prepareStatement(sql);
+		for(int i=0;i<params.size();i++){
+			s.setObject(i+1, params.get(i));
+		}
+		return s.executeQuery();
 	}
 }

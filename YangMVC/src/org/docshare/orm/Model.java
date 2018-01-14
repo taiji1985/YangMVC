@@ -148,7 +148,8 @@ public class Model implements Map<String,Object> {
 		}
 		return list;
 	}
-	
+
+	@SuppressWarnings("rawtypes")
 	class ModelEntry implements Entry{
 
 		private Object key;
