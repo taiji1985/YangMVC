@@ -11,6 +11,9 @@ import junit.framework.TestCase;
 
 public class TestORMThread extends TestCase {
 	public void testConnectionClose() throws InterruptedException{
+		int s  = DBHelper.getIns().getVal("show status like '%Threads_connected%'", "Value");
+		Log.i(s+"");
+		
 		ArrayList<Thread> tlist = new ArrayList<Thread>();
 		for(int i=0;i<100;i++){
 			Thread t = new Thread(new Runnable() {
@@ -33,9 +36,9 @@ public class TestORMThread extends TestCase {
 		}
 
 		System.gc();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		
-		int s  = DBHelper.getIns().getVal("show status like '%Threads_connected%'", "Value");
+		s  = DBHelper.getIns().getVal("show status like '%Threads_connected%'", "Value");
 		Log.i(s+"");
 	}
 }

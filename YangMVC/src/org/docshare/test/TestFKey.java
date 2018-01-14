@@ -28,7 +28,7 @@ public class TestFKey extends TestCase{
 		Model m2=(Model) m.get("catalog");
 		Log.i(JSON.toJSONString(m2));
 		Model m3 = (Model)m.get("catalog_id__obj");
-		Log.i(JSON.toJSONString(m2));
+		Log.i(JSON.toJSONString(m3));
 		
 	}
 	

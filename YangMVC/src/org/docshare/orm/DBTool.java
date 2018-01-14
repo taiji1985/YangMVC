@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.text.html.ListView;
+
 import org.docshare.log.Log;
 import org.docshare.orm.mysql.IDBDelegate;
 import org.docshare.orm.mysql.MySQLDelegate;
@@ -41,14 +43,28 @@ public class DBTool {
 		}
 		key = helper.keyColumn(tname);
 	}
-	
+	/**
+	 * 获取列的注释
+	 * @param column 列名
+	 * @return
+	 */
 	public String getColumnRemark(String column){
 		return c_to_remarks.get(column).remark;
 	}
+	/**
+	 * 获取列的类型（int类型）
+	 * @param column
+	 * @return
+	 */
 	public int getColumnType(String column){
 		return c_to_remarks.get(column).type;
 		
 	}
+	/**
+	 * 获取列的类型名
+	 * @param column
+	 * @return
+	 */
 	public String getColumnTypeName(String column){
 		ColumnDesc d = c_to_remarks.get(column);
 		if(d == null){
@@ -64,6 +80,10 @@ public class DBTool {
 		return d.typeName;
 		
 	}
+	/**
+	 * 列举所有的列名
+	 * @return
+	 */
 	public Set<String> listColumns(){
 		return columns.keySet();
 	}
@@ -73,7 +93,7 @@ public class DBTool {
 	 * @return 返回一个包含了该SQL结果的LasyList（并没有真正查询，在你读取数据时真正查询
 	 */
 	public LasyList fromSQL(String sql){
-		return new LasyList(sql, this);
+		return LasyList.fromRawSql(sql);
 	}
 
 	/**
@@ -184,7 +204,7 @@ public class DBTool {
 	 * @return LasyList对象
 	 */
 	public LasyList all(){
-		LasyList list = new LasyList("from `"+tname+"`", this);
+		LasyList list = new LasyList(this,tname);
 		return list;
 	}
 	
@@ -200,17 +220,8 @@ public class DBTool {
 			Object v=null;
 			key2 = key;
 			try {
-//				Object object = c.get(key);
-//				if(c!=columns && object instanceof ColumnDesc){
-//					ColumnDesc desc = (ColumnDesc) object;
-//					if(desc.tb!=null && ! desc.tb.equals(tname) && !tname.equals("rawsql")){
-//						key2 = desc.tb +"."+key;
-//						Log.e(key);
-//					}
-//				}
 				v = rs.getObject(key);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				Log.e(e);
 			}
 			tb.put(key, v);

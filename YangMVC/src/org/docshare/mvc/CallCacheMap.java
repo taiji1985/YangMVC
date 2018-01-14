@@ -17,6 +17,8 @@ public class CallCacheMap {
 	 */
 	public static class CallCache{
 		public String uri;//来访最原始的uri，未经处理
+		
+		@SuppressWarnings("rawtypes")
 		public Class clazz;//对应的类
 		public Method m ;//对应的方法
 		public Object single =null;//如果是单例模式，则保存对应的对象，否则保存null
@@ -53,6 +55,7 @@ public class CallCacheMap {
 		return false;
 		
 	}
+	@SuppressWarnings("rawtypes")
 	public static void addCache(String uri,Class clazz,Method m,Object single){
 		CallCache cache = new CallCache();
 		cache.clazz = clazz;

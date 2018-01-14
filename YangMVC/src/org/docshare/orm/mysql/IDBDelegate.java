@@ -17,4 +17,6 @@ public interface IDBDelegate {
 	int delete(DBHelper helper, String tname, String key, Object id);
 
 	String buildSQL(List<SQLConstains> cons, DBTool tool, String sqlfrom);
+	ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName);
+	long size(List<SQLConstains> cons,DBTool tool,String tbName);
 }

@@ -23,6 +23,7 @@ public class TestORM2 extends TestCase{
 		m.put("name", "haha");
 		int ret = tool.save(m);
 		System.out.println("update ret = "+ret);
+		System.out.println("update id = "+m.get("id"));
 	}
 	public void testInsert(){
 		Model m = tool.create();

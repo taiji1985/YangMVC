@@ -1,8 +1,5 @@
 package org.demo;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import org.docshare.mvc.Controller;
 
 public class ParamController extends Controller {

@@ -1,5 +1,6 @@
 package org.docshare.orm;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -15,6 +16,9 @@ import java.util.Map;
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.mvc.TextTool;
+import org.docshare.util.FileTool;
+
+import com.alibaba.fastjson.JSON;
 
 
 
@@ -51,7 +55,7 @@ public class DBHelper {
 		
 	}
 	
-	Connection con = null;
+	private Connection con = null;
 
 	public void conn() {
 		try {
@@ -149,7 +153,7 @@ public class DBHelper {
 		}
 		return ret;
 	}
-	Object last_id;
+	private Object last_id;
 	public Object getLastId(){
 		return last_id;
 	}
@@ -160,13 +164,16 @@ public class DBHelper {
 	public int updateWithArray(String sql,Object[] objs){
 		try {
 			conn();
-			PreparedStatement s = con.prepareStatement(sql);
+			last_id = -1;
+			PreparedStatement s = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			if(objs!=null)for(int i=0;i<objs.length;i++){
 				s.setObject(i+1, objs[i]);
 			}
 			
 			int ret  =  s.executeUpdate();
-			ResultSet last = getRS("SELECT LAST_INSERT_ID()");
+			ResultSet last = s.getGeneratedKeys();
+			
+			//ResultSet last = getRS("SELECT LAST_INSERT_ID()");
 			if(last !=null && last.next()){
 				last_id = last.getObject(1);
 			}else{
@@ -195,11 +202,33 @@ public class DBHelper {
 			//Log.e(e);
 		}
 	}
-	Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
+	private Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
 
 	public HashMap<String,ColumnDesc> listColumn(String tb) {
 		return listColumn(tb,true);
 	}
+	public HashMap<String,ColumnDesc> readColumnDesc(String tb){
+		URL purl = getClass().getResource("/");
+		if(purl == null){
+			return null;
+		}
+		String path = purl.getPath()+"/tbconfig/"+tb+".json";
+		String json = FileTool.readAll(path, "utf-8");
+		if(json == null){
+			Log.d("read columnSave not found "+path);
+			return null;
+		}
+		Log.d("readed columnSave succ " + tb +",path="+path);
+		ColumnSave save = JSON.parseObject(json, ColumnSave.class);
+		return save.listColumn;
+		
+	}
+	/**
+	 *  是否需要尝试读取源文件根目录下的tbconfig目录下的表格式文件。
+	 *  生成方法： 使用 java -jar yangmvc-1.9-all.jar 直接生成此目录，将tbconfig整个目录拷贝到src目录下即可。
+	 *  如果不需要尝试读取ConfigFile可以将这个变量置为false
+	 */
+	public static boolean useConfigFile = true;
 	/**
 	 * 返回表格中所有的列，以及列的注释（这个注释可以用于显示）
 	 * @param tb 表格名称
@@ -210,8 +239,17 @@ public class DBHelper {
 			return desc_cached.get(tb);
 		}
 		
+		HashMap<String, ColumnDesc> ret ;
+		if(useConfigFile){
+			ret= readColumnDesc(tb);
+			if(ret!=null ){
+				desc_cached.put(tb, ret);
+				return ret;
+			}
+		}
+		
 		conn();
-		HashMap<String,ColumnDesc> ret = new HashMap<String,ColumnDesc>();
+		ret = new HashMap<String,ColumnDesc>();
 		try {
 			ResultSet rs = con.getMetaData().getColumns(null, "%", tb, "%");
 			while (rs.next()) {
@@ -291,5 +329,22 @@ public class DBHelper {
 		close();
 		
 		super.finalize();
+	}
+	private void printParams(String sql,ArrayList<Object> params){
+		System.out.println("PrintParams: "+sql);
+		for(int i=0;i<params.size();i++){
+			System.out.println("PrintParams: {"+i+"} "+params.get(i));
+		}
+		
+	}
+	public ResultSet getRS(String sql, ArrayList<Object> params) throws SQLException {
+		printParams(sql,params);
+		PreparedStatement s ;
+		conn();
+		s= con.prepareStatement(sql);
+		for(int i=0;i<params.size();i++){
+			s.setObject(i+1, params.get(i));
+		}
+		return s.executeQuery();
 	}
 }
