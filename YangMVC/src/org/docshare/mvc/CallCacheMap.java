@@ -44,7 +44,7 @@ public class CallCacheMap {
 				ins.actionRequire(false);
 				return true;
 			}
-			
+			ins.clearOutFlag(); //清空输出标志，说明还未输出
 			cach.m.invoke(obj);
 			
 			return true;

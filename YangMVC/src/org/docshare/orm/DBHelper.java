@@ -235,11 +235,14 @@ public class DBHelper {
 	 * @return  列名->注释 的映射表
 	 */
 	public HashMap<String,ColumnDesc> listColumn(String tb,boolean useCache) {
-		if(useCache && desc_cached.containsKey(tb)){
-			return desc_cached.get(tb);
+		HashMap<String, ColumnDesc> ret ;
+		if(useCache && desc_cached!= null && desc_cached.containsKey(tb)){
+			ret =  desc_cached.get(tb);
+			if(ret.size() > 0){
+				return ret;
+			}
 		}
 		
-		HashMap<String, ColumnDesc> ret ;
 		if(useConfigFile){
 			ret= readColumnDesc(tb);
 			if(ret!=null ){

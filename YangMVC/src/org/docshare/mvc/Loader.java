@@ -58,6 +58,7 @@ class Loader {
 					Log.e("error : The Class is not subclass of Controller: "+cname);
 					return false;
 				}
+				((Controller)obj).clearOutFlag();
 			}
 		}catch(Exception e){
 			Throwable cause = e.getCause();

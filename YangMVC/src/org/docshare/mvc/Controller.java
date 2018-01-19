@@ -28,6 +28,7 @@ import org.docshare.mvc.except.NullParamException;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 import org.docshare.util.BeanUtil;
+import org.docshare.util.GzipUtil;
 import org.docshare.util.IOUtil;
 
 import com.alibaba.fastjson.JSON;
@@ -249,7 +250,7 @@ public class Controller {
 	}
 	
 	private boolean existFile(String path){
-		String p = request.getRealPath(path);
+		String p = request.getServletContext().getRealPath(path);
 		if(p==null){
 			//p = request.getServletContext().getRealPath(path);
 			try {
@@ -270,7 +271,6 @@ public class Controller {
 			try {
 				outMutiOutErr();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return;
@@ -361,6 +361,44 @@ public class Controller {
 		throw new IOException("童鞋，请不要在一个控制器方法中，写入多个输出语句。每个控制器每次执行只能输出一次。你是不是在if中忘了写return ?");
 		
 	}
+	
+	private static  boolean enable_gzip = true;
+	/**
+	 * 设置开启gzip功能，如果发现客户端可以支持gzip（监测Accept-Encoding)，则压缩发送。
+	 * 默认为打开状态
+	 */
+	public static void enableGzip(){
+		enable_gzip =true;
+	}
+	/**
+	 * 设置关闭gzip功能，全部以text/plain形式发送内容
+	 * 默认为打开状态
+	 */
+	public static void disableGzip(){
+		enable_gzip =false;
+	}
+	
+	/**
+	 * 判断是不是支持gzip，如果是gzip，就创建gzip输出流，反之创建一般输出流
+	 * @return
+	 */
+	private PrintWriter getMyPrintWriter(){
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = null;  
+        try {
+			if (enable_gzip && GzipUtil.isGzipSupported(request) ) {  
+			    response.setHeader("Content-Encoding", "gzip");
+			    
+			    out = GzipUtil.getGzipWriter(response);  
+			} else {  
+			    out = response.getWriter();  
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+        return out;
+	}
 	/**
 	 * 输出字符串 并关闭流
 	 * @param s
@@ -373,14 +411,11 @@ public class Controller {
 			}
 			can_out = false;
 			
-			response.setContentType("text/html; charset=UTF-8");
-			response.setCharacterEncoding("utf-8");
-			writer = response.getWriter();
+			writer = getMyPrintWriter();
 			if(s == null)writer.write("null");
 			else writer.write(s);
 			writer.close();
 		} catch (IOException e) {
-
 			Log.e(e);
 		}
 	}
@@ -678,7 +713,7 @@ public class Controller {
 		}
 	}
 	public void download(String path){
-		String true_path = request.getRealPath(path);
+		//String true_path = request.getServletContext().getRealPath(path);
 		response.setContentType("application/x-download");
 		String filedisplay = new File(path).getName();		
 		response.addHeader("Content-Disposition","attachment;filename=" + filedisplay); 
