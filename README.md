@@ -1,11 +1,16 @@
+[toc]
 
-#YangMVC
+# YangMVC
 # 下载地址
 
 https://git.oschina.net/yangtf/YangMVC/attach_files
 
 请在此页下载版本号最高的版本
 
+# 更新日志
+## V2.0 更新内容
+  1. 增加了gzip传输功能
+  2. 修正了已知错误
 
 # 开发目的
 
@@ -16,13 +21,13 @@ https://git.oschina.net/yangtf/YangMVC/attach_files
 
 SSH框架配置复杂、难用,当你需要快速实现一个小中型项目时完全没有必要。一个框架应该使用简单、配置简单、代码简洁。于是作者参照Django的一些特性，编写了这个MVC+ORM框架。
 
-#特性
+# 特性
 1. 大量的默认约定，避免了大量的配置
 2. 较高的编码效率
 3. 支持延迟加载技术的List
 4. 支持JSP和FreeMarker模板库
 
-#配置
+# 配置
 
 
 1. 新建一个Web Project（MyEclipse为例）
