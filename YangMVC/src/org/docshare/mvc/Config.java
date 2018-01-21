@@ -19,11 +19,14 @@ public class Config {
 	public static String dbname = "621m";
 	
 	/**
-	 * 
+	 * 端口号
 	 */
 	public static String dbport = "3306";
 	
-	
+	/**
+	 * 是否打开实时Reload功能
+	 */
+	public static boolean reloadable = true;
 	
 	/**
 	 * 模板相对于WebRoot的目录路径
@@ -38,6 +41,7 @@ public class Config {
 	public static String str() {
 		return "Config [dbhost=" + dbhost +", dbname=" + dbname + ", dbusr=" + dbusr + ", dbpwd="
 				+ dbpwd + ", port = "+ dbport + ", tpl_base=" + tpl_base + ", ctr_base=" + ctr_base
+				+",reloadable="+reloadable+""
 				+ "]";
 	}
 	

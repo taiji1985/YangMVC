@@ -7,22 +7,28 @@ import java.util.Date;
 import java.util.Formatter;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.docshare.mvc.Config;
+
 
 public class Log {
 	public static final int LEVEL_DEBUG =0;
 	public static final int LEVEL_INFO = 1;
 	public static final int LEVEL_ERROR =2;
-	
+	public static String getCaller() {  
+	    StackTraceElement[] stack = (new Throwable()).getStackTrace(); 
+	    return stack[2].getClassName();
+	}  
 	static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	static Logger log = Logger.getLogger("Log");
 	public static String now(){
 		return df.format(new Date());
 	}
 	
 	public static <T> void i(T str) {
 		if(Config.level > LEVEL_INFO)return;
-		
-		System.out.println(now()+ "[info ]" + str);
+		log.info(str);
+		//System.out.println(now()+ "[info ]" + str);
 	}
 
 	public static <T> void e(T i) {
@@ -31,17 +37,21 @@ public class Log {
 		if(i instanceof Throwable){
 			s = getErrMsg((Throwable) i);
 		}
-		System.err.println(now()+ "[error]" + s);
+		
+		log.error(s);
 		
 	}
 	public static <T> void e(String f , String...args){
-		String s = new Formatter().format(f, args).toString();
+		String s = new Formatter().format(f, (Object[])args).toString();
 		e(s);
 	}
-
+	public static boolean debugEnabled(){
+		return Config.level > LEVEL_DEBUG;
+	}
 	public static <T> void d(T str) { 
-		if(Config.level > LEVEL_DEBUG)return;
-		System.out.println(now()+ "[debug]" + str);
+		//if(Config.level > LEVEL_DEBUG)return;
+		log.debug(str);
+		//System.out.println(now()+ "[debug]" + str);
 	}
 
 	public static String getErrMsg(Throwable e){
@@ -69,6 +79,15 @@ public class Log {
 		stringBuffer.insert(0, "MAP");
 		String s= stringBuffer.toString();
 		Log.i(s);
+	}
+
+	public static void w(String m) {
+		log.warn(m);
+	}
+
+	public static void i(String s, Object...args) {
+		String str = String.format(s, args);
+		log.info(str);
 	}
 
 

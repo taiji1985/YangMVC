@@ -17,9 +17,9 @@ public class JsonController extends Controller {
 	}
 	
 	public void ding(){
-		int bookid = paramWithDefaultInt("bookid", 1);
-		int uid = paramWithDefaultInt("uid", 1);
-		int ct = paramWithDefaultInt("ct", 1);
+		int bookid = paramInt("bookid", 1);
+		int uid = paramInt("uid", 1);
+		int ct = paramInt("ct", 1);
 		
 
 		DBTool tool = Model.tool("dingcan");

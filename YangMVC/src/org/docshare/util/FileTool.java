@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 
-@SuppressWarnings("unchecked")
 public class FileTool {
 
     	public static long lastModify2(String filename)
@@ -123,6 +123,27 @@ public class FileTool {
 		
 		return sb.toString();
 	}	
+	public static String readAll(InputStream in,String charset)
+	{
+		if(in==null)return null;
+		
+		BufferedReader  br=null;
+		StringBuffer sb = new StringBuffer();
+		try {
+			InputStreamReader reader = new InputStreamReader (in,charset);
+			br = new BufferedReader (reader);			
+			while(br.ready())
+			{
+				sb.append(br.readLine()+"\n");
+			}
+			reader.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return sb.toString();
+	}
 	public static void writeUTFOLD(String f,String data)
 	{
 		try {
@@ -221,10 +242,10 @@ public class FileTool {
 		return f.exists();
 	}
 
-	public static ArrayList loadBinMatrix(String file)
+	public static ArrayList<Double> loadBinMatrix(String file)
 	{
 		try {
-			ArrayList al= new ArrayList();
+			ArrayList<Double> al= new ArrayList<Double>();
 			DataInputStream di = new DataInputStream(new FileInputStream(file));
 			while(di.available() >= 8)
 			{
@@ -264,7 +285,7 @@ public class FileTool {
 		System.out.println("al= " + al.size() + "\n");
 		return al;
 	}
-	public static void saveBinMatrix(String file,ArrayList al)
+	public static void saveBinMatrix(String file,ArrayList<?> al)
 	{
 		try {
 			DataOutputStream dp = new DataOutputStream(new FileOutputStream(file));
@@ -286,9 +307,9 @@ public class FileTool {
 		
 		return f.lastModified();
 	}
-	public static void printHashMap(HashMap hm)
+	public static void printHashMap(HashMap<?, ?> hm)
 	{
-		   Iterator iterator = hm.keySet().iterator();
+		   Iterator<?> iterator = hm.keySet().iterator();
 		   while (iterator.hasNext()) {
 			   String key = (String) iterator.next();
 			   
@@ -342,5 +363,31 @@ public class FileTool {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public static void writeAll(OutputStream os, String data,String charset) {
+		OutputStreamWriter out;
+		try {
+			out = new OutputStreamWriter(os,charset);
+			out.write(data);
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void writeAll(InputStream in, OutputStream os) {
+		byte[] buf = new byte[1024];
+		
+		try {
+			int readed = in.read(buf);
+			while(readed>0){
+				os.write(buf,0,readed);
+				readed = in.read(buf);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

@@ -24,9 +24,9 @@ public class ColumnDesc {
 	public ColumnDesc(String name2, int columnType, String columnLabel,
 			String tb) {
 		super();
-		this.name = name;
-		this.type = type;
-		this.remark = remark;
+		this.name = name2;
+		this.type = columnType;
+		this.remark = columnLabel;
 		this.tb= tb;
 	}
 

@@ -1,10 +1,7 @@
 package org.docshare.mvc;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -17,7 +14,6 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,11 +29,7 @@ import org.docshare.util.IOUtil;
 
 import com.alibaba.fastjson.JSON;
 
-import freemarker.core.ParseException;
-import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateNotFoundException;
 
 public class Controller {
 
@@ -203,7 +195,7 @@ public class Controller {
 	}
 	private boolean can_out =true;
 	/**
-	 * 获取整形参数
+	 * 获取整形参数 ,已过时，请使用paramInt(String pname,int def)
 	 * @deprecated
 	 * @param pname
 	 * @param def
@@ -235,6 +227,11 @@ public class Controller {
 	 * @param obj
 	 */
 	public void put(String name,Object obj){
+		if(obj instanceof IBean){
+			Log.d(obj.getClass().getName()+" translate to map :");
+			obj = BeanUtil.obj2Map(obj);
+			Log.d(JSON.toJSONString(obj));
+		}
 		request.setAttribute(name, obj);
 		root.put(name, obj);
 	}
@@ -250,7 +247,8 @@ public class Controller {
 	}
 	
 	private boolean existFile(String path){
-		String p = request.getServletContext().getRealPath(path);
+		@SuppressWarnings("deprecation")
+		String p = request.getRealPath(path);
 		if(p==null){
 			//p = request.getServletContext().getRealPath(path);
 			try {

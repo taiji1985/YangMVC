@@ -1,14 +1,14 @@
 package org.docshare.util;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-
 import org.docshare.log.Log;
+import org.docshare.mvc.IBean;
 import org.docshare.mvc.TextTool;
 
 public class BeanUtil {
@@ -28,6 +28,42 @@ public class BeanUtil {
 		}
 		return ret; //TODO
 	}
+	public static HashMap<String, Object> obj2Map(Object obj) {
+		HashMap<String, Object> ret=new HashMap<String, Object>();
+		
+		Field[] fa = obj.getClass().getFields();
+		Method[] ma = obj.getClass().getMethods();
+		for(Field f: fa){
+			//System.out.println("Field "+f.getName()+" "+f.getType().getName());
+		//	ret.add(f.getName());
+			try {
+				//if(f.isAccessible()){
+				Object v = f.get(obj);
+				if(v!= null && v instanceof IBean){
+					v  = obj2Map(v);
+				}
+				ret.put(f.getName(), v);
+				//}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		for(Method m: ma){
+			String name = m.getName();
+			if(name.startsWith("get") && ! name.equals("getClass")  && name.length()> 3 ){
+				Object v;
+				try {
+					v = m.invoke(obj, (Object[]) null);
+					ret.put(TextTool.firstLower(name.substring(3)),v);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		//		ret.add(TextTool.firstLower(name.substring(3)));
+			}
+		}
+		return ret;
+		
+	}
 	private static Method getMethod(Object obj,String mname){
 		Method[] ma = obj.getClass().getMethods();
 		for(Method m: ma){
@@ -39,9 +75,7 @@ public class BeanUtil {
 		return null;
 	}
 	public static Object get(Object obj,String pname){
-		String sub = null;
 		if(pname.contains(".")){ //这是一个复合参数
-			sub = TextTool.getAfter(pname, ".");
 			pname = TextTool.getBefore(pname, ".");
 		}
 		Class<?> clazz = obj.getClass();

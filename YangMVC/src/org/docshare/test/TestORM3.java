@@ -5,7 +5,6 @@ import java.util.List;
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
-import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
 import junit.framework.TestCase;
@@ -13,7 +12,6 @@ import junit.framework.TestCase;
 
 public class TestORM3 extends TestCase{
 	DBTool tool;
-	private LasyList list;
 	@Override
 	public void setUp(){
 		Log.e("setup");
@@ -24,7 +22,7 @@ public class TestORM3 extends TestCase{
 	}
 	@Override
 	protected void tearDown() throws Exception {
-		tool.run("delete from book where id >909", null);
+		tool.run("delete from book where id >909");
 		super.tearDown();
 	}
 	

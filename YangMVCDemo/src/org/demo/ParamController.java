@@ -13,10 +13,5 @@ public class ParamController extends Controller {
 		
 		
 	}
-	private void printBytes(byte[] ba){
-		for(byte b : ba){
-			System.out.printf("%02x ", b);
-		}
-		System.out.println();
-	}
+
 }

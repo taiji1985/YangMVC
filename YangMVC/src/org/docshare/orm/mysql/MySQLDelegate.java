@@ -35,7 +35,6 @@ public class MySQLDelegate implements IDBDelegate {
 		if(id == null|| forceInsert){
 			//This is an insert
 			String ks="";
-			String vs="";
 			String vs2="";
 			boolean first=true;
 			for(String k: m.keySet()){
@@ -48,13 +47,12 @@ public class MySQLDelegate implements IDBDelegate {
 				}
 				if(!first){
 					ks+=',';
-					vs+=',';
 					vs2+=",";
 				}
 				
 				ks+= "`"+k+"`";
 				String type = tool.getColumnTypeName(k);
-				vs+= ArrayTool.valueWrapper(null, v,type);
+				ArrayTool.valueWrapper(null, v,type);
 				vs2+="?";
 				plist.add(v);
 				first = false;
@@ -69,7 +67,7 @@ public class MySQLDelegate implements IDBDelegate {
 					continue;
 				}
 				String type = tool.getColumnTypeName(k);
-				String s = ArrayTool.valueWrapper(k, m.get(k),type);
+				ArrayTool.valueWrapper(k, m.get(k),type);
 				//sa.add(s);
 				sa.add(k+"=?");
 				plist.add(m.get(k));

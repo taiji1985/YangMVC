@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import javax.swing.JComboBox.KeySelectionManager;
-
 import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
 import org.docshare.util.BeanUtil;
@@ -27,7 +25,7 @@ public class Model implements Map<String,Object> {
 		}
 	}
 	public static DBTool tool(String tname){		
-		return new DBTool(tname);
+		return DBTool.getIns(tname);
 	}
 	public String getTableName(){
 		return tname;

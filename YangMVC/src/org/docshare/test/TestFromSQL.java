@@ -1,7 +1,5 @@
 package org.docshare.test;
 
-import javax.management.modelmbean.ModelMBean;
-
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;

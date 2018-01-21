@@ -20,12 +20,10 @@ import org.docshare.log.Log;
 class UploadProcesser {
 
 	private HttpServletRequest request;
-	private HttpServletResponse response;
 	private Controller c;
 
 	public UploadProcesser(Controller c ,HttpServletRequest request,HttpServletResponse response)  {
 		this.request =request;
-		this.response = response;
 		this.c = c;
 	}
 	public void process() throws FileUploadException{

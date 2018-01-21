@@ -1,5 +1,6 @@
 package org.docshare.orm;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.docshare.log.Log;
@@ -91,7 +93,7 @@ public class DBHelper {
 		DatabaseMetaData dbmd = con.getMetaData();
 		ResultSet rs = dbmd.getImportedKeys(Config.dbname, "%", table);
 		
-		ResultSetMetaData meta = rs.getMetaData();
+//		ResultSetMetaData meta = rs.getMetaData();
 //		Log.d("column count "+meta.getColumnCount());
 //		for(int i=1;i<=meta.getColumnCount();i++){
 //			Log.d(meta.getColumnName(i));
@@ -158,7 +160,7 @@ public class DBHelper {
 		return last_id;
 	}
 	public int update(String sql) {
-		return update(sql,null);
+		return update(sql);
 	}
 
 	public int updateWithArray(String sql,Object[] objs){
@@ -208,12 +210,15 @@ public class DBHelper {
 		return listColumn(tb,true);
 	}
 	public HashMap<String,ColumnDesc> readColumnDesc(String tb){
-		URL purl = getClass().getResource("/");
-		if(purl == null){
-			return null;
-		}
-		String path = purl.getPath()+"/tbconfig/"+tb+".json";
-		String json = FileTool.readAll(path, "utf-8");
+//		URL purl = getClass().getResource("/");
+//		if(purl == null){
+//			return null;
+//		}
+//		String path = purl.getPath()+"/tbconfig/"+tb+".json";
+		String path = "/tbconfig/"+tb+".json";
+		InputStream in = getClass().getResourceAsStream(path);
+		
+		String json = FileTool.readAll(in, "utf-8");
 		if(json == null){
 			Log.d("read columnSave not found "+path);
 			return null;
@@ -334,10 +339,8 @@ public class DBHelper {
 		super.finalize();
 	}
 	private void printParams(String sql,ArrayList<Object> params){
-		System.out.println("PrintParams: "+sql);
-		for(int i=0;i<params.size();i++){
-			System.out.println("PrintParams: {"+i+"} "+params.get(i));
-		}
+		Log.d("PrintParams: "+sql +" params= {"+TextTool.join(params, ",")+"}");
+		
 		
 	}
 	public ResultSet getRS(String sql, ArrayList<Object> params) throws SQLException {

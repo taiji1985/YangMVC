@@ -7,10 +7,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import org.docshare.log.Log;
-import org.docshare.mvc.TextTool;
 import org.docshare.orm.mysql.IDBDelegate;
 
 /**
@@ -312,7 +312,7 @@ public class LasyList extends ListAdapter {
 		}
 		return this;
 	}
-	
+	@Override
 	public List<Model> toArrayList(){
 		if(arrList != null){
 			return arrList;
@@ -366,10 +366,5 @@ public class LasyList extends ListAdapter {
 		
 	}
 	
-	@Override
-	public boolean addAll(int index, Collection<? extends Model> c) {
-		List<Model> list = toArrayList();
-		list.addAll(c);
-		return true;
-	}
+
 }

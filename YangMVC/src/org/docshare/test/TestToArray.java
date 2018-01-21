@@ -6,14 +6,12 @@ import junit.framework.TestCase;
 
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
-import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
 import com.alibaba.fastjson.JSON;
 
 public class TestToArray  extends TestCase {
 	DBTool tool;
-	private LasyList list;
 	@Override
 	public void setUp(){
 		Config.dbname ="mvc_demo";

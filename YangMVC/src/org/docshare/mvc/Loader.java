@@ -13,14 +13,26 @@ import org.docshare.log.Log;
 
 
 class Loader {
-
+	static Reloader reloader = null;
+	static int loaderVersion = 0;
+	Reloader reloader2 = null;
 	@SuppressWarnings("rawtypes")
 	public static Class load(String p) throws ClassNotFoundException{
-		return Class.forName(p);
+//		if(true){
+//			Log.i("load ..."+p);
+//			return Class.forName(p);
+//		}
+		if(reloader == null){
+			reloader=new Reloader("/", Config.ctr_base);
+		}
+		
+		return reloader.load(p);
 		
 	}
 	/**
 	 * 用以存储单例对象的Map。
+	 * key: 类名
+	 * Object: 对象
 	 */
 	static Map<String, Object> singleMap = new HashMap<String, Object>();
 	
@@ -30,14 +42,14 @@ class Loader {
 			return false;
 		}
 		
-		if(! cname.endsWith("Controller")){
+		if(! cname.endsWith("Controller") ){
 			int p = cname.lastIndexOf(".");
 			String lastname = cname.substring(p+1);
 			String first = lastname.substring(0, 1).toUpperCase();
 			lastname = first + lastname.substring(1)+"Controller";
 			cname = cname.substring(0, p+1)+lastname;
 		}
-		Log.i("Call "+cname +", method = "+method);
+		Log.d("Call " + cname + ", method = " + method);
 		
 		//load class
 		Class cz=null;
@@ -93,8 +105,19 @@ class Loader {
 			}else{
 				CallCacheMap.addCache(uri, cz, m, null);
 			}
-			Log.i("call success");
+			Log.d("call success");
 			return true;
+		}catch(NoSuchMethodException ne){
+			Throwable cause = ne.getCause();
+			if(cause == null){
+				cause=ne;
+			}
+			String msg = "没这个方法, no such method " + cname+"."+method +",去查查是否有拼写错误？";
+			//String msg = Log.getErrMsg(cause);
+			//Log.e(msg);
+			Log.e(msg);
+			outMsg(msg,resp);
+			
 		} catch (Exception e) {
 			Throwable cause = e.getCause();
 			if(cause == null){
@@ -106,6 +129,7 @@ class Loader {
 			
 			return false;
 		}
+		return true;
 		
 	}
 	public static void outMsg(String msg,HttpServletResponse resp){
@@ -119,7 +143,7 @@ class Loader {
 			m = m.replace(Config.ctr_base, "<font color='red'>"+Config.ctr_base+"</font>");
 			pw.print(m);
 			pw.println("</body></html>");
-			pw.close();
+			//pw.close();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

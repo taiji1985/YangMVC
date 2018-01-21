@@ -8,152 +8,90 @@ import java.util.ListIterator;
 import org.docshare.log.Log;
 
 
-class ListAdapter implements List<Model> {
+abstract class ListAdapter implements List<Model> {
 
-	@Override
-	public int size() {
-		Log.d("size() called");
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		Log.d("isEmpty() called");
-		return false;
-	}
-
-	@Override
-	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		Log.d("contains() called");
-		return false;
-	}
-
-	@Override
-	public Iterator<Model> iterator() {
-		// TODO Auto-generated method stub
-		Log.d("iterator() called");
-		return null;
-	}
-
-	@Override
-	public Object[] toArray() {
+	public List<Model> toArrayList() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public <T> T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean add(Model e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addAll(Collection<? extends Model> c) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
 	public boolean addAll(int index, Collection<? extends Model> c) {
-		// TODO Auto-generated method stub
-		return false;
+		List<Model> list = toArrayList();
+		list.addAll(index,c);
+		return true;
 	}
-
+	@Override
+	public boolean addAll(Collection<? extends Model> c) {
+		List<Model> list = toArrayList();
+		list.addAll(c);
+		return true;
+	}
+	@Override
+	public Object[] toArray() {
+		
+		return toArrayList().toArray();
+	}
+	@Override
+	public <T> T[] toArray(T[] a) {
+		return toArrayList().toArray(a);
+	}
+	@Override
+	public boolean add(Model e) {
+		return toArrayList().add(e);
+	}
+	@Override
+	public boolean remove(Object o) {
+		return toArrayList().remove(o);
+	}
+	@Override
+	public boolean containsAll(Collection<?> c) {
+		return toArrayList().containsAll(c);
+	}
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return toArrayList().removeAll(c);
 	}
-
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		return toArrayList().retainAll(c);
 	}
-
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		toArrayList().clear();
 	}
-
-
-
 	@Override
 	public Model set(int index, Model element) {
-		// TODO Auto-generated method stub
-		return null;
+		return toArrayList().set(index, element);
 	}
-
 	@Override
 	public void add(int index, Model element) {
-		// TODO Auto-generated method stub
+		toArrayList().add(index, element);
 		
 	}
-
 	@Override
 	public Model remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		return toArrayList().remove(index);
 	}
-
 	@Override
 	public int indexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return toArrayList().indexOf(o);
 	}
-
 	@Override
 	public int lastIndexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return toArrayList().lastIndexOf(o);
 	}
-
 	@Override
 	public ListIterator<Model> listIterator() {
-		// TODO Auto-generated method stub
-		Log.d("ListIterator() called");
-		return null;
+		return toArrayList().listIterator();
 	}
-
 	@Override
 	public ListIterator<Model> listIterator(int index) {
-		// TODO Auto-generated method stub
-		Log.d("ListIterator() called");
-		return null;
+		return toArrayList().listIterator(index);
 	}
-
 	@Override
 	public List<Model> subList(int fromIndex, int toIndex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Model get(int index) {
-		// TODO Auto-generated method stub
-		Log.d("get() called");
-		return null;
+		return toArrayList().subList(fromIndex, toIndex);
 	}
 
 }

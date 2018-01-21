@@ -27,6 +27,7 @@ public class TestLast  extends TestCase{
 	
 	public void testConnectionClose(){
 		for(int i=0;i<10000;i++){
+			@SuppressWarnings("unused")
 			LasyList list = Model.tool("book").all().limit(3);			
 		}
 		int s  = DBHelper.getIns().getVal("show status like '%Threads_connected%'", "Value");

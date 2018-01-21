@@ -2,8 +2,6 @@ package org.docshare.test;
 
 import java.util.List;
 
-import javax.tools.Tool;
-
 import org.docshare.mvc.Config;
 import org.docshare.orm.Model;
 import org.junit.Test;

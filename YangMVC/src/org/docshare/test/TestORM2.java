@@ -33,6 +33,6 @@ public class TestORM2 extends TestCase{
 		System.out.println(m.get("id"));
 	}
 	public void testClear() {
-		tool.run("delete from book where id >909", null);
+		tool.run("delete from book where id >909");
 	}
 }

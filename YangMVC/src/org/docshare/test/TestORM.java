@@ -6,6 +6,8 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
+import com.alibaba.fastjson.JSON;
+
 
 import junit.framework.TestCase;
 
@@ -22,12 +24,18 @@ public class TestORM extends TestCase{
 	}
 	@Override
 	protected void tearDown() throws Exception {
-		tool.run("delete from book where id >909", null);
+		tool.run("delete from book where id >909");
 		super.tearDown();
 	}
 	public void testOne(){
 		Model m = tool.all().eq("id", 11111).one();
 		Log.i("m = "+m);
+	}
+	public void testAddAll(){
+		LasyList list = Model.tool("book").all().limit(1);
+		LasyList list2 = Model.tool("book").all().limit(1);
+		list.addAll(list2);
+		System.out.println(JSON.toJSONString(list));
 	}
 	public void testOrder(){
 		Log.e("testOrder");

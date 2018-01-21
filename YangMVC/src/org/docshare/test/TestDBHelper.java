@@ -9,12 +9,10 @@ import org.docshare.mvc.Config;
 import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.DBTool;
-import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
 public class TestDBHelper  extends TestCase{
 	DBTool tool;
-	private LasyList list;
 	@Override
 	public void setUp(){
 		Log.e("setup");

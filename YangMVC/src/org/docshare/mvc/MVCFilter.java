@@ -1,5 +1,6 @@
 package org.docshare.mvc;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -18,6 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 
+import freemarker.cache.ClassTemplateLoader;
+import freemarker.cache.FileTemplateLoader;
+import freemarker.cache.MultiTemplateLoader;
+import freemarker.cache.TemplateLoader;
+import freemarker.cache.WebappTemplateLoader;
 import freemarker.template.Configuration;
 
 
@@ -86,7 +92,8 @@ public class MVCFilter implements Filter {
 		try {
 			pw = resp.getWriter();
 			pw.print("Error:"+msg);
-			pw.close();
+			pw.flush();
+			//pw.close();
 		} catch (IOException e) {
 
 			Log.e(e);
@@ -102,8 +109,10 @@ public class MVCFilter implements Filter {
 		
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
-		Log.i("filter>"+uri);
-		boolean succ = CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
+		if(context == null) context = "";
+		Log.d("filter > "+uri);
+		//如果开启了reloadable，就不再使用缓存。缓存主要是为了加速实际运行。
+		boolean succ = Config.reloadable ?false: CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
 		if(succ){
 			return;
 		}
@@ -135,10 +144,10 @@ public class MVCFilter implements Filter {
 		
 		try {
 			boolean ret = process(uri,context,req2,(HttpServletResponse)resp,chain);
-			if(ret)return;
-			else{
-				outErr((HttpServletResponse) resp, "The Controller is not found ,see the log for detail");
-			}
+//			if(ret)return;
+//			else{
+//				outErr((HttpServletResponse) resp, "The Controller is not found ,see the log for detail");
+//			}
 		} catch (Exception e) {
 			Log.e(e);
 		}
@@ -158,7 +167,11 @@ public class MVCFilter implements Filter {
 			Config.dbname = cfg.getServletContext().getInitParameter("dbname");
 			Config.dbport = cfg.getServletContext().getInitParameter("dbport");
 			
+			
 			Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
+			String reloadable = cfg.getServletContext().getInitParameter("reloadable");
+			Config.reloadable = reloadable == null? true:Boolean.parseBoolean(reloadable);
+			
 		} 
 		
 		try {
@@ -174,15 +187,43 @@ public class MVCFilter implements Filter {
 			Log.d("init class can not Instantiation");
 		}
 		initFreeMarker();
-		
+		String hidePwd = Config.dbpwd;
+		Config.dbpwd = "*******";
 		Log.i(Config.str());
+		Log.i("password is hidden in Config");
+		Config.dbpwd = hidePwd;
 		
 	}
+	/**
+	 * 初始化freemarker， 加载顺序 WebApp路径、文件路径、类路径
+	 */
 	private void initFreeMarker(){
 		
 		fmCfg = new Configuration(Configuration.VERSION_2_3_25);  
+		fmCfg.setDefaultEncoding("utf-8");
+		
+		TemplateLoader ctl = new ClassTemplateLoader(MVCFilter.class,
+	            "/view");
+
+		WebappTemplateLoader wtl = new WebappTemplateLoader(application,Config.tpl_base);
+		
+	    MultiTemplateLoader mtl; 
+	    TemplateLoader ftl1;
+		try {
+			ftl1 = new FileTemplateLoader(new File("view/"));
+			mtl = new MultiTemplateLoader(new TemplateLoader[] {
+			           wtl,ftl1 , ctl  });
+			Log.i("Find view/ dir ,use it !");
+		} catch (IOException e) {
+			//e.printStackTrace();
+			Log.i("view/ dir not found !  ,use classpath");
+			mtl = new MultiTemplateLoader(new TemplateLoader[] {
+			           wtl,ctl  });
+		}
+		
+		fmCfg.setTemplateLoader(mtl);
         // 指定FreeMarker模板文件的位置  
-		fmCfg.setServletContextForTemplateLoading(application, Config.tpl_base);
+		//fmCfg.setServletContextForTemplateLoading(application, Config.tpl_base);
 	}
 	HashMap<String,Object> map = new HashMap<String,Object>();
 

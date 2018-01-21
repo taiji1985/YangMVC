@@ -2,17 +2,12 @@ package org.docshare.orm;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.text.html.ListView;
-
 import org.docshare.log.Log;
 import org.docshare.orm.mysql.IDBDelegate;
-import org.docshare.orm.mysql.MySQLDelegate;
-
 import com.alibaba.fastjson.JSON;
 
 
@@ -29,7 +24,7 @@ public class DBTool {
 		return delegate;
 	}
 	public DBTool(String tname){
-		
+		Log.d("create a DBTool of "+tname);
 		this.tname = tname;
 		if("rawsql".equals(tname)){
 			c_to_remarks = new HashMap<String, ColumnDesc>();
@@ -213,12 +208,10 @@ public class DBTool {
 		if(c == null){
 			c = columns;
 		}
-		String key2 = null;
 		Model tb = new Model(tname,(Map<String, Object>) c);
 		tb.joined_tool = this;
 		for(String key : c.keySet()){
 			Object v=null;
-			key2 = key;
 			try {
 				v = rs.getObject(key);
 			} catch (SQLException e) {
@@ -275,6 +268,21 @@ public class DBTool {
 	public int run(String sql,Object...objects){
 		Log.i("DBTool run :" +sql +"  param=["+ArrayTool.join(",", objects)+"]" );
 		return helper.update(sql,objects);
+	}
+	
+	static HashMap<String, DBTool> toolCache = new HashMap<String, DBTool>();
+	public static DBTool getIns(String tname) {
+		if("rawsql".equals(tname)){
+			return new DBTool(tname);
+		}
+		DBTool ret ;
+		if(toolCache.containsKey(tname)){
+			ret=  toolCache.get(tname);
+		}else{
+			ret = new DBTool(tname);
+			toolCache.put(tname, ret);
+		}
+		return ret;
 	}
 
 

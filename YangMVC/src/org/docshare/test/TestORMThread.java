@@ -20,6 +20,7 @@ public class TestORMThread extends TestCase {
 				
 				@Override
 				public void run() {
+					@SuppressWarnings("unused")
 					LasyList list = Model.tool("book").all().limit(3);	
 				}
 			})	;

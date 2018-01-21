@@ -217,4 +217,17 @@ public class TextTool {
 
 		return ret;
 	}
+
+	public static String join(ArrayList<Object> params, String join_str) {
+		StringBuffer sb = new StringBuffer();
+		for(int i=0;i<params.size()-1;i++){
+			sb.append(params.get(i).toString());
+			sb.append(",");
+			
+		}
+		if(params.size()>=1){
+			sb.append(params.get(params.size()-1));
+		}
+		return sb.toString();
+	}
 }
