@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="org/docshare/boot/YangRequest.java|org/docshare/boot/YangSessionIdManager.java|org/docshare/boot/YangSIM.java" kind="src" path="src"/>
+	<classpathentry excluding="org/docshare/boot/YangRequest.java|org/docshare/boot/YangSessionIdManager.java|org/docshare/boot/YangSIM.java|org/docshare/server/ServerMainNew.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="libs/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="libs/asm-3.1.jar"/>
@@ -9,8 +9,12 @@
 	<classpathentry kind="lib" path="libs/geronimo-annotation_1.0_spec-1.0.jar"/>
 	<classpathentry kind="lib" path="libs/geronimo-jaspic_1.0_spec-1.0.jar"/>
 	<classpathentry kind="lib" path="libs/geronimo-jta_1.1_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="libs/jetty-all-7.0.2.v20100331.jar" sourcepath="libs/jetty-server-7.0.2.v20100331-sources.jar"/>
-	<classpathentry kind="lib" path="libs/servlet-api-2.5-20081211.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-continuation-8.1.0.v20120127.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-http-8.1.0.v20120127.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-io-8.1.0.v20120127.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-server-8.1.0.v20120127.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-util-8.1.0.v20120127.jar"/>
+	<classpathentry kind="lib" path="libs/servlet-api-3.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/YangMVC"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

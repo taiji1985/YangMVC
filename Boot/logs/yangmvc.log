@@ -7000,3 +7000,62 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 2018-01-21 16:03:20 [ERROR]-qtp1615734796-10 - Log -Log.java(41)  -baseRequest set session manager 
 2018-01-21 16:03:23 [ERROR]-qtp1615734796-12 - Log -Log.java(41)  -baseRequest set session manager 
 2018-01-21 16:03:25 [ERROR]-qtp1615734796-13 - Log -Log.java(41)  -baseRequest set session manager 
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -jetty-7.0.2.v20100331
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -Started {} SelectChannelConnector@0.0.0.0:1985
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-21 17:06:06 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-21 17:06:10 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-21 17:11:58 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-21 17:20:35 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-21 17:21:09 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-21 17:21:10 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-21 17:21:12 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-21 17:22:09 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-21 17:27:44 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-21 17:27:44 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-21 17:27:44 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-21 17:27:44 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-21 17:27:44 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-21 17:27:44 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-21 17:27:44 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-21 17:27:45 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-21 17:27:45 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-21 17:27:45 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-21 17:27:45 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-21 17:41:41 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser

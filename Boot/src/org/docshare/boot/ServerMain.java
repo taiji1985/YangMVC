@@ -13,7 +13,9 @@ import org.docshare.log.Log;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.DefaultHandler;
+import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
+import org.eclipse.jetty.server.session.SessionHandler;
 import org.omg.PortableServer.POAPackage.InvalidPolicyHelper;
 
 
@@ -41,12 +43,13 @@ public class ServerMain {
 		try{
 			org.eclipse.jetty.util.log.Log.setLog(new YangLogger());
 	        Server server = new Server(port);
-	        YangHandle handler = new YangHandle(server);
-	        DefaultHandler def = new DefaultHandler();
+	        HandlerCollection collection =new HandlerCollection();
+	        collection.addHandler(new SessionHandler());
+	        collection.addHandler(new YangHandle(server));
+	        collection.addHandler(new DefaultHandler());
 	       
-	        server.setHandler(handler);
+	        server.setHandler(collection);
 	        server.start();
-	        server.setSessionIdManager(handler.sim);
 	        String url = "http://127.0.0.1";
 	        if(port != 80){
 	            url = String.format("http://127.0.0.1:%d",port);

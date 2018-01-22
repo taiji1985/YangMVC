@@ -22,7 +22,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.server.session.HashSessionManager;
 
-class StaticFilterChain implements FilterChain {
+class StaticFilterChainCopy implements FilterChain {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp)
 			throws IOException, ServletException {
@@ -48,7 +48,7 @@ class StaticFilterChain implements FilterChain {
 		}
 	}
 };
-public class YangHandle extends AbstractHandler {
+public class CopyOfYangHandle extends AbstractHandler {
 
 	StaticFilterChain chain =new StaticFilterChain();
 	
@@ -58,7 +58,7 @@ public class YangHandle extends AbstractHandler {
 	HashSessionManager manager =new HashSessionManager();
 	HashSessionIdManager	sim  = new HashSessionIdManager(new Random());
 
-	public YangHandle(Server server) {
+	public CopyOfYangHandle(Server server) {
 		this.server =server;
 		filter = new  MVCFilter();
 		try {
@@ -91,6 +91,14 @@ public class YangHandle extends AbstractHandler {
 //        response.getWriter().println("hello");  
 //        baseRequest.setHandled(true);  
 		
+		
+		if(baseRequest.getSessionManager() == null){
+			Log.e("baseRequest set session manager ");
+			baseRequest.setSessionManager(manager);
+		}
+		
+		HttpSession ss = request.getSession();
+		System.err.println(ss.getId());
 		filter.doFilter(request, response, chain);
 
 		baseRequest.setHandled(true);  

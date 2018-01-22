@@ -14,4 +14,11 @@ public class Book implements IBean{
 //		this.name = name;
 //	}
 	public Book next;
+	public static Book createSimple(){
+		Book b = new Book();
+		b.name = "Hello Master Yang";
+		b.price = 1000;
+		b.next = null;
+		return b;
+	}
 }

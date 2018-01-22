@@ -18,7 +18,7 @@ public class YangFilterConfig  implements FilterConfig {
 	}
 
 	@Override
-	public Enumeration<?> getInitParameterNames() {
+	public Enumeration<String> getInitParameterNames() {
 		return getServletContext().getInitParameterNames();
 	}
 

@@ -5,12 +5,7 @@ import org.eclipse.jetty.util.log.Logger;
 
 class YangLogger implements Logger{
 	static boolean showJettyDebug = false;
-	@Override
-	public void debug(String arg0) {
-		if(showJettyDebug){
-			Log.d(arg0);
-		}
-	}
+
 
 	@Override
 	public void debug(String arg0, Throwable arg1) {
@@ -20,13 +15,7 @@ class YangLogger implements Logger{
 		
 	}
 
-	@Override
-	public void debug(String arg0, Object arg1, Object arg2) {
-		if(showJettyDebug){
-			Log.d(join(arg0,arg1,arg2));
-		}
-		
-	}
+
 
 	@Override
 	public Logger getLogger(String arg0) {
@@ -38,26 +27,6 @@ class YangLogger implements Logger{
 		return "YangLog";
 	}
 
-	@Override
-	public void info(String arg0) {
-		Log.i(arg0);
-		
-	}
-	private String join(String a,Object b,Object c){
-		String r = a;
-		if(b != null && !b.equals("null")){
-			r += " "+ b;
-		}
-		if(c != null && !b.equals("null")){
-			r += " "+ c;
-		}
-		return r;
-	}
-	@Override
-	public void info(String arg0, Object arg1, Object arg2) {
-		Log.i(join(arg0,arg1,arg2));
-			
-	}
 
 	@Override
 	public boolean isDebugEnabled() {
@@ -69,19 +38,60 @@ class YangLogger implements Logger{
 		
 	}
 
-	@Override
-	public void warn(String arg0) {
-		Log.w(arg0);
-	}
+
 
 	@Override
 	public void warn(String arg0, Throwable arg1) {
 		Log.w(arg0);
 	}
 
+
+
 	@Override
-	public void warn(String arg0, Object arg1, Object arg2) {
-		Log.w(join(arg0,arg1,arg2));
+	public void debug(Throwable arg0) {
+		if(showJettyDebug){
+			Log.d(arg0);
+		}
+	}
+
+	@Override
+	public void debug(String arg0, Object... arg1) {
+		if(showJettyDebug){
+			Log.d(String.format(arg0, arg1));
+		}
+	}
+
+	@Override
+	public void ignore(Throwable arg0) {
+		if(showJettyDebug){
+			Log.d(arg0);
+		}
+	}
+
+	@Override
+	public void info(Throwable arg0) {
+		Log.i(arg0);
+	}
+
+	@Override
+	public void info(String arg0, Object... arg1) {
+		Log.i(String.format(arg0, arg1));
+	}
+
+	@Override
+	public void info(String arg0, Throwable arg1) {
+		Log.i(arg0, arg1);
+		
+	}
+
+	@Override
+	public void warn(Throwable arg0) {
+			Log.d(arg0);
+	}
+
+	@Override
+	public void warn(String arg0, Object... arg1) {
+		Log.d(String.format(arg0, arg1));
 	}
 	
 }

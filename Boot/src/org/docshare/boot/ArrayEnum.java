@@ -11,11 +11,20 @@ public class ArrayEnum<E>  implements Enumeration<E>{
 	public ArrayEnum(Set<E> set) {
 		arr  = new ArrayList<E>(set);
 	}
+	public ArrayEnum(){
+		arr = new ArrayList<E>();
+	}
 	
 	public ArrayEnum(ArrayList<E> arr)  {
 		this.arr = arr;
 	}
 	
+	public void add( Enumeration<Object> e){
+		
+		while(e.hasMoreElements()){
+			arr.add((E) e.nextElement());
+		}
+	}
 	
 	
 	@Override

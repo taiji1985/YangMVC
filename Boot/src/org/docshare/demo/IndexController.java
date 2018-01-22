@@ -1,5 +1,6 @@
 package org.docshare.demo;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import org.docshare.mvc.Controller;
@@ -10,9 +11,7 @@ public class IndexController extends Controller {
 		//output("看到这个界面，你的YangMVC服务器已经跑起来了。When you see this page, the YangMVC server is stared ! ");
 	}
 	public void json(){
-		Model.tool("book").all().limit(10);
-		Model.tool("book").all().limit(10);Model.tool("book").all().limit(10);
-		outputJSON(Model.tool("book").all().limit(10));
+		outputJSON(Book.createSimple()) ;
 	}
 	
 	public void fm(){
@@ -35,10 +34,17 @@ public class IndexController extends Controller {
 		renderFreeMarker("/haha.html");
 	}
 	public void setsess(){
-		sess("a","hahaha");
-		output("a is set in sess "+session.getId());
+		String t =new Date().toLocaleString(); 
+		sess("a",t);
+		output("a is set to "+t+", sessionId="+session.getId());
 	}
 	public void getsess(){
-		output(sess("a")+"");
+		output("a is "+sess("a")+" , sessionId = "+session.getId());
+	}public void delsess(){
+		removeSession("a");
+		output("session is removed , sessionId = "+session.getId());
+	}
+	public void pm(){
+		output(param("p"));
 	}
 }

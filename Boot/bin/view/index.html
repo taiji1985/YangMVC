@@ -5,6 +5,28 @@
 	<title>YangMVC服务器启动啦</title>
 </head>
 <body>
-	当你看到这个界面，YangMVC服务器已经启动啦
+	当你看到这个界面，YangMVC服务器已经启动啦<br>
+	<a href='https://gitee.com/yangtf/YangMVC' target='_blank'>点击查看 YangMVC 官网主页</a>
+	<hr>
+	<h1>案例</h1>
+	<a href='json'>查看json输出</a>
+	<pre>
+	public void json(){
+		//Book.createSimple创建了一个Book对象。
+		outputJSON(Book.createSimple()) ;
+	}
+	</pre><br>
+	<a href='fm'>测试FreeMarker</a>
+	<pre>
+		renderFreeMarker("/haha.html");
+	</pre><br>
+	<a href='setsess'>Session设置</a><br>
+	<a href='getsess'>Session获取</a><br>
+	<a href='delsess'>Session删除</a>  删除后再试一下Session获取<br> 
+	<a href='pm?p=133'>参数测试</a> <br>
+	<pre>
+		请在浏览器地址栏修改p的值测试
+	</pre>
+	
 </body>
 </html>
