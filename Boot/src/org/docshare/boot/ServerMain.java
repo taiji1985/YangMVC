@@ -3,20 +3,14 @@ package org.docshare.boot;
 
 
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.BindException;
 import java.util.Scanner;
 
 import org.docshare.log.Log;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
-import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.eclipse.jetty.server.session.SessionHandler;
-import org.omg.PortableServer.POAPackage.InvalidPolicyHelper;
 
 
 public class ServerMain {
@@ -54,12 +48,12 @@ public class ServerMain {
 	        if(port != 80){
 	            url = String.format("http://127.0.0.1:%d",port);
 	        }
-	        Log.i("·şÎñÆ÷ÒÑ¾­¿ªÆô Server is Started");
+	        Log.i("æœåŠ¡å™¨å·²ç»å¼€å¯ Server is Started");
 	        Log.i("please visit "+url);
 	        IpHelper.showIP();
 	        Scanner scanner=new Scanner(System.in);
 	        while(true){
-	        	Log.i("Ã¿°´Ò»´Î»Ø³µ¼ü´ò¿ªÒ»´Îä¯ÀÀÆ÷,Press Enter key to open browser");
+	        	Log.i("æ¯æŒ‰ä¸€æ¬¡å›è½¦é”®æ‰“å¼€ä¸€æ¬¡æµè§ˆå™¨,Press Enter key to open browser");
 	        	scanner.nextLine();
 	        	try {
 		        	 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+url); 
@@ -71,7 +65,7 @@ public class ServerMain {
 	        
 	        //server.join(); 
 		}catch (BindException e) {
-			Log.e("°ó¶¨¶Ë¿ÚºÅ´íÎó£¬Ò»°ãÊÇÊÇÒòÎª¶Ë¿ÚºÅ±»ÆäËûÓ¦ÓÃÕ¼ÓÃÁË¡£ binding port error :"+port);
+			Log.e("ç»‘å®šç«¯å£å·é”™è¯¯ï¼Œä¸€èˆ¬æ˜¯æ˜¯å› ä¸ºç«¯å£å·è¢«å…¶ä»–åº”ç”¨å ç”¨äº†ã€‚ binding port error :"+port);
 			String pid = IpHelper.showPortUsed(port);
 			IpHelper.killPID(pid);
 		}

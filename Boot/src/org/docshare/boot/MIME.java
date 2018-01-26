@@ -1,28 +1,32 @@
 package org.docshare.boot;
+import java.util.HashMap;
+
+import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
 
 public class MIME {
+	static HashMap<String, String> map=new HashMap<String, String>();
+	public MIME(){
+		
+	}
+	public static void start(){
+		map.clear();
+		for (int i = 0; i < table.length; i++) {
+			map.put(table[i][0], table[i][1]);
+		}
+	}
 	/**
-	 * ¸ù¾ÝÎÄ¼þºó×ºÃû»ñµÃ¶ÔÓ¦µÄMIMEÀàÐÍ¡£
+	 * æ ¹æ®æ–‡ä»¶åŽç¼€åèŽ·å¾—å¯¹åº”çš„MIMEç±»åž‹ã€‚
 	 * 
 	 * @param file
 	 */
 	public static String getMIMEType(String fname) {
-		String type = "*/*";
-		
-		String end = TextTool.getAfter(fname, ".");
-		if (end == "")
-			return type;
-		// ÔÚMIMEºÍÎÄ¼þÀàÐÍµÄÆ¥Åä±íÖÐÕÒµ½¶ÔÓ¦µÄMIMEÀàÐÍ¡£
-		for (int i = 0; i < MIME_MapTable.length; i++) {
-			if (end.equals(MIME_MapTable[i][0]))
-				type = MIME_MapTable[i][1];
-		}
-		return type;
+		Log.d("MIME"+fname);
+		return map.get(TextTool.getPrefix(fname));
 	}
 
-	private static final String[][] MIME_MapTable = {
-			// {ºó×ºÃû£¬ MIMEÀàÐÍ}
+	private static final String[][] table = {
+			// {åŽç¼€åï¼Œ MIMEç±»åž‹}
 			{ "doc", "application/msword" },
 			{ "docx",
 					"application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
@@ -37,7 +41,12 @@ public class MIME {
 			{ "", "*/*" },
 			{"html","text/html"},
 			{"htm","text/html"},
-			{"json","application/json"}
+			{"json","application/json"},
+			{"png","image/png"},
+			{"jpg","image/jpeg"},
+			{"jpeg","image/jpeg"},
+			{"bmp","application/x-MS-bmp"},
+			{"ico","image/x-icon"},
 			
 	};
 }

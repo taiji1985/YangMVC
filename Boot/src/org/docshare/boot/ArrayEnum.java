@@ -19,6 +19,7 @@ public class ArrayEnum<E>  implements Enumeration<E>{
 		this.arr = arr;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void add( Enumeration<Object> e){
 		
 		while(e.hasMoreElements()){

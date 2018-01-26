@@ -1,28 +1,42 @@
 package org.docshare.boot;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Random;
-
+import java.util.HashSet;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.docshare.log.Log;
 import org.docshare.mvc.MVCFilter;
+import org.docshare.mvc.TextTool;
 import org.docshare.util.FileTool;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.jetty.server.session.HashSessionIdManager;
-import org.eclipse.jetty.server.session.HashSessionManager;
 
 class StaticFilterChain implements FilterChain {
+	HashSet<String> forbitMap = new HashSet<String>();
+	public StaticFilterChain(){
+		String[] arr = {"class","dll","exe","java","xml","properties"};
+		for(String s:arr){
+			forbitMap.add(s);
+		}
+		MIME.start();
+	}
+	
+	private void sendForbit(HttpServletRequest req,HttpServletResponse resp){
+		try {
+			resp.sendError(HttpServletResponse.SC_NOT_FOUND,"File not found ! WebRoot"+req.getRequestURI());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp)
 			throws IOException, ServletException {
@@ -30,24 +44,60 @@ class StaticFilterChain implements FilterChain {
 		HttpServletResponse resq2 = (HttpServletResponse) resp;
 		String uri = req2.getRequestURI();
 		Log.e("StaticFilterChain called "+uri);
-		if(uri.contains("fav.ico")){
-			resp.setContentType("image/x-icon");
-			OutputStream os = resp.getOutputStream();
-			InputStream in = getClass().getResourceAsStream("/fav.ico");
-			FileTool.writeAll(in, os);
+//		if(uri.contains("fav.ico")){
+//			resp.setContentType("image/x-icon");
+//			OutputStream os = resp.getOutputStream();
+//			InputStream in = getClass().getResourceAsStream("/fav.ico");
+//			FileTool.writeAll(in, os);
+//			return;
+//		}
+		String prefix = TextTool.getPrefix(uri);
+		if(forbitMap.contains(prefix)){
+			sendForbit(req2,resq2);
 			return;
 		}
-		File f = new File("WebRoot"+req2.getRequestURI());
-		if(! f.exists()){
-			
-			resq2.setCharacterEncoding("utf-8");
-			resq2.setContentType("text/html;charset=utf-8");
-			resq2.sendError(HttpServletResponse.SC_NOT_FOUND,"File not found ! WebRoot"+req2.getRequestURI());
-			//OutputStream os = resp.getOutputStream();
-			//FileTool.writeAll(os, "404 File not found ! 没找到这个文件，请确保你有一个 文件: WebRoot/"+req2.getRequestURI(), "utf-8");	
+		
+		File f = new File("WebRoot"+ uri);
+		
+		InputStream in = null;
+		if(f.exists()){
+			in = new FileInputStream(f);
 		}
+		if(in == null ){
+			in = getClass().getResourceAsStream(uri);
+		}
+
+		if(in == null&& uri.contains(".ico") ){
+			in = getClass().getResourceAsStream("favicon.ico");			
+		}
+		if(in != null){
+			Log.i("start to show");
+			try {
+				String type = MIME.getMIMEType(uri);
+				Log.i("data type is "+type);
+				if(type != null){
+					resq2.setContentType(type);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			OutputStream os = resq2.getOutputStream();
+			FileTool.writeAll(in, os);
+			in.close();
+			return;
+		}
+		
+		
+		//脦麓脮脪碌陆
+			
+		resq2.setCharacterEncoding("utf-8");
+		resq2.setContentType("text/html;charset=utf-8");
+		resq2.sendError(HttpServletResponse.SC_NOT_FOUND,"File not found ! WebRoot"+req2.getRequestURI());
+		
 	}
-};
+}
+
 public class YangHandle extends AbstractHandler {
 
 	StaticFilterChain chain =new StaticFilterChain();
@@ -55,8 +105,8 @@ public class YangHandle extends AbstractHandler {
 	@SuppressWarnings("unused")
 	private Server server = null;
 	private MVCFilter filter;
-	HashSessionManager manager =new HashSessionManager();
-	HashSessionIdManager	sim  = new HashSessionIdManager(new Random());
+//	HashSessionManager manager =new HashSessionManager();
+//	HashSessionIdManager	sim  = new HashSessionIdManager(new Random());
 
 	public YangHandle(Server server) {
 		this.server =server;
@@ -73,13 +123,13 @@ public class YangHandle extends AbstractHandler {
 	protected void doStart() throws Exception {
 		super.doStart();
 		//sim.doStart();
-		manager.setIdManager(sim);
-		manager.doStart();
+//		manager.setIdManager(sim);
+//		manager.doStart();
 	}
 	
 	@Override
 	protected void doStop() throws Exception {
-		manager.doStop();
+//		manager.doStop();
 		//sim.doStop();
 		super.doStop();
 	}

@@ -1,19 +1,13 @@
 package org.docshare.mvc;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-
 import org.docshare.log.Log;
 
 public class YangClassLoader extends ClassLoader{
-    @SuppressWarnings("unused")
-	private int version;
+    private int version;
 	private Object root;
 	private String reloadPackage;
 	public YangClassLoader(int v,String clsRoot,String reloadPackage) {

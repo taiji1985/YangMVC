@@ -1,11 +1,9 @@
 package org.docshare.util;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import org.docshare.log.Log;
 import org.docshare.mvc.IBean;

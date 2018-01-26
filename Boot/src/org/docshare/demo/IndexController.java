@@ -1,5 +1,6 @@
 package org.docshare.demo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -34,7 +35,7 @@ public class IndexController extends Controller {
 		renderFreeMarker("/haha.html");
 	}
 	public void setsess(){
-		String t =new Date().toLocaleString(); 
+		String t =new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()); 
 		sess("a",t);
 		output("a is set to "+t+", sessionId="+session.getId());
 	}

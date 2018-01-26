@@ -15,7 +15,6 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -181,7 +180,7 @@ public class Controller {
 	 * 获取参数，如果该参数为null，则返回使用参数def给出的值
 	 * @param name 参数名
 	 * @param def 默认值
-	 * @return 
+	 * @return  参数值
 	 */
 	@Deprecated
 	public Object paramWithDefault(String name,Object def){
@@ -203,7 +202,7 @@ public class Controller {
 	 * @deprecated
 	 * @param pname
 	 * @param def
-	 * @return
+	 * @return 参数值
 	 */
 	@Deprecated
 	public int paramWithDefaultInt(String pname ,int def){
@@ -305,7 +304,7 @@ public class Controller {
 	private String json = null;
 	/**
 	 * 当content-type 为application/json ,该函数获取传来的json字符串
-	 * @return
+	 * @return 所有json字符串
 	 */
 	public String paramJSON(){
 		return json ; 
@@ -360,7 +359,7 @@ public class Controller {
 	/**
 	 * 获取Session中key制定变量的值
 	 * @param key
-	 * @return
+	 * @return sesion中存储的该键对应的内容，如果没有返回null
 	 */
 	public Object sess(String key){
 		return session.getAttribute(key);
@@ -414,11 +413,10 @@ public class Controller {
 	
 	/**
 	 * 判断是不是支持gzip，如果是gzip，就创建gzip输出流，反之创建一般输出流
-	 * @return
+	 * @return 写文件用的writer
 	 */
 	private PrintWriter getMyPrintWriter(){
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("utf-8");
+
 		PrintWriter out = null;  
         try {
 			if (enable_gzip && GzipUtil.isGzipSupported(request) ) {  
@@ -444,7 +442,8 @@ public class Controller {
 				return;
 			}
 			can_out = false;
-			
+			response.setContentType("text/html; charset=utf-8");
+			response.setCharacterEncoding("utf-8");
 			writer = getMyPrintWriter();
 			if(s == null)writer.write("null");
 			else writer.write(s);
@@ -457,10 +456,22 @@ public class Controller {
 	 * 输出JSON字符串到网页
 	 * @param obj
 	 */
-	public void outputJSON(Object obj){
+	public void outputJSON(Object obj){		
+		try {
+			writer = getMyPrintWriter();
+			
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/json");
+			
+			if(obj == null)writer.write("null");
+			else{String string = JSON.toJSONString(obj);
+				writer.write(string);
+			}
+			writer.close();
+		} catch (Exception e) {
+			Log.e(e);
+		}
 		
-		String string = JSON.toJSONString(obj);
-		output(string);
 	}
 	
 	/**
@@ -548,7 +559,7 @@ public class Controller {
 	/**
 	 * 获取URL参数或者Form提交的参数
 	 * @param p
-	 * @return
+	 * @return 参数内容
 	 */
 	public String param(String p){
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
@@ -580,7 +591,7 @@ public class Controller {
 	 * 根据名称匹配的原则，将与模型中参数名相同的参数的值放入模型中。并返回该模型<br>
 	 * 是收集表单数据到模型中的神器，手机后就可以直接进行数据库操作了。
 	 * @param m
-	 * @return
+	 * @return 得到的m，和参数m是同一个对象
 	 */
 	public Model paramToModel(Model m){
 		for(String k:m.keySet()){
@@ -666,7 +677,7 @@ public class Controller {
 	
 	/**
 	 * 获取当前请求所接受的语言种类
-	 * @return
+	 * @return 获取当前支持的语言
 	 */
 	public String getLang(){
 		String lang = request.getHeader("Accept-Language");
@@ -717,7 +728,7 @@ public class Controller {
 	
 	/**
 	 * 检查是否满足条件
-	 * @return
+	 * @return 满足为真，不满足为假
 	 */
 	boolean checkRequire(){
 		if(require_obj==null || require_obj.key == null){
@@ -803,11 +814,13 @@ public class Controller {
 	 * @param path 基于web.xml中配置的tpl_base值的相对路径
 	 */
 	public void renderFreeMarker(String path){
-		try {
+		try {		
+			response.setContentType("text/html; charset=utf-8");
+			response.setCharacterEncoding("utf-8");
 			Template tpl = MVCFilter.getIns().getFmCfg().getTemplate(path);
-			response.setContentType("text/html;charset=utf-8");
-			Writer out = response.getWriter();
+			Writer out = getMyPrintWriter();
 			tpl.process(root, out);
+			out.close();
 		} catch (Exception e) {
 			Log.e(e);
 		}

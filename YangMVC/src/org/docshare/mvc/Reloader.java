@@ -185,6 +185,7 @@ public class Reloader {
 		t.start();
 	}
 	
+	@SuppressWarnings("unused")
 	private static long getFileLastTm(String path){
 		File f = new File(path);
 		if(!f.exists()){

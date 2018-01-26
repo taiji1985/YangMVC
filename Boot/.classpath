@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="org/docshare/boot/YangRequest.java|org/docshare/boot/YangSessionIdManager.java|org/docshare/boot/YangSIM.java|org/docshare/server/ServerMainNew.java" kind="src" path="src"/>
+	<classpathentry excluding="org/docshare/boot/YangRequest.java|org/docshare/boot/YangSIM.java|org/docshare/boot/YangSessionIdManager.java|org/docshare/server/ServerMainNew.java|org/docshare/boot/CopyOfYangHandle.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="libs/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="libs/asm-3.1.jar"/>

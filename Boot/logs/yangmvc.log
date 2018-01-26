@@ -7059,3 +7059,375 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 2018-01-21 17:27:45 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
 2018-01-21 17:27:45 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
 2018-01-21 17:41:41 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 15:34:51 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 15:34:54 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 15:35:57 [ERROR]-qtp823554482-15 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:36:52 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 15:36:52 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 15:36:52 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 15:36:52 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 15:36:52 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 15:36:52 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 15:36:52 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 15:36:53 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 15:36:53 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 15:36:53 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 15:36:53 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 15:36:58 [ERROR]-qtp696551663-21 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 15:37:26 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 15:37:28 [ERROR]-qtp2099532520-14 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:37:30 [ERROR]-qtp2099532520-14 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:37:32 [ERROR]-qtp2099532520-17 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:37:32 [ERROR]-qtp2099532520-15 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:37:32 [ERROR]-qtp2099532520-16 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:37:50 [ERROR]-qtp2099532520-17 - Log -Log.java(41)  -StaticFilterChain called /test.html
+2018-01-26 15:38:42 [ERROR]-qtp2099532520-15 - Log -Log.java(41)  -StaticFilterChain called /test.class
+2018-01-26 15:38:55 [ERROR]-qtp2099532520-15 - Log -Log.java(41)  -StaticFilterChain called /test.xml
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:01:06 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:03:11 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:03:48 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:03:49 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:04:53 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:12:49 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:12:58 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:14:14 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:14:20 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:14:58 [ERROR]-qtp340435150-16 - Log -Log.java(41)  -StaticFilterChain called /h.jpg
+2018-01-26 16:15:13 [ERROR]-qtp340435150-15 - Log -Log.java(41)  -StaticFilterChain called /timg.jpg
+2018-01-26 16:16:45 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:16:45 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:16:45 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:16:45 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:16:45 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:16:45 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:16:45 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:16:46 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:16:46 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:16:46 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:16:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:16:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:16:46 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:19:36 [ERROR]-qtp985435678-15 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:23:56 [ERROR]-qtp985435678-16 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:24:52 [ERROR]-qtp985435678-17 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:25:35 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:25:43 [ERROR]-qtp340435150-17 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:25:43 [ WARN]-qtp340435150-17 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:25:58 [ERROR]-qtp340435150-12 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:25:58 [ WARN]-qtp340435150-12 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:26:34 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:26:36 [ERROR]-qtp797130442-14 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:26:36 [ WARN]-qtp797130442-14 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:27:13 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:27:13 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:27:13 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:27:14 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:27:16 [ERROR]-qtp340435150-12 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:27:16 [ WARN]-qtp340435150-12 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:27:29 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:27:31 [ERROR]-qtp1640499969-15 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:27:31 [ WARN]-qtp1640499969-15 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:27:32 [ERROR]-qtp1640499969-15 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:27:32 [ WARN]-qtp1640499969-15 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:27:50 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:27:51 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:27:53 [ERROR]-qtp1368348708-15 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:28:30 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:28:32 [ERROR]-qtp340435150-13 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:28:32 [ WARN]-qtp340435150-13 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:29:06 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:29:08 [ERROR]-qtp1640499969-15 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:29:08 [ INFO]-qtp1640499969-15 - Log -Log.java(30)  -start to show
+2018-01-26 16:29:08 [ WARN]-qtp1640499969-15 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:29:32 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:29:36 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:29:38 [ERROR]-qtp1779280140-19 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:30:02 [ INFO]-qtp1779280140-19 - Log -Log.java(30)  -start to show
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:31:41 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:31:43 [ERROR]-qtp797130442-13 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:31:43 [ INFO]-qtp797130442-13 - Log -Log.java(30)  -start to show
+2018-01-26 16:31:43 [ WARN]-qtp797130442-13 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:32:05 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:32:05 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:32:05 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:32:05 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:32:05 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:32:05 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:32:05 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:32:06 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:32:06 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:32:06 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:32:06 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:32:06 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:32:06 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:32:09 [ERROR]-qtp220467482-20 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:32:19 [ INFO]-qtp220467482-20 - Log -Log.java(30)  -start to show
+2018-01-26 16:32:30 [ WARN]-qtp220467482-20 - Log -Log.java(85)  -/favicon.ico
+2018-01-26 16:34:07 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:34:08 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:34:10 [ERROR]-qtp1368348708-13 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:34:10 [ INFO]-qtp1368348708-13 - Log -Log.java(30)  -start to show
+2018-01-26 16:34:10 [ INFO]-qtp1368348708-13 - Log -Log.java(30)  -data type is image/x-icon
+2018-01-26 16:34:22 [ERROR]-qtp1368348708-14 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:34:22 [ INFO]-qtp1368348708-14 - Log -Log.java(30)  -start to show
+2018-01-26 16:34:22 [ INFO]-qtp1368348708-14 - Log -Log.java(30)  -data type is image/x-icon
+2018-01-26 16:35:10 [ERROR]-qtp1368348708-10 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:35:10 [ INFO]-qtp1368348708-10 - Log -Log.java(30)  -start to show
+2018-01-26 16:35:10 [ INFO]-qtp1368348708-10 - Log -Log.java(30)  -data type is image/x-icon
+2018-01-26 16:35:40 [ERROR]-qtp1368348708-14 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:35:40 [ INFO]-qtp1368348708-14 - Log -Log.java(30)  -start to show
+2018-01-26 16:35:40 [ INFO]-qtp1368348708-14 - Log -Log.java(30)  -data type is image/x-icon
+2018-01-26 16:36:48 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:36:50 [ERROR]-qtp1368348708-13 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 16:36:50 [ INFO]-qtp1368348708-13 - Log -Log.java(30)  -start to show
+2018-01-26 16:36:50 [ INFO]-qtp1368348708-13 - Log -Log.java(30)  -data type is image/x-icon
+2018-01-26 16:40:30 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 16:40:30 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 16:40:30 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 16:40:30 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 16:40:30 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 16:40:30 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 16:40:30 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 16:40:36 [ERROR]-qtp1368348708-14 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico

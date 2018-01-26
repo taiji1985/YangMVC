@@ -23,7 +23,6 @@ import javax.servlet.ServletRegistration;
 import javax.servlet.SessionCookieConfig;
 import javax.servlet.SessionTrackingMode;
 import javax.servlet.descriptor.JspConfigDescriptor;
-import javax.servlet.http.HttpServlet;
 import org.docshare.log.Log;
 
 
@@ -32,7 +31,7 @@ public class YangServerContext implements ServletContext {
 	private static YangServerContext ins;
 
 	/**
-	 * µ¥ÀıÄ£Ê½
+	 * å•ä¾‹æ¨¡å¼
 	 * @return
 	 */
 	public static YangServerContext getIns(){
@@ -42,7 +41,7 @@ public class YangServerContext implements ServletContext {
 		return ins;
 	}
 	/**
-	 * ±ØĞëÍ¨¹ıgetInsÀ´´´½¨
+	 * å¿…é¡»é€šè¿‡getInsæ¥åˆ›å»º
 	 */
 	private YangServerContext() {  
 		loadProp();
@@ -206,12 +205,12 @@ public class YangServerContext implements ServletContext {
 
 	@Override
 	public Enumeration<String> getServletNames() {
-		return new ArrayEnum<String>(new ArrayList<String>()); //Ã»ÓĞ
+		return new ArrayEnum<String>(new ArrayList<String>()); //æ²¡æœ‰
 	}
 
 	@Override
 	public Enumeration<Servlet> getServlets() {
-		return new ArrayEnum<Servlet>(new ArrayList<Servlet>()); //Ã»ÓĞ
+		return new ArrayEnum<Servlet>(new ArrayList<Servlet>()); //æ²¡æœ‰
 	}
 
 	@Override

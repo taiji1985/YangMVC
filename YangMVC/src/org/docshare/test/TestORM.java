@@ -98,7 +98,7 @@ public class TestORM extends TestCase{
 	}
 	public void testCustom(){
 		Log.e("testCustom");
-		LasyList list = tool.fromSQL("select * from book where id>30 limit 30");
+		LasyList list = LasyList.fromRawSql("select * from book where id>30 limit 30");
 		int sz = list.size();
 		assertEquals(sz, 30);
 		Log.i("result2 "+list.size());
@@ -128,14 +128,7 @@ public class TestORM extends TestCase{
 //		Log.i("result4 "+sz);
 //		Log.i(list.get(2));
 //	}	
-	public void testCustomAdd(){
-		Log.e("testCustomAdd");
-		LasyList list = tool.fromSQL("select * from book where id>30 limit 30").lt("id", 50);
-		int sz = list.size();
-		
-		Log.i("result5 "+sz);
-		Log.i(list.get(2));
-	}
+
 	
 	public void testInsert(){
 		Log.e("testInsert");
@@ -169,14 +162,7 @@ public class TestORM extends TestCase{
 		Log.i(list);
 	}
 	
-	public void testCustomSQL(){
-		Log.e("testCustomSQL");
-		LasyList list = tool.fromSQL("select name,author from book where id>30 limit 30").lt("id", 50);
-		int sz = list.size();
-		
-		Log.i("result5 "+sz);
-		Log.i(list.get(2));
-	}
+
 	public void testPS(){
 		Model m = tool.create();
 		m.put("catalog_id","2");

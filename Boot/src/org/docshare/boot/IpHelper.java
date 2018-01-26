@@ -14,7 +14,7 @@ import org.docshare.log.Log;
 
 public class IpHelper {
 	public static void showIP() throws SocketException {
-		Enumeration allNetInterfaces = NetworkInterface.getNetworkInterfaces();
+		Enumeration<?> allNetInterfaces = NetworkInterface.getNetworkInterfaces();
 		InetAddress ip = null;
 		while (allNetInterfaces.hasMoreElements()) {
 			NetworkInterface netInterface = (NetworkInterface) allNetInterfaces
@@ -24,7 +24,7 @@ public class IpHelper {
 			while (addresses.hasMoreElements()) {
 				ip = (InetAddress) addresses.nextElement();
 				if (ip != null && ip instanceof Inet4Address) {
-					System.out.println("±¾»úµÄIP = " + ip.getHostAddress());
+					Log.i("æœ¬æœºçš„IP = " + ip.getHostAddress());
 				}
 			}
 		}
@@ -44,7 +44,7 @@ public class IpHelper {
 				//find 
 				Log.i(s);
 				String[] saa = s.split(" ");
-				Log.i("½ø³Ì "+saa[saa.length-1]+" Õ¼ÓÃÁË "+port+ " ¶Ë¿Ú ");
+				Log.i("è¿›ç¨‹ "+saa[saa.length-1]+" å ç”¨äº† "+port+ " ç«¯å£ ");
 				return saa[saa.length-1];
 			}
 		}
@@ -77,7 +77,7 @@ public class IpHelper {
 	public static void killPID(String pid) {
 		if(pid==null || pid.length() == 0) return;
 		
-		Log.i("ÕıÔÚ³¢ÊÔÉ±ËÀÕ¼ÓÃ¶Ë¿ÚµÄ½ø³Ì , try to kill process that use the port ");
+		Log.i("æ­£åœ¨å°è¯•æ€æ­»å ç”¨ç«¯å£çš„è¿›ç¨‹ , try to kill process that use the port ");
 		String cmd = "taskkill /F /PID "+pid;
 		Log.i(cmd);
 		String r = runCmd(cmd,true);

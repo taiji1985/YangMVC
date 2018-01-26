@@ -10,8 +10,6 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
-import com.sun.faces.facelets.util.DevTools;
-
 public class TestDBTool  extends TestCase
 {  
 	public void testAll(){

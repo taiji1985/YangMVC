@@ -254,7 +254,7 @@ public class Model implements Map<String,Object> {
 	}
 	/**
 	 * 将此Model插入到数据库中
-	 * @return
+	 * @return 影响的行数
 	 */
 	public int insert(){
 		if(joined_tool == null){
@@ -265,7 +265,7 @@ public class Model implements Map<String,Object> {
 	}
 	/**
 	 * 将此Model更新到数据库中
-	 * @return
+	 * @return 影响的行数
 	 */
 	public int update(){
 		if(joined_tool == null){
@@ -285,7 +285,7 @@ public class Model implements Map<String,Object> {
 	}
 	/**
 	 * 获取我的DBTool
-	 * @return
+	 * @return DBTool对象
 	 */
 	public DBTool myTool(){
 		return joined_tool;

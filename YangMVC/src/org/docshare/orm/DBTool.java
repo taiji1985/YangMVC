@@ -40,7 +40,7 @@ public class DBTool {
 	/**
 	 * 获取列的注释
 	 * @param column 列名
-	 * @return
+	 * @return 指定列的列名
 	 */
 	public String getColumnRemark(String column){
 		return c_to_remarks.get(column).remark;
@@ -48,7 +48,7 @@ public class DBTool {
 	/**
 	 * 获取列的类型（int类型）
 	 * @param column
-	 * @return
+	 * @return 类型
 	 */
 	public int getColumnType(String column){
 		return c_to_remarks.get(column).type;
@@ -75,7 +75,7 @@ public class DBTool {
 	}
 	/**
 	 * 列举所有的列名
-	 * @return
+	 * @return 所有列名的集合
 	 */
 	public Set<String> listColumns(){
 		return columns.keySet();
@@ -105,7 +105,7 @@ public class DBTool {
 	 * 获取column列等于id的所有集合的第一个
 	 * @param column
 	 * @param id
-	 * @return
+	 * @return 找到列column等于id的对象
 	 */
 	public Model get(String column, Object id) {
 		ResultSet rs;
@@ -118,7 +118,6 @@ public class DBTool {
 			rs.close();
 			return tb;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			Log.e(e);
 		}
 		
@@ -230,7 +229,7 @@ public class DBTool {
 	/**
 	 * 根据表的主键删除表格的一行
 	 * @param id
-	 * @return
+	 * @return 影响的数据库的行数
 	 */
 	public int del(Object id) {
 		return delegate.delete(tname, key, id);
@@ -260,7 +259,7 @@ public class DBTool {
 	/**
 	 * 获取当前数据表的某一行的信息
 	 * @param column
-	 * @return
+	 * @return 获取column列描述信息
 	 */
 	public ColumnDesc getColumnDesc(String column) {
 		return c_to_remarks.get(column);

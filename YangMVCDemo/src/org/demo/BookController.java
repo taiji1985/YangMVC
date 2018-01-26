@@ -27,8 +27,7 @@ public class BookController extends Controller {
 	}
 	
 	public void customQuery(){
-		DBTool tool = Model.tool("book");
-		LasyList list = tool.fromSQL("select * from book where id>23").limit(20);
+		LasyList list = LasyList.fromRawSql("select * from book where id<23");
 		put("books", list);
 		render("/book/index.jsp");
 		
@@ -36,16 +35,16 @@ public class BookController extends Controller {
 	public void edit() throws NullParamException{
 
 		DBTool tool = Model.tool("book");
-		//´¦ÀíÌá½»Êý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½á½»ï¿½ï¿½ï¿½
 		if(isPost()){ //isPost
 			Model m = tool.get(paramInt("id"));
 			Log.d(m);
 			paramToModel(m);
 			tool.save(m);
-			put("msg","ÐÞ¸Ä³É¹¦");
+			put("msg","ï¿½Þ¸Ä³É¹ï¿½");
 		}
 
-		//ÏÔÊ¾Êý¾Ý
+		//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½
 		Integer id = paramInt("id");
 		checkNull("id", id);
 		renderForm(tool.get(id));
@@ -54,15 +53,15 @@ public class BookController extends Controller {
 	
 	public void add(){
 		DBTool tool = Model.tool("book");
-		//´¦ÀíÌá½»Êý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½á½»ï¿½ï¿½ï¿½
 		if(isPost()){ //isPost
-			Model m = tool.create(); //´´½¨ÐÂµÄ
+			Model m = tool.create(); //ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½
 			Log.d(m);
 			paramToModel(m);
 			tool.save(m);
-			put("msg","Ìí¼Ó³É¹¦");
+			put("msg","ï¿½ï¿½Ó³É¹ï¿½");
 		}
-		//ÏÔÊ¾Êý¾Ý
+		//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½
 		renderForm(tool.create());
 	}
 	
