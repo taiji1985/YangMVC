@@ -4,26 +4,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.TextTool;
 import org.docshare.orm.ArrayTool;
+import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.DBTool;
+import org.docshare.orm.IDBDelegate;
 import org.docshare.orm.Model;
 import org.docshare.orm.SQLConstains;
 
 
 public class MySQLDelegate implements IDBDelegate {
-
+	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
-	public ResultSet resultById(DBHelper helper,String tname,String column,Object id) throws SQLException {
-		ResultSet rs = helper.getPrepareRS(String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column),id);
+	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
+		ResultSet rs = DBHelper.getIns().getPrepareRS(String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column),id);
 		return rs;
 	}
 
 	@Override
-	public int save(DBTool tool,DBHelper helper,Model m,String key,boolean forceInsert ){
+	public int save(DBTool tool,Model m,String key,boolean forceInsert ){
 		if(m == null){
 			Log.e("can not save a null object");
 			return 0;
@@ -77,6 +80,8 @@ public class MySQLDelegate implements IDBDelegate {
 		}
 		Log.d("DBTool run sql: "+sql+"  params=["+ArrayTool.join(",", plist)+"]");
 		Object[] objs = plist.toArray();
+		DBHelper helper = DBHelper.getIns();
+		
 		int d = helper.updateWithArray(sql,objs);
 		Log.d("return "+d);
 		if(d != 0 &&(id == null|| forceInsert)){
@@ -87,10 +92,10 @@ public class MySQLDelegate implements IDBDelegate {
 	}
 	
 	@Override
-	public int delete(DBHelper helper,String tname,String key,Object id){
+	public int delete(String tname,String key,Object id){
 		String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
 		Log.d("DBTool run sql: "+sql +" ,param  = "+id);
-		return helper.update(sql,id);
+		return DBHelper.getIns().update(sql,id);
 	}
 
 	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName){
@@ -253,6 +258,26 @@ public class MySQLDelegate implements IDBDelegate {
 		}
 		
 		
+	}
+
+	@Override
+	public ResultSet runSQL(String rawSql) throws SQLException {
+		return DBHelper.getIns().getRS(rawSql);
+	}
+
+	@Override
+	public Map<String, ?> columnOfRs(ResultSet rs) {
+		return DBHelper.getIns().columeOfRs(rs);
+	}
+
+	@Override
+	public Map<String, ColumnDesc> listColumn(String tname,boolean useCache) {
+		return DBHelper.getIns().listColumn(tname,useCache);
+	}
+
+	@Override
+	public String keyColumn(String tname) {
+		return DBHelper.getIns().keyColumn(tname);
 	}
 
 }

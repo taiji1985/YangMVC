@@ -6,8 +6,8 @@ import java.util.List;
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.DelegateFactory;
+import org.docshare.orm.IDBDelegate;
 import org.docshare.orm.SQLConstains;
-import org.docshare.orm.mysql.IDBDelegate;
 
 import junit.framework.TestCase;
 
@@ -27,7 +27,7 @@ public class TestMySQLDelegate extends TestCase{
 		cons.add(new SQLConstains(SQLConstains.TYPE_LTE, "catalog_id", 12));
 		cons.add(new SQLConstains(SQLConstains.TYPE_GTE, "catalog_id", 1));
 		
-		DBTool tool = new DBTool("book");
+		DBTool tool = DBTool.getIns("book");
 		String s = delegate.buildSQL(cons, tool,null);
 		System.out.println(s);
 	}

@@ -1,1 +1,0 @@
-{"listColumn":{"book_id":{"name":"book_id","pk_column":"id","pk_table":"book","remark":"书籍编号","type":4,"typeName":"INT"},"ct":{"name":"ct","remark":"个数","type":4,"typeName":"INT"},"id":{"name":"id","type":4,"typeName":"INT"},"uid":{"name":"uid","remark":"用户编号","type":4,"typeName":"INT"}},"tb":"dingcan"}

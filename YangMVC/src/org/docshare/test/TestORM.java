@@ -106,28 +106,28 @@ public class TestORM extends TestCase{
 		
 		
 	}
-	public void testCustomLimit(){
-		Log.e("testCustomLimit");
-
-		LasyList list = tool.fromSQL("select * from book where id>30 limit 30").limit(40);
-		int sz = list.size();
-		assertEquals(sz, 40);
-		
-		Log.i(list.get(1));
-		
-		list = tool.fromSQL("select * from book where id>30 limit 30").limit(40).limit(10,40);
-		Log.i("result4 "+list.size());
-		Log.i(list.get(2));
-	}
-	public void testCustomLimit2(){
-		Log.e("testCustomLimit2");
-
-		LasyList list = tool.fromSQL("select * from book where id>30 limit 30").limit(40).limit(10,40);
-		int sz = list.size();
-		assertEquals(sz, 40);
-		Log.i("result4 "+sz);
-		Log.i(list.get(2));
-	}	
+//	public void testCustomLimit(){
+//		Log.e("testCustomLimit");
+//
+//		LasyList list = tool.fromSQL("select * from book where id>30 limit 30");
+//		int sz = list.size();
+//		assertEquals(sz, 30);
+//		
+//		Log.i(list.get(1));
+//		
+//		list = tool.fromSQL("select * from book where id>30 limit 30");
+//		Log.i("result4 "+list.size());
+//		Log.i(list.get(2));
+//	}
+//	public void testCustomLimit2(){
+//		Log.e("testCustomLimit2");
+//
+//		LasyList list = tool.fromSQL("select * from book where id>30 limit 30").limit(40).limit(10,40);
+//		int sz = list.size();
+//		assertEquals(sz, 40);
+//		Log.i("result4 "+sz);
+//		Log.i(list.get(2));
+//	}	
 	public void testCustomAdd(){
 		Log.e("testCustomAdd");
 		LasyList list = tool.fromSQL("select * from book where id>30 limit 30").lt("id", 50);

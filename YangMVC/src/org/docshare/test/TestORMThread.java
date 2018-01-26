@@ -13,6 +13,7 @@ public class TestORMThread extends TestCase {
 	public void testConnectionClose() throws InterruptedException{
 		int s  = DBHelper.getIns().getVal("show status like '%Threads_connected%'", "Value");
 		Log.i(s+"");
+		Model.tool("book").all().limit(3);
 		
 		ArrayList<Thread> tlist = new ArrayList<Thread>();
 		for(int i=0;i<100;i++){

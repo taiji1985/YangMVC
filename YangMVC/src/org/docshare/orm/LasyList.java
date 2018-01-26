@@ -3,15 +3,12 @@ package org.docshare.orm;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 import org.docshare.log.Log;
-import org.docshare.orm.mysql.IDBDelegate;
 
 /**
  * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。
@@ -31,7 +28,9 @@ public class LasyList extends ListAdapter {
 	public DBTool getTool(){
 		return tool;
 	}
+	private String rawSql = null;
 	private LasyList(String rawSql){
+		this.rawSql = rawSql;
 		tool = Model.tool("rawsql");
 		delegate = tool.getDelegate();
 		initRS();
@@ -106,7 +105,19 @@ public class LasyList extends ListAdapter {
 	}
 	private void initRS() {
 		if (rs == null) {
-			rs =  delegate.runSQL(cons, tool, tbName);
+			try {
+				if(tbName == null && rawSql!= null){
+					rs  = delegate.runSQL(rawSql);
+					if(rs!=null && (column_desc==null || column_desc.size() == 0) ){
+						column_desc = delegate.columnOfRs(rs);
+					}
+				}else{
+					rs =  delegate.runSQL(cons, tool, tbName);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	List<Model> arrList=null; //枚举时直接放入此List中

@@ -2,6 +2,7 @@ package org.docshare.mvc;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -14,6 +15,7 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,10 +26,12 @@ import org.docshare.mvc.except.NullParamException;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 import org.docshare.util.BeanUtil;
+import org.docshare.util.FileTool;
 import org.docshare.util.GzipUtil;
 import org.docshare.util.IOUtil;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import freemarker.template.Template;
 
@@ -298,7 +302,14 @@ public class Controller {
 			Log.e(e);
 		}
 	}
-
+	private String json = null;
+	/**
+	 * 当content-type 为application/json ,该函数获取传来的json字符串
+	 * @return
+	 */
+	public String paramJSON(){
+		return json ; 
+	}
 	/**
 	 * 由过滤器调用这个方法来传送 request和response对象
 	 * @param req
@@ -320,6 +331,31 @@ public class Controller {
 				output(s);
 			}
 		}
+		if(contentType!=null && contentType.startsWith("application/json")){
+			InputStream in;
+			try {
+				in = request.getInputStream();
+				json = FileTool.readAll(in, "utf-8");
+				if(json!=null){
+					json = json.trim();
+				}
+				if(json.startsWith("{")){ //如果是一个对象，给予解包
+					jsonToParam();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	/**
+	 * 将json中的数据转入param，使得用户察觉不到什么异常。
+	 */
+	private void jsonToParam(){
+		if(json == null)return;
+		JSONObject obj = JSON.parseObject(json);
+		
+		paramMap.putAll(obj);
 	}
 	/**
 	 * 获取Session中key制定变量的值

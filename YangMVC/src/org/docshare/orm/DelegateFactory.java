@@ -1,6 +1,5 @@
 package org.docshare.orm;
 
-import org.docshare.orm.mysql.IDBDelegate;
 import org.docshare.orm.mysql.MySQLDelegate;
 
 public class DelegateFactory {

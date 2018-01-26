@@ -10,10 +10,12 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
+import com.sun.faces.facelets.util.DevTools;
+
 public class TestDBTool  extends TestCase
 {  
 	public void testAll(){
-		DBTool tool = new DBTool("book");
+		DBTool tool = DBTool.getIns("book");
 		List<Model> list =   tool.all();
 		Log.i(list.size());
 		/*for(Model m :list){
@@ -31,8 +33,8 @@ public class TestDBTool  extends TestCase
 	
 	public void testFilters(){
 		Log.i("testFilters TEST");
-		DBTool tool = new DBTool("book");
-		LasyList list =   tool.all().gt("id", 30).lt("id", 40);
+		DBTool tool = DBTool.getIns("book");
+		LasyList list = tool.all().gt("id", 30).lt("id", 40);
 		for(Model m :list){
 			System.out.println(m.get("id")+","+m.get("name"));
 		}
@@ -40,7 +42,7 @@ public class TestDBTool  extends TestCase
 	
 	public void testGet(){
 		Log.i("testGet TEST");
-		DBTool tool = new DBTool("book");
+		DBTool tool = DBTool.getIns("book");
 		Model model = tool.get(12);
 		Log.i(model);
 		
@@ -48,8 +50,11 @@ public class TestDBTool  extends TestCase
 	
 	@SuppressWarnings("unused")
 	public void testThreadLocal(){
-		DBTool tool = new DBTool("book");
-		DBTool captool = new DBTool("cap");
+		DBTool tool = DBTool.getIns("book");
+		DBTool tool2 = DBTool.getIns("book");
+		assertEquals(tool, tool2);
+		
+		DBTool captool = DBTool.getIns("cap");
 		
 	}
 	

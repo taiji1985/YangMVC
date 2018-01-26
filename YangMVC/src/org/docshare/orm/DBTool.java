@@ -7,36 +7,35 @@ import java.util.Map;
 import java.util.Set;
 
 import org.docshare.log.Log;
-import org.docshare.orm.mysql.IDBDelegate;
 import com.alibaba.fastjson.JSON;
 
 
 
 
 public class DBTool {
-	DBHelper helper = DBHelper.getIns();
 	private String tname;
-	private Map<String,Object> columns; //所有列的列名,及其值（值都为空）
+	private HashMap<String,Object> columns; //所有列的列名,及其值（值都为空）
 	public Map<String, ColumnDesc> c_to_remarks;
 	String key ;
 	IDBDelegate delegate = DelegateFactory.getIns("mysql");
+	//DBHelper helper = DBHelper.getIns();
 	public IDBDelegate getDelegate(){
 		return delegate;
 	}
-	public DBTool(String tname){
+	private DBTool(String tname){
 		Log.d("create a DBTool of "+tname);
 		this.tname = tname;
 		if("rawsql".equals(tname)){
 			c_to_remarks = new HashMap<String, ColumnDesc>();
 		}else{
-			c_to_remarks = helper.listColumn(tname);
+			c_to_remarks = delegate.listColumn(tname,true);
 		}
 		//Log.map(c_to_remarks);
 		columns = new HashMap<String, Object>();
 		for(String s:c_to_remarks.keySet()){
 			columns.put(s, null);
 		}
-		key = helper.keyColumn(tname);
+		key = delegate.keyColumn(tname);
 	}
 	/**
 	 * 获取列的注释
@@ -53,7 +52,6 @@ public class DBTool {
 	 */
 	public int getColumnType(String column){
 		return c_to_remarks.get(column).type;
-		
 	}
 	/**
 	 * 获取列的类型名
@@ -64,7 +62,7 @@ public class DBTool {
 		ColumnDesc d = c_to_remarks.get(column);
 		if(d == null){
 			Log.d("getColumnTypeName find null "+ column +" reload column info ");
-			c_to_remarks = helper.listColumn(tname,false);
+			c_to_remarks = delegate.listColumn(tname,false);
 			Log.d("reload data = "+ JSON.toJSONString(c_to_remarks));
 			d = c_to_remarks.get(column);
 			if(d == null){
@@ -84,9 +82,12 @@ public class DBTool {
 	}
 	/**
 	 * 根据用户自定义的sql来获取list
+	 * 如果需要使用原生的SQL，请使用LasyList.fromRawSQL实现
+	 * 
 	 * @param sql
 	 * @return 返回一个包含了该SQL结果的LasyList（并没有真正查询，在你读取数据时真正查询
 	 */
+	@Deprecated
 	public LasyList fromSQL(String sql){
 		return LasyList.fromRawSql(sql);
 	}
@@ -109,7 +110,7 @@ public class DBTool {
 	public Model get(String column, Object id) {
 		ResultSet rs;
 		try {
-			rs = delegate.resultById(helper, tname, column, id);
+			rs = delegate.resultById(tname, column, id);
 			Model tb=null;
 			if(rs.next()){
 				tb = db2Table(rs);
@@ -179,7 +180,7 @@ public class DBTool {
 	 * @param isInsert 是否强制为插入操作
 	 */
 	public int save(Model m,boolean isInsert){
-		return delegate.save(this, helper, m, key, isInsert);
+		return delegate.save(this, m, key, isInsert);
 	}
 	
 	/**
@@ -206,7 +207,7 @@ public class DBTool {
 	@SuppressWarnings("unchecked")
 	protected Model db2Table(ResultSet rs,Map<String,?> c){
 		if(c == null){
-			c = columns;
+			c = columns; 
 		}
 		Model tb = new Model(tname,(Map<String, Object>) c);
 		tb.joined_tool = this;
@@ -232,7 +233,7 @@ public class DBTool {
 	 * @return
 	 */
 	public int del(Object id) {
-		return delegate.delete(helper, tname, key, id);
+		return delegate.delete(tname, key, id);
 	}
 	
 	/**
@@ -267,7 +268,7 @@ public class DBTool {
 
 	public int run(String sql,Object...objects){
 		Log.i("DBTool run :" +sql +"  param=["+ArrayTool.join(",", objects)+"]" );
-		return helper.update(sql,objects);
+		return DBHelper.getIns().update(sql,objects);
 	}
 	
 	static HashMap<String, DBTool> toolCache = new HashMap<String, DBTool>();
