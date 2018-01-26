@@ -9,6 +9,16 @@ import java.util.Set;
 import org.docshare.log.Log;
 import com.alibaba.fastjson.JSON;
 
+/**
+ * ORM类库最核心的类。 负责数据库表的查询。所有数据库查询均需先创建此类。 <br />
+ * 创建方法: <br />
+ * DBTool tool = DBTool.getIns("book"); //book为数据库表名<br />
+ * LasyList list = tool.all().limit(10); //查询数据库的前10行， all()并非获取了所有列，当添加完参数，真正读取时才进行查询。它实际上是一个SQL语句的Builder
+ * 得到LasyList可以使用像ArrayList一样使用了。
+ * 
+ * @author Tongfeng Yang
+ *
+ */
 
 
 

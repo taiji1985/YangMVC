@@ -15,3 +15,6 @@ https://git.oschina.net/yangtf/YangMVC/attach_files
 
 # 完整的文档请看
 https://gitee.com/yangtf/YangMVC/wikis/Home
+
+# javadoc 地址
+http://yangtf.gitee.io/yangmvc/YangMVC/doc/index.html
