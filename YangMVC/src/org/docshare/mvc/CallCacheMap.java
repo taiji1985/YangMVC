@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.docshare.log.Log;
 
 
-public class CallCacheMap {
+class CallCacheMap {
 	/**
 	 * 为了减少路径映射中字符串处理所设置的缓存
 	 * @author Administrator

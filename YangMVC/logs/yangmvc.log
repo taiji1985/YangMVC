@@ -200,3 +200,64 @@
 2018-01-26 12:14:19 [ INFO]-main - Log -Log.java(30)  -5
 2018-01-26 12:15:19 [ INFO]-main - Log -Log.java(30)  -5
 2018-01-26 12:15:24 [ INFO]-main - Log -Log.java(30)  -5
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -m = null
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -testOrder
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -Model[id=909,author=null,chaodai=null,name=ss,about=null,type=null,file_name=null,tm_year=null,catalog_id=1]
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -test update
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -DBTool run :update book set author=? where id = ?  param=[haha,1]
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -1
+2018-01-27 10:26:35 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:35 [ERROR]-main - Log -Log.java(41)  -testDel
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -m is delete ?no exist
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testInsert
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -insert return 1
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testInsert
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -Model[id=909,author=null,chaodai=null,name=ss,about=null,type=null,file_name=null,tm_year=null,catalog_id=1]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testExtra
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -Model[id=1,author=haha,chaodai=清  ,name=神农本草经,about= ,type=txt,file_name=000-神农本草经.txt,tm_year=公元1644-1911年  ,catalog_id=1,extra={"haha":"sfsf"}]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -haha = sfsf
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testGet
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -Model[id=1,author=haha,chaodai=清  ,name=神农本草经,about= ,type=txt,file_name=000-神农本草经.txt,tm_year=公元1644-1911年  ,catalog_id=1]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testAll
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -result1 887
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -Model[id=2,author=吴普  ,chaodai=魏晋  ,name=haha,about= ,type=txt,file_name=001-吴普本草.txt,tm_year=公元420年—589  ,catalog_id=1]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testCustom
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -result2 30
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -Model[id=32,author=张秉成  ,chaodai=清  ,name=本草便读,about= ,file_name=031-本草便读.txt,type=txt,tm_year=公元1644-1911年  ,catalog_id=1]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testEq
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -[Model[id=12,author=刘文泰,chaodai=明,name=本草品汇精要,about=,type=txt,file_name=,tm_year=1503,catalog_id=1]]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -[]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -[]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -testByExample
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -1
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -[Model[id=12,author=刘文泰,chaodai=明,name=本草品汇精要,about=,type=txt,file_name=,tm_year=1503,catalog_id=1]]
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:36 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:36 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:45 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]
+2018-01-27 10:26:53 [ERROR]-main - Log -Log.java(41)  -setup
+2018-01-27 10:26:54 [ INFO]-main - Log -Log.java(30)  -DBTool run :delete from book where id >909  param=[]

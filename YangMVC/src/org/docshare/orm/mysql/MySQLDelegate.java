@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.docshare.log.Log;
-import org.docshare.mvc.TextTool;
 import org.docshare.orm.ArrayTool;
 import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
@@ -15,6 +14,7 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.IDBDelegate;
 import org.docshare.orm.Model;
 import org.docshare.orm.SQLConstains;
+import org.docshare.util.TextTool;
 
 
 public class MySQLDelegate implements IDBDelegate {
@@ -186,7 +186,7 @@ public class MySQLDelegate implements IDBDelegate {
 			try {
 				return helper.getRS(sql,params);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.e(e);
 				return null;
 			}
 		}

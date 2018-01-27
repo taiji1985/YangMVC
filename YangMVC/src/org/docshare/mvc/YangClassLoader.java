@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import org.docshare.log.Log;
 
-public class YangClassLoader extends ClassLoader{
+class YangClassLoader extends ClassLoader{
     private int version;
 	private Object root;
 	private String reloadPackage;
@@ -42,7 +42,9 @@ public class YangClassLoader extends ClassLoader{
         	
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         	InputStream input = getClass().getResourceAsStream(name2Path(name));
-        	
+        	if(input == null){
+        		return null;
+        	}
         	//int data = input.read();
         	byte[] buf =new byte[1024];
             int num = input.read(buf);

@@ -1,4 +1,4 @@
-package org.docshare.mvc;
+package org.docshare.util;
 
 import java.io.File;
 import java.io.FileInputStream;

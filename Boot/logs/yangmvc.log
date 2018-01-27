@@ -7431,3 +7431,67 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -������IP = 192.168.1.150
 2018-01-26 16:40:31 [ INFO]-main - Log -Log.java(30)  -ÿ��һ�λس�����һ�������,Press Enter key to open browser
 2018-01-26 16:40:36 [ERROR]-qtp1368348708-14 - Log -Log.java(41)  -StaticFilterChain called /favicon.ico
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 18:51:43 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 20:39:13 [ WARN]-main - Log -Log.java(85)  -FAILED SelectChannelConnector@0.0.0.0:1985: java.net.BindException: Address already in use: bind
+2018-01-26 20:39:13 [ WARN]-main - Log -Log.java(85)  -FAILED org.eclipse.jetty.server.Server@6f25844f: java.net.BindException: Address already in use: bind
+2018-01-26 20:39:13 [ERROR]-main - Log -Log.java(41)  -绑定端口号错误，一般是是因为端口号被其他应用占用了。 binding port error :1985
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -run command : netstat -aon
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -  TCP    0.0.0.0:1985           0.0.0.0:0              LISTENING       9772
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -进程 9772 占用了 1985 端口 
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -正在尝试杀死占用端口的进程 , try to kill process that use the port 
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -taskkill /F /PID 9772
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-01-26 20:39:13 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-01-26 20:39:18 [ERROR]-qtp610145197-25 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.YangClassLoader.loadClass(YangClassLoader.java:48)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:320)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:247)
+	at org.docshare.mvc.Reloader.load(Reloader.java:96)
+	at org.docshare.mvc.Loader.load(Loader.java:28)
+	at org.docshare.mvc.Loader.call(Loader.java:63)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-01-26 20:39:18 [ INFO]-qtp610145197-25 - Log -Log.java(30)  -action=org.docshare.demo.fb.

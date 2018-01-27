@@ -6,7 +6,13 @@ import java.util.HashMap;
 
 import org.docshare.log.Log;
 import org.docshare.util.FileTool;
-public class Reloader {
+
+/**
+ * 重新加载修改的class文件
+ * @author Tongfeng Yang
+ *
+ */
+class Reloader {
 	private String root;
 	HashMap<String, Long > last_tm=new HashMap<String, Long>();
 	ArrayList<String> reloadList = new ArrayList<String>();

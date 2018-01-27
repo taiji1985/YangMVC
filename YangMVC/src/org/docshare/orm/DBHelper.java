@@ -15,8 +15,8 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
-import org.docshare.mvc.TextTool;
 import org.docshare.util.FileTool;
+import org.docshare.util.TextTool;
 
 import com.alibaba.fastjson.JSON;
 
@@ -59,7 +59,7 @@ public class DBHelper {
 
 	public void conn() {
 		try {
-			if(con !=null && ! con.isClosed())return;
+			if(con !=null && ! con.isClosed() && con.isValid(200))return;
 			
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -84,9 +84,7 @@ public class DBHelper {
 	 * @throws SQLException
 	 */
 	private void getFKey(String table ,HashMap<String,ColumnDesc> map) throws SQLException{
-		if(con==null){
-			conn();
-		}
+		conn();
 		
 		DatabaseMetaData dbmd = con.getMetaData();
 		ResultSet rs = dbmd.getImportedKeys(Config.dbname, "%", table);
@@ -316,6 +314,7 @@ public class DBHelper {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			Log.e(e);
+			e.printStackTrace();
 		}
 
 		return ret;
@@ -345,10 +344,34 @@ public class DBHelper {
 		printParams(sql,params);
 		PreparedStatement s ;
 		conn();
+		
 		s= con.prepareStatement(sql);
 		for(int i=0;i<params.size();i++){
 			s.setObject(i+1, params.get(i));
 		}
 		return s.executeQuery();
 	}
+//	public void checkConn(){
+//		boolean valid = true;
+//		if(con == null){
+//			conn();
+//			return;
+//		}
+//		try {
+//			if(con.isClosed()){
+//				conn();
+//				return;
+//			}
+//			if(!con.isValid(200)){
+//				con.close();
+//				conn();
+//				return;
+//			}
+//		} catch (SQLException e) {
+//			Log.e(e);
+//			
+//		}
+//		
+//		
+//	}
 }

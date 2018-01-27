@@ -16,8 +16,7 @@ class Loader {
 	static Reloader reloader = null;
 	static int loaderVersion = 0;
 	Reloader reloader2 = null;
-	@SuppressWarnings("rawtypes")
-	public static Class load(String p) throws ClassNotFoundException{
+	public static Class<?> load(String p) throws ClassNotFoundException{
 //		if(true){
 //			Log.i("load ..."+p);
 //			return Class.forName(p);

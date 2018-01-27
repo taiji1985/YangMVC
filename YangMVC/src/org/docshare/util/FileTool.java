@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import org.docshare.log.Log;
+
 public class FileTool {
 
 	
@@ -146,6 +148,7 @@ public class FileTool {
 			}
 			reader.close();
 		} catch (Exception e) {
+			Log.e(e);
 			e.printStackTrace();
 			return null;
 		}

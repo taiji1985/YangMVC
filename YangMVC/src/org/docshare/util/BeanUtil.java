@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import org.docshare.log.Log;
 import org.docshare.mvc.IBean;
-import org.docshare.mvc.TextTool;
 
 public class BeanUtil {
 	public static List<String> propList(Object obj){

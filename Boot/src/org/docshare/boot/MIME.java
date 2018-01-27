@@ -2,7 +2,7 @@ package org.docshare.boot;
 import java.util.HashMap;
 
 import org.docshare.log.Log;
-import org.docshare.mvc.TextTool;
+import org.docshare.util.TextTool;
 
 public class MIME {
 	static HashMap<String, String> map=new HashMap<String, String>();

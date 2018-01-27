@@ -28,6 +28,7 @@ import org.docshare.util.BeanUtil;
 import org.docshare.util.FileTool;
 import org.docshare.util.GzipUtil;
 import org.docshare.util.IOUtil;
+import org.docshare.util.TextTool;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -320,6 +321,7 @@ public class Controller {
 		session = request.getSession();
 		application = session.getServletContext();
 		String contentType = request.getContentType();
+		Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){
 			UploadProcesser processer  = new UploadProcesser(this, request, response);
 			try {
@@ -330,9 +332,10 @@ public class Controller {
 				output(s);
 			}
 		}
-		if(contentType!=null && contentType.startsWith("application/json")){
+		if(contentType!=null && contentType.contains("application/json")){
 			InputStream in;
 			try {
+				Log.d("start read json ....");
 				in = request.getInputStream();
 				json = FileTool.readAll(in, "utf-8");
 				if(json!=null){
@@ -341,8 +344,12 @@ public class Controller {
 				if(json.startsWith("{")){ //如果是一个对象，给予解包
 					jsonToParam();
 				}
+				Log.d("json readed "+json);
 			} catch (IOException e) {
+				Log.e(e);
 				e.printStackTrace();
+				
+				
 			}
 			
 		}

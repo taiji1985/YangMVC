@@ -7,8 +7,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.docshare.log.Log;
-import org.docshare.mvc.TextTool;
 import org.docshare.util.BeanUtil;
+import org.docshare.util.TextTool;
+
 import com.alibaba.fastjson.JSON;
 
 public class Model implements Map<String,Object> {

@@ -10,6 +10,8 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。
  * 数据只有在真正读取时（调用get函数或者被枚举）才会从数据库中读取出来。
@@ -108,14 +110,18 @@ public class LasyList extends ListAdapter {
 			try {
 				if(tbName == null && rawSql!= null){
 					rs  = delegate.runSQL(rawSql);
-					if(rs!=null && (column_desc==null || column_desc.size() == 0) ){
+					if(rs !=null && (column_desc==null || column_desc.size() == 0) ){
 						column_desc = delegate.columnOfRs(rs);
+					}
+					if(rs == null &&column_desc == null){ //如果查询失败，报个错。
+						column_desc = new HashMap<String, Object>();
 					}
 				}else{
 					rs =  delegate.runSQL(cons, tool, tbName);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.e("LasyList.initRS ERROR: "+debugInfo());
+				Log.e(e);
 			}
 			
 		}
@@ -332,16 +338,32 @@ public class LasyList extends ListAdapter {
 		List<Model> mList = new ArrayList<Model>();
 		try {
 			arrList  = mList;
-			while(rs.next()){
+			while(rs!= null && rs.next()){
 				Model m = tool.db2Table(rs,column_desc);
 				
 				mList.add(m);
 			}
-			rs.close();
+			if(rs!= null ){
+				rs.close();
+			}
+			if(rs == null){
+				debugInfo();
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.e("LasyList.toArrayList Exception " + debugInfo());
+			Log.e(e);
 		}
 		return mList;
+	}
+	public String debugInfo(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("LasyList[");
+		sb.append("\n   SQLConstains="+JSON.toJSONString(cons));
+		sb.append("\n	table name = "+tbName);
+		sb.append("\n   rawSQL="+rawSql);
+		sb.append("]");
+		
+		return sb.toString();
 	}
 	/**
 	 * 将结果转换为对象数组
