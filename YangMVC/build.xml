@@ -3,7 +3,7 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="C:/work/zbushu/yangmvc-2.3.2-all.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="C:/work/zbushu/yangmvc-2.3.3-all.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="org.docshare.orm.ConfigCreator"/>
                 <attribute name="Class-Path" value="."/>
@@ -21,6 +21,6 @@
             <zipfileset excludes="META-INF/*.SF" src="C:/dev/MyEclipse/Common/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="C:/dev/MyEclipse/Common/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
         </jar>
-    	<copy file="C:/work/zbushu/yangmvc-2.3.1-all.jar" todir="C:/work/test3/xiaona/libs-all"/>
+    	<copy file="C:/work/zbushu/yangmvc-2.3.3-all.jar" todir="C:/work/test3/xiaona/libs-all"/>
     </target>
 </project>

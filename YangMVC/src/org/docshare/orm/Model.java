@@ -17,6 +17,12 @@ public class Model implements Map<String,Object> {
 	private Map<String, Object> columns;
 	private Map<String,Object> extra; // append data of Model
 	DBTool joined_tool=null;// relate tool 
+	/**
+	 * 用以标志是否是由Create创建（且为入库）， 以便于判断是应进行插入还是删除。
+	 * 如是创建出的，则应为插入，否则应为更新。
+	 * 当该对象保存如数据库后，该值被置为false
+	 */
+	public boolean isCreated  =false; 
 	protected Model(String tname,Map<String,Object> columns){
 		this.tname = tname;
 		//this.columns = columns;
@@ -290,5 +296,17 @@ public class Model implements Map<String,Object> {
 	 */
 	public DBTool myTool(){
 		return joined_tool;
+	}
+	/**
+	 * 保存当前对象,v2.3 以上加入的功能
+	 * @return
+	 */
+	public int save(){
+		if(joined_tool!=null){
+			return joined_tool.save(this);
+		}else{
+			Log.e("Model ,join_tool is null "+toString());
+			return 0;
+		}
 	}
 }

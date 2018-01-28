@@ -35,7 +35,7 @@ public class MySQLDelegate implements IDBDelegate {
 		String sql = "";
 
 		ArrayList<Object> plist = new ArrayList<Object>(); //参数列表
-		if(id == null|| forceInsert){
+		if(forceInsert || m.isCreated){
 			//This is an insert
 			String ks="";
 			String vs2="";

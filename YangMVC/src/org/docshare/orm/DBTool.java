@@ -137,6 +137,7 @@ public class DBTool {
 	
 	public Model create(){
 		Model model =new Model(tname, columns);
+		model.isCreated = true;
 		model.joined_tool = this;
 		
 		return model;
@@ -189,7 +190,13 @@ public class DBTool {
 	 * @param isInsert 是否强制为插入操作
 	 */
 	public int save(Model m,boolean isInsert){
-		return delegate.save(this, m, key, isInsert);
+		if(m == null){
+			Log.e("DBTool save a null model "+ m +", tname is "+tname);
+			return 0;
+		}
+		int r =  delegate.save(this, m, key, isInsert);
+		m.isCreated = false;
+		return r;
 	}
 	
 	/**
