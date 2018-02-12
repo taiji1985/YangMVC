@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : local
 Source Server Version : 50090
 Source Host           : localhost:3306
-Source Database       : 621m
+Source Database       : mvc_demo
 
 Target Server Type    : MYSQL
 Target Server Version : 50090
 File Encoding         : 65001
 
-Date: 2016-05-30 14:04:11
+Date: 2018-02-12 09:49:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,15 +32,15 @@ CREATE TABLE `book` (
   PRIMARY KEY  (`id`),
   KEY `catalog` (`catalog_id`),
   CONSTRAINT `catalog` FOREIGN KEY (`catalog_id`) REFERENCES `catalog` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=932 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=913 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', '000-神农本草经.txt', '神农本草经', '孙星衍  ', '清  ', '公元1644-1911年  ', ' ', 'txt', '1');
-INSERT INTO `book` VALUES ('2', '001-吴普本草.txt', '吴普本草', '吴普  ', '魏晋  ', '公元420年—589  ', ' ', 'txt', '1');
+INSERT INTO `book` VALUES ('1', '000-神农本草经.txt', '神农本草经', 'haha', '清  ', '公元1644-1911年  ', ' ', 'txt', '1');
+INSERT INTO `book` VALUES ('2', '001-吴普本草.txt', 'haha', '吴普  ', '魏晋  ', '公元420年—589  ', ' ', 'txt', '1');
 INSERT INTO `book` VALUES ('3', '002-本草经集注.txt', '本草经集注', '陶弘景  ', '南朝·梁  ', '公元502-557年  ', ' ', 'txt', '1');
-INSERT INTO `book` VALUES ('4', '003-新修本草.txt', '新修本草', '苏敬等20余人编写  ', '唐  ', '公元659年  ', ' ', 'txt', '1');
+INSERT INTO `book` VALUES ('4', null, 'haha', null, null, null, null, null, null);
 INSERT INTO `book` VALUES ('5', '004-食疗本草.txt', '食疗本草', '孟显  ', '唐  ', '公元618-907年  ', ' ', 'txt', '1');
 INSERT INTO `book` VALUES ('6', '005-海药本草.txt', '海药本草', '李珣  ', '五代  ', '公元907-960年  ', ' ', 'txt', '1');
 INSERT INTO `book` VALUES ('7', '006-本草图经.txt', '本草图经', '苏颂  ', '宋  ', '公元960-1279年  ', ' ', 'txt', '1');
@@ -924,28 +924,6 @@ INSERT INTO `book` VALUES ('906', null, '半隐居士慈悲开示录', '半隐�
 INSERT INTO `book` VALUES ('907', null, '神奇的八卦象数疗法', '', '当代', '', '', null, null);
 INSERT INTO `book` VALUES ('908', null, '皇极经世', '邵雍（邵康节）', '明', '', '　　《皇极经世》共十二卷六十四篇。首六卷《元会运世》凡三十四篇，次四卷《声音律品》凡十六篇，次《观物内篇》凡十二篇，末《观物外篇》凡二篇。前六十二篇是邵氏自著，末二篇是门人弟子记述。\r\n\r\n　　《皇极经世》是一部运用易理和易数推究宇宙起源、自然演化和社会历史变迁的著作，以河洛、象数之学显于世。其中《观物篇》实乃邵雍之哲学、易理、历史学的理论大纲。\r\n\r\n　　《皇极经世》堪称中国思想史上的奇书，玄思异想，古所罕见。仁者见仁，智者见智。抑之者贬为“空中楼阁”，尊之者谓其“学达性天”。儒道兼综的“经世”宏论，发前人之未发。邵雍其人，“安乐窝”中隐居三十年，洛阳城里，“行窝”十二家；达官显贵邀为座上嘉宾，里巷姑嫂，亲切呼之“家先生”；政治上超脱，思想上开拓，生活上洒脱。书名“经世”而不赖以用世，诗标“击壤”乃自别于大雅。怀奇才，写奇书，诚然北宋一怪杰。 ', null, null);
 INSERT INTO `book` VALUES ('909', 'null', 'ss', 'null', 'null', 'null', 'null', 'null', '1');
-INSERT INTO `book` VALUES ('910', 'null', 'ss', 'null', 'null', 'null', 'null', 'null', '1');
-INSERT INTO `book` VALUES ('911', 'null', 'ss', 'null', 'null', 'null', 'null', 'null', '1');
-INSERT INTO `book` VALUES ('912', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('913', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('914', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('915', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('916', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('917', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('918', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('919', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('920', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('921', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('922', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('923', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('924', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('925', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('926', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('927', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('928', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('929', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('930', null, 'ss', null, null, null, null, null, '1');
-INSERT INTO `book` VALUES ('931', null, 'ss', null, null, null, null, null, '1');
 
 -- ----------------------------
 -- Table structure for catalog
@@ -960,20 +938,81 @@ CREATE TABLE `catalog` (
 -- ----------------------------
 -- Records of catalog
 -- ----------------------------
-INSERT INTO `catalog` VALUES ('本草', '1');
-INSERT INTO `catalog` VALUES ('方剂', '2');
-INSERT INTO `catalog` VALUES ('医案', '3');
-INSERT INTO `catalog` VALUES ('经论', '4');
-INSERT INTO `catalog` VALUES ('专科', '5');
-INSERT INTO `catalog` VALUES ('炮制', '7');
-INSERT INTO `catalog` VALUES ('针灸', '8');
-INSERT INTO `catalog` VALUES ('五运六气', '9');
-INSERT INTO `catalog` VALUES ('诊断', '10');
-INSERT INTO `catalog` VALUES ('养生', '11');
-INSERT INTO `catalog` VALUES ('周易', '12');
-INSERT INTO `catalog` VALUES ('六爻', '13');
-INSERT INTO `catalog` VALUES ('风水', '14');
-INSERT INTO `catalog` VALUES ('房事', '15');
-INSERT INTO `catalog` VALUES ('佛道', '16');
-INSERT INTO `catalog` VALUES ('相术', '17');
-INSERT INTO `catalog` VALUES ('八字', '18');
+INSERT INTO `catalog` VALUES ('本草_haha_haha_haha_haha_haha_haha_haha', '1');
+INSERT INTO `catalog` VALUES ('方剂_haha_haha_haha_haha_haha_haha_haha', '2');
+INSERT INTO `catalog` VALUES ('医案_haha_haha_haha_haha_haha_haha', '3');
+INSERT INTO `catalog` VALUES ('经论_haha_haha_haha_haha_haha_haha', '4');
+INSERT INTO `catalog` VALUES ('专科_haha_haha_haha_haha_haha_haha', '5');
+INSERT INTO `catalog` VALUES ('炮制_haha_haha_haha_haha_haha_haha', '7');
+INSERT INTO `catalog` VALUES ('针灸_haha_haha_haha_haha_haha_haha', '8');
+INSERT INTO `catalog` VALUES ('五运六气_haha_haha_haha_haha_haha_haha', '9');
+INSERT INTO `catalog` VALUES ('诊断_haha_haha_haha_haha_haha_haha', '10');
+INSERT INTO `catalog` VALUES ('养生_haha_haha_haha_haha_haha_haha', '11');
+INSERT INTO `catalog` VALUES ('周易_haha_haha_haha_haha_haha_haha', '12');
+INSERT INTO `catalog` VALUES ('六爻_haha_haha_haha_haha_haha_haha', '13');
+INSERT INTO `catalog` VALUES ('风水_haha_haha_haha_haha_haha_haha', '14');
+INSERT INTO `catalog` VALUES ('房事_haha_haha_haha_haha_haha_haha', '15');
+INSERT INTO `catalog` VALUES ('佛道_haha_haha_haha_haha_haha_haha', '16');
+INSERT INTO `catalog` VALUES ('相术_haha_haha_haha_haha_haha_haha', '17');
+INSERT INTO `catalog` VALUES ('八字_haha_haha_haha_haha_haha_haha', '18');
+
+-- ----------------------------
+-- Table structure for dingcan
+-- ----------------------------
+DROP TABLE IF EXISTS `dingcan`;
+CREATE TABLE `dingcan` (
+  `id` int(11) NOT NULL auto_increment,
+  `uid` int(11) default NULL COMMENT '用户编号',
+  `book_id` int(11) default NULL COMMENT '书籍编号',
+  `ct` int(11) default NULL COMMENT '个数',
+  PRIMARY KEY  (`id`),
+  KEY `book_id` (`book_id`),
+  CONSTRAINT `dingcan_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dingcan
+-- ----------------------------
+INSERT INTO `dingcan` VALUES ('1', '1', null, '1');
+INSERT INTO `dingcan` VALUES ('2', '1', null, '3');
+INSERT INTO `dingcan` VALUES ('3', '1', null, '3');
+INSERT INTO `dingcan` VALUES ('4', '1', '1', '3');
+
+-- ----------------------------
+-- Table structure for select
+-- ----------------------------
+DROP TABLE IF EXISTS `select`;
+CREATE TABLE `select` (
+  `id` int(11) NOT NULL auto_increment,
+  `select` varchar(20) default NULL,
+  `update` varchar(30) default NULL,
+  `delete` varchar(30) default NULL,
+  `order` varchar(20) default NULL,
+  `limit` varchar(20) default NULL,
+  `group` varchar(20) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of select
+-- ----------------------------
+INSERT INTO `select` VALUES ('1', 'haha', 'wuwu', 'dd', 'oo', 'll', 'gg');
+INSERT INTO `select` VALUES ('2', 'haha', 'wuwu', 'dd', 'oo', 'll', 'gg');
+
+-- ----------------------------
+-- Table structure for usr
+-- ----------------------------
+DROP TABLE IF EXISTS `usr`;
+CREATE TABLE `usr` (
+  `id` int(11) NOT NULL auto_increment,
+  `uname` varchar(50) default NULL,
+  `pwd` varchar(50) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `uname` (`uname`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of usr
+-- ----------------------------
+INSERT INTO `usr` VALUES ('1', 'yang', '123');
+INSERT INTO `usr` VALUES ('2', 'wang', '333');
