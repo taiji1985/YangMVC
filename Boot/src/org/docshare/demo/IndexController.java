@@ -4,12 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.servlet.ServletContext;
+
 import org.docshare.mvc.Controller;
 import org.docshare.orm.Model;
 public class IndexController extends Controller {
 	public void index(){
 		renderFreeMarker("/index.html");
-		//output("¿´µ½Õâ¸ö½çÃæ£¬ÄãµÄYangMVC·þÎñÆ÷ÒÑ¾­ÅÜÆðÀ´ÁË¡£When you see this page, the YangMVC server is stared ! ");
+		//output("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½YangMVCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½When you see this page, the YangMVC server is stared ! ");
 	}
 	public void json(){
 		outputJSON(Book.createSimple()) ;
@@ -48,4 +50,14 @@ public class IndexController extends Controller {
 	public void pm(){
 		output(param("p"));
 	}
+	public void app(){
+		ServletContext context = request.getServletContext();
+		output("context = "+context.hashCode());
+	}
+	public void app2(){
+		ServletContext context = request.getServletContext();
+		output("context = "+context +",haha="+request.getSession()+",session servletContext="+request.getSession().getServletContext());
+		
+	}
+	
 }

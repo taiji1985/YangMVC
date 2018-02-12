@@ -106,6 +106,7 @@ class Reloader {
 		if(! FileTool.exists(path) && FileTool.exists("bin/") && ! path.contains("bin/") ){
 			path = "bin"+path;
 		}
+
 		File c = new File(path);
 		long now = c.lastModified();
 		if(last_tm.containsKey(path)){

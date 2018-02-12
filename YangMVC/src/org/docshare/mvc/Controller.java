@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileUploadException;
 import org.docshare.log.Log;
 import org.docshare.mvc.except.NullParamException;
+import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 import org.docshare.util.BeanUtil;
@@ -602,8 +603,8 @@ public class Controller {
 	 */
 	public Model paramToModel(Model m){
 		for(String k:m.keySet()){
-			if(k.equals(m.key())){
-				continue; //主键不允许修改
+			if(k.equals(m.key()) && param(k)==null){
+				continue; //如果主键为空，则主键不允许修改为null（与以前版本认为主键绝对不允许修改不同）
 			}
 			String v  = param(k);
 			if(v!=null){
@@ -832,5 +833,11 @@ public class Controller {
 			Log.e(e);
 		}
 		
+	}
+	public DBTool T(String name){
+		return Model.tool(name);
+	}
+	public LasyList L(String name){
+		return Model.tool(name).all();
 	}
 }

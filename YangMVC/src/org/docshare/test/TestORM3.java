@@ -7,6 +7,8 @@ import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.Model;
 
+import com.alibaba.fastjson.JSON;
+
 import junit.framework.TestCase;
 
 
@@ -36,5 +38,19 @@ public class TestORM3 extends TestCase{
 			tool.save(c);
 		}
 		
+	}
+	public void testObjectInsert(){
+		DBTool tool = Model.tool("catalog");
+		Catalog  c = new Catalog();
+		c.name = "haha";
+		tool.save(c);
+	}
+	public void testLike(){
+		String s = JSON.toJSONString(Model.tool("book").all().like("name", "本草").limit(10));
+		System.out.println(s);
+	}
+	public void testMLike(){
+		String s = JSON.toJSONString(Model.tool("book").all().mlike("name,author", "李").limit(10));
+		System.out.println(s);
 	}
 }

@@ -33,9 +33,9 @@ public class MySQLDelegate implements IDBDelegate {
 		}
 		Object id = m.get(key);
 		String sql = "";
-
+		
 		ArrayList<Object> plist = new ArrayList<Object>(); //参数列表
-		if(forceInsert || m.isCreated){
+		if(forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0 ) ){
 			//This is an insert
 			String ks="";
 			String vs2="";
@@ -72,7 +72,7 @@ public class MySQLDelegate implements IDBDelegate {
 				String type = tool.getColumnTypeName(k);
 				ArrayTool.valueWrapper(k, m.get(k),type);
 				//sa.add(s);
-				sa.add(k+"=?");
+				sa.add("`"+k+"`=?");
 				plist.add(m.get(k));
 			}
 			String ss = ArrayTool.join(",", sa);
@@ -139,10 +139,21 @@ public class MySQLDelegate implements IDBDelegate {
 			case SQLConstains.TYPE_LIKE:
 				//String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
 				//sa.add(w);
-				String w = String.format("  `%s` like '$%s$' ", c.column, "?").replace("$","%");
+				String w = String.format("  `%s` like ? ", c.column);
 				sa.add(w);
-				params.add(c.value);
+				params.add("%"+c.value+"%");
 				
+				break;
+			case SQLConstains.TYPE_MLIKE:
+				String[] ca = c.column.split(",");
+				String t  = "(" +String.format("`%s` like ?",ca[0]);
+				params.add("%"+c.value+"%");
+				for(int i=1;i<ca.length;i++){
+					t+=" or "+String.format("`%s` like ?",ca[i]);
+					params.add("%"+c.value+"%");
+				}
+				t+=")";
+				sa.add(t);
 				break;
 			case SQLConstains.TYPE_LIMIT:
 				limitc = c;
@@ -156,7 +167,7 @@ public class MySQLDelegate implements IDBDelegate {
 		String tail ="";
 		if(orderc!=null){
 			//tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
-			tail += String.format(" order by %s %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
+			tail += String.format(" order by `%s` %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
 			//params.add((Boolean)orderc.value?"asc":"desc");
 			
 		}
@@ -182,7 +193,7 @@ public class MySQLDelegate implements IDBDelegate {
 			if(!c.startsWith("limit") && ! c.startsWith("order")){
 				c  = " where " +c ;
 			}else c = " " +c;
-			String sql = "select "+prefix+" from "+tbName +c;
+			String sql = "select "+prefix+" from `"+tbName +"` "+c;
 			try {
 				return helper.getRS(sql,params);
 			} catch (SQLException e) {

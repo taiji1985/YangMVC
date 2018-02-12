@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import org.docshare.log.Log;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.session.SessionHandler;
@@ -33,16 +34,28 @@ public class ServerMain {
 			}
 		}
 	}
+    public static ContextHandler contextHandler = null;
+
 	public static void start() throws Exception{
 		try{
 			org.eclipse.jetty.util.log.Log.setLog(new YangLogger());
 	        Server server = new Server(port);
-	        HandlerCollection collection =new HandlerCollection();
+	        
+	        HandlerCollection collection =new HandlerCollection(); 
+
+	        contextHandler = new ContextHandler();
+	        
+	        contextHandler.setContextPath("/");
+	        contextHandler.setResourceBase("./WebRoot");
+	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
+	        contextHandler.setHandler(new YangHandle(server));
+	        
 	        collection.addHandler(new SessionHandler());
 	        collection.addHandler(new YangHandle(server));
 	        collection.addHandler(new DefaultHandler());
+	        contextHandler.setHandler(collection);
 	       
-	        server.setHandler(collection);
+	        server.setHandler(contextHandler);
 	        server.start();
 	        String url = "http://127.0.0.1";
 	        if(port != 80){

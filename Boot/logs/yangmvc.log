@@ -7495,3 +7495,945 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 	at java.lang.Thread.run(Thread.java:619)
 
 2018-01-26 20:39:18 [ INFO]-qtp610145197-25 - Log -Log.java(30)  -action=org.docshare.demo.fb.
+2018-02-05 16:11:58 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:11:59 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:12:00 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:24:37 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:34:18 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:34:44 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:34:55 [ERROR]-qtp381221099-16 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.Controller.output(Controller.java:457)
+	at org.docshare.demo.IndexController.app(IndexController.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:34:55 [ERROR]-qtp381221099-16 - Log -Log.java(41)  -java.lang.IllegalStateException: STREAM
+	at org.eclipse.jetty.server.Response.getWriter(Response.java:683)
+	at org.docshare.mvc.Loader.outMsg(Loader.java:139)
+	at org.docshare.mvc.Loader.call(Loader.java:127)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:34:57 [ERROR]-qtp381221099-16 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.Controller.output(Controller.java:457)
+	at org.docshare.demo.IndexController.app(IndexController.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:34:57 [ERROR]-qtp381221099-16 - Log -Log.java(41)  -java.lang.IllegalStateException: STREAM
+	at org.eclipse.jetty.server.Response.getWriter(Response.java:683)
+	at org.docshare.mvc.Loader.outMsg(Loader.java:139)
+	at org.docshare.mvc.Loader.call(Loader.java:127)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:34:58 [ERROR]-qtp381221099-16 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.Controller.output(Controller.java:457)
+	at org.docshare.demo.IndexController.app(IndexController.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:34:58 [ERROR]-qtp381221099-16 - Log -Log.java(41)  -java.lang.IllegalStateException: STREAM
+	at org.eclipse.jetty.server.Response.getWriter(Response.java:683)
+	at org.docshare.mvc.Loader.outMsg(Loader.java:139)
+	at org.docshare.mvc.Loader.call(Loader.java:127)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:35:03 [ERROR]-qtp381221099-13 - Log -Log.java(41)  -java.lang.NullPointerException
+	at freemarker.core.TextBlock.accept(TextBlock.java:67)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:830)
+	at org.docshare.demo.IndexController.index(IndexController.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:144)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:36:04 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:39:41 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:39:42 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:40:44 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:40:48 [ INFO]-qtp340435150-14 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:41:25 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:41:25 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:41:25 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:41:26 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:41:32 [ INFO]-qtp1368348708-16 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:41:47 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:41:56 [ INFO]-qtp2018147830-15 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:43:06 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:43:13 [ INFO]-qtp1512109123-14 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:43:55 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:44:04 [ INFO]-qtp1512109123-15 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:45:35 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:45:36 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:45:39 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:45:39 [ INFO]-qtp985435678-14 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:45:44 [ INFO]-qtp985435678-13 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:46:32 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:46:33 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:46:48 [ INFO]-qtp1653858092-15 - Log -Log.java(90)  -YangHandle
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:47:14 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:47:15 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:47:15 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:47:15 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:47:17 [ INFO]-qtp434359633-12 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:51:15 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:51:18 [ INFO]-qtp1368348708-14 - Log -Log.java(30)  -c = null
+2018-02-05 16:51:18 [ INFO]-qtp1368348708-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:54:24 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:54:34 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:54:34 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:54:34 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:54:34 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:54:34 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:54:34 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:54:34 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:54:35 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:54:35 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:54:35 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:54:35 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:54:35 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:54:35 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:54:43 [ INFO]-qtp516992923-14 - Log -Log.java(30)  -c = null
+2018-02-05 16:54:43 [ INFO]-qtp516992923-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:55:36 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:55:42 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:55:45 [ INFO]-qtp1239291892-15 - Log -Log.java(30)  -c = null
+2018-02-05 16:55:45 [ INFO]-qtp1239291892-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:55:45 [ERROR]-qtp1239291892-15 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.Controller.output(Controller.java:457)
+	at org.docshare.demo.IndexController.app(IndexController.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:55:45 [ERROR]-qtp1239291892-15 - Log -Log.java(41)  -java.lang.IllegalStateException: STREAM
+	at org.eclipse.jetty.server.Response.getWriter(Response.java:683)
+	at org.docshare.mvc.Loader.outMsg(Loader.java:139)
+	at org.docshare.mvc.Loader.call(Loader.java:127)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:57:53 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:57:56 [ INFO]-qtp1239291892-16 - Log -Log.java(30)  -c = null
+2018-02-05 16:57:56 [ INFO]-qtp1239291892-16 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:57:56 [ERROR]-qtp1239291892-16 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.Controller.output(Controller.java:457)
+	at org.docshare.demo.IndexController.app(IndexController.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:57:56 [ERROR]-qtp1239291892-16 - Log -Log.java(41)  -java.lang.IllegalStateException: STREAM
+	at org.eclipse.jetty.server.Response.getWriter(Response.java:683)
+	at org.docshare.mvc.Loader.outMsg(Loader.java:139)
+	at org.docshare.mvc.Loader.call(Loader.java:127)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:57:57 [ INFO]-qtp1239291892-12 - Log -Log.java(30)  -c = null
+2018-02-05 16:57:57 [ INFO]-qtp1239291892-12 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:57:57 [ERROR]-qtp1239291892-12 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.Controller.output(Controller.java:457)
+	at org.docshare.demo.IndexController.app(IndexController.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:57:57 [ERROR]-qtp1239291892-12 - Log -Log.java(41)  -java.lang.IllegalStateException: STREAM
+	at org.eclipse.jetty.server.Response.getWriter(Response.java:683)
+	at org.docshare.mvc.Loader.outMsg(Loader.java:139)
+	at org.docshare.mvc.Loader.call(Loader.java:127)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:57:58 [ INFO]-qtp1239291892-17 - Log -Log.java(30)  -c = null
+2018-02-05 16:57:58 [ INFO]-qtp1239291892-17 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:57:58 [ERROR]-qtp1239291892-17 - Log -Log.java(41)  -java.lang.NullPointerException
+	at org.docshare.mvc.Controller.output(Controller.java:457)
+	at org.docshare.demo.IndexController.app(IndexController.java:55)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:57:58 [ERROR]-qtp1239291892-17 - Log -Log.java(41)  -java.lang.IllegalStateException: STREAM
+	at org.eclipse.jetty.server.Response.getWriter(Response.java:683)
+	at org.docshare.mvc.Loader.outMsg(Loader.java:139)
+	at org.docshare.mvc.Loader.call(Loader.java:127)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:149)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-05 16:58:03 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 16:58:04 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 16:58:06 [ INFO]-qtp1368348708-13 - Log -Log.java(30)  -c = null
+2018-02-05 16:58:06 [ INFO]-qtp1368348708-13 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:58:27 [ INFO]-qtp1368348708-15 - Log -Log.java(30)  -c = null
+2018-02-05 16:58:27 [ INFO]-qtp1368348708-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 16:58:45 [ INFO]-qtp1368348708-16 - Log -Log.java(30)  -c = null
+2018-02-05 16:58:45 [ INFO]-qtp1368348708-16 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:00:49 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:00:49 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:00:49 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:00:49 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:00:49 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:00:49 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:00:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:00:50 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:00:50 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:00:50 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:00:50 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:00:50 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:00:50 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:00:52 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:00:52 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -true
+2018-02-05 18:00:52 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:01:00 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -true
+2018-02-05 18:01:00 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:03:53 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:03:54 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:04:01 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -true
+2018-02-05 18:04:01 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:04:03 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -true
+2018-02-05 18:04:03 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:04:03 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -true
+2018-02-05 18:04:03 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:04:04 [ INFO]-qtp2099532520-16 - Log -Log.java(30)  -true
+2018-02-05 18:04:04 [ INFO]-qtp2099532520-16 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:04:04 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -true
+2018-02-05 18:04:04 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:04:08 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -true
+2018-02-05 18:04:08 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:05:15 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:05:15 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:05:15 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:05:16 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:05:19 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -true
+2018-02-05 18:05:19 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:05:20 [ INFO]-qtp1539259783-11 - Log -Log.java(30)  -true
+2018-02-05 18:05:20 [ INFO]-qtp1539259783-11 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:08:46 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:08:51 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -true
+2018-02-05 18:08:51 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:08:51 [ WARN]-qtp1539259783-14 - Log -Log.java(85)  -handle failed
+2018-02-05 18:09:45 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -true
+2018-02-05 18:09:45 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:09:45 [ WARN]-qtp1539259783-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:09:46 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -true
+2018-02-05 18:09:46 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:09:46 [ WARN]-qtp1539259783-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:09:46 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -true
+2018-02-05 18:09:46 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:09:46 [ WARN]-qtp1539259783-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:09:47 [ INFO]-qtp1539259783-16 - Log -Log.java(30)  -true
+2018-02-05 18:09:47 [ INFO]-qtp1539259783-16 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:09:47 [ WARN]-qtp1539259783-16 - Log -Log.java(85)  -handle failed
+2018-02-05 18:09:47 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -true
+2018-02-05 18:09:47 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:09:47 [ WARN]-qtp1539259783-14 - Log -Log.java(85)  -handle failed
+2018-02-05 18:09:48 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -true
+2018-02-05 18:09:48 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:09:48 [ WARN]-qtp1539259783-14 - Log -Log.java(85)  -handle failed
+2018-02-05 18:09:48 [ INFO]-qtp1539259783-10 - Log -Log.java(30)  -true
+2018-02-05 18:09:48 [ INFO]-qtp1539259783-10 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:09:49 [ WARN]-qtp1539259783-10 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:07 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -true
+2018-02-05 18:10:07 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:07 [ WARN]-qtp1539259783-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:07 [ INFO]-qtp1539259783-10 - Log -Log.java(30)  -true
+2018-02-05 18:10:07 [ INFO]-qtp1539259783-10 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:07 [ WARN]-qtp1539259783-10 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:08 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -true
+2018-02-05 18:10:08 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:08 [ WARN]-qtp1539259783-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:08 [ INFO]-qtp1539259783-16 - Log -Log.java(30)  -true
+2018-02-05 18:10:08 [ INFO]-qtp1539259783-16 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:08 [ WARN]-qtp1539259783-16 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:10 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -true
+2018-02-05 18:10:10 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:10 [ WARN]-qtp1539259783-14 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:10 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -true
+2018-02-05 18:10:10 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:10 [ WARN]-qtp1539259783-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:11 [ INFO]-qtp1539259783-10 - Log -Log.java(30)  -true
+2018-02-05 18:10:11 [ INFO]-qtp1539259783-10 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:11 [ WARN]-qtp1539259783-10 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:11 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -true
+2018-02-05 18:10:11 [ INFO]-qtp1539259783-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:11 [ WARN]-qtp1539259783-14 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:11 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -true
+2018-02-05 18:10:11 [ INFO]-qtp1539259783-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:11 [ WARN]-qtp1539259783-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:52 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:10:52 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:10:52 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:10:52 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:10:52 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:10:52 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:10:52 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:10:53 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:10:53 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:10:53 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:10:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:10:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:10:53 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:10:57 [ INFO]-qtp2099532520-13 - Log -Log.java(30)  -true
+2018-02-05 18:10:57 [ INFO]-qtp2099532520-13 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:57 [ WARN]-qtp2099532520-13 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:58 [ INFO]-qtp2099532520-14 - Log -Log.java(30)  -true
+2018-02-05 18:10:58 [ INFO]-qtp2099532520-14 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:58 [ WARN]-qtp2099532520-14 - Log -Log.java(85)  -handle failed
+2018-02-05 18:10:58 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -true
+2018-02-05 18:10:58 [ INFO]-qtp2099532520-17 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:10:58 [ WARN]-qtp2099532520-17 - Log -Log.java(85)  -handle failed
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:11:28 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:11:29 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:11:29 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:11:29 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:11:30 [ INFO]-qtp823554482-12 - Log -Log.java(30)  -true
+2018-02-05 18:11:30 [ INFO]-qtp823554482-12 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:11:30 [ WARN]-qtp823554482-12 - Log -Log.java(85)  -handle failed
+2018-02-05 18:11:32 [ INFO]-qtp823554482-12 - Log -Log.java(30)  -true
+2018-02-05 18:11:32 [ INFO]-qtp823554482-12 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:11:32 [ WARN]-qtp823554482-12 - Log -Log.java(85)  -handle failed
+2018-02-05 18:11:41 [ INFO]-qtp823554482-13 - Log -Log.java(30)  -true
+2018-02-05 18:11:41 [ INFO]-qtp823554482-13 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:11:41 [ WARN]-qtp823554482-13 - Log -Log.java(85)  -handle failed
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:12:46 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:12:49 [ INFO]-qtp2099532520-16 - Log -Log.java(30)  -true
+2018-02-05 18:12:49 [ INFO]-qtp2099532520-16 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:12:49 [ WARN]-qtp2099532520-16 - Log -Log.java(85)  -handle failed
+2018-02-05 18:13:09 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -true
+2018-02-05 18:13:09 [ INFO]-qtp2099532520-15 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:13:09 [ WARN]-qtp2099532520-15 - Log -Log.java(85)  -handle failed
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:13:47 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:13:49 [ INFO]-qtp1640499969-16 - Log -Log.java(30)  -true
+2018-02-05 18:13:49 [ INFO]-qtp1640499969-16 - Log -Log.java(30)  -----------------org.eclipse.jetty.server.Request
+2018-02-05 18:13:49 [ WARN]-qtp1640499969-16 - Log -Log.java(85)  -handle failed
+2018-02-05 18:16:35 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:16:50 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:19:07 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:19:40 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:19:40 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:19:40 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:19:41 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:19:56 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:19:59 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:23:25 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser

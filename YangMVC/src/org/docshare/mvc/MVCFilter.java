@@ -59,7 +59,7 @@ public class MVCFilter implements Filter {
 		String action = Config.ctr_base +"." + temp;
 		action = action.replace("/", ".");
 		String cname,method;
-		if(action.endsWith(".")){
+		if(action.endsWith(".")){ //如果是以斜杠结束（斜杠被替换成了.),则是访问index方法。
 			cname = action.substring(0, action.length()-1);
 			method = "index";
 		}else{

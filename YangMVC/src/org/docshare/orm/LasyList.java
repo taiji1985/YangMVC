@@ -207,6 +207,16 @@ public class LasyList extends ListAdapter {
 		cons.add(new SQLConstains(SQLConstains.TYPE_LIKE, column, q));
 		return this;
 	}
+	/**
+	 * 在多个列中进行like查找，多个列之间是或者关系
+	 * @param columnList
+	 * @param q
+	 * @return
+	 */
+	public LasyList mlike(String columnList,String q){
+		cons.add(new SQLConstains(SQLConstains.TYPE_MLIKE, columnList, q));
+		return this;
+	}
 
 	public LasyList eq(String column, Object val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_EQ, column, val));
@@ -398,6 +408,7 @@ public class LasyList extends ListAdapter {
 		return list;
 		
 	}
+	
 	
 
 }

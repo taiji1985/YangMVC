@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.docshare.log.Log;
+import org.docshare.util.BeanUtil;
+
 import com.alibaba.fastjson.JSON;
 
 /**
@@ -177,7 +179,12 @@ public class DBTool {
 	}
 	public int save(Object obj,boolean isInsert ){
 		Model  m = Model.fromObject(tname, obj);
-		return save(m,isInsert);
+		int r =  save(m,isInsert);
+		if(r!=0){ //将获得的主键返回
+			String key  = m.key();
+			BeanUtil.set(obj, key, m.get(key));
+		}
+		return r;
 	}
 	public int save(Object obj){
 		return save(obj,false);

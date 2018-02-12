@@ -18,6 +18,7 @@ import org.docshare.util.TextTool;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.eclipse.jetty.server.handler.ContextHandler.Context;
 
 class StaticFilterChain implements FilterChain {
 	HashSet<String> forbitMap = new HashSet<String>();
@@ -110,6 +111,7 @@ public class YangHandle extends AbstractHandler {
 
 	public YangHandle(Server server) {
 		this.server =server;
+		
 		filter = new  MVCFilter();
 		try {
 			filter.init(new YangFilterConfig());
@@ -140,10 +142,12 @@ public class YangHandle extends AbstractHandler {
 //		response.setContentType("text/plain");  
 //        response.getWriter().println("hello");  
 //        baseRequest.setHandled(true);  
+		//Context c = baseRequest.getContext();
 		
 		filter.doFilter(request, response, chain);
 
-		baseRequest.setHandled(true);  
+		baseRequest.setHandled(true);
+		
 	}
 
 	private void T(String string) {

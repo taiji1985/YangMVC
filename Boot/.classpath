@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="libs/jetty-continuation-8.1.0.v20120127.jar"/>
 	<classpathentry kind="lib" path="libs/jetty-http-8.1.0.v20120127.jar"/>
 	<classpathentry kind="lib" path="libs/jetty-io-8.1.0.v20120127.jar"/>
-	<classpathentry kind="lib" path="libs/jetty-server-8.1.0.v20120127.jar"/>
+	<classpathentry kind="lib" path="libs/jetty-server-8.1.0.v20120127.jar" sourcepath="C:/work/jetty.project-jetty-8.1.0.v20120127/jetty-server"/>
 	<classpathentry kind="lib" path="libs/jetty-util-8.1.0.v20120127.jar"/>
 	<classpathentry kind="lib" path="libs/servlet-api-3.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/YangMVC"/>

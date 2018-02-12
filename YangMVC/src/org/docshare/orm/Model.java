@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+
 import org.docshare.log.Log;
 import org.docshare.util.BeanUtil;
 import org.docshare.util.TextTool;
@@ -98,7 +101,42 @@ public class Model implements Map<String,Object> {
 	public boolean containsValue(Object value) {
 		return false;
 	}
-
+	/**
+	 * 以字符串形式获取字段值
+	 * @param key 字段的名称
+	 * @return 字段的值
+	 */
+	public String getStr(Object key){
+		Object rObject  = get(key);
+		return rObject == null?null:rObject.toString();
+	}
+	/**
+	 * 以整数形式返回字段值，如果原本为非整数，则尝试转换（如果无法转换则报错）
+	 * @param key 字段的名称
+	 * @return 字段你的值（整数）
+	 */
+	public Integer getInt(Object key){
+		Object rObject  = get(key);
+		if(rObject instanceof Integer){
+			return (Integer)rObject;
+		}
+		String str = rObject +"";
+		return Integer.parseInt(str);
+	}
+	/**
+	 * 以长整数形式返回字段值，如果原本为非整数，则尝试转换（如果无法转换则报错）
+	 * @param key 字段的名称
+	 * @return 字段你的值（整数）
+	 */
+	public Long getLong(Object key){
+		Object rObject  = get(key);
+		if(rObject instanceof Long){
+			return (Long)rObject;
+		}
+		String str = rObject +"";
+		return Long.parseLong(str);
+	}
+	
 	@Override
 	public Object get(Object key) {
 		String ks = (String)key;
@@ -218,22 +256,24 @@ public class Model implements Map<String,Object> {
 		return sb.toString();
 	}
 	@Override
-	public Object put(String key, Object value) {
+	@NotNull
+	public Model put(String key, Object value) {
 		if(columns.containsKey(key)){
-			return columns.put((String)key, value);
+			columns.put((String)key, value);
 		}else{ //如果没有这个key，则添加入extra之中。
 			if(extra == null){
 				extra = new HashMap<String,Object>();
 			}
-			return extra.put(key, value);
+			extra.put(key, value);
 		}
+		return this;
 	}
 	@Override
 	public void putAll(Map<? extends String, ? extends Object> m) {
 		
 		
 	}
-	public Object key() {
+	public String key() {
 		return joined_tool.key;
 	}
 	/**
@@ -257,6 +297,7 @@ public class Model implements Map<String,Object> {
 			Object val = BeanUtil.get(obj, key);
 			ret.put(key, val);
 		}
+		ret.isCreated = false;
 		return ret;
 	}
 	/**

@@ -31,9 +31,9 @@ class UploadProcesser {
 		
 		// Create a factory for disk-based file items
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-
+		
 		// Configure a repository (to ensure a secure temp location is used)
-		ServletContext servletContext = request.getSession().getServletContext();
+		ServletContext servletContext = request.getServletContext();
 		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 		factory.setRepository(repository);
 
@@ -75,7 +75,7 @@ class UploadProcesser {
 	    String sep=System.getProperty("line.separator");
 	    //tmpdir = tmpdir.endsWith(sep)?tmpdir:tmpdir+sep;
 	    String path = randomFileName(fileName);
-	    String real = request.getSession().getServletContext().getRealPath(path);
+	    String real = request.getServletContext().getRealPath(path);
 	    
 	    File f = new File(real);
 		if(!f.getParentFile().exists()){
