@@ -38,21 +38,38 @@ import freemarker.template.Template;
 
 public class Controller {
 
-	public static final String M_FLAG="multipart/form-data";
+	private static final String M_FLAG="multipart/form-data";
 
-	
+	/**
+	 * 请求对象，同jsp中的request。 但请优先使用param等函数
+	 */
 	protected HttpServletRequest request;
+	/**
+	 * 响应对象，同jsp中的response。 但请优先使用output、outputJSON等函数
+	 */
 	protected HttpServletResponse response;
+	/**
+	 * 会话对象。同jsp中的session。但请优先使用sess函数
+	 */
 	protected HttpSession session; 
-	
+	/**
+	 * 输出对象，类似jsp中的out对象，但请优先使用output、outputJSON、downloadFile等函数。
+	 */
 	protected PrintWriter writer = null;
-	protected Map<String, Object> paramMap=new HashMap<String, Object>();
+	private Map<String, Object> paramMap=new HashMap<String, Object>();
 
-
-	private ServletContext application;
+	/**
+	 * 同jsp中的application对象。
+	 */
+	protected ServletContext application;
 
 
 	private boolean single = false;
+	/**
+	 * 追加参数， 同样可以用param获取到最佳的参数
+	 * @param key 参数名
+	 * @param val 参数值
+	 */
 	protected void putParam(String key,Object val) {
 		Log.d("put param: "+key+"= "+val);
 		paramMap.put(key, val);
@@ -71,6 +88,13 @@ public class Controller {
 	 */
 	protected boolean isPost(){
 		return request.getMethod().toLowerCase().equals("post");
+	}
+	/**
+	 * 获取HTTP请求的方法，GET/POST/PUT 等
+	 * @return
+	 */
+	protected String method() {
+		return request.getMethod();
 	}
 	
 	/**
@@ -226,10 +250,12 @@ public class Controller {
 	/**
 	 * 向request中放入数据，方便在jsp中使用getAttribute获取，或者
 	 * 使用EL表达式读取<br>
+	 * 这个方法是MVC框架中使用频率非常高的一个方法。
+	 * 用于将控制器中的数据传递给View。
 	 * Demo: put("n",12); <br>
 	 * JSP :　request.getAttribute("n") 会返回12, ${n}也会为12<br>
-	 * @param name
-	 * @param obj
+	 * @param name 参数名
+	 * @param obj  参数值
 	 */
 	protected void put(String name,Object obj){
 		if(obj instanceof IBean){
@@ -250,7 +276,11 @@ public class Controller {
 			put(k,m.get(k));
 		}
 	}
-	
+	/**
+	 * 是否存在某个文件
+	 * @param path
+	 * @return
+	 */
 	protected boolean existFile(String path){
 		@SuppressWarnings("deprecation")
 		String p = request.getRealPath(path);
@@ -471,7 +501,7 @@ public class Controller {
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/json");
 			
-			if(obj == null)writer.write("null");
+			if(obj == null)writer.write("{}");
 			else{String string = JSON.toJSONString(obj);
 				writer.write(string);
 			}
@@ -552,11 +582,16 @@ public class Controller {
 		put(m.getTableName()+"_form",sb.toString());
 		render(template);
 	}
+	/**
+	 * 应对一些url乱码
+	 * @param p 参数名称
+	 * @return 参数值，如果没有返回null
+	 */
 	protected String urlParam(String p){
 		//如果paramMap中有。 这个paramMap是在UploadProcesser中调用putParam修改的。 
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
 		String s =  request.getParameter(p);
-		if(s == null)return s;
+		if(s == null)return null;
 		try {
 			s = new String(s.getBytes("ISO-8859-1"),"utf-8");
 		} catch (UnsupportedEncodingException e) {
@@ -573,9 +608,15 @@ public class Controller {
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
 		return request.getParameter(p);
 	}
-	
-	protected String param(String p,String def){
-		return (String)paramWithDefault(p, def);
+	/**
+	 * 制定默认值并获取URL参数，如果参数不存在，则返回默认值。参数存在返回参数值。
+	 * @param name 参数名称
+	 * @param def 默认值
+	 * @return 如果参数不存在，则返回默认值。参数存在返回参数值。
+	 */
+	protected String param(String name,String def){
+		String ret = param(name);
+		return ret == null?def:ret;
 	}
 	
 	/**
@@ -592,8 +633,19 @@ public class Controller {
 			return null;
 		}
 	}
+	/**
+	 * 获取URL参数或者Form提交的参数,并自动转换为int，如果不是整数则会报错。
+	 * 如果该参数不存在，则返回默认值
+	 * @param p 参数名称
+	 * @return int类型的参数值（参数不存在返回def)
+	 */
 	protected Integer paramInt(String p ,int def){
-		return paramWithDefaultInt(p, def);
+		String ret = param(p);
+		if(ret == null){
+			return def;
+		}else{
+			return Integer.parseInt(ret);
+		}
 	}
 	/**
 	 * 根据名称匹配的原则，将与模型中参数名相同的参数的值放入模型中。并返回该模型<br>
@@ -632,6 +684,12 @@ public class Controller {
 		}
 		return obj;
 	}
+	protected void dumpParam() {
+		Map<String, String[]> map = request.getParameterMap();
+		Log.d("----------DumpParam---------");
+		Log.d("request param="+JSON.toJSONString(map));
+		Log.d("paramMap="+JSON.toJSONString(paramMap));
+	}
 	/**
 	 * 将参数中的值拷贝到对象的对应属性中 
 	 * 如 height参数拷贝到obj的height属性中
@@ -658,7 +716,10 @@ public class Controller {
 			throw new NullParamException(msg);
 		}
 	}
-	
+	/**
+	 * 跳转到新页面/重定向。功能等同resposne.sendRedirect
+	 * @param url
+	 */
 	protected void jump(String url){
 		try {
 			if(!can_out){
@@ -673,12 +734,18 @@ public class Controller {
 		}
 	}
 	/**
-	 * 设置当前控制器为单例模式， 
+	 * 设置当前控制器为单例模式， 需要注意的是，只有不使用除了request、response、session之外的类变量的才可以使用单例。
+	 * 单例模式可以优化性能，但也请慎用，做好测试。
+	 * 如果是文件上传，则不应使用单例模式，因为会用到类变量。
 	 * @param single 设置为true为单例，否则每次请求创建一个该控制器对象
 	 */
 	public void setSingle(boolean single){
 		this.single = single;
 	}
+	/**
+	 * 返回当前控制器是否是单例模式
+	 * @return
+	 */
 	public boolean isSingle(){
 		return single;
 	}
@@ -839,10 +906,20 @@ public class Controller {
 		}
 		
 	}
-	protected DBTool T(String name){
-		return Model.tool(name);
+	/**
+	 * 获取tool对象
+	 * @param tableName 数据库表格名称
+	 * @return 相应的DBTool对象（用以进行查询等操作）
+	 */
+	protected DBTool T(String tableName){
+		return Model.tool(tableName);
 	}
-	protected LasyList L(String name){
-		return Model.tool(name).all();
+	/**
+	 * 获取LasyList对象
+	 * @param tableName 数据库表格名称
+	 * @return 返回所有行的LasyList对象（并没有真正进行查询），可以用 .eq .gt 等函数去约束。
+	 */
+	protected LasyList L(String tableName){
+		return Model.tool(tableName).all();
 	}
 }
