@@ -7,11 +7,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.validation.constraints.NotNull;
-
 import org.docshare.log.Log;
 import org.docshare.util.BeanUtil;
 import org.docshare.util.TextTool;
+import org.jetbrains.annotations.NotNull;
 
 import com.alibaba.fastjson.JSON;
 
@@ -172,9 +171,16 @@ public class Model implements Map<String,Object> {
 		return columns.get(key);
 	}
 
+	/**
+	 * 删除某些字段 - 该函数不确保用户操作后数据存储操作还有效，但如果仅仅是为了输出，则可放心使用。
+	 */
 	@Override
 	public Object remove(Object key) {
-		return null;
+		Object ret = extra.remove(key);
+		if(ret == null){
+			ret = columns.remove(key);
+		}
+		return ret;
 	}
 
 	@Override
