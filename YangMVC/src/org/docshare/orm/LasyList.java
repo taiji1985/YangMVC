@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.docshare.log.Log;
+import org.jetbrains.annotations.NotNull;
 
 import com.alibaba.fastjson.JSON;
 
@@ -59,6 +60,17 @@ public class LasyList extends ListAdapter {
 		return (int)delegate.size(cons, tool, tbName);
 	}
 	
+	/**
+	 * 判断是否有相关记录
+	 * @return
+	 */
+	public boolean exist(){
+		if(arrList!=null){
+			return arrList.size() > 0;
+		}
+		return delegate.size(cons, tool, tbName) > 0;
+		
+	}
 
 	/**判断列表是否为空
 	 * 
@@ -182,6 +194,7 @@ public class LasyList extends ListAdapter {
 	 * @param len 长度
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
+	@NotNull
 	public LasyList limit(int start, int len) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len));
 		return this;
@@ -193,6 +206,7 @@ public class LasyList extends ListAdapter {
 	 * @param len 长度
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
+	@NotNull
 	public LasyList limit(int len) {
 		return limit(0, len);
 	}
@@ -203,6 +217,7 @@ public class LasyList extends ListAdapter {
 	 * @param q
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
+	@NotNull
 	public LasyList like(String column, String q) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_LIKE, column, q));
 		return this;
@@ -213,11 +228,13 @@ public class LasyList extends ListAdapter {
 	 * @param q
 	 * @return
 	 */
+	@NotNull
 	public LasyList mlike(String columnList,String q){
 		cons.add(new SQLConstains(SQLConstains.TYPE_MLIKE, columnList, q));
 		return this;
 	}
 
+	@NotNull
 	public LasyList eq(String column, Object val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_EQ, column, val));
 		
@@ -231,6 +248,7 @@ public class LasyList extends ListAdapter {
 	 * @param val    值
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
+	@NotNull
 	public LasyList gt(String column, int val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_GT, column, val));
 		
@@ -243,6 +261,7 @@ public class LasyList extends ListAdapter {
 	 * @param val    值
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
+	@NotNull
 	public LasyList gte(String column, int val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_GTE, column, val));
 		return this;
@@ -255,6 +274,7 @@ public class LasyList extends ListAdapter {
 	 * @param val    值
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
+	@NotNull
 	public LasyList lt(String column, int val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_LT, column, val));
 		return this;
@@ -266,6 +286,7 @@ public class LasyList extends ListAdapter {
 	 * @param val    值
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
+	@NotNull
 	public LasyList lte(String column, int val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_LTE, column, val));
 		return this;
@@ -277,6 +298,7 @@ public class LasyList extends ListAdapter {
 	 * @param val    值
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
+	@NotNull
 	public LasyList ne(String column, int val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_NE, column, val));
 		return this;
@@ -289,8 +311,20 @@ public class LasyList extends ListAdapter {
 	 * @param asc
 	 *            当asc为true时，是升序，否则为降序
 	 */
+	@NotNull
 	public LasyList orderby(String column, boolean asc) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
+		return this;
+	}
+	
+	/***
+	 * 除了limit和order意外的任意约束条件。 这个约束条件不会判断是否重复
+	 * @param any
+	 * @return
+	 */
+	@NotNull
+	public LasyList custom(String any){
+		cons.add(new SQLConstains(SQLConstains.TYPE_CUSTOM, any,null));
 		return this;
 	}
 
@@ -306,8 +340,10 @@ public class LasyList extends ListAdapter {
 	private void closeRS(){
 		try{
 			Log.d("LasyList finalized");
-			rs.close();
-			rs =null;
+			if(rs !=null){
+				rs.close();
+				rs =null;
+			}
 		}catch(Exception e){}
 	}
 	
@@ -408,6 +444,7 @@ public class LasyList extends ListAdapter {
 		return list;
 		
 	}
+	
 	
 	
 

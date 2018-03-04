@@ -38,9 +38,13 @@ public class TestORMFoo  extends TestCase{
 		String s = Model.tool("select").get(id).getStr("update");
 		assertEquals(s, "uuuuu");		
 	}
+	public void testCustom(){
+		Model.tool("select").all().custom("`select` = 'haha'").one().dump();
+	}
 	public void testRemove(){
 		Model.tool("select").del(id);
 		assertEquals(Model.tool("select").get(id), null);
 	}
+
 
 }

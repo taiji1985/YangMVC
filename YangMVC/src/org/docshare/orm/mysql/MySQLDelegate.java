@@ -161,6 +161,8 @@ public class MySQLDelegate implements IDBDelegate {
 			case SQLConstains.TYPE_ORDER:
 				orderc = c;
 				break;
+			case SQLConstains.TYPE_CUSTOM:
+				sa.add(c.column);
 			}
 		}
 		
@@ -183,7 +185,7 @@ public class MySQLDelegate implements IDBDelegate {
 		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
 			
 			try {
-				return helper.getRS("select "+prefix+" from " + tbName);
+				return helper.getRS("select "+prefix+" from `" + tbName+"`");
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;

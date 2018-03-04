@@ -11,6 +11,7 @@ public class SQLConstains {
 	public static final int TYPE_ORDER = 50;
 	public static final int TYPE_LIMIT = 100;
 	public static final int TYPE_MLIKE = 8;
+	public static final int TYPE_CUSTOM = 200;
 	public int type ; 	  // 类型 
 	public String column; // 列名
 	public Object value;  // 值

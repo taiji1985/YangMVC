@@ -11,6 +11,8 @@ import org.docshare.orm.DBHelper;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.Model;
 
+import com.alibaba.fastjson.JSON;
+
 public class TestDBHelper  extends TestCase{
 	DBTool tool;
 	@Override
@@ -31,5 +33,10 @@ public class TestDBHelper  extends TestCase{
 	public void testPS(){
 		int r= DBHelper.getIns().update("update book set catalog_id=? where id=?", "2","1");
 		System.out.println("r = "+r);
+	}
+	public void testListColumn(){
+		System.out.println("listColumn ");
+		HashMap<String, ColumnDesc> r = DBHelper.getIns().listColumn("usr", false);
+		System.out.println(JSON.toJSON(r));
 	}
 }

@@ -219,9 +219,10 @@ public class TextTool {
 	}
 
 	public static String join(ArrayList<Object> params, String join_str) {
+		if(params == null) return null;
 		StringBuffer sb = new StringBuffer();
 		for(int i=0;i<params.size()-1;i++){
-			sb.append(params.get(i).toString());
+			sb.append(""+params.get(i));
 			sb.append(",");
 			
 		}

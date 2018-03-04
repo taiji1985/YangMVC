@@ -228,7 +228,7 @@ public class DBTool {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected Model db2Table(ResultSet rs,Map<String,?> c){
+	public Model db2Table(ResultSet rs,Map<String,?> c){
 		if(c == null){
 			c = columns; 
 		}
@@ -247,7 +247,7 @@ public class DBTool {
 		return tb;
 	}
 	
-	protected Model db2Table(ResultSet rs){
+	private Model db2Table(ResultSet rs){
 		return db2Table(rs,columns);
 	}
 	/**
@@ -263,11 +263,12 @@ public class DBTool {
 	 * 根据Model对象删除数据表的一行
 	 * @param m
 	 */
-	public void del(Model m){
+	public int del(Model m){
 		Object kv = m.get(key);
 		if(kv !=null){
-			del(kv);
+			return del(kv);
 		}
+		return 0;
 	}
 	
 	@Override

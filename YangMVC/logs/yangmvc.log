@@ -1283,3 +1283,75 @@
 2018-02-12 09:41:44 [ERROR]-main - Log -Log.java(41)  -setup
 2018-02-12 09:41:44 [ERROR]-main - Log -Log.java(41)  -setup
 2018-02-12 09:41:44 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-14 17:29:40 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-14 17:30:04 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-14 17:30:19 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-14 17:32:48 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-15 13:28:41 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-15 13:28:51 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-15 13:28:51 [ INFO]-main - Log -Log.java(30)  -Model[limit=ll,update=wuwu,id=1,order=oo,select=haha,delete=dd,group=gg]
+2018-02-18 16:37:01 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-18 16:37:02 [ INFO]-main - Log -Log.java(30)  -[{"about":" ","author":"haha","catalog_id":1,"chaodai":"清  ","cname":"本草_haha_haha","file_name":"000-神农本草经.txt","id":1,"name":"神农本草经","tm_year":"公元1644-1911年  ","type":"txt"},{"about":" ","author":"haha","catalog_id":1,"chaodai":"清  ","cname":"方剂","file_name":"000-神农本草经.txt","id":1,"name":"神农本草经","tm_year":"公元1644-1911年  ","type":"txt"},{"about":" ","author":"haha","catalog_id":1,"chaodai":"清  ","cname":"医案","file_name":"000-神农本草经.txt","id":1,"name":"神农本草经","tm_year":"公元1644-1911年  ","type":"txt"},{"about":" ","author":"haha","catalog_id":1,"chaodai":"清  ","cname":"经论_haha_haha_haha_haha_haha_haha","file_name":"000-神农本草经.txt","id":1,"name":"神农本草经","tm_year":"公元1644-1911年  ","type":"txt"},{"about":" ","author":"haha","catalog_id":1,"chaodai":"清  ","cname":"专科_haha_haha_haha_haha_haha_haha","file_name":"000-神农本草经.txt","id":1,"name":"神农本草经","tm_year":"公元1644-1911年  ","type":"txt"}]
+2018-02-18 16:41:10 [ERROR]-main - Log -Log.java(41)  -setup
+2018-02-18 16:41:11 [ INFO]-main - Log -Log.java(30)  -[
+	{
+		"about":" ",
+		"author":"haha",
+		"catalog_id":1,
+		"chaodai":"清  ",
+		"cname":"本草_haha_haha",
+		"file_name":"000-神农本草经.txt",
+		"id":1,
+		"name":"神农本草经",
+		"tm_year":"公元1644-1911年  ",
+		"type":"txt"
+	},
+	{
+		"about":" ",
+		"author":"haha",
+		"catalog_id":1,
+		"chaodai":"清  ",
+		"cname":"方剂",
+		"file_name":"000-神农本草经.txt",
+		"id":1,
+		"name":"神农本草经",
+		"tm_year":"公元1644-1911年  ",
+		"type":"txt"
+	},
+	{
+		"about":" ",
+		"author":"haha",
+		"catalog_id":1,
+		"chaodai":"清  ",
+		"cname":"医案",
+		"file_name":"000-神农本草经.txt",
+		"id":1,
+		"name":"神农本草经",
+		"tm_year":"公元1644-1911年  ",
+		"type":"txt"
+	},
+	{
+		"about":" ",
+		"author":"haha",
+		"catalog_id":1,
+		"chaodai":"清  ",
+		"cname":"经论_haha_haha_haha_haha_haha_haha",
+		"file_name":"000-神农本草经.txt",
+		"id":1,
+		"name":"神农本草经",
+		"tm_year":"公元1644-1911年  ",
+		"type":"txt"
+	},
+	{
+		"about":" ",
+		"author":"haha",
+		"catalog_id":1,
+		"chaodai":"清  ",
+		"cname":"专科_haha_haha_haha_haha_haha_haha",
+		"file_name":"000-神农本草经.txt",
+		"id":1,
+		"name":"神农本草经",
+		"tm_year":"公元1644-1911年  ",
+		"type":"txt"
+	}
+]

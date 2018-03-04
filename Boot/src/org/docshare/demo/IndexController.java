@@ -59,5 +59,15 @@ public class IndexController extends Controller {
 		output("context = "+context +",haha="+request.getSession()+",session servletContext="+request.getSession().getServletContext());
 		
 	}
+	public void fmParam(){
+		if(param("haha") == null ) {
+			jump("fmParam?haha=123");
+			return;
+		}
+		renderFreeMarker("/fm.html");
+	}
+	public void error(){
+		renderFreeMarker("/err.html");
+	}
 	
 }

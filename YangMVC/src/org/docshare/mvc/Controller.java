@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileUploadException;
 import org.docshare.log.Log;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.mvc.except.NullParamException;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
@@ -894,15 +896,29 @@ public class Controller {
 	 * @param path 基于web.xml中配置的tpl_base值的相对路径
 	 */
 	protected void renderFreeMarker(String path){
+		Writer out=null;
 		try {		
+			//先吧param压如
+			Map<String, Object> pMap =new HashMap<String, Object>();
+			Enumeration<String> names = request.getParameterNames();
+			while(names.hasMoreElements()){
+				String name = names.nextElement();
+				pMap.put(name, request.getParameter(name));
+			}
+			pMap.putAll(paramMap);
+			put("param",pMap);
 			response.setContentType("text/html; charset=utf-8");
 			response.setCharacterEncoding("utf-8");
 			Template tpl = MVCFilter.getIns().getFmCfg().getTemplate(path);
-			Writer out = getMyPrintWriter();
+			out = getMyPrintWriter();
 			tpl.process(root, out);
 			out.close();
 		} catch (Exception e) {
-			Log.e(e);
+			if(out!=null){
+				e.printStackTrace((PrintWriter)out);
+			}
+			//Log.e(e);
+			//throw new MVCException(e);
 		}
 		
 	}

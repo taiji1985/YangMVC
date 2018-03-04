@@ -75,7 +75,7 @@ class StaticFilterChain implements FilterChain {
 			Log.i("start to show");
 			try {
 				String type = MIME.getMIMEType(uri);
-				Log.i("data type is "+type);
+				Log.d("data type is "+type);
 				if(type != null){
 					resq2.setContentType(type);
 				}

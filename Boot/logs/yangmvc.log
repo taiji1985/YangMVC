@@ -8437,3 +8437,2388 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
 2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
 2018-02-05 18:25:39 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-12 20:52:32 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-12 20:52:39 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-12 20:52:39 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-12 20:52:39 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-12 20:52:39 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-12 20:52:39 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-12 20:53:00 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-12 20:53:19 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:27:39 [ WARN]-main - Log -Log.java(85)  -FAILED SelectChannelConnector@0.0.0.0:1985: java.net.BindException: Address already in use: bind
+2018-02-14 14:27:39 [ WARN]-main - Log -Log.java(85)  -FAILED org.eclipse.jetty.server.Server@5ecd2e33: java.net.BindException: Address already in use: bind
+2018-02-14 14:27:39 [ERROR]-main - Log -Log.java(41)  -绑定端口号错误，一般是是因为端口号被其他应用占用了。 binding port error :1985
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -run command : netstat -aon
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -  TCP    0.0.0.0:1985           0.0.0.0:0              LISTENING       6652
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -进程 6652 占用了 1985 端口 
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -正在尝试杀死占用端口的进程 , try to kill process that use the port 
+2018-02-14 14:27:39 [ INFO]-main - Log -Log.java(30)  -taskkill /F /PID 6652
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 14:27:40 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:35:04 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 14:35:05 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 14:37:14 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:37:19 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:37:32 [ERROR]-qtp381221099-12 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+For "${...}" content: Expected a string or something automatically convertible to string (number, date or boolean), or "template output" , but this has evaluated to a sequence (String[] wrapped into f.t.DefaultArrayAdapter$ObjectArrayAdapter):
+==> param.haha  [in template "fm.html" at line 1, column 3]
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${param.haha}  [in template "fm.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.NonStringOrTemplateOutputException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:509)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:907)
+	at org.docshare.demo.IndexController.fmParam(IndexController.java:67)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 14:37:32 [ERROR]-qtp381221099-12 - Log -Log.java(41)  -FreeMarker template error:
+For "${...}" content: Expected a string or something automatically convertible to string (number, date or boolean), or "template output" , but this has evaluated to a sequence (String[] wrapped into f.t.DefaultArrayAdapter$ObjectArrayAdapter):
+==> param.haha  [in template "fm.html" at line 1, column 3]
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${param.haha}  [in template "fm.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.NonStringOrTemplateOutputException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:509)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:907)
+	at org.docshare.demo.IndexController.fmParam(IndexController.java:67)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-14 14:38:11 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 14:38:17 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:39:14 [ERROR]-qtp666157527-19 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+For "${...}" content: Expected a string or something automatically convertible to string (number, date or boolean), or "template output" , but this has evaluated to a sequence (String[] wrapped into f.t.DefaultArrayAdapter$ObjectArrayAdapter):
+==> param.haha  [in template "fm.html" at line 1, column 3]
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${param.haha}  [in template "fm.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.NonStringOrTemplateOutputException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:509)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:907)
+	at org.docshare.demo.IndexController.fmParam(IndexController.java:67)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 14:39:14 [ERROR]-qtp666157527-19 - Log -Log.java(41)  -FreeMarker template error:
+For "${...}" content: Expected a string or something automatically convertible to string (number, date or boolean), or "template output" , but this has evaluated to a sequence (String[] wrapped into f.t.DefaultArrayAdapter$ObjectArrayAdapter):
+==> param.haha  [in template "fm.html" at line 1, column 3]
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${param.haha}  [in template "fm.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.NonStringOrTemplateOutputException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:509)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:907)
+	at org.docshare.demo.IndexController.fmParam(IndexController.java:67)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 14:41:40 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 14:42:31 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 14:43:02 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:25:45 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:25:46 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:25:46 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:25:46 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:25:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:25:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:25:46 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:25:47 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:25:54 [ERROR]-qtp516992923-13 - Log -Log.java(41)  -没这个方法, no such method org.docshare.demo.IndexController.err,去查查是否有拼写错误？
+2018-02-14 18:26:02 [ERROR]-qtp516992923-15 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:70)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:147)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:34:49 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:34:49 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:34:49 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:34:49 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:34:49 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:34:49 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:34:50 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:34:58 [ERROR]-qtp516992923-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:36:04 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:36:04 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:36:04 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:36:05 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:36:36 [ERROR]-qtp1630553042-20 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:37:15 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:37:48 [ERROR]-qtp1630553042-20 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:42:17 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:42:17 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:42:17 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:42:17 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:42:17 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:42:17 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:42:18 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:42:21 [ERROR]-qtp381221099-16 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:42:21 [ERROR]-qtp381221099-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:45:46 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:45:49 [ERROR]-qtp516992923-15 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:46:19 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:46:21 [ERROR]-qtp516992923-12 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:48:04 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:48:04 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:48:04 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:48:05 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:48:09 [ERROR]-qtp516992923-15 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:48:22 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 18:48:22 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 18:48:22 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 18:48:23 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 18:48:32 [ERROR]-qtp1543085802-19 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 18:49:15 [ERROR]-qtp1543085802-16 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:71)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:148)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:00:48 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:00:48 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:00:48 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:00:48 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:00:48 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:00:48 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:00:49 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:00:51 [ERROR]-qtp1660187542-11 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:01:11 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:01:14 [ERROR]-qtp1660187542-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:08:14 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:08:17 [ERROR]-qtp1660187542-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:11:08 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:11:10 [ERROR]-qtp1660187542-16 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:12:41 [ERROR]-qtp1660187542-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:12:53 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:12:55 [ERROR]-qtp516992923-14 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:17:18 [ERROR]-qtp516992923-15 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:17:24 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:17:24 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:17:24 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:17:25 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:17:26 [ERROR]-qtp1660187542-10 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:17:48 [ERROR]-qtp1660187542-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:17:51 [ERROR]-qtp1660187542-15 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:18:50 [ERROR]-qtp1660187542-15 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:18:51 [ERROR]-qtp1660187542-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:19:01 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:19:02 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:19:02 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:19:02 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:19:02 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:19:02 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:19:02 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:19:04 [ERROR]-qtp1239291892-11 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:19:17 [ERROR]-qtp1239291892-15 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:20:10 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:20:12 [ERROR]-qtp516992923-14 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:20:33 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:20:35 [ERROR]-qtp1239291892-13 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:20:57 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:20:59 [ERROR]-qtp516992923-14 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:23:16 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:23:17 [ERROR]-qtp1239291892-10 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:23:36 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:23:36 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:23:36 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:23:37 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:23:39 [ERROR]-qtp381221099-14 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)
+2018-02-14 19:24:55 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:24:56 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-02-14 19:25:03 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-02-14 19:25:07 [ERROR]-qtp381221099-17 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> haha  [in template "err.html" at line 1, column 3]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${haha}  [in template "err.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:914)
+	at org.docshare.demo.IndexController.error(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.docshare.mvc.Loader.call(Loader.java:99)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:76)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:153)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:147)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Thread.java:619)

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.except.FreeMarkerHandler;
 import org.docshare.util.TextTool;
 
 import freemarker.cache.ClassTemplateLoader;
@@ -25,7 +26,12 @@ import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.MultiTemplateLoader;
 import freemarker.cache.TemplateLoader;
 import freemarker.cache.WebappTemplateLoader;
+import freemarker.core.ParseException;
 import freemarker.template.Configuration;
+import freemarker.template.MalformedTemplateNameException;
+import freemarker.template.Template;
+import freemarker.template.TemplateExceptionHandler;
+import freemarker.template.TemplateNotFoundException;
 
 
 
@@ -202,7 +208,8 @@ public class MVCFilter implements Filter {
 		
 		fmCfg = new Configuration(Configuration.VERSION_2_3_25);  
 		fmCfg.setDefaultEncoding("utf-8");
-		
+		fmCfg.setTemplateExceptionHandler(new FreeMarkerHandler());
+		//fmCfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 		TemplateLoader ctl = new ClassTemplateLoader(MVCFilter.class,
 	            "/view");
 
@@ -225,6 +232,9 @@ public class MVCFilter implements Filter {
 		fmCfg.setTemplateLoader(mtl);
         // 指定FreeMarker模板文件的位置  
 		//fmCfg.setServletContextForTemplateLoading(application, Config.tpl_base);
+	}
+	public static Template getTemplate(String name) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException{
+		return getIns().getFmCfg().getTemplate(name);
 	}
 	HashMap<String,Object> map = new HashMap<String,Object>();
 

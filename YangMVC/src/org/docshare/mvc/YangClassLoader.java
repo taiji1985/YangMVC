@@ -24,11 +24,12 @@ class YangClassLoader extends ClassLoader{
 
 	@Override
 	public Class<?> loadClass(String name) throws ClassNotFoundException {
-    	Log.d("YangClassLoader "+version +",try load "+name);
+    	
 
         if(!name.startsWith(reloadPackage))
                 return YangClassLoader.class.getClassLoader().loadClass(name);
         try {
+        	Log.d("YangClassLoader "+version +",try load "+name);
 //            String url = "file:C:/data/projects/tutorials/web/WEB-INF/" +
 //                            "classes/reflection/MyObject.class";
 //            URL myUrl = new URL(url);

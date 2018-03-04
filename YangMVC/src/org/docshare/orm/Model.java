@@ -356,4 +356,10 @@ public class Model implements Map<String,Object> {
 			return 0;
 		}
 	}
+	
+	public void dump(){
+		Log.i(this.toString());
+	}
+	
+
 }
