@@ -22,10 +22,12 @@ class UploadProcesser {
 
 	private HttpServletRequest request;
 	private Controller c;
+	private ServletContext app = null;
 
-	public UploadProcesser(Controller c ,HttpServletRequest request,HttpServletResponse response)  {
+	public UploadProcesser(Controller c ,HttpServletRequest request,HttpServletResponse response,ServletContext app)  {
 		this.request =request;
 		this.c = c;
+		this.app  =app;
 	}
 	public void process() throws FileUploadException{
 		
@@ -33,7 +35,7 @@ class UploadProcesser {
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		
 		// Configure a repository (to ensure a secure temp location is used)
-		ServletContext servletContext = request.getServletContext();
+		ServletContext servletContext = app;
 		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 		factory.setRepository(repository);
 
@@ -75,7 +77,7 @@ class UploadProcesser {
 	    String sep=System.getProperty("line.separator");
 	    //tmpdir = tmpdir.endsWith(sep)?tmpdir:tmpdir+sep;
 	    String path = randomFileName(fileName);
-	    String real = request.getServletContext().getRealPath(path);
+	    String real = app.getRealPath(path);
 	    
 	    File f = new File(real);
 		if(!f.getParentFile().exists()){

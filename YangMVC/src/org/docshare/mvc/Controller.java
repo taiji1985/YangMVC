@@ -356,7 +356,7 @@ public class Controller {
 		String contentType = request.getContentType();
 		Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){
-			UploadProcesser processer  = new UploadProcesser(this, request, response);
+			UploadProcesser processer  = new UploadProcesser(this, request, response,application);
 			try {
 				processer.process();
 			} catch (FileUploadException e) {
@@ -892,6 +892,18 @@ public class Controller {
 		return "";
 	}
 	/**
+	 * 将session中的内容
+	 */
+	private void putSession(){
+		Map<String, Object> pMap =new HashMap<String, Object>();
+		Enumeration<String> names = session.getAttributeNames();
+		while(names.hasMoreElements()){
+			String name = names.nextElement();
+			pMap.put(name, session.getAttribute(name));
+		}
+		put("session",pMap);
+	}
+	/**
 	 * 使用FreeMarker进行数据显示
 	 * @param path 基于web.xml中配置的tpl_base值的相对路径
 	 */
@@ -907,6 +919,10 @@ public class Controller {
 			}
 			pMap.putAll(paramMap);
 			put("param",pMap);
+			
+			//压如session
+			putSession();
+			
 			response.setContentType("text/html; charset=utf-8");
 			response.setCharacterEncoding("utf-8");
 			Template tpl = MVCFilter.getIns().getFmCfg().getTemplate(path);

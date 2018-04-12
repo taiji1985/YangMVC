@@ -90,5 +90,10 @@ public class Log {
 		log.info(str);
 	}
 
+	public static void v(String string) {
+		log.debug(string);
+		
+	}
+
 
 }

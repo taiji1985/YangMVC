@@ -11,7 +11,6 @@ import org.docshare.orm.Model;
 public class IndexController extends Controller {
 	public void index(){
 		renderFreeMarker("/index.html");
-		//output("����������棬���YangMVC�������Ѿ��������ˡ�When you see this page, the YangMVC server is stared ! ");
 	}
 	public void json(){
 		outputJSON(Book.createSimple()) ;
@@ -51,11 +50,10 @@ public class IndexController extends Controller {
 		output(param("p"));
 	}
 	public void app(){
-		ServletContext context = request.getServletContext();
-		output("context = "+context.hashCode());
+		output("context = "+application.hashCode());
 	}
 	public void app2(){
-		ServletContext context = request.getServletContext();
+		ServletContext context = application;
 		output("context = "+context +",haha="+request.getSession()+",session servletContext="+request.getSession().getServletContext());
 		
 	}

@@ -48,10 +48,10 @@ public class ServerMain {
 	        contextHandler.setContextPath("/");
 	        contextHandler.setResourceBase("./WebRoot");
 	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
-	        contextHandler.setHandler(new YangHandle(server));
+	        contextHandler.setHandler(YangHandle.getIns(server));
 	        
 	        collection.addHandler(new SessionHandler());
-	        collection.addHandler(new YangHandle(server));
+	        collection.addHandler(YangHandle.getIns(server));
 	        collection.addHandler(new DefaultHandler());
 	        contextHandler.setHandler(collection);
 	       

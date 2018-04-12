@@ -164,21 +164,26 @@ public class MVCFilter implements Filter {
 	@Override
 	public void init(FilterConfig cfg) throws ServletException {
 		ins = this;
-		this.application = cfg.getServletContext();
-		Config.tpl_base = cfg.getInitParameter("template");
-		Config.ctr_base = cfg.getInitParameter("controller");
-		if(cfg.getServletContext().getInitParameter("dbusr") != null){
-			Config.dbusr = cfg.getServletContext().getInitParameter("dbusr");
-			Config.dbhost = cfg.getServletContext().getInitParameter("dbhost");
-			Config.dbpwd = cfg.getServletContext().getInitParameter("dbpwd");
-			Config.dbname = cfg.getServletContext().getInitParameter("dbname");
-			Config.dbport = cfg.getServletContext().getInitParameter("dbport");
-			
-			
-			Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
-			String reloadable = cfg.getServletContext().getInitParameter("reloadable");
-			Config.reloadable = reloadable == null? true:Boolean.parseBoolean(reloadable);
-			
+		try {
+			this.application = cfg.getServletContext();
+			Config.tpl_base = cfg.getInitParameter("template");
+			Config.ctr_base = cfg.getInitParameter("controller");
+			if(cfg.getServletContext().getInitParameter("dbusr") != null){
+				Config.dbusr = cfg.getServletContext().getInitParameter("dbusr");
+				Config.dbhost = cfg.getServletContext().getInitParameter("dbhost");
+				Config.dbpwd = cfg.getServletContext().getInitParameter("dbpwd");
+				Config.dbname = cfg.getServletContext().getInitParameter("dbname");
+				Config.dbport = cfg.getServletContext().getInitParameter("dbport");
+				
+				
+				Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
+				String reloadable = cfg.getServletContext().getInitParameter("reloadable");
+				Config.reloadable = reloadable == null? true:Boolean.parseBoolean(reloadable);
+				
+			}
+		} catch (Exception e1) {
+			Log.e("can't load YangMVC config from  Web.xml------------");
+			//e1.printStackTrace();
 		} 
 		
 		try {
@@ -212,7 +217,7 @@ public class MVCFilter implements Filter {
 		//fmCfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 		TemplateLoader ctl = new ClassTemplateLoader(MVCFilter.class,
 	            "/view");
-
+		//fmCfg.setTagSyntax(Configuration.AUTO_DETECT_TAG_SYNTAX);
 		WebappTemplateLoader wtl = new WebappTemplateLoader(application,Config.tpl_base);
 		
 	    MultiTemplateLoader mtl; 

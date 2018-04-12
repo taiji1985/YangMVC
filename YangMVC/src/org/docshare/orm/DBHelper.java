@@ -74,6 +74,7 @@ public class DBHelper {
 			Log.e(e);
 		} catch (SQLException e) {
 			Log.e(e);
+			Log.e(Config.str());
 		}
 
 	}

@@ -30,7 +30,7 @@ public class MIME {
 	 * @param file
 	 */
 	public static String getMIMEType(String fname) {
-		Log.d("MIME "+fname);
+		Log.v("MIME "+fname);
 		String ret =  map.get(TextTool.getPrefix(fname));
 		return ret == null?"text/html":ret;
 	}

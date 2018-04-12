@@ -10822,3 +10822,47 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
 	at java.lang.Thread.run(Thread.java:619)
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=*******, port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true]
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -password is hidden in Config
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-04-03 15:30:49 [ WARN]-main - Log -Log.java(85)  -FAILED SelectChannelConnector@0.0.0.0:1985: java.net.BindException: Address already in use: bind
+2018-04-03 15:30:49 [ WARN]-main - Log -Log.java(85)  -FAILED org.eclipse.jetty.server.Server@2db7ae22: java.net.BindException: Address already in use: bind
+2018-04-03 15:30:49 [ERROR]-main - Log -Log.java(41)  -绑定端口号错误，一般是是因为端口号被其他应用占用了。 binding port error :1985
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -run command : netstat -aon
+2018-04-03 15:30:49 [ WARN]-main - Log -Log.java(85)  -FAILED SelectChannelConnector@0.0.0.0:1985: java.net.BindException: Address already in use: bind
+2018-04-03 15:30:49 [ WARN]-main - Log -Log.java(85)  -FAILED org.eclipse.jetty.server.Server@5dce1bea: java.net.BindException: Address already in use: bind
+2018-04-03 15:30:49 [ERROR]-main - Log -Log.java(41)  -绑定端口号错误，一般是是因为端口号被其他应用占用了。 binding port error :1985
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -run command : netstat -aon
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -  TCP    0.0.0.0:1985           0.0.0.0:0              LISTENING       8552
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -进程 8552 占用了 1985 端口 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -正在尝试杀死占用端口的进程 , try to kill process that use the port 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -taskkill /F /PID 8552
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -  TCP    0.0.0.0:1985           0.0.0.0:0              LISTENING       8552
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -进程 8552 占用了 1985 端口 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -正在尝试杀死占用端口的进程 , try to kill process that use the port 
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -taskkill /F /PID 8552
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser

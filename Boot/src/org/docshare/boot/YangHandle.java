@@ -72,7 +72,6 @@ class StaticFilterChain implements FilterChain {
 			in = getClass().getResourceAsStream("favicon.ico");			
 		}
 		if(in != null){
-			Log.i("start to show");
 			try {
 				String type = MIME.getMIMEType(uri);
 				Log.d("data type is "+type);
@@ -108,8 +107,14 @@ public class YangHandle extends AbstractHandler {
 	private MVCFilter filter;
 //	HashSessionManager manager =new HashSessionManager();
 //	HashSessionIdManager	sim  = new HashSessionIdManager(new Random());
-
-	public YangHandle(Server server) {
+	private static YangHandle ins = null;
+	public static YangHandle getIns(Server server){
+		if(ins == null){
+			ins = new YangHandle(server);
+		}
+		return ins;
+	}
+	private YangHandle(Server server) {
 		this.server =server;
 		
 		filter = new  MVCFilter();
