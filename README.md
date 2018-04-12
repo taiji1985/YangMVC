@@ -17,7 +17,12 @@ YangMVC提供的 ORM即为易用。
 
 LasyList list = Model.tool("book").all().gt("id",12).lt("id,33);
 
- 就得到了一个线性表（数组），可以直接在JSTL和FreeMarker中使用循环来枚举。。
+这句话相当于sql语句 select * from book where id>12 and id<33
+
+它得到了一个线性表（数组），可以直接在JSTL和FreeMarker中使用循环来枚举。。
+
+如果有复杂sql需要些，你可以直接写sql，它同样会返回LasyList，而不是ResultSet。
+
 
 ORM框架不需要预先生成任何POJO类，所有表都映射为内置的Model类，即一个Model对象对应数据库表中的一行。。。 Model可以适应任何的表和视图。
 
