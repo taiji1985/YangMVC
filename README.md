@@ -7,6 +7,39 @@ https://git.oschina.net/yangtf/YangMVC/attach_files
 
 请在此页下载版本号最高的版本
 
+# 简介
+
+YangMVC是一个高效的、轻量级MVC和ORM框架。 你只需要想你的项目中丢入一个jar包，即可完成绝大多数Web网站的开发。
+
+YangMVC的网址和控制器类之间采用了默认命名约定的方法，减少了配置。如IndexController对应网站根目录， BookController对应/book目录。
+
+YangMVC提供的 ORM即为易用。
+
+LasyList list = Model.tool("book").all().gt("id",12).lt("id,33);
+
+ 就得到了一个线性表（数组），可以直接在JSTL和FreeMarker中使用循环来枚举。。
+
+ORM框架不需要预先生成任何POJO类，所有表都映射为内置的Model类，即一个Model对象对应数据库表中的一行。。。 Model可以适应任何的表和视图。
+
+如果你确实需要将数据库中的数据转化为一个特定的java对象（POJO类),那么Model提供方法可以直接转化为你需要的类。用起来也非常方便。
+
+使用这个框架，你可以以即为高效的速度推进你的项目，而不需要为了写一个功能，去改java文件，改俩个xml文件（用SSH的同学可以冒一个泡，是不是这样）
+
+数据库的设计在初期常有不完善的地方，如果使用Hibernate这种框架，那么就需要在修改数据库后重新生成Java类。而对应的DAO类也要对应修改，这简直是噩梦。。。
+
+iBatis是你喜欢的，但它需要sql语句。YangMVC不用。。。
+
+# 开始使用YangMVC
+
+
+首先您需要配置开发环境。 您需要一个JDK1.7以上的版本。且需要一个Eclipse或MyEclipse。
+
+如果你只有Eclipse，请看 [这个教程](https://gitee.com/yangtf/YangMVC/wikis/A01-%E9%85%8D%E7%BD%AE-boot%E7%89%88) 。 
+
+如果使用MyEclipse请看  [A01的配置](https://gitee.com/yangtf/YangMVC/wikis/A01-%E9%85%8D%E7%BD%AE)
+
+
+
 # 更新日志
 ## V2.3.5 
 1. 允许使用关键字作为表名和字段名
