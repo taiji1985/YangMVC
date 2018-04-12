@@ -46,6 +46,11 @@ iBatis是你喜欢的，但它需要sql语句。YangMVC不用。。。
 
 
 # 更新日志
+
+## V2.3.6 
+
+童鞋发现了一个bug，就是tomcat6.0 使用YangMVC 无法上传文件，经测试得知原因为， YangMVC在上传时使用了高版本的Servlet-api,而Tomcat6 不支持，所以。。。去掉了对高版本api的使用。   使其在独立的tomcat6.0上运行无任何问题。。。 
+
 ## V2.3.5 
 1. 允许使用关键字作为表名和字段名
 2. 在Model中添加 getStr /getInt / getLong这些便捷的方法不需要自己强转了。
