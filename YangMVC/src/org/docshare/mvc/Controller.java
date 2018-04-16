@@ -412,13 +412,68 @@ public class Controller {
 	protected void sess(String key,Object val){
 		session.setAttribute(key, val);
 	}
+	/**
+	 * 获取int类型session变量
+	 * @param key session变量的名字
+	 * @return 如果有，则返回，否则返回null
+	 */
+	protected Integer sessInt(String key){
+		return (Integer)sess(key);
+	}
+	/**
+	 * 获取double类型session变量
+	 * @param key session变量的名字
+	 * @return 如果有，则返回，否则返回null
+	 */
+	protected Double sessDouble(String key) {
+		return (Double)sess(key);
+	}
+	/**
+	 * 获取String类型session变量
+	 * @param key session变量的名字
+	 * @return 如果有，则返回，否则返回null
+	 */
+	protected String sessStr(String key) {
+		Object o = sess(key);
+		return o == null?null:o.toString();
+	}
+	
 	
 	protected void removeSession(String key){
 		session.removeAttribute(key);
 	}
-	
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
 	protected Object app(String key){
 		return application.getAttribute("key");
+	}
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
+	protected Integer appInt(String key) {
+		return (Integer)app(key);
+	}
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
+	protected Double appDouble(String key){
+		return (Double)app(key);
+	}
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
+	protected String appStr(String key) {
+		Object o = app(key);
+		return o == null?null:o.toString();
 	}
 	protected void app(String key,Object val){
 		application.setAttribute(key, val);
