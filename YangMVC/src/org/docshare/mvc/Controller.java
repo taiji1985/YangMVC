@@ -3,6 +3,7 @@ package org.docshare.mvc;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -304,7 +305,7 @@ public class Controller {
 	protected void render(String view) {
 		if(!can_out){
 			try {
-				outMutiOutErr();
+				outMutiOutErr("view "+view);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -485,9 +486,8 @@ public class Controller {
 	void error(String s){
 		
 	}
-	private void outMutiOutErr() throws IOException{
-		throw new IOException("童鞋，请不要在一个控制器方法中，写入多个输出语句。每个控制器每次执行只能输出一次。你是不是在if中忘了写return ?");
-		
+	private void outMutiOutErr(String s) throws IOException{
+		throw new IOException("童鞋，请不要在一个控制器方法中，写入多个输出语句。每个控制器每次执行只能输出一次。你是不是在if中忘了写return ? \n 您试图输出："+s);
 	}
 	
 	private static  boolean enable_gzip = true;
@@ -533,7 +533,7 @@ public class Controller {
 	protected void output(String s) {
 		try {
 			if(!can_out){
-				outMutiOutErr();
+				outMutiOutErr(s);
 				return;
 			}
 			can_out = false;
@@ -545,6 +545,23 @@ public class Controller {
 			writer.close();
 		} catch (IOException e) {
 			Log.e(e);
+		}
+	}
+	/**
+	 * 输出一个字节流
+	 * @param ba
+	 * @return
+	 */
+	protected boolean outputBytes(byte[] ba){
+		OutputStream oo;
+		try {
+			oo = response.getOutputStream();
+			oo.write(ba);
+			oo.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 	/**
@@ -780,7 +797,7 @@ public class Controller {
 	protected void jump(String url){
 		try {
 			if(!can_out){
-				outMutiOutErr();
+				outMutiOutErr("jump to url");
 				return;
 			}
 			can_out = false;
