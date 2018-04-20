@@ -3,6 +3,7 @@ package org.docshare.mvc;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
@@ -304,7 +305,7 @@ public class Controller {
 	protected void render(String view) {
 		if(!can_out){
 			try {
-				outMutiOutErr();
+				outMutiOutErr("view "+view);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -412,13 +413,68 @@ public class Controller {
 	protected void sess(String key,Object val){
 		session.setAttribute(key, val);
 	}
+	/**
+	 * 获取int类型session变量
+	 * @param key session变量的名字
+	 * @return 如果有，则返回，否则返回null
+	 */
+	protected Integer sessInt(String key){
+		return (Integer)sess(key);
+	}
+	/**
+	 * 获取double类型session变量
+	 * @param key session变量的名字
+	 * @return 如果有，则返回，否则返回null
+	 */
+	protected Double sessDouble(String key) {
+		return (Double)sess(key);
+	}
+	/**
+	 * 获取String类型session变量
+	 * @param key session变量的名字
+	 * @return 如果有，则返回，否则返回null
+	 */
+	protected String sessStr(String key) {
+		Object o = sess(key);
+		return o == null?null:o.toString();
+	}
+	
 	
 	protected void removeSession(String key){
 		session.removeAttribute(key);
 	}
-	
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
 	protected Object app(String key){
 		return application.getAttribute("key");
+	}
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
+	protected Integer appInt(String key) {
+		return (Integer)app(key);
+	}
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
+	protected Double appDouble(String key){
+		return (Double)app(key);
+	}
+	/**
+	 * 获取application对象中存储 的变量
+	 * @param key 变量名
+	 * @return 变量值， 如果没有则返回null
+	 */
+	protected String appStr(String key) {
+		Object o = app(key);
+		return o == null?null:o.toString();
 	}
 	protected void app(String key,Object val){
 		application.setAttribute(key, val);
@@ -430,9 +486,8 @@ public class Controller {
 	void error(String s){
 		
 	}
-	private void outMutiOutErr() throws IOException{
-		throw new IOException("童鞋，请不要在一个控制器方法中，写入多个输出语句。每个控制器每次执行只能输出一次。你是不是在if中忘了写return ?");
-		
+	private void outMutiOutErr(String s) throws IOException{
+		throw new IOException("童鞋，请不要在一个控制器方法中，写入多个输出语句。每个控制器每次执行只能输出一次。你是不是在if中忘了写return ? \n 您试图输出："+s);
 	}
 	
 	private static  boolean enable_gzip = true;
@@ -478,7 +533,7 @@ public class Controller {
 	protected void output(String s) {
 		try {
 			if(!can_out){
-				outMutiOutErr();
+				outMutiOutErr(s);
 				return;
 			}
 			can_out = false;
@@ -490,6 +545,23 @@ public class Controller {
 			writer.close();
 		} catch (IOException e) {
 			Log.e(e);
+		}
+	}
+	/**
+	 * 输出一个字节流
+	 * @param ba
+	 * @return
+	 */
+	protected boolean outputBytes(byte[] ba){
+		OutputStream oo;
+		try {
+			oo = response.getOutputStream();
+			oo.write(ba);
+			oo.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 	/**
@@ -725,7 +797,7 @@ public class Controller {
 	protected void jump(String url){
 		try {
 			if(!can_out){
-				outMutiOutErr();
+				outMutiOutErr("jump to url");
 				return;
 			}
 			can_out = false;
