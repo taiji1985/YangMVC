@@ -63,7 +63,8 @@ public class MySQLDelegate implements IDBDelegate {
 			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs2);
 		}else{
 			ArrayList<String> sa=new ArrayList<String>();
-			for(String k: m.keySet()){
+			
+			for(String k: m.changeColumns()){
 				if(k == key)continue;
 				Object v = m.get(k);
 				if(v == null || v.toString().length() == 0){
@@ -77,8 +78,12 @@ public class MySQLDelegate implements IDBDelegate {
 			}
 			String ss = ArrayTool.join(",", sa);
 			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName("id")) );
+			if(m.changeColumns().size() == 0){
+				Log.i("no change data for update "+sql);
+				return 0;
+			}
 		}
-		Log.d("DBTool run sql: "+sql+"  params=["+ArrayTool.join(",", plist)+"]");
+		Log.d("DBTool run sql: "+sql+"  params=["+ArrayTool.joinWithLengthLimit(",", plist,20)+"]");
 		Object[] objs = plist.toArray();
 		DBHelper helper = DBHelper.getIns();
 		

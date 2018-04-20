@@ -261,11 +261,40 @@ public class Model implements Map<String,Object> {
 		sb.insert(0, "Model");
 		return sb.toString();
 	}
+	/**
+	 * 记录所有被改变的记录，以便于生成更新用的sql语句。
+	 */
+	HashSet<String> changeList = null;
+	public Set<String> changeColumns(){
+		return changeList != null?changeList : new HashSet<String>();
+	}
 	@Override
 	@NotNull
 	public Model put(String key, Object value) {
 		if(columns.containsKey(key)){
 			columns.put((String)key, value);
+			if(changeList == null){
+				changeList  = new HashSet<String>();
+			}
+			changeList.add(key);
+		}else{ //如果没有这个key，则添加入extra之中。
+			if(extra == null){
+				extra = new HashMap<String,Object>();
+			}
+			extra.put(key, value);
+		}
+		return this;
+	}
+	/**
+	 * 内部使用的put
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	Model innerPut(String key,Object value){
+		if(columns.containsKey(key)){
+			columns.put((String)key, value);
+			
 		}else{ //如果没有这个key，则添加入extra之中。
 			if(extra == null){
 				extra = new HashMap<String,Object>();

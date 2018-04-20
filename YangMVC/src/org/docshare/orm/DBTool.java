@@ -241,7 +241,7 @@ public class DBTool {
 			} catch (SQLException e) {
 				Log.e(e);
 			}
-			tb.put(key, v);
+			tb.innerPut(key, v);
 		}
 		
 		return tb;

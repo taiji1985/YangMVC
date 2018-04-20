@@ -15,7 +15,23 @@ public class ArrayTool {
 		s = s.substring(1);
 		return s;
 	}
-	
+	@SuppressWarnings("rawtypes")
+	public static String joinWithLengthLimit(String joiner,Collection c,int len){
+		StringBuffer sb = new StringBuffer();
+		for(Object o: c){
+			String t = "";
+			if( o == null) t= "null";
+			else if(o.toString().length()>len){
+				t = o.toString().substring(0,len)+"...";
+			}else t = o.toString();
+			sb.append(joiner+t);
+		}
+		String s = sb.toString();
+		if(s.length()<=0)return s;
+		
+		s = s.substring(1);
+		return s;
+	}
 	public static String valueWrapper(String name,Object o,String type){
 		String val = "";
 		if(o==null){

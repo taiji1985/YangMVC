@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 
 public class MVCException extends RuntimeException{
-
+	private String msg = "";
 	/**
 	 * 
 	 */
@@ -13,13 +13,20 @@ public class MVCException extends RuntimeException{
 
 	public MVCException(String msg) {
 		super(msg);
+		this.msg = msg;
 	}
 	public MVCException(Throwable throwable){
 		this.throwable  = throwable;
 	}
+	public MVCException(String msg,Throwable throwable){
+		super(msg);
+		this.msg = msg;
+		this.throwable = throwable;
+	}
 	
 	@Override
 	public void printStackTrace(PrintStream s) {
+		s.println("Message: "+msg);
 		if(throwable!=null){
 			throwable.printStackTrace(s);
 			s.println("~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~");
@@ -28,6 +35,7 @@ public class MVCException extends RuntimeException{
 	}
 	@Override
 	public void printStackTrace(PrintWriter s) {
+		s.println("Message: "+msg);
 		if(throwable!=null){
 			throwable.printStackTrace(s);
 			s.println("~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~");

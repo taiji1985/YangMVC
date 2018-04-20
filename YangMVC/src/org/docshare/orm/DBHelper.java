@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.util.FileTool;
 import org.docshare.util.TextTool;
 
@@ -182,7 +183,9 @@ public class DBHelper {
 			return ret;
 			
 		} catch (SQLException e) {
-			Log.e("exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") );
+			//new MVCException();
+			String msg = "exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") ;
+			Log.e(msg);
 			Log.e(e);
 		}
 		return 0;

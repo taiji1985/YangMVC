@@ -44,7 +44,7 @@ class StaticFilterChain implements FilterChain {
 		HttpServletRequest req2 = (HttpServletRequest) req;
 		HttpServletResponse resq2 = (HttpServletResponse) resp;
 		String uri = req2.getRequestURI();
-		Log.e("StaticFilterChain called "+uri);
+		//Log.e("StaticFilterChain called "+uri);
 //		if(uri.contains("fav.ico")){
 //			resp.setContentType("image/x-icon");
 //			OutputStream os = resp.getOutputStream();
@@ -74,7 +74,7 @@ class StaticFilterChain implements FilterChain {
 		if(in != null){
 			try {
 				String type = MIME.getMIMEType(uri);
-				Log.d("data type is "+type);
+				Log.v("data type is "+type);
 				if(type != null){
 					resq2.setContentType(type);
 				}
