@@ -573,7 +573,7 @@ public class Controller {
 			writer = getMyPrintWriter();
 			
 			response.setCharacterEncoding("utf-8");
-			response.setContentType("application/json");
+			response.setContentType("text/json");
 			
 			if(obj == null)writer.write("{}");
 			else{String string = JSON.toJSONString(obj);
