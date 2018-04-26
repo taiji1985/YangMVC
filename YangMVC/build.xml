@@ -4,6 +4,9 @@
     <!--ANT 1.7 is required                                        -->     
 	<property name="dest" value="yangmvc-2.3.8-all.jar" />
     <target name="create_run_jar">
+    	<delete>
+    	   	  <fileset dir="C:/work/zbushu" includes="yangmvc*all.jar"/>
+    	</delete>
         <jar destfile="C:/work/zbushu/${dest}" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="org.docshare.orm.ConfigCreator"/>
@@ -23,6 +26,7 @@
             <zipfileset excludes="META-INF/*.SF" src="C:/dev/MyEclipse/Common/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
             -->
         </jar>
+       	
     	<copy file="C:/work/zbushu/${dest}" todir="C:/work/test3/xiaona/libs-all"/>
     </target>
 </project>

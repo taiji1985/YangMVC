@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 定义一个工程，默认任务为warFile。 -->
+<project name="buildandcopy" default="warFile" basedir=".">
+    
+    <!-- 定义属性，打成war包的名称。 -->
+    <property name="warFileName" value="ROOT.war"></property>
+    
+    <!-- 定义路径，编译java文件时用到的jar包。 -->
+    <path id="project.lib">
+        <fileset dir="${basedir}/WEB-INF/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+    
+    <!-- 定义任务，清空任务：清空原有的class文件，创建新的build路径。  
+        <delete dir="${basedir}/build" />
+        <mkdir dir="${basedir}/build" />-->
+    <target name="clean">
+    	<delete file="${basedir}/${warFileName}" />
+    </target>
+     
+    <!-- 定义任务，编译src文件夹中的java文件，编译后的class文件放到创建的文件夹下。 -->
+ <!--    <target name="compile" depends="clean">
+        <javac srcdir="${basedir}/src" destdir="${basedir}/build" includeantruntime="false">
+            <classpath refid="project.lib">
+            </classpath>
+        </javac>
+    </target>
+ -->
+    <!-- 定义默认任务，将class文件集合成jar包。    depends="compile" -->
+    <target name="warFile"  depends="clean">
+        <!-- 删除原有war包。 -->
+        <delete dir="${basedir}/${warFileName}" />
+        <!-- 建立新war包。 -->
+        <war destfile="${basedir}/${warFileName}" webxml="${basedir}/WebRoot/WEB-INF/web.xml">
+            <!-- 将非jar和非class文件拷贝到war包的对应路径下。 -->
+            <fileset dir="${basedir}/WebRoot">
+                <include name="**/**.*" />
+                <exclude name="**/*.jar"/>
+                <exclude name="**/*.class"/>
+                <exclude name="**/*.java"/>
+                <exclude name="**/*.war"/>
+                <exclude name="**/*.zip"/>
+                <exclude name="**/.settings/*"/>
+                <exclude name="**/logs/*"/>
+                <exclude name="**/buildwar.xml"/>
+                <exclude name="**/.*"/>
+            </fileset>
+            <lib dir="${basedir}/WebRoot/WEB-INF/lib" />  
+            <!-- 将jar和class文件拷贝到war包的对应路径下。 -->
+<!--             <lib dir="${basedir}/libs-all/" /> -->
+             <classes dir="${basedir}/WebRoot/WEB-INF/classes" /> 
+        </war>
+<!--     	<copy file="${basedir}/${warFileName}" todir="${basedir}/../bae/"/> -->
+    </target>
+    
+</project>
