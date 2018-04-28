@@ -204,21 +204,21 @@ public class Controller {
 		return list.page(page, pagesz);
 		
 	}
-	/**
-	 * @deprecated
-	 * 获取参数，如果该参数为null，则返回使用参数def给出的值
-	 * @param name 参数名
-	 * @param def 默认值
-	 * @return  参数值
-	 */
-	@Deprecated
-	protected Object paramWithDefault(String name,Object def){
-		String ret = param(name);
-		if(def instanceof Integer && ret != null){
-			return Integer.parseInt(ret);
-		}
-		return ret == null?def:ret;
-	}
+//	/**
+//	 * @deprecated
+//	 * 获取参数，如果该参数为null，则返回使用参数def给出的值
+//	 * @param name 参数名
+//	 * @param def 默认值
+//	 * @return  参数值
+//	 */
+//	@Deprecated
+//	protected Object paramWithDefault(String name,Object def){
+//		String ret = param(name);
+//		if(def instanceof Integer && ret != null){
+//			return Integer.parseInt(ret);
+//		}
+//		return ret == null?def:ret;
+//	}
 	/**
 	 * 内部使用的属性，为了防止用户反复输出，设置一个flag，在开始一次新的请求时清空flag。
 	 */
