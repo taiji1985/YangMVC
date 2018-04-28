@@ -30,7 +30,6 @@ import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
-import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.TemplateNotFoundException;
 
 

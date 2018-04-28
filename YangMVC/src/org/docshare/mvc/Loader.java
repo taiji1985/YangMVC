@@ -87,8 +87,8 @@ class Loader {
 			
 			Controller ins = (Controller) obj;
 			ins.setReq(req, resp);
-			
-			if(! ins.checkRequire()){ //如果未通过检测
+			//如果方法名为login则不做检验。
+			if( ! "login".equals(method) &&  ! ins.checkRequire() ){ //如果未通过检测
 				ins.actionRequire(false);
 				return true;
 			}
