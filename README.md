@@ -67,7 +67,7 @@ iBatis是你喜欢的，但它需要sql语句。YangMVC不用。。。
 
 # 完整的文档请看
 
-https://gitee.com/yangtf/YangMVC/wikis/Home
+https://gitee.com/yangtf/YangMVC/wikis/pages
 
 # javadoc 地址
 
