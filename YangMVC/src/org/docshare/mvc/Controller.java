@@ -355,7 +355,7 @@ public class Controller {
 		session = request.getSession();
 		application = session.getServletContext();
 		String contentType = request.getContentType();
-		Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
+		//Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){
 			UploadProcesser processer  = new UploadProcesser(this, request, response,application);
 			try {

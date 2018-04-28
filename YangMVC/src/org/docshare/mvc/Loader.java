@@ -15,7 +15,6 @@ import org.docshare.log.Log;
 class Loader {
 	static Reloader reloader = null;
 	static int loaderVersion = 0;
-	Reloader reloader2 = null;
 	public static Class<?> load(String p) throws ClassNotFoundException{
 //		if(true){
 //			Log.i("load ..."+p);
@@ -104,7 +103,7 @@ class Loader {
 			}else{
 				CallCacheMap.addCache(uri, cz, m, null);
 			}
-			Log.d("call success");
+			//Log.d("call success");
 			return true;
 		}catch(NoSuchMethodException ne){
 			Throwable cause = ne.getCause();

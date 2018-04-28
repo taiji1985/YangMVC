@@ -112,7 +112,6 @@ public class MVCFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req2 = (HttpServletRequest) req;
 		req2.setCharacterEncoding("utf-8");
-		//Log.i("contentType"+req2.getContentType());
 		
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
@@ -151,15 +150,15 @@ public class MVCFilter implements Filter {
 		
 		try {
 			process(uri,context,req2,(HttpServletResponse)resp,chain);
-//			if(ret)return;
-//			else{
-//				outErr((HttpServletResponse) resp, "The Controller is not found ,see the log for detail");
-//			}
 		} catch (Exception e) {
 			Log.e(e);
 		}
 		
 		
+	}
+	private String loadConfig(String cfgName,String def){
+		String r = application.getInitParameter(cfgName);
+		return r == null? def :r;
 	}
 	@Override
 	public void init(FilterConfig cfg) throws ServletException {
@@ -168,21 +167,18 @@ public class MVCFilter implements Filter {
 			this.application = cfg.getServletContext();
 			Config.tpl_base = cfg.getInitParameter("template");
 			Config.ctr_base = cfg.getInitParameter("controller");
-			if(cfg.getServletContext().getInitParameter("dbusr") != null){
-				Config.dbusr = cfg.getServletContext().getInitParameter("dbusr");
-				Config.dbhost = cfg.getServletContext().getInitParameter("dbhost");
-				Config.dbpwd = cfg.getServletContext().getInitParameter("dbpwd");
-				Config.dbname = cfg.getServletContext().getInitParameter("dbname");
-				Config.dbport = cfg.getServletContext().getInitParameter("dbport");
-				
-				
-				Config.dbport = Config.dbport==null ? "3306": Config.dbport; 
-				String reloadable = cfg.getServletContext().getInitParameter("reloadable");
-				Config.reloadable = reloadable == null? true:Boolean.parseBoolean(reloadable);
-				
+			Config.tpl_base = Config.tpl_base == null? "/view" :Config.tpl_base;
+			Config.ctr_base = Config.ctr_base == null? "org.demo":Config.ctr_base;
+			if(application.getInitParameter("dbusr") != null){
+				Config.dbusr  = loadConfig("dbusr" ,Config.dbusr);
+				Config.dbhost = loadConfig("dbhost",Config.dbhost);
+				Config.dbpwd  = loadConfig("dbpwd" ,Config.dbpwd);
+				Config.dbname = loadConfig("dbname",Config.dbname);
+				Config.dbport = loadConfig("dbport",Config.dbport);				
+				Config.reloadable = Boolean.parseBoolean(loadConfig("reloadable", Config.reloadable+""));
 			}
 		} catch (Exception e1) {
-			Log.e("can't load YangMVC config from  Web.xml------------");
+			Log.e("can't load YangMVC config from  web.xml------------");
 			//e1.printStackTrace();
 		} 
 		
@@ -190,19 +186,17 @@ public class MVCFilter implements Filter {
 			String initCls = Config.ctr_base+".Init";
 			Log.d("try load init class " + initCls);
 			Class.forName(initCls).newInstance();
-			
 		} catch (ClassNotFoundException e) {
 			Log.d("init class not found");
 		} catch (InstantiationException e) {
-			Log.d("init class can not Instantiation");
+			Log.e("init class can not Instantiation : InstantiationException ");
 		} catch (IllegalAccessException e) {
-			Log.d("init class can not Instantiation");
+			Log.e("init class can not Instantiation : IllegalAccessException");
 		}
 		initFreeMarker();
 		String hidePwd = Config.dbpwd;
-		Config.dbpwd = "*******";
+		Config.dbpwd = "[hidden]";
 		Log.i(Config.str());
-		Log.i("password is hidden in Config");
 		Config.dbpwd = hidePwd;
 		
 	}
