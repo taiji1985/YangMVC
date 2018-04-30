@@ -136,6 +136,20 @@ public class Model implements Map<String,Object> {
 		return Long.parseLong(str);
 	}
 	
+	/**
+	 * 以Double形式返回字段值，如果原本为非整数，则尝试转换（如果无法转换则报错）
+	 * @param key 字段的名称
+	 * @return 字段你的值（整数）
+	 */
+	public Double getDouble(Object key){ 
+		Object rObject  = get(key);
+		if(rObject instanceof Double){
+			return (Double)rObject;
+		}
+		String str = rObject +""; 
+		return Double.parseDouble(str);
+	}
+	
 	@Override
 	public Object get(Object key) {
 		String ks = (String)key;
