@@ -117,18 +117,18 @@ public class TextTool {
 	}
 
 	public static String join(String[] str, String join_str) {
-		String ret = "";
 		if (str == null) {
 			return "";
 		}
+		StringBuffer sb =new StringBuffer();
 		for (String s : str) {
-			if (ret.length() > 0) {
-				ret += join_str;
+			if (sb.length() > 0) {
+				sb.append(join_str);
 			}
-			ret += s;
+			sb.append(s);
 		}
 
-		return ret;
+		return sb.toString();
 	}
 
 	public static String getBefore(String str, String mark) {
@@ -176,22 +176,22 @@ public class TextTool {
 	public static String firstUpper(String s){
 		if(s == null)return null;
 		
-		if(s.length()<=1){
-			return s.toUpperCase();
-		}else{
-			return s.substring(0,1).toUpperCase()+s.substring(1);
+		char[] arr = s.toCharArray();
+		if(arr.length>0 && arr[0]>='a'&&arr[0]<='z'){
+			arr[0] = (char) (arr[0] - 'a'+'A');
 		}
+		return new String(arr);
 		
 	}
 
 	public static String firstLower(String s) {
 		if(s == null)return null;
 		
-		if(s.length()<=1){
-			return s.toLowerCase();
-		}else{
-			return s.substring(0,1).toLowerCase()+s.substring(1);
+		char[] arr = s.toCharArray();
+		if(arr.length>0 && arr[0]>='A'&&arr[0]<='Z'){
+			arr[0] = (char) (arr[0] - 'A'+'a');
 		}
+		return new String(arr);
 	}
 
 	public static String join(List<String> ret, String join_str) {

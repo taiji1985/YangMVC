@@ -100,7 +100,7 @@ public class DBTool {
 	 * @return 返回一个包含了该SQL结果的LasyList（并没有真正查询，在你读取数据时真正查询
 	 */
 	@Deprecated
-	public LasyList fromSQL(String sql){
+	public static LasyList fromSQL(String sql){
 		return LasyList.fromRawSql(sql);
 	}
 
