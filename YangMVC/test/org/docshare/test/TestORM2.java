@@ -14,7 +14,7 @@ public class TestORM2 extends TestCase{
 	protected void setUp() throws Exception {
 		super.setUp();
 		Config.dbname ="mvc_demo";
-		Config.dbport = "3308";
+		Config.dbport = "3306";
 		tool = Model.tool("book");
 	}
 

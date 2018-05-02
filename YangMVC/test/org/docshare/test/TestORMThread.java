@@ -2,7 +2,9 @@ package org.docshare.test;
 
 import java.util.ArrayList;
 
+
 import org.docshare.log.Log;
+import org.docshare.mvc.Config;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
@@ -10,6 +12,9 @@ import org.docshare.orm.Model;
 import junit.framework.TestCase;
 
 public class TestORMThread extends TestCase {
+	public TestORMThread() {
+		Config.dbname ="mvc_demo";
+	}
 	public void testConnectionClose() throws InterruptedException{
 		int s  = DBHelper.getIns().getVal("show status like '%Threads_connected%'", "Value");
 		Log.i(s+"");
