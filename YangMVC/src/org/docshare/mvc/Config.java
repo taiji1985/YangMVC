@@ -38,10 +38,16 @@ public class Config {
 	public static  String ctr_base;
 	public static int level=0;
 	
+	/**
+	 * 是否使用SSL连接，默认为false
+	 */
+	public static boolean useSSL = false;
+	
 	public static String str() {
 		return "Config [dbhost=" + dbhost +", dbname=" + dbname + ", dbusr=" + dbusr + ", dbpwd="
 				+ dbpwd + ", port = "+ dbport + ", tpl_base=" + tpl_base + ", ctr_base=" + ctr_base
-				+",reloadable="+reloadable+""
+				+",reloadable="+reloadable
+				+",useSSL="+useSSL
 				+ "]";
 	}
 	

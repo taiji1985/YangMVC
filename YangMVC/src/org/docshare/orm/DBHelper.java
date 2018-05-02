@@ -64,7 +64,7 @@ public class DBHelper {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			String uri = String.format(
-					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8",
+					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&useSSL="+Config.useSSL,
 					Config.dbhost,Config.dbport, Config.dbname);
 			String user = Config.dbusr;
 			String password = Config.dbpwd;
