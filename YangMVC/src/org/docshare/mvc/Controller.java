@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileUploadException;
 import org.docshare.log.Log;
-import org.docshare.mvc.except.MVCException;
 import org.docshare.mvc.except.NullParamException;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;

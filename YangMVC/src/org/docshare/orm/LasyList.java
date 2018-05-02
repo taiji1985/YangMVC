@@ -339,7 +339,7 @@ public class LasyList extends ListAdapter {
 	}
 	private void closeRS(){
 		try{
-			Log.d("LasyList finalized");
+			Log.v("LasyList finalized");
 			if(rs !=null){
 				rs.close();
 				rs =null;

@@ -120,7 +120,6 @@ public class FileTool {
 	public static String readAll(String f, String charset) {
 		if (!FileTool.exists(f))
 			return null;
-		BufferedReader br = null;
 		try {
 			return readAll(new FileInputStream(f),charset);
 		} catch (FileNotFoundException e) {

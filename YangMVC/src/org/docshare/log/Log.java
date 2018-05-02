@@ -91,7 +91,7 @@ public class Log {
 	}
 
 	public static void v(String string) {
-		log.debug(string);
+		//log.debug(string);
 		
 	}
 

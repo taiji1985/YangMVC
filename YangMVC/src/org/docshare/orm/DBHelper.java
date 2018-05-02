@@ -15,7 +15,6 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
-import org.docshare.mvc.except.MVCException;
 import org.docshare.util.FileTool;
 import org.docshare.util.TextTool;
 
@@ -157,9 +156,9 @@ public class DBHelper {
 	public Object getLastId(){
 		return last_id;
 	}
-	public int update(String sql) {
-		return update(sql);
-	}
+//	public int update(String sql) {
+//		return update(sql,null);
+//	}
 
 	public int updateWithArray(String sql,Object[] objs){
 		try {

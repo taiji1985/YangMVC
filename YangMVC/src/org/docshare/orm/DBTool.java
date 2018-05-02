@@ -110,7 +110,7 @@ public class DBTool {
 	 * @return 符合条件的模型
 	 * @throws SQLException
 	 */
-	public Model get(int id){
+	public Model get(Object id){
 		return get(key,id);
 	}
 	/**

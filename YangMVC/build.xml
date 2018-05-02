@@ -28,5 +28,6 @@
         </jar>
        	
     	<copy file="C:/work/zbushu/${dest}" todir="C:/work/test3/xiaona/libs-all"/>
+    	<copy file="C:/work/zbushu/${dest}" todir="C:\work\bookshare\web\bookshare\WebRoot\WEB-INF\lib"/>
     </target>
 </project>

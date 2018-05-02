@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.except.FreeMarkerHandler;
+import org.docshare.util.RequestHelper;
 import org.docshare.util.TextTool;
 
 import freemarker.cache.ClassTemplateLoader;
@@ -115,7 +116,7 @@ public class MVCFilter implements Filter {
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
 		if(context == null) context = "";
-		Log.d("filter > "+uri);
+		Log.d("filter > "+uri +",["+RequestHelper.params(req2)+"]"); 
 		//如果开启了reloadable，就不再使用缓存。缓存主要是为了加速实际运行。
 		boolean succ = Config.reloadable ?false: CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
 		if(succ){

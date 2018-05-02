@@ -37,7 +37,7 @@ public class BigFileController extends Controller {
 	private static Object lock = new Object();
 	
 	public void upload() throws IOException{
-		@SuppressWarnings("unchecked")
+		
 		Chunk c = new Chunk();
 		c.name = param("name"); //文件登录
 		c.index = paramInt("index"); //索引
@@ -46,6 +46,7 @@ public class BigFileController extends Controller {
 		if(c.blockFile == null){ //这时候要做合并
 			String newFile = randomFile(c.name);
 			FileOutputStream fos = new FileOutputStream(application.getRealPath(newFile));
+			@SuppressWarnings("unchecked")
 			HashMap<Integer, Chunk> cMap = (HashMap<Integer, Chunk>) sess("mfile_upload");
 			for(int i=0;i<c.index;i++){
 				Chunk chunk = cMap.get(i);
@@ -68,6 +69,7 @@ public class BigFileController extends Controller {
 			return;
 		}
 		synchronized (lock) {
+			@SuppressWarnings("unchecked")
 			HashMap<Integer, Chunk> cMap = (HashMap<Integer, Chunk>) sess("mfile_upload");
 			if(cMap == null)cMap =new HashMap<Integer, BigFileController.Chunk>();
 			//if(c.index == 0) cMap.clear();
