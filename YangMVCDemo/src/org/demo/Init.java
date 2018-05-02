@@ -1,12 +1,36 @@
 package org.demo;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.Config;
+import org.docshare.mvc.Controller;
+import org.docshare.mvc.Interceptor;
 
 public class Init {
 	/**
-	 * ÔÚ´Ë¿ÉÒÔ½øĞĞ³õÊ¼»¯¡£±ÈÈçÈç¹û²»Ô¸ÒâÔÚweb.xmlÖĞĞ´ËÀDBÊı¾İ£¬¿ÉÒÔÔÚ´ËÖ±½ÓĞŞ¸ÄConfig.dbnameµÈÊôĞÔ
+	 * åœ¨æ­¤å¯ä»¥è¿›è¡Œåˆå§‹åŒ–ã€‚æ¯”å¦‚å¦‚æœä¸æ„¿æ„åœ¨web.xmlä¸­å†™æ­»DBæ•°æ®ï¼Œå¯ä»¥åœ¨æ­¤ç›´æ¥ä¿®æ”¹Config.dbnameç­‰å±æ€§
 	 */
 	public Init(){ 
 		Log.e("I can init something in Init class");
+		Config.addInterceptor(new Interceptor(){
+
+			@Override
+			public boolean intercept(String uri, Controller c) {
+				if(! uri.contains("/int")){ //åªæ‹¦æˆªè¿™ä¸ª
+					return true;
+				}
+				if(null == c.param("haha"))
+				{
+					c.output("{è¿™ä¸ªé¡µé¢è¢«DemoInterceptæ‹¦æˆªäº†ï¼Œçœ‹Initç±»ã€‚ å®ƒè¦æ±‚å¿…é¡»æœ‰hahaå‚æ•°ï¼Œ <a href='?haha=true'>ç‚¹è¿™é‡Œ</a> }");
+					return false;
+				}
+				return true;
+			}
+			
+			@Override
+			public String name() {
+				return "DemoIntercept";
+			}
+		});
 	}
+	
 }

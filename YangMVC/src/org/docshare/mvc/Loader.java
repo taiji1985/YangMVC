@@ -27,6 +27,22 @@ class Loader {
 		return reloader.load(p);
 		
 	}
+	
+	/**
+	 * 执行所有拦截器
+	 * @return
+	 */
+	public static boolean runInterceptors(String uri,Controller controller){
+		boolean ret = true;
+		for(Interceptor ic : Config.interceptors){
+			if(ic == null) continue;
+			Log.d("Call Intercept "+ic.name());
+			ret = ic.intercept(uri, controller);
+			if(!ret ) return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * 用以存储单例对象的Map。
 	 * key: 类名
@@ -90,6 +106,9 @@ class Loader {
 			//如果方法名为login则不做检验。
 			if( ! "login".equals(method) &&  ! ins.checkRequire() ){ //如果未通过检测
 				ins.actionRequire(false);
+				return true;
+			}
+			if(!runInterceptors(uri,ins)){
 				return true;
 			}
 			

@@ -1,5 +1,9 @@
 package org.docshare.mvc;
 
+import java.util.ArrayList;
+
+import org.docshare.log.Log;
+
 public class Config {
 	/**
 	 * 数据库主机名或IP地址
@@ -48,7 +52,34 @@ public class Config {
 				+ dbpwd + ", port = "+ dbport + ", tpl_base=" + tpl_base + ", ctr_base=" + ctr_base
 				+",reloadable="+reloadable
 				+",useSSL="+useSSL
+				+",interceptors="+getInteNames()
 				+ "]";
+	}
+	static ArrayList<Interceptor> interceptors =new ArrayList<Interceptor>();
+	public static void addInterceptor(Interceptor interceptor){
+		if(interceptors.contains(interceptor)){
+			return;
+		}
+		interceptors.add(interceptor);
+		Log.d("Config.registerInterceptor added, name ="+interceptor.name());
+	}
+	public static void removeInterceptor(Interceptor interceptor){
+		interceptors.remove(interceptor);
+	}
+	private static String getInteNames(){
+		StringBuffer sb =new StringBuffer();
+		sb.append("{");
+		boolean isFirst = true;
+		for(Interceptor i :interceptors){
+			if(isFirst){
+				isFirst = false;
+			}else{
+				sb.append(",");
+			}
+			sb.append(i.name());
+		}
+		sb.append("}");
+		return sb.toString();
 	}
 	
 	

@@ -284,8 +284,8 @@ public class MySQLDelegate implements IDBDelegate {
 	}
 
 	@Override
-	public Map<String, ?> columnOfRs(ResultSet rs) {
-		return DBHelper.getIns().columeOfRs(rs);
+	public Map<String, ?> columnOfRs(String sql,ResultSet rs) {
+		return DBHelper.getIns().columeOfRs(sql,rs);
 	}
 
 	@Override

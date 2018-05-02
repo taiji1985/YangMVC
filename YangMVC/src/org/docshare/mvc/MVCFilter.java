@@ -55,6 +55,10 @@ public class MVCFilter implements Filter {
 	}
 	
 	
+	
+
+	
+	
 	private boolean process(String uri,String context,HttpServletRequest req, HttpServletResponse resp,FilterChain chain) throws Exception{
 		String temp = getPureURI(uri, context);
 		Log.d("process "+temp);
@@ -78,7 +82,7 @@ public class MVCFilter implements Filter {
 			return true;
 		}
 		
-		Log.i("action="+action);
+		Log.i("action fail ="+action);
 		return false;
 	}
 	
@@ -117,6 +121,10 @@ public class MVCFilter implements Filter {
 		String context = req2.getContextPath();
 		if(context == null) context = "";
 		Log.d("filter > "+uri +",["+RequestHelper.params(req2)+"]"); 
+		if(uri.contains(".")) {
+			chain.doFilter(req, resp);
+			return;
+		}
 		//如果开启了reloadable，就不再使用缓存。缓存主要是为了加速实际运行。
 		boolean succ = Config.reloadable ?false: CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
 		if(succ){
@@ -124,28 +132,25 @@ public class MVCFilter implements Filter {
 		}
 		
 		
-		String temp = getPureURI(uri,context);
 		/**
 		 * 处理静态文件
 		 */
-		if(temp.startsWith("mvc_static")){
-			temp =TEMP_BASE + temp.replace("mvc_static", "");
-			Log.i("MVC Static File:"+temp);
-			byte[] data = loadResource(temp);
-			if(data == null){
-				Log.i("resource not found " +temp);
-				outErr((HttpServletResponse) resp,"resource not found : "+temp);
-				return;
-			}
-			OutputStream os = resp.getOutputStream();
-			os.write(data);
-			os.close();
-			return ;
-		}
-		if(uri.contains(".")) {
-			chain.doFilter(req, resp);
-			return;
-		}
+//		String temp = getPureURI(uri,context);
+//		if(temp.startsWith("mvc_static")){
+//			temp =TEMP_BASE + temp.replace("mvc_static", "");
+//			Log.i("MVC Static File:"+temp);
+//			byte[] data = loadResource(temp);
+//			if(data == null){
+//				Log.i("resource not found " +temp);
+//				outErr((HttpServletResponse) resp,"resource not found : "+temp);
+//				return;
+//			}
+//			OutputStream os = resp.getOutputStream();
+//			os.write(data);
+//			os.close();
+//			return ;
+//		}
+
 		
 		
 		try {

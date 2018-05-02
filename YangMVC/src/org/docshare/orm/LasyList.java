@@ -123,7 +123,7 @@ public class LasyList extends ListAdapter {
 				if(tbName == null && rawSql!= null){
 					rs  = delegate.runSQL(rawSql);
 					if(rs !=null && (column_desc==null || column_desc.size() == 0) ){
-						column_desc = delegate.columnOfRs(rs);
+						column_desc = delegate.columnOfRs(rawSql,rs);
 					}
 					if(rs == null &&column_desc == null){ //如果查询失败，报个错。
 						column_desc = new HashMap<String, Object>();

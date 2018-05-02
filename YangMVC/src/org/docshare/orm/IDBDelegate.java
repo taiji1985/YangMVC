@@ -19,10 +19,10 @@ public interface IDBDelegate {
 
 	ResultSet runSQL(String rawSql) throws SQLException;
 
-	Map<String, ?> columnOfRs(ResultSet rs);
-
 
 	Map<String, ColumnDesc> listColumn(String tname, boolean useCache);
 
 	String keyColumn(String tname);
+
+	Map<String, ?> columnOfRs(String sql, ResultSet rs);
 }

@@ -45,15 +45,15 @@ public class Controller {
 	/**
 	 * 请求对象，同jsp中的request。 但请优先使用param等函数
 	 */
-	protected HttpServletRequest request;
+	public HttpServletRequest request;
 	/**
 	 * 响应对象，同jsp中的response。 但请优先使用output、outputJSON等函数
 	 */
-	protected HttpServletResponse response;
+	public HttpServletResponse response;
 	/**
 	 * 会话对象。同jsp中的session。但请优先使用sess函数
 	 */
-	protected HttpSession session; 
+	public HttpSession session; 
 	/**
 	 * 输出对象，类似jsp中的out对象，但请优先使用output、outputJSON、downloadFile等函数。
 	 */
@@ -63,7 +63,7 @@ public class Controller {
 	/**
 	 * 同jsp中的application对象。
 	 */
-	protected ServletContext application;
+	public ServletContext application;
 
 
 	private boolean single = false;
@@ -72,7 +72,7 @@ public class Controller {
 	 * @param key 参数名
 	 * @param val 参数值
 	 */
-	protected void putParam(String key,Object val) {
+	public void putParam(String key,Object val) {
 		Log.d("put param: "+key+"= "+val);
 		paramMap.put(key, val);
 		
@@ -81,21 +81,21 @@ public class Controller {
 	 * 返回当前请求是否为Get请求，
 	 * @return 当为Get请求时返回真，否则返回假。
 	 */
-	protected boolean isGet(){
+	public boolean isGet(){
 		return request.getMethod().toLowerCase().equals("get");
 	}
 	/**
 	 * 返回当前请求是否为Post请求，
 	 * @return 当为Post请求时返回真，否则返回假。
 	 */
-	protected boolean isPost(){
+	public boolean isPost(){
 		return request.getMethod().toLowerCase().equals("post");
 	}
 	/**
 	 * 获取HTTP请求的方法，GET/POST/PUT 等
 	 * @return
 	 */
-	protected String method() {
+	public String method() {
 		return request.getMethod();
 	}
 	
@@ -103,7 +103,7 @@ public class Controller {
 	 * 获取当前控制器对应的URL路径
 	 * @return 控制器对应的URL路径
 	 */
-	protected String getPath(){
+	public String getPath(){
 		String uri = request.getRequestURI();
 		//uri = uri.replace(context, "");
 		return uri;
@@ -112,7 +112,7 @@ public class Controller {
 	 * 获取默认的模板
 	 * @return 模板路径
 	 */
-	protected String getDefaultTemp(){
+	public String getDefaultTemp(){
 		String uri = request.getRequestURI() +".jsp";
 		String context = request.getContextPath();
 		uri = uri.replace(context, "").replace("/.jsp", "/index.jsp");
@@ -122,10 +122,10 @@ public class Controller {
 	 * 自动处理分页问题，对应URL参数 page 为页码， pagesz为页面大小（默认为30)
 	 * @return 返回所需的对象列表
 	 */
-	protected LasyList page(LasyList list){
+	public LasyList page(LasyList list){
 		return page(list,30);
 	}
-	private String getClearQuery(String q){
+	public String getClearQuery(String q){
 		if(q == null)return "";
 		String[] sa=q.split("&");
 		if(sa==null ) return "";
@@ -151,7 +151,7 @@ public class Controller {
 	 * @param pagesize 每页的记录数
 	 * @return 返回所需的对象列表
 	 */
-	protected LasyList page(LasyList list,int pagesize){
+	public LasyList page(LasyList list,int pagesize){
 		int total = list.size();
 		
 		Integer page =  (Integer) paramInt("page", 1);
@@ -245,7 +245,7 @@ public class Controller {
 	/**
 	 * 使用模板目录中对应的文件进行渲染
 	 */
-	protected void render() {
+	public void render() {
 		render(getDefaultTemp());
 	}
 	Map<String,Object> root = new HashMap<String, Object>(); //渲染模板所用数据
@@ -259,7 +259,7 @@ public class Controller {
 	 * @param name 参数名
 	 * @param obj  参数值
 	 */
-	protected void put(String name,Object obj){
+	public void put(String name,Object obj){
 		if(obj instanceof IBean){
 			Log.d(obj.getClass().getName()+" translate to map :");
 			obj = BeanUtil.obj2Map(obj);
@@ -273,7 +273,7 @@ public class Controller {
 	 * 将model中的每个字段以单独的变量形式加入request中
 	 * @param m
 	 */
-	protected void putModelItem(Model m){
+	public void putModelItem(Model m){
 		for(String k : m.keySet()){
 			put(k,m.get(k));
 		}
@@ -283,7 +283,7 @@ public class Controller {
 	 * @param path
 	 * @return
 	 */
-	protected boolean existFile(String path){
+	public boolean existFile(String path){
 		@SuppressWarnings("deprecation")
 		String p = request.getRealPath(path);
 		if(p==null){
@@ -301,7 +301,7 @@ public class Controller {
 	 * 渲染一个模板，模板为参数view指定，这个路径是相对于配置中的template目录的。
 	 * @param view
 	 */
-	protected void render(String view) {
+	public void render(String view) {
 		if(!can_out){
 			try {
 				outMutiOutErr("view "+view);
@@ -340,7 +340,7 @@ public class Controller {
 	 * 当content-type 为application/json ,该函数获取传来的json字符串
 	 * @return 所有json字符串
 	 */
-	protected String paramJSON(){
+	public String paramJSON(){
 		return json ; 
 	}
 	/**
@@ -348,7 +348,7 @@ public class Controller {
 	 * @param req
 	 * @param resp
 	 */
-	void setReq(HttpServletRequest req, HttpServletResponse resp) {
+	public void setReq(HttpServletRequest req, HttpServletResponse resp) {
 		this.request = req;
 		this.response = resp;
 		session = request.getSession();
@@ -390,7 +390,7 @@ public class Controller {
 	/**
 	 * 将json中的数据转入param，使得用户察觉不到什么异常。
 	 */
-	private void jsonToParam(){
+	public void jsonToParam(){
 		if(json == null)return;
 		JSONObject obj = JSON.parseObject(json);
 		
@@ -401,7 +401,7 @@ public class Controller {
 	 * @param key
 	 * @return sesion中存储的该键对应的内容，如果没有返回null
 	 */
-	protected Object sess(String key){
+	public Object sess(String key){
 		return session.getAttribute(key);
 	}
 	/**
@@ -409,7 +409,7 @@ public class Controller {
 	 * @param key
 	 * @param val
 	 */
-	protected void sess(String key,Object val){
+	public void sess(String key,Object val){
 		session.setAttribute(key, val);
 	}
 	/**
@@ -417,7 +417,7 @@ public class Controller {
 	 * @param key session变量的名字
 	 * @return 如果有，则返回，否则返回null
 	 */
-	protected Integer sessInt(String key){
+	public Integer sessInt(String key){
 		return (Integer)sess(key);
 	}
 	/**
@@ -425,7 +425,7 @@ public class Controller {
 	 * @param key session变量的名字
 	 * @return 如果有，则返回，否则返回null
 	 */
-	protected Double sessDouble(String key) {
+	public Double sessDouble(String key) {
 		return (Double)sess(key);
 	}
 	/**
@@ -433,13 +433,13 @@ public class Controller {
 	 * @param key session变量的名字
 	 * @return 如果有，则返回，否则返回null
 	 */
-	protected String sessStr(String key) {
+	public String sessStr(String key) {
 		Object o = sess(key);
 		return o == null?null:o.toString();
 	}
 	
 	
-	protected void removeSession(String key){
+	public void removeSession(String key){
 		session.removeAttribute(key);
 	}
 	/**
@@ -447,7 +447,7 @@ public class Controller {
 	 * @param key 变量名
 	 * @return 变量值， 如果没有则返回null
 	 */
-	protected Object app(String key){
+	public Object app(String key){
 		return application.getAttribute("key");
 	}
 	/**
@@ -455,7 +455,7 @@ public class Controller {
 	 * @param key 变量名
 	 * @return 变量值， 如果没有则返回null
 	 */
-	protected Integer appInt(String key) {
+	public Integer appInt(String key) {
 		return (Integer)app(key);
 	}
 	/**
@@ -463,7 +463,7 @@ public class Controller {
 	 * @param key 变量名
 	 * @return 变量值， 如果没有则返回null
 	 */
-	protected Double appDouble(String key){
+	public Double appDouble(String key){
 		return (Double)app(key);
 	}
 	/**
@@ -471,14 +471,14 @@ public class Controller {
 	 * @param key 变量名
 	 * @return 变量值， 如果没有则返回null
 	 */
-	protected String appStr(String key) {
+	public String appStr(String key) {
 		Object o = app(key);
 		return o == null?null:o.toString();
 	}
-	protected void app(String key,Object val){
+	public void app(String key,Object val){
 		application.setAttribute(key, val);
 	}
-	protected void removeApp(String key){
+	public void removeApp(String key){
 		application.removeAttribute(key);
 	}
 	
@@ -529,7 +529,7 @@ public class Controller {
 	 * 输出字符串 并关闭流
 	 * @param s
 	 */
-	protected void output(String s) {
+	public void output(String s) {
 		try {
 			if(!can_out){
 				outMutiOutErr(s);
@@ -551,7 +551,7 @@ public class Controller {
 	 * @param ba
 	 * @return
 	 */
-	protected boolean outputBytes(byte[] ba){
+	public boolean outputBytes(byte[] ba){
 		OutputStream oo;
 		try {
 			oo = response.getOutputStream();
@@ -567,15 +567,17 @@ public class Controller {
 	 * 输出JSON字符串到网页
 	 * @param obj
 	 */
-	protected void outputJSON(Object obj){		
+	public void outputJSON(Object obj){		
 		try {
 			writer = getMyPrintWriter();
 			
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("text/json");
 			
+			String debug = param("debug"); //如果是debug模式，则格式化输出json
+			
 			if(obj == null)writer.write("{}");
-			else{String string = JSON.toJSONString(obj);
+			else{String string = JSON.toJSONString(obj,debug!=null);
 				writer.write(string);
 			}
 			writer.close();
@@ -590,7 +592,7 @@ public class Controller {
 	 * @param name 最后的表格将会存入这个字段中
 	 * @param list 需要输出的列表
 	 */
-	protected void putListTable(String name,LasyList list){
+	public void putListTable(String name,LasyList list){
 		StringBuffer sb = new StringBuffer();
 		sb.append("<table class='table table-bordered yangmvc_table '>");
 		for(Model m : list){
@@ -615,14 +617,14 @@ public class Controller {
 	}
 	
 	
-	protected void renderForm(Model m){
+	public void renderForm(Model m){
 		if(m == null){
 			output("未找到该对象");
 			return;
 		}
 		renderForm(m,getDefaultTemp(),"");
 	}
-	protected void renderForm(Model m,String template,String postTo){
+	public void renderForm(Model m,String template,String postTo){
 		StringBuffer sb  = new StringBuffer();
 		sb.append("<form class='yangmvc_form' method='post' action='"+postTo+"'>");
 		for(String key : m.keySet()){
@@ -660,7 +662,7 @@ public class Controller {
 	 * @param p 参数名称
 	 * @return 参数值，如果没有返回null
 	 */
-	protected String urlParam(String p){
+	public String urlParam(String p){
 		//如果paramMap中有。 这个paramMap是在UploadProcesser中调用putParam修改的。 
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
 		String s =  request.getParameter(p);
@@ -677,7 +679,7 @@ public class Controller {
 	 * @param p
 	 * @return 参数内容
 	 */
-	protected String param(String p){
+	public String param(String p){
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
 		return request.getParameter(p);
 	}
@@ -687,7 +689,7 @@ public class Controller {
 	 * @param def 默认值
 	 * @return 如果参数不存在，则返回默认值。参数存在返回参数值。
 	 */
-	protected String param(String name,String def){
+	public String param(String name,String def){
 		String ret = param(name);
 		return ret == null?def:ret;
 	}
@@ -698,7 +700,7 @@ public class Controller {
 	 * @return int类型的参数值
 	 */
 	
-	protected Integer paramInt(String p){
+	public Integer paramInt(String p){
 		String s = param(p);
 		if(s!=null){
 			return Integer.parseInt(s);
@@ -712,7 +714,7 @@ public class Controller {
 	 * @param p 参数名称
 	 * @return int类型的参数值（参数不存在返回def)
 	 */
-	protected Integer paramInt(String p ,int def){
+	public Integer paramInt(String p ,int def){
 		String ret = param(p);
 		if(ret == null){
 			return def;
@@ -726,7 +728,7 @@ public class Controller {
 	 * @param m
 	 * @return 得到的m，和参数m是同一个对象
 	 */
-	protected Model paramToModel(Model m){
+	public Model paramToModel(Model m){
 		for(String k:m.keySet()){
 			if(k.equals(m.key()) && param(k)==null){
 				continue; //如果主键为空，则主键不允许修改为null（与以前版本认为主键绝对不允许修改不同）
@@ -747,7 +749,7 @@ public class Controller {
 	 * @param prefix 参数的前缀
 	 * @return 赋值后的对象，将obj引用返回
 	 */
-	protected <T> T paramToObj(T obj,String prefix){
+	public <T> T paramToObj(T obj,String prefix){
 		List<String> props  = BeanUtil.propList(obj);
 		for(String p:props){
 			String v = param(prefix+p);
@@ -757,7 +759,7 @@ public class Controller {
 		}
 		return obj;
 	}
-	protected void dumpParam() {
+	public void dumpParam() {
 		Map<String, String[]> map = request.getParameterMap();
 		Log.d("----------DumpParam---------");
 		Log.d("request param="+JSON.toJSONString(map));
@@ -769,7 +771,7 @@ public class Controller {
 	 * @param obj    要赋值的对象
 	 * @return 赋值后的对象，将obj引用返回
 	 */
-	protected <T> T paramToObj(T obj){
+	public <T> T paramToObj(T obj){
 		return paramToObj(obj,"");
 	}
 	
@@ -793,7 +795,7 @@ public class Controller {
 	 * 跳转到新页面/重定向。功能等同resposne.sendRedirect
 	 * @param url
 	 */
-	protected void jump(String url){
+	public void jump(String url){
 		try {
 			if(!can_out){
 				outMutiOutErr("jump to url");
@@ -827,7 +829,7 @@ public class Controller {
 	 * 获取当前请求所接受的语言种类
 	 * @return 获取当前支持的语言
 	 */
-	protected String getLang(){
+	public String getLang(){
 		String lang = request.getHeader("Accept-Language");
 		if(lang == null){
 			return "en";
@@ -909,7 +911,7 @@ public class Controller {
 	 * 输出下载内容。浏览器端会出现下载提示框
 	 * @param path 需要下载的文件的路径。
 	 */
-	protected void download(String path){
+	public void download(String path){
 		//String true_path = request.getServletContext().getRealPath(path);
 		response.setContentType("application/x-download");
 		String filedisplay = new File(path).getName();		
@@ -946,7 +948,7 @@ public class Controller {
 
 		
 	}
-	protected void header(String name,String val){
+	public void header(String name,String val){
 		response.addHeader(name,val);
 	}
 	
@@ -954,7 +956,7 @@ public class Controller {
 	 * 读取请求中的正文部分
 	 * @return 成功返回正文内容，失败返回空字符串
 	 */
-	protected String reqBody(){
+	public String reqBody(){
 		try {
 			return IOUtil.readStream(request.getInputStream());
 		} catch (IOException e) {
@@ -978,7 +980,7 @@ public class Controller {
 	 * 使用FreeMarker进行数据显示
 	 * @param path 基于web.xml中配置的tpl_base值的相对路径
 	 */
-	protected void renderFreeMarker(String path){
+	public void renderFreeMarker(String path){
 		Writer out=null;
 		try {		
 			//先吧param压如
@@ -1014,7 +1016,7 @@ public class Controller {
 	 * @param tableName 数据库表格名称
 	 * @return 相应的DBTool对象（用以进行查询等操作）
 	 */
-	protected DBTool T(String tableName){
+	public DBTool T(String tableName){
 		return Model.tool(tableName);
 	}
 	/**
@@ -1022,7 +1024,7 @@ public class Controller {
 	 * @param tableName 数据库表格名称
 	 * @return 返回所有行的LasyList对象（并没有真正进行查询），可以用 .eq .gt 等函数去约束。
 	 */
-	protected LasyList L(String tableName){
+	public LasyList L(String tableName){
 		return Model.tool(tableName).all();
 	}
 }

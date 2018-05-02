@@ -36,7 +36,7 @@ class CallCacheMap {
 			}else{
 				obj = cach.clazz.newInstance();
 			}
-			Log.d(String.format("Call  %s.%s ", cach.clazz.getName(),cach.m.getName()));
+			Log.d(String.format("CacheCall  %s.%s ", cach.clazz.getName(),cach.m.getName()));
 			Controller ins = (Controller) obj;
 			ins.setReq(req, resp);
 			
@@ -45,6 +45,10 @@ class CallCacheMap {
 				return true;
 			}
 			ins.clearOutFlag(); //清空输出标志，说明还未输出
+
+			if(!Loader.runInterceptors(uri,ins)){
+				return true;
+			}
 			cach.m.invoke(obj);
 			
 			return true;

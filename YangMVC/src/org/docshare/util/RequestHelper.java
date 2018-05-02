@@ -12,8 +12,8 @@ public class RequestHelper {
 			String key=(String)enu.nextElement();
 			String val = request.getParameter(key);
 			if(val.length()>10) val = val.substring(0,10);
-			if(!isFirst){
-				sb.append("&");
+			if(isFirst){
+				sb.append(",");
 				isFirst =false;
 			}
 			sb.append(key+"="+val);
