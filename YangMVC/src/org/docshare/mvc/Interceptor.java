@@ -10,7 +10,7 @@ public abstract class Interceptor {
 	public abstract boolean intercept(String uri,Controller c);
 
 	public String name() {
-		return toString();
+		return getClass().getName();
 	}
 
 }

@@ -15,7 +15,7 @@ public class Init {
 
 			@Override
 			public boolean intercept(String uri, Controller c) {
-				if(! uri.contains("/int")){ //只拦截这个
+				if(! uri.startsWith("/int")){ //只拦截这个
 					return true;
 				}
 				if(null == c.param("haha"))
