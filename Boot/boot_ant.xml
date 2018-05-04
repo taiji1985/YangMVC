@@ -2,7 +2,7 @@
 <project default="create_boot" name="Create Runnable Jar for Project Boot">
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
-	<property name="dest" value="yangmvc-2.3.9-boot.jar" />
+	<property name="dest" value="yangmvc-2.4.0-boot.jar" />
 
     <target name="create_boot">
        	<delete>

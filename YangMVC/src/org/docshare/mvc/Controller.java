@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -1026,5 +1028,13 @@ public class Controller {
 	 */
 	public LasyList L(String tableName){
 		return Model.tool(tableName).all();
+	}
+	
+	public void runMethod(Method method){
+		try {
+			method.invoke(this);
+		} catch (Exception e) {
+			Log.e(e);
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package org.demo;
 
+import java.lang.reflect.Method;
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.mvc.Controller;
@@ -14,7 +15,7 @@ public class Init {
 		Config.addInterceptor(new Interceptor(){
 
 			@Override
-			public boolean intercept(String uri, Controller c) {
+			public boolean intercept(String uri, Controller c,Method m) {
 				if(! uri.startsWith("/int")){ //只拦截这个
 					return true;
 				}

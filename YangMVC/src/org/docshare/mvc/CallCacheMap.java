@@ -46,7 +46,7 @@ class CallCacheMap {
 			}
 			ins.clearOutFlag(); //清空输出标志，说明还未输出
 
-			if(!Loader.runInterceptors(uri,ins)){
+			if(!Loader.runInterceptors(uri,ins,cach.m)){
 				return true;
 			}
 			cach.m.invoke(obj);

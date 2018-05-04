@@ -30,14 +30,15 @@ class Loader {
 	
 	/**
 	 * 执行所有拦截器
+	 * @param method 
 	 * @return
 	 */
-	public static boolean runInterceptors(String uri,Controller controller){
+	public static boolean runInterceptors(String uri,Controller controller, Method method){
 		boolean ret = true;
 		for(Interceptor ic : Config.interceptors){
 			if(ic == null) continue;
 			Log.d("Call Intercept "+ic.name());
-			ret = ic.intercept(uri, controller);
+			ret = ic.intercept(uri, controller,method);
 			if(!ret ) return false;
 		}
 		return true;
@@ -108,12 +109,14 @@ class Loader {
 				ins.actionRequire(false);
 				return true;
 			}
-			if(!runInterceptors(uri,ins)){
+
+			m = cz.getMethod(method);
+			
+			if(!runInterceptors(uri,ins,m)){
 				return true;
 			}
 			
 			
-			m = cz.getMethod(method);
 			m.invoke(ins);
 			
 			if(ins.isSingle()){
