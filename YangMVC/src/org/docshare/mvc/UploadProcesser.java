@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -56,11 +58,19 @@ class UploadProcesser {
 		}
 		
 	}
+	private static  HashSet<String> forbitMap =new HashSet<String>();
 	private String randomFileName(String oldFileName){
 		//(Math.random()*100000)
-		String after = TextTool.getAfter(oldFileName, ".");
+		String after = TextTool.getLastAfter(oldFileName, ".");
 		
+		//阻止可执行在文件上传
+		final String[] forbit = {"jsp","php","aspx","exe","sh"};
+		if(forbitMap.isEmpty()){
+			for(String s : forbit)forbitMap.add(s);
+		}
+		if(forbitMap.contains(after)) after += ".txt";
 		
+					
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd/HHmmss");
 		String path  =  "/upload/"+ df.format(new Date())+(int)(Math.random()*1000) +"."+after;
 		

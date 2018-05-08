@@ -154,7 +154,13 @@ public class TextTool {
 
 		return str.substring(i + mark.length());
 	}
+	public static String getLastAfter(String str, String mark) {
+		int i = str.lastIndexOf(mark);
+		if (i <= 0)
+			return null;
 
+		return str.substring(i + mark.length());
+	}
 	public static String getPrefix(String f) {
 		int p = f.lastIndexOf(".");
 		if (p >= 0)
