@@ -310,5 +310,17 @@ public class DBTool {
 		return ret;
 	}
 
+	public DBTool tran(){
+		delegate.beginTransaction();
+		return this;
+	}
+	public DBTool commit(){
+		delegate.commit();
+		return this;
+	}
+	public DBTool rollback(){
+		delegate.rollback();
+		return this;
+	}
 
 }

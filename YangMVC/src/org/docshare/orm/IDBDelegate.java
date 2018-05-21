@@ -25,4 +25,7 @@ public interface IDBDelegate {
 	String keyColumn(String tname);
 
 	Map<String, ?> columnOfRs(String sql, ResultSet rs);
+	void beginTransaction();
+	void commit();
+	void rollback();
 }

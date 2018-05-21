@@ -364,6 +364,38 @@ public class DBHelper {
 		}
 		return s.executeQuery();
 	}
+	/**
+	 * 启动事务 ， 所有提交在sql会在调用commit后被执行。
+	 */
+	public void beginTransation(){
+		try {
+			con.setAutoCommit(false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void commit(){
+		try {
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void rollback(){
+		try {
+			con.rollback();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 //	public void checkConn(){
 //		boolean valid = true;
 //		if(con == null){

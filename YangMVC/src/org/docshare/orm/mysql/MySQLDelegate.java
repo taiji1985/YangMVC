@@ -298,4 +298,19 @@ public class MySQLDelegate implements IDBDelegate {
 		return DBHelper.getIns().keyColumn(tname);
 	}
 
+	@Override
+	public void beginTransaction() {
+		DBHelper.getIns().beginTransation();
+	}
+
+	@Override
+	public void commit() {
+		DBHelper.getIns().commit();
+	}
+
+	@Override
+	public void rollback() {
+		DBHelper.getIns().rollback();
+	}
+
 }
