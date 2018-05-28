@@ -1,9 +1,5 @@
-org.docshare.boot
 org.docshare.log
 org.docshare.mvc
 org.docshare.mvc.except
 org.docshare.orm
-org.docshare.orm.mysql
-org.docshare.test
 org.docshare.util
-org.jetbrains.annotations

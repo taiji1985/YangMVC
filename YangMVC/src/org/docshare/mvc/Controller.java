@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -39,7 +40,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import freemarker.template.Template;
-
+/**
+ * 所有控制器的父类
+ * @author 杨同峰
+ *
+ */
 public class Controller {
 
 	private static final String M_FLAG="multipart/form-data";
@@ -69,6 +74,8 @@ public class Controller {
 
 
 	private boolean single = false;
+	
+	private HashMap<String, String> cookieMap = new HashMap<String, String>();
 	/**
 	 * 追加参数， 同样可以用param获取到最佳的参数
 	 * @param key 参数名
@@ -388,6 +395,14 @@ public class Controller {
 			}
 			
 		}
+		
+		Cookie[] cookies = request.getCookies();
+		
+		if(cookies!=null){
+			for(Cookie c  : cookies){
+				cookieMap.put(c.getName(), c.getValue());
+			}
+		}
 	}
 	/**
 	 * 将json中的数据转入param，使得用户察觉不到什么异常。
@@ -482,6 +497,37 @@ public class Controller {
 	}
 	public void removeApp(String key){
 		application.removeAttribute(key);
+	}
+	/**
+	 * 获取cookie
+	 * @param key
+	 * @return value
+	 */
+	public String cookie(String key){
+		return cookieMap.get(key);
+	}
+	
+	/**
+	 * 设置cookie
+	 * @param key  键
+	 * @param value 值
+	 * @param period_ms 超时时间（单位毫秒）
+	 * @return
+	 */
+	public String cookie(String key ,Object value,int period_ms){
+		Cookie cookie = new Cookie(key,""+value);
+		cookie.setMaxAge(period_ms);
+		response.addCookie(cookie);
+		cookieMap.put(key, ""+value);
+		return value+"";
+	}
+	/**
+	 * 删除cookie
+	 * @param key
+	 */
+	public void removeCookie(String key){
+		cookie(key,null,0); 
+		cookieMap.remove(key);
 	}
 	
 	void error(String s){
@@ -1029,7 +1075,10 @@ public class Controller {
 	public LasyList L(String tableName){
 		return Model.tool(tableName).all();
 	}
-	
+	/**
+	 * 执行某个方法
+	 * @param method
+	 */
 	public void runMethod(Method method){
 		try {
 			method.invoke(this);
