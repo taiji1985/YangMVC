@@ -1,4 +1,4 @@
-package org.docshare.mvc;
+package org.docshare.mvc.anno;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

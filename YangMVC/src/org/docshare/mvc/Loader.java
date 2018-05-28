@@ -2,14 +2,19 @@ package org.docshare.mvc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
+import javassist.Modifier;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.anno.Param;
 
 
 class Loader {
@@ -25,6 +30,30 @@ class Loader {
 		}
 		
 		return reloader.load(p);
+		
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static Method getMethod(Class clazz,String methodName) {
+		try {
+			Method m = null;
+			try {
+				m = clazz.getDeclaredMethod(methodName,(Class[])null);
+			} catch (NoSuchMethodException e) {
+				
+			}
+			//如果找到了，且是公共的，则允许访问
+			if(m !=null &&  Modifier.isPublic(m.getModifiers()))return m; 
+			Method[] ma = clazz.getDeclaredMethods();
+			for(Method mm : ma){
+				if(mm.getName().equals(methodName)){
+					return mm;
+				}
+			}
+			return null;//没找到。。
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+		return null; //因为安全问题没找到！！
 		
 	}
 	
@@ -43,6 +72,62 @@ class Loader {
 		}
 		return true;
 	}
+	/**
+	 * 执行方法
+	 * @param m
+	 * @param req
+	 * @throws InvocationTargetException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
+	 */
+	public static void  runMethod(Object obj,Method method ,HttpServletRequest req) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException{
+		Annotation[][] parameterAnnotations = method.getParameterAnnotations();  
+		
+		Object[] args  = null;
+		
+		if (parameterAnnotations != null && parameterAnnotations.length != 0) {  
+			Class<?>[] types = method.getParameterTypes();
+			
+			args =new Object[parameterAnnotations.length];
+	        //String[] parameterNames = new String[parameterAnnotations.length];  
+	        int i = 0;  
+	        for (Annotation[] parameterAnnotation : parameterAnnotations) {  
+	            for (Annotation annotation : parameterAnnotation) {  
+	                if (annotation instanceof Param) {  
+	                    Param param = (Param) annotation;  
+	            //        parameterNames[i] = param.value();
+	                    args[i] = req.getParameter(param.value());
+	                    if(! types[i].equals(String.class)){
+	                    	if(types[i].getName().equals("int")){
+	                    		args[i] = Integer.parseInt(args[i]+"");
+	                    	}else if(types[i].getName().equals("long")){
+	                    		args[i] = Long.parseLong(args[i]+"");
+	                    	}
+	                    	else if(types[i].getName().equals("double")){
+	                    		args[i] = Double.parseDouble(args[i]+"");
+	                    	}
+	                    	else if(types[i].getName().equals("java.lang.Integer")){
+	                    		if(args[i]!=null)args[i] =new Integer(Integer.parseInt(args[i]+""));
+	                    	}
+	                    	else if(types[i].getName().equals(Long.class.getName())){
+	                    		args[i] = new Long( Long.parseLong(args[i]+""));
+	                    	}else if(types[i].getName().equals(Boolean.class.getName())){
+	                    		args[i] = new Boolean(Boolean.parseBoolean(args[i]+""));
+	                    	}else if(types[i].getName().equals(Double.class.getName())){
+	                    		args[i] = new Double(Double.parseDouble(args[i]+""));
+	                    	}
+	                    	
+	                    }
+	                    break;
+	                }
+	            }  
+	            
+	            i++;
+	        }  
+        }
+		method.invoke(obj, args);
+	}
+
 	
 	/**
 	 * 用以存储单例对象的Map。
@@ -110,14 +195,18 @@ class Loader {
 				return true;
 			}
 
-			m = cz.getMethod(method);
-			
+			//m = cz.getMethod(method);
+			m = getMethod(cz,method);
+			if(m == null){
+				throw new NoSuchMethodException();
+			}
 			if(!runInterceptors(uri,ins,m)){
 				return true;
 			}
 			
 			
-			m.invoke(ins);
+			//m.invoke(ins);
+			runMethod(ins,m,req);
 			
 			if(ins.isSingle()){
 				singleMap.put(cname, ins);

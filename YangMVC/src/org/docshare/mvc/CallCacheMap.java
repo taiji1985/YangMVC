@@ -49,7 +49,8 @@ class CallCacheMap {
 			if(!Loader.runInterceptors(uri,ins,cach.m)){
 				return true;
 			}
-			cach.m.invoke(obj);
+			//cach.m.invoke(obj);
+			Loader.runMethod(obj,cach.m,req);
 			
 			return true;
 		} catch (Exception e) {
