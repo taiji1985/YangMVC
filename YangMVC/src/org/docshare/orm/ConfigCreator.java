@@ -9,6 +9,7 @@ import java.util.Scanner;
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.util.FileTool;
+import org.docshare.util.TextTool;
 
 import com.alibaba.fastjson.JSON;
 
@@ -51,5 +52,39 @@ public class ConfigCreator {
 			FileTool.writeUTF(fname, json);
 			System.out.println("write " + fname);
 		}
+		System.out.print("请输入需要生成的类的包名:");
+		String pkg = sc.next();
+		if(pkg.length() == 0 ){
+			System.out.println("您没有输入包名，取消生成");
+			return;
+		}
+		FileTool.makeDir("pojo");
+		for(String tb :list){
+			HashMap<String,ColumnDesc> listColumn  = helper.listColumn(tb);
+			String clsName = tb2Name(tb);
+			StringBuffer sb = new StringBuffer();
+			sb.append("package "+pkg+";\n");
+			sb.append("public class "+clsName+"{\n");
+			for(String cname : listColumn.keySet()){
+				ColumnDesc d = listColumn.get(cname);
+				sb.append("\tpublic "+ d.javaType() +" " + d.name+";\n" );
+			}
+			sb.append("\tpublic void update(){\n\t\tT(\""+tb+"\").update(this);\n\t}\n");
+			sb.append("\tpublic void insert(){\n\t\tT(\""+tb+"\").insert(this);\n\t}\n");
+			
+			sb.append("}");
+			String fname= "pojo/"+clsName+".java";
+			System.out.println(fname);
+			FileTool.writeUTF(fname,sb.toString());
+		}
+		
+	}
+	public static String tb2Name(String tb){
+		String[] ta  = tb.split("_");
+		for(int i=0;i<ta.length;i++){
+			ta[i] = TextTool.firstUpper(ta[i]);
+		}
+		String cls = TextTool.join(ta, "");
+		return cls;
 	}
 }
