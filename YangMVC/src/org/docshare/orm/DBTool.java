@@ -258,6 +258,15 @@ public class DBTool {
 	public int del(Object id) {
 		return delegate.delete(tname, key, id);
 	}
+	/**
+	 * 根据某个列的值进行删除
+	 * @param column
+	 * @param val
+	 * @return 
+	 */
+	public int delBy(String column,Object val){
+		return delegate.delete(tname, column, val);
+	}
 	
 	/**
 	 * 根据Model对象删除数据表的一行

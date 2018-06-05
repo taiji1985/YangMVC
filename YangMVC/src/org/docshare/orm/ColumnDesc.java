@@ -43,10 +43,11 @@ public class ColumnDesc {
 		this.remark = columnLabel;
 		this.tb= tb;
 	}
-
 	@Override
 	public String toString() {
-		
-		return "name["+typeName+"]";
+		return "ColumnDesc [name=" + name + ", type=" + type + ", typeName="
+				+ typeName + ", remark=" + remark + ", pk_table=" + pk_table
+				+ ", pk_column=" + pk_column + ", tb=" + tb + "]";
 	}
+
 }
