@@ -25,6 +25,20 @@ public class ColumnDesc {
 	public ColumnDesc(String name, int type, String remark) {
 		this(name,type,remark,null);
 	}
+	/**
+	 * 数据库类型映射java类型
+	 * @return
+	 */
+	public String javaType(){
+		String t = typeName.toLowerCase();
+		if(t.equals("int")) return "Integer";
+		if(t.equals("long")) return "Long";
+		if(t.equals("double")) return "Double";
+		if(t.equals("char")) return "String";
+		if(t.equals("text")) return "String";
+		if(t.contains("date") || t.contains("time")) return "DateTime";
+		return "String";
+	}
 	
 	public ColumnDesc() {
 	}
@@ -37,10 +51,11 @@ public class ColumnDesc {
 		this.remark = columnLabel;
 		this.tb= tb;
 	}
-
 	@Override
 	public String toString() {
-		
-		return "name["+typeName+"]";
+		return "ColumnDesc [name=" + name + ", type=" + type + ", typeName="
+				+ typeName + ", remark=" + remark + ", pk_table=" + pk_table
+				+ ", pk_column=" + pk_column + ", tb=" + tb + "]";
 	}
+
 }

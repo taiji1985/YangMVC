@@ -5,10 +5,10 @@
 	<property name="dest" value="yangmvc-2.4.0-boot.jar" />
 
     <target name="create_boot">
-       	<delete>
-        	  <fileset dir="C:/work/zbushu" includes="yangmvc*boot.jar"/>
-        </delete>
-        <jar destfile="C:/work/zbushu/${dest}" filesetmanifest="mergewithoutmain">
+    	<tstamp prefix="build.">
+    	   <format property="TimeSign" pattern="yyyy-MM-dd"/>
+    	</tstamp>
+        <jar destfile="dist/yangmvc-boot-${build.TimeSign}.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="org.docshare.boot.ServerMain"/>
                 <attribute name="Class-Path" value="."/>
@@ -41,11 +41,7 @@
             <zipfileset excludes="META-INF/*.SF" src="C:/dev/MyEclipse/Common/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
         	-->
         </jar>
-       	<delete>
-        	  	<fileset dir="C:\work\test3\xiaona\libs" includes="yangmvc*boot.jar"/>
-      	  		<fileset dir="C:\work\CaseLib\lib" includes="yangmvc*boot.jar"/>
-        </delete>
-    	<copy file="C:/work/zbushu/${dest}" todir="C:\work\test3\xiaona\libs"/>
-    	<copy file="C:/work/zbushu/${dest}" todir="C:\work\CaseLib\lib"/>
+       	
+    	
     </target>
 </project>

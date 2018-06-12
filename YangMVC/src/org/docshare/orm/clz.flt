@@ -1,0 +1,32 @@
+package ${pkg};
+
+import org.docshare.orm.LasyList;
+import java.util.List;
+import org.docshare.orm.Model;
+
+public class ${clsName}{
+	<#list columns?keys as c>
+	public ${columns[c].javaType} ${columns[c].name};	
+	</#list>
+	public int update(){
+		return Model.tool("${tb}").save(this);
+	}
+	public int insert(){
+		return Model.tool("${tb}").save(this,true);
+	}
+	public static ${clsName} findByKey(Object id){
+		return Model.tool("${tb}").get(id).toObject(new ${clsName}());
+	}
+	public static ${clsName} findByColumn(String column,Object id){
+		return Model.tool("${tb}").get(column,id).toObject(new ${clsName}());
+	}
+	public static List<${clsName}>  fromList(LasyList list){
+		return list.toArrayList(${clsName}.class);
+	}
+	public static int delByKey(Object key){
+		return Model.tool("${tb}").del(key);
+	}
+	public void remove(){
+		Model.tool("${tb}").del(${key});
+	}
+}
