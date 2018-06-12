@@ -1710,3 +1710,351 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
 
 2018-05-21 10:54:29 [ERROR]-main - Log -Log.java(41)  -Config [dbhost=localhost, dbname=621m, dbusr=root, dbpwd=123456, port = 3306, tpl_base=null, ctr_base=null,reloadable=true,useSSL=false,interceptors={}]
+2018-06-12 21:51:45 [ERROR]-main - Log -Log.java(41)  -org.postgresql.util.PSQLException: Connection to localhost:3306 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:245)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:452)
+	at org.postgresql.Driver.connect(Driver.java:254)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at org.docshare.orm.postgres.PostgresDBHelper.conn(PostgresDBHelper.java:35)
+	at org.docshare.orm.postgres.PostgresDBHelper.main(PostgresDBHelper.java:49)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+	at java.net.Socket.connect(Socket.java:519)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:69)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:156)
+	... 8 more
+
+2018-06-12 21:51:45 [ERROR]-main - Log -Log.java(41)  -Config [dbhost=localhost, dbname=621m, dbusr=root, dbpwd=123456, port = 3306, tpl_base=null, ctr_base=null,reloadable=true,useSSL=false,interceptors={}]
+2018-06-12 21:51:46 [ERROR]-main - Log -Log.java(41)  -org.postgresql.util.PSQLException: Connection to localhost:3306 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:245)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:452)
+	at org.postgresql.Driver.connect(Driver.java:254)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at org.docshare.orm.postgres.PostgresDBHelper.conn(PostgresDBHelper.java:35)
+	at org.docshare.orm.DBHelper.getRS(DBHelper.java:127)
+	at org.docshare.orm.postgres.PostgresDBHelper.main(PostgresDBHelper.java:50)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+	at java.net.Socket.connect(Socket.java:519)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:69)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:156)
+	... 9 more
+
+2018-06-12 21:51:46 [ERROR]-main - Log -Log.java(41)  -Config [dbhost=localhost, dbname=621m, dbusr=root, dbpwd=123456, port = 3306, tpl_base=null, ctr_base=null,reloadable=true,useSSL=false,interceptors={}]
+2018-06-12 22:20:47 [ INFO]-main - Log -Log.java(30)  -{"asc_or_desc":{"name":"asc_or_desc","remark":"asc_or_desc","tb":"","type":12},"cardinality":{"name":"cardinality","remark":"cardinality","tb":"pg_class","type":7},"column_name":{"name":"column_name","remark":"column_name","tb":"","type":12},"filter_condition":{"name":"filter_condition","remark":"filter_condition","tb":"","type":12},"index_name":{"name":"index_name","remark":"index_name","tb":"pg_class","type":12},"index_qualifier":{"name":"index_qualifier","remark":"index_qualifier","tb":"","type":12},"non_unique":{"name":"non_unique","remark":"non_unique","tb":"","type":-7},"ordinal_position":{"name":"ordinal_position","remark":"ordinal_position","tb":"","type":4},"pages":{"name":"pages","remark":"pages","tb":"pg_class","type":4},"table_cat":{"name":"table_cat","remark":"table_cat","tb":"","type":12},"table_name":{"name":"table_name","remark":"table_name","tb":"pg_class","type":12},"table_schem":{"name":"table_schem","remark":"table_schem","tb":"pg_namespace","type":12},"type":{"name":"type","remark":"type","tb":"","type":4}}
+2018-06-12 22:21:12 [ INFO]-main - Log -Log.java(30)  -{
+	"asc_or_desc":{
+		"name":"asc_or_desc",
+		"remark":"asc_or_desc",
+		"tb":"",
+		"type":12
+	},
+	"cardinality":{
+		"name":"cardinality",
+		"remark":"cardinality",
+		"tb":"pg_class",
+		"type":7
+	},
+	"column_name":{
+		"name":"column_name",
+		"remark":"column_name",
+		"tb":"",
+		"type":12
+	},
+	"filter_condition":{
+		"name":"filter_condition",
+		"remark":"filter_condition",
+		"tb":"",
+		"type":12
+	},
+	"index_name":{
+		"name":"index_name",
+		"remark":"index_name",
+		"tb":"pg_class",
+		"type":12
+	},
+	"index_qualifier":{
+		"name":"index_qualifier",
+		"remark":"index_qualifier",
+		"tb":"",
+		"type":12
+	},
+	"non_unique":{
+		"name":"non_unique",
+		"remark":"non_unique",
+		"tb":"",
+		"type":-7
+	},
+	"ordinal_position":{
+		"name":"ordinal_position",
+		"remark":"ordinal_position",
+		"tb":"",
+		"type":4
+	},
+	"pages":{
+		"name":"pages",
+		"remark":"pages",
+		"tb":"pg_class",
+		"type":4
+	},
+	"table_cat":{
+		"name":"table_cat",
+		"remark":"table_cat",
+		"tb":"",
+		"type":12
+	},
+	"table_name":{
+		"name":"table_name",
+		"remark":"table_name",
+		"tb":"pg_class",
+		"type":12
+	},
+	"table_schem":{
+		"name":"table_schem",
+		"remark":"table_schem",
+		"tb":"pg_namespace",
+		"type":12
+	},
+	"type":{
+		"name":"type",
+		"remark":"type",
+		"tb":"",
+		"type":4
+	}
+}
+2018-06-12 22:22:34 [ INFO]-main - Log -Log.java(30)  -{
+	"asc_or_desc":{
+		"name":"asc_or_desc",
+		"remark":"asc_or_desc",
+		"tb":"",
+		"type":12
+	},
+	"cardinality":{
+		"name":"cardinality",
+		"remark":"cardinality",
+		"tb":"pg_class",
+		"type":7
+	},
+	"column_name":{
+		"name":"column_name",
+		"remark":"column_name",
+		"tb":"",
+		"type":12
+	},
+	"filter_condition":{
+		"name":"filter_condition",
+		"remark":"filter_condition",
+		"tb":"",
+		"type":12
+	},
+	"index_name":{
+		"name":"index_name",
+		"remark":"index_name",
+		"tb":"pg_class",
+		"type":12
+	},
+	"index_qualifier":{
+		"name":"index_qualifier",
+		"remark":"index_qualifier",
+		"tb":"",
+		"type":12
+	},
+	"non_unique":{
+		"name":"non_unique",
+		"remark":"non_unique",
+		"tb":"",
+		"type":-7
+	},
+	"ordinal_position":{
+		"name":"ordinal_position",
+		"remark":"ordinal_position",
+		"tb":"",
+		"type":4
+	},
+	"pages":{
+		"name":"pages",
+		"remark":"pages",
+		"tb":"pg_class",
+		"type":4
+	},
+	"table_cat":{
+		"name":"table_cat",
+		"remark":"table_cat",
+		"tb":"",
+		"type":12
+	},
+	"table_name":{
+		"name":"table_name",
+		"remark":"table_name",
+		"tb":"pg_class",
+		"type":12
+	},
+	"table_schem":{
+		"name":"table_schem",
+		"remark":"table_schem",
+		"tb":"pg_namespace",
+		"type":12
+	},
+	"type":{
+		"name":"type",
+		"remark":"type",
+		"tb":"",
+		"type":4
+	}
+}
+2018-06-12 22:26:53 [ERROR]-main - Log -Log.java(41)  -com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:990)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:341)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2186)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at org.docshare.orm.mysql.MySQLDBHelper.conn(MySQLDBHelper.java:34)
+	at org.docshare.orm.mysql.MySQLDBHelper.main(MySQLDBHelper.java:47)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+	at java.net.Socket.connect(Socket.java:519)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:211)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:300)
+	... 16 more
+
+2018-06-12 22:26:53 [ERROR]-main - Log -Log.java(41)  -Config [dbhost=localhost, dbname=621m, dbusr=root, dbpwd=123456, port = 3306, tpl_base=null, ctr_base=null,reloadable=true,useSSL=false,interceptors={}]
+2018-06-12 22:26:55 [ERROR]-main - Log -Log.java(41)  -com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:990)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:341)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2186)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at org.docshare.orm.mysql.MySQLDBHelper.conn(MySQLDBHelper.java:34)
+	at org.docshare.orm.DBHelper.keyColumn(DBHelper.java:327)
+	at org.docshare.orm.mysql.MySQLDBHelper.main(MySQLDBHelper.java:49)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+	at java.net.Socket.connect(Socket.java:519)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:211)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:300)
+	... 17 more
+
+2018-06-12 22:26:55 [ERROR]-main - Log -Log.java(41)  -Config [dbhost=localhost, dbname=621m, dbusr=root, dbpwd=123456, port = 3306, tpl_base=null, ctr_base=null,reloadable=true,useSSL=false,interceptors={}]
+2018-06-12 22:27:02 [ERROR]-main - Log -Log.java(41)  -com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database '621m'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2188)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at org.docshare.orm.mysql.MySQLDBHelper.conn(MySQLDBHelper.java:34)
+	at org.docshare.orm.mysql.MySQLDBHelper.main(MySQLDBHelper.java:47)
+
+2018-06-12 22:27:02 [ERROR]-main - Log -Log.java(41)  -Config [dbhost=localhost, dbname=621m, dbusr=root, dbpwd=123456, port = 3308, tpl_base=null, ctr_base=null,reloadable=true,useSSL=false,interceptors={}]
+2018-06-12 22:27:02 [ERROR]-main - Log -Log.java(41)  -com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database '621m'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2188)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at org.docshare.orm.mysql.MySQLDBHelper.conn(MySQLDBHelper.java:34)
+	at org.docshare.orm.DBHelper.keyColumn(DBHelper.java:327)
+	at org.docshare.orm.mysql.MySQLDBHelper.main(MySQLDBHelper.java:49)
+
+2018-06-12 22:27:02 [ERROR]-main - Log -Log.java(41)  -Config [dbhost=localhost, dbname=621m, dbusr=root, dbpwd=123456, port = 3308, tpl_base=null, ctr_base=null,reloadable=true,useSSL=false,interceptors={}]
+2018-06-12 23:37:54 [ INFO]-main - Log -Log.java(30)  -[{"catalog_id":1,"id":1,"name":"af                  "}]
+2018-06-12 23:39:20 [ INFO]-main - Log -Log.java(30)  -[{"catalog_id":1,"id":1,"name":"af"}]

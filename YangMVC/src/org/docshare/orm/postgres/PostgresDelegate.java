@@ -1,4 +1,4 @@
-package org.docshare.orm.mysql;
+package org.docshare.orm.postgres;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,11 +17,11 @@ import org.docshare.orm.SQLConstains;
 import org.docshare.util.TextTool;
 
 
-public class MySQLDelegate implements IDBDelegate {
+public class PostgresDelegate implements IDBDelegate {
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
-		ResultSet rs = DBHelper.getIns().getPrepareRS(String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column),id);
+		ResultSet rs = DBHelper.getIns().getPrepareRS(String.format("select * from \"%s\" where \"%s\" = ? limit 0,1",tname,column),id);
 		return rs;
 	}
 
@@ -53,14 +53,14 @@ public class MySQLDelegate implements IDBDelegate {
 					vs2+=",";
 				}
 				
-				ks+= "`"+k+"`";
+				ks+= "\""+k+"\"";
 				String type = tool.getColumnTypeName(k);
 				ArrayTool.valueWrapper(null, v,type);
 				vs2+="?";
 				plist.add(v);
 				first = false;
 			}
-			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs2);
+			sql = String.format("insert into \"%s\"(%s) values(%s)", m.getTableName(),ks,vs2);
 		}else{
 			ArrayList<String> sa=new ArrayList<String>();
 			
@@ -73,11 +73,11 @@ public class MySQLDelegate implements IDBDelegate {
 				String type = tool.getColumnTypeName(k);
 				ArrayTool.valueWrapper(k, m.get(k),type);
 				//sa.add(s);
-				sa.add("`"+k+"`=?");
+				sa.add("\""+k+"\"=?");
 				plist.add(m.get(k));
 			}
 			String ss = ArrayTool.join(",", sa);
-			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName("id")) );
+			sql=String.format("update \"%s\" set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName("id")) );
 			if(m.changeColumns().size() == 0){
 				Log.i("no change data for update "+sql);
 				return 0;
@@ -98,7 +98,7 @@ public class MySQLDelegate implements IDBDelegate {
 	
 	@Override
 	public int delete(String tname,String key,Object id){
-		String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
+		String sql = String.format("delete from \"%s\" where \"%s\" = ?", tname,key);
 		Log.d("DBTool run sql: "+sql +" ,param  = "+id);
 		return DBHelper.getIns().update(sql,id);
 	}
@@ -135,7 +135,7 @@ public class MySQLDelegate implements IDBDelegate {
 			if(c.type<fh.length){
 				//String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
 				//sa.add(String.format("`%s` %s %s", c.column,fh[c.type],w));
-				sa.add(String.format("`%s` %s ?", c.column,fh[c.type]));
+				sa.add(String.format("\"%s\" %s ?", c.column,fh[c.type]));
 				params.add(c.value);
 				
 				continue;
@@ -144,17 +144,17 @@ public class MySQLDelegate implements IDBDelegate {
 			case SQLConstains.TYPE_LIKE:
 				//String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
 				//sa.add(w);
-				String w = String.format("  `%s` like ? ", c.column);
+				String w = String.format("  \"%s\" like ? ", c.column);
 				sa.add(w);
 				params.add("%"+c.value+"%");
 				
 				break;
 			case SQLConstains.TYPE_MLIKE:
 				String[] ca = c.column.split(",");
-				String t  = "(" +String.format("`%s` like ?",ca[0]);
+				String t  = "(" +String.format("\"%s\" like ?",ca[0]);
 				params.add("%"+c.value+"%");
 				for(int i=1;i<ca.length;i++){
-					t+=" or "+String.format("`%s` like ?",ca[i]);
+					t+=" or "+String.format("\"%s\" like ?",ca[i]);
 					params.add("%"+c.value+"%");
 				}
 				t+=")";
@@ -174,7 +174,7 @@ public class MySQLDelegate implements IDBDelegate {
 		String tail ="";
 		if(orderc!=null){
 			//tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
-			tail += String.format(" order by `%s` %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
+			tail += String.format(" order by \"%s\" %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
 			//params.add((Boolean)orderc.value?"asc":"desc");
 			
 		}
@@ -190,7 +190,7 @@ public class MySQLDelegate implements IDBDelegate {
 		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
 			
 			try {
-				return helper.getRS("select "+prefix+" from `" + tbName+"`");
+				return helper.getRS("select "+prefix+" from \"" + tbName+"\"");
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
@@ -200,7 +200,7 @@ public class MySQLDelegate implements IDBDelegate {
 			if(!c.startsWith("limit") && ! c.startsWith("order")){
 				c  = " where " +c ;
 			}else c = " " +c;
-			String sql = "select "+prefix+" from `"+tbName +"` "+c;
+			String sql = "select "+prefix+" from \""+tbName +"\" "+c;
 			try {
 				return helper.getRS(sql,params);
 			} catch (SQLException e) {
@@ -229,12 +229,12 @@ public class MySQLDelegate implements IDBDelegate {
 		for(SQLConstains c: cons){
 			if(c.type<fh.length){
 				String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
-				sa.add(String.format("`%s` %s %s", c.column,fh[c.type],w));
+				sa.add(String.format("\"%s\" %s %s", c.column,fh[c.type],w));
 				continue;
 			}
 			switch(c.type){
 			case SQLConstains.TYPE_LIKE:
-				String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
+				String w = String.format("  \"%s\" like '$%s$' ", c.column, c.value).replace("$","%");
 				sa.add(w);
 				break;
 			case SQLConstains.TYPE_LIMIT:

@@ -25,12 +25,12 @@ public class ServerMain {
 	public static void main(String[] args) {
 		Log.i("Server start .........");
 		parseParam(args);
-		while(true){
+		if(true){
 			try {
 				start();
 			} catch (Exception e) {
 				e.printStackTrace();
-				break;
+				//break;
 			}
 		}
 	}
@@ -72,7 +72,7 @@ public class ServerMain {
 		        	 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+url); 
 				} catch (Exception e) {
 					e.printStackTrace()	;
-					break;
+					continue;
 				}
 	        }
 	        

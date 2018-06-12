@@ -10866,3 +10866,15 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
 2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
 2018-04-03 15:30:49 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -Server start .........
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -Config file found ! 
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -web.properties loaded 
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -Find view/ dir ,use it !
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=[hidden], port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true,useSSL=false,interceptors={}]
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -jetty-8.1.0.v20120127
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -Started {}
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -服务器已经开启 Server is Started
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -please visit http://127.0.0.1:1985
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -本机的IP = 127.0.0.1
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -本机的IP = 192.168.1.150
+2018-05-31 11:34:26 [ INFO]-main - Log -Log.java(30)  -每按一次回车键打开一次浏览器,Press Enter key to open browser

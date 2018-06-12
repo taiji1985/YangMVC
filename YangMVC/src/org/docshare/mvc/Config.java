@@ -28,6 +28,10 @@ public class Config {
 	public static String dbport = "3306";
 	
 	/**
+	 *  数据库类型
+	 */
+	public static String dbtype ="mysql";
+	/**
 	 * 是否打开实时Reload功能
 	 */
 	public static boolean reloadable = true;
@@ -56,6 +60,7 @@ public class Config {
 				+ "]";
 	}
 	static ArrayList<Interceptor> interceptors =new ArrayList<Interceptor>();
+	
 	public static void addInterceptor(Interceptor interceptor){
 		if(interceptors.contains(interceptor)){
 			return;

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.Config;
 import org.docshare.util.BeanUtil;
 
 import com.alibaba.fastjson.JSON;
@@ -29,7 +30,7 @@ public class DBTool {
 	private HashMap<String,Object> columns; //所有列的列名,及其值（值都为空）
 	public Map<String, ColumnDesc> c_to_remarks;
 	String key ;
-	IDBDelegate delegate = DelegateFactory.getIns("mysql");
+	IDBDelegate delegate = DelegateFactory.getIns(Config.dbtype);
 	//DBHelper helper = DBHelper.getIns();
 	public IDBDelegate getDelegate(){
 		return delegate;
