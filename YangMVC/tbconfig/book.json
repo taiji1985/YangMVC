@@ -1,0 +1,1 @@
+{"listColumn":{"catalog_id":{"name":"catalog_id","pk_column":"id","pk_table":"catalog","type":4,"typeName":"int4"},"id":{"name":"id","type":4,"typeName":"serial"},"name":{"name":"name","type":12,"typeName":"varchar"}},"tb":"book"}

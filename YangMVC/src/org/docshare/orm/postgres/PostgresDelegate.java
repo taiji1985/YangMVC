@@ -21,7 +21,7 @@ public class PostgresDelegate implements IDBDelegate {
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
-		ResultSet rs = DBHelper.getIns().getPrepareRS(String.format("select * from \"%s\" where \"%s\" = ? limit 0,1",tname,column),id);
+		ResultSet rs = DBHelper.getIns().getPrepareRS(String.format("select * from \"%s\" where \"%s\" = ? limit 1",tname,column),id);
 		return rs;
 	}
 
@@ -85,7 +85,7 @@ public class PostgresDelegate implements IDBDelegate {
 		}
 		Log.d("DBTool run sql: "+sql+"  params=["+ArrayTool.joinWithLengthLimit(",", plist,20)+"]");
 		Object[] objs = plist.toArray();
-		DBHelper helper = DBHelper.getIns("mysql");
+		DBHelper helper = DBHelper.getIns(DBHelper.DB_POSTGRES);
 		
 		int d = helper.updateWithArray(sql,objs);
 		Log.d("return "+d);
@@ -185,7 +185,7 @@ public class PostgresDelegate implements IDBDelegate {
 			params.add(limitc.value2);
 		}
 		
-		DBHelper helper = DBHelper.getIns("mysql");
+		DBHelper helper = DBHelper.getIns(DBHelper.DB_POSTGRES);
 		String c=  TextTool.join2(sa, " and ") +  tail;
 		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
 			

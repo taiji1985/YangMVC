@@ -75,34 +75,5 @@ public class PostgresDBHelper extends DBHelper {
 //			}
 //			
 //		}
-	public static void main(String[] args) {
-		try {
-			Config.dbhost="localhost";
-			Config.dbport="5432";
-			Config.dbusr="bbb";
-			Config.dbpwd="123456";
-			Config.dbname = "postgres";
-			DBHelper helper = DBHelper.getIns(DBHelper.DB_POSTGRES);
-			helper.conn();
-			ResultSet rs = helper.getRS("select * from book");
-			while(rs.next()){
-				String s = rs.getString("name");
-				System.out.println(s);
-			}
-			HashMap<String, ColumnDesc> cc = helper.columeOfRs("select * from book", rs);
-			System.out.println(JSON.toJSONString(cc));
-			
-			cc = helper.listColumn("book");
-			System.out.println(JSON.toJSONString(cc));
-			
-			String key = helper.keyColumn("book");
-			System.out.println(key);
 
-			cc = helper.listColumn("catalog");
-			System.out.println(JSON.toJSONString(cc));
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }

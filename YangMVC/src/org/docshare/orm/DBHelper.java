@@ -11,7 +11,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.persistence.Table;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
@@ -158,6 +161,31 @@ public abstract class DBHelper {
 		s = con.createStatement();
 		Log.d("DBHelper"+" Exec : "+sql);
 		return s.executeQuery(sql);
+	}
+	
+	public class TableInfo{
+		public String name;
+		public String schema;
+		public String type;
+	}
+	public List<TableInfo> getTables(){
+		conn();
+		ArrayList<TableInfo> ret = new ArrayList<DBHelper.TableInfo>();
+		try {
+			ResultSet rs = con.getMetaData().getTables(Config.dbname, Config.dbschema, null, new String[]{"TABLE","VIEW"});
+		
+			while(rs.next()){
+				TableInfo tInfo = new TableInfo();
+				tInfo.name = rs.getString("TABLE_NAME");
+				tInfo.schema = rs.getString("TABLE_SCHEM");
+				tInfo.type = rs.getString("TABLE_TYPE");
+				ret.add(tInfo);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 	/**
 	 * 列举sql返回的所有的行

@@ -22,6 +22,7 @@
             <zipfileset excludes="META-INF/*.SF" src="libs/commons-httpclient-3.1.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="libs/commons-logging-1.0.4.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="libs/log4j-1.2.17.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="libs/postgresql-42.2.2.jre6.jar"/>
             <!--<zipfileset excludes="META-INF/*.SF" src="C:/dev/MyEclipse/Common/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
             <zipfileset excludes="META-INF/*.SF" src="C:/dev/MyEclipse/Common/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
             -->

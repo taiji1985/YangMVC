@@ -1,0 +1,1 @@
+{"listColumn":{"id":{"exportKey":[{"column":"catalog_id","table":"book"}],"name":"id","type":4,"typeName":"int4"},"name":{"name":"name","type":12,"typeName":"varchar"}},"tb":"catalog"}

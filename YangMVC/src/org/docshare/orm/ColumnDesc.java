@@ -31,11 +31,11 @@ public class ColumnDesc {
 	 */
 	public String javaType(){
 		String t = typeName.toLowerCase();
-		if(t.equals("int")) return "Integer";
-		if(t.equals("long")) return "Long";
-		if(t.equals("double")) return "Double";
-		if(t.equals("char")) return "String";
-		if(t.equals("text")) return "String";
+		if(t.contains("int")) return "Integer";
+		if(t.contains("long")) return "Long";
+		if(t.contains("double")) return "Double";
+		if(t.contains("char")) return "String";
+		if(t.contains("text")) return "String";
 		if(t.contains("date") || t.contains("time")) return "DateTime";
 		return "String";
 	}

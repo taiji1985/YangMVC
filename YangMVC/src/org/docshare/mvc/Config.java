@@ -31,6 +31,8 @@ public class Config {
 	 *  数据库类型
 	 */
 	public static String dbtype ="mysql";
+
+	public static String dbschema="public";
 	/**
 	 * 是否打开实时Reload功能
 	 */
@@ -56,6 +58,7 @@ public class Config {
 				+ dbpwd + ", port = "+ dbport + ", tpl_base=" + tpl_base + ", ctr_base=" + ctr_base
 				+",reloadable="+reloadable
 				+",useSSL="+useSSL
+				+",dbtype="+dbtype
 				+",interceptors="+getInteNames()
 				+ "]";
 	}

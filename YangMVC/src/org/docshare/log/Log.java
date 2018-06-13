@@ -10,6 +10,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.docshare.mvc.Config;
 
+import com.alibaba.fastjson.JSON;
+
 
 public class Log {
 	public static final int LEVEL_DEBUG =0;
@@ -27,7 +29,13 @@ public class Log {
 	
 	public static <T> void i(T str) {
 		if(Config.level > LEVEL_INFO)return;
-		log.info(str);
+		String t ;
+		if(!(str instanceof String)){
+			t = JSON.toJSONString(str,true);
+		}else{
+			t= (String) str;
+		}
+		log.info(t);
 		//System.out.println(now()+ "[info ]" + str);
 	}
 

@@ -179,7 +179,9 @@ public class MVCFilter implements Filter {
 				Config.dbhost = loadConfig("dbhost",Config.dbhost);
 				Config.dbpwd  = loadConfig("dbpwd" ,Config.dbpwd);
 				Config.dbname = loadConfig("dbname",Config.dbname);
-				Config.dbport = loadConfig("dbport",Config.dbport);				
+				Config.dbport = loadConfig("dbport",Config.dbport);	
+				Config.dbtype = loadConfig("dbtype",Config.dbtype);	
+				Config.dbschema = loadConfig("dbschema",Config.dbschema);				
 				Config.reloadable = Boolean.parseBoolean(loadConfig("reloadable", Config.reloadable+""));
 			}
 		} catch (Exception e1) {

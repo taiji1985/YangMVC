@@ -619,7 +619,7 @@ public class Controller {
 			writer = getMyPrintWriter();
 			
 			response.setCharacterEncoding("utf-8");
-			response.setContentType("text/json");
+			response.setContentType("text/json;charset=UTF-8");
 			
 			String debug = param("debug"); //如果是debug模式，则格式化输出json
 			
