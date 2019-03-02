@@ -249,7 +249,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	@NotNull
-	public LasyList gt(String column, int val) {
+	public LasyList gt(String column, Object val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_GT, column, val));
 		
 		return this;
@@ -262,7 +262,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	@NotNull
-	public LasyList gte(String column, int val) {
+	public LasyList gte(String column, Object val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_GTE, column, val));
 		return this;
 	}
@@ -275,7 +275,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	@NotNull
-	public LasyList lt(String column, int val) {
+	public LasyList lt(String column, Object val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_LT, column, val));
 		return this;
 	}
@@ -287,7 +287,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	@NotNull
-	public LasyList lte(String column, int val) {
+	public LasyList lte(String column, Object val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_LTE, column, val));
 		return this;
 	}
@@ -299,7 +299,7 @@ public class LasyList extends ListAdapter {
 	 * @return 当前对象。 返回当前对象的好处就是可以使用级联的写法 如  tool.all().gt(id,12)
 	 */
 	@NotNull
-	public LasyList ne(String column, int val) {
+	public LasyList ne(String column, Object val) {
 		cons.add(new SQLConstains(SQLConstains.TYPE_NE, column, val));
 		return this;
 	}

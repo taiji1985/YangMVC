@@ -48,7 +48,9 @@ public class DBTool {
 		for(String s:c_to_remarks.keySet()){
 			columns.put(s, null);
 		}
-		key = delegate.keyColumn(tname);
+		if( ! tname.equals("rawsql")){ //原始sql没有key
+			key = delegate.keyColumn(tname);
+		}
 	}
 	/**
 	 * 获取列的注释

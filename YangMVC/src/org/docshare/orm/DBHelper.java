@@ -390,6 +390,7 @@ public abstract class DBHelper {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("---------- 这个错误绝大多数情况不会影响程序的正常运行，错误原因：只是获取不到表"+tb+"的主键");
 		}  
 
 		return ret;

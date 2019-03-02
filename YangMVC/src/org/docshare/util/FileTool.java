@@ -420,7 +420,7 @@ public class FileTool {
 	}
 
 	public static void writeAll(InputStream in, OutputStream os) {
-		byte[] buf = new byte[1024];
+		byte[] buf = new byte[1024*10];
 
 		try {
 			int readed = in.read(buf);
