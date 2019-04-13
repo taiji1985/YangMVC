@@ -82,6 +82,7 @@ public class YangServerContext implements ServletContext {
 				pro.load(in);
 				Log.i("web.properties loaded ");
 				in.close();
+				
 			}else{
 
 				Log.i("web.properties NOT load ");

@@ -3,7 +3,6 @@ package org.docshare.orm;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,11 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Table;
-
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.orm.ColumnDesc.ExportTo;
+import org.docshare.orm.access.AccessDBHelper;
 import org.docshare.orm.mysql.MySQLDBHelper;
 import org.docshare.orm.postgres.PostgresDBHelper;
 import org.docshare.util.FileTool;
@@ -45,6 +43,8 @@ public abstract class DBHelper {
 				ins = new MySQLDBHelper();	
 			}else if(type.equals("postgres")){
 				ins = new PostgresDBHelper();
+			}else if(type.equals("access")){
+				ins = new AccessDBHelper();
 			}
 			locals.set(ins);
 		}
