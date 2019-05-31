@@ -112,12 +112,16 @@ public class MySQLDelegate implements IDBDelegate {
 		ResultSet rs;
 		try {
 			rs = runSQL(cons, tool, tbName,"count(*) as CT");
-			if(rs.next()){
-				long id = rs.getLong("CT");
+			if(rs!=null){
+				if(rs.next()){
+					long id = rs.getLong("CT");
+					rs.close();
+					return id;
+				}
 				rs.close();
-				return id;
+			}else{
+				
 			}
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -61,7 +61,7 @@ public class MVCFilter implements Filter {
 	
 	private boolean process(String uri,String context,HttpServletRequest req, HttpServletResponse resp,FilterChain chain) throws Exception{
 		String temp = getPureURI(uri, context);
-		Log.d("process "+temp);
+		Log.v("process "+temp);
 		
 		if(!temp.contains("/")){
 			temp = "index/"+temp;
@@ -120,7 +120,7 @@ public class MVCFilter implements Filter {
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
 		if(context == null) context = "";
-		Log.d("filter > "+uri +",["+RequestHelper.params(req2)+"]"); 
+		Log.d("filter > "+uri +",param = ["+RequestHelper.params(req2)+"]"); 
 		if(uri.contains(".")) {
 			chain.doFilter(req, resp);
 			return;
@@ -214,6 +214,7 @@ public class MVCFilter implements Filter {
 		
 		fmCfg = new Configuration(Configuration.VERSION_2_3_25);  
 		fmCfg.setDefaultEncoding("utf-8");
+		fmCfg.setLocalizedLookup(false);
 		fmCfg.setTemplateExceptionHandler(new FreeMarkerHandler());
 		//fmCfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 		TemplateLoader ctl = new ClassTemplateLoader(MVCFilter.class,

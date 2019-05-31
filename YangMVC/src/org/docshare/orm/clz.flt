@@ -3,6 +3,7 @@ package ${pkg};
 import org.docshare.orm.LasyList;
 import java.util.List;
 import org.docshare.orm.Model;
+import java.util.Date;
 
 public class ${clsName}{
 	<#list columns?keys as c>
@@ -26,13 +27,17 @@ public class ${clsName}{
 	*	根据主键获取
 	*/
 	public static ${clsName} findByKey(Object id){
-		return Model.tool(TABLE_NAME).get(id).toObject(new ${clsName}());
+		Model m = Model.tool(TABLE_NAME).get(id);
+		if(m == null) return null;
+		else return m.toObject(new ${clsName}());
 	}
 	/**
 	*	根据其他列的值进行获取，如果获取结果有多个，则输出第一个。
 	*/
 	public static ${clsName} findByColumn(String column,Object id){
-		return Model.tool(TABLE_NAME).get(column,id).toObject(new ${clsName}());
+	Model m = Model.tool(TABLE_NAME).get(column,id);
+		if(m == null) return null;
+		else return m.toObject(new ${clsName}());
 	}
 	/**
 	*	LasyList对象转对象数组
@@ -50,7 +55,7 @@ public class ${clsName}{
 	*	删除当前对象
 	*/
 	public void remove(){
-		Model.tool(TABLE_NAME).del(${key});
+		Model.tool(TABLE_NAME).del(${key!"id"});
 	}
 	
 	<#list importForeign?keys as c>

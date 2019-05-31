@@ -111,7 +111,11 @@ public class ConfigCreator {
 				
 				ColumnDesc cDesc = listColumn.get(c);
 				HashMap<String, Object> m = BeanUtil.obj2Map(cDesc);
-				m.put("javaType", cDesc.javaType());
+				String jtype = cDesc.javaType();
+				if("DateTime".equals(jtype)){
+					jtype = "Date";
+				}
+				m.put("javaType", jtype);
 				mapColumns.put(c, m);
 				
 				//foreign
@@ -128,7 +132,7 @@ public class ConfigCreator {
 			root.put("key", Model.tool(tb.name).key);
 			
 			String fname= dir +clsName+".java";
-			PrintWriter out = new PrintWriter(fname);
+			PrintWriter out = new PrintWriter(fname,"utf-8");
 			fmCfg.getTemplate("clz.flt").process(root, out);
 			out.close();
 //			StringBuffer sb = new StringBuffer();

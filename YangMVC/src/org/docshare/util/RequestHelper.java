@@ -11,10 +11,11 @@ public class RequestHelper {
 		while(enu.hasMoreElements()){
 			String key=(String)enu.nextElement();
 			String val = request.getParameter(key);
-			if(val.length()>10) val = val.substring(0,10);
-			if(!isFirst){
-				sb.append(",");
+			if(val.length()>20) val = val.substring(0,20)+"...";
+			if(isFirst){
 				isFirst =false;
+			}else{
+				sb.append(",");
 			}
 			sb.append(key+"="+val);
 		} 
