@@ -33,6 +33,45 @@ ORM¿ò¼Ü²»ĞèÒªÔ¤ÏÈÉú³ÉÈÎºÎPOJOÀà£¬ËùÓĞ±í¶¼Ó³ÉäÎªÄÚÖÃµÄModelÀà£¬¼´Ò»¸öModel¶ÔÏó¶ÔÓ
 Êı¾İ¿âµÄÉè¼ÆÔÚ³õÆÚ³£ÓĞ²»ÍêÉÆµÄµØ·½£¬Èç¹ûÊ¹ÓÃHibernateÕâÖÖ¿ò¼Ü£¬ÄÇÃ´¾ÍĞèÒªÔÚĞŞ¸ÄÊı¾İ¿âºóÖØĞÂÉú³ÉJavaÀà¡£¶ø¶ÔÓ¦µÄDAOÀàÒ²Òª¶ÔÓ¦ĞŞ¸Ä£¬Õâ¼òÖ±ÊÇØ¬ÃÎ¡£¡£¡£
 
 iBatisÊÇÄãÏ²»¶µÄ£¬µ«ËüĞèÒªsqlÓï¾ä¡£YangMVC²»ÓÃ¡£¡£¡£
+# Ó¦ÓÃ³¡¾°
+## 1 App µÄ·şÎñ¶Ë³ÌĞò »òÕßVue+ºó¶Ë¼Ü¹¹µÄºó¶Ë³ÌĞò
+
+ÕâÖÖ¼Ü¹¹ÏÂ£¬ÄãÒ»°ãÖ»ĞèÒªÊä³öJSON¡£Äã¿ÉÒÔ´´½¨Ò»¸öjava¹¤³Ì£¬ÍÏÈëÒ»¸öyangmvc-xxx-boot.jar, ĞÂ½¨Ò»¸ö¿ØÖÆÆ÷¡£Ö±½ÓÔËĞĞ£¡
+```java
+public class IndexController extends Controller{
+	public void index(){
+		//T("book") µÈ¼ÛÓÚModel.tool
+		//L("book") µÈ¼ÛÓÚ Model.tool("book").all()
+		LasyList list = L("book");
+		outputJSON(list);
+	}
+	public void add(){
+		Model book = T("book").create();
+		paramToModel(book); //×Ô¶¯ÊÕ¼¯ ²ÎÊıµ½book¶ÔÏó£¬ Èç²ÎÊıheight»á±£´æµ½bookµÄheightÊôĞÔÖĞ¡£
+		book.save();
+		output("ok");
+	}
+	public void del(){
+		int id = paramInt("id"£¬-1); //´øÄ¬ÈÏÖµ£¬×Ô¶¯×ª»»ÀàĞÍ
+		if(id<0) {
+			output("fail");
+			return;
+		}
+		T("book").del(id); //±ã½İµÄÖ÷¼üÉ¾³ı
+		output("ok");
+	}
+}
+```
+·ÃÎÊhttp://127.0.0.1:1985/ ¿ÉÒÔ»ñµÃbook±í¶ÔÓ¦µÄjsonÊı¾İ¡£
+
+http://127.0.0.1:1985/add Ìí¼ÓÊı¾İ¶ÔÓ¦µÄ½Ó¿ÚµØÖ·
+
+http://127.0.0.1:1985/del?id=12 É¾³ıÊı¾İ¶ÔÓ¦µÄ½Ó¿ÚµØÖ·
+
+## ¿ª·¢WebÏîÄ¿
+
+Õû¸öwebÏîÄ¿£¬ÄãÖ»ĞèÒªÊÖ¹¤ÒıÈëÒ»¸öjar°ü¾ÍÊÇyangmvc-°æ±¾ºÅ.jar
+ÅäÖÃÉÏ£¬Ö»ĞèÒªÔÚweb.xmlÖĞ¼ÓÈëÊı¾İ¿âµØÖ·µÈ±ØĞëµÄÅäÖÃĞÅÏ¢¼´¿É¡£
 
 # ½»Á÷Èº
 
