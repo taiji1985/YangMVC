@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -259,6 +261,33 @@ public class FileTool {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * 在文件中追加
+	 * @param f 文件名
+	 * @param d 内容
+	 */
+	public static void appendFile(String f, String d,String charset) {
+		RandomAccessFile randomFile = null; 
+	    try {   
+	      // 打开一个随机访问文件流，按读写方式   
+	      randomFile = new RandomAccessFile(f, "rw");   
+	      // 文件长度，字节数   
+	      long fileLength = randomFile.length();   
+	      // 将写文件指针移到文件尾。   
+	      randomFile.seek(fileLength);   
+	      randomFile.write(d.getBytes(charset));   
+	    } catch (IOException e) {   
+	      e.printStackTrace();   
+	    } finally{ 
+	      if(randomFile != null){ 
+	        try { 
+	          randomFile.close(); 
+	        } catch (IOException e) { 
+	          e.printStackTrace(); 
+	        } 
+	      } 
+	    }
 	}
 	/**
 	 * 删除文件

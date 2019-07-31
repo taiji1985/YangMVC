@@ -135,20 +135,24 @@ public class MySQLDelegate implements IDBDelegate {
 		final String[] fh = {"","=",">","<",">=","<=","<>"};
 		SQLConstains limitc=null;
 		SQLConstains orderc=null;
+		String w;
 		for(SQLConstains c: cons){
 			if(c.type<fh.length){
 				//String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
 				//sa.add(String.format("`%s` %s %s", c.column,fh[c.type],w));
 				sa.add(String.format("`%s` %s ?", c.column,fh[c.type]));
 				params.add(c.value);
-				
 				continue;
 			}
 			switch(c.type){
+			case SQLConstains.TYPE_ISNULL:
+				w = String.format(" `%s` is NULL ", c.column);
+				sa.add(w);
+				break;
 			case SQLConstains.TYPE_LIKE:
 				//String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
 				//sa.add(w);
-				String w = String.format("  `%s` like ? ", c.column);
+				w = String.format("  `%s` like ? ", c.column);
 				sa.add(w);
 				params.add("%"+c.value+"%");
 				

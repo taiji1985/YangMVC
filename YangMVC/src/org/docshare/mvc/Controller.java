@@ -615,23 +615,23 @@ public class Controller {
 	 * @param obj
 	 */
 	public void outputJSON(Object obj){		
+		outputJSON(obj,param("debug") != null);
+	}
+	public void outputJSON(Object obj,boolean pretty){
 		try {
 			writer = getMyPrintWriter();
 			
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("text/json;charset=UTF-8");
 			
-			String debug = param("debug"); //如果是debug模式，则格式化输出json
-			
 			if(obj == null)writer.write("{}");
-			else{String string = JSON.toJSONString(obj,debug!=null);
+			else{String string = JSON.toJSONString(obj,pretty);
 				writer.write(string);
 			}
 			writer.close();
 		} catch (Exception e) {
 			Log.e(e);
 		}
-		
 	}
 	
 	/**
@@ -1084,5 +1084,16 @@ public class Controller {
 		} catch (Exception e) {
 			Log.e(e);
 		}
+	}
+	
+	public String json(Object obj,boolean pretty){
+		return JSON.toJSONString(obj,pretty);
+	}
+	
+	public String json(Object obj){
+		return json(obj,false);
+	}
+	public void dump(){
+		Log.i(json(request.getParameterMap(),true));
 	}
 }

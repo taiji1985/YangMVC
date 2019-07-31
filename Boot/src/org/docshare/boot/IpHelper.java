@@ -68,9 +68,9 @@ public class IpHelper {
 			is.close();
 			if(waitFor)p.waitFor();
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e(e);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			Log.e(e);
 		}
 		return sb.toString();
 	}

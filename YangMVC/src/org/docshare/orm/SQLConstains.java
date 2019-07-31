@@ -8,6 +8,7 @@ public class SQLConstains {
 	public static final int TYPE_LTE = 5;
 	public static final int TYPE_NE = 6;
 	public static final int TYPE_LIKE = 7;
+	public static final int TYPE_ISNULL = 9;
 	public static final int TYPE_ORDER = 50;
 	public static final int TYPE_LIMIT = 100;
 	public static final int TYPE_MLIKE = 8;

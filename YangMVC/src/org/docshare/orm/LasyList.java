@@ -303,9 +303,19 @@ public class LasyList extends ListAdapter {
 		cons.add(new SQLConstains(SQLConstains.TYPE_NE, column, val));
 		return this;
 	}
+	
+	/**
+	 * 添加空约束。。 select * from book where author is null;/
+	 * @param column 为空的列
+	 * @return
+	 */
+	public LasyList isNull(String column){
+		cons.add(new SQLConstains(SQLConstains.TYPE_ISNULL, column, null));
+		return this;
+	}
 
 	/**
-	 * 
+	 * 设置排序规则
 	 * @param column
 	 *            排序依据的列
 	 * @param asc
