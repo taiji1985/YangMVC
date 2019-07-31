@@ -35,7 +35,7 @@ ORM¿ò¼Ü²»ÐèÒªÔ¤ÏÈÉú³ÉÈÎºÎPOJOÀà£¬ËùÓÐ±í¶¼Ó³ÉäÎªÄÚÖÃµÄModelÀà£¬¼´Ò»¸öModel¶ÔÏó¶ÔÓ
 iBatisÊÇÄãÏ²»¶µÄ£¬µ«ËüÐèÒªsqlÓï¾ä¡£YangMVC²»ÓÃ¡£¡£¡£
 # Ó¦ÓÃ³¡¾°
 ## 1 App µÄ·þÎñ¶Ë³ÌÐò »òÕßVue+ºó¶Ë¼Ü¹¹µÄºó¶Ë³ÌÐò
-
+![](images/bootdemo.jpg)
 ÕâÖÖ¼Ü¹¹ÏÂ£¬ÄãÒ»°ãÖ»ÐèÒªÊä³öJSON¡£Äã¿ÉÒÔ´´½¨Ò»¸öjava¹¤³Ì£¬ÍÏÈëÒ»¸öyangmvc-xxx-boot.jar, ÐÂ½¨Ò»¸ö¿ØÖÆÆ÷¡£Ö±½ÓÔËÐÐ£¡
 ```java
 public class IndexController extends Controller{
