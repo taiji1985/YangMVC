@@ -228,12 +228,17 @@ public class MVCFilter implements Filter {
 			ftl1 = new FileTemplateLoader(new File("view/"));
 			mtl = new MultiTemplateLoader(new TemplateLoader[] {
 			           wtl,ftl1 , ctl  });
+			Log.i("[template dir] "+ application.getRealPath(Config.tpl_base));
+			Log.i("[template dir] "+ new File("view/").getAbsolutePath());
+			Log.i("[template dir] classpath /view");
 			Log.i("Find view/ dir ,use it !");
 		} catch (IOException e) {
 			//e.printStackTrace();
-			Log.i("view/ dir not found !  ,use classpath");
+			//Log.i("view/ dir not found !  ,use classpath");
 			mtl = new MultiTemplateLoader(new TemplateLoader[] {
 			           wtl,ctl  });
+			Log.i("[template dir] "+ application.getRealPath(Config.tpl_base));
+			Log.i("[template dir] classpath /view");
 		}
 		
 		fmCfg.setTemplateLoader(mtl);
