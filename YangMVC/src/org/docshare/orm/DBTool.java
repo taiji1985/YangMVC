@@ -204,6 +204,10 @@ public class DBTool {
 			Log.e("DBTool save a null model "+ m +", tname is "+tname);
 			return 0;
 		}
+		if(key == null){
+			Log.e("DBTool.save table must has a Key ,数据库表必须有主键");
+			return 0;
+		}
 		int r =  delegate.save(this, m, key, isInsert);
 		m.isCreated = false;
 		return r;
