@@ -48,7 +48,7 @@ public class ServerMain {
 	        contextHandler.setContextPath("/");
 	        contextHandler.setResourceBase("./WebRoot");
 	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
-	        contextHandler.setHandler(YangHandle.getIns(server));
+	        //contextHandler.setHandler(YangHandle.getIns(server));
 	        
 	        collection.addHandler(new SessionHandler());
 	        collection.addHandler(YangHandle.getIns(server));

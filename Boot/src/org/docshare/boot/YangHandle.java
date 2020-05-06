@@ -175,7 +175,7 @@ public class YangHandle extends AbstractHandler {
 	}
 
 	private void T(String string) {
-		System.out.println(string);
+		Log.i(string);
 	}
 
 
