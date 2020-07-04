@@ -1,32 +1,33 @@
 
 #YangMVC
 
-# ¿ª·¢Ä¿µÄ
-
-@copyright ÑîÍ¬·å ±£ÁôËùÓÐÈ¨Àû 
-
-±¾ÎÄ¿ÉÒÔ×ªÔØ£¬µ«Çë±£Áô°æÈ¨ÐÅÏ¢¡£
+# å¼€å‘ç›®çš„
 
 
 
-SSH¿ò¼ÜÅäÖÃ¸´ÔÓ¡¢ÄÑÓÃ¡£¸öÈËÈÏÎªÕâ²»ÊÇÒ»¸ö¿ò¼ÜÓ¦¸ÃÓÐµÄÑù×Ó¡£¿ò¼ÜÓ¦¸ÃÊ¹ÓÃ¼òµ¥¡¢ÅäÖÃ¼òµ¥¡¢´úÂë¼ò½à¡£ÓÚÊÇ²ÎÕÕDjangoµÄÒ»Ð©ÌØÐÔ£¬±àÐ´ÁËÕâ¸öMVC+ORM¿ò¼Ü¡£
 
-#ÌØÐÔ
-1. ´óÁ¿µÄÄ¬ÈÏÔ¼¶¨£¬±ÜÃâÁË´óÁ¿µÄÅäÖÃ
-2. Ê¹ÓÃ´Ë¿ò¼Ü¿ª·¢Ð§ÂÊ»áºÜ¸ß
-3. Ö§³ÖÑÓ³Ù¼ÓÔØ¼¼ÊõµÄList
-4. ºÍJSTLÎÞ·ì¼æÈÝ
-
-#ÅäÖÃ
+æœ¬æ–‡å¯ä»¥è½¬è½½ï¼Œä½†è¯·ä¿ç•™ç‰ˆæƒä¿¡æ¯ã€‚
 
 
-1. ÐÂ½¨Ò»¸öWeb Project£¨MyEclipseÎªÀý£©
-2. ½«ÒÔÏÂjar·Åµ½WebRoot/Web-INFÏÂÃæ
+
+SSHæ¡†æž¶é…ç½®å¤æ‚ã€éš¾ç”¨ã€‚ä¸ªäººè®¤ä¸ºè¿™ä¸æ˜¯ä¸€ä¸ªæ¡†æž¶åº”è¯¥æœ‰çš„æ ·å­ã€‚æ¡†æž¶åº”è¯¥ä½¿ç”¨ç®€å•ã€é…ç½®ç®€å•ã€ä»£ç ç®€æ´ã€‚äºŽæ˜¯å‚ç…§Djangoçš„ä¸€äº›ç‰¹æ€§ï¼Œç¼–å†™äº†è¿™ä¸ªMVC+ORMæ¡†æž¶ã€‚
+
+#ç‰¹æ€§
+1. å¤§é‡çš„é»˜è®¤çº¦å®šï¼Œé¿å…äº†å¤§é‡çš„é…ç½®
+2. ä½¿ç”¨æ­¤æ¡†æž¶å¼€å‘æ•ˆçŽ‡ä¼šå¾ˆé«˜
+3. æ”¯æŒå»¶è¿ŸåŠ è½½æŠ€æœ¯çš„List
+4. å’ŒJSTLæ— ç¼å…¼å®¹
+
+#é…ç½®
+
+
+1. æ–°å»ºä¸€ä¸ªWeb Projectï¼ˆMyEclipseä¸ºä¾‹ï¼‰
+2. å°†ä»¥ä¸‹jaræ”¾åˆ°WebRoot/Web-INFä¸‹é¢
 yangmvc-1.6-all-in-one.jar
-ÏÂÔØµØÖ·
+ä¸‹è½½åœ°å€
 http://git.oschina.net/yangtf/YangMVC/attach_files
 
-3. ÔÚweb.xmlÖÐ£¨web-app±êÇ©ÄÚ£©¼ÓÈë
+3. åœ¨web.xmlä¸­ï¼ˆweb-appæ ‡ç­¾å†…ï¼‰åŠ å…¥
 
 ```xml
   <filter>
@@ -68,62 +69,62 @@ http://git.oschina.net/yangtf/YangMVC/attach_files
   </context-param>  
 ```
 
-ËùÓÐÐèÒªÅäÖÃµÄ¶¼ÔÚÕâÀïÁË¡£ÕâÀï×ö¸ö¼òÒªËµÃ÷
-**MVCFilter**ÊÇÎÒÃÇMVC¿ò¼ÜµÄÈë¿Ú¡££¨²»¹ÜÊÇÉ¶MVC¿ò¼Ü¶¼Ãâ²»ÁËÕâ¸ö£©
-ËüÓÐcontrollerºÍtemplateÁ½¸ö²ÎÊý¡£
-**controller** ÊÇÄã¿ØÖÆÆ÷´æ·ÅÎ»ÖÃµÄ°üÃû¡£ ±ÈÈçÕâÀïÊÇorg.demo Äã½¨Á¢µÄ¿ØÖÆÆ÷¶¼±ØÐëÐ´ÔÚÕâ¸ö°üÖÐ
-**template**ÊÇÄã´æ·ÅÄ£°å£¨ÊÓÍ¼£©µÄµØ·½¡£Õâ¸öÂ·¾¶ÊÇÏà¶ÔÓÚWebRoot¼´ÍøÕ¾¸ùÄ¿Â¼µÄ¡£
-±ÈÈçÕâÀïµÄÅäÖÃ(/view)ÊÇWebRootÏÂµÄviewÄ¿Â¼¡£ 
+æ‰€æœ‰éœ€è¦é…ç½®çš„éƒ½åœ¨è¿™é‡Œäº†ã€‚è¿™é‡Œåšä¸ªç®€è¦è¯´æ˜Ž
+**MVCFilter**æ˜¯æˆ‘ä»¬MVCæ¡†æž¶çš„å…¥å£ã€‚ï¼ˆä¸ç®¡æ˜¯å•¥MVCæ¡†æž¶éƒ½å…ä¸äº†è¿™ä¸ªï¼‰
+å®ƒæœ‰controllerå’Œtemplateä¸¤ä¸ªå‚æ•°ã€‚
+**controller** æ˜¯ä½ æŽ§åˆ¶å™¨å­˜æ”¾ä½ç½®çš„åŒ…åã€‚ æ¯”å¦‚è¿™é‡Œæ˜¯org.demo ä½ å»ºç«‹çš„æŽ§åˆ¶å™¨éƒ½å¿…é¡»å†™åœ¨è¿™ä¸ªåŒ…ä¸­
+**template**æ˜¯ä½ å­˜æ”¾æ¨¡æ¿ï¼ˆè§†å›¾ï¼‰çš„åœ°æ–¹ã€‚è¿™ä¸ªè·¯å¾„æ˜¯ç›¸å¯¹äºŽWebRootå³ç½‘ç«™æ ¹ç›®å½•çš„ã€‚
+æ¯”å¦‚è¿™é‡Œçš„é…ç½®(/view)æ˜¯WebRootä¸‹çš„viewç›®å½•ã€‚ 
 
-**dbhost dbname dbusr dbpwd** ÊÇÊý¾Ý¿âµÄ µØÖ·¡¢Êý¾Ý¿âÃû¡¢ÓÃ»§ÃûºÍÃÜÂë¡£Ä¿Ç°Õâ¸öMVC¿ò¼ÜÖ»Ö§³ÖMySQL£¬ºóÐø»áÌí¼ÓÆäËûÊý¾Ý¿âµÄÖ§³Ö¡£
+**dbhost dbname dbusr dbpwd** æ˜¯æ•°æ®åº“çš„ åœ°å€ã€æ•°æ®åº“åã€ç”¨æˆ·åå’Œå¯†ç ã€‚ç›®å‰è¿™ä¸ªMVCæ¡†æž¶åªæ”¯æŒMySQLï¼ŒåŽç»­ä¼šæ·»åŠ å…¶ä»–æ•°æ®åº“çš„æ”¯æŒã€‚
 
 
-**×¢Òâ£¬Ä£°åÄ¿Â¼£¨template²ÎÊýËùÅäÖÃµÄÖµ£©ÒÔ/¿ªÍ·£¬Èç/view¡£**
+**æ³¨æ„ï¼Œæ¨¡æ¿ç›®å½•ï¼ˆtemplateå‚æ•°æ‰€é…ç½®çš„å€¼ï¼‰ä»¥/å¼€å¤´ï¼Œå¦‚/viewã€‚**
 
-##Ê¹ÓÃ´úÂë½øÐÐÅäÖÃ
-Èç¹û²»Ô¸Òâ»òÕß²»·½±ãÔÚxmlÖÐÅäÖÃÊý¾Ý¿âÐÅÏ¢£¬¿ÉÒÔÔÚ¿ØÖÆÆ÷µÄ¸ùÄ¿Â¼ÏÂÌí¼ÓInitÀà¡£
-ÈçÉÏÃæµÄÀý×ÓÖÐ£¬¿ØÖÆÆ÷µÄ¸ùÎªorg.demoÕâ¸ö°ü£¬´´½¨Ò»¸öorg.demo.InitÀà£¬ÔÚ¸ÃÀàµÄ
-¹¹Ôìº¯ÊýÖÐ×öÒ»Ð©³õÊ¼»¯µÄ¹¤×÷¡£Èç£º
+##ä½¿ç”¨ä»£ç è¿›è¡Œé…ç½®
+å¦‚æžœä¸æ„¿æ„æˆ–è€…ä¸æ–¹ä¾¿åœ¨xmlä¸­é…ç½®æ•°æ®åº“ä¿¡æ¯ï¼Œå¯ä»¥åœ¨æŽ§åˆ¶å™¨çš„æ ¹ç›®å½•ä¸‹æ·»åŠ Initç±»ã€‚
+å¦‚ä¸Šé¢çš„ä¾‹å­ä¸­ï¼ŒæŽ§åˆ¶å™¨çš„æ ¹ä¸ºorg.demoè¿™ä¸ªåŒ…ï¼Œåˆ›å»ºä¸€ä¸ªorg.demo.Initç±»ï¼Œåœ¨è¯¥ç±»çš„
+æž„é€ å‡½æ•°ä¸­åšä¸€äº›åˆå§‹åŒ–çš„å·¥ä½œã€‚å¦‚ï¼š
 
 ```java
 public class Init {
 	
 	public Init(){ 
 		Log.e("I can init something in Init class");
-		//¿ÉÒÔÅäÖÃÊý¾Ý¿â
-		Config.dbname="haha";//µÈµÈÆäËûÊý¾Ý¿âµÄÅäÖÃ
-		//Ò²¿ÉÒÔÆô¶¯ºóÌ¨Ïß³Ì£¬¿ÉÒÔÌæ´ú×Ô¶¯Æô¶¯µÄServlet
-		Thread t =new Thread(MyRunner()); //MyRunnerÊÇÄã×Ô¼º¶¨ÒåµÄºóÌ¨Runnable
+		//å¯ä»¥é…ç½®æ•°æ®åº“
+		Config.dbname="haha";//ç­‰ç­‰å…¶ä»–æ•°æ®åº“çš„é…ç½®
+		//ä¹Ÿå¯ä»¥å¯åŠ¨åŽå°çº¿ç¨‹ï¼Œå¯ä»¥æ›¿ä»£è‡ªåŠ¨å¯åŠ¨çš„Servlet
+		Thread t =new Thread(MyRunner()); //MyRunneræ˜¯ä½ è‡ªå·±å®šä¹‰çš„åŽå°Runnable
 		t.start();
 	}
 }
 
 ```
-¼ÙÉèÄãµÄ±¾µØµ÷ÊÔÊý¾Ý¿âºÍÉú²ú»·¾³²»Í¬£¬¿ÉÒÔÔÚÕâÀïÅÐ¶Ï²¢¸ø³ö²»Í¬µÄÊý¾Ý¿âÅäÖÃ
-ÁíÍâ£¬Èç¹ûÄãÏëÆô¶¯Ò»¸öºóÌ¨Thread£¬Ò²¿ÉÒÔÔÚÕâÀï×ö¡£
+å‡è®¾ä½ çš„æœ¬åœ°è°ƒè¯•æ•°æ®åº“å’Œç”Ÿäº§çŽ¯å¢ƒä¸åŒï¼Œå¯ä»¥åœ¨è¿™é‡Œåˆ¤æ–­å¹¶ç»™å‡ºä¸åŒçš„æ•°æ®åº“é…ç½®
+å¦å¤–ï¼Œå¦‚æžœä½ æƒ³å¯åŠ¨ä¸€ä¸ªåŽå°Threadï¼Œä¹Ÿå¯ä»¥åœ¨è¿™é‡Œåšã€‚
 
-#YangMVCµÄµÚÁã¸öÀý×Ó-HelloWorld³ÌÐò
+#YangMVCçš„ç¬¬é›¶ä¸ªä¾‹å­-HelloWorldç¨‹åº
 
-ÔÚorg.demo°üÖÐ½¨Á¢ÒÔÏÂÀà
+åœ¨org.demoåŒ…ä¸­å»ºç«‹ä»¥ä¸‹ç±»
 
 ```java
 public class IndexController extends Controller {
 	public void index(){
-		output("Hello¡¡YangMVC");
+		output("Helloã€€YangMVC");
 	}
 }
 ```
-ËûµÄ×÷ÓÃ¾ÍÊÇÏÔÊ¾Ò»¾ä»°¡£ÈçÍ¼
+ä»–çš„ä½œç”¨å°±æ˜¯æ˜¾ç¤ºä¸€å¥è¯ã€‚å¦‚å›¾
 
 
-![µÚÁã¸öÀý×ÓµÄÏÔÊ¾](http://img.blog.csdn.net/20160520185330567)
+![ç¬¬é›¶ä¸ªä¾‹å­çš„æ˜¾ç¤º](http://img.blog.csdn.net/20160520185330567)
 
 
-IndexControllerÀ´´¦ÀíÓ¦ÓÃµÄ¸ùÄ¿Â¼ÏÂµÄÇëÇó¡£ index·½·¨À´´¦ÀíÕâ¸öÄ¿Â¼ÏÂµÄÄ¬ÈÏÇëÇó¡£
+IndexControlleræ¥å¤„ç†åº”ç”¨çš„æ ¹ç›®å½•ä¸‹çš„è¯·æ±‚ã€‚ indexæ–¹æ³•æ¥å¤„ç†è¿™ä¸ªç›®å½•ä¸‹çš„é»˜è®¤è¯·æ±‚ã€‚
 
 
-#YangMVCµÚÒ»¸öDemo
-ÔÚorg.demo°üÏÂ½¨Á¢´ËÀà£º
+#YangMVCç¬¬ä¸€ä¸ªDemo
+åœ¨org.demoåŒ…ä¸‹å»ºç«‹æ­¤ç±»ï¼š
 ```java
 public class BookController extends Controller {
 	public void index(){
@@ -134,11 +135,11 @@ public class BookController extends Controller {
 	}
 }
 ```
-ÔÚWebRoot/view/book/ÏÂ½¨Á¢Ò»¸öindex.jsp
-ÆäÖÐºËÐÄµÄ´úÂëÎª
+åœ¨WebRoot/view/book/ä¸‹å»ºç«‹ä¸€ä¸ªindex.jsp
+å…¶ä¸­æ ¸å¿ƒçš„ä»£ç ä¸º
 ```html
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-(´Ë´¦Ê¡ÂÔÒ»¶ÑÎÞ¹ØµÄHTML´úÂë£©
+(æ­¤å¤„çœç•¥ä¸€å †æ— å…³çš„HTMLä»£ç ï¼‰
 <table class="table table-bordered">
 	<c:forEach var="b" items="${books }">
 	<tr>
@@ -148,8 +149,8 @@ public class BookController extends Controller {
 		<td>${b.chaodai }</td>
 		<td>${b.tm_year }</td>
 		<td>
-			<a href='book/edit?id=${b.id}'>±à¼­</a>
-			<a href='book/del?id=${b.id}'>É¾³ý</a>
+			<a href='book/edit?id=${b.id}'>ç¼–è¾‘</a>
+			<a href='book/del?id=${b.id}'>åˆ é™¤</a>
 		
 		</td>
 	</tr>
@@ -157,188 +158,188 @@ public class BookController extends Controller {
 </table>
 ```
 
-Ò»¸öÏÔÊ¾ÁÐ±íµÄÍøÒ³¾Í´Ë¸ã¶¨¡£·ÃÎÊÓ¦ÓÃÄ¿Â¼ÏÂµÄbook/Ä¿Â¼¼´¿ÉÏÔÊ¾³ö½á¹û
-![ÕâÀïÐ´Í¼Æ¬ÃèÊö](http://img.blog.csdn.net/20160520174109801)
+ä¸€ä¸ªæ˜¾ç¤ºåˆ—è¡¨çš„ç½‘é¡µå°±æ­¤æžå®šã€‚è®¿é—®åº”ç”¨ç›®å½•ä¸‹çš„book/ç›®å½•å³å¯æ˜¾ç¤ºå‡ºç»“æžœ
+![è¿™é‡Œå†™å›¾ç‰‡æè¿°](http://img.blog.csdn.net/20160520174109801)
 
-Äã×÷³öµÄ½á¹û¿ÉÄÜÃ»ÄÇÃ´ºÃ¿´£¬ÕâÍêÈ«È¡¾öÓÚcss¡£ 
-ÔÚYangMVCDemo /  WebRoot /  view /  book /   mvc.css ÖÐÓÐÒ»¸öÆ¯ÁÁµÄ±í¸ñ¶¨Òå¡£
-Äã¿ÉÒÔÍ¨¹ýÀàËÆÏÂÃæµÄÓï¾äÀ´¼ÓÈëµ½ÍøÒ³ÖÐ
+ä½ ä½œå‡ºçš„ç»“æžœå¯èƒ½æ²¡é‚£ä¹ˆå¥½çœ‹ï¼Œè¿™å®Œå…¨å–å†³äºŽcssã€‚ 
+åœ¨YangMVCDemo /  WebRoot /  view /  book /   mvc.css ä¸­æœ‰ä¸€ä¸ªæ¼‚äº®çš„è¡¨æ ¼å®šä¹‰ã€‚
+ä½ å¯ä»¥é€šè¿‡ç±»ä¼¼ä¸‹é¢çš„è¯­å¥æ¥åŠ å…¥åˆ°ç½‘é¡µä¸­
 
 ```html
 <link href="view/book/mvc.css" rel="stylesheet">
 ```
-×¢ÒâÂ·¾¶Òª¶Ô¡£
+æ³¨æ„è·¯å¾„è¦å¯¹ã€‚
 
 
-ËµÃ÷£º
+è¯´æ˜Žï¼š
 
-Õâ¸öBookControllerÊÇÒ»¸ö¿ØÖÆÆ÷£¬ËüµÄÃ¿Ò»¸ö¹«¹²·½·¨¶¼¶ÔÓ¦Ò»¸öÍøÒ³£¨Èç¹û²»Ïë¶ÔÓ¦£¬ÄãÐèÒª½«ÆäÉèÎªË½ÓÐµÄ£©
+è¿™ä¸ªBookControlleræ˜¯ä¸€ä¸ªæŽ§åˆ¶å™¨ï¼Œå®ƒçš„æ¯ä¸€ä¸ªå…¬å…±æ–¹æ³•éƒ½å¯¹åº”ä¸€ä¸ªç½‘é¡µï¼ˆå¦‚æžœä¸æƒ³å¯¹åº”ï¼Œä½ éœ€è¦å°†å…¶è®¾ä¸ºç§æœ‰çš„ï¼‰
 
-ModelºÍDBToolÊÇÕû¸öORM¿ò¼ÜµÄºËÐÄ¡£Model±íÊ¾Ä£ÐÍ£¬ËüÓÃÀ´ÓëÊý¾Ý¿â±íÏà¶ÔÓ¦¡£ÔÚ´´½¨Ò»¸öModelÊ±£¬»áÖ¸¶¨¶ÔÓ¦µÄ±íÃû¡£ 
+Modelå’ŒDBToolæ˜¯æ•´ä¸ªORMæ¡†æž¶çš„æ ¸å¿ƒã€‚Modelè¡¨ç¤ºæ¨¡åž‹ï¼Œå®ƒç”¨æ¥ä¸Žæ•°æ®åº“è¡¨ç›¸å¯¹åº”ã€‚åœ¨åˆ›å»ºä¸€ä¸ªModelæ—¶ï¼Œä¼šæŒ‡å®šå¯¹åº”çš„è¡¨åã€‚ 
 
-ÕâÀïºÍHibernate²»Í¬£¬HibernateÐèÒªÔ¤ÏÈÉú³ÉËùÓÐÊý¾Ý¿â±íµÄ¶ÔÓ¦Àà£¬ ¶øÕâ¸öModel¿ÉÒÔÓëÈÎºÎ±í¸ñ¹ØÁª£¬¶ø²»ÐèÒªÔ¤ÏÈÉú³ÉÈÎºÎÒ»¸öÀà¡£ ÕâÕýÊÇYangMVCÖÐµÄORMµÄÓÅÊÆËùÔÚ¡£
+è¿™é‡Œå’ŒHibernateä¸åŒï¼ŒHibernateéœ€è¦é¢„å…ˆç”Ÿæˆæ‰€æœ‰æ•°æ®åº“è¡¨çš„å¯¹åº”ç±»ï¼Œ è€Œè¿™ä¸ªModelå¯ä»¥ä¸Žä»»ä½•è¡¨æ ¼å…³è”ï¼Œè€Œä¸éœ€è¦é¢„å…ˆç”Ÿæˆä»»ä½•ä¸€ä¸ªç±»ã€‚ è¿™æ­£æ˜¯YangMVCä¸­çš„ORMçš„ä¼˜åŠ¿æ‰€åœ¨ã€‚
 
 ```DBTool tool = Model.tool("book");```
 
-³ÌÐòÖÐÊ¹ÓÃModelµÄ¾²Ì¬·½·¨tool»ñÈ¡Ò»¸öDBTool¶ÔÏó£¬tool´«ÈëµÄ²ÎÊýbookÊÇÊý¾Ý¿âµÄ±íÃû¡£
-ÕâÑùDBTool¾ÍºÍbook±í½¨Á¢ÁË¹ØÁª¡£ 
+ç¨‹åºä¸­ä½¿ç”¨Modelçš„é™æ€æ–¹æ³•toolèŽ·å–ä¸€ä¸ªDBToolå¯¹è±¡ï¼Œtoolä¼ å…¥çš„å‚æ•°bookæ˜¯æ•°æ®åº“çš„è¡¨åã€‚
+è¿™æ ·DBToolå°±å’Œbookè¡¨å»ºç«‹äº†å…³è”ã€‚ 
 
 ```LasyList list = tool.all().limit(0, 30);```
 
-»ï¼ÆÃÇ¿ì¿´£¬ÕâÊÇ¸öLasyList£¬Ò»¸öÖ§³ÖÀÁ¶è¼ÓÔØ»úÖÆµÄÁÐ±í¡£ËüÊÇListÀàµÄ×ÓÀà£¬ÕâÒ²¾ÍÊÇËüÎªÊ²Ã´ÄÜÔÚJSTLÖÐÊ¹ÓÃforeach±äÁ¿µÄÔ­Òò¡£
+ä¼™è®¡ä»¬å¿«çœ‹ï¼Œè¿™æ˜¯ä¸ªLasyListï¼Œä¸€ä¸ªæ”¯æŒæ‡’æƒ°åŠ è½½æœºåˆ¶çš„åˆ—è¡¨ã€‚å®ƒæ˜¯Listç±»çš„å­ç±»ï¼Œè¿™ä¹Ÿå°±æ˜¯å®ƒä¸ºä»€ä¹ˆèƒ½åœ¨JSTLä¸­ä½¿ç”¨foreachå˜é‡çš„åŽŸå› ã€‚
 
-Ê×ÏÈÎÒÃÇµ÷ÓÃÁËtoolµÄall()·½·¨£¬ÌìÄÄ£¬ÄÑµÀÒª¼ÓÔØbook±íµÄËùÓÐÊý¾Ý£¬ÐÖµÜ²»ÓÃº¦ÅÂ£¬ÔÚÕâ¸öÊ±ºò£¬Ëü²¢Ã»ÓÐ½øÐÐÈÎºÎÊý¾ÝµÄ¶ÁÐ´£¬Ö¸Ê¾¼ÇÂ¼ÁËÏÖÔÚÒª·ÃÎÊbook±íµÄËùÓÐÊý¾ÝÕâÒ»ÐÅÏ¢¡£ all()·½·¨»á·µ»ØÒ»¸öLasyList¶ÔÏó¡£ÕâÃ´Éè¼ÆµÄÔ­ÒòÊÇÎÒÃÇºóÃæ¿ÉÒÔ¸úÒ»Á¬´®µÄ¹ýÂË·½·¨¡£·½±ãÎÒÃÇ±à³Ì¡£ÎÒÃÇ¿ÉÒÔÐ´³öÕâÑùµÄ¶«Î÷£º
+é¦–å…ˆæˆ‘ä»¬è°ƒç”¨äº†toolçš„all()æ–¹æ³•ï¼Œå¤©å“ªï¼Œéš¾é“è¦åŠ è½½bookè¡¨çš„æ‰€æœ‰æ•°æ®ï¼Œå…„å¼Ÿä¸ç”¨å®³æ€•ï¼Œåœ¨è¿™ä¸ªæ—¶å€™ï¼Œå®ƒå¹¶æ²¡æœ‰è¿›è¡Œä»»ä½•æ•°æ®çš„è¯»å†™ï¼ŒæŒ‡ç¤ºè®°å½•äº†çŽ°åœ¨è¦è®¿é—®bookè¡¨çš„æ‰€æœ‰æ•°æ®è¿™ä¸€ä¿¡æ¯ã€‚ all()æ–¹æ³•ä¼šè¿”å›žä¸€ä¸ªLasyListå¯¹è±¡ã€‚è¿™ä¹ˆè®¾è®¡çš„åŽŸå› æ˜¯æˆ‘ä»¬åŽé¢å¯ä»¥è·Ÿä¸€è¿žä¸²çš„è¿‡æ»¤æ–¹æ³•ã€‚æ–¹ä¾¿æˆ‘ä»¬ç¼–ç¨‹ã€‚æˆ‘ä»¬å¯ä»¥å†™å‡ºè¿™æ ·çš„ä¸œè¥¿ï¼š
 ```java
-list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","Íõ");
+list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","çŽ‹");
 ```
- Õâ¸öÀý×ÓÏàµ±ÓÚÖ´ÐÐÁËÈçÏÂSQLÓï¾ä£º
+ è¿™ä¸ªä¾‹å­ç›¸å½“äºŽæ‰§è¡Œäº†å¦‚ä¸‹SQLè¯­å¥ï¼š
 ```java
- select * from book where id>12 and id<33 and name='haha' and author like '%Íõ%'
+ select * from book where id>12 and id<33 and name='haha' and author like '%çŽ‹%'
 ```
 
-ÔÚÉÏÃæµÄÀý×ÓÖÐ£¬ all()·µ»ØµÄLasyListÓÖµ÷ÓÃÁËËüµÄlimit·½·¨£¬ÕâÒ»²½ÈÔÈ»Ã»ÓÐÕæÕý·ÃÎÊÊý¾Ý¿â¡£
-ÄÇÃ´·ÃÎÊÊý¾Ý¿â´ÓÄÄÀï¿ªÊ¼ÄØ£¿ ´ÓÄã»ñÈ¡Õâ¸öÁÐ±íµÄÒ»ÏîÊ±¡£
+åœ¨ä¸Šé¢çš„ä¾‹å­ä¸­ï¼Œ all()è¿”å›žçš„LasyListåˆè°ƒç”¨äº†å®ƒçš„limitæ–¹æ³•ï¼Œè¿™ä¸€æ­¥ä»ç„¶æ²¡æœ‰çœŸæ­£è®¿é—®æ•°æ®åº“ã€‚
+é‚£ä¹ˆè®¿é—®æ•°æ®åº“ä»Žå“ªé‡Œå¼€å§‹å‘¢ï¼Ÿ ä»Žä½ èŽ·å–è¿™ä¸ªåˆ—è¡¨çš„ä¸€é¡¹æ—¶ã€‚
 
-Ò»¸öList£¬¿ÉÒÔÊ¹ÓÃÃ¶¾ÙµÄ·½·¨À´·ÃÎÊ
+ä¸€ä¸ªListï¼Œå¯ä»¥ä½¿ç”¨æžšä¸¾çš„æ–¹æ³•æ¥è®¿é—®
 ```java
 for(Model m : list){
 	
 }
 ```
-Ò²¿ÉÒÔÊ¹ÓÃget·½·¨À´·ÃÎÊ¡£Èç
+ä¹Ÿå¯ä»¥ä½¿ç”¨getæ–¹æ³•æ¥è®¿é—®ã€‚å¦‚
 ```java
 Model m = list.get(12)
 ```
-ÔÚÄã·ÃÎÊ¾ßÌåËüµÄÒ»¸öÔªËØ£¨Model£©Ê±£¬Êý¾Ý¿â²éÑ¯²Å»áÆô¶¯¡£¶øÇÒÒ²²»ÊÇ½«ËùÓÐÊý¾Ý·Åµ½ÄÚ´æÖÐ¡£±ÈÈçÄãÍ¨¹ýÉÏÃæforµÄ·½·¨Ã¶¾ÙÊ±£¬ÆäÊµËüÊÇÍ¨¹ýResultSetµÄnextÓÎ±êÔÚÒÆ¶¯£¬ËùÒÔËüºÜ¸ßÐ§£¡Ò²±ÜÃâÁËÎÞÓÃµÄÊý¾Ý¿â²Ù×÷¡£
+åœ¨ä½ è®¿é—®å…·ä½“å®ƒçš„ä¸€ä¸ªå…ƒç´ ï¼ˆModelï¼‰æ—¶ï¼Œæ•°æ®åº“æŸ¥è¯¢æ‰ä¼šå¯åŠ¨ã€‚è€Œä¸”ä¹Ÿä¸æ˜¯å°†æ‰€æœ‰æ•°æ®æ”¾åˆ°å†…å­˜ä¸­ã€‚æ¯”å¦‚ä½ é€šè¿‡ä¸Šé¢forçš„æ–¹æ³•æžšä¸¾æ—¶ï¼Œå…¶å®žå®ƒæ˜¯é€šè¿‡ResultSetçš„nextæ¸¸æ ‡åœ¨ç§»åŠ¨ï¼Œæ‰€ä»¥å®ƒå¾ˆé«˜æ•ˆï¼ä¹Ÿé¿å…äº†æ— ç”¨çš„æ•°æ®åº“æ“ä½œã€‚
 
 ```java
 put("book",list)
 ```
-¸Ã·½·¨½«²éÑ¯µÃµ½µÄbookÈûÈërequestÖÐ£¬ÔÚjspÍøÒ³ÖÐ¾Í¿ÉÒÔÊ¹ÓÃJSTLÀ´Ê¹ÓÃËü¡£ÒòÎªËüÊÇÒ»¸öList£¬ËùÒÔÓÃforEachÈ¥·ÃÎÊËû¡£
+è¯¥æ–¹æ³•å°†æŸ¥è¯¢å¾—åˆ°çš„bookå¡žå…¥requestä¸­ï¼Œåœ¨jspç½‘é¡µä¸­å°±å¯ä»¥ä½¿ç”¨JSTLæ¥ä½¿ç”¨å®ƒã€‚å› ä¸ºå®ƒæ˜¯ä¸€ä¸ªListï¼Œæ‰€ä»¥ç”¨forEachåŽ»è®¿é—®ä»–ã€‚
 
-Model µÄÒ»¸ö¶ÔÏó¶ÔÓ¦ÓÚÊý¾Ý¿â±íµÄÒ»ÐÐ£¨Ò»Ìõ¼ÇÂ¼£©£¬ModelÊÇÒ»¸öMapµÄ×ÓÀà£¡£¡£¡£¬ËùÒÔÔÚJSTLÖÐ£¬Äã¿ÉÒÔÊ¹ÓÃ
-${ b.name } µÄ·½Ê½À´·ÃÎÊÃûÎªbµÄModel µÄnameÏî¡£ ËüÏàµ±ÓÚ
+Model çš„ä¸€ä¸ªå¯¹è±¡å¯¹åº”äºŽæ•°æ®åº“è¡¨çš„ä¸€è¡Œï¼ˆä¸€æ¡è®°å½•ï¼‰ï¼ŒModelæ˜¯ä¸€ä¸ªMapçš„å­ç±»ï¼ï¼ï¼ï¼Œæ‰€ä»¥åœ¨JSTLä¸­ï¼Œä½ å¯ä»¥ä½¿ç”¨
+${ b.name } çš„æ–¹å¼æ¥è®¿é—®åä¸ºbçš„Model çš„nameé¡¹ã€‚ å®ƒç›¸å½“äºŽ
 ```java
    Model m = ....
    m.get("name")
 ```
-ÊÇ²»ÊÇºÜ·½±ã£¿£¿£¿ ÕæµÄÊÇ·Ç³£·½±ãµÄ¡£¡£
+æ˜¯ä¸æ˜¯å¾ˆæ–¹ä¾¿ï¼Ÿï¼Ÿï¼Ÿ çœŸçš„æ˜¯éžå¸¸æ–¹ä¾¿çš„ã€‚ã€‚
 
-#µÚ¶þ¸öDemo
-Ìí¼ÓÊé¼®Ò³Ãæ
+#ç¬¬äºŒä¸ªDemo
+æ·»åŠ ä¹¦ç±é¡µé¢
 ```java
 	public void add(){
 		DBTool tool = Model.tool("book");
-		//´¦ÀíÌá½»Êý¾Ý
+		//å¤„ç†æäº¤æ•°æ®
 		if(isPost()){ //isPost
-			Model m = tool.create(); //´´½¨ÐÂµÄ
+			Model m = tool.create(); //åˆ›å»ºæ–°çš„
 			Log.d(m);
 			paramToModel(m);
 			tool.save(m);
-			put("msg","Ìí¼Ó³É¹¦");
+			put("msg","æ·»åŠ æˆåŠŸ");
 		}
 
-		//ÏÔÊ¾Êý¾Ý
+		//æ˜¾ç¤ºæ•°æ®
 		renderForm(tool.create());
 	}
 ```
-¶ÔÓ¦µÄ/view/book/add.jsp (ÕâÊÇÄ¬ÈÏ¶ÔÓ¦µÄÄ£°åµØÖ·£©µÄºËÐÄÄÚÈÝ
+å¯¹åº”çš„/view/book/add.jsp (è¿™æ˜¯é»˜è®¤å¯¹åº”çš„æ¨¡æ¿åœ°å€ï¼‰çš„æ ¸å¿ƒå†…å®¹
 ```html
   <div style="margin-left:100px">
-  <h1>Ìí¼ÓÊé¼® ${msg }</h1>
+  <h1>æ·»åŠ ä¹¦ç± ${msg }</h1>
   ${book_form }
   </div>
 ```
-![ÕâÀïÐ´Í¼Æ¬ÃèÊö](http://img.blog.csdn.net/20160520181929054)
+![è¿™é‡Œå†™å›¾ç‰‡æè¿°](http://img.blog.csdn.net/20160520181929054)
 
-ÉÏÃæµÄÀý×Ó¿ØÖÆÆ÷ÆäÊµÊÇ¶ÔÓ¦Á½¸öÒ³Ãæ¡£ ÔÚÊÕµ½GetÇëÇóµÄÊ±ºòÏÔÊ¾±íµ¥£¬ÔÚÓÃ»§Ìá½»Êý¾ÝÊ±£¬×ö²åÈë²Ù×÷£¬²¢ÏÔÊ¾±íµ¥¡££¨ÎÒÃÇµ±È»¿ÉÒÔ°ÑÕâÁ½¸öÒ³ÃæÐ´µ½Á½¸ö²»Í¬µÄ·½·¨ÖÐ£©
-ÎÒÃÇ»¹ÊÇÊ¹ÓÃModel.tool»ñÈ¡Ò»¸öDBTool¡£ 
+ä¸Šé¢çš„ä¾‹å­æŽ§åˆ¶å™¨å…¶å®žæ˜¯å¯¹åº”ä¸¤ä¸ªé¡µé¢ã€‚ åœ¨æ”¶åˆ°Getè¯·æ±‚çš„æ—¶å€™æ˜¾ç¤ºè¡¨å•ï¼Œåœ¨ç”¨æˆ·æäº¤æ•°æ®æ—¶ï¼Œåšæ’å…¥æ“ä½œï¼Œå¹¶æ˜¾ç¤ºè¡¨å•ã€‚ï¼ˆæˆ‘ä»¬å½“ç„¶å¯ä»¥æŠŠè¿™ä¸¤ä¸ªé¡µé¢å†™åˆ°ä¸¤ä¸ªä¸åŒçš„æ–¹æ³•ä¸­ï¼‰
+æˆ‘ä»¬è¿˜æ˜¯ä½¿ç”¨Model.toolèŽ·å–ä¸€ä¸ªDBToolã€‚ 
 
-ÏÈÀ´¿´ÏÔÊ¾±íµ¥£¬¾ÍÒ»¾ä»°
+å…ˆæ¥çœ‹æ˜¾ç¤ºè¡¨å•ï¼Œå°±ä¸€å¥è¯
 ```java
 		renderForm(tool.create());
 ```
-toolµÄcreate·½·¨»á·µ»ØÒ»¸öModel¶ÔÏó£¬Õâ¸ö¶ÔÏóºÍbook±íÏà¹ØÁª£¨ÒòÎªtoolºÍbook±í¹ØÁª£©¡£
-²¢½«Õâ¸öModel´«µÝ¸ørenderForm·½·¨¡£Õâ¸ö·½·¨»á¸ù¾Ýbook±í¸ñµÄÔªÊý¾Ý×Ô¶¯´´½¨Ò»¸ö±í¸ñ¡£
-ÍÛÅ¼£¡
+toolçš„createæ–¹æ³•ä¼šè¿”å›žä¸€ä¸ªModelå¯¹è±¡ï¼Œè¿™ä¸ªå¯¹è±¡å’Œbookè¡¨ç›¸å…³è”ï¼ˆå› ä¸ºtoolå’Œbookè¡¨å…³è”ï¼‰ã€‚
+å¹¶å°†è¿™ä¸ªModelä¼ é€’ç»™renderFormæ–¹æ³•ã€‚è¿™ä¸ªæ–¹æ³•ä¼šæ ¹æ®bookè¡¨æ ¼çš„å…ƒæ•°æ®è‡ªåŠ¨åˆ›å»ºä¸€ä¸ªè¡¨æ ¼ã€‚
+å“‡å¶ï¼
 
-ÄÇÃ´Õâ¸öForm²åÈëµ½ÍøÒ³µÄÊ²Ã´Î»ÖÃÄØ£¿ ½« ${book_form } ·ÅÈëÍøÒ³ÖÐ ¼´¿É¡£
+é‚£ä¹ˆè¿™ä¸ªFormæ’å…¥åˆ°ç½‘é¡µçš„ä»€ä¹ˆä½ç½®å‘¢ï¼Ÿ å°† ${book_form } æ”¾å…¥ç½‘é¡µä¸­ å³å¯ã€‚
 	
 
-Èç¹ûÀ´µÄÊÇPOSTÇëÇó£¨Ê¹ÓÃisPost()·½·¨À´ÅÐ¶Ï£©
-Ê¹ÓÃtoolµÄcreate·½·¨´´½¨Ò»¸öÐÂµÄModel, ¾¡¿ì»¹ÓÐÆäËû´´½¨Model¶ÔÏóµÄ·½Ê½£¬µ«Èç¹ûÄãÏ£Íû²åÈë£¬Çë¾¡Á¿Ê¹ÓÃÕâÖÖ·½Ê½¡£
-paramToModel(m) ,Õâ¸ö·½·¨»á×Ô¶¯²éÕÒ±íµ¥ÖÐ£¬Ãû×ÖÓëÊý¾Ý¿â×Ö¶ÎÃûÆ¥ÅäµÄÏî£¬²¢×Ô¶¯¸³Öµ¸øModelµÄÏàÓ¦Ïî¡£ÊÇ²»ÊÇºÜ·½±ã¡£¡£¡£
+å¦‚æžœæ¥çš„æ˜¯POSTè¯·æ±‚ï¼ˆä½¿ç”¨isPost()æ–¹æ³•æ¥åˆ¤æ–­ï¼‰
+ä½¿ç”¨toolçš„createæ–¹æ³•åˆ›å»ºä¸€ä¸ªæ–°çš„Model, å°½å¿«è¿˜æœ‰å…¶ä»–åˆ›å»ºModelå¯¹è±¡çš„æ–¹å¼ï¼Œä½†å¦‚æžœä½ å¸Œæœ›æ’å…¥ï¼Œè¯·å°½é‡ä½¿ç”¨è¿™ç§æ–¹å¼ã€‚
+paramToModel(m) ,è¿™ä¸ªæ–¹æ³•ä¼šè‡ªåŠ¨æŸ¥æ‰¾è¡¨å•ä¸­ï¼Œåå­—ä¸Žæ•°æ®åº“å­—æ®µååŒ¹é…çš„é¡¹ï¼Œå¹¶è‡ªåŠ¨èµ‹å€¼ç»™Modelçš„ç›¸åº”é¡¹ã€‚æ˜¯ä¸æ˜¯å¾ˆæ–¹ä¾¿ã€‚ã€‚ã€‚
 
-ÏëÆðÁËStrutsÄÇ±¯´ßµÄ¹¦ÄÜ¶¨Òå¡£ Àá±¼¡£¡£¡£¡£ 
+æƒ³èµ·äº†Strutsé‚£æ‚²å‚¬çš„åŠŸèƒ½å®šä¹‰ã€‚ æ³ªå¥”ã€‚ã€‚ã€‚ã€‚ 
 
-ËæºóÖ±½Óµ÷ÓÃtoolµÄsave·½·¨½«Æä±£´æµ½Êý¾Ý¿âÖÐ£¡OKÁË£¡ÍòÊÂ´ó¼ª£¡
+éšåŽç›´æŽ¥è°ƒç”¨toolçš„saveæ–¹æ³•å°†å…¶ä¿å­˜åˆ°æ•°æ®åº“ä¸­ï¼OKäº†ï¼ä¸‡äº‹å¤§å‰ï¼
 
-Ï¸ÐÄµÄÐ¡ÅóÓÑ»áÎÊ£º Êý¾Ý¿âÖÐµÄ×Ö¶ÎÃû¶¼ÊÇÓ¢ÎÄµÄÈçname£¬ÎªÊ²Ã´ÔÚÍøÒ³ÉÏÏÔÊ¾µÄÊÇÖÐÎÄ£¿£¿£¿
-¿´¿´ÎÒµÄÊý¾Ý¿â±í¸ñ¶¨Òå
+ç»†å¿ƒçš„å°æœ‹å‹ä¼šé—®ï¼š æ•°æ®åº“ä¸­çš„å­—æ®µåéƒ½æ˜¯è‹±æ–‡çš„å¦‚nameï¼Œä¸ºä»€ä¹ˆåœ¨ç½‘é¡µä¸Šæ˜¾ç¤ºçš„æ˜¯ä¸­æ–‡ï¼Ÿï¼Ÿï¼Ÿ
+çœ‹çœ‹æˆ‘çš„æ•°æ®åº“è¡¨æ ¼å®šä¹‰
 ```sql
 CREATE TABLE `book` (
-  `id` int(11) NOT NULL auto_increment COMMENT '±àºÅ',
+  `id` int(11) NOT NULL auto_increment COMMENT 'ç¼–å·',
   `file_name` varchar(50) default NULL,
-  `name` varchar(50) default NULL COMMENT 'Ãû³Æ',
-  `author` varchar(50) default NULL COMMENT '×÷Õß',
-  `chaodai` varchar(50) default NULL COMMENT '³¯´ú',
-  `tm_year` varchar(50) default NULL COMMENT 'Äê´ú',
-  `about` longtext COMMENT '¼ò½é',
-  `type` varchar(50) default NULL COMMENT 'ÀàÐÍ',
-  `catalog_id` int(11) default NULL COMMENT '·ÖÀà',
+  `name` varchar(50) default NULL COMMENT 'åç§°',
+  `author` varchar(50) default NULL COMMENT 'ä½œè€…',
+  `chaodai` varchar(50) default NULL COMMENT 'æœä»£',
+  `tm_year` varchar(50) default NULL COMMENT 'å¹´ä»£',
+  `about` longtext COMMENT 'ç®€ä»‹',
+  `type` varchar(50) default NULL COMMENT 'ç±»åž‹',
+  `catalog_id` int(11) default NULL COMMENT 'åˆ†ç±»',
   PRIMARY KEY  (`id`),
   KEY `catalog` USING BTREE (`catalog_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=912 DEFAULT CHARSET=utf8;
 ```
-ÕæÏà´ó°×ÓëÌìÏÂ£¬ÎÒÊÇÍ¨¹ý¸ø×Ö¶Î¼Ó×¢ÊÍÊµÏÖµÄÕâÒ»µã¡£Ö»ÒªÄã½«Êý¾Ý¿â±í¸ñ¼ÓÉÏ×¢ÊÍ£¬Ëü¾Í»á×Ô¶¯»ñÈ¡×¢ÊÍ²¢ÏÔÊ¾£¬¶ÔÓÚÃ»ÓÐ×¢ÊÍµÄ×Ö¶Î£¬Ôò»áÏÔÊ¾×Ö¶ÎÃû¡£ÈçÄÇ¸öÔúÑÛµÄfile_name
+çœŸç›¸å¤§ç™½ä¸Žå¤©ä¸‹ï¼Œæˆ‘æ˜¯é€šè¿‡ç»™å­—æ®µåŠ æ³¨é‡Šå®žçŽ°çš„è¿™ä¸€ç‚¹ã€‚åªè¦ä½ å°†æ•°æ®åº“è¡¨æ ¼åŠ ä¸Šæ³¨é‡Šï¼Œå®ƒå°±ä¼šè‡ªåŠ¨èŽ·å–æ³¨é‡Šå¹¶æ˜¾ç¤ºï¼Œå¯¹äºŽæ²¡æœ‰æ³¨é‡Šçš„å­—æ®µï¼Œåˆ™ä¼šæ˜¾ç¤ºå­—æ®µåã€‚å¦‚é‚£ä¸ªæ‰Žçœ¼çš„file_name
 
-ºÃÁË£¬Õâ¼¸ÐÐ´úÂë¾Í¸ã¶¨ÁËÊäÈë±íµ¥ºÍ±íµ¥µÄ´¦Àí¡£
+å¥½äº†ï¼Œè¿™å‡ è¡Œä»£ç å°±æžå®šäº†è¾“å…¥è¡¨å•å’Œè¡¨å•çš„å¤„ç†ã€‚
 
-#µÚÈý¸ödemo-±à¼­£¨×Ô¶¯´´½¨µÄÐÞ¸Ä±íµ¥£©
-Ï¸ÐÄµÄÅóÓÑ·¢ÏÖ£¬ÎÒÃÇÊÇ°´ÕÕCRUDµÄÂß¼­À´½«µÄ¡£ÏÂÃæÊÇ±à¼­ÍøÒ³¡£
+#ç¬¬ä¸‰ä¸ªdemo-ç¼–è¾‘ï¼ˆè‡ªåŠ¨åˆ›å»ºçš„ä¿®æ”¹è¡¨å•ï¼‰
+ç»†å¿ƒçš„æœ‹å‹å‘çŽ°ï¼Œæˆ‘ä»¬æ˜¯æŒ‰ç…§CRUDçš„é€»è¾‘æ¥å°†çš„ã€‚ä¸‹é¢æ˜¯ç¼–è¾‘ç½‘é¡µã€‚
 ```java
 	public void edit() throws NullParamException{
 
 		DBTool tool = Model.tool("book");
-		//´¦ÀíÌá½»Êý¾Ý
+		//å¤„ç†æäº¤æ•°æ®
 		if(isPost()){ //isPost
 			Model m = tool.get(paramInt("id"));
 			Log.d(m);
 			paramToModel(m);
 			tool.save(m);
-			put("msg","ÐÞ¸Ä³É¹¦");
+			put("msg","ä¿®æ”¹æˆåŠŸ");
 		}
 
-		//ÏÔÊ¾Êý¾Ý
+		//æ˜¾ç¤ºæ•°æ®
 		Integer id = paramInt("id");
 		checkNull("id", id);
 		renderForm(tool.get(id));
 
 	}
 ```
-HTMLÒ³Ãæ·ÅÔÚ/view/book/edit.jspÖÐ£¬ºËÐÄ´úÂëÖ»ÊÇ½«add.jspÖÐµÄÌí¼Ó¶þ×Ö¸ÄÎªÁË"±à¼­¡°¶þ×Ö¡£
+HTMLé¡µé¢æ”¾åœ¨/view/book/edit.jspä¸­ï¼Œæ ¸å¿ƒä»£ç åªæ˜¯å°†add.jspä¸­çš„æ·»åŠ äºŒå­—æ”¹ä¸ºäº†"ç¼–è¾‘â€œäºŒå­—ã€‚
 ```html
   <div style="margin-left:100px">
-  <h1>±à¼­Êé¼® ${msg }</h1>
+  <h1>ç¼–è¾‘ä¹¦ç± ${msg }</h1>
   ${book_form }
   </div>
 ```
 
-Õâ¸ö´úÂë³¤ÁËÒ»µã£¬ ÓÐ17ÐÐ¡£¶ÔÓÚÓÃYangMVCµÄ£¬ÒÑ¾­Ëã¹»³¤µÄÁË¡£ËüÈÔÈ»ÊÇÁ½¸öÍøÒ³£¡£¡£¡
-Äã¿ÉÒÔ°ÉÏÔÊ¾±íµ¥µÄ´úÂëºÍ´¦Àí±íµ¥µÄ·Öµ½Á½¸ö·½·¨ÖÐÐ´¡£
+è¿™ä¸ªä»£ç é•¿äº†ä¸€ç‚¹ï¼Œ æœ‰17è¡Œã€‚å¯¹äºŽç”¨YangMVCçš„ï¼Œå·²ç»ç®—å¤Ÿé•¿çš„äº†ã€‚å®ƒä»ç„¶æ˜¯ä¸¤ä¸ªç½‘é¡µï¼ï¼ï¼
+ä½ å¯ä»¥å§æ˜¾ç¤ºè¡¨å•çš„ä»£ç å’Œå¤„ç†è¡¨å•çš„åˆ†åˆ°ä¸¤ä¸ªæ–¹æ³•ä¸­å†™ã€‚
 
-ÏÈ¿´ÏÔÊ¾Êý¾Ý¡£ Ê×ÏÈÊ¹ÓÃparamInt·½·¨»ñÈ¡URL²ÎÊýid£¬ÎÒÃÇ¾ÍÊÇÒª±à¼­idÖ¸¶¨µÄÊé¼®¡£
-µ÷ÓÃcheckNullÀ´¼ì²éÒ»ÏÂ¡£ ÔÚÎÒµÄ¿ª·¢ÉúÑÄÖÐ£¬Óöµ½¸÷ÖÖ²ÎÊý¼ì²é£¬ËùÒÔÕâ¸ö¹¦ÄÜÊÇ±ØÐëÓÐµÄ£¬Èç¹ûcheckNull²»¹ý£¬¾Í»áÅ×³öÒ»¸öÒì³£¡£ ÕâÑù×öµÄÄ¿µÄÊÇ²»ÒªÈÃÕâÖÖ²ÎÊý¼ì²é¸ÉÈÅÎÒÃÇÕý³£µÄÂß¼­¡£Õâ²»¾ÍÊÇÒì³£Ö®ËùÒÔ´æÔÚµÄÒâÒåÃ´£¿
+å…ˆçœ‹æ˜¾ç¤ºæ•°æ®ã€‚ é¦–å…ˆä½¿ç”¨paramIntæ–¹æ³•èŽ·å–URLå‚æ•°idï¼Œæˆ‘ä»¬å°±æ˜¯è¦ç¼–è¾‘idæŒ‡å®šçš„ä¹¦ç±ã€‚
+è°ƒç”¨checkNullæ¥æ£€æŸ¥ä¸€ä¸‹ã€‚ åœ¨æˆ‘çš„å¼€å‘ç”Ÿæ¶¯ä¸­ï¼Œé‡åˆ°å„ç§å‚æ•°æ£€æŸ¥ï¼Œæ‰€ä»¥è¿™ä¸ªåŠŸèƒ½æ˜¯å¿…é¡»æœ‰çš„ï¼Œå¦‚æžœcheckNullä¸è¿‡ï¼Œå°±ä¼šæŠ›å‡ºä¸€ä¸ªå¼‚å¸¸ã€‚ è¿™æ ·åšçš„ç›®çš„æ˜¯ä¸è¦è®©è¿™ç§å‚æ•°æ£€æŸ¥å¹²æ‰°æˆ‘ä»¬æ­£å¸¸çš„é€»è¾‘ã€‚è¿™ä¸å°±æ˜¯å¼‚å¸¸ä¹‹æ‰€ä»¥å­˜åœ¨çš„æ„ä¹‰ä¹ˆï¼Ÿ
 
-Èç¹ûÈ±ÉÙÕâ¸ö²ÎÊý£¬Ò³Ãæ»áÌáÊ¾ËµÈ±ÉÙÕâ¸ö²ÎÊý¡£
-ÏÂÃæÊ¹ÓÃtool.get(id)·½·¨À´»ñÈ¡Ò»¸öModel£¨Ò»Ìõ¼ÇÂ¼£©¡£Õâ¸ö·½·¨ÊÇ¸ù¾Ý±í¸ñµÄÖ÷¼ü½øÐÐ²éÑ¯£¬·µ»ØµÄ²»ÊÇÁÐ±í¶øÊÇÒ»¸ö¾ßÌåµÄModel¶ÔÏó¡£ÔÚÕâÀïÎÒ½¨ÒéÖ÷¼üÓ¦µ±ÊÇÕûÊý¡¢ÇÒÊÇÊý¾Ý¿â×ÔÔöµÄ¡£
-renderForm´«ÈëÒ»¸ömodel£¬Õâ¸ömodelÖÐÓÐÊý¾Ý£¬¾Í»á±»ÏÔÊ¾³öÀ´¡£
+å¦‚æžœç¼ºå°‘è¿™ä¸ªå‚æ•°ï¼Œé¡µé¢ä¼šæç¤ºè¯´ç¼ºå°‘è¿™ä¸ªå‚æ•°ã€‚
+ä¸‹é¢ä½¿ç”¨tool.get(id)æ–¹æ³•æ¥èŽ·å–ä¸€ä¸ªModelï¼ˆä¸€æ¡è®°å½•ï¼‰ã€‚è¿™ä¸ªæ–¹æ³•æ˜¯æ ¹æ®è¡¨æ ¼çš„ä¸»é”®è¿›è¡ŒæŸ¥è¯¢ï¼Œè¿”å›žçš„ä¸æ˜¯åˆ—è¡¨è€Œæ˜¯ä¸€ä¸ªå…·ä½“çš„Modelå¯¹è±¡ã€‚åœ¨è¿™é‡Œæˆ‘å»ºè®®ä¸»é”®åº”å½“æ˜¯æ•´æ•°ã€ä¸”æ˜¯æ•°æ®åº“è‡ªå¢žçš„ã€‚
+renderFormä¼ å…¥ä¸€ä¸ªmodelï¼Œè¿™ä¸ªmodelä¸­æœ‰æ•°æ®ï¼Œå°±ä¼šè¢«æ˜¾ç¤ºå‡ºæ¥ã€‚
 
-¾ÍÕâÑù¡£±à¼­¹¦ÄÜÐ´ºÃÁË¡£
+å°±è¿™æ ·ã€‚ç¼–è¾‘åŠŸèƒ½å†™å¥½äº†ã€‚
 
-ÓÐµÄÅóÓÑÎÊ£¬Èç¹û²»ÏëÓÃÄ¬ÈÏµÄ±íµ¥ÔõÃ´°ì£¿ ÄÇÄã×Ô¼ºÐ´Ò»¸ö±íµ¥ÔÚÄãµÄÄ£°åÀï¾ÍÊÇÁË¡£Ö»²»¹ý£¬Äã¿ÉÒÔÏÈÓÃÕâ¸ö·½·¨°É±íµ¥Éú³É³öÀ´£¬È»ºó°´ÄãµÄÒâÍ¼ÐÞ¸Ä¾Í³ÉÁË¡£ÕâÒ²½ÚÊ¡´óÁ¿Ê±¼ä°¡¡£×ö¹ýFormµÄÇë¾ÙÊÖ¡£
+æœ‰çš„æœ‹å‹é—®ï¼Œå¦‚æžœä¸æƒ³ç”¨é»˜è®¤çš„è¡¨å•æ€Žä¹ˆåŠžï¼Ÿ é‚£ä½ è‡ªå·±å†™ä¸€ä¸ªè¡¨å•åœ¨ä½ çš„æ¨¡æ¿é‡Œå°±æ˜¯äº†ã€‚åªä¸è¿‡ï¼Œä½ å¯ä»¥å…ˆç”¨è¿™ä¸ªæ–¹æ³•å§è¡¨å•ç”Ÿæˆå‡ºæ¥ï¼Œç„¶åŽæŒ‰ä½ çš„æ„å›¾ä¿®æ”¹å°±æˆäº†ã€‚è¿™ä¹ŸèŠ‚çœå¤§é‡æ—¶é—´å•Šã€‚åšè¿‡Formçš„è¯·ä¸¾æ‰‹ã€‚
 
-#µÚËÄ¸öDEMO-É¾³ý
+#ç¬¬å››ä¸ªDEMO-åˆ é™¤
 ```java
 	public void del(){
 		Integer id = paramInt("id");
@@ -348,7 +349,7 @@ renderForm´«ÈëÒ»¸ömodel£¬Õâ¸ömodelÖÐÓÐÊý¾Ý£¬¾Í»á±»ÏÔÊ¾³öÀ´¡£
 		
 	}
 ```
-ÇÆÇÆ¾ÍÕâµã´úÂëÁË£¬ »ñÈ¡²ÎÊýid£¬²¢µ÷ÓÃtoolµÄdel·½·¨É¾³ý¡£×îºóÒ»¾äÎÒÃÇµÚÒ»´Î¼û£¬¾ÍÊÇÌø×ª¡£Ìø×ªµ½Í¬Ä¿Â¼ÏÂµÄindexÕâ¸öÄ¬ÈÏÒ³£¨ÏÔÊ¾µÄÊÇÊé¼®ÁÐ±í£©
+çž§çž§å°±è¿™ç‚¹ä»£ç äº†ï¼Œ èŽ·å–å‚æ•°idï¼Œå¹¶è°ƒç”¨toolçš„delæ–¹æ³•åˆ é™¤ã€‚æœ€åŽä¸€å¥æˆ‘ä»¬ç¬¬ä¸€æ¬¡è§ï¼Œå°±æ˜¯è·³è½¬ã€‚è·³è½¬åˆ°åŒç›®å½•ä¸‹çš„indexè¿™ä¸ªé»˜è®¤é¡µï¼ˆæ˜¾ç¤ºçš„æ˜¯ä¹¦ç±åˆ—è¡¨ï¼‰
 
 
 
@@ -358,20 +359,20 @@ renderForm´«ÈëÒ»¸ömodel£¬Õâ¸ömodelÖÐÓÐÊý¾Ý£¬¾Í»á±»ÏÔÊ¾³öÀ´¡£
 
 
 
-#¿ØÖÆÆ÷´´½¨
-¿ØÖÆÆ÷ÊÇÒ»¸öJavaÀà£¬ÀàÓÐÈô¸É·½·¨¡£ÔÚYangMVCµÄÉè¼ÆÖÐ£¬¿ØÖÆÆ÷µÄÃ¿Ò»¸ö¹«¹²µÄ·½·¨¶¼Ó³Éä¶ÔÓ¦Ò»¸öÍøÒ³¡£ÕâÑùÒ»¸öJavaÀà¿ÉÒÔÐ´ºÜ¶àµÄÍøÒ³¡£ ·½±ã¹ÜÀí¡££¨µ±È»£¬ÄãÒ²¿ÉÒÔÔÚÒ»¸ö¿ØÖÆÆ÷ÖÐÖ»Ð´Ò»¸ö·½·¨À´Ö§³ÖÍøÒ³£¬ÕâÃ»ÎÊÌâ(¡Ñ©n¡Ñ)b£©
+#æŽ§åˆ¶å™¨åˆ›å»º
+æŽ§åˆ¶å™¨æ˜¯ä¸€ä¸ªJavaç±»ï¼Œç±»æœ‰è‹¥å¹²æ–¹æ³•ã€‚åœ¨YangMVCçš„è®¾è®¡ä¸­ï¼ŒæŽ§åˆ¶å™¨çš„æ¯ä¸€ä¸ªå…¬å…±çš„æ–¹æ³•éƒ½æ˜ å°„å¯¹åº”ä¸€ä¸ªç½‘é¡µã€‚è¿™æ ·ä¸€ä¸ªJavaç±»å¯ä»¥å†™å¾ˆå¤šçš„ç½‘é¡µã€‚ æ–¹ä¾¿ç®¡ç†ã€‚ï¼ˆå½“ç„¶ï¼Œä½ ä¹Ÿå¯ä»¥åœ¨ä¸€ä¸ªæŽ§åˆ¶å™¨ä¸­åªå†™ä¸€ä¸ªæ–¹æ³•æ¥æ”¯æŒç½‘é¡µï¼Œè¿™æ²¡é—®é¢˜(âŠ™ï¹âŠ™)bï¼‰
 
-ËùÓÐµÄ¿ØÖÆÆ÷¶¼Òª¼Ì³Ð org.docshare.mvc.Controller Õâ¸öÀà¡£³äµ±¿ØÖÆÆ÷·½·¨µÄ·½·¨Ó¦µ±ÊÇÃ»ÓÐ²ÎÊýÃ»ÓÐ·µ»ØÖµµÄ¡£ÈçÉÏÃædemoËùÊ¾¡£
+æ‰€æœ‰çš„æŽ§åˆ¶å™¨éƒ½è¦ç»§æ‰¿ org.docshare.mvc.Controller è¿™ä¸ªç±»ã€‚å……å½“æŽ§åˆ¶å™¨æ–¹æ³•çš„æ–¹æ³•åº”å½“æ˜¯æ²¡æœ‰å‚æ•°æ²¡æœ‰è¿”å›žå€¼çš„ã€‚å¦‚ä¸Šé¢demoæ‰€ç¤ºã€‚
 
 ```java
 public class IndexController extends Controller {
 	public void index(){
-		output("Hello¡¡YangMVC");
+		output("Helloã€€YangMVC");
 	}
 }
 ```
 
-ÕâÐ©¿ØÖÆÆ÷¶¼ÒªÐ´ÔÚÅäÖÃËùÖÆ¶¨µÄpackageÖÐ£¬»òÕß×ÓpackageÖÐ¡£ÈçÔÚÉÏÃæµÄÅäÖÃÖÐ
+è¿™äº›æŽ§åˆ¶å™¨éƒ½è¦å†™åœ¨é…ç½®æ‰€åˆ¶å®šçš„packageä¸­ï¼Œæˆ–è€…å­packageä¸­ã€‚å¦‚åœ¨ä¸Šé¢çš„é…ç½®ä¸­
 
 ```xml
     <init-param>
@@ -380,51 +381,51 @@ public class IndexController extends Controller {
     </init-param>
 ```
 
-Õâ¸ö°üÎªorg.demoËùÓÐµÄ¿ØÖÆÆ÷¶¼ÒªÐ¶ÔØÕâ¸ö°üÄÚ¡££¨Äã¿ÉÒÔÐ´µ½ÍâÃæ£¬µ«Ëü²»»á¹ÜÓÃO(¡É_¡É)O~£©
+è¿™ä¸ªåŒ…ä¸ºorg.demoæ‰€æœ‰çš„æŽ§åˆ¶å™¨éƒ½è¦å¸è½½è¿™ä¸ªåŒ…å†…ã€‚ï¼ˆä½ å¯ä»¥å†™åˆ°å¤–é¢ï¼Œä½†å®ƒä¸ä¼šç®¡ç”¨O(âˆ©_âˆ©)O~ï¼‰
 
 
 
 
-# Â·¾¶Ó³Éä
-ËùÎ½Â·¾¶Ó³Éä¾ÍÊÇÒª½« Ò»¸ö¿ØÖÆÆ÷(Ò»¸öJavaÀà£©ºÍÒ»¸öÍøÖ·½¨Á¢¹ØÁª¡£ ÓÃ»§·ÃÎÊÄ³ÍøÖ·Ê±£¬¿ò¼Ü×Ô¶¯µ÷ÓÃ¿ØÖÆÆ÷µÄÄ³¸öº¯Êý¡£
+# è·¯å¾„æ˜ å°„
+æ‰€è°“è·¯å¾„æ˜ å°„å°±æ˜¯è¦å°† ä¸€ä¸ªæŽ§åˆ¶å™¨(ä¸€ä¸ªJavaç±»ï¼‰å’Œä¸€ä¸ªç½‘å€å»ºç«‹å…³è”ã€‚ ç”¨æˆ·è®¿é—®æŸç½‘å€æ—¶ï¼Œæ¡†æž¶è‡ªåŠ¨è°ƒç”¨æŽ§åˆ¶å™¨çš„æŸä¸ªå‡½æ•°ã€‚
 
-ÒòÎª±¾¿ò¼ÜÉè¼ÆË¼ÏëÏ£ÍûÅäÖÃ¾¡¿ÉÄÜÉÙ£¬ËùÒÔÕâÀïµÄÂ·¾¶Ó³ÉäÊÇÍ¨¹ýÃüÃû¹ØÏµµÄ¡£
+å› ä¸ºæœ¬æ¡†æž¶è®¾è®¡æ€æƒ³å¸Œæœ›é…ç½®å°½å¯èƒ½å°‘ï¼Œæ‰€ä»¥è¿™é‡Œçš„è·¯å¾„æ˜ å°„æ˜¯é€šè¿‡å‘½åå…³ç³»çš„ã€‚
 
-¼ÙÉèÓ¦ÓÃµÄ¸ùÄ¿Â¼Îª 
+å‡è®¾åº”ç”¨çš„æ ¹ç›®å½•ä¸º 
 http://localhost:8080/YangMVC/
 
-ÈçÔÚorg.demoÏÂ£¨Õâ¸öÄ¿Â¼¿ÉÒÔÔÚweb.xmlÖÐÅäÖÃ£¬¿É¼ûÉÏÒ»½Ú£©ÓÐÒ»¸öBookController¡£
-ÄÇÃ´Õâ¸öÀàµÄÂ·¾¶ÊÇ  http://localhost:8080/YangMVC/book/ 
-ÓÃ»§·ÃÎÊÕâ¸öÂ·¾¶Ê±£¬¿ò¼Ü»áµ÷ÓÃBookController µÄindex·½·¨¡£Èç¹ûÃ»ÓÐÕâ¸ö·½·¨Ôò»á±¨´í¡£
+å¦‚åœ¨org.demoä¸‹ï¼ˆè¿™ä¸ªç›®å½•å¯ä»¥åœ¨web.xmlä¸­é…ç½®ï¼Œå¯è§ä¸Šä¸€èŠ‚ï¼‰æœ‰ä¸€ä¸ªBookControllerã€‚
+é‚£ä¹ˆè¿™ä¸ªç±»çš„è·¯å¾„æ˜¯  http://localhost:8080/YangMVC/book/ 
+ç”¨æˆ·è®¿é—®è¿™ä¸ªè·¯å¾„æ—¶ï¼Œæ¡†æž¶ä¼šè°ƒç”¨BookController çš„indexæ–¹æ³•ã€‚å¦‚æžœæ²¡æœ‰è¿™ä¸ªæ–¹æ³•åˆ™ä¼šæŠ¥é”™ã€‚
 
-index·½·¨ÓÃÒÔ´¦ÀíÄ³¸öÂ·¾¶ÏÂµÄÄ¬ÈÏÍøÒ³£¨ÍøÕ¾ÒÔÐ±¸Ü½áÎ²µÄ¶¼»áµ÷ÓÃÄ³¸öÀàµÄindex·½·¨À´´¦Àí£©¡£
+indexæ–¹æ³•ç”¨ä»¥å¤„ç†æŸä¸ªè·¯å¾„ä¸‹çš„é»˜è®¤ç½‘é¡µï¼ˆç½‘ç«™ä»¥æ–œæ ç»“å°¾çš„éƒ½ä¼šè°ƒç”¨æŸä¸ªç±»çš„indexæ–¹æ³•æ¥å¤„ç†ï¼‰ã€‚
 
-bookÕâ¸öµØÖ·£¬½«µÚÒ»¸ö×ÖÄ¸´óÐ´£¬ºóÃæ×·¼ÓController¡£ÓÚÊÇ
-book £¨Â·¾¶Ãû£©-> Book -> BookController£¨ÀàÃû£©
-Õâ¾ÍÊÇÂ·¾¶ºÍÀàÃûµÄÄ¬ÈÏ¹ØÁª¡£
+bookè¿™ä¸ªåœ°å€ï¼Œå°†ç¬¬ä¸€ä¸ªå­—æ¯å¤§å†™ï¼ŒåŽé¢è¿½åŠ Controllerã€‚äºŽæ˜¯
+book ï¼ˆè·¯å¾„åï¼‰-> Book -> BookControllerï¼ˆç±»åï¼‰
+è¿™å°±æ˜¯è·¯å¾„å’Œç±»åçš„é»˜è®¤å…³è”ã€‚
 
 
-ÔÚÕâ¸öÍøÕ¾ºó¼ÓÈë·½·¨Ãû¿ÉÒÔ·ÃÎÊBookControllerµÄ ÈÎºÎÒ»¸ö¹«¹²·½·¨¡£
-Èç http://localhost:8080/YangMVC/book/edit ÓëBookControllerµÄedit·½·¨¹ØÁª¡£
+åœ¨è¿™ä¸ªç½‘ç«™åŽåŠ å…¥æ–¹æ³•åå¯ä»¥è®¿é—®BookControllerçš„ ä»»ä½•ä¸€ä¸ªå…¬å…±æ–¹æ³•ã€‚
+å¦‚ http://localhost:8080/YangMVC/book/edit ä¸ŽBookControllerçš„editæ–¹æ³•å…³è”ã€‚
 
-ÐèÒª×¢ÒâµÄÊÇ£¬Èç¹ûÄãÐ´µÄÊÇ http://localhost:8080/YangMVC/book/edit/  (±ÈÉÏÒ»¸öÍøÕ¾¶àÁËÒ»¸öÐ±¸Ü£©£¬ ÔòËü¶ÔÓ¦µÄÊÇ book.EditControllerÏÂµÄindex·½·¨ ¶ø²»ÊÇBookControllerÏÂµÄedit·½·¨¡£
+éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œå¦‚æžœä½ å†™çš„æ˜¯ http://localhost:8080/YangMVC/book/edit/  (æ¯”ä¸Šä¸€ä¸ªç½‘ç«™å¤šäº†ä¸€ä¸ªæ–œæ ï¼‰ï¼Œ åˆ™å®ƒå¯¹åº”çš„æ˜¯ book.EditControllerä¸‹çš„indexæ–¹æ³• è€Œä¸æ˜¯BookControllerä¸‹çš„editæ–¹æ³•ã€‚
 
-#¿ØÖÆÆ÷·½·¨
-##»ñÈ¡requestÖÐµÄ²ÎÊý
+#æŽ§åˆ¶å™¨æ–¹æ³•
+##èŽ·å–requestä¸­çš„å‚æ•°
 ```java
 String s = param("name");
 Integer id = paramInt("id");
 ```
 
-##Êä³ö·½·¨
-### output·½·¨
+##è¾“å‡ºæ–¹æ³•
+### outputæ–¹æ³•
 
 ```java
-	output("Hello¡¡YangMVC");
+	output("Helloã€€YangMVC");
 ```
 
-Õâ¸ö·½·¨Êä³öÒ»¸öÎÄ±¾µ½ÍøÒ³ÉÏ£¨Êä³öÁ÷ÖÐ£©£¬²¢¹Ø±ÕÊä³öÁ÷¡£ÒòÎªËü»á¹Ø±ÕÁ÷£¬ËùÒÔÄã²»Òªµ÷ÓÃËüÁ½´Î¡£ÄãÈç¹ûÐèÒªÊä³ö¶à´Î£¬ÒÔ½«ÄÚÈÝ·Åµ½StringBufferÖÐ£¬È»ºóÍ³Ò»Êä³ö¡£
-###render·½·¨
+è¿™ä¸ªæ–¹æ³•è¾“å‡ºä¸€ä¸ªæ–‡æœ¬åˆ°ç½‘é¡µä¸Šï¼ˆè¾“å‡ºæµä¸­ï¼‰ï¼Œå¹¶å…³é—­è¾“å‡ºæµã€‚å› ä¸ºå®ƒä¼šå…³é—­æµï¼Œæ‰€ä»¥ä½ ä¸è¦è°ƒç”¨å®ƒä¸¤æ¬¡ã€‚ä½ å¦‚æžœéœ€è¦è¾“å‡ºå¤šæ¬¡ï¼Œä»¥å°†å†…å®¹æ”¾åˆ°StringBufferä¸­ï¼Œç„¶åŽç»Ÿä¸€è¾“å‡ºã€‚
+###renderæ–¹æ³•
 
 ```java
 	public void paramDemo(){
@@ -434,13 +435,13 @@ Integer id = paramInt("id");
 	}
 ```
 
-ÕâÀïµÄtestrd.jspÊÇÄ£°åÄ¿Â¼£¨/view)Ä¿Â¼ÏÂµÄ¡£ /view/testrd.jsp
-ÕâÀïµÄ²ÎÊýÓ¦¸ÃÊÇÏà¶ÔÓÚÄ£°åÄ¿Â¼µÄÏà¶ÔÂ·¾¶¡£
+è¿™é‡Œçš„testrd.jspæ˜¯æ¨¡æ¿ç›®å½•ï¼ˆ/view)ç›®å½•ä¸‹çš„ã€‚ /view/testrd.jsp
+è¿™é‡Œçš„å‚æ•°åº”è¯¥æ˜¯ç›¸å¯¹äºŽæ¨¡æ¿ç›®å½•çš„ç›¸å¯¹è·¯å¾„ã€‚
 
-	render·½·¨Ê¹ÓÃ²ÎÊýÖÆ¶¨µÄÍøÒ³£¨Ò»¸ö°üº¬JSTLµÄjspÎÄ¼þ£©£¬½«ÆäÊä³ö¡£¿ÉÒÔÍ¨¹ýputÀ´ÖÆ¶¨²ÎÊý¡£ÏÂÃæ»áÏêÏ¸½²¡£
+	renderæ–¹æ³•ä½¿ç”¨å‚æ•°åˆ¶å®šçš„ç½‘é¡µï¼ˆä¸€ä¸ªåŒ…å«JSTLçš„jspæ–‡ä»¶ï¼‰ï¼Œå°†å…¶è¾“å‡ºã€‚å¯ä»¥é€šè¿‡putæ¥åˆ¶å®šå‚æ•°ã€‚ä¸‹é¢ä¼šè¯¦ç»†è®²ã€‚
 	
-### render()·½·¨
-	Õâ¸örender·½·¨ÊÇÃ»ÓÐ²ÎÊýµÄ£¬Ëü»áÊ¹ÓÃÄ¬ÈÏÄ£°å£¬Èç¹ûÕâ¸öÄ£°å²»´æÔÚ£¬¾Í»áÌáÊ¾´íÎó¡£
+### render()æ–¹æ³•
+	è¿™ä¸ªrenderæ–¹æ³•æ˜¯æ²¡æœ‰å‚æ•°çš„ï¼Œå®ƒä¼šä½¿ç”¨é»˜è®¤æ¨¡æ¿ï¼Œå¦‚æžœè¿™ä¸ªæ¨¡æ¿ä¸å­˜åœ¨ï¼Œå°±ä¼šæç¤ºé”™è¯¯ã€‚
 
 ```java
 	public void renderDemo(){
@@ -450,16 +451,16 @@ Integer id = paramInt("id");
 	}
 ```
 
-ÔÚÅäÖÃ controller Îªorg.demo , templateÎª/view  ÕâÖÖÇé¿öÏÂ¡£
-	org.demo.IndexControllerµÄrenderDemo·½·¨»á¶ÔÓ¦/view/renderDemo.jsp
-	Ö®ËùÒÔÄ£°å´æÔÚÓÚÄ£°å¸ùÄ¿Â¼ÏÂ£¬ÊÇÒòÎªÕâ¸öIndexControllerÊÇ´¦ÀíÓ¦ÓÃ¸ùÄ¿Â¼µÄ¡£ËûÃÇÓÐ¶ÔÓ¦¹ØÏµ¡£
+åœ¨é…ç½® controller ä¸ºorg.demo , templateä¸º/view  è¿™ç§æƒ…å†µä¸‹ã€‚
+	org.demo.IndexControllerçš„renderDemoæ–¹æ³•ä¼šå¯¹åº”/view/renderDemo.jsp
+	ä¹‹æ‰€ä»¥æ¨¡æ¿å­˜åœ¨äºŽæ¨¡æ¿æ ¹ç›®å½•ä¸‹ï¼Œæ˜¯å› ä¸ºè¿™ä¸ªIndexControlleræ˜¯å¤„ç†åº”ç”¨æ ¹ç›®å½•çš„ã€‚ä»–ä»¬æœ‰å¯¹åº”å…³ç³»ã€‚
 	
-Èç¹ûÊÇorg.demo.BookController,Ëü¶ÔÓ¦ app¸ùÄ¿Â¼ÏÂµÄ /book/ Ä¿Â¼¡£
-	ËüµÄadd·½·¨¶ÔÓ¦Â·¾¶ /book/add
-	Èç¹ûÓ¦ÓÃÃûÎªhello,ÄÇÃ´Íê³ÉÂ·¾¶Ó¦¸ÃÊÇ  /hello/book/add 
+å¦‚æžœæ˜¯org.demo.BookController,å®ƒå¯¹åº” appæ ¹ç›®å½•ä¸‹çš„ /book/ ç›®å½•ã€‚
+	å®ƒçš„addæ–¹æ³•å¯¹åº”è·¯å¾„ /book/add
+	å¦‚æžœåº”ç”¨åä¸ºhello,é‚£ä¹ˆå®Œæˆè·¯å¾„åº”è¯¥æ˜¯  /hello/book/add 
 
-#### outputJSON ·½·¨
-¸Ã·½·¨½«²ÎÊý×ª»¯ÎªJSON£¬²¢ÏòÍøÒ³Êä³ö¡£
+#### outputJSON æ–¹æ³•
+è¯¥æ–¹æ³•å°†å‚æ•°è½¬åŒ–ä¸ºJSONï¼Œå¹¶å‘ç½‘é¡µè¾“å‡ºã€‚
 
 ```java
 	public void jsonDemo(){
@@ -472,36 +473,36 @@ Integer id = paramInt("id");
 	}
 ```
 
-	Õâ¸ö´úÂëÉÔ³¤£¬ÆäÊµÉÏÃæµÄËùÓÐ¶¼ÊÇÉú³ÉÒ»¸öMap£¬×îºóÒ»¾äÊä³ö¡£outputJSON¿ÉÒÔÊä³öList£¬MapºÍÈÎºÎJava¶ÔÏó¡£ÄÚ²¿×ª»»ÊÇÊ¹ÓÃfastjsonÊµÏÖµÄ¡£
+	è¿™ä¸ªä»£ç ç¨é•¿ï¼Œå…¶å®žä¸Šé¢çš„æ‰€æœ‰éƒ½æ˜¯ç”Ÿæˆä¸€ä¸ªMapï¼Œæœ€åŽä¸€å¥è¾“å‡ºã€‚outputJSONå¯ä»¥è¾“å‡ºListï¼ŒMapå’Œä»»ä½•Javaå¯¹è±¡ã€‚å†…éƒ¨è½¬æ¢æ˜¯ä½¿ç”¨fastjsonå®žçŽ°çš„ã€‚
 
-####  ×Ô¶¯Éú³É²¢Êä³öÒ»¸ö±íµ¥
+####  è‡ªåŠ¨ç”Ÿæˆå¹¶è¾“å‡ºä¸€ä¸ªè¡¨å•
 ```java
 public void renderForm(Model m,String template,String postTo)
 ```
-¸Ãº¯Êý»á¸ù¾ÝÄ£ÐÍ¶ÔÓ¦µÄ±í½á¹¹£¬×Ô¶¯Éú³ÉÒ»¸ö±íµ¥£¬²¢½«ÆäÄÚÈÝ·ÅÈë ±í¸ñÃû_form ÖÐ£¬Èçbook±í»áÊä³öµ½ book_form ÖÐ¡£
-ÔÚÍøÒ³ÖÐ£¬Ö±½ÓÐ´ ${book_form}¾Í¿ÉÒÔ½«±íµ¥·ÅÏÂÈ¥¡£
+è¯¥å‡½æ•°ä¼šæ ¹æ®æ¨¡åž‹å¯¹åº”çš„è¡¨ç»“æž„ï¼Œè‡ªåŠ¨ç”Ÿæˆä¸€ä¸ªè¡¨å•ï¼Œå¹¶å°†å…¶å†…å®¹æ”¾å…¥ è¡¨æ ¼å_form ä¸­ï¼Œå¦‚bookè¡¨ä¼šè¾“å‡ºåˆ° book_form ä¸­ã€‚
+åœ¨ç½‘é¡µä¸­ï¼Œç›´æŽ¥å†™ ${book_form}å°±å¯ä»¥å°†è¡¨å•æ”¾ä¸‹åŽ»ã€‚
 
-templateÖÆ¶¨¶ÔÓ¦µÄÄ£°åÎÄ¼þ£¬¿ÉÒÔÊ¡ÂÔ£¬Ê¡ÂÔºó°´ÕÕÄ¬ÈÏ¹æÔò²éÕÒÄ£°åÎÄ¼þ¡£
-postToÉè¶¨ ±íµ¥Ìá½»µÄÍøÒ³£¬¿ÉÒÔÊ¡ÂÔ£¬Ä¬ÈÏÊÇ"",¼´µ±Ç°ÍøÒ³£¨Controller£©¡£
+templateåˆ¶å®šå¯¹åº”çš„æ¨¡æ¿æ–‡ä»¶ï¼Œå¯ä»¥çœç•¥ï¼Œçœç•¥åŽæŒ‰ç…§é»˜è®¤è§„åˆ™æŸ¥æ‰¾æ¨¡æ¿æ–‡ä»¶ã€‚
+postToè®¾å®š è¡¨å•æäº¤çš„ç½‘é¡µï¼Œå¯ä»¥çœç•¥ï¼Œé»˜è®¤æ˜¯"",å³å½“å‰ç½‘é¡µï¼ˆControllerï¼‰ã€‚
 
-##»ñÈ¡²ÎÊýµÄ·½·¨
+##èŽ·å–å‚æ•°çš„æ–¹æ³•
 
-1. param(String p)      »ñÈ¡²ÎÊýpµÄÖµ£¬ÒÔStringÀàÐÍ·µ»Ø
-2. paramInt(String p) »ñÈ¡²ÎÊýpµÄÖµ£¬ÒÔIntÀàÐÍ·µ»Ø£¬Èç¹û²»ÊÇÕûÊý£¬Ôò»á³öÏÖÒì³£
+1. param(String p)      èŽ·å–å‚æ•°pçš„å€¼ï¼Œä»¥Stringç±»åž‹è¿”å›ž
+2. paramInt(String p) èŽ·å–å‚æ•°pçš„å€¼ï¼Œä»¥Intç±»åž‹è¿”å›žï¼Œå¦‚æžœä¸æ˜¯æ•´æ•°ï¼Œåˆ™ä¼šå‡ºçŽ°å¼‚å¸¸
 3. public Model paramToModel(Model m)
-	¸ù¾ÝÃû³ÆÆ¥ÅäµÄÔ­Ôò£¬½«ÓëÄ£ÐÍÖÐ²ÎÊýÃûÏàÍ¬µÄ²ÎÊýµÄÖµ·ÅÈëÄ£ÐÍÖÐ¡£²¢·µ»Ø¸ÃÄ£ÐÍ¡£
-ÊÇÊÕ¼¯±íµ¥Êý¾Ýµ½Ä£ÐÍÖÐµÄÉñÆ÷£¬ÊÖ»úºó¾Í¿ÉÒÔÖ±½Ó½øÐÐÊý¾Ý¿â²Ù×÷ÁË¡£
-4. paramWithDefault »ñÈ¡²ÎÊý£¬µ«Í¬Ê±´øÉÏÄ¬ÈÏÖµ£¬Èç¹ûÃ»Õâ¸ö²ÎÊýÔò·µ»ØÄ¬ÈÏÖµ¡£
-##¼ì²é·½·¨
+	æ ¹æ®åç§°åŒ¹é…çš„åŽŸåˆ™ï¼Œå°†ä¸Žæ¨¡åž‹ä¸­å‚æ•°åç›¸åŒçš„å‚æ•°çš„å€¼æ”¾å…¥æ¨¡åž‹ä¸­ã€‚å¹¶è¿”å›žè¯¥æ¨¡åž‹ã€‚
+æ˜¯æ”¶é›†è¡¨å•æ•°æ®åˆ°æ¨¡åž‹ä¸­çš„ç¥žå™¨ï¼Œæ‰‹æœºåŽå°±å¯ä»¥ç›´æŽ¥è¿›è¡Œæ•°æ®åº“æ“ä½œäº†ã€‚
+4. paramWithDefault èŽ·å–å‚æ•°ï¼Œä½†åŒæ—¶å¸¦ä¸Šé»˜è®¤å€¼ï¼Œå¦‚æžœæ²¡è¿™ä¸ªå‚æ•°åˆ™è¿”å›žé»˜è®¤å€¼ã€‚
+##æ£€æŸ¥æ–¹æ³•
 public void checkNull(String name,Object obj)  
-¼ì²éobjÊÇ·ñÎªnull£¬Èç¹ûÊÇÅ×³öNullParamExceptionÒì³£¡£
+æ£€æŸ¥objæ˜¯å¦ä¸ºnullï¼Œå¦‚æžœæ˜¯æŠ›å‡ºNullParamExceptionå¼‚å¸¸ã€‚
 
 
-#ORM¿ò¼Ü
+#ORMæ¡†æž¶
 
-## ModelÓëDBTool
-Model ¶ÔÏó¶ÔÓ¦Êý¾Ý¿âµÄ±í¸ñ£¬Ëü»áÓëÒ»¸ö±í¸ñ½øÐÐ°ó¶¨¡£DBToolÏàµ±ÓÚÊÇËüµÄDAOÀà¡£
-YangMVCµÄORM×é¼þ¿ÉÒÔµ¥¶ÀÊ¹ÓÃ¡£Ê¹ÓÃÇ°ÐèÒªÏÈÅäÖÃÊý¾Ý¿â:
+## Modelä¸ŽDBTool
+Model å¯¹è±¡å¯¹åº”æ•°æ®åº“çš„è¡¨æ ¼ï¼Œå®ƒä¼šä¸Žä¸€ä¸ªè¡¨æ ¼è¿›è¡Œç»‘å®šã€‚DBToolç›¸å½“äºŽæ˜¯å®ƒçš„DAOç±»ã€‚
+YangMVCçš„ORMç»„ä»¶å¯ä»¥å•ç‹¬ä½¿ç”¨ã€‚ä½¿ç”¨å‰éœ€è¦å…ˆé…ç½®æ•°æ®åº“:
 
 ```java
 	Config.dbhost = "localhost";
@@ -510,39 +511,39 @@ YangMVCµÄORM×é¼þ¿ÉÒÔµ¥¶ÀÊ¹ÓÃ¡£Ê¹ÓÃÇ°ÐèÒªÏÈÅäÖÃÊý¾Ý¿â:
 	Config.dbusr ="root";
 	Config.dbport="3306";
 ```
-Ò²¿ÉÒÔºÍMVC¿ò¼ÜÒ»ÆðÊ¹ÓÃ¡£ÅäÖÃÊ±ÔÚweb.xmlÖÐÅäÖÃ
+ä¹Ÿå¯ä»¥å’ŒMVCæ¡†æž¶ä¸€èµ·ä½¿ç”¨ã€‚é…ç½®æ—¶åœ¨web.xmlä¸­é…ç½®
 
-### ´´½¨Ò»¸öDBTool¶ÔÏó
+### åˆ›å»ºä¸€ä¸ªDBToolå¯¹è±¡
 
 ```java
 		DBTool tool = Model.tool("book");
 ```
 
-ÆäÖÐbookÊÇÊý¾Ý¿â±íµÄÃû×Ö¡£
+å…¶ä¸­bookæ˜¯æ•°æ®åº“è¡¨çš„åå­—ã€‚
 
-### ´´½¨Ò»¸ö¿ÕµÄModel
+### åˆ›å»ºä¸€ä¸ªç©ºçš„Model
 
 ```java
 		DBTool tool = Model.tool("book");
-		Model m = tool.create(); //´´½¨ÐÂµÄ
+		Model m = tool.create(); //åˆ›å»ºæ–°çš„
 
 ```
 
-### ¸ù¾ÝÖ÷¼ü¶ÁÈ¡Ò»¸öModel
+### æ ¹æ®ä¸»é”®è¯»å–ä¸€ä¸ªModel
 
 ```java
 			Model m = tool.get(12);
 
 ```
 
-### ²éÑ¯±íÖÐËùÓÐµÄÐÐ
+### æŸ¥è¯¢è¡¨ä¸­æ‰€æœ‰çš„è¡Œ
 
 ```java
 		LasyList list = tool.all();
 ```
 
-	all·µ»ØÒ»¸öLasyList¶ÔÏó¡£Õâ¸ö¶ÔÏóÔÚ´ËÊÂ²¢Ã»ÓÐÕæÕý½øÐÐÊý¾Ý¿â²éÑ¯£¬Ö»ÓÐÔÚÒ³ÃæÕæÕý¶ÁÈ¡Ê±²Å»á¶ÁÈ¡Êý¾Ý¿â¡£ÕâÊÇËü½Ð×öLasyµÄÔ­Òò¡£´Ë´¦½è¼øÁËDjangoµÄÊµÏÖ»úÖÆ¡£
-###²éÑ¯µÄlimitÓï¾ä
+	allè¿”å›žä¸€ä¸ªLasyListå¯¹è±¡ã€‚è¿™ä¸ªå¯¹è±¡åœ¨æ­¤äº‹å¹¶æ²¡æœ‰çœŸæ­£è¿›è¡Œæ•°æ®åº“æŸ¥è¯¢ï¼Œåªæœ‰åœ¨é¡µé¢çœŸæ­£è¯»å–æ—¶æ‰ä¼šè¯»å–æ•°æ®åº“ã€‚è¿™æ˜¯å®ƒå«åšLasyçš„åŽŸå› ã€‚æ­¤å¤„å€Ÿé‰´äº†Djangoçš„å®žçŽ°æœºåˆ¶ã€‚
+###æŸ¥è¯¢çš„limitè¯­å¥
 
 ```java
 	LasyList list = tool.all().limit(30);
@@ -550,63 +551,63 @@ YangMVCµÄORM×é¼þ¿ÉÒÔµ¥¶ÀÊ¹ÓÃ¡£Ê¹ÓÃÇ°ÐèÒªÏÈÅäÖÃÊý¾Ý¿â:
 	
 ```
 
-###²éÑ¯µÄµÈÊ½Ô¼Êø
+###æŸ¥è¯¢çš„ç­‰å¼çº¦æŸ
 
 ```java
-	tool.all().eq("name","±¾²Ý¸ÙÄ¿")
+	tool.all().eq("name","æœ¬è‰çº²ç›®")
 ```
 
-###²éÑ¯µÄ²»µÈÊ½Ô¼Êø
+###æŸ¥è¯¢çš„ä¸ç­‰å¼çº¦æŸ
 
 ```java
 	tool.all().gt("id",12) //id < 12
 	tool.all().lt("id",33) //id <33
 	tool.all().gte("id",12) //id>=12
 	tool.all().lte("id",33) //id<=33
-	tool.all().ne("id",33) //²»ÏàµÈ
+	tool.all().ne("id",33) //ä¸ç›¸ç­‰
 	
 ```
 
-### Ä£ºý²éÑ¯
+### æ¨¡ç³ŠæŸ¥è¯¢
 
 ```java
-	tool.all().like("name","±¾²Ý")
+	tool.all().like("name","æœ¬è‰")
 ```
 
-	²éÕÒËùÓÐÃû×ÖÖÐ°üº¬±¾²ÝµÄÊé¡£·µ»ØÒ»¸öLasyList
-###ÅÅÐò
+	æŸ¥æ‰¾æ‰€æœ‰åå­—ä¸­åŒ…å«æœ¬è‰çš„ä¹¦ã€‚è¿”å›žä¸€ä¸ªLasyList
+###æŽ’åº
 
 ```java
 	tool.all().orderby("id",true);
 ```
 
-	°´ÕÕidµÄÔöÐòÅÅÁÐ¡£ Èç¹ûÊÇfalse£¬ÔòÊÇ½µÐò¡£
+	æŒ‰ç…§idçš„å¢žåºæŽ’åˆ—ã€‚ å¦‚æžœæ˜¯falseï¼Œåˆ™æ˜¯é™åºã€‚
 	
 	
-###¼¶Áª²éÑ¯
-  ÒòÎªÕâÐ©ÉÏÃæµÄ¹ýÂËÆ÷º¯ÊýÈ«²¿¶¼»á·µ»ØÒ»¸öLasyList¶ÔÏó£¬ ËùÒÔ¿ÉÒÔ²ÉÓÃ¼¶ÁªµÄ·½Ê½½øÐÐ¸´ÔÓ²éÑ¯¡£Èç£º
+###çº§è”æŸ¥è¯¢
+  å› ä¸ºè¿™äº›ä¸Šé¢çš„è¿‡æ»¤å™¨å‡½æ•°å…¨éƒ¨éƒ½ä¼šè¿”å›žä¸€ä¸ªLasyListå¯¹è±¡ï¼Œ æ‰€ä»¥å¯ä»¥é‡‡ç”¨çº§è”çš„æ–¹å¼è¿›è¡Œå¤æ‚æŸ¥è¯¢ã€‚å¦‚ï¼š
 
   
 ```java
-list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","Íõ");
+list = tool.all().gt("id", 12).lt("id", 33).eq("name","haha").like("author","çŽ‹");
 ```
 
- Õâ¸öÀý×ÓÏàµ±ÓÚÖ´ÐÐÁËÈçÏÂSQLÓï¾ä£º
+ è¿™ä¸ªä¾‹å­ç›¸å½“äºŽæ‰§è¡Œäº†å¦‚ä¸‹SQLè¯­å¥ï¼š
 
 ```java
- select * from book where id>12 and id<33 and name='haha' and author like '%Íõ%'
+ select * from book where id>12 and id<33 and name='haha' and author like '%çŽ‹%'
 ```
-###¸ù¾ÝÔ­Ê¼sql»ñÈ¡£¨version >=1.5.4)
+###æ ¹æ®åŽŸå§‹sqlèŽ·å–ï¼ˆversion >=1.5.4)
 
 ```java
 	LasyList list = LasyList.fromRawSql("select name from book");
 ```
 
-Ê¹ÓÃÔ­Ê¼µÄsql»ñÈ¡µÄListÖÐµÄÄ£ÐÍ½«ºÍÊý¾Ý¿â±íÃ»ÓÐ¹ØÁª¡£
+ä½¿ç”¨åŽŸå§‹çš„sqlèŽ·å–çš„Listä¸­çš„æ¨¡åž‹å°†å’Œæ•°æ®åº“è¡¨æ²¡æœ‰å…³è”ã€‚
 
-##LasyListµÄÊ¹ÓÃ
+##LasyListçš„ä½¿ç”¨
 
-LasyListÊÇÒ»¸öListµÄ×ÓÀà¡£¿ÉÒÔÏëÒ»°ãµÄlistÒ»ÑùÊ¹ÓÃ¡£Èç
+LasyListæ˜¯ä¸€ä¸ªListçš„å­ç±»ã€‚å¯ä»¥æƒ³ä¸€èˆ¬çš„listä¸€æ ·ä½¿ç”¨ã€‚å¦‚
 
 ```java
 
@@ -618,7 +619,7 @@ for(int i=0;i<list.size();i++){
 
 ```
 
-ÓÖ»òÕß
+åˆæˆ–è€…
 
 ```java
 
@@ -629,45 +630,45 @@ for(Model m : list){
 
 ```
 
-ÓÖ»òÕßÊ¹ÓÃJSTL·ÃÎÊ¡£Àý×Ó¼û YangMVCµÚÒ»¸öDemo Ð¡½Ú
+åˆæˆ–è€…ä½¿ç”¨JSTLè®¿é—®ã€‚ä¾‹å­è§ YangMVCç¬¬ä¸€ä¸ªDemo å°èŠ‚
 
 
 
 
-##ModelµÄÏà¹Ø¹¦ÄÜ
-model ÊÇÒ»¸ö¼Ì³Ð×ÔMap&lt;String,Object&gt; µÄÀà£¬ËùÒÔ¶ÔÓÚ
+##Modelçš„ç›¸å…³åŠŸèƒ½
+model æ˜¯ä¸€ä¸ªç»§æ‰¿è‡ªMap&lt;String,Object&gt; çš„ç±»ï¼Œæ‰€ä»¥å¯¹äºŽ
 Model m;
-Äã¿ÉÒÔÔÚÍøÒ³ÖÐÊ¹ÓÃ${m.name}µÄ·½Ê½À´·ÃÎÊËüµÄname¼ü¶ÔÓ¦µÄÖµ¡£Ïàµ±ÓÚm.get("name")
-ÕâÖÖÐ´·¨ÔÚJSTLÖÐ·Ç³£ÓÐÓÃ¡£ÈÃModel¼Ì³ÐMapµÄ³õÖÔ¾ÍÔÚÓÚ´Ë£º·½±ãÔÚJSTLÖÐÊ¹ÓÃ¡£
+ä½ å¯ä»¥åœ¨ç½‘é¡µä¸­ä½¿ç”¨${m.name}çš„æ–¹å¼æ¥è®¿é—®å®ƒçš„nameé”®å¯¹åº”çš„å€¼ã€‚ç›¸å½“äºŽm.get("name")
+è¿™ç§å†™æ³•åœ¨JSTLä¸­éžå¸¸æœ‰ç”¨ã€‚è®©Modelç»§æ‰¿Mapçš„åˆè¡·å°±åœ¨äºŽæ­¤ï¼šæ–¹ä¾¿åœ¨JSTLä¸­ä½¿ç”¨ã€‚
 
-´ó¼ÒÒ²Ðí×¢Òâµ½ÁËLasyListÊÇÒ»¸ö¼Ì³Ð×ÔList&lt;Model&gt; µÄÀà.
-Õâ¾ÍÊ¹µÃ²»¹ÜÊÇLasyList»¹ÊÇModelÔÚJSTLÖÐ·ÃÎÊ¶¼¼«ÎªµÄ±ãÀû¡£
+å¤§å®¶ä¹Ÿè®¸æ³¨æ„åˆ°äº†LasyListæ˜¯ä¸€ä¸ªç»§æ‰¿è‡ªList&lt;Model&gt; çš„ç±».
+è¿™å°±ä½¿å¾—ä¸ç®¡æ˜¯LasyListè¿˜æ˜¯Modelåœ¨JSTLä¸­è®¿é—®éƒ½æžä¸ºçš„ä¾¿åˆ©ã€‚
 
-### ·ÃÎÊËùÓÐµÄ¼üÖµ£¨¼´DAO¶ÔÏóµÄËùÓÐÊôÐÔ)
+### è®¿é—®æ‰€æœ‰çš„é”®å€¼ï¼ˆå³DAOå¯¹è±¡çš„æ‰€æœ‰å±žæ€§)
 
 ```java
 	model.keySet();
 ```
 
-###·ÃÎÊÄ³Ò»¸öÊôÐÔµÄÖµ
+###è®¿é—®æŸä¸€ä¸ªå±žæ€§çš„å€¼
 
 ```java
 	model.get(key)
 ```
 
-###ÉèÖÃÄ³Ò»¸öÊôÐÔµÄÖµ
+###è®¾ç½®æŸä¸€ä¸ªå±žæ€§çš„å€¼
 
 ```java
 	model.put(key,value)
 ```
 
-### Model×ª¶ÔÏó
+### Modelè½¬å¯¹è±¡
 
-Èç¹ûÄãÏ°¹ßÓÚÊ¹ÓÃ¶ÔÏóÓ³ÉäµÄÀà£¬Äã¿ÉÒÔ½«Model×ª»»Îª¶ÔÏó
+å¦‚æžœä½ ä¹ æƒ¯äºŽä½¿ç”¨å¯¹è±¡æ˜ å°„çš„ç±»ï¼Œä½ å¯ä»¥å°†Modelè½¬æ¢ä¸ºå¯¹è±¡
 
 
 ```java
-	//ÎÒÃÇ½¨Á¢ÁËÒ»¸öORMÓ³ÉäÀà
+	//æˆ‘ä»¬å»ºç«‹äº†ä¸€ä¸ªORMæ˜ å°„ç±»
 	public class Book{
 		public int id;
 		public String filename;
@@ -677,7 +678,7 @@ Model m;
 
 ```
 
-¿ÉÒÔ½«Model×ªÎªBook¶ÔÏó
+å¯ä»¥å°†Modelè½¬ä¸ºBookå¯¹è±¡
 
 ```java
 		Model  m = Model.tool("book").all().one();
@@ -686,7 +687,7 @@ Model m;
 		//System.out.println(JSON.toJSONString(b));
 ```
 
-### LasyList×ª¶ÔÏóÁÐ±í
+### LasyListè½¬å¯¹è±¡åˆ—è¡¨
 
 
 ```java
