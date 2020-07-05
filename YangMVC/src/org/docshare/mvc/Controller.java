@@ -433,8 +433,12 @@ public class Controller {
 				output(s);
 			}
 		}
-		if(contentType!=null && contentType.contains("application/json")){
-			InputStream in;
+		//只有请求的contentType 为json时才进行json转换
+		if(contentType!=null && 
+				(contentType.contains("application/json")
+						|| contentType.contains("text/json"))
+		  ){
+			InputStream in = null;
 			try {
 				Log.d("start read json ....");
 				in = request.getInputStream();
@@ -449,8 +453,13 @@ public class Controller {
 			} catch (IOException e) {
 				Log.e(e);
 				e.printStackTrace();
-				
-				
+			}finally {
+				if(in!=null){
+					try {
+						in.close();
+					} catch (IOException e) {
+					}
+				}
 			}
 			
 		}

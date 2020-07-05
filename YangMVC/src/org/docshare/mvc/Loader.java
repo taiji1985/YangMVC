@@ -94,7 +94,9 @@ class Loader {
 		
 		Object[] args  = null;
 		Class<?>[] types = method.getParameterTypes();
-		
+		/**
+		 * 根据参数标注进行赋值
+		 */
 		if (parameterAnnotations != null && parameterAnnotations.length != 0) {  
 			
 			
@@ -107,27 +109,8 @@ class Loader {
 	                    Param param = (Param) annotation;  
 	            //        parameterNames[i] = param.value();
 	                    args[i] = req.getParameter(param.value());
-	                    if(! types[i].equals(String.class)){
-	                    	if(types[i].getName().equals("int")){
-	                    		args[i] = Integer.parseInt(args[i]+"");
-	                    	}else if(types[i].getName().equals("long")){
-	                    		args[i] = Long.parseLong(args[i]+"");
-	                    	}
-	                    	else if(types[i].getName().equals("double")){
-	                    		args[i] = Double.parseDouble(args[i]+"");
-	                    	}
-	                    	else if(types[i].getName().equals("java.lang.Integer")){
-	                    		if(args[i]!=null)args[i] =new Integer(Integer.parseInt(args[i]+""));
-	                    	}
-	                    	else if(types[i].getName().equals(Long.class.getName())){
-	                    		args[i] = new Long( Long.parseLong(args[i]+""));
-	                    	}else if(types[i].getName().equals(Boolean.class.getName())){
-	                    		args[i] = new Boolean(Boolean.parseBoolean(args[i]+""));
-	                    	}else if(types[i].getName().equals(Double.class.getName())){
-	                    		args[i] = new Double(Double.parseDouble(args[i]+""));
-	                    	}
-	                    	
-	                    }
+	                    args[i] = convertTo(args[i],types[i].getName());
+	                    
 	                    break;
 	                }
 	            }  
@@ -135,11 +118,21 @@ class Loader {
 	            i++;
 	        }  
         }
-		//如果没有注释，但是有参数
-		if(parameterAnnotations == null && types.length>0){
+		//再根据名字进行赋值
+		if(types.length>0){
 			Parameter[] pa = method.getParameters();
-			for(Parameter p:pa){
-				Log.i(p.toString());
+			Log.d("use param name to inj ");
+			if(args == null){
+				args =new Object[pa.length];
+			}
+			for(int i =0;i<pa.length;i++){
+				if(args[i]!=null)continue; //如果已经被标注赋值过就，就不要再给了。
+				String name = pa[i].getName();
+				if(name == null){
+					Log.e("Loader:  you should add the -parameters to javac , for details see : https://blog.csdn.net/sanyuesan0000/article/details/80618913");
+				}
+				args[i] = req.getParameter(name);
+				args[i] = convertTo(args[i],types[i].getName());
 			}
 		}
 		
@@ -148,7 +141,45 @@ class Loader {
 		return ret;
 		
 	}
+	/**
+	 * 自动类型转换
+	 * @param v
+	 * @param type
+	 * @return
+	 */
+	private static Object convertTo(Object v,String type){
+		if(v == null){
+			//要迁就一下这种基本数据类型
+			if(type.equals("int")||type.equals("float")||type.equals("double")){
+				return -1; //用-1表示非法数据
+			}else return null; //if null, no convert
+		}
+		String srcType = v.getClass().getName();
 
+		if(srcType.equals(type))return v; //need no convert
+		
+		if(type.equals("int")){
+    		return Integer.parseInt(v.toString());
+    	}else if(type.equals("long")){
+    		v = Long.parseLong(v+"");
+    	}
+    	else if(type.equals("double")){
+    		v = Double.parseDouble(v+"");
+    	}
+    	else if(type.equals("java.lang.Integer")){
+    		v =new Integer(Integer.parseInt(v+""));
+    	}
+    	else if(type.equals(Long.class.getName())){
+    		v = new Long( Long.parseLong(v+""));
+    	}else if(type.equals(Boolean.class.getName())){
+    		v = new Boolean(Boolean.parseBoolean(v+""));
+    	}else if(type.equals(Double.class.getName())){
+    		v = new Double(Double.parseDouble(v+""));
+    	}
+		
+		return v;
+		
+	}
 	
 	/**
 	 * 用以存储单例对象的Map。
