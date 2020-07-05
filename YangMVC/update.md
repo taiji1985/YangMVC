@@ -26,3 +26,5 @@ public Object retfm(){
    这个特性是为了加速编程。
    如 put("yang",12,"zhang",33,"liu",new Book());
 
+## 4 项目开发环境迁移到了eclipse mars中。 抛弃了myeclipse
+
