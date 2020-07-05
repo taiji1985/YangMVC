@@ -33,7 +33,7 @@ public class AnnoMapper {
 	@SuppressWarnings({ "rawtypes" })
 	public void scan() {
 		scanForbidMethod();
-		List<String> clsList = PackageUtil.getClassName(Config.ctr_base, true);
+		List<String> clsList = PackageUtil.getClassName(Config.controller, true);
 		for (String cls : clsList) {
 			try {
 				Class c = Class.forName(cls);
@@ -83,7 +83,7 @@ public class AnnoMapper {
 	}
 
 	private String getPathByName(String cname, String mName) {
-		cname = cname.replace(Config.ctr_base + ".", ""); // org.demo.haha.BookController
+		cname = cname.replace(Config.controller + ".", ""); // org.demo.haha.BookController
 															// ->
 															// haha.BookController
 		int point = cname.lastIndexOf(".");

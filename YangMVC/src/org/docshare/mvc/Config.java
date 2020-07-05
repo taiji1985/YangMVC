@@ -1,8 +1,13 @@
 package org.docshare.mvc;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.docshare.log.Log;
+import org.docshare.util.BeanUtil;
 
 public class Config {
 	/**
@@ -41,11 +46,19 @@ public class Config {
 	/**
 	 * 模板相对于WebRoot的目录路径
 	 */
-	public static  String tpl_base;
+	public static  String template;
+	//做一点向前兼容 ，名字由 tpl_base改为template
+	public static String tpl_base(){ return template;}
+	public static void tpl_base(String s){template = s;}
+	
+	
 	/**
 	 * 控制器根包名
 	 */
-	public static  String ctr_base;
+	public static  String controller;
+	//做一点向前兼容 ,名字由 ctr_base改为了controller
+	public static String ctr_base(){return controller;}
+	public static void ctr_base(String s){controller = s;}
 	public static int level=0;
 	
 	/**
@@ -54,14 +67,19 @@ public class Config {
 	public static boolean useSSL = false;
 	
 	public static String str() {
-		return "Config [dbhost=" + dbhost +", dbname=" + dbname + ", dbusr=" + dbusr + ", dbpwd="
-				+ dbpwd + ", port = "+ dbport + ", tpl_base=" + tpl_base + ", ctr_base=" + ctr_base
-				+",reloadable="+reloadable
-				+",useSSL="+useSSL
-				+",dbtype="+dbtype
-				+",interceptors="+getInteNames(interceptors)
-				+", post-process="+getInteNames(postInterceptors)
-				+ "]";
+		return "Config [\n\tdbhost=" + dbhost 
+				+", \n\tdbname=" + dbname 
+				+ ", \n\tdbusr=" + dbusr 
+				+ ", \n\tdbpwd="+ dbpwd 
+				+ ", \n\tport = "+ dbport 
+				+ ", \n\ttemplate=" + template 
+				+ ", \n\tcontroller=" + controller
+				+",\n\treloadable="+reloadable
+				+",\n\tuseSSL="+useSSL
+				+",\n\tdbtype="+dbtype
+				+",\n\tinterceptors="+getInteNames(interceptors)
+				+", \n\tpost-process="+getInteNames(postInterceptors)
+				+ "\n]";
 	}
 	static ArrayList<Interceptor> interceptors =new ArrayList<Interceptor>();
 	
@@ -123,5 +141,46 @@ public class Config {
 		return sb.toString();
 	}
 	
-	
+	public static void loadProperties(String PROP_FILE){
+		InputStream in = null;
+		try {
+			URL purl = Config.class.getResource(PROP_FILE);
+			Log.d("read prop from "+purl);
+			Log.d("class loader name "+Config.class.getClassLoader().toString());
+			
+			if(purl == null){
+				Log.e("Config file NOT found : web.properties ");
+//			return;
+			}else{
+				Log.i("Config file found ! ");
+			}
+////		File f  = new File(purl.getPath());
+////		if(!f.exists()){
+////			Log.i("web.properties not found ");
+////			return ;
+////		}	
+			Properties pro = new Properties();	
+//		
+			in = Config.class.getResourceAsStream(PROP_FILE);
+			if(in != null){
+				pro.load(in);
+				Log.i("web.properties loaded ");
+				BeanUtil.prop2StaticField(pro, Config.class);
+			}else{
+
+				Log.i("web.properties NOT load ");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				in.close();
+			} catch (Exception e2) {
+			}
+		}
+
+	}
+	public static void main(String[] args) {
+		Config.loadProperties("/web.properties");
+	}
 }

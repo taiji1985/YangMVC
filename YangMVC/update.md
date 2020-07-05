@@ -28,3 +28,13 @@ public Object retfm(){
 
 ## 4 项目开发环境迁移到了eclipse mars中。 抛弃了myeclipse
 
+## 5 根据参数名称自动注入控制器函数，如访问
+     hello?a=12&b=zzz
+```java
+     public String hello(int a,int b){
+	return "a ="+a+" b = "+b;
+     }
+```
+     页面会输出 a = 12 b = zzz
+
+

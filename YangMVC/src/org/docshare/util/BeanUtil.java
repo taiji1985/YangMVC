@@ -5,7 +5,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
+
 import org.docshare.log.Log;
+import org.docshare.mvc.Config;
 import org.docshare.mvc.IBean;
 
 public class BeanUtil {
@@ -184,8 +187,28 @@ public class BeanUtil {
 		if(toType.equals("double")){
 			return Double.parseDouble(sval);
 		}
+		if(toType.equals("boolean") || toType.equals("java.lang.Boolean")){
+			return Boolean.parseBoolean(sval);
+		}
 		
 		return obj; //unknown ,return orignal
+		
+	}
+	public static void prop2StaticField(Properties prop,Class clz){
+		Field[] fa = clz.getFields();
+		for(Field f :fa){
+			String name = f.getName();
+			String val = prop.getProperty(name);
+			try {
+				Object ov = transType(val,f.getType().getName());
+				if(ov == null)continue;
+				f.set(null,ov );
+				Log.d("set "+clz.getName()+" field "+name +" to "+val);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		Log.i(Config.str());
 		
 	}
 

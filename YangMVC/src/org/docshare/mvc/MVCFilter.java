@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.except.FreeMarkerHandler;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.util.RequestHelper;
 import org.docshare.util.TextTool;
 
@@ -66,7 +67,7 @@ public class MVCFilter implements Filter {
 		if(!temp.contains("/")){
 			temp = "index/"+temp;
 		}
-		String action = Config.ctr_base +"." + temp;
+		String action = Config.controller +"." + temp;
 		action = action.replace("/", ".");
 		String cname,method;
 		if(action.endsWith(".")){ //如果是以斜杠结束（斜杠被替换成了.),则是访问index方法。
@@ -99,15 +100,29 @@ public class MVCFilter implements Filter {
 		return TextTool.readAllBytes(p2);	
 	}
 	public void outErr(HttpServletResponse resp,String msg){
+//		PrintWriter pw;
+//		try {
+//			pw = resp.getWriter();
+//			pw.print("Error:"+msg);
+//			pw.flush();
+//			//pw.close();
+//		} catch (IOException e) {
+//			throw new MVCException(e);
+//		}
 		PrintWriter pw;
 		try {
+			resp.setCharacterEncoding("utf-8");
+			resp.setContentType("text/html; charset=UTF-8");
 			pw = resp.getWriter();
-			pw.print("Error:"+msg);
-			pw.flush();
+			pw.println("<html><head><meta charset='utf-8'/></head><body>");
+			String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
+			m = m.replace(Config.controller, "<font color='red'>"+Config.controller+"</font>");
+			pw.print(m);
+			pw.println("</body></html>");
 			//pw.close();
-		} catch (IOException e) {
-
-			Log.e(e);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 	public static final String TEMP_BASE= "/org/docshare/res";
@@ -156,7 +171,9 @@ public class MVCFilter implements Filter {
 		try {
 			process(uri,context,req2,(HttpServletResponse)resp,chain);
 		} catch (Exception e) {
-			Log.e(e);
+			String msg=Log.getErrMsg(e);
+			Log.e(msg);
+			outErr((HttpServletResponse) resp, msg);
 		}
 		
 		
@@ -170,10 +187,10 @@ public class MVCFilter implements Filter {
 		ins = this;
 		try {
 			this.application = cfg.getServletContext();
-			Config.tpl_base = cfg.getInitParameter("template");
-			Config.ctr_base = cfg.getInitParameter("controller");
-			Config.tpl_base = Config.tpl_base == null? "/view" :Config.tpl_base;
-			Config.ctr_base = Config.ctr_base == null? "org.demo":Config.ctr_base;
+			Config.template = cfg.getInitParameter("template");
+			Config.controller = cfg.getInitParameter("controller");
+			Config.template = Config.template == null? "/view" :Config.template;
+			Config.controller = Config.controller == null? "org.demo":Config.controller;
 			if(application.getInitParameter("dbusr") != null){
 				Config.dbusr  = loadConfig("dbusr" ,Config.dbusr);
 				Config.dbhost = loadConfig("dbhost",Config.dbhost);
@@ -190,7 +207,7 @@ public class MVCFilter implements Filter {
 		} 
 		
 		try {
-			String initCls = Config.ctr_base+".Init";
+			String initCls = Config.controller+".Init";
 			Log.d("try load init class " + initCls);
 			Class.forName(initCls).newInstance();
 		} catch (ClassNotFoundException e) {
@@ -220,24 +237,24 @@ public class MVCFilter implements Filter {
 		TemplateLoader ctl = new ClassTemplateLoader(MVCFilter.class,
 	            "/view");
 		//fmCfg.setTagSyntax(Configuration.AUTO_DETECT_TAG_SYNTAX);
-		WebappTemplateLoader wtl = new WebappTemplateLoader(application,Config.tpl_base);
+		WebappTemplateLoader wtl = new WebappTemplateLoader(application,Config.template);
 		
 	    MultiTemplateLoader mtl; 
 	    TemplateLoader ftl1;
 		try {
-			ftl1 = new FileTemplateLoader(new File("view/"));
+			ftl1 = new FileTemplateLoader(new File(Config.template)); // /view
 			mtl = new MultiTemplateLoader(new TemplateLoader[] {
 			           wtl,ftl1 , ctl  });
-			Log.i("[template dir] "+ application.getRealPath(Config.tpl_base));
-			Log.i("[template dir] "+ new File("view/").getAbsolutePath());
-			Log.i("[template dir] classpath /view");
-			Log.i("Find view/ dir ,use it !");
+			Log.i("[template dir] "+ application.getRealPath(Config.template));
+			Log.i("[template dir] "+ new File(Config.template).getAbsolutePath());
+			Log.i("[template dir] classpath "+Config.template); // /view
+			Log.i("Find template dir ,use it !");
 		} catch (IOException e) {
 			//e.printStackTrace();
 			//Log.i("view/ dir not found !  ,use classpath");
 			mtl = new MultiTemplateLoader(new TemplateLoader[] {
 			           wtl,ctl  });
-			Log.i("[template dir] "+ application.getRealPath(Config.tpl_base));
+			Log.i("[template dir] "+ application.getRealPath(Config.template));
 			Log.i("[template dir] classpath /view");
 		}
 		

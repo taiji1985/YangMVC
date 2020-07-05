@@ -380,7 +380,7 @@ public class Controller {
 		}
 		can_out = false;
 		
-		String path = Config.tpl_base + view;
+		String path = Config.template + view;
 		
 		if(!existFile(path)){
 			Log.e("model file not found "+ path);

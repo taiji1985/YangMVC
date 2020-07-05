@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.anno.Param;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.util.TextTool;
 
 
@@ -29,10 +30,10 @@ class Loader {
 //			return Class.forName(p);
 //		}
 		if(reloader == null){
-			String reload_base = TextTool.getParentPackage(Config.ctr_base);
+			String reload_base = TextTool.getParentPackage(Config.controller);
 			if(reload_base.equals("org") || reload_base.equals("org.docshare")){
 				Log.e("reload base can not be 'org' or 'org.docshare', so we use your controller base as reload base.");
-				reload_base =Config.ctr_base;
+				reload_base =Config.controller;
 			}
 			Log.i("reload base : "+reload_base);
 			reloader=new Reloader("/", reload_base);
@@ -229,10 +230,12 @@ class Loader {
 			if(cause == null){
 				cause=e;
 			}
-			String msg = Log.getErrMsg(cause);
-			Log.e(msg);
-			outMsg(msg,resp);
-			return false;
+			if(e instanceof MVCException ) throw (MVCException)e;
+			else throw new MVCException(cause);
+//			String msg = Log.getErrMsg(cause);
+//			Log.e(msg);
+//			outMsg(msg,resp);
+//			return false;
 		}
 		
 		//call the method
@@ -276,22 +279,22 @@ class Loader {
 			String msg = "没这个方法, no such method " + cname+"."+method +",去查查是否有拼写错误？";
 			//String msg = Log.getErrMsg(cause);
 			//Log.e(msg);
-			Log.e(msg);
-			outMsg(msg,resp);
-			
+			//Log.e(msg);
+			//outMsg(msg,resp);
+			throw new MVCException(msg,cause);
 		} catch (Exception e) {
 			Throwable cause = e.getCause();
 			if(cause == null){
 				cause=e;
 			}
-			String msg = Log.getErrMsg(cause);
-			Log.e(msg);
-			outMsg(msg,resp);
+			//String msg = Log.getErrMsg(cause);
+			//Log.e(msg);
+			//outMsg(msg,resp);
 			
-			return false;
+			//return false;
+
+			throw new MVCException(cause);
 		}
-		return true;
-		
 	}
 	/**
 	 * 执行后处理程序 ， 如将obj转json
@@ -307,23 +310,23 @@ class Loader {
 			ret = ic.postProcess(uri, c,ret);
 		}
 	}
-	public static void outMsg(String msg,HttpServletResponse resp){
-		PrintWriter pw;
-		try {
-			resp.setCharacterEncoding("utf-8");
-			resp.setContentType("text/html; charset=UTF-8");
-			pw = resp.getWriter();
-			pw.println("<html><head><meta charset='utf-8'/></head><body>");
-			String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
-			m = m.replace(Config.ctr_base, "<font color='red'>"+Config.ctr_base+"</font>");
-			pw.print(m);
-			pw.println("</body></html>");
-			//pw.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-	}
+//	public static void outMsg(String msg,HttpServletResponse resp){
+//		PrintWriter pw;
+//		try {
+//			resp.setCharacterEncoding("utf-8");
+//			resp.setContentType("text/html; charset=UTF-8");
+//			pw = resp.getWriter();
+//			pw.println("<html><head><meta charset='utf-8'/></head><body>");
+//			String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
+//			m = m.replace(Config.ctr_base, "<font color='red'>"+Config.ctr_base+"</font>");
+//			pw.print(m);
+//			pw.println("</body></html>");
+//			//pw.close();
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+//		
+//	}
 }
