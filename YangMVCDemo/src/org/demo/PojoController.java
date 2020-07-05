@@ -20,4 +20,7 @@ public class PojoController extends Controller{
 		int r = Book.delByKey(2);
 		outputJSON(r);
 	}
+	public String dd(){
+		return "this is dd";
+	}
 }

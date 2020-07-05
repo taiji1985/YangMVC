@@ -3,6 +3,7 @@
 	<name>YangMVCDemo</name>
 	<comment></comment>
 	<projects>
+		<project>YangMVC</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

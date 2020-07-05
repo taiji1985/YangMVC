@@ -13,7 +13,14 @@ import org.docshare.orm.Model;
 
 public class IndexController extends Controller {
 	public IndexController(){
-		this.setSingle(true);
+		/*
+		 * 使用这个函数设置该控制器为单例模式。
+		 * 即在整个web服务器中该控制器只保留一个对象，且被反复使用。
+		 * 这会大大提高性能（节约了new 和free的过程，节约了gc成本）
+		 * 但也要求尽量少的使用成员变量。 
+		 * 关于同步是否会产生问题，待讨论。
+		 */
+		this.setSingle(true); 
 	}
 	int ct = 0;
 	public void count(){
