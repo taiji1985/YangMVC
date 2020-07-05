@@ -77,5 +77,9 @@ public class IndexController extends Controller {
 	public Object retfm(){
 		return freemarker("/index.html");
 	}
+	public Object putMore(){
+		put("yang",12,"zhang",33);
+		return "ok";
+	}
 	
 }

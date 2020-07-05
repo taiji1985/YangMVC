@@ -316,7 +316,7 @@ public class Controller {
 	 * @param name 参数名
 	 * @param obj  参数值
 	 */
-	public void put(String name,Object obj){
+	public void put(String name,Object obj,Object... others){
 		if(obj instanceof IBean){
 			Log.d(obj.getClass().getName()+" translate to map :");
 			obj = BeanUtil.obj2Map(obj);
@@ -324,6 +324,17 @@ public class Controller {
 		}
 		request.setAttribute(name, obj);
 		root.put(name, obj);
+		for(int i=0;i<others.length-1;i+=2){
+			obj=others[i+1];
+			name =(String)others[i];
+			if(obj instanceof IBean){
+				Log.d(obj.getClass().getName()+" translate to map :");
+				obj = BeanUtil.obj2Map(obj);
+				Log.d(JSON.toJSONString(obj));
+			}
+			request.setAttribute(name, obj);
+			root.put(name, obj);
+		}
 	}
 	
 	/**

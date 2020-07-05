@@ -85,9 +85,10 @@ class Loader {
 		Annotation[][] parameterAnnotations = method.getParameterAnnotations();  
 		
 		Object[] args  = null;
+		Class<?>[] types = method.getParameterTypes();
 		
 		if (parameterAnnotations != null && parameterAnnotations.length != 0) {  
-			Class<?>[] types = method.getParameterTypes();
+			
 			
 			args =new Object[parameterAnnotations.length];
 	        //String[] parameterNames = new String[parameterAnnotations.length];  
@@ -126,6 +127,10 @@ class Loader {
 	            i++;
 	        }  
         }
+		//如果没有注释，但是有参数
+		if(parameterAnnotations == null && types.length>0){
+		}
+		
 		//调用方法
 		Object ret = method.invoke(obj, args);
 		return ret;
