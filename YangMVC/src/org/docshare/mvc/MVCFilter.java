@@ -185,10 +185,21 @@ public class MVCFilter implements Filter {
 	@Override
 	public void init(FilterConfig cfg) throws ServletException {
 		ins = this;
+		//先从类目录的web.properties中读取
+		Config.loadProperties("/web.properties");
 		try {
 			this.application = cfg.getServletContext();
-			Config.template = cfg.getInitParameter("template");
-			Config.controller = cfg.getInitParameter("controller");
+			String tpl = cfg.getInitParameter("template");
+			if(tpl == null){
+				Log.i("no configure in web.xml ");
+			}else{
+				Config.template = tpl;
+			}
+			
+			String ctr = cfg.getInitParameter("controller");
+			if(ctr !=null){
+				Config.controller = ctr;
+			}
 			Config.template = Config.template == null? "/view" :Config.template;
 			Config.controller = Config.controller == null? "org.demo":Config.controller;
 			if(application.getInitParameter("dbusr") != null){

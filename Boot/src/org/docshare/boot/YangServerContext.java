@@ -44,7 +44,8 @@ public class YangServerContext implements ServletContext {
 	 * 必须通过getIns来创建
 	 */
 	private YangServerContext() {  
-		loadProp();
+		//因为在MVCFilter中已经读取了web.properties，所以这里就不用处理了。
+		//loadProp();
 	}
 
 	HashMap<String, Object> attr = new HashMap<String, Object>();

@@ -1,13 +1,19 @@
 package org.docshare.mvc;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import org.docshare.log.Log;
 import org.docshare.util.BeanUtil;
+
+import com.sun.corba.se.spi.orbutil.fsm.Input;
+import com.sun.xml.internal.ws.policy.sourcemodel.PolicyModelUnmarshaller;
 
 public class Config {
 	/**
@@ -140,36 +146,52 @@ public class Config {
 		sb.append("}");
 		return sb.toString();
 	}
-	
+	private static InputStream getPropertiesStream(String PROP_FILE){
+		try {
+			URL purl;
+			
+			
+			File f = new File(PROP_FILE); // ./web.propertes
+			if(f.exists()){
+				Log.d("read prop from "+ f);
+
+				return new FileInputStream(f);
+			}
+			
+			f = new File("."+PROP_FILE);
+			if(f.exists()){
+				Log.d("read prop from "+ f);
+				return new FileInputStream(f);
+			}
+			Log.d("class loader name "+Config.class.getClassLoader().toString());
+			Log.d("try load from classpath");
+			return Config.class.getResourceAsStream(PROP_FILE);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	/**
+	 * 读取properties文件
+	 * @param PROP_FILE
+	 */
 	public static void loadProperties(String PROP_FILE){
 		InputStream in = null;
 		try {
-			URL purl = Config.class.getResource(PROP_FILE);
-			Log.d("read prop from "+purl);
-			Log.d("class loader name "+Config.class.getClassLoader().toString());
-			
-			if(purl == null){
+			in = getPropertiesStream(PROP_FILE);
+			if(in == null){
 				Log.e("Config file NOT found : web.properties ");
-//			return;
+				return;
 			}else{
-				Log.i("Config file found ! ");
+				Log.i("Config  found ! ");
 			}
-////		File f  = new File(purl.getPath());
-////		if(!f.exists()){
-////			Log.i("web.properties not found ");
-////			return ;
-////		}	
-			Properties pro = new Properties();	
-//		
-			in = Config.class.getResourceAsStream(PROP_FILE);
-			if(in != null){
-				pro.load(in);
-				Log.i("web.properties loaded ");
-				BeanUtil.prop2StaticField(pro, Config.class);
-			}else{
 
-				Log.i("web.properties NOT load ");
-			}
+			Properties pro = new Properties();	
+			pro.load(in);
+			Log.i("web.properties loaded ");
+			BeanUtil.prop2StaticField(pro, Config.class);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally {
