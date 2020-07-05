@@ -29,7 +29,7 @@ class YangClassLoader extends ClassLoader{
         if(!name.startsWith(reloadPackage))
                 return YangClassLoader.class.getClassLoader().loadClass(name);
         try {
-        	Log.d("YangClassLoader "+version +",try load "+name);
+        	Log.d("YangClassLoader v"+version +", load "+name);
 //            String url = "file:C:/data/projects/tutorials/web/WEB-INF/" +
 //                            "classes/reflection/MyObject.class";
 //            URL myUrl = new URL(url);
@@ -39,7 +39,7 @@ class YangClassLoader extends ClassLoader{
         
         	//FileInputStream input = new FileInputStream(name2Path(name));
         	//Log.d(name2Path(name));
-        	Log.d(getClass().getResource(name2Path(name)));
+        	Log.d("YangClassLoader "+getClass().getResource(name2Path(name)));
         	
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         	InputStream input = getClass().getResourceAsStream(name2Path(name));

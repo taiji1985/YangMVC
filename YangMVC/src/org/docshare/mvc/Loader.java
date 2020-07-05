@@ -6,6 +6,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,11 @@ class Loader {
 //		}
 		if(reloader == null){
 			String reload_base = TextTool.getParentPackage(Config.ctr_base);
-			System.out.println("reload base : "+reload_base);
+			if(reload_base.equals("org") || reload_base.equals("org.docshare")){
+				Log.e("reload base can not be 'org' or 'org.docshare', so we use your controller base as reload base.");
+				reload_base =Config.ctr_base;
+			}
+			Log.i("reload base : "+reload_base);
 			reloader=new Reloader("/", reload_base);
 		}
 		
@@ -132,6 +137,10 @@ class Loader {
         }
 		//如果没有注释，但是有参数
 		if(parameterAnnotations == null && types.length>0){
+			Parameter[] pa = method.getParameters();
+			for(Parameter p:pa){
+				Log.i(p.toString());
+			}
 		}
 		
 		//调用方法
