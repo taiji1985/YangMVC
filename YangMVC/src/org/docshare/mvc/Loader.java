@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -80,7 +81,7 @@ class Loader {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static void  runMethod(Object obj,Method method ,HttpServletRequest req) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException{
+	public static Object  runMethod(Object obj,Method method ,HttpServletRequest req) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException{
 		Annotation[][] parameterAnnotations = method.getParameterAnnotations();  
 		
 		Object[] args  = null;
@@ -125,7 +126,10 @@ class Loader {
 	            i++;
 	        }  
         }
-		method.invoke(obj, args);
+		//调用方法
+		Object ret = method.invoke(obj, args);
+		return ret;
+		
 	}
 
 	
@@ -205,8 +209,8 @@ class Loader {
 			}
 			
 			
-			//m.invoke(ins);
-			runMethod(ins,m,req);
+			Object ret = runMethod(ins,m,req);
+			runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			if(ins.isSingle()){
 				singleMap.put(cname, ins);
@@ -240,6 +244,20 @@ class Loader {
 		}
 		return true;
 		
+	}
+	/**
+	 * 执行后处理程序 ， 如将obj转json
+	 * @param uri
+	 * @param c
+	 * @param ret
+	 */
+	static void runPostProcessing(String uri,Controller c,Object ret) {
+		for(Interceptor ic : Config.postInterceptors){
+			if(ret == null){
+				break; 
+			}
+			ret = ic.postProcess(uri, c,ret);
+		}
 	}
 	public static void outMsg(String msg,HttpServletResponse resp){
 		PrintWriter pw;

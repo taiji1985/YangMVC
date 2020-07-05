@@ -2,3 +2,4 @@
 *.class
 zip
 dist/
+Boot/bin/

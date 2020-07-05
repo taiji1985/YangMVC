@@ -10,8 +10,18 @@ public abstract class Interceptor {
 	 * @param method 
 	 * @return 不拦截返回true
 	 */
-	public abstract boolean intercept(String uri,Controller c, Method method);
-
+	public boolean intercept(String uri,Controller c, Method method){
+		return true;
+	}
+	/**
+	 * 后处理程序
+	 * @param uri 目标url
+	 * @param ret 控制器返回的输出对象或者其他层返回的输出对象
+	 * @return
+	 */
+	public Object postProcess(String uri,Controller c,Object ret){
+		return ret;
+	}
 	public String name() {
 		return getClass().getName();
 	}

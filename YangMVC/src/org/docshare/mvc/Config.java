@@ -59,7 +59,8 @@ public class Config {
 				+",reloadable="+reloadable
 				+",useSSL="+useSSL
 				+",dbtype="+dbtype
-				+",interceptors="+getInteNames()
+				+",interceptors="+getInteNames(interceptors)
+				+", post-process="+getInteNames(postInterceptors)
 				+ "]";
 	}
 	static ArrayList<Interceptor> interceptors =new ArrayList<Interceptor>();
@@ -69,20 +70,52 @@ public class Config {
 			return;
 		}
 		interceptors.add(interceptor);
-		Log.d("Config.registerInterceptor added, name ="+interceptor.name());
+		Log.d("Config.addInterceptor added, name ="+interceptor.name());
 	}
+	
 	public static void removeInterceptor(Interceptor interceptor){
 		interceptors.remove(interceptor);
 	}
-	private static String getInteNames(){
+	
+	/**
+	 * 在运行后执行. 比如将obj转json之类
+	 */
+	static ArrayList<Interceptor> postInterceptors =new ArrayList<Interceptor>();
+	static{
+		//默认将根据控制器的返回值的输出转换为响应的形式。
+		addPostInterceptor(new BasePostIntercepter(), false);
+	}
+	/**
+	 * 添加后处理程序。 程序是按照从前到后的执行顺序来实现的。前一个的输出作为后一个的输入。<br>
+	 * 如果有一个输出为null，则后续的处理不再执行。
+	 * @param interceptor 后处理类
+	 * @param addToFirst  是否放到第一个。
+	 */
+	public static void addPostInterceptor(Interceptor interceptor,boolean addToFirst){
+		if(postInterceptors.contains(interceptor)){
+			return;
+		}
+		if(addToFirst){
+			postInterceptors.add(0, interceptor);
+		}else{
+			postInterceptors.add(interceptor);
+		}
+		Log.d("Config.addPostInterceptor added, name ="+interceptor.name());
+	}
+	
+	public static void removePostInterceptor(Interceptor interceptor){
+		postInterceptors.remove(interceptor);
+	}
+	
+	private static String getInteNames(ArrayList<Interceptor> list){
 		StringBuffer sb =new StringBuffer();
 		sb.append("{");
 		boolean isFirst = true;
-		for(Interceptor i :interceptors){
+		for(Interceptor i :list){
 			if(isFirst){
 				isFirst = false;
 			}else{
-				sb.append(",");
+				sb.append(" , ");
 			}
 			sb.append(i.name());
 		}

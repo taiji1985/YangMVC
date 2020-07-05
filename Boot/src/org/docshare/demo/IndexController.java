@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 
 import org.docshare.mvc.Controller;
 import org.docshare.orm.Model;
+import org.docshare.util.MapHelper;
 public class IndexController extends Controller {
 	public void index(){
 		renderFreeMarker("/index.html");
@@ -66,6 +67,15 @@ public class IndexController extends Controller {
 	}
 	public void error(){
 		renderFreeMarker("/err.html");
+	}
+	public String retstr(){
+		return "hello";
+	}
+	public Object retjson(){
+		return MapHelper.toMap("yang",123,"wang",444);
+	}
+	public Object retfm(){
+		return freemarker("/index.html");
 	}
 	
 }

@@ -39,13 +39,62 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import freemarker.template.Template;
+
+
+
 /**
  * 所有控制器的父类
  * @author 杨同峰
  *
  */
 public class Controller {
-
+	/**
+	 * 用来标志输出类型的特殊类
+	 */
+	public static class JSP{
+		String path;
+		public JSP(){}
+		public JSP(String path){
+			this.path = path;
+		}
+	}
+	private static JSP jsp_def=new JSP();
+	/**
+	 * 用来标志输出类型的特殊类
+	 */
+	public static class FreeMarker{
+		String path;
+		public FreeMarker(String path){
+			this.path = path;
+		}
+	}
+	/**
+	 * 在控制器方法中，return jsp(); 即为输出jsp的意思。
+	 * 如果不想使用命名约定对应的jsp，可以指定path
+	 * @param path
+	 * @return
+	 */
+	public JSP jsp(String path){ 
+		return new JSP(path);
+	}
+	/**
+	 * 在控制器方法中，return jsp(); 即为输出jsp的意思。
+	 * 输出的jsp为命名约定对应的jsp
+	 * @return
+	 */
+	public JSP jsp(){
+		return jsp_def; 
+	}
+	
+	/**
+	 * 在控制器方法中 return freemarker()为输出freemarker的意思
+	 * @param path
+	 * @return
+	 */
+	public FreeMarker freemarker(String path){
+		return new FreeMarker(path);
+	}
+	
 	private static final String M_FLAG="multipart/form-data";
 
 	/**

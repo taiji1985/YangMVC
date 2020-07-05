@@ -50,7 +50,9 @@ class CallCacheMap {
 				return true;
 			}
 			//cach.m.invoke(obj);
-			Loader.runMethod(obj,cach.m,req);
+			Object ret = Loader.runMethod(obj,cach.m,req);
+
+			Loader.runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			return true;
 		} catch (Exception e) {
