@@ -1,4 +1,4 @@
-package org.docshare.demo;
+package cn.org.docshare.demo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +9,8 @@ import javax.servlet.ServletContext;
 import org.docshare.mvc.Controller;
 import org.docshare.orm.Model;
 import org.docshare.util.MapHelper;
+
+import cn.org.docshare.test.Demo;
 public class IndexController extends Controller {
 	public void index(){
 		renderFreeMarker("/index.html");
@@ -81,5 +83,7 @@ public class IndexController extends Controller {
 		put("yang",12,"zhang",33);
 		return "ok";
 	}
-	
+	public String tryreload(){
+		return ""+Demo.hello();
+	}
 }

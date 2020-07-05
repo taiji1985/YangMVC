@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.anno.Param;
+import org.docshare.util.TextTool;
 
 
 class Loader {
@@ -27,7 +28,9 @@ class Loader {
 //			return Class.forName(p);
 //		}
 		if(reloader == null){
-			reloader=new Reloader("/", Config.ctr_base);
+			String reload_base = TextTool.getParentPackage(Config.ctr_base);
+			System.out.println("reload base : "+reload_base);
+			reloader=new Reloader("/", reload_base);
 		}
 		
 		return reloader.load(p);

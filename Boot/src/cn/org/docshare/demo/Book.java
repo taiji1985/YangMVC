@@ -1,8 +1,8 @@
-package org.docshare.demo;
+package cn.org.docshare.demo;
 
 import org.docshare.mvc.IBean;
 /**
- * ¼Ì³ÐIBeanºó¾Í²»ÓÃÐ´ getterºÍsetterÁË¡£
+ * ï¿½Ì³ï¿½IBeanï¿½ï¿½Í²ï¿½ï¿½ï¿½Ð´ getterï¿½ï¿½setterï¿½Ë¡ï¿½
  * @author Administrator
  *
  */

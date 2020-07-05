@@ -237,4 +237,10 @@ public class TextTool {
 		}
 		return sb.toString();
 	}
+	public static String getParentPackage(String a){
+		if(a == null)return null;
+		int dotp = a.lastIndexOf(".");
+		if(dotp <  0) return a;
+		return a.substring(0,dotp);
+	}
 }

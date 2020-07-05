@@ -1,0 +1,145 @@
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -Config file found ! 
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\view
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -Find view/ dir ,use it !
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=[hidden], port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true,useSSL=false,dbtype=mysql,interceptors={}, post-process={org.docshare.mvc.BasePostIntercepter}]
+2020-07-05 18:00:18 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-05 18:00:19 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-05 18:00:19 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-05 18:00:19 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-05 18:00:20 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-05 18:00:20 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-05 18:00:20 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-05 18:00:20 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-05 18:00:23 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-05 18:00:23 [ INFO]-qtp1122134344-13 - Log -Log.java(38)  -visit /
+2020-07-05 18:00:23 [ERROR]-qtp1122134344-13 - Log -Log.java(49)  -error : The Class is not subclass of Controller: org.docshare.demo.IndexController
+2020-07-05 18:00:23 [ INFO]-qtp1122134344-13 - Log -Log.java(38)  -action fail =org.docshare.demo.index.
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -Config file found ! 
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\view
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -Find view/ dir ,use it !
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=[hidden], port = 3306, tpl_base=/view, ctr_base=org.docshare.demo,reloadable=true,useSSL=false,dbtype=mysql,interceptors={}, post-process={org.docshare.mvc.BasePostIntercepter}]
+2020-07-05 18:04:38 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-05 18:04:39 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-05 18:04:39 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-05 18:04:39 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-05 18:04:39 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-05 18:04:39 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-05 18:04:39 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-05 18:04:39 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-05 18:04:41 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-05 18:04:42 [ INFO]-qtp1122134344-18 - Log -Log.java(38)  -visit /
+2020-07-05 18:04:42 [ERROR]-qtp1122134344-18 - Log -Log.java(49)  -java.lang.ClassNotFoundException: org/docshare/demo/IndexController
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.docshare.mvc.Reloader.load(Reloader.java:96)
+	at org.docshare.mvc.Loader.load(Loader.java:36)
+	at org.docshare.mvc.Loader.call(Loader.java:176)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:80)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:157)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Unknown Source)
+
+2020-07-05 18:04:42 [ INFO]-qtp1122134344-18 - Log -Log.java(38)  -action fail =org.docshare.demo.index.
+2020-07-05 18:04:54 [ INFO]-qtp1122134344-15 - Log -Log.java(38)  -visit /
+2020-07-05 18:04:54 [ERROR]-qtp1122134344-15 - Log -Log.java(49)  -java.lang.ClassNotFoundException: org/docshare/demo/IndexController
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.docshare.mvc.Reloader.load(Reloader.java:96)
+	at org.docshare.mvc.Loader.load(Loader.java:36)
+	at org.docshare.mvc.Loader.call(Loader.java:176)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:80)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:157)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Unknown Source)
+
+2020-07-05 18:04:54 [ INFO]-qtp1122134344-15 - Log -Log.java(38)  -action fail =org.docshare.demo.index.
+2020-07-05 18:04:56 [ INFO]-qtp1122134344-14 - Log -Log.java(38)  -visit /
+2020-07-05 18:04:56 [ERROR]-qtp1122134344-14 - Log -Log.java(49)  -java.lang.ClassNotFoundException: org/docshare/demo/IndexController
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at org.docshare.mvc.Reloader.load(Reloader.java:96)
+	at org.docshare.mvc.Loader.load(Loader.java:36)
+	at org.docshare.mvc.Loader.call(Loader.java:176)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:80)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:157)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1067)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:194)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:999)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:117)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:111)
+	at org.eclipse.jetty.server.Server.handle(Server.java:351)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:451)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:916)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:634)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:230)
+	at org.eclipse.jetty.server.AsyncHttpConnection.handle(AsyncHttpConnection.java:76)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint.handle(SelectChannelEndPoint.java:609)
+	at org.eclipse.jetty.io.nio.SelectChannelEndPoint$1.run(SelectChannelEndPoint.java:45)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:599)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:534)
+	at java.lang.Thread.run(Unknown Source)
+
+2020-07-05 18:04:56 [ INFO]-qtp1122134344-14 - Log -Log.java(38)  -action fail =org.docshare.demo.index.
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -Config file found ! 
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\view
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -Find view/ dir ,use it !
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -Config [dbhost=localhost, dbname=mvc_demo, dbusr=root, dbpwd=[hidden], port = 3306, tpl_base=/view, ctr_base=cn.org.docshare.demo,reloadable=true,useSSL=false,dbtype=mysql,interceptors={}, post-process={org.docshare.mvc.BasePostIntercepter}]
+2020-07-05 18:05:02 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-05 18:05:03 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-05 18:05:03 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-05 18:05:03 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-05 18:05:04 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-05 18:05:04 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-05 18:05:04 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-05 18:05:04 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-05 18:05:04 [ INFO]-qtp1122134344-16 - Log -Log.java(38)  -visit /
+2020-07-05 18:05:14 [ INFO]-qtp1122134344-12 - Log -Log.java(38)  -visit /tryreload
+2020-07-05 18:05:16 [ INFO]-qtp1122134344-12 - Log -Log.java(38)  -visit /tryreload
+2020-07-05 18:05:17 [ INFO]-qtp1122134344-15 - Log -Log.java(38)  -visit /tryreload
+2020-07-05 18:05:29 [ INFO]-qtp1122134344-16 - Log -Log.java(38)  -visit /tryreload

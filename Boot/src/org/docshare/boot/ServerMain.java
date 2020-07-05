@@ -11,6 +11,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.session.SessionHandler;
 
 
@@ -52,6 +53,7 @@ public class ServerMain {
 	        
 	        collection.addHandler(new SessionHandler());
 	        collection.addHandler(YangHandle.getIns(server));
+	        collection.addHandler(new ResourceHandler());
 	        collection.addHandler(new DefaultHandler());
 	        contextHandler.setHandler(collection);
 	       
