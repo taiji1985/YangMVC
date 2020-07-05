@@ -23,7 +23,7 @@ public class TestFromSQL extends TestCase {
 	}
 	
 	public void testSQL2(){
-		LasyList list = LasyList.fromRawSql("select book.*,dingcan.* from book,dingcan where book.id = dingcan.book_id limit 10");
+		LasyList list = LasyList.fromRawSql("select book.*,catalog.`name` as cname from book,catalog where book.catalog_id = catalog.id ");
 		
 		for(Model m:list){
 			Log.e(m);

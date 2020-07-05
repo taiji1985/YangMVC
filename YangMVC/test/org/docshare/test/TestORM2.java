@@ -20,6 +20,7 @@ public class TestORM2 extends TestCase{
 
 	public void testUpdate(){
 		Model m = tool.get(2);
+		if(m == null)return;
 		m.put("name", "haha");
 		int ret = tool.save(m);
 		System.out.println("update ret = "+ret);

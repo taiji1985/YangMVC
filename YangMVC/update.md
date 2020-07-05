@@ -31,11 +31,15 @@ public Object retfm(){
 ## 5 根据参数名称自动注入控制器函数，如访问
      hello?a=12&b=zzz
 ```java
-     public String hello(int a,int b){
-	return "a ="+a+" b = "+b;
+
+     public String hello(int a,String b){
+        return "a ="+a+" b = "+b;
      }
+
 ```
      页面会输出 a = 12 b = zzz
+     无需调用输出函数，无需注解
+
 
 ## 6 修改了配置读取逻辑。 优先从web.properties中读取，不论是web项目还是boot项目。
 

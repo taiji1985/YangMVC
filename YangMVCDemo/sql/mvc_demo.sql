@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
+Source Server         : localhost
 Source Server Version : 50090
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : mvc_demo
 
 Target Server Type    : MYSQL
 Target Server Version : 50090
 File Encoding         : 65001
 
-Date: 2018-02-12 09:49:06
+Date: 2020-07-05 23:06:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,15 +30,13 @@ CREATE TABLE `book` (
   `type` varchar(50) default NULL,
   `catalog_id` int(11) default NULL,
   PRIMARY KEY  (`id`),
-  KEY `catalog` (`catalog_id`),
-  CONSTRAINT `catalog` FOREIGN KEY (`catalog_id`) REFERENCES `catalog` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=913 DEFAULT CHARSET=utf8;
+  KEY `catalog` (`catalog_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1004 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', '000-神农本草经.txt', '神农本草经', 'haha', '清  ', '公元1644-1911年  ', ' ', 'txt', '1');
-INSERT INTO `book` VALUES ('2', '001-吴普本草.txt', 'haha', '吴普  ', '魏晋  ', '公元420年—589  ', ' ', 'txt', '1');
+INSERT INTO `book` VALUES ('1', '000-神农本草经.txt', '娴嬭瘯50', 'haha', '清  ', '公元1644-1911年  ', ' ', 'txt', '2');
 INSERT INTO `book` VALUES ('3', '002-本草经集注.txt', '本草经集注', '陶弘景  ', '南朝·梁  ', '公元502-557年  ', ' ', 'txt', '1');
 INSERT INTO `book` VALUES ('4', null, 'haha', null, null, null, null, null, null);
 INSERT INTO `book` VALUES ('5', '004-食疗本草.txt', '食疗本草', '孟显  ', '唐  ', '公元618-907年  ', ' ', 'txt', '1');
@@ -933,50 +931,41 @@ CREATE TABLE `catalog` (
   `name` varchar(50) default NULL,
   `id` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of catalog
 -- ----------------------------
-INSERT INTO `catalog` VALUES ('本草_haha_haha_haha_haha_haha_haha_haha', '1');
-INSERT INTO `catalog` VALUES ('方剂_haha_haha_haha_haha_haha_haha_haha', '2');
-INSERT INTO `catalog` VALUES ('医案_haha_haha_haha_haha_haha_haha', '3');
-INSERT INTO `catalog` VALUES ('经论_haha_haha_haha_haha_haha_haha', '4');
-INSERT INTO `catalog` VALUES ('专科_haha_haha_haha_haha_haha_haha', '5');
-INSERT INTO `catalog` VALUES ('炮制_haha_haha_haha_haha_haha_haha', '7');
-INSERT INTO `catalog` VALUES ('针灸_haha_haha_haha_haha_haha_haha', '8');
-INSERT INTO `catalog` VALUES ('五运六气_haha_haha_haha_haha_haha_haha', '9');
-INSERT INTO `catalog` VALUES ('诊断_haha_haha_haha_haha_haha_haha', '10');
-INSERT INTO `catalog` VALUES ('养生_haha_haha_haha_haha_haha_haha', '11');
-INSERT INTO `catalog` VALUES ('周易_haha_haha_haha_haha_haha_haha', '12');
-INSERT INTO `catalog` VALUES ('六爻_haha_haha_haha_haha_haha_haha', '13');
-INSERT INTO `catalog` VALUES ('风水_haha_haha_haha_haha_haha_haha', '14');
-INSERT INTO `catalog` VALUES ('房事_haha_haha_haha_haha_haha_haha', '15');
-INSERT INTO `catalog` VALUES ('佛道_haha_haha_haha_haha_haha_haha', '16');
-INSERT INTO `catalog` VALUES ('相术_haha_haha_haha_haha_haha_haha', '17');
-INSERT INTO `catalog` VALUES ('八字_haha_haha_haha_haha_haha_haha', '18');
-
--- ----------------------------
--- Table structure for dingcan
--- ----------------------------
-DROP TABLE IF EXISTS `dingcan`;
-CREATE TABLE `dingcan` (
-  `id` int(11) NOT NULL auto_increment,
-  `uid` int(11) default NULL COMMENT '用户编号',
-  `book_id` int(11) default NULL COMMENT '书籍编号',
-  `ct` int(11) default NULL COMMENT '个数',
-  PRIMARY KEY  (`id`),
-  KEY `book_id` (`book_id`),
-  CONSTRAINT `dingcan_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of dingcan
--- ----------------------------
-INSERT INTO `dingcan` VALUES ('1', '1', null, '1');
-INSERT INTO `dingcan` VALUES ('2', '1', null, '3');
-INSERT INTO `dingcan` VALUES ('3', '1', null, '3');
-INSERT INTO `dingcan` VALUES ('4', '1', '1', '3');
+INSERT INTO `catalog` VALUES ('本草_haha_haha_haha_haha_haha_haha_haha_haha_haha', '1');
+INSERT INTO `catalog` VALUES ('方剂_haha_haha_haha_haha_haha_haha_haha_haha_haha', '2');
+INSERT INTO `catalog` VALUES ('医案_haha_haha_haha_haha_haha_haha_haha_haha_haha', '3');
+INSERT INTO `catalog` VALUES ('经论_haha_haha_haha_haha_haha_haha_haha_haha_haha', '4');
+INSERT INTO `catalog` VALUES ('专科_haha_haha_haha_haha_haha_haha_haha_haha_haha', '5');
+INSERT INTO `catalog` VALUES ('炮制_haha_haha_haha_haha_haha_haha_haha_haha_haha', '7');
+INSERT INTO `catalog` VALUES ('针灸_haha_haha_haha_haha_haha_haha_haha_haha_haha', '8');
+INSERT INTO `catalog` VALUES ('五运六气_haha_haha_haha_haha_haha_haha_haha_haha_haha', '9');
+INSERT INTO `catalog` VALUES ('诊断_haha_haha_haha_haha_haha_haha_haha_haha_haha', '10');
+INSERT INTO `catalog` VALUES ('养生_haha_haha_haha_haha_haha_haha_haha_haha_haha', '11');
+INSERT INTO `catalog` VALUES ('周易_haha_haha_haha_haha_haha_haha_haha_haha_haha', '12');
+INSERT INTO `catalog` VALUES ('六爻_haha_haha_haha_haha_haha_haha_haha_haha_haha', '13');
+INSERT INTO `catalog` VALUES ('风水_haha_haha_haha_haha_haha_haha_haha_haha_haha', '14');
+INSERT INTO `catalog` VALUES ('房事_haha_haha_haha_haha_haha_haha_haha_haha_haha', '15');
+INSERT INTO `catalog` VALUES ('佛道_haha_haha_haha_haha_haha_haha_haha_haha_haha', '16');
+INSERT INTO `catalog` VALUES ('相术_haha_haha_haha_haha_haha_haha_haha_haha_haha', '17');
+INSERT INTO `catalog` VALUES ('八字_haha_haha_haha_haha_haha_haha_haha_haha_haha', '18');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha_haha_haha_haha', '19');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha_haha_haha_haha', '20');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha_haha_haha_haha', '21');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha_haha_haha_haha', '22');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha_haha_haha_haha', '23');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha_haha_haha', '24');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha_haha', '25');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha_haha', '26');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha_haha', '27');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha_haha', '28');
+INSERT INTO `catalog` VALUES ('haha_haha_haha_haha', '29');
+INSERT INTO `catalog` VALUES ('haha_haha_haha', '30');
+INSERT INTO `catalog` VALUES ('haha_haha', '31');
 
 -- ----------------------------
 -- Table structure for select
@@ -984,35 +973,57 @@ INSERT INTO `dingcan` VALUES ('4', '1', '1', '3');
 DROP TABLE IF EXISTS `select`;
 CREATE TABLE `select` (
   `id` int(11) NOT NULL auto_increment,
-  `select` varchar(20) default NULL,
-  `update` varchar(30) default NULL,
-  `delete` varchar(30) default NULL,
-  `order` varchar(20) default NULL,
-  `limit` varchar(20) default NULL,
-  `group` varchar(20) default NULL,
+  `update` varchar(255) default NULL,
+  `select` varchar(255) default NULL,
+  `order` varchar(255) default NULL,
+  `limit` varchar(255) default NULL,
+  `group` varchar(255) default NULL,
+  `delete` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of select
 -- ----------------------------
-INSERT INTO `select` VALUES ('1', 'haha', 'wuwu', 'dd', 'oo', 'll', 'gg');
-INSERT INTO `select` VALUES ('2', 'haha', 'wuwu', 'dd', 'oo', 'll', 'gg');
+INSERT INTO `select` VALUES ('1', 'uuuuu', 'haha', 'fad', 'af', 'adf', 'adsf');
+INSERT INTO `select` VALUES ('3', 'ee', 'era', 'fa', 'faf', 'e', 'e');
 
 -- ----------------------------
--- Table structure for usr
+-- Table structure for test
 -- ----------------------------
-DROP TABLE IF EXISTS `usr`;
-CREATE TABLE `usr` (
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE `test` (
   `id` int(11) NOT NULL auto_increment,
-  `uname` varchar(50) default NULL,
-  `pwd` varchar(50) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `uname` (`uname`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of usr
+-- Records of test
 -- ----------------------------
-INSERT INTO `usr` VALUES ('1', 'yang', '123');
-INSERT INTO `usr` VALUES ('2', 'wang', '333');
+INSERT INTO `test` VALUES ('1');
+INSERT INTO `test` VALUES ('2');
+INSERT INTO `test` VALUES ('3');
+INSERT INTO `test` VALUES ('4');
+INSERT INTO `test` VALUES ('5');
+INSERT INTO `test` VALUES ('6');
+INSERT INTO `test` VALUES ('7');
+INSERT INTO `test` VALUES ('8');
+
+-- ----------------------------
+-- Table structure for testtype
+-- ----------------------------
+DROP TABLE IF EXISTS `testtype`;
+CREATE TABLE `testtype` (
+  `id` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of testtype
+-- ----------------------------
+
+-- ----------------------------
+-- View structure for cbook
+-- ----------------------------
+DROP VIEW IF EXISTS `cbook`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `cbook` AS select book.*,catalog.`name` as cname from book,catalog where book.catalog_id = catalog.id ;

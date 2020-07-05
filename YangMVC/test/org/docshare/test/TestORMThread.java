@@ -43,7 +43,7 @@ public class TestORMThread extends TestCase {
 		}
 
 		System.gc();
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		
 		s  = DBHelper.getIns().getVal("show status like '%Threads_connected%'", "Value");
 		Log.i(s+"");

@@ -17,7 +17,7 @@ import org.docshare.orm.Model;
 import com.alibaba.fastjson.JSON;
 
 import junit.framework.TestCase;
-
+ 
 public class TestPGSQL extends TestCase{
 	public void setUp(){
 		Config.dbhost="localhost";

@@ -6,3 +6,6 @@ Boot/bin/
 Boot/logs/
 YangMVC/bin/
 YangMVC/logs/
+YangMVC/target/
+Boot/target/
+YangMVCDemo/target/

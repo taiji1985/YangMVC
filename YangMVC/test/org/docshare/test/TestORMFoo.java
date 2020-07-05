@@ -11,8 +11,7 @@ public class TestORMFoo  extends TestCase{
 	@Override
 	public void setUp(){
 		Log.e("setup");
-		Config.dbname ="mvc_demo";
-		Config.dbport = "3306";
+		new ConfigAll();
 	}
 	@Override
 	protected void tearDown() throws Exception {
@@ -34,8 +33,8 @@ public class TestORMFoo  extends TestCase{
 		assertTrue(id>0);
 	}
 	public void testUpdate(){
-		Model.tool("select").get(id).put("update", "uuuuu").save();
-		String s = Model.tool("select").get(id).getStr("update");
+		Model.tool("select").get(1).put("update", "uuuuu").save();
+		String s = Model.tool("select").get(1).getStr("update");
 		assertEquals(s, "uuuuu");		
 	}
 	public void testCustom(){
