@@ -7,6 +7,11 @@ https://git.oschina.net/yangtf/YangMVC/attach_files
 
 请在此页下载版本号最高的版本
 
+
+# 更新日志
+
+https://gitee.com/yangtf/YangMVC/blob/master/YangMVC/update.md
+
 # 简介
 
 YangMVC是一个高效的、轻量级MVC和ORM框架。 你只需要想你的项目中丢入一个jar包，即可完成绝大多数Web网站的开发。

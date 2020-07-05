@@ -37,4 +37,6 @@ public Object retfm(){
 ```
      页面会输出 a = 12 b = zzz
 
+## 6 修改了配置读取逻辑。 优先从web.properties中读取，不论是web项目还是boot项目。
+
 
