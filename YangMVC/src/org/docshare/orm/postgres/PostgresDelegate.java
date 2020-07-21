@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.orm.ArrayTool;
 import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
@@ -119,7 +120,7 @@ public class PostgresDelegate implements IDBDelegate {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new MVCException("get size error: ", e);
 		}
 		return 0;
 	}
@@ -188,12 +189,11 @@ public class PostgresDelegate implements IDBDelegate {
 		DBHelper helper = DBHelper.getIns(DBHelper.DB_POSTGRES);
 		String c=  TextTool.join2(sa, " and ") +  tail;
 		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
-			
+			String sql = "select "+prefix+" from \"" + tbName+"\"";
 			try {
-				return helper.getRS("select "+prefix+" from \"" + tbName+"\"");
+				return helper.getRS(sql);
 			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
+				throw new MVCException("runSQL error: [ "+sql+" ]", e);
 			}
 		}else{
 			c = c.trim();
@@ -204,8 +204,7 @@ public class PostgresDelegate implements IDBDelegate {
 			try {
 				return helper.getRS(sql,params);
 			} catch (SQLException e) {
-				Log.e(e);
-				return null;
+				throw new MVCException("runSQL error: [ "+sql+" ]", e);
 			}
 		}
 		

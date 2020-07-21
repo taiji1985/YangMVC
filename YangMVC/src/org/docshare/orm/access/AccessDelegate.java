@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.orm.ArrayTool;
 import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
@@ -118,7 +119,7 @@ public class AccessDelegate implements IDBDelegate {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new MVCException("get size error", e);
 		}
 		return 0;
 	}
@@ -203,8 +204,7 @@ public class AccessDelegate implements IDBDelegate {
 			try {
 				return helper.getRS(sql,params);
 			} catch (SQLException e) {
-				Log.e(e);
-				return null;
+				throw new MVCException("runSQL error: [ "+sql+" ]", e);
 			}
 		}
 		

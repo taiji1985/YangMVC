@@ -235,7 +235,7 @@ public class DBTool {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Model db2Table(ResultSet rs,Map<String,?> c){
+	public Model db2Table(ResultSet rs,Map<String,?> c, Set<String> column_set){
 		if(c == null){
 			c = columns; 
 		}
@@ -244,7 +244,10 @@ public class DBTool {
 		for(String key : c.keySet()){
 			Object v=null;
 			try {
-				v = rs.getObject(key);
+				//如果过滤集不存在，或者包含这个 key 的时候，才显示，否则不显示
+				if(column_set==null || column_set.contains(key)){
+					v = rs.getObject(key);
+				}
 			} catch (SQLException e) {
 				Log.e(e);
 			}
@@ -255,7 +258,7 @@ public class DBTool {
 	}
 	
 	private Model db2Table(ResultSet rs){
-		return db2Table(rs,columns);
+		return db2Table(rs,columns,null);
 	}
 	/**
 	 * 根据表的主键删除表格的一行

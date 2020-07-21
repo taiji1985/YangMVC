@@ -4,9 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.docshare.log.Log;
 import org.jetbrains.annotations.NotNull;
@@ -117,14 +119,14 @@ public class LasyList extends ListAdapter {
 			System.out.println(k+", "+column_desc.get(k));
 		}
 	}
-	private String filter="*"; // 控制输出哪些项
+	private String column_filter="*"; // 控制输出哪些项
 	/**
 	 * 控制输出哪些项目，举例：  id,name,age    每个项目用逗号分隔。
 	 * @param filter
 	 * @return
 	 */
 	public LasyList columnFilter(String filter){
-		this.filter = filter;
+		this.column_filter = filter;
 		return this;
 	}
 	private void initRS() {
@@ -139,7 +141,7 @@ public class LasyList extends ListAdapter {
 						column_desc = new HashMap<String, Object>();
 					}
 				}else{
-					rs =  delegate.runSQL(cons, tool, tbName,filter);
+					rs =  delegate.runSQL(cons, tool, tbName,column_filter);
 				}
 			} catch (SQLException e) {
 				Log.e("LasyList.initRS ERROR: "+debugInfo());
@@ -404,8 +406,17 @@ public class LasyList extends ListAdapter {
 		List<Model> mList = new ArrayList<Model>();
 		try {
 			arrList  = mList;
+			Set<String> cs = null; // 只显示这个集合中的列，其他列不显示。
+			if(column_filter!=null){
+				String[] ca = column_filter.split(",");
+				cs = new HashSet<>();
+				for(String cc : ca){
+					cs.add(cc);
+				}
+			}
+			
 			while(rs!= null && rs.next()){
-				Model m = tool.db2Table(rs,column_desc);
+				Model m = tool.db2Table(rs,column_desc,cs);
 				
 				mList.add(m);
 			}

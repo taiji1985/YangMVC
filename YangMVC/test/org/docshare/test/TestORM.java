@@ -18,7 +18,7 @@ public class TestORM extends TestCase{
 	public void setUp(){
 		Log.e("setup");
 		Config.dbname ="mvc_demo";
-		Config.dbport = "3308";
+		Config.dbport = "3306";
 		tool = Model.tool("book");
 		assertNotNull(tool);
 	}
@@ -28,7 +28,7 @@ public class TestORM extends TestCase{
 		super.tearDown();
 	}
 	public void testOne(){
-		Model m = tool.all().eq("id", 11111).one();
+		Model m = tool.all().eq("name", "本草纲目").one();
 		Log.i("m = "+m);
 	}
 	public void testAddAll(){
@@ -168,5 +168,10 @@ public class TestORM extends TestCase{
 		m.put("catalog_id","2");
 		m.put("name", "wwww");
 		tool.save(m);
+	}
+	public void testColumnFilter(){
+		LasyList lasyList =  Model.tool("book").all().columnFilter("id,name").limit(2);
+		String string = JSON.toJSONString(lasyList.toArrayList());
+		System.out.println(string);
 	}
 }
