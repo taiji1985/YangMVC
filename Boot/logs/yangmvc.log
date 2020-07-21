@@ -207,3 +207,278 @@
 2020-07-05 20:45:47 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
 2020-07-05 20:45:47 [ INFO]-qtp876563773-13 - Log -Log.java(38)  -visit /
 2020-07-05 20:45:47 [ INFO]-qtp876563773-13 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-07 21:28:24 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-07 21:28:24 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-07 21:28:24 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-07 21:28:24 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:28:24 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-07 21:28:25 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-07 21:28:25 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-07 21:28:25 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:28:25 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-07 21:28:26 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-07 21:28:27 [ INFO]-qtp1072601481-13 - Log -Log.java(38)  -visit /
+2020-07-07 21:28:27 [ INFO]-qtp1072601481-13 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-07 21:28:32 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-07 21:28:32 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-07 21:28:32 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-07 21:28:42 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:28:42 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-07 21:28:42 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-07 21:28:42 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-07 21:28:42 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:28:42 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-07 21:28:43 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-07 21:28:43 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-07 21:28:43 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-07 21:28:44 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-07 21:28:44 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-07 21:28:44 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-07 21:28:44 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-07 21:28:47 [ INFO]-qtp370440646-21 - Log -Log.java(38)  -visit /eeee
+2020-07-07 21:29:10 [ INFO]-qtp370440646-21 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:31:53 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:31:53 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-07 21:31:54 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-07 21:31:54 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-07 21:31:54 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-07 21:31:55 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-07 21:31:55 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-07 21:31:55 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-07 21:31:55 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-07 21:31:55 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-07 21:31:55 [ INFO]-qtp1072601481-19 - Log -Log.java(38)  -visit /
+2020-07-07 21:31:55 [ INFO]-qtp1072601481-19 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-07 21:31:59 [ INFO]-qtp1072601481-18 - Log -Log.java(38)  -visit /eeee
+2020-07-07 21:32:11 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-07 21:32:11 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-07 21:32:11 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-07 21:32:11 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:32:11 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-07 21:32:11 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-07 21:32:11 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-07 21:32:11 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:32:12 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-07 21:32:12 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-07 21:32:12 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-07 21:32:12 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-07 21:32:13 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-07 21:32:13 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-07 21:32:13 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-07 21:32:13 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-07 21:32:16 [ INFO]-qtp1072601481-18 - Log -Log.java(38)  -visit /eeee
+2020-07-07 21:32:16 [ INFO]-qtp1072601481-18 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:35:42 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-07 21:35:42 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-07 21:35:43 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-07 21:35:43 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-07 21:35:43 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-07 21:35:43 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-07 21:35:43 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-07 21:35:43 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-07 21:35:43 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-07 21:35:49 [ INFO]-qtp1072601481-12 - Log -Log.java(38)  -visit /eeee
+2020-07-07 21:35:49 [ INFO]-qtp1072601481-12 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-12 20:03:36 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-12 20:03:36 [ INFO]-main - Log -Log.java(38)  -jetty-8.1.0.v20120127
+2020-07-12 20:03:37 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-12 20:03:37 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-12 20:03:37 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-12 20:03:38 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-12 20:03:38 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-12 20:03:38 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-12 20:03:38 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-12 20:03:44 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-12 20:03:44 [ INFO]-qtp1072601481-17 - Log -Log.java(38)  -visit /
+2020-07-12 20:03:44 [ INFO]-qtp1072601481-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-12 20:04:03 [ INFO]-qtp1072601481-16 - Log -Log.java(38)  -visit /json
+2020-07-12 20:04:44 [ INFO]-qtp1072601481-17 - Log -Log.java(38)  -visit /my/json
+2020-07-12 20:04:44 [ INFO]-qtp1072601481-17 - Log -Log.java(38)  -cn.org.docshare.demo.MyController
+2020-07-12 20:04:44 [ INFO]-qtp1072601481-17 - Log -Log.java(38)  -cn.org.docshare.demo.IndexController
+2020-07-12 20:04:47 [ INFO]-qtp1072601481-16 - Log -Log.java(38)  -visit /my/dd
+2020-07-12 20:04:47 [ INFO]-qtp1072601481-16 - Log -Log.java(38)  -cn.org.docshare.demo.MyController
+2020-07-12 20:04:47 [ INFO]-qtp1072601481-16 - Log -Log.java(38)  -cn.org.docshare.demo.IndexController

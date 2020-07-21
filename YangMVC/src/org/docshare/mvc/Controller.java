@@ -688,10 +688,10 @@ public class Controller {
 	}
 	public void outputJSON(Object obj,boolean pretty){
 		try {
-			writer = getMyPrintWriter();
 			
 			response.setCharacterEncoding("utf-8");
-			response.setContentType("text/json;charset=UTF-8");
+			response.setContentType("text/json;charset=utf-8");
+			writer = getMyPrintWriter();
 			
 			if(obj == null)writer.write("{}");
 			else{String string = JSON.toJSONString(obj,pretty);

@@ -15,6 +15,8 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
+import org.docshare.mvc.MVCFilter;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.orm.ColumnDesc.ExportTo;
 import org.docshare.orm.access.AccessDBHelper;
 import org.docshare.orm.mysql.MySQLDBHelper;
@@ -183,7 +185,7 @@ public abstract class DBHelper {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new MVCException("Fail to get  meta data of tables", e);
 		}
 		return ret;
 	}
@@ -218,7 +220,7 @@ public abstract class DBHelper {
 					ret.put(name, cd);
 				}
 			} catch (SQLException e) {
-				Log.e(e);
+				throw new MVCException("Fail to get  meta data of sql: "+sql, e);
 			}
 			return ret;
 		}
@@ -253,10 +255,8 @@ public abstract class DBHelper {
 		} catch (SQLException e) {
 			//new MVCException();
 			String msg = "exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") ;
-			Log.e(msg);
-			Log.e(e);
+			throw new MVCException(msg,e);
 		}
-		return 0;
 	}
 
 	public int update(String sql, Object... objs) {
@@ -270,8 +270,6 @@ public abstract class DBHelper {
 			}
 			con = null;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			//Log.e(e);
 		}
 	}
 
@@ -362,8 +360,8 @@ public abstract class DBHelper {
 		
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			Log.e(e);
+			//Log.e(e);
+			throw new MVCException("Fail to list columns of table "+tb,e);
 		}
 		
 		return ret;
@@ -389,7 +387,7 @@ public abstract class DBHelper {
 			rs.close();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Log.e(e);
 			System.out.println("---------- 这个错误绝大多数情况不会影响程序的正常运行，错误原因：只是获取不到表"+tb+"的主键");
 		}  
 
@@ -405,9 +403,7 @@ public abstract class DBHelper {
 				ret = rs.getInt(column);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			Log.e(e);
-			e.printStackTrace();
+			throw new MVCException("Fail to getVal of column ["+column+"] from sql : "+ sql,e);
 		}
 	
 		return ret;
@@ -426,7 +422,6 @@ public abstract class DBHelper {
 
 	private void printParams(String sql, ArrayList<Object> params) {
 		Log.d("PrintParams: "+sql +" params= {"+TextTool.join(params, ",")+"}");
-		
 		
 	}
 
@@ -464,7 +459,7 @@ public abstract class DBHelper {
 		try {
 			con.setAutoCommit(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new MVCException("Fail to commit ",e);
 		}
 	}
 
@@ -473,7 +468,7 @@ public abstract class DBHelper {
 				con.rollback();
 				con.setAutoCommit(true);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new MVCException("Fail to rollback ",e);
 			}
 		}
 	//	public void checkConn(){

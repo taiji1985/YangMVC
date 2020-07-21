@@ -117,6 +117,16 @@ public class LasyList extends ListAdapter {
 			System.out.println(k+", "+column_desc.get(k));
 		}
 	}
+	private String filter="*"; // 控制输出哪些项
+	/**
+	 * 控制输出哪些项目，举例：  id,name,age    每个项目用逗号分隔。
+	 * @param filter
+	 * @return
+	 */
+	public LasyList columnFilter(String filter){
+		this.filter = filter;
+		return this;
+	}
 	private void initRS() {
 		if (rs == null) {
 			try {
@@ -129,7 +139,7 @@ public class LasyList extends ListAdapter {
 						column_desc = new HashMap<String, Object>();
 					}
 				}else{
-					rs =  delegate.runSQL(cons, tool, tbName);
+					rs =  delegate.runSQL(cons, tool, tbName,filter);
 				}
 			} catch (SQLException e) {
 				Log.e("LasyList.initRS ERROR: "+debugInfo());

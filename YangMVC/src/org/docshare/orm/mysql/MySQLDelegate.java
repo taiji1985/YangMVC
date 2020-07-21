@@ -127,6 +127,7 @@ public class MySQLDelegate implements IDBDelegate {
 		}
 		return 0;
 	}
+	@Override
 	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName,String prefix){
 		if(tbName == null) return null ;//参数检查，表名不能为空
 		

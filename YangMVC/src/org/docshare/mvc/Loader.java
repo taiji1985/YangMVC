@@ -1,7 +1,5 @@
 package org.docshare.mvc;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -53,12 +51,26 @@ class Loader {
 			}
 			//如果找到了，且是公共的，则允许访问
 			if(m !=null &&  Modifier.isPublic(m.getModifiers()))return m; 
+			
 			Method[] ma = clazz.getDeclaredMethods();
 			for(Method mm : ma){
-				if(mm.getName().equals(methodName)){
+				if(mm.getName().equals(methodName) &&  Modifier.isPublic(mm.getModifiers())){
 					return mm;
 				}
 			}
+			
+//			while(clazz != null && clazz != Controller.class){
+//				Log.i(clazz.getName());
+//				Method[] ma = clazz.getDeclaredMethods();
+//				for(Method mm : ma){
+//					if(mm.getName().equals(methodName) && Modifier.isPublic(mm.getModifiers())){
+//						return mm;
+//					}
+//					//System.out.println(method.getName() +"  "+ Modifier.isPublic(method.getModifiers()) );
+//				}
+//				clazz= clazz.getSuperclass();
+//			}
+			
 			return null;//没找到。。
 		} catch (SecurityException e) {
 			e.printStackTrace();
@@ -189,7 +201,24 @@ class Loader {
 	 */
 	static Map<String, Object> singleMap = new HashMap<String, Object>();
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static String underLineToUpper(String s){
+		char[] ca = s.toCharArray();
+		int j = 0;
+		int i;
+		for(i=0;i<ca.length-1;i++){
+			if(ca[i] == '_'){
+				ca[i+1] = Character.toUpperCase(ca[i+1]);
+				continue;
+			}
+			ca[j] = ca[i];
+			j ++;
+		}
+		ca[j] = ca[i];
+		return new String(ca, 0, ++j);
+	}
+	
+
+	@SuppressWarnings({ "rawtypes" })
 	public static boolean call(String uri,String cname,String method,HttpServletRequest req,HttpServletResponse resp){
 		if(cname == null || method == null){
 			return false;
@@ -201,6 +230,7 @@ class Loader {
 			String first = lastname.substring(0, 1).toUpperCase();
 			lastname = first + lastname.substring(1)+"Controller";
 			cname = cname.substring(0, p+1)+lastname;
+			cname = underLineToUpper(cname);
 		}
 		Log.d("Call " + cname + ", method = " + method);
 		
@@ -215,6 +245,7 @@ class Loader {
 				Log.d("Single Mode:"+cname);
 			}else{
 				cz = load(cname);
+				
 				if(cz == null){
 					return false;
 				}
@@ -230,12 +261,10 @@ class Loader {
 			if(cause == null){
 				cause=e;
 			}
-			if(e instanceof MVCException ) throw (MVCException)e;
-			else throw new MVCException(cause);
-//			String msg = Log.getErrMsg(cause);
-//			Log.e(msg);
-//			outMsg(msg,resp);
-//			return false;
+			if(e instanceof MVCException ) 
+				throw (MVCException)e;
+			else 
+				throw new MVCException(cause);
 		}
 		
 		//call the method
@@ -251,16 +280,20 @@ class Loader {
 			}
 
 			//m = cz.getMethod(method);
+			Object ret = "";//返回值
 			m = getMethod(cz,method);
 			if(m == null){
-				throw new NoSuchMethodException();
+				ret = "no such method : " + method +" , in class "+cname;
+				ins.response.setStatus(500);
+				runPostProcessing(uri,ins,ret); //执行后处理程序
+				return true;
 			}
 			if(!runInterceptors(uri,ins,m)){
 				return true;
 			}
 			
 			
-			Object ret = runMethod(ins,m,req);
+			ret = runMethod(ins,m,req);
 			runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			if(ins.isSingle()){
@@ -271,28 +304,11 @@ class Loader {
 			}
 			//Log.d("call success");
 			return true;
-		}catch(NoSuchMethodException ne){
-			Throwable cause = ne.getCause();
-			if(cause == null){
-				cause=ne;
-			}
-			String msg = "没这个方法, no such method " + cname+"."+method +",去查查是否有拼写错误？";
-			//String msg = Log.getErrMsg(cause);
-			//Log.e(msg);
-			//Log.e(msg);
-			//outMsg(msg,resp);
-			throw new MVCException(msg,cause);
-		} catch (Exception e) {
+		}catch (Exception e) {
 			Throwable cause = e.getCause();
 			if(cause == null){
 				cause=e;
 			}
-			//String msg = Log.getErrMsg(cause);
-			//Log.e(msg);
-			//outMsg(msg,resp);
-			
-			//return false;
-
 			throw new MVCException(cause);
 		}
 	}

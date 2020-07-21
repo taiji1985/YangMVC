@@ -99,6 +99,15 @@ public class MVCFilter implements Filter {
 		Log.d(p2);
 		return TextTool.readAllBytes(p2);	
 	}
+	private String txt2HTML(String msg){
+		StringBuffer sBuffer = new StringBuffer();
+		sBuffer.append("<html><head><meta charset='utf-8'/></head><body>");
+		String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
+		m = m.replace(Config.controller, "<font color='red'>"+Config.controller+"</font>");
+		sBuffer.append(m);
+		sBuffer.append("</body></html>");
+		return sBuffer.toString();
+	}
 	public void outErr(HttpServletResponse resp,String msg){
 //		PrintWriter pw;
 //		try {
@@ -114,14 +123,9 @@ public class MVCFilter implements Filter {
 			resp.setCharacterEncoding("utf-8");
 			resp.setContentType("text/html; charset=UTF-8");
 			pw = resp.getWriter();
-			pw.println("<html><head><meta charset='utf-8'/></head><body>");
-			String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
-			m = m.replace(Config.controller, "<font color='red'>"+Config.controller+"</font>");
-			pw.print(m);
-			pw.println("</body></html>");
-			//pw.close();
+			pw.println(txt2HTML(msg));
+			pw.close();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
@@ -147,33 +151,19 @@ public class MVCFilter implements Filter {
 		}
 		
 		
-		/**
-		 * 处理静态文件
-		 */
-//		String temp = getPureURI(uri,context);
-//		if(temp.startsWith("mvc_static")){
-//			temp =TEMP_BASE + temp.replace("mvc_static", "");
-//			Log.i("MVC Static File:"+temp);
-//			byte[] data = loadResource(temp);
-//			if(data == null){
-//				Log.i("resource not found " +temp);
-//				outErr((HttpServletResponse) resp,"resource not found : "+temp);
-//				return;
-//			}
-//			OutputStream os = resp.getOutputStream();
-//			os.write(data);
-//			os.close();
-//			return ;
-//		}
-
-		
-		
 		try {
 			process(uri,context,req2,(HttpServletResponse)resp,chain);
 		} catch (Exception e) {
 			String msg=Log.getErrMsg(e);
 			Log.e(msg);
-			outErr((HttpServletResponse) resp, msg);
+
+			Controller controller = new Controller();
+			controller.request = req2;
+			controller.response = (HttpServletResponse) resp;
+			controller.response.setStatus(500);
+			Loader.runPostProcessing(uri, controller, msg);
+			
+			//outErr((HttpServletResponse) resp, msg);
 		}
 		
 		

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.Controller;
 import org.docshare.util.BeanUtil;
 import org.docshare.util.TextTool;
 import org.jetbrains.annotations.NotNull;
@@ -190,7 +191,8 @@ public class Model implements Map<String,Object> {
 	 */
 	@Override
 	public Object remove(Object key) {
-		Object ret = extra.remove(key);
+		Object ret = null;
+		if(extra!=null) extra.remove(key);
 		if(ret == null){
 			ret = columns.remove(key);
 		}
@@ -199,7 +201,11 @@ public class Model implements Map<String,Object> {
 
 	@Override
 	public void clear() {
+		if(extra!= null){
+			extra.clear();
+		}
 		
+		columns.clear();
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -229,13 +235,11 @@ public class Model implements Map<String,Object> {
 
 		@Override
 		public Object getValue() {
-			// TODO Auto-generated method stub
 			return this.val;
 		}
 
 		@Override
 		public Object setValue(Object value) {
-			// TODO Auto-generated method stub
 			this.val = value;
 			return value;
 		}
@@ -404,5 +408,8 @@ public class Model implements Map<String,Object> {
 		Log.i(this.toString());
 	}
 	
-
+	public Model fromParam(Controller c){
+		c.paramToModel(this);
+		return this;
+	}
 }

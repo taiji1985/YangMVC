@@ -28,4 +28,6 @@ public interface IDBDelegate {
 	void beginTransaction();
 	void commit();
 	void rollback();
+
+	ResultSet runSQL(List<SQLConstains> cons, DBTool tool, String tbName, String prefix);
 }
