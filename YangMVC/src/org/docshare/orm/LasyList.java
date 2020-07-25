@@ -407,7 +407,7 @@ public class LasyList extends ListAdapter {
 		try {
 			arrList  = mList;
 			Set<String> cs = null; // 只显示这个集合中的列，其他列不显示。
-			if(column_filter!=null){
+			if(column_filter!=null && ! "*".equals(column_filter)){
 				String[] ca = column_filter.split(",");
 				cs = new HashSet<>();
 				for(String cc : ca){
