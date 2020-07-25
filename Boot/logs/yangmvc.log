@@ -675,3 +675,66 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 2020-07-25 12:37:59 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
 2020-07-25 12:38:00 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
 2020-07-25 12:38:00 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 12:53:24 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 12:53:24 [ INFO]-main - Log -Log.java(38)  -Logging initialized @522ms to org.docshare.boot.YangLogger
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 12:53:25 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 12:53:25 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 12:53:27 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 12:53:27 [ INFO]-main - Log -Log.java(38)  -Started @2829ms
+2020-07-25 12:53:27 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 12:53:27 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 12:53:27 [ INFO]-qtp2001112025-17 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:27 [ INFO]-qtp2001112025-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 12:53:28 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 12:53:28 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 12:53:28 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 12:53:28 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 12:53:28 [ INFO]-qtp2001112025-13 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:30 [ INFO]-qtp2001112025-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:30 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:31 [ INFO]-qtp2001112025-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:31 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:31 [ INFO]-qtp2001112025-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:32 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:32 [ INFO]-qtp2001112025-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:32 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:32 [ INFO]-qtp2001112025-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:33 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:33 [ INFO]-qtp2001112025-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:53:33 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
