@@ -738,3 +738,1656 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 2020-07-25 12:53:33 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
 2020-07-25 12:53:33 [ INFO]-qtp2001112025-18 - Log -Log.java(38)  -visit /
 2020-07-25 12:53:33 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -Logging initialized @334ms to org.docshare.boot.YangLogger
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:42:57 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 13:42:57 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:42:58 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:42:58 [ INFO]-main - Log -Log.java(38)  -Started @1412ms
+2020-07-25 13:42:58 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 13:42:58 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 13:42:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 13:42:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 13:42:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 13:42:59 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 13:43:01 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 13:43:02 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /
+2020-07-25 13:43:02 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -Logging initialized @356ms to org.docshare.boot.YangLogger
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:47:55 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 13:47:55 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:47:56 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:47:56 [ INFO]-main - Log -Log.java(38)  -Started @1533ms
+2020-07-25 13:47:56 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 13:47:56 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 13:47:57 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 13:47:57 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 13:47:57 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 13:47:57 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 13:50:05 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 13:50:05 [ INFO]-qtp1018081122-13 - Log -Log.java(38)  -visit /
+2020-07-25 13:50:05 [ INFO]-qtp1018081122-13 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 13:50:15 [ INFO]-qtp1018081122-14 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 13:51:08 [ INFO]-qtp1018081122-12 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -Logging initialized @336ms to org.docshare.boot.YangLogger
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:53:40 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 13:53:40 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -Started @1508ms
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 13:53:41 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 13:53:43 [ INFO]-qtp1018081122-13 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 13:53:43 [ INFO]-qtp1018081122-13 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 13:53:44 [ INFO]-qtp1018081122-15 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 13:57:14 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 13:57:14 [ INFO]-main - Log -Log.java(38)  -Logging initialized @334ms to org.docshare.boot.YangLogger
+2020-07-25 13:57:15 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 13:57:15 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 13:57:15 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:57:15 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 13:57:15 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 13:59:24 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 13:59:24 [ INFO]-main - Log -Log.java(38)  -Logging initialized @358ms to org.docshare.boot.YangLogger
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:59:25 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -Started @1497ms
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 13:59:25 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 13:59:26 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 13:59:26 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 13:59:26 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 13:59:26 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -Logging initialized @338ms to org.docshare.boot.YangLogger
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:00:12 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.MyWebSocketHandler
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:00:12 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:00:13 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:00:13 [ INFO]-main - Log -Log.java(38)  -Started @1472ms
+2020-07-25 14:00:13 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:00:13 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:00:14 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:00:14 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:00:14 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:00:14 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:00:55 [ WARN]-qtp1018081122-13 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:02:02 [ INFO]-qtp1018081122-18 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:02:02 [ INFO]-qtp1018081122-18 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:02:04 [ WARN]-qtp1018081122-11 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:02:23 [ WARN]-qtp1018081122-14 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:02:30 [ INFO]-qtp1018081122-12 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:02:31 [ WARN]-qtp1018081122-18 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -Logging initialized @384ms to org.docshare.boot.YangLogger
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:02:52 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.MyWebSocketHandler
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:02:52 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -Started @1563ms
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:02:53 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:03:43 [ WARN]-qtp1018081122-18 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -Logging initialized @318ms to org.docshare.boot.YangLogger
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:04:10 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.MyWebSocketHandler
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:04:10 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -Started @1392ms
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:04:11 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:04:27 [ WARN]-qtp1018081122-18 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:05:30 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:05:30 [ INFO]-main - Log -Log.java(38)  -Logging initialized @355ms to org.docshare.boot.YangLogger
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:05:31 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:05:31 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -Started @1500ms
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:05:32 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:05:33 [ INFO]-qtp1018081122-17 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:05:33 [ INFO]-qtp1018081122-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:05:35 [ INFO]-qtp1018081122-14 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:07:30 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:07:30 [ INFO]-main - Log -Log.java(38)  -Logging initialized @347ms to org.docshare.boot.YangLogger
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:07:31 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.MyWebSocketHandler
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -Started @1475ms
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:07:31 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:07:32 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:07:32 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:07:32 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:07:32 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:07:51 [ INFO]-qtp1018081122-16 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:07:51 [ INFO]-qtp1018081122-16 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:07:54 [ WARN]-qtp1018081122-14 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -Logging initialized @344ms to org.docshare.boot.YangLogger
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:11:48 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.MyWebSocketHandler
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:11:48 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:11:49 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:11:49 [ INFO]-main - Log -Log.java(38)  -Started @1536ms
+2020-07-25 14:11:49 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:11:49 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:11:50 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:11:50 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:11:50 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:11:50 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:11:59 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:12:00 [ INFO]-qtp1018081122-11 - Log -Log.java(38)  -visit /
+2020-07-25 14:12:00 [ INFO]-qtp1018081122-11 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:12:04 [ INFO]-qtp1018081122-15 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:12:05 [ INFO]-qtp1018081122-16 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:12:06 [ INFO]-qtp1018081122-13 - Log -Log.java(98)  -DefaultWebSocketListener
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -Logging initialized @320ms to org.docshare.boot.YangLogger
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:15:51 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.MyWebSocketHandler
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:15:51 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -Started @1439ms
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:15:52 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:16:00 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:16:00 [ INFO]-main - Log -Log.java(38)  -Logging initialized @358ms to org.docshare.boot.YangLogger
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:16:01 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.MyWebSocketHandler
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -Started @1466ms
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:16:01 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:16:02 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:16:02 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:16:02 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:16:02 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:16:06 [ INFO]-qtp1018081122-17 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:16:06 [ INFO]-qtp1018081122-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:16:07 [ WARN]-qtp1018081122-15 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -Logging initialized @332ms to org.docshare.boot.YangLogger
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:17:31 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:17:31 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -Logging initialized @343ms to org.docshare.boot.YangLogger
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:17:46 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:17:46 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -Started @1469ms
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:17:47 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:17:55 [ INFO]-qtp1018081122-12 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:17:55 [ INFO]-qtp1018081122-12 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:17:56 [ WARN]-qtp1018081122-16 - Log -Log.java(93)  -/ws/getsingle/
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -Logging initialized @372ms to org.docshare.boot.YangLogger
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:18:40 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.DefaultWebSocketListener
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:18:40 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -Logging initialized @337ms to org.docshare.boot.YangLogger
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:18:46 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: org.docshare.boot.DefaultWebSocketListener
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:18:46 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -Started @1449ms
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:18:47 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:18:49 [ INFO]-qtp1018081122-14 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:18:49 [ INFO]-qtp1018081122-14 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:18:50 [ INFO]-qtp1018081122-16 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:18:52 [ INFO]-qtp1018081122-18 - Log -Log.java(98)  -DefaultWebSocketListener
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -Logging initialized @327ms to org.docshare.boot.YangLogger
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:19:58 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: cn.org.docshare.demo.MyWebSocketListener
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:19:58 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -Started @1465ms
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:19:59 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:20:01 [ INFO]-qtp1018081122-17 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:20:01 [ INFO]-qtp1018081122-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:20:02 [ INFO]-qtp1018081122-16 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:20:02 [ INFO]-qtp1018081122-16 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:55376
+2020-07-25 14:20:04 [ INFO]-qtp1018081122-18 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:23:14 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:23:14 [ INFO]-main - Log -Log.java(38)  -Logging initialized @338ms to org.docshare.boot.YangLogger
+2020-07-25 14:23:14 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:23:14 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:23:14 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:23:14 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:23:14 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: cn.org.docshare.demo.MyWebSocketListener
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -Started @1471ms
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:23:15 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:23:16 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:23:16 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:23:16 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:23:16 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:23:18 [ INFO]-qtp1018081122-18 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:23:18 [ INFO]-qtp1018081122-18 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:55511
+2020-07-25 14:23:19 [ INFO]-qtp1018081122-12 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -Logging initialized @331ms to org.docshare.boot.YangLogger
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:25:05 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:25:05 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:25:06 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:25:06 [ INFO]-main - Log -Log.java(38)  -Started @1416ms
+2020-07-25 14:25:06 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:25:06 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:25:07 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:25:07 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:25:07 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:25:07 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:25:08 [ INFO]-qtp1018081122-13 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:25:08 [ INFO]-qtp1018081122-13 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:25:09 [ INFO]-qtp1018081122-14 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:25:10 [ INFO]-qtp1018081122-12 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:25:33 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:25:33 [ INFO]-main - Log -Log.java(38)  -Logging initialized @335ms to org.docshare.boot.YangLogger
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:25:34 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:25:34 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -Started @1506ms
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:25:35 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:25:35 [ INFO]-qtp1018081122-18 - Log -Log.java(38)  -visit /ws/getsingle/
+2020-07-25 14:25:35 [ INFO]-qtp1018081122-18 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:25:35 [ERROR]-qtp1018081122-18 - Log -Log.java(49)  -Message: 
+java.lang.ClassNotFoundException: cn/org/docshare/demo/ws/GetsingleController
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.docshare.mvc.Reloader.load(Reloader.java:96)
+	at org.docshare.mvc.Loader.load(Loader.java:40)
+	at org.docshare.mvc.Loader.call(Loader.java:247)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:81)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:155)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:146)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1369)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1582)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1284)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:501)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:556)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:272)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.lang.Thread.run(Thread.java:748)
+~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~
+org.docshare.mvc.except.MVCException
+	at org.docshare.mvc.Loader.call(Loader.java:267)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:81)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:155)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:146)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1369)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1582)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1284)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:501)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:556)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:272)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.lang.Thread.run(Thread.java:748)
+
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+ eg: java -jar aa_boot.jar 80 nowebsocket
+ . that means listen at port 80 and use no websocket
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -Logging initialized @288ms to org.docshare.boot.YangLogger
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:28:37 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:28:37 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -Started @1269ms
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:28:38 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:28:39 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:28:39 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:28:39 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:28:39 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 80 nowebsocket 
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -   That means listen at port 80 and use no websocket
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -Logging initialized @303ms to org.docshare.boot.YangLogger
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:29:33 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:29:33 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:29:34 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:29:34 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:29:34 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:29:34 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:31:02 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:31:02 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+2020-07-25 14:31:02 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 
+2020-07-25 14:31:02 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 80 nowebsocket 
+2020-07-25 14:31:02 [ INFO]-main - Log -Log.java(38)  -   That means listen at port 80 and use no websocket
+2020-07-25 14:31:02 [ INFO]-main - Log -Log.java(38)  -Logging initialized @363ms to org.docshare.boot.YangLogger
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:31:03 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -Started @1453ms
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:31:03 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:31:04 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:31:04 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:31:04 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:31:04 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:31:05 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:31:05 [ INFO]-qtp1782113663-17 - Log -Log.java(38)  -visit /
+2020-07-25 14:31:05 [ INFO]-qtp1782113663-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:31:15 [ INFO]-qtp1782113663-14 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:31:16 [ INFO]-qtp1782113663-16 - Log -Log.java(38)  -visit /ws/getsingle/
+2020-07-25 14:31:16 [ERROR]-qtp1782113663-16 - Log -Log.java(49)  -Message: 
+java.lang.ClassNotFoundException: cn/org/docshare/demo/ws/GetsingleController
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.docshare.mvc.Reloader.load(Reloader.java:96)
+	at org.docshare.mvc.Loader.load(Loader.java:40)
+	at org.docshare.mvc.Loader.call(Loader.java:247)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:81)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:155)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:146)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1369)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1582)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1284)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:501)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:556)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:272)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:135)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.lang.Thread.run(Thread.java:748)
+~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~
+org.docshare.mvc.except.MVCException
+	at org.docshare.mvc.Loader.call(Loader.java:267)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:81)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:155)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:146)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1369)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1582)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1284)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:501)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:556)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:272)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:135)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.lang.Thread.run(Thread.java:748)
+
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 80 nowebsocket 
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -   That means listen at port 80 and use no websocket
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Logging initialized @347ms to org.docshare.boot.YangLogger
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:31:46 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: cn.org.docshare.demo.MyWebSocketListener
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:31:46 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -Started @1472ms
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:31:47 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:31:50 [ INFO]-qtp1782113663-13 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:31:50 [ INFO]-qtp1782113663-13 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:31:51 [ INFO]-qtp1782113663-16 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:31:51 [ INFO]-qtp1782113663-16 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:55872
+2020-07-25 14:31:52 [ INFO]-qtp1782113663-18 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:33:19 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:33:19 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+2020-07-25 14:33:19 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 
+2020-07-25 14:33:19 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 80 nowebsocket 
+2020-07-25 14:33:19 [ INFO]-main - Log -Log.java(38)  -   That means listen at port 80 and use no websocket
+2020-07-25 14:33:19 [ INFO]-main - Log -Log.java(38)  -Logging initialized @363ms to org.docshare.boot.YangLogger
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:33:20 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: cn.org.docshare.demo.MyWebSocketListener
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -Started @1502ms
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:33:20 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:33:21 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:33:21 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:33:21 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:33:21 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:33:22 [ INFO]-qtp1782113663-14 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:33:22 [ INFO]-qtp1782113663-14 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:33:23 [ INFO]-qtp1782113663-16 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:33:23 [ INFO]-qtp1782113663-16 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:55939
+2020-07-25 14:33:24 [ INFO]-qtp1782113663-11 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:33:48 [ INFO]-qtp1782113663-13 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:33:48 [ INFO]-qtp1782113663-14 - Log -Log.java(38)  -MyWebSocketListener onWebSocketClose
+2020-07-25 14:33:49 [ INFO]-qtp1782113663-18 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:33:49 [ INFO]-qtp1782113663-18 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:55957
+2020-07-25 14:33:50 [ INFO]-qtp1782113663-14 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 80 nowebsocket 
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -   That means listen at port 80 and use no websocket
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -Logging initialized @327ms to org.docshare.boot.YangLogger
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:33:58 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:33:58 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: cn.org.docshare.demo.MyWebSocketListener
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -Started @1602ms
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:33:59 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:34:00 [ INFO]-qtp1782113663-17 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:34:00 [ INFO]-qtp1782113663-17 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:34:00 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:34:00 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:34:00 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:34:00 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:34:01 [ INFO]-qtp1782113663-11 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:34:01 [ INFO]-qtp1782113663-11 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:55974
+2020-07-25 14:34:02 [ INFO]-qtp1782113663-18 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:34:49 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:34:49 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+2020-07-25 14:34:49 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 
+2020-07-25 14:34:49 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 80 nowebsocket 
+2020-07-25 14:34:49 [ INFO]-main - Log -Log.java(38)  -   That means listen at port 80 and use no websocket
+2020-07-25 14:34:49 [ INFO]-main - Log -Log.java(38)  -Logging initialized @339ms to org.docshare.boot.YangLogger
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:34:50 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: cn.org.docshare.demo.MyWebSocketListener
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:34:50 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -Started @1492ms
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:34:51 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:34:54 [ INFO]-qtp1782113663-13 - Log -Log.java(38)  -visit /
+2020-07-25 14:34:54 [ INFO]-qtp1782113663-13 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:34:55 [ INFO]-qtp1782113663-12 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:34:56 [ INFO]-qtp1782113663-15 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:34:56 [ INFO]-qtp1782113663-15 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:56032
+2020-07-25 14:34:58 [ INFO]-qtp1782113663-17 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:35:02 [ INFO]-qtp1782113663-11 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:35:02 [ INFO]-qtp1782113663-11 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:56036
+2020-07-25 14:35:03 [ INFO]-qtp1782113663-17 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -Usage: java -jar xxx.jar [port] [nowebsocket] 
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -   eg: java -jar aa_boot.jar 80 nowebsocket 
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -   That means listen at port 80 and use no websocket
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -Logging initialized @339ms to org.docshare.boot.YangLogger
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:37:09 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -init called
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -register WebSocket Handler2: cn.org.docshare.demo.MyWebSocketListener
+2020-07-25 14:37:09 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -Started @1485ms
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 14:37:10 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 14:37:11 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 14:37:11 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 14:37:11 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 14:37:11 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:37:11 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 14:37:11 [ INFO]-qtp1782113663-12 - Log -Log.java(38)  -visit /
+2020-07-25 14:37:11 [ INFO]-qtp1782113663-12 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 14:37:15 [ INFO]-qtp1782113663-13 - Log -Log.java(38)  -visit /demo_ws
+2020-07-25 14:37:16 [ INFO]-qtp1782113663-15 - Log -Log.java(38)  -upgrade req ws://localhost:1985/ws/getsingle/
+2020-07-25 14:37:16 [ INFO]-qtp1782113663-15 - Log -Log.java(38)  -MyWebSocketListener onWebSocketConnect->/0:0:0:0:0:0:0:1:56197
+2020-07-25 14:37:17 [ INFO]-qtp1782113663-17 - Log -Log.java(38)  -MyWebSocketListener onWebSocketText

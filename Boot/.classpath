@@ -16,5 +16,13 @@
 	<classpathentry kind="lib" path="libs9/jetty-util-9.4.30.v20200611.jar"/>
 	<classpathentry kind="lib" path="libs9/jetty-servlet-9.4.30.v20200611.jar"/>
 	<classpathentry kind="lib" path="libs9/jetty-servlets-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/javax-websocket-client-impl-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/javax-websocket-server-impl-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/javax.websocket-api-1.0.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/websocket-api-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/websocket-client-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/websocket-common-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/websocket-server-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/websocket/websocket-servlet-9.4.30.v20200611.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

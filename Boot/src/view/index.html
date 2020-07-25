@@ -28,6 +28,18 @@
 		}
 		
 	</pre>
+	
+	<a href='/demo_ws'>测试websocket</a><br>
+	<pre>
+	public class Init {
+		public Init() {
+			Log.i("init called");
+			MyWebSocketHandler.register(MyWebSocketListener.class);
+		}
+	}
+		
+	</pre>
+	
 	在src下建立web.properties，并输入内容可以配置数据库等基本信息。
 	<pre>
 controller=yang.package

@@ -9,6 +9,7 @@ import java.util.Scanner;
 import org.docshare.log.Log;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
+import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.handler.ResourceHandler;
@@ -19,8 +20,15 @@ public class ServerMain {
 	
 	private static int port = 1985;
 	static void parseParam(String[] args){
+		Log.i("Usage: java -jar xxx.jar [port] [nowebsocket] ");
+		Log.i("   eg: java -jar aa_boot.jar ");
+		Log.i("   eg: java -jar aa_boot.jar 80 nowebsocket ");
+		Log.i("   That means listen at port 80 and use no websocket");
 		if(args.length>=1 ){
 			port = Integer.parseInt(args[0]);
+		}
+		if(args.length >= 2  && "nowebsocket".equals(args[1])){
+			supportWebSocket = false;
 		}
 	}
 	public static void main(String[] args) {
@@ -36,6 +44,7 @@ public class ServerMain {
 		}
 	}
     public static ContextHandler contextHandler = null;
+    public static boolean supportWebSocket = true;
 
 	public static void start() throws Exception{
 		try{
@@ -59,8 +68,22 @@ public class ServerMain {
 	        
 	        
 	        contextHandler.setHandler(collection);
-	       
-	        server.setHandler(contextHandler);
+	        if(supportWebSocket){
+		        //support websocket 
+		        ContextHandler wsHandler = new ContextHandler();
+		        wsHandler.setContextPath("/ws");
+		        wsHandler.setHandler(new MyWebSocketHandler());
+				
+				
+				ContextHandlerCollection final_handler = new ContextHandlerCollection();
+		        
+				final_handler.addHandler(wsHandler);
+		        final_handler.addHandler(contextHandler);
+		        
+		        server.setHandler(final_handler);
+	        }else{
+	        	server.setHandler(contextHandler);
+	        }
 	        server.start();
 	        String url = "http://127.0.0.1";
 	        if(port != 80){

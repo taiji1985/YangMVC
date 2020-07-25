@@ -86,4 +86,7 @@ public class IndexController extends Controller {
 	public String tryreload(){
 		return ""+Demo.hello();
 	}
+	public Object demo_ws(){
+		return freemarker("/ws.html");
+	}
 }
