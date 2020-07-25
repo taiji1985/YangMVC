@@ -482,3 +482,196 @@
 2020-07-12 20:04:47 [ INFO]-qtp1072601481-16 - Log -Log.java(38)  -visit /my/dd
 2020-07-12 20:04:47 [ INFO]-qtp1072601481-16 - Log -Log.java(38)  -cn.org.docshare.demo.MyController
 2020-07-12 20:04:47 [ INFO]-qtp1072601481-16 - Log -Log.java(38)  -cn.org.docshare.demo.IndexController
+2020-07-25 12:24:35 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 12:24:35 [ INFO]-main - Log -Log.java(38)  -Logging initialized @1467ms to org.docshare.boot.YangLogger
+2020-07-25 12:24:35 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 12:24:35 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 12:24:35 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 12:24:35 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 12:24:36 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 12:24:37 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 12:24:37 [ INFO]-main - Log -Log.java(38)  -Started @4006ms
+2020-07-25 12:24:37 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 12:24:37 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 12:24:38 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 12:24:38 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 12:24:38 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 12:24:38 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 12:24:41 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 12:24:41 [ INFO]-qtp966808741-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:24:41 [ INFO]-qtp966808741-16 - Log -Log.java(38)  -reload base : cn.org.docshare
+2020-07-25 12:24:42 [ INFO]-qtp966808741-11 - Log -Log.java(38)  -visit /favicon.ico
+2020-07-25 12:24:56 [ INFO]-qtp966808741-18 - Log -Log.java(38)  -visit /json
+2020-07-25 12:25:25 [ INFO]-qtp966808741-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:25:30 [ INFO]-qtp966808741-14 - Log -Log.java(38)  -visit /
+2020-07-25 12:25:32 [ INFO]-qtp966808741-16 - Log -Log.java(38)  -visit /json
+2020-07-25 12:25:42 [ INFO]-qtp966808741-14 - Log -Log.java(38)  -visit /
+2020-07-25 12:25:43 [ INFO]-qtp966808741-11 - Log -Log.java(38)  -visit /json
+2020-07-25 12:26:16 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /
+2020-07-25 12:26:17 [ INFO]-qtp966808741-11 - Log -Log.java(38)  -visit /fm
+2020-07-25 12:26:20 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /fm
+2020-07-25 12:29:38 [ INFO]-qtp966808741-21 - Log -Log.java(38)  -visit /
+2020-07-25 12:30:22 [ INFO]-qtp966808741-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:31:56 [ INFO]-qtp966808741-21 - Log -Log.java(38)  -visit /
+2020-07-25 12:31:57 [ INFO]-qtp966808741-14 - Log -Log.java(38)  -visit /retstr
+2020-07-25 12:31:59 [ INFO]-qtp966808741-13 - Log -Log.java(38)  -visit /retjson
+2020-07-25 12:32:06 [ INFO]-qtp966808741-14 - Log -Log.java(38)  -visit /retfm
+2020-07-25 12:32:07 [ INFO]-qtp966808741-13 - Log -Log.java(38)  -visit /retfm
+2020-07-25 12:33:18 [ INFO]-qtp966808741-18 - Log -Log.java(38)  -visit /
+2020-07-25 12:33:20 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /retfm
+2020-07-25 12:33:22 [ INFO]-qtp966808741-21 - Log -Log.java(38)  -visit /retfm
+2020-07-25 12:33:25 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /retfm
+2020-07-25 12:33:27 [ INFO]-qtp966808741-21 - Log -Log.java(38)  -visit /retjson
+2020-07-25 12:33:37 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /
+2020-07-25 12:33:37 [ INFO]-qtp966808741-11 - Log -Log.java(38)  -visit /retfm
+2020-07-25 12:33:37 [ERROR]-qtp966808741-11 - freemarker.runtime -_Log4jLoggerFactory.java(59)  -Error executing FreeMarker template
+FreeMarker template error:
+The following has evaluated to null or missing:
+==> param.haha  [in template "fm.html" at line 1, column 3]
+
+----
+Tip: It's the step after the last dot that caused this error, not those before it.
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: ${param.haha}  [in template "fm.html" at line 1, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:134)
+	at freemarker.core.EvalUtil.coerceModelToTextualCommon(EvalUtil.java:465)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:387)
+	at freemarker.core.EvalUtil.coerceModelToStringOrMarkup(EvalUtil.java:356)
+	at freemarker.core.DollarVariable.calculateInterpolatedStringOrMarkup(DollarVariable.java:96)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:59)
+	at freemarker.core.Environment.visit(Environment.java:326)
+	at freemarker.core.Environment.visit(Environment.java:332)
+	at freemarker.core.Environment.process(Environment.java:305)
+	at freemarker.template.Template.process(Template.java:378)
+	at org.docshare.mvc.Controller.renderFreeMarker(Controller.java:1119)
+	at org.docshare.mvc.BasePostIntercepter.postProcess(BasePostIntercepter.java:25)
+	at org.docshare.mvc.Loader.runPostProcessing(Loader.java:326)
+	at org.docshare.mvc.Loader.call(Loader.java:297)
+	at org.docshare.mvc.MVCFilter.process(MVCFilter.java:81)
+	at org.docshare.mvc.MVCFilter.doFilter(MVCFilter.java:155)
+	at org.docshare.boot.YangHandle.handle(YangHandle.java:65)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:146)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1369)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1582)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1284)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:501)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:556)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:272)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:129)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:375)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.lang.Thread.run(Thread.java:748)
+2020-07-25 12:33:59 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /
+2020-07-25 12:34:00 [ INFO]-qtp966808741-14 - Log -Log.java(38)  -visit /retjson
+2020-07-25 12:34:02 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /json
+2020-07-25 12:34:04 [ INFO]-qtp966808741-14 - Log -Log.java(38)  -visit /retstr
+2020-07-25 12:34:06 [ INFO]-qtp966808741-17 - Log -Log.java(38)  -visit /fm
+2020-07-25 12:35:35 [ INFO]-qtp966808741-13 - Log -Log.java(38)  -visit /
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -Server start .........
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -Logging initialized @483ms to org.docshare.boot.YangLogger
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -Config  found ! 
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -web.properties loaded 
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=123456, 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 12:37:57 [ERROR]-main - Log -Log.java(49)  -can't load YangMVC config from  web.xml------------
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -[template dir] C:\work\YangMVC\workspace_ec\Boot\.\view
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -[template dir] classpath /view
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -Config [
+	dbhost=localhost, 
+	dbname=mvc_demo, 
+	dbusr=root, 
+	dbpwd=[hidden], 
+	port = 3306, 
+	template=/view, 
+	controller=cn.org.docshare.demo,
+	reloadable=true,
+	useSSL=false,
+	dbtype=mysql,
+	interceptors={}, 
+	post-process={org.docshare.mvc.BasePostIntercepter}
+]
+2020-07-25 12:37:57 [ INFO]-main - Log -Log.java(38)  -jetty-{}; built: {}; git: {}; jvm {}
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -DefaultSessionIdManager workerName={}
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -No SessionScavenger set, using defaults
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -{} Scavenging every {}ms
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -Started {}
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -Started @1987ms
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -服务器已经开启 Server is Started
+2020-07-25 12:37:58 [ INFO]-main - Log -Log.java(38)  -please visit http://127.0.0.1:1985
+2020-07-25 12:37:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 127.0.0.1
+2020-07-25 12:37:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.56.1
+2020-07-25 12:37:59 [ INFO]-main - Log -Log.java(38)  -本机的IP = 192.168.0.13
+2020-07-25 12:37:59 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 12:37:59 [ INFO]-main - Log -Log.java(38)  -每按一次回车键打开一次浏览器,Press Enter key to open browser
+2020-07-25 12:38:00 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -visit /
+2020-07-25 12:38:00 [ INFO]-qtp2001112025-16 - Log -Log.java(38)  -reload base : cn.org.docshare

@@ -2,8 +2,7 @@ package cn.org.docshare.demo;
 
 import org.docshare.mvc.IBean;
 /**
- * �̳�IBean��Ͳ���д getter��setter�ˡ�
- * @author Administrator
+ * @author Tongfeng yang
  *
  */
 public class Book implements IBean{

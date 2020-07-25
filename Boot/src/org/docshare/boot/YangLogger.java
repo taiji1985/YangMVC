@@ -93,5 +93,12 @@ class YangLogger implements Logger{
 	public void warn(String arg0, Object... arg1) {
 		Log.d(String.format(arg0, arg1));
 	}
+
+
+
+	@Override
+	public void debug(String arg0, long arg1) {
+		debug(arg0+" "+arg1);
+	}
 	
 }

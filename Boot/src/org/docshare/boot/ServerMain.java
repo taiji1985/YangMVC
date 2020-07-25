@@ -55,6 +55,9 @@ public class ServerMain {
 	        collection.addHandler(YangHandle.getIns(server));
 	        collection.addHandler(new ResourceHandler());
 	        collection.addHandler(new DefaultHandler());
+	        
+	        
+	        
 	        contextHandler.setHandler(collection);
 	       
 	        server.setHandler(contextHandler);

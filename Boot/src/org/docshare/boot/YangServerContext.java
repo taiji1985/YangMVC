@@ -380,5 +380,11 @@ public class YangServerContext implements ServletContext {
 		// TODO Auto-generated method stub
 		
 	}
+	//---------------------
+	@Override
+	public String getVirtualServerName() {
+		return "YangMVC Server";
+	}
+	
 
 }
