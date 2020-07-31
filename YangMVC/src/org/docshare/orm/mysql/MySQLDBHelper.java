@@ -28,12 +28,15 @@ public class MySQLDBHelper extends DBHelper {
 	public void conn() {
 		try {
 			if(con !=null && ! con.isClosed() && con.isValid(200))return;
-			
+			Log.d("MySQLDBHelper connect to server");
 			Class.forName("com.mysql.jdbc.Driver");
-	
+			//Class.forName("com.mysql.cj.jdbc.Driver");
 			String uri = String.format(
 					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&useSSL="+Config.useSSL,
 					Config.dbhost,Config.dbport, Config.dbname);
+//			String uri = String.format(
+//					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&serverTimezone=GMT+8&useSSL="+Config.useSSL,
+//					Config.dbhost,Config.dbport, Config.dbname);
 			String user = Config.dbusr;
 			String password = Config.dbpwd;
 			con = DriverManager.getConnection(uri, user, password);

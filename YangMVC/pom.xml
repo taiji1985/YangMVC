@@ -95,7 +95,7 @@
 		<dependency>
 		    <groupId>commons-codec</groupId>
 		    <artifactId>commons-codec</artifactId>
-		    <version>1.3</version>
+		    <version>1.10</version>
 		</dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>

@@ -194,7 +194,7 @@ public class BeanUtil {
 		return obj; //unknown ,return orignal
 		
 	}
-	public static void prop2StaticField(Properties prop,Class clz){
+	public static void prop2StaticField(Properties prop,Class<?> clz){
 		Field[] fa = clz.getFields();
 		for(Field f :fa){
 			String name = f.getName();

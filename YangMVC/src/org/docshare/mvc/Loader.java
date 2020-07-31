@@ -107,6 +107,7 @@ class Loader {
 		
 		Object[] args  = null;
 		Class<?>[] types = method.getParameterTypes();
+		Controller controller = (Controller)obj;
 		/**
 		 * 根据参数标注进行赋值
 		 */
@@ -121,7 +122,8 @@ class Loader {
 	                if (annotation instanceof Param) {  
 	                    Param param = (Param) annotation;  
 	            //        parameterNames[i] = param.value();
-	                    args[i] = req.getParameter(param.value());
+	                    
+	                    args[i] = controller.param(param.value());//req.getParameter(param.value());
 	                    args[i] = convertTo(args[i],types[i].getName());
 	                    
 	                    break;
@@ -144,7 +146,7 @@ class Loader {
 				if(name == null){
 					Log.e("Loader:  you should add the -parameters to javac , for details see : https://blog.csdn.net/sanyuesan0000/article/details/80618913");
 				}
-				args[i] = req.getParameter(name);
+				args[i] =  controller.param(name);//req.getParameter(name);
 				args[i] = convertTo(args[i],types[i].getName());
 			}
 		}

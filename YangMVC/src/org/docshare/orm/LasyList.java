@@ -199,7 +199,7 @@ public class LasyList extends ListAdapter {
 		limit(start, pageSize);
 		return this;
 	}
-
+	private int _start = 0;
 	/**
 	 * 使用limit来截取数据
 	 * @param start 开始索引，以0开始
@@ -208,6 +208,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList limit(int start, int len) {
+		_start = start;
 		cons.add(new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len));
 		return this;
 	}
@@ -355,6 +356,7 @@ public class LasyList extends ListAdapter {
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
 	public Model one() {
+		limit(_start, 1);//通过加limit减少数据库的查询的量。
 		Model model = get(0);
 		closeRS();
 		return model;
@@ -420,11 +422,11 @@ public class LasyList extends ListAdapter {
 				
 				mList.add(m);
 			}
-			if(rs!= null ){
-				rs.close();
-			}
 			if(rs == null){
 				debugInfo();
+			}else{
+				rs.close();
+				rs = null;
 			}
 		} catch (SQLException e) {
 			Log.e("LasyList.toArrayList Exception " + debugInfo());

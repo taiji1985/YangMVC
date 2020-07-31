@@ -18,7 +18,7 @@ public class TestORM extends TestCase{
 	public void setUp(){
 		Log.e("setup");
 		Config.dbname ="mvc_demo";
-		Config.dbport = "3306";
+		Config.dbport = "3308";
 		tool = Model.tool("book");
 		assertNotNull(tool);
 	}

@@ -35,6 +35,10 @@ public class TestORM3 extends TestCase{
 			System.out.println("c.id " +c.id);
 			System.out.println("c.name " +c.name);
 			c.name = c.name+"_haha";
+			c.name = c.name;
+			if(c.name.length()>6){
+				c.name = c.name.substring(0,6);
+			}
 			tool.save(c);
 		}
 		
