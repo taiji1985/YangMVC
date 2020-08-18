@@ -37,6 +37,7 @@ import org.docshare.util.TextTool;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import freemarker.template.Template;
 
@@ -683,7 +684,7 @@ public class Controller {
 	 * 输出JSON字符串到网页
 	 * @param obj
 	 */
-	public void outputJSON(Object obj){		
+	public void outputJSON(Object obj){	
 		outputJSON(obj,param("debug") != null);
 	}
 	public void outputJSON(Object obj,boolean pretty){
@@ -693,8 +694,19 @@ public class Controller {
 			response.setContentType("text/json;charset=utf-8");
 			writer = getMyPrintWriter();
 			
-			if(obj == null)writer.write("{}");
-			else{String string = JSON.toJSONString(obj,pretty);
+			if(obj == null){
+				writer.write("{}");
+			}else{
+				String string;
+				if(param("datefmt")!=null){
+					if(pretty){
+						string = JSON.toJSONString(obj,SerializerFeature.PrettyFormat,SerializerFeature.WriteDateUseDateFormat);
+					}else{
+						string = JSON.toJSONString(obj,SerializerFeature.WriteDateUseDateFormat);
+					}
+				}else{
+					string= JSON.toJSONString(obj,pretty);
+				}
 				writer.write(string);
 			}
 			writer.close();

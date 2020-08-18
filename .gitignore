@@ -1,5 +1,6 @@
 .metadata
 *.class
+*.log
 zip
 dist/
 Boot/bin/
@@ -9,3 +10,5 @@ YangMVC/logs/
 YangMVC/target/
 Boot/target/
 YangMVCDemo/target/
+Boot/logs
+

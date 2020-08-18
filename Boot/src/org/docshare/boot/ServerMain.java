@@ -3,6 +3,7 @@ package org.docshare.boot;
 
 
 
+import java.io.IOException;
 import java.net.BindException;
 import java.util.Scanner;
 
@@ -45,11 +46,16 @@ public class ServerMain {
 	}
     public static ContextHandler contextHandler = null;
     public static boolean supportWebSocket = true;
-
+    public static boolean useSession = true;
 	public static void start() throws Exception{
+        Server server = new Server(port);
+        String url = "http://127.0.0.1";
+        if(port != 80){
+            url = String.format("http://127.0.0.1:%d",port);
+        }
+        
 		try{
 			org.eclipse.jetty.util.log.Log.setLog(new YangLogger());
-	        Server server = new Server(port);
 	        
 	        HandlerCollection collection =new HandlerCollection(); 
 
@@ -59,8 +65,9 @@ public class ServerMain {
 	        contextHandler.setResourceBase("./WebRoot");
 	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
 	        //contextHandler.setHandler(YangHandle.getIns(server));
-	        
-	        collection.addHandler(new SessionHandler());
+	        if(useSession){
+	        	collection.addHandler(new SessionHandler());
+	        }
 	        collection.addHandler(YangHandle.getIns(server));
 	        collection.addHandler(new ResourceHandler());
 	        collection.addHandler(new DefaultHandler());
@@ -85,14 +92,32 @@ public class ServerMain {
 	        	server.setHandler(contextHandler);
 	        }
 	        server.start();
-	        String url = "http://127.0.0.1";
-	        if(port != 80){
-	            url = String.format("http://127.0.0.1:%d",port);
-	        }
+	        
 	        Log.i("服务器已经开启 Server is Started");
 	        Log.i("please visit "+url);
 	        IpHelper.showIP();
-	        Scanner scanner=new Scanner(System.in);
+	        readConsole(url);
+	        
+	        //server.join(); 
+		}catch (IOException e) {
+			Log.e("绑定端口号错误，一般是是因为端口号被其他应用占用了。 binding port error :"+port);
+			String pid = IpHelper.showPortUsed(port);
+			//重试！！
+			if(System.getProperty("os.name").contains("Win")){
+				try {
+					IpHelper.killPID(pid);
+					Thread.sleep(3000);
+					server.start();
+			        readConsole(url);
+				} catch (Exception e1) {
+					Log.e(e1);
+				}
+			}
+		}
+	}
+	
+	private static void readConsole(String url){
+		 Scanner scanner=new Scanner(System.in);
 	        while(true){
 	        	Log.i("每按一次回车键打开一次浏览器,Press Enter key to open browser");
 	        	scanner.nextLine();
@@ -103,14 +128,6 @@ public class ServerMain {
 					continue;
 				}
 	        }
-	        
-	        //server.join(); 
-		}catch (BindException e) {
-			Log.e("绑定端口号错误，一般是是因为端口号被其他应用占用了。 binding port error :"+port);
-			String pid = IpHelper.showPortUsed(port);
-			IpHelper.killPID(pid);
-		}
 	}
-	
 
 }

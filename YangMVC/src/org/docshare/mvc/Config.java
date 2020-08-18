@@ -202,6 +202,9 @@ public class Config {
 		}
 
 	}
+	
+	public static String dateFormat=null; //输出的date的格式化
+	
 	public static void main(String[] args) {
 		Config.loadProperties("/web.properties");
 	}
