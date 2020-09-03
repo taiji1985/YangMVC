@@ -51,7 +51,7 @@
             <zipfileset excludes="META-INF/*.SF" src="C:/dev/MyEclipse/Common/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
         	-->
         </jar>
-       	
+    	<copy tofile="F:\CMI\my_cmi_back\CMI\libs\yangmvc-boot-2020-07-21.jar" file="dist/yangmvc-boot-${build.TimeSign}.jar" />
     	
     </target>
 </project>

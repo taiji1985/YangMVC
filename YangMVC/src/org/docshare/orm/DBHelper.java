@@ -226,7 +226,12 @@ public abstract class DBHelper {
 		}
 
 	private Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
-
+	
+	public void  clearDescCache(){
+		Log.v("clear desc cache ...");
+		this.desc_cached.clear();
+	}
+	
 	public Object getLastId() {
 			return last_id;
 	}

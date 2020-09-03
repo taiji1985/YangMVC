@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
@@ -314,7 +315,7 @@ public class DBTool {
 		return DBHelper.getIns().update(sql,objects);
 	}
 	
-	static HashMap<String, DBTool> toolCache = new HashMap<String, DBTool>();
+	static ConcurrentHashMap<String, DBTool> toolCache = new ConcurrentHashMap<String, DBTool>();
 	public static DBTool getIns(String tname) {
 		if("rawsql".equals(tname)){
 			return new DBTool(tname);
@@ -327,6 +328,9 @@ public class DBTool {
 			toolCache.put(tname, ret);
 		}
 		return ret;
+	}
+	public static void clearCache(){
+		toolCache.clear();
 	}
 
 	public DBTool tran(){

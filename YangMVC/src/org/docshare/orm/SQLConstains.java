@@ -30,4 +30,9 @@ public class SQLConstains {
 		this.column = column;
 		this.value = value;
 	}
+	@Override
+	public String toString() {
+		return "SQLConstains [type=" + type + ", column=" + column + ", value=" + value + ", value2=" + value2 + "]";
+	}
+	
 }
