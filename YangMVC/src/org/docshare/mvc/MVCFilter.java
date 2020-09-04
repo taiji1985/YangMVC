@@ -176,36 +176,40 @@ public class MVCFilter implements Filter {
 	public void init(FilterConfig cfg) throws ServletException {
 		ins = this;
 		//先从类目录的web.properties中读取
-		Config.loadProperties("/web.properties");
-		try {
-			this.application = cfg.getServletContext();
-			String tpl = cfg.getInitParameter("template");
-			if(tpl == null){
-				Log.i("no configure in web.xml ");
-			}else{
-				Config.template = tpl;
-			}
-			
-			String ctr = cfg.getInitParameter("controller");
-			if(ctr !=null){
-				Config.controller = ctr;
-			}
-			Config.template = Config.template == null? "/view" :Config.template;
-			Config.controller = Config.controller == null? "org.demo":Config.controller;
-			if(application.getInitParameter("dbusr") != null){
-				Config.dbusr  = loadConfig("dbusr" ,Config.dbusr);
-				Config.dbhost = loadConfig("dbhost",Config.dbhost);
-				Config.dbpwd  = loadConfig("dbpwd" ,Config.dbpwd);
-				Config.dbname = loadConfig("dbname",Config.dbname);
-				Config.dbport = loadConfig("dbport",Config.dbport);	
-				Config.dbtype = loadConfig("dbtype",Config.dbtype);	
-				Config.dbschema = loadConfig("dbschema",Config.dbschema);				
-				Config.reloadable = Boolean.parseBoolean(loadConfig("reloadable", Config.reloadable+""));
-			}
-		} catch (Exception e1) {
-			Log.e("can't load YangMVC config from  web.xml------------");
-			//e1.printStackTrace();
-		} 
+		boolean loaded = Config.loadProperties("/web.properties");
+		this.application = cfg.getServletContext();
+		if(!loaded){
+			try {
+				String tpl = cfg.getInitParameter("template");
+				if(tpl == null){
+					Log.i("no configure in web.xml ");
+				}else{
+					Config.template = tpl;
+				}
+				
+				String ctr = cfg.getInitParameter("controller");
+				if(ctr !=null){
+					Config.controller = ctr;
+				}
+				Config.template = Config.template == null? "/view" :Config.template;
+				Config.controller = Config.controller == null? "org.demo":Config.controller;
+				if(application.getInitParameter("dbusr") != null){
+					Config.dbusr  = loadConfig("dbusr" ,Config.dbusr);
+					Config.dbhost = loadConfig("dbhost",Config.dbhost);
+					Config.dbpwd  = loadConfig("dbpwd" ,Config.dbpwd);
+					Config.dbname = loadConfig("dbname",Config.dbname);
+					Config.dbport = loadConfig("dbport",Config.dbport);	
+					Config.dbtype = loadConfig("dbtype",Config.dbtype);	
+					Config.dbschema = loadConfig("dbschema",Config.dbschema);				
+					Config.reloadable = Boolean.parseBoolean(loadConfig("reloadable", Config.reloadable+""));
+				}
+			} catch (Exception e1) {
+				Log.e("can't load YangMVC config from  web.xml------------");
+				//e1.printStackTrace();
+			} 
+		}else{
+			Log.i("loaded from web.properties, skip load from web.xml");
+		}
 		
 		try {
 			String initCls = Config.controller+".Init";

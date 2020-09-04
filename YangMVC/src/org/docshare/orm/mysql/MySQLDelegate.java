@@ -22,7 +22,15 @@ public class MySQLDelegate implements IDBDelegate {
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
-		ResultSet rs = DBHelper.getIns().getPrepareRS(String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column),id);
+		//String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column)
+		StringBuffer sBuffer =new StringBuffer();
+		sBuffer.append("select * from `");
+		sBuffer.append(tname);
+		sBuffer.append("` where `");
+		sBuffer.append(column);
+		sBuffer.append("` = ? limit 0,1");
+		//"select * from `"+tname+"` where `"+column+"` = ? limit 0,1" 
+		ResultSet rs = DBHelper.getIns().getPrepareRS(sBuffer.toString(),id);
 		return rs;
 	}
 
@@ -35,11 +43,12 @@ public class MySQLDelegate implements IDBDelegate {
 		Object id = m.get(key);
 		String sql = "";
 		
-		ArrayList<Object> plist = new ArrayList<Object>(); //参数列表
+		ArrayList<Object> plist = new ArrayList<Object>(8); //参数列表
 		if(forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0 ) ){
 			//This is an insert
-			String ks="";
-			String vs2="";
+			StringBuffer ks=new StringBuffer();
+			
+			StringBuffer vs2= new StringBuffer();
 			boolean first=true;
 			for(String k: m.keySet()){
 				if(k.equals(key)){ //这里不再跳过主键字段
@@ -50,21 +59,38 @@ public class MySQLDelegate implements IDBDelegate {
 					continue;
 				}
 				if(!first){
-					ks+=',';
-					vs2+=",";
+					ks.append(',');
+					vs2.append(',');
 				}
+				//  ks += "`"+k+"`"; 被优化
+				ks.append('`');
+				ks.append(k);
+				ks.append('`');
 				
-				ks+= "`"+k+"`";
 				String type = tool.getColumnTypeName(k);
 				ArrayTool.valueWrapper(null, v,type);
-				vs2+="?";
+				vs2.append('?');
 				plist.add(v);
 				first = false;
 			}
-			sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks,vs2);
+			//sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks.toString(),vs2.toString());
+			StringBuffer sqlb = new StringBuffer();
+			sqlb.append("insert into `");
+			sqlb.append(m.getTableName());
+			sqlb.append("`(");
+			sqlb.append(ks);
+			sqlb.append(") values(");
+			sqlb.append(vs2);
+			sqlb.append(")");
+			sql = sqlb.toString();
 		}else{
-			ArrayList<String> sa=new ArrayList<String>();
-			
+			int csize = m.changeColumns().size();
+			if(csize == 0){
+				Log.i("no change data for update "+sql);
+				return 0;
+			}
+
+			ArrayList<String> sa=new ArrayList<String>(csize);
 			for(String k: m.changeColumns()){
 				if(k == key)continue;
 				Object v = m.get(k);
@@ -72,17 +98,21 @@ public class MySQLDelegate implements IDBDelegate {
 					continue;
 				}
 				String type = tool.getColumnTypeName(k);
-				ArrayTool.valueWrapper(k, m.get(k),type);
+				//ArrayTool.valueWrapper(k, m.get(k),type);
 				//sa.add(s);
 				sa.add("`"+k+"`=?");
 				plist.add(m.get(k));
 			}
 			String ss = ArrayTool.join(",", sa);
-			sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName("id")) );
-			if(m.changeColumns().size() == 0){
-				Log.i("no change data for update "+sql);
-				return 0;
-			}
+			//sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName(key)) );
+			StringBuffer sqlb = new StringBuffer();
+			sqlb.append("update `");
+			sqlb.append(m.getTableName());
+			sqlb.append("` set ");
+			sqlb.append(ss);
+			sqlb.append(" where ");
+			sqlb.append(ArrayTool.valueWrapper(key, id,tool.getColumnTypeName(key)));
+			sql = sqlb.toString();
 		}
 		Log.d("DBTool run sql: "+sql+"  params=["+ArrayTool.joinWithLengthLimit(",", plist,20)+"]");
 		Object[] objs = plist.toArray();
@@ -99,8 +129,12 @@ public class MySQLDelegate implements IDBDelegate {
 	
 	@Override
 	public int delete(String tname,String key,Object id){
-		String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
-		Log.d("DBTool run sql: "+sql +" ,param  = "+id);
+		//String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
+		StringBuffer sBuffer =new StringBuffer();
+		sBuffer.append("delete from `");
+		sBuffer.append(tname).append("` where `").append(key).append("` = ?");
+		String sql = sBuffer.toString();
+		Log.d("DBTool run sql: "+ sql +" ,param  = "+id);
 		return DBHelper.getIns().update(sql,id);
 	}
 
@@ -139,37 +173,49 @@ public class MySQLDelegate implements IDBDelegate {
 		SQLConstains limitc=null;
 		SQLConstains orderc=null;
 		String w;
+		StringBuffer sb=new StringBuffer();
 		for(SQLConstains c: cons){
 			if(c.type<fh.length){
-				//String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
-				//sa.add(String.format("`%s` %s %s", c.column,fh[c.type],w));
-				sa.add(String.format("`%s` %s ?", c.column,fh[c.type]));
+				sb.setLength(0);
+				//sa.add(String.format("`%s` %s ?", c.column,fh[c.type]));
+				sb.append("`").append(c.column).append("` ").append(fh[c.type]).append(" ?");
+				sa.add(sb.toString());
 				params.add(c.value);
 				continue;
 			}
 			switch(c.type){
 			case SQLConstains.TYPE_ISNULL:
-				w = String.format(" `%s` is NULL ", c.column);
-				sa.add(w);
+				//w = String.format(" `%s` is NULL ", c.column);
+				sb.setLength(0);
+				sb.append(" `").append(c.column).append("` is NULL ");
+				sa.add(sb.toString());
 				break;
 			case SQLConstains.TYPE_LIKE:
 				//String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
 				//sa.add(w);
-				w = String.format("  `%s` like ? ", c.column);
-				sa.add(w);
+//				w = String.format("  `%s` like ? ", c.column);
+//				sa.add(w);
+				sb.setLength(0);
+				sb.append(" `").append(c.column).append("` like ? ");
+				sa.add(sb.toString());
+				
 				params.add("%"+c.value+"%");
 				
 				break;
 			case SQLConstains.TYPE_MLIKE:
 				String[] ca = c.column.split(",");
-				String t  = "(" +String.format("`%s` like ?",ca[0]);
+				//String t  = "(" +String.format("`%s` like ?",ca[0]);
+				sb.setLength(0);
+				sb.append("(`").append(ca[0]).append("` like ?");
 				params.add("%"+c.value+"%");
 				for(int i=1;i<ca.length;i++){
-					t+=" or "+String.format("`%s` like ?",ca[i]);
+					//t+=" or "+String.format("`%s` like ?",ca[i]);
+					sb.append(" or `").append(ca[i]).append("` like ?");
 					params.add("%"+c.value+"%");
 				}
-				t+=")";
-				sa.add(t);
+				//t+=")";
+				sb.append(")");
+				sa.add(sb.toString());
 				break;
 			case SQLConstains.TYPE_LIMIT:
 				limitc = c;
@@ -182,25 +228,26 @@ public class MySQLDelegate implements IDBDelegate {
 			}
 		}
 		
-		String tail ="";
+		//String tail ="";
+		sb.setLength(0); //使用sb代替tail
 		if(orderc!=null){
-			//tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
-			tail += String.format(" order by `%s` %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
-			//params.add((Boolean)orderc.value?"asc":"desc");
+			//tail += String.format(" order by `%s` %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
 			
+			sb.append(" order by `").append(orderc.column).append("` ").append((Boolean)orderc.value?"asc":"desc");
 		}
 		if( limitc!=null){
 			//tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
-			tail += " limit ?,?";
+			//tail += " limit ?,?";
+			sb.append(" limit ?,?");
 			params.add(limitc.value);
 			params.add(limitc.value2);
 		}
 		
 		DBHelper helper = DBHelper.getIns("mysql");
-		String c=  TextTool.join2(sa, " and ") +  tail;
+		String c=  TextTool.join2(sa, " and ") +  sb.toString();
 		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
 
-			String sql = "select "+prefix+" from `" + tbName+"`";
+			String sql =TextTool.concat("select ",prefix," from `" ,tbName,"`").toString();
 			try {
 				return helper.getRS(sql);
 			} catch (SQLException e) {
@@ -211,7 +258,7 @@ public class MySQLDelegate implements IDBDelegate {
 			if(!c.startsWith("limit") && ! c.startsWith("order")){
 				c  = " where " +c ;
 			}else c = " " +c;
-			String sql = "select "+prefix+" from `"+tbName +"` "+c;
+			String sql = TextTool.concat("select ",prefix," from `",tbName ,"` ",c).toString();
 			try {
 				return helper.getRS(sql,params);
 			} catch (SQLException e) {

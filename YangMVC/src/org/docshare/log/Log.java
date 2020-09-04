@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.docshare.mvc.Config;
 
 import com.alibaba.fastjson.JSON;
+import com.hxtt.concurrent.i;
 
 
 public class Log {
@@ -37,6 +38,14 @@ public class Log {
 		}
 		log.info(t);
 		//System.out.println(now()+ "[info ]" + str);
+	}
+	public static  void i(String ...arr){
+		if(Config.level > LEVEL_INFO)return;
+		StringBuffer sBuffer =new StringBuffer();
+		for(String t:arr){
+			sBuffer.append(t);
+		}
+		log.info(sBuffer.toString());
 	}
 
 	public static <T> void e(T i) {

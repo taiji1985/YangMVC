@@ -3,6 +3,8 @@ package org.docshare.mvc.except;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
+import org.docshare.util.TextTool;
+
 public class MVCException extends RuntimeException{
 	private String msg = "";
 	/**
@@ -22,6 +24,10 @@ public class MVCException extends RuntimeException{
 		super(msg);
 		this.msg = msg;
 		this.throwable = throwable;
+	}
+	public MVCException(String...args) {
+		super();
+		this.msg = TextTool.concat(args).toString();
 	}
 	
 	@Override

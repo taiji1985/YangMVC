@@ -200,31 +200,39 @@ public class TextTool {
 		return new String(arr);
 	}
 
-	public static String join(List<String> ret, String join_str) {
-		if(ret ==null || ret.size()==0) return "[]";
-		return join(ret.toArray(new String[ret.size()]),join_str);
-	}
-	public static String join2(List<String> ret, String join_str) {
-		if(ret ==null || ret.size()==0) return "";
-		return join(ret.toArray(new String[ret.size()]),join_str);
+	
+	public static String join2(List<String> str, String join_str) {
+		if (str == null ||str.size() == 0) {
+			return "";
+		}
+		StringBuffer ret =new StringBuffer();
+		for (String s : str) {
+			if (ret.length() > 0) {
+				ret.append(join_str);
+			}
+			ret.append(s);
+		}
+
+		return ret.toString();
 	}
 
 	public static String join(Object[] str, String join_str) {
-		String ret = "";
+		
 		if (str == null) {
 			return "";
 		}
+		StringBuffer ret =new StringBuffer();
 		for (Object s : str) {
 			if (ret.length() > 0) {
-				ret += join_str;
+				ret.append(join_str);
 			}
-			ret += s.toString();
+			ret.append(s.toString());
 		}
 
-		return ret;
+		return ret.toString();
 	}
 
-	public static String join(ArrayList<Object> params, String join_str) {
+	public static String join(List<Object> params, String join_str) {
 		if(params == null) return null;
 		StringBuffer sb = new StringBuffer();
 		for(int i=0;i<params.size()-1;i++){
@@ -242,5 +250,12 @@ public class TextTool {
 		int dotp = a.lastIndexOf(".");
 		if(dotp <  0) return a;
 		return a.substring(0,dotp);
+	}
+	public static StringBuffer concat(Object ...args){
+		StringBuffer sBuffer =new StringBuffer();
+		for(Object s:args){
+			sBuffer.append(s);
+		}
+		return sBuffer;		
 	}
 }

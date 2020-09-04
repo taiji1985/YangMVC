@@ -208,7 +208,7 @@ public class BeanUtil {
 				e.printStackTrace();
 			}
 		}
-		Log.i(Config.str());
+		//Log.i(Config.str());
 		
 	}
 

@@ -6,14 +6,18 @@ public class ArrayTool {
 	@SuppressWarnings("rawtypes")
 	public static String join(String joiner,Collection c){
 		StringBuffer sb = new StringBuffer();
+		boolean first =true;
 		for(Object o: c){
-			sb.append(joiner+o);
+			if(first){
+				sb.append(o);
+				first =false;
+			}else{
+				sb.append(joiner);
+				sb.append(o);
+			}
 		}
-		String s = sb.toString();
-		if(s.length()<=0)return s;
-		
-		s = s.substring(1);
-		return s;
+
+		return sb.toString();
 	}
 	@SuppressWarnings("rawtypes")
 	public static String joinWithLengthLimit(String joiner,Collection c,int len){

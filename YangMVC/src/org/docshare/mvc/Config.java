@@ -83,6 +83,7 @@ public class Config {
 				+",\n\treloadable="+reloadable
 				+",\n\tuseSSL="+useSSL
 				+",\n\tdbtype="+dbtype
+				+",\n\tdbEncoding="+dbEncoding
 				+",\n\tinterceptors="+getInteNames(interceptors)
 				+", \n\tpost-process="+getInteNames(postInterceptors)
 				+ "\n]";
@@ -176,13 +177,13 @@ public class Config {
 	 * 读取properties文件
 	 * @param PROP_FILE
 	 */
-	public static void loadProperties(String PROP_FILE){
+	public static boolean loadProperties(String PROP_FILE){
 		InputStream in = null;
 		try {
 			in = getPropertiesStream(PROP_FILE);
 			if(in == null){
 				Log.e("Config file NOT found : web.properties ");
-				return;
+				return false;
 			}else{
 				Log.i("Config  found ! ");
 			}
@@ -191,9 +192,10 @@ public class Config {
 			pro.load(in);
 			Log.i("web.properties loaded ");
 			BeanUtil.prop2StaticField(pro, Config.class);
-			
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}finally {
 			try {
 				in.close();
@@ -204,6 +206,7 @@ public class Config {
 	}
 	
 	public static String dateFormat=null; //输出的date的格式化
+	public static Object dbEncoding="utf-8";
 	
 	public static void main(String[] args) {
 		Config.loadProperties("/web.properties");

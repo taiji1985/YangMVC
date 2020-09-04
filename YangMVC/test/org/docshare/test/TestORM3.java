@@ -5,6 +5,7 @@ import java.util.List;
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
+import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
 import com.alibaba.fastjson.JSON;
@@ -50,11 +51,30 @@ public class TestORM3 extends TestCase{
 		tool.save(c);
 	}
 	public void testLike(){
-		String s = JSON.toJSONString(Model.tool("book").all().like("name", "本草").limit(10));
+		LasyList r = Model.tool("book").all().like("name", "本草").limit(10);
+		System.out.println("r.size = "+r.size());
+		String s = JSON.toJSONString(r,true);
 		System.out.println(s);
 	}
 	public void testMLike(){
-		String s = JSON.toJSONString(Model.tool("book").all().mlike("name,author", "李").limit(10));
+		LasyList r = Model.tool("book").all().mlike("name,author", "李").limit(10);
+		//System.out.println("r.size = "+r.size());
+//		for(Model m : r){
+//			System.out.println(m);
+//		}
+		String s = JSON.toJSONString(r);
 		System.out.println(s);
+	}
+	public void testQueue(){
+		LasyList r = Model.tool("book").all().gt("id", 12).lt("id", 18).gte("id", 13);
+		Log.i(r);
+	}
+	
+	public void testLimit(){
+		LasyList list = Model.tool("book").all();
+		System.out.println("size = "+list.size());
+		list.limit(30);
+		System.out.println("size = "+list.size());
+		
 	}
 }

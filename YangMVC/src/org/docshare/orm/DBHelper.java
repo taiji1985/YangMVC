@@ -55,6 +55,9 @@ public abstract class DBHelper {
 	public static DBHelper getIns(){
 		return getIns(Config.dbtype);
 	}
+	public Connection getConnection(){
+		return con;
+	}
 
 	public static boolean useCache = true;
 
@@ -130,6 +133,8 @@ public abstract class DBHelper {
 			rs.close();
 		}
 
+	ArrayList<Object> oneArray = new ArrayList<>(1);
+	ArrayList<Object> twoArray = new ArrayList<>(2);
 	/**
 	 * 根据sql和参数进行查询 
 	 * @param sql SQL语句
@@ -138,23 +143,16 @@ public abstract class DBHelper {
 	 * @throws SQLException
 	 */
 	public ResultSet getPrepareRS(String sql, Object obj) throws SQLException {
-		PreparedStatement s ;
-		conn();
-		Log.d("DBHelper"+" Exec : "+sql +",param1 = "+obj);
-		s= con.prepareStatement(sql);
-		s.setObject(1, obj);
-		return s.executeQuery();
+		oneArray.set(0,obj);
+		return getRS(sql,oneArray);
 	}
 
 	public ResultSet getPrepareRS(String sql, Object a, Object b)
 			throws SQLException {
-				PreparedStatement s ;
-				conn();
-				Log.d("DBHelper"+" Exec : "+sql +"param1 = "+a+",param2="+b);
-				s= con.prepareStatement(sql);
-				s.setObject(1, a);
-				s.setObject(2, b);
-				return s.executeQuery();
+		twoArray.clear();
+		twoArray.set(0, a);
+		twoArray.set(0, b);
+		return getRS(sql,twoArray);
 	}
 
 	public ResultSet getRS(String sql) throws SQLException {
@@ -236,7 +234,7 @@ public abstract class DBHelper {
 			return last_id;
 	}
 
-	public int updateWithArray(String sql, Object[] objs) {
+	public int updateWithArray(String sql, Object[] objs){
 		try {
 			conn();
 			last_id = -1;
@@ -260,7 +258,7 @@ public abstract class DBHelper {
 		} catch (SQLException e) {
 			//new MVCException();
 			String msg = "exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") ;
-			throw new MVCException(msg,e);
+			throw new MVCException(e);
 		}
 	}
 
@@ -415,6 +413,9 @@ public abstract class DBHelper {
 	}
 
 	public DBHelper() {
+		oneArray.add("aa");
+		twoArray.add("aa");
+		twoArray.add("bb");
 	}
 
 	@Override
@@ -425,12 +426,12 @@ public abstract class DBHelper {
 		super.finalize();
 	}
 
-	private void printParams(String sql, ArrayList<Object> params) {
+	protected void printParams(String sql, List<Object> params) {
 		Log.d("PrintParams: "+sql +" params= {"+TextTool.join(params, ",")+"}");
 		
 	}
 
-	public ResultSet getRS(String sql, ArrayList<Object> params) throws SQLException {
+	public ResultSet getRS(String sql, List<Object> params) throws SQLException {
 		printParams(sql,params);
 		PreparedStatement s ;
 		conn();

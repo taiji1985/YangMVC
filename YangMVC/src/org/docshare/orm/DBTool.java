@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
+import org.docshare.mvc.except.MVCException;
 import org.docshare.util.BeanUtil;
 
 import com.alibaba.fastjson.JSON;
@@ -310,8 +311,8 @@ public class DBTool {
 		return c_to_remarks.get(column);
 	}
 
-	public int run(String sql,Object...objects){
-		Log.i("DBTool run :" +sql +"  param=["+ArrayTool.join(",", objects)+"]" );
+	public int run(String sql,Object...objects) {
+		Log.i("DBTool run :" ,sql ,"  param=[",ArrayTool.join(",", objects)+"]" );
 		return DBHelper.getIns().update(sql,objects);
 	}
 	
