@@ -175,7 +175,8 @@ public class Config {
 	}
 	/**
 	 * 读取properties文件
-	 * @param PROP_FILE
+	 * @param PROP_FILE 属性文件的路径
+	 * @return 加载是否成功
 	 */
 	public static boolean loadProperties(String PROP_FILE){
 		InputStream in = null;

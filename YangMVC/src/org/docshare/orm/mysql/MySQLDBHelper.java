@@ -37,7 +37,7 @@ public class MySQLDBHelper extends DBHelper {
 //			String uri = String.format(
 //					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&useSSL="+Config.useSSL,
 //					Config.dbhost,Config.dbport, Config.dbname);
-			String uri = TextTool.concat("jdbc:mysql://",Config.dbhost,":",Config.dbport,"/",Config.dbname,"?characterEncoding=utf-8&useSSL=",Config.useSSL,"&serverTimezone=Asia/Shanghai").toString();
+			String uri = TextTool.concat("jdbc:mysql://",Config.dbhost,":",Config.dbport,"/",Config.dbname,"?characterEncoding=",Config.dbEncoding,"&useSSL=",Config.useSSL,"&serverTimezone=Asia/Shanghai").toString();
 //			String uri = String.format(
 //					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&serverTimezone=GMT+8&useSSL="+Config.useSSL,
 //					Config.dbhost,Config.dbport, Config.dbname);

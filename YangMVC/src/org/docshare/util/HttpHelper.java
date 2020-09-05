@@ -14,7 +14,7 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 public class HttpHelper {
 	/**
 	 * 执行get请求
-	 * @param url
+	 * @param url 网页路径
 	 * @return 如果失败返回null，否则返回内容
 	 */
 	public static String get(String url) {

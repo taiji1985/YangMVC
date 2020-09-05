@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.docshare.mvc.Config;
 
 import com.alibaba.fastjson.JSON;
-import com.hxtt.concurrent.i;
 
 
 public class Log {

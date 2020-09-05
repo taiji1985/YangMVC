@@ -27,7 +27,7 @@ public class ColumnDesc {
 	}
 	/**
 	 * 数据库类型映射java类型
-	 * @return
+	 * @return java类型
 	 */
 	public String javaType(){
 		String t = typeName.toLowerCase();

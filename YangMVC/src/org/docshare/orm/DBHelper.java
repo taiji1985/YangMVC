@@ -36,6 +36,7 @@ public abstract class DBHelper {
 
 	/**
 	 * 使用该函数获取DBHelper对象。 本类的设计为同一个线程公用一个DBHelper
+	 * @param type 数据库类型
 	 * @return DBHelper对象
 	 */
 	public static DBHelper getIns(String type) {
@@ -84,8 +85,8 @@ public abstract class DBHelper {
 	/**
 	 * 获取该表的外键信息
 	 * @param table 表名
-	 * @param map
-	 * @throws SQLException
+	 * @param map 字段描述
+	 * @throws SQLException 数据库异常
 	 */
 	public void getFKey(String table, HashMap<String,ColumnDesc> map) throws SQLException {
 			conn();
@@ -139,8 +140,8 @@ public abstract class DBHelper {
 	 * 根据sql和参数进行查询 
 	 * @param sql SQL语句
 	 * @param obj 参数
-	 * @return
-	 * @throws SQLException
+	 * @return 结果集
+	 * @throws SQLException 数据库异常
 	 */
 	public ResultSet getPrepareRS(String sql, Object obj) throws SQLException {
 		oneArray.set(0,obj);
@@ -189,9 +190,9 @@ public abstract class DBHelper {
 	}
 	/**
 	 * 列举sql返回的所有的行
-	 * @param sql
-	 * @param rs
-	 * @return
+	 * @param sql SQL语句
+	 * @param rs  结果集
+	 * @return 字段描述map
 	 */
 	public HashMap<String,ColumnDesc> columeOfRs(String sql, ResultSet rs) {
 			//对SQL语句，根据SQL作为key进行缓存
@@ -285,8 +286,8 @@ public abstract class DBHelper {
 
 	/**
 	 * 列举表中的所有字段，获取表结构
-	 * @param tb
-	 * @return
+	 * @param tb 表名
+	 * @return 字段描述信息
 	 */
 	public HashMap<String,ColumnDesc> listColumn(String tb) {
 		return listColumn(tb,true);
@@ -294,8 +295,8 @@ public abstract class DBHelper {
 
 	/**
 	 * 尝试从文件中存储预存的表结构 （仅应用与某些无法直接获取表结构的场景）
-	 * @param tb
-	 * @return
+	 * @param tb 表名
+	 * @return 字段描述信息
 	 */
 	public HashMap<String,ColumnDesc> readColumnDesc(String tb) {
 	//		URL purl = getClass().getResource("/");
@@ -322,7 +323,8 @@ public abstract class DBHelper {
 	/**
 	 * 返回表格中所有的列，以及列的注释（这个注释可以用于显示）
 	 * @param tb 表格名称
-	 * @return  列名->注释 的映射表
+	 * @param useCache 是否使用缓存
+	 * @return  列名-&gt;注释 的映射表
 	 */
 	public HashMap<String,ColumnDesc> listColumn(String tb, boolean useCache) {
 		HashMap<String, ColumnDesc> ret ;
@@ -372,8 +374,8 @@ public abstract class DBHelper {
 
 	/**
 	 * 获取表的主键
-	 * @param tb
-	 * @return
+	 * @param tb 表名
+	 * @return 主键名称
 	 */
 	public String keyColumn(String tb) {
 		conn();

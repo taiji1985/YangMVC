@@ -15,9 +15,9 @@ import org.docshare.util.BeanUtil;
 import com.alibaba.fastjson.JSON;
 
 /**
- * ORM类库最核心的类。 负责数据库表的查询。所有数据库查询均需先创建此类。 <br />
- * 创建方法: <br />
- * DBTool tool = DBTool.getIns("book"); //book为数据库表名<br />
+ * ORM类库最核心的类。 负责数据库表的查询。所有数据库查询均需先创建此类。 <br>
+ * 创建方法: <br>
+ * DBTool tool = DBTool.getIns("book"); //book为数据库表名<br>
  * LasyList list = tool.all().limit(10); //查询数据库的前10行， all()并非获取了所有列，当添加完参数，真正读取时才进行查询。它实际上是一个SQL语句的Builder
  * 得到LasyList可以使用像ArrayList一样使用了。
  * 
@@ -64,7 +64,7 @@ public class DBTool {
 	}
 	/**
 	 * 获取列的类型（int类型）
-	 * @param column
+	 * @param column 字段名
 	 * @return 类型
 	 */
 	public int getColumnType(String column){
@@ -72,8 +72,8 @@ public class DBTool {
 	}
 	/**
 	 * 获取列的类型名
-	 * @param column
-	 * @return
+	 * @param column 字段名
+	 * @return 字段类型
 	 */
 	public String getColumnTypeName(String column){
 		ColumnDesc d = c_to_remarks.get(column);
@@ -101,7 +101,7 @@ public class DBTool {
 	 * 根据用户自定义的sql来获取list
 	 * 如果需要使用原生的SQL，请使用LasyList.fromRawSQL实现
 	 * 
-	 * @param sql
+	 * @param sql SQL语句
 	 * @return 返回一个包含了该SQL结果的LasyList（并没有真正查询，在你读取数据时真正查询
 	 */
 	@Deprecated
@@ -113,21 +113,20 @@ public class DBTool {
 	 * 获取key为id的记录并返回模型。注意必须有主键，且主键为整数
 	 * @param id 主键的值
 	 * @return 符合条件的模型
-	 * @throws SQLException
 	 */
 	public Model get(Object id){
 		return get(key,id);
 	}
 	/**
 	 * 获取column列等于id的所有集合的第一个
-	 * @param column
-	 * @param id
-	 * @return 找到列column等于id的对象
+	 * @param column 字段名
+	 * @param value 值
+	 * @return 找到列column等于value的对象
 	 */
-	public Model get(String column, Object id) {
+	public Model get(String column, Object value) {
 		ResultSet rs;
 		try {
-			rs = delegate.resultById(tname, column, id);
+			rs = delegate.resultById(tname, column, value);
 			Model tb=null;
 			if(rs.next()){
 				tb = db2Table(rs);
@@ -177,7 +176,8 @@ public class DBTool {
 
 	/**
 	 * 插入或保存数据。当m的主键为非空时，则为更新，主键为空是为插入。
-	 * @param m
+	 * @param m 模型变量
+	 * @return 影响的数据库行数
 	 */
 	public int save(Model m){
 		return save(m,false);
@@ -198,8 +198,9 @@ public class DBTool {
 	 * 更新或保存数据。
 	 * 当主键为null 或isInsert为真时， 执行插入数据
 	 * 否则，执行更新操作。
-	 * @param m
+	 * @param m 模型
 	 * @param isInsert 是否强制为插入操作
+	 * @return 影响的数据库行数
 	 */
 	public int save(Model m,boolean isInsert){
 		if(m == null){
@@ -217,7 +218,7 @@ public class DBTool {
 	
 	/**
 	 * 执行一次插入操作
-	 * @param m
+	 * @param m 模型
 	 * @return 插入影响的行数
 	 */
 	public int insert(Model m){
@@ -228,7 +229,7 @@ public class DBTool {
 	 * 获取表格所有行，这里采用了延迟加载技术，并不会真的查询所有的行，
 	 * 可以调用返回的LasyList的过滤器添加查询条件，在读取数据时才真正进行查询。
 	 * 如: tool.all().eq("id",12).gt("no",333) ; 相当于
-	 * select * from tablea where id = 12 and no>333 
+	 * select * from tablea where id = 12 and no&gt;333 
 	 * @return LasyList对象
 	 */
 	public LasyList all(){
@@ -264,7 +265,7 @@ public class DBTool {
 	}
 	/**
 	 * 根据表的主键删除表格的一行
-	 * @param id
+	 * @param id 主键的值
 	 * @return 影响的数据库的行数
 	 */
 	public int del(Object id) {
@@ -272,9 +273,9 @@ public class DBTool {
 	}
 	/**
 	 * 根据某个列的值进行删除
-	 * @param column
-	 * @param val
-	 * @return 
+	 * @param column 列名
+	 * @param val 值
+	 * @return  影响的数据库行数
 	 */
 	public int delBy(String column,Object val){
 		return delegate.delete(tname, column, val);
@@ -282,7 +283,8 @@ public class DBTool {
 	
 	/**
 	 * 根据Model对象删除数据表的一行
-	 * @param m
+	 * @param m 模型
+	 * @return 影响的数据库行数
 	 */
 	public int del(Model m){
 		Object kv = m.get(key);
@@ -304,7 +306,7 @@ public class DBTool {
 	}
 	/**
 	 * 获取当前数据表的某一行的信息
-	 * @param column
+	 * @param column 列名
 	 * @return 获取column列描述信息
 	 */
 	public ColumnDesc getColumnDesc(String column) {

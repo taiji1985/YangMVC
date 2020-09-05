@@ -14,9 +14,9 @@ import org.docshare.orm.DBHelper;
 public class AccessDBHelper extends DBHelper {
 	/**
 	 * 列举sql返回的所有的行
-	 * @param sql
-	 * @param rs
-	 * @return
+	 * @param sql sql语句
+	 * @param rs 查询结果集
+	 * @return 字段描述
 	 */
 	public HashMap<String,ColumnDesc> columeOfRs(String sql, ResultSet rs) {
 			//对SQL语句，根据SQL作为key进行缓存

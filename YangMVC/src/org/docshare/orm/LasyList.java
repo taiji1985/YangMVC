@@ -64,7 +64,7 @@ public class LasyList extends ListAdapter {
 	
 	/**
 	 * 判断是否有相关记录
-	 * @return
+	 * @return 存在返回true，否则为false
 	 */
 	public boolean exist(){
 		if(arrList!=null){
@@ -83,11 +83,13 @@ public class LasyList extends ListAdapter {
 		return size() == 0;
 	}
 	/**
-	 * 判断列表中是否存在某个对象，该方法<red>暂未实现</red>。
+	 * 判断列表中是否存在某个对象。
 	 */
 	@Override
 	public boolean contains(Object o) {
-		return false;
+		toArrayList();
+		if(arrList==null)return false;
+		return arrList.contains(o);
 	}
 
 	HashMap<Integer, Model> row_maps = new HashMap<Integer, Model>();
@@ -122,8 +124,8 @@ public class LasyList extends ListAdapter {
 	private String column_filter="*"; // 控制输出哪些项
 	/**
 	 * 控制输出哪些项目，举例：  id,name,age    每个项目用逗号分隔。
-	 * @param filter
-	 * @return
+	 * @param filter 返回的列
+	 * @return 查询结果
 	 */
 	public LasyList columnFilter(String filter){
 		this.column_filter = filter;
@@ -141,7 +143,7 @@ public class LasyList extends ListAdapter {
 						column_desc = new HashMap<String, Object>();
 					}
 				}else{
-					rs =  delegate.runSQL(cons, tool, tbName,column_filter);
+					rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
 				}
 			} catch (SQLException e) {
 				Log.e("LasyList.initRS ERROR: "+debugInfo());
@@ -200,6 +202,7 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 	private int _start = 0;
+	private SQLConstains limit_constrain=null;
 	/**
 	 * 使用limit来截取数据
 	 * @param start 开始索引，以0开始
@@ -209,7 +212,8 @@ public class LasyList extends ListAdapter {
 	@NotNull
 	public LasyList limit(int start, int len) {
 		_start = start;
-		cons.add(new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len));
+		//cons.add(new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len));
+		limit_constrain = new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len);
 		return this;
 	}
 
@@ -226,8 +230,8 @@ public class LasyList extends ListAdapter {
 
 	/**
 	 * 模糊查询，会使用 sql中的 a like '%b%'的方式来实现
-	 * @param column
-	 * @param q
+	 * @param column 列名
+	 * @param q 关键字
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
 	@NotNull
@@ -237,9 +241,9 @@ public class LasyList extends ListAdapter {
 	}
 	/**
 	 * 在多个列中进行like查找，多个列之间是或者关系
-	 * @param columnList
-	 * @param q
-	 * @return
+	 * @param columnList 多个列的列名
+	 * @param q 关键词
+	 * @return 查询结果
 	 */
 	@NotNull
 	public LasyList mlike(String columnList,String q){
@@ -255,7 +259,7 @@ public class LasyList extends ListAdapter {
 	}
 
 	/**
-	 * 大于 ,相当于sql中 column > val 
+	 * 大于 ,相当于sql中 column &gt; val 
 	 * 会获取column制定的列大于val值的所有项 
 	 * @param column 列名
 	 * @param val    值
@@ -268,7 +272,7 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 	/**
-	 * 大于等于 ,相当于sql中 column >= val 
+	 * 大于等于 ,相当于sql中 column &gt;= val 
 	 * 会获取column制定的列大于或等于val值的所有项对象
 	 * @param column 列名
 	 * @param val    值
@@ -281,7 +285,7 @@ public class LasyList extends ListAdapter {
 	}
 
 	/**
-	 * 小于 ,相当于sql中 column <= val 
+	 * 小于 ,相当于sql中 column &lt;= val 
 	 * 会获取column制定的列小于或等于val值的所有项对象
 	 * @param column 列名
 	 * @param val    值
@@ -293,7 +297,7 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 	/**
-	 * 小于等于 ,相当于sql中 column <= val 
+	 * 小于等于 ,相当于sql中 column &lt;= val 
 	 * 会获取column制定的列小于或等于val值的所有项对象
 	 * @param column 列名
 	 * @param val    值
@@ -305,7 +309,7 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 	/**
-	 * 不等于 ,相当于sql中 column <> val 
+	 * 不等于 ,相当于sql中 column &lt;&gt; val 
 	 * 会获取column制定的列不等于val值的所有项对象
 	 * @param column 列名
 	 * @param val    值
@@ -320,30 +324,33 @@ public class LasyList extends ListAdapter {
 	/**
 	 * 添加空约束。。 select * from book where author is null;/
 	 * @param column 为空的列
-	 * @return
+	 * @return 查询结果
 	 */
 	public LasyList isNull(String column){
 		cons.add(new SQLConstains(SQLConstains.TYPE_ISNULL, column, null));
 		return this;
 	}
 
+	private SQLConstains order_constrain=null;
 	/**
 	 * 设置排序规则
 	 * @param column
 	 *            排序依据的列
 	 * @param asc
 	 *            当asc为true时，是升序，否则为降序
+	 * @return 查询结果
 	 */
 	@NotNull
 	public LasyList orderby(String column, boolean asc) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
+		//cons.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
+		order_constrain = new SQLConstains(SQLConstains.TYPE_ORDER, column, asc);
 		return this;
 	}
 	
 	/***
 	 * 除了limit和order意外的任意约束条件。 这个约束条件不会判断是否重复
-	 * @param any
-	 * @return
+	 * @param any 任何sql条件
+	 * @return 查询结果
 	 */
 	@NotNull
 	public LasyList custom(String any){
@@ -448,6 +455,7 @@ public class LasyList extends ListAdapter {
 	 * 将结果转换为对象数组
 	 * 
 	 * @param clazz 要转化对象的类
+	 * @param <T> 类的类型
 	 * @return 对象数组
 	 */
 	public <T> List<T> toArrayList(Class<T> clazz){
@@ -469,7 +477,7 @@ public class LasyList extends ListAdapter {
 
 	/**
 	 * 直接根据sql语句获取列表
-	 * @param sql
+	 * @param sql sql语句
 	 * @return LasyList对象
 	 */
 	public static LasyList fromRawSql(String sql){

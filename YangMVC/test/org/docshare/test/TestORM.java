@@ -1,5 +1,7 @@
 package org.docshare.test;
 
+import java.util.List;
+
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
@@ -173,5 +175,9 @@ public class TestORM extends TestCase{
 		LasyList lasyList =  Model.tool("book").all().columnFilter("id,name").limit(2);
 		String string = JSON.toJSONString(lasyList.toArrayList());
 		System.out.println(string);
+	}
+	public void testQueue(){
+		List<Model> a = Model.tool("book").all().gt("id", 12).lt("id", 33).eq("id", 14).orderby("name", false).limit(0,20).toArrayList();
+		Log.i(a);
 	}
 }

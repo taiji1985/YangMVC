@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class MapHelper {
 	/**
 	 * 可变参数转hashmap
-	 * @param v
-	 * @return
+	 * @param v 交替存放key和value。如 a,1,b,2 表述a=1,b=2
+	 * @return 哈希表
 	 */
 	public static HashMap<String, Object> toMap(Object ...v){
 		HashMap<String, Object>  ret = new HashMap<String, Object>();

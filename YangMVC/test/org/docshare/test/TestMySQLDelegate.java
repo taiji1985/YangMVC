@@ -1,5 +1,6 @@
 package org.docshare.test;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,8 @@ public class TestMySQLDelegate extends TestCase{
 		cons.add(new SQLConstains(SQLConstains.TYPE_GTE, "catalog_id", 1));
 		
 		DBTool tool = DBTool.getIns("book");
-		String s = delegate.buildSQL(cons, tool,null);
-		System.out.println(s);
+		//String s = delegate.buildSQL(cons, tool,null);
+		//System.out.println(s);
+		ResultSet rs = delegate.runSQL(cons, null, null, tool, "book", "*");
 	}
 }

@@ -72,8 +72,8 @@ public class Controller {
 	/**
 	 * 在控制器方法中，return jsp(); 即为输出jsp的意思。
 	 * 如果不想使用命名约定对应的jsp，可以指定path
-	 * @param path
-	 * @return
+	 * @param path jsp文件相对路径
+	 * @return JSP对象
 	 */
 	public JSP jsp(String path){ 
 		return new JSP(path);
@@ -81,7 +81,7 @@ public class Controller {
 	/**
 	 * 在控制器方法中，return jsp(); 即为输出jsp的意思。
 	 * 输出的jsp为命名约定对应的jsp
-	 * @return
+	 * @return JSP对象
 	 */
 	public JSP jsp(){
 		return jsp_def; 
@@ -89,8 +89,8 @@ public class Controller {
 	
 	/**
 	 * 在控制器方法中 return freemarker()为输出freemarker的意思
-	 * @param path
-	 * @return
+	 * @param path 模板文件路径
+	 * @return FreeMarker对象（会使用后处理器进行处理）
 	 */
 	public FreeMarker freemarker(String path){
 		return new FreeMarker(path);
@@ -151,7 +151,7 @@ public class Controller {
 	}
 	/**
 	 * 获取HTTP请求的方法，GET/POST/PUT 等
-	 * @return
+	 * @return http请求类型
 	 */
 	public String method() {
 		return request.getMethod();
@@ -178,6 +178,7 @@ public class Controller {
 	}
 	/**
 	 * 自动处理分页问题，对应URL参数 page 为页码， pagesz为页面大小（默认为30)
+	 * @param list 原列表
 	 * @return 返回所需的对象列表
 	 */
 	public LasyList page(LasyList list){
@@ -316,6 +317,7 @@ public class Controller {
 	 * JSP :　request.getAttribute("n") 会返回12, ${n}也会为12<br>
 	 * @param name 参数名
 	 * @param obj  参数值
+	 * @param others 其他要插入的参数， put("name","yang","height",170,"weight",60)
 	 */
 	public void put(String name,Object obj,Object... others){
 		if(obj instanceof IBean){
@@ -340,7 +342,7 @@ public class Controller {
 	
 	/**
 	 * 将model中的每个字段以单独的变量形式加入request中
-	 * @param m
+	 * @param m 模型
 	 */
 	public void putModelItem(Model m){
 		for(String k : m.keySet()){
@@ -349,8 +351,8 @@ public class Controller {
 	}
 	/**
 	 * 是否存在某个文件
-	 * @param path
-	 * @return
+	 * @param path 文件路径
+	 * @return 存在返回true，否则返回false
 	 */
 	public boolean existFile(String path){
 		@SuppressWarnings("deprecation")
@@ -368,7 +370,7 @@ public class Controller {
 	}
 	/**
 	 * 渲染一个模板，模板为参数view指定，这个路径是相对于配置中的template目录的。
-	 * @param view
+	 * @param view jsp文件位置
 	 */
 	public void render(String view) {
 		if(!can_out){
@@ -414,8 +416,8 @@ public class Controller {
 	}
 	/**
 	 * 由过滤器调用这个方法来传送 request和response对象
-	 * @param req
-	 * @param resp
+	 * @param req 请求
+	 * @param resp 响应
 	 */
 	public void setReq(HttpServletRequest req, HttpServletResponse resp) {
 		this.request = req;
@@ -484,7 +486,7 @@ public class Controller {
 	}
 	/**
 	 * 获取Session中key制定变量的值
-	 * @param key
+	 * @param key 关键字
 	 * @return sesion中存储的该键对应的内容，如果没有返回null
 	 */
 	public Object sess(String key){
@@ -492,8 +494,8 @@ public class Controller {
 	}
 	/**
 	 * 设置Session中key变量的值为val
-	 * @param key
-	 * @param val
+	 * @param key 关键字
+	 * @param val 要设置为的值
 	 */
 	public void sess(String key,Object val){
 		session.setAttribute(key, val);
@@ -569,8 +571,8 @@ public class Controller {
 	}
 	/**
 	 * 获取cookie
-	 * @param key
-	 * @return value
+	 * @param key 关键字
+	 * @return value 要设置成的值
 	 */
 	public String cookie(String key){
 		return cookieMap.get(key);
@@ -581,7 +583,7 @@ public class Controller {
 	 * @param key  键
 	 * @param value 值
 	 * @param period_ms 超时时间（单位毫秒）
-	 * @return
+	 * @return 返回value
 	 */
 	public String cookie(String key ,Object value,int period_ms){
 		Cookie cookie = new Cookie(key,""+value);
@@ -592,7 +594,7 @@ public class Controller {
 	}
 	/**
 	 * 删除cookie
-	 * @param key
+	 * @param key 要删除的cookie的关键字
 	 */
 	public void removeCookie(String key){
 		cookie(key,null,0); 
@@ -644,7 +646,7 @@ public class Controller {
 	}
 	/**
 	 * 输出字符串 并关闭流
-	 * @param s
+	 * @param s 字符串
 	 */
 	public void output(String s) {
 		try {
@@ -665,8 +667,8 @@ public class Controller {
 	}
 	/**
 	 * 输出一个字节流
-	 * @param ba
-	 * @return
+	 * @param ba 字符数组
+	 * @return 是否成功
 	 */
 	public boolean outputBytes(byte[] ba){
 		OutputStream oo;
@@ -682,7 +684,7 @@ public class Controller {
 	}
 	/**
 	 * 输出JSON字符串到网页
-	 * @param obj
+	 * @param obj 要输出的对象名
 	 */
 	public void outputJSON(Object obj){	
 		outputJSON(obj,param("debug") != null);
@@ -804,7 +806,7 @@ public class Controller {
 	}
 	/**
 	 * 获取URL参数或者Form提交的参数
-	 * @param p
+	 * @param p 参数名
 	 * @return 参数内容
 	 */
 	public String param(String p){
@@ -840,6 +842,7 @@ public class Controller {
 	 * 获取URL参数或者Form提交的参数,并自动转换为int，如果不是整数则会报错。
 	 * 如果该参数不存在，则返回默认值
 	 * @param p 参数名称
+	 * @param def 如果没有这个参数，返回的默认值
 	 * @return int类型的参数值（参数不存在返回def)
 	 */
 	public Integer paramInt(String p ,int def){
@@ -853,7 +856,7 @@ public class Controller {
 	/**
 	 * 根据名称匹配的原则，将与模型中参数名相同的参数的值放入模型中。并返回该模型<br>
 	 * 是收集表单数据到模型中的神器，手机后就可以直接进行数据库操作了。
-	 * @param m
+	 * @param m 模型
 	 * @return 得到的m，和参数m是同一个对象
 	 */
 	public Model paramToModel(Model m){
@@ -875,6 +878,7 @@ public class Controller {
 	 * 当prefix 为haha_的时候， haha_height会拷贝到obj的height属性中
 	 * @param obj    要赋值的对象
 	 * @param prefix 参数的前缀
+	 * @param <T> 转换为对象的类型
 	 * @return 赋值后的对象，将obj引用返回
 	 */
 	public <T> T paramToObj(T obj,String prefix){
@@ -897,6 +901,7 @@ public class Controller {
 	 * 将参数中的值拷贝到对象的对应属性中 
 	 * 如 height参数拷贝到obj的height属性中
 	 * @param obj    要赋值的对象
+	 * @param <T> 转换为对象的类型
 	 * @return 赋值后的对象，将obj引用返回
 	 */
 	public <T> T paramToObj(T obj){
@@ -906,9 +911,9 @@ public class Controller {
 	/**
 	 * 检查obj是否为null，如果为null，则抛出NullParamException ，这个错误会最终在网页上显示。
 	 * 如果希望改变显示内容，可以提前捕获此异常并进行处理。
-	 * @param name
-	 * @param obj
-	 * @throws NullParamException
+	 * @param name 参数名
+	 * @param obj 是否为空
+	 * @throws NullParamException 缺少参数异常
 	 */
 	public void checkNull(String name,Object obj) throws NullParamException{
 		if(obj == null){
@@ -921,7 +926,7 @@ public class Controller {
 	}
 	/**
 	 * 跳转到新页面/重定向。功能等同resposne.sendRedirect
-	 * @param url
+	 * @param url 目标url
 	 */
 	public void jump(String url){
 		try {
@@ -947,7 +952,7 @@ public class Controller {
 	}
 	/**
 	 * 返回当前控制器是否是单例模式
-	 * @return
+	 * @return 是否为单例
 	 */
 	public boolean isSingle(){
 		return single;
@@ -974,8 +979,8 @@ public class Controller {
 	 * 限制当前Controller类中的所有方法的访问权限。这个方法常用于权限判断
 	 * 如： session中存在uid字段，则说明已登录，如果没有，说明未登录，则跳转到登录页。
 	 * 如果value为空，要求session中存在某个key，如果value不为空，要求session中的值等于value
-	 * @param session_key
-	 * @param value
+	 * @param session_key session的key
+	 * @param value 要求的值
 	 * @param jump_url 如果不符合条件跳转到的地址
 	 * @param err 如果jump_url 为空，则不跳转，显示一个错误信息
 	 */
@@ -1157,7 +1162,7 @@ public class Controller {
 	}
 	/**
 	 * 执行某个方法
-	 * @param method
+	 * @param method 要运行的函数
 	 */
 	public void runMethod(Method method){
 		try {

@@ -103,15 +103,15 @@ public class AccessDelegate implements IDBDelegate {
 		return DBHelper.getIns().update(sql,id);
 	}
 
-	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName){
-		return runSQL(cons, tool, tbName,"*");
-	}
+//	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName){
+//		return runSQL(cons, tool, tbName,"*");
+//	}
 
 	@Override
 	public long size(List<SQLConstains> cons, DBTool tool, String tbName) {
 		ResultSet rs;
 		try {
-			rs = runSQL(cons, tool, tbName,"count(*) as CT");
+			rs = runSQL(cons,null,null, tool, tbName,"count(*) as CT");
 			if(rs.next()){
 				long id = rs.getLong("CT");
 				rs.close();
@@ -123,14 +123,14 @@ public class AccessDelegate implements IDBDelegate {
 		}
 		return 0;
 	}
-	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName,String prefix){
+	public ResultSet runSQL(List<SQLConstains> cons,SQLConstains orderc,SQLConstains limitc,DBTool tool,String tbName,String prefix){
 		if(tbName == null) return null ;//参数检查，表名不能为空
 		
 		ArrayList<String> sa = new ArrayList<String>();
 		ArrayList<Object> params = new ArrayList<Object>();
 		final String[] fh = {"","=",">","<",">=","<=","<>"};
-		SQLConstains limitc=null;
-		SQLConstains orderc=null;
+//		SQLConstains limitc=null;
+//		SQLConstains orderc=null;
 		for(SQLConstains c: cons){
 			if(c.type<fh.length){
 				//String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
@@ -209,73 +209,71 @@ public class AccessDelegate implements IDBDelegate {
 		}
 		
 	}
-	@Deprecated
-	public String buildSQLWithoutLimit(List<SQLConstains> cons,DBTool tool){
-		return buildSQL(cons, tool,false,null);
-	}
-	@Deprecated
-	@Override
-	public String buildSQL(List<SQLConstains> cons,DBTool tool,String sqlfrom){
-		return buildSQL(cons, tool,true,sqlfrom);
-	}
+//	@Deprecated
+//	public String buildSQLWithoutLimit(List<SQLConstains> cons,DBTool tool){
+//		return buildSQL(cons, tool,false,null);
+//	}
+//	public String buildSQL(List<SQLConstains> cons,DBTool tool,String sqlfrom){
+//		return buildSQL(cons, tool,true,sqlfrom);
+//	}
 	
 	@Deprecated
-	public String buildSQL(List<SQLConstains> cons,DBTool tool,boolean withLimit,String sqlfrom){
-		ArrayList<String> sa = new ArrayList<String>();
-		final String[] fh = {"","=",">","<",">=","<=","<>"};
-		SQLConstains limitc=null;
-		SQLConstains orderc=null;
-		for(SQLConstains c: cons){
-			if(c.type<fh.length){
-				String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
-				sa.add(String.format("[%s] %s %s", c.column,fh[c.type],w));
-				continue;
-			}
-			switch(c.type){
-			case SQLConstains.TYPE_LIKE:
-				String w = String.format("  [%s] like '$%s$' ", c.column, c.value).replace("$","%");
-				sa.add(w);
-				break;
-			case SQLConstains.TYPE_LIMIT:
-				limitc = c;
-				break;
-			case SQLConstains.TYPE_ORDER:
-				orderc = c;
-				break;
-			}
-		}
-		
-		String tail ="";
-		if(orderc!=null){
-			tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
-		}
-		if(withLimit && limitc!=null){
-			tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
-		}
-		
-		
-		String c=  TextTool.join2(sa, " and ") +  tail;
-		if(sqlfrom == null) return c;
-		sqlfrom = sqlfrom+ " ";
-		if(c.trim().length() == 0){
-			return sqlfrom;
-		}else{
-			c = c.trim();
-			if(sqlfrom.contains("where")){
-				if(c.startsWith("limit") || c.startsWith("order")){
-					return sqlfrom + c;
-				}else return  sqlfrom +" and " + c;
-			}else{
-				if(c.startsWith("limit")|| c.startsWith("order")){
-					return sqlfrom + c ;
-				}else {
-					return  sqlfrom+ " where " + c;
-				}
-			}
-		}
-		
-		
-	}
+//	public String buildSQL(List<SQLConstains> cons,DBTool tool,boolean withLimit,String sqlfrom){
+//		ArrayList<String> sa = new ArrayList<String>();
+//		final String[] fh = {"","=",">","<",">=","<=","<>"};
+//		SQLConstains limitc=null;
+//		SQLConstains orderc=null;
+//		for(SQLConstains c: cons){
+//			if(c.type<fh.length){
+//				String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
+//				sa.add(String.format("[%s] %s %s", c.column,fh[c.type],w));
+//				continue;
+//			}
+//			switch(c.type){
+//			case SQLConstains.TYPE_LIKE:
+//				String w = String.format("  [%s] like '$%s$' ", c.column, c.value).replace("$","%");
+//				sa.add(w);
+//				break;
+//			case SQLConstains.TYPE_LIMIT:
+//				limitc = c;
+//				break;
+//			case SQLConstains.TYPE_ORDER:
+//				orderc = c;
+//				break;
+//			}
+//		}
+//		
+//		String tail ="";
+//		if(orderc!=null){
+//			tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
+//		}
+//		if(withLimit && limitc!=null){
+//			tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
+//		}
+//		
+//		
+//		String c=  TextTool.join2(sa, " and ") +  tail;
+//		if(sqlfrom == null) return c;
+//		sqlfrom = sqlfrom+ " ";
+//		if(c.trim().length() == 0){
+//			return sqlfrom;
+//		}else{
+//			c = c.trim();
+//			if(sqlfrom.contains("where")){
+//				if(c.startsWith("limit") || c.startsWith("order")){
+//					return sqlfrom + c;
+//				}else return  sqlfrom +" and " + c;
+//			}else{
+//				if(c.startsWith("limit")|| c.startsWith("order")){
+//					return sqlfrom + c ;
+//				}else {
+//					return  sqlfrom+ " where " + c;
+//				}
+//			}
+//		}
+//		
+//		
+//	}
 
 	@Override
 	public ResultSet runSQL(String rawSql) throws SQLException {

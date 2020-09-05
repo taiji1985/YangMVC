@@ -131,8 +131,8 @@ public class FileTool {
 
 	/**
 	 * 根据输入流进行读取。
-	 * @param in
-	 * @param charset
+	 * @param in 输入流
+	 * @param charset 字符集
 	 * @return 文件内容
 	 */
 	public static String readAll(InputStream in, String charset) {
@@ -223,8 +223,8 @@ public class FileTool {
 
 	/**
 	 * 获取父文件夹
-	 * @param d
-	 * @return
+	 * @param d 路径
+	 * @return 父路径
 	 */
 	public static String getParentDir(String d) {
 		d = d.replace('\\', '/');
@@ -238,7 +238,7 @@ public class FileTool {
 	}
 	/**
 	 * 创建文件夹
-	 * @param d
+	 * @param d 路径
 	 */
 	public static void makeDir(String d) {
 		File f = new File(d);
@@ -266,6 +266,7 @@ public class FileTool {
 	 * 在文件中追加
 	 * @param f 文件名
 	 * @param d 内容
+	 * @param charset 编码
 	 */
 	public static void appendFile(String f, String d,String charset) {
 		RandomAccessFile randomFile = null; 
@@ -303,8 +304,8 @@ public class FileTool {
 	}
 	/**
 	 * 判断文件是否存在
-	 * @param filename
-	 * @return
+	 * @param filename 文件路径
+	 * @return 存在返回true，否则为false
 	 */
 	public static boolean exists(String filename) {
 		File f = new File(filename);

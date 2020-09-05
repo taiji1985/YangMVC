@@ -138,15 +138,15 @@ public class MySQLDelegate implements IDBDelegate {
 		return DBHelper.getIns().update(sql,id);
 	}
 
-	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName){
-		return runSQL(cons, tool, tbName,"*");
-	}
+//	public ResultSet runSQL(List<SQLConstains> cons,SQLConstains limit_con,SQLConstains order_con,DBTool tool,String tbName){
+//		return runSQL(cons,limit_con,order_con, tool, tbName,"*");
+//	}
 
 	@Override
 	public long size(List<SQLConstains> cons, DBTool tool, String tbName) {
 		ResultSet rs;
 		try {
-			rs = runSQL(cons, tool, tbName,"count(*) as CT");
+			rs = runSQL(cons, null,null,tool, tbName,"count(*) as CT");
 			if(rs!=null){
 				if(rs.next()){
 					long id = rs.getLong("CT");
@@ -164,176 +164,178 @@ public class MySQLDelegate implements IDBDelegate {
 		return 0;
 	}
 	@Override
-	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName,String prefix){
-		if(tbName == null) return null ;//参数检查，表名不能为空
-		
-		ArrayList<String> sa = new ArrayList<String>();
-		ArrayList<Object> params = new ArrayList<Object>();
-		final String[] fh = {"","=",">","<",">=","<=","<>"};
-		SQLConstains limitc=null;
-		SQLConstains orderc=null;
-		String w;
-		StringBuffer sb=new StringBuffer();
-		for(SQLConstains c: cons){
-			if(c.type<fh.length){
-				sb.setLength(0);
-				//sa.add(String.format("`%s` %s ?", c.column,fh[c.type]));
-				sb.append("`").append(c.column).append("` ").append(fh[c.type]).append(" ?");
-				sa.add(sb.toString());
-				params.add(c.value);
-				continue;
-			}
-			switch(c.type){
-			case SQLConstains.TYPE_ISNULL:
-				//w = String.format(" `%s` is NULL ", c.column);
-				sb.setLength(0);
-				sb.append(" `").append(c.column).append("` is NULL ");
-				sa.add(sb.toString());
-				break;
-			case SQLConstains.TYPE_LIKE:
-				//String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
-				//sa.add(w);
-//				w = String.format("  `%s` like ? ", c.column);
-//				sa.add(w);
-				sb.setLength(0);
-				sb.append(" `").append(c.column).append("` like ? ");
-				sa.add(sb.toString());
-				
-				params.add("%"+c.value+"%");
-				
-				break;
-			case SQLConstains.TYPE_MLIKE:
-				String[] ca = c.column.split(",");
-				//String t  = "(" +String.format("`%s` like ?",ca[0]);
-				sb.setLength(0);
-				sb.append("(`").append(ca[0]).append("` like ?");
-				params.add("%"+c.value+"%");
-				for(int i=1;i<ca.length;i++){
-					//t+=" or "+String.format("`%s` like ?",ca[i]);
-					sb.append(" or `").append(ca[i]).append("` like ?");
-					params.add("%"+c.value+"%");
-				}
-				//t+=")";
-				sb.append(")");
-				sa.add(sb.toString());
-				break;
-			case SQLConstains.TYPE_LIMIT:
-				limitc = c;
-				break;
-			case SQLConstains.TYPE_ORDER:
-				orderc = c;
-				break;
-			case SQLConstains.TYPE_CUSTOM:
-				sa.add(c.column);
-			}
-		}
-		
-		//String tail ="";
-		sb.setLength(0); //使用sb代替tail
-		if(orderc!=null){
-			//tail += String.format(" order by `%s` %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
-			
-			sb.append(" order by `").append(orderc.column).append("` ").append((Boolean)orderc.value?"asc":"desc");
-		}
-		if( limitc!=null){
-			//tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
-			//tail += " limit ?,?";
-			sb.append(" limit ?,?");
-			params.add(limitc.value);
-			params.add(limitc.value2);
-		}
-		
-		DBHelper helper = DBHelper.getIns("mysql");
-		String c=  TextTool.join2(sa, " and ") +  sb.toString();
-		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
 
-			String sql =TextTool.concat("select ",prefix," from `" ,tbName,"`").toString();
-			try {
-				return helper.getRS(sql);
-			} catch (SQLException e) {
-				throw new MVCException("runSQL error: [ "+sql+" ]", e);
-			}
-		}else{
-			c = c.trim();
-			if(!c.startsWith("limit") && ! c.startsWith("order")){
-				c  = " where " +c ;
-			}else c = " " +c;
-			String sql = TextTool.concat("select ",prefix," from `",tbName ,"` ",c).toString();
-			try {
-				return helper.getRS(sql,params);
-			} catch (SQLException e) {
-				throw new MVCException("runSQL error: [ "+sql+" ]", e);
-			}
-		}
-		
-	}
-	@Deprecated
-	public String buildSQLWithoutLimit(List<SQLConstains> cons,DBTool tool){
-		return buildSQL(cons, tool,false,null);
-	}
-	@Deprecated
-	@Override
-	public String buildSQL(List<SQLConstains> cons,DBTool tool,String sqlfrom){
-		return buildSQL(cons, tool,true,sqlfrom);
-	}
-	
-	@Deprecated
-	public String buildSQL(List<SQLConstains> cons,DBTool tool,boolean withLimit,String sqlfrom){
-		ArrayList<String> sa = new ArrayList<String>();
+	public ResultSet runSQL(List<SQLConstains> cons,SQLConstains order_con,SQLConstains limit_con,DBTool tool,String tbName,String prefix){
+
+		StringBuffer sb=new StringBuffer();
+		sb.append("select ").append(prefix).append(" from `").append(tbName).append("` ");
 		final String[] fh = {"","=",">","<",">=","<=","<>"};
-		SQLConstains limitc=null;
-		SQLConstains orderc=null;
-		for(SQLConstains c: cons){
-			if(c.type<fh.length){
-				String w = ArrayTool.valueWrapper(null, c.value, tool.getColumnTypeName(c.column));
-				sa.add(String.format("`%s` %s %s", c.column,fh[c.type],w));
-				continue;
-			}
-			switch(c.type){
-			case SQLConstains.TYPE_LIKE:
-				String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
-				sa.add(w);
-				break;
-			case SQLConstains.TYPE_LIMIT:
-				limitc = c;
-				break;
-			case SQLConstains.TYPE_ORDER:
-				orderc = c;
-				break;
-			}
-		}
-		
-		String tail ="";
-		if(orderc!=null){
-			tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
-		}
-		if(withLimit && limitc!=null){
-			tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
-		}
-		
-		
-		String c=  TextTool.join2(sa, " and ") +  tail;
-		if(sqlfrom == null) return c;
-		sqlfrom = sqlfrom+ " ";
-		if(c.trim().length() == 0){
-			return sqlfrom;
-		}else{
-			c = c.trim();
-			if(sqlfrom.contains("where")){
-				if(c.startsWith("limit") || c.startsWith("order")){
-					return sqlfrom + c;
-				}else return  sqlfrom +" and " + c;
-			}else{
-				if(c.startsWith("limit")|| c.startsWith("order")){
-					return sqlfrom + c ;
-				}else {
-					return  sqlfrom+ " where " + c;
+		ArrayList<Object> params = new ArrayList<Object>();
+		if(cons.size()>0){
+			sb.append("where ");
+			boolean first= true;
+
+			for(SQLConstains c: cons){
+				if(!first){ 
+					sb.append(" and ");
+				}
+				first = false;
+				
+				if(c.type<fh.length){
+					//sa.add(String.format("`%s` %s ?", c.column,fh[c.type]));
+					sb.append("`").append(c.column).append("` ").append(fh[c.type]).append(" ?");
+					params.add(c.value);
+					continue;
+				}
+				switch(c.type){
+				case SQLConstains.TYPE_ISNULL:
+					//w = String.format(" `%s` is NULL ", c.column);
+					sb.append(" `").append(c.column).append("` is NULL ");
+					break;
+				case SQLConstains.TYPE_LIKE:
+					
+					sb.append(" `").append(c.column).append("` like ? ");
+					params.add("%"+c.value+"%");
+					
+					break;
+				case SQLConstains.TYPE_MLIKE:
+					String[] ca = c.column.split(",");
+					//String t  = "(" +String.format("`%s` like ?",ca[0]);
+					sb.append("(`").append(ca[0]).append("` like ?");
+					params.add("%"+c.value+"%");
+					for(int i=1;i<ca.length;i++){
+						sb.append(" or `").append(ca[i]).append("` like ?");
+						params.add("%"+c.value+"%");
+					}
+					sb.append(") ");
+					break;
+				case SQLConstains.TYPE_CUSTOM:
+					sb.append(' ');
+					sb.append(c.column);
+					sb.append(' ');
 				}
 			}
 		}
-		
-		
+		if(order_con!=null){
+			sb.append(" order by `").append(order_con.column).append("` ").append((Boolean)order_con.value?"asc ":"desc ");
+		}
+		if(limit_con!=null){
+			sb.append(" limit ?,?");
+			params.add(limit_con.value);
+			params.add(limit_con.value2);
+		}
+		String sql = sb.toString();
+		try {
+			DBHelper helper = DBHelper.getIns("mysql");
+			return helper.getRS(sql,params);
+		} catch (SQLException e) {
+			throw new MVCException("runSQL error: [ "+sql+" ]", e);
+		}
 	}
+//	public ResultSet runSQLOld(List<SQLConstains> cons,SQLConstains limit_con,SQLConstains order_con,DBTool tool,String tbName,String prefix){
+//		if(tbName == null) return null ;//参数检查，表名不能为空
+//		
+//		ArrayList<String> sa = new ArrayList<String>();
+//		ArrayList<Object> params = new ArrayList<Object>();
+//		final String[] fh = {"","=",">","<",">=","<=","<>"};
+//		SQLConstains limitc=null;
+//		SQLConstains orderc=null;
+//		String w;
+//		StringBuffer sb=new StringBuffer();
+//		for(SQLConstains c: cons){
+//			if(c.type<fh.length){
+//				sb.setLength(0);
+//				//sa.add(String.format("`%s` %s ?", c.column,fh[c.type]));
+//				sb.append("`").append(c.column).append("` ").append(fh[c.type]).append(" ?");
+//				sa.add(sb.toString());
+//				params.add(c.value);
+//				continue;
+//			}
+//			switch(c.type){
+//			case SQLConstains.TYPE_ISNULL:
+//				//w = String.format(" `%s` is NULL ", c.column);
+//				sb.setLength(0);
+//				sb.append(" `").append(c.column).append("` is NULL ");
+//				sa.add(sb.toString());
+//				break;
+//			case SQLConstains.TYPE_LIKE:
+//				//String w = String.format("  `%s` like '$%s$' ", c.column, c.value).replace("$","%");
+//				//sa.add(w);
+////				w = String.format("  `%s` like ? ", c.column);
+////				sa.add(w);
+//				sb.setLength(0);
+//				sb.append(" `").append(c.column).append("` like ? ");
+//				sa.add(sb.toString());
+//				
+//				params.add("%"+c.value+"%");
+//				
+//				break;
+//			case SQLConstains.TYPE_MLIKE:
+//				String[] ca = c.column.split(",");
+//				//String t  = "(" +String.format("`%s` like ?",ca[0]);
+//				sb.setLength(0);
+//				sb.append("(`").append(ca[0]).append("` like ?");
+//				params.add("%"+c.value+"%");
+//				for(int i=1;i<ca.length;i++){
+//					//t+=" or "+String.format("`%s` like ?",ca[i]);
+//					sb.append(" or `").append(ca[i]).append("` like ?");
+//					params.add("%"+c.value+"%");
+//				}
+//				//t+=")";
+//				sb.append(")");
+//				sa.add(sb.toString());
+//				break;
+//			case SQLConstains.TYPE_LIMIT:
+//				limitc = c;
+//				break;
+//			case SQLConstains.TYPE_ORDER:
+//				orderc = c;
+//				break;
+//			case SQLConstains.TYPE_CUSTOM:
+//				sa.add(c.column);
+//			}
+//		}
+//		
+//		//String tail ="";
+//		sb.setLength(0); //使用sb代替tail
+//		if(orderc!=null){
+//			//tail += String.format(" order by `%s` %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
+//			
+//			sb.append(" order by `").append(orderc.column).append("` ").append((Boolean)orderc.value?"asc":"desc");
+//		}
+//		if( limitc!=null){
+//			//tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
+//			//tail += " limit ?,?";
+//			sb.append(" limit ?,?");
+//			params.add(limitc.value);
+//			params.add(limitc.value2);
+//		}
+//		
+//		DBHelper helper = DBHelper.getIns("mysql");
+//		String c=  TextTool.join2(sa, " and ") +  sb.toString();
+//		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
+//
+//			String sql =TextTool.concat("select ",prefix," from `" ,tbName,"`").toString();
+//			try {
+//				return helper.getRS(sql);
+//			} catch (SQLException e) {
+//				throw new MVCException("runSQL error: [ "+sql+" ]", e);
+//			}
+//		}else{
+//			c = c.trim();
+//			if(!c.startsWith("limit") && ! c.startsWith("order")){
+//				c  = " where " +c ;
+//			}else c = " " +c;
+//			String sql = TextTool.concat("select ",prefix," from `",tbName ,"` ",c).toString();
+//			try {
+//				return helper.getRS(sql,params);
+//			} catch (SQLException e) {
+//				throw new MVCException("runSQL error: [ "+sql+" ]", e);
+//			}
+//		}
+//		
+//	}
+
 
 	@Override
 	public ResultSet runSQL(String rawSql) throws SQLException {
@@ -369,5 +371,7 @@ public class MySQLDelegate implements IDBDelegate {
 	public void rollback() {
 		DBHelper.getIns().rollback();
 	}
+
+
 
 }

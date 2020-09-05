@@ -331,8 +331,9 @@ public class Model implements Map<String,Object> {
 	}
 	/**
 	 * 将数据拷贝到对象中
-	 * @param obj
-	 * @return
+	 * @param obj 要保存数据的对象
+	 * @return 传入的obj这个对象。
+	 * @param <T> 任意类型
 	 */
 	public <T> T toObject(T obj){
 		for(String key: keySet()){
@@ -393,7 +394,7 @@ public class Model implements Map<String,Object> {
 	}
 	/**
 	 * 保存当前对象,v2.3 以上加入的功能
-	 * @return
+	 * @return 影响的数据库行数
 	 */
 	public int save(){
 		if(joined_tool!=null){

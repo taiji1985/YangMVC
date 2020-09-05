@@ -13,8 +13,8 @@ public interface IDBDelegate {
 
 	int delete(String tname, String key, Object id);
 
-	String buildSQL(List<SQLConstains> cons, DBTool tool, String sqlfrom);
-	ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName);
+	//String buildSQL(List<SQLConstains> cons, DBTool tool, String sqlfrom);
+	//ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName);
 	long size(List<SQLConstains> cons,DBTool tool,String tbName);
 
 	ResultSet runSQL(String rawSql) throws SQLException;
@@ -29,5 +29,5 @@ public interface IDBDelegate {
 	void commit();
 	void rollback();
 
-	ResultSet runSQL(List<SQLConstains> cons, DBTool tool, String tbName, String prefix);
+	ResultSet runSQL(List<SQLConstains> cons,SQLConstains orderby,SQLConstains limit, DBTool tool, String tbName, String prefix);
 }
