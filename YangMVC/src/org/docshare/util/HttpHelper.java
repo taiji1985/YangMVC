@@ -10,6 +10,7 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
+import org.docshare.log.Log;
 
 public class HttpHelper {
 	/**
@@ -37,11 +38,9 @@ public class HttpHelper {
 				response = null;
 			}
 		} catch (HttpException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}
 		return response;
 	}

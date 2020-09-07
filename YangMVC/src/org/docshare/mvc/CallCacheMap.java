@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 
+import com.esotericsoftware.reflectasm.MethodAccess;
+import com.sun.accessibility.internal.resources.accessibility;
+import com.sun.beans.util.Cache;
+
 
 class CallCacheMap {
 	/**
@@ -21,7 +25,9 @@ class CallCacheMap {
 		@SuppressWarnings("rawtypes")
 		public Class clazz;//对应的类
 		public Method m ;//对应的方法
-		public Object single =null;//如果是单例模式，则保存对应的对象，否则保存null
+		public MethodAccess access;
+		public String methodName;
+		public Controller single =null;//如果是单例模式，则保存对应的对象，否则保存null
 	}
 	static HashMap<String, CallCache> map=new HashMap<String, CallCache>();
 	
@@ -30,27 +36,24 @@ class CallCacheMap {
 		
 		try {
 			CallCache cach = map.get(uri);
-			Object obj=null;
-			if(cach.single!=null){ //单例
-				obj = cach.single;
-			}else{
-				obj = cach.clazz.newInstance();
+			Controller ins=cach.single;
+			if(ins == null){ //单例
+				ins = (Controller) cach.clazz.newInstance();
 			}
-			Log.d(String.format("CacheCall  %s.%s ", cach.clazz.getName(),cach.m.getName()));
-			Controller ins = (Controller) obj;
+			Log.d("CacheCall class=", cach.clazz.getName(),",method=",cach.methodName);
 			ins.setReq(req, resp);
 			
-			if( ! "login".equals(cach.m.getName()) &&  ! ins.checkRequire()){ //如果未通过检测
+			if( ! "login".equals(cach.methodName) &&  ! ins.checkRequire()){ //如果未通过检测
 				ins.actionRequire(false);
 				return true;
 			}
 			ins.clearOutFlag(); //清空输出标志，说明还未输出
 
-			if(!Loader.runInterceptors(uri,ins,cach.m)){
+			if(!Loader.runInterceptors(uri,ins,cach.access,cach.methodName,cach.m)){
 				return true;
 			}
 			//cach.m.invoke(obj);
-			Object ret = Loader.runMethod(obj,cach.m,req);
+			Object ret = Loader.runMethod(ins,cach.access,cach.m,req);
 
 			Loader.runPostProcessing(uri,ins,ret); //执行后处理程序
 			
@@ -63,11 +66,13 @@ class CallCacheMap {
 		
 	}
 	@SuppressWarnings("rawtypes")
-	public static void addCache(String uri,Class clazz,Method m,Object single){
+	public static void addCache(String uri,Class clazz,MethodAccess access,String methodName,Controller single,Method m){
 		CallCache cache = new CallCache();
 		cache.clazz = clazz;
-		cache.m  = m;
+		cache.access = access;
+		cache.methodName = methodName; 
 		cache.single = single;
+		cache.m=m;
 		
 		map.put(uri, cache);
 	}

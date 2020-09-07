@@ -30,57 +30,57 @@ public class AnnoMapper {
 	/**
 	 * 扫描所有的类，并尝试获取注解
 	 */
-	@SuppressWarnings({ "rawtypes" })
-	public void scan() {
-		scanForbidMethod();
-		List<String> clsList = PackageUtil.getClassName(Config.controller, true);
-		for (String cls : clsList) {
-			try {
-				Class c = Class.forName(cls);
-				if (!(Controller.class.isAssignableFrom(c)))
-					continue;
-
-				Method[] mList = c.getMethods();
-				for (Method m : mList) {
-					if(forbidMethod.contains(m.getName())){
-						//Log.d("skip method "+ m.getName());
-						continue;
-					}
-					RequestMapping mapping = m
-							.getAnnotation(RequestMapping.class);
-
-					CallCache cache = new CallCache();
-					cache.clazz = c;
-					cache.m = m;
-					if (mapping != null) {
-						cache.uri = mapping.url();
-					} else {
-						cache.uri = getPathByName(c.getCanonicalName(),
-								m.getName());
-						if(m.getName().equals("index")){
-							String uri = cache.uri.substring(0,cache.uri.length()-"index".length());
-							annoMap.put(uri, cache);
-						}
-					}
-					annoMap.put(cache.uri, cache);
-					if(cache.uri.startsWith("/index")){
-						String uri = cache.uri.substring("/index".length());
-						annoMap.put(uri, cache);
-						
-						if(cache.uri.endsWith("index")){
-							uri = uri.substring(0, uri.length()-"index".length());
-							annoMap.put(uri, cache);
-						}
-					}
-				}
-				
-				
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-
-		}
-	}
+//	@SuppressWarnings({ "rawtypes" })
+//	public void scan() {
+//		scanForbidMethod();
+//		List<String> clsList = PackageUtil.getClassName(Config.controller, true);
+//		for (String cls : clsList) {
+//			try {
+//				Class c = Class.forName(cls);
+//				if (!(Controller.class.isAssignableFrom(c)))
+//					continue;
+//
+//				Method[] mList = c.getMethods();
+//				for (Method m : mList) {
+//					if(forbidMethod.contains(m.getName())){
+//						//Log.d("skip method "+ m.getName());
+//						continue;
+//					}
+//					RequestMapping mapping = m
+//							.getAnnotation(RequestMapping.class);
+//
+//					CallCache cache = new CallCache();
+//					cache.clazz = c;
+//					cache.m = m;
+//					if (mapping != null) {
+//						cache.uri = mapping.url();
+//					} else {
+//						cache.uri = getPathByName(c.getCanonicalName(),
+//								m.getName());
+//						if(m.getName().equals("index")){
+//							String uri = cache.uri.substring(0,cache.uri.length()-"index".length());
+//							annoMap.put(uri, cache);
+//						}
+//					}
+//					annoMap.put(cache.uri, cache);
+//					if(cache.uri.startsWith("/index")){
+//						String uri = cache.uri.substring("/index".length());
+//						annoMap.put(uri, cache);
+//						
+//						if(cache.uri.endsWith("index")){
+//							uri = uri.substring(0, uri.length()-"index".length());
+//							annoMap.put(uri, cache);
+//						}
+//					}
+//				}
+//				
+//				
+//			} catch (ClassNotFoundException e) {
+//				e.printStackTrace();
+//			}
+//
+//		}
+//	}
 
 	private String getPathByName(String cname, String mName) {
 		cname = cname.replace(Config.controller + ".", ""); // org.demo.haha.BookController

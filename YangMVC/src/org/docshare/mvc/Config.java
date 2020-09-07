@@ -65,7 +65,6 @@ public class Config {
 	//做一点向前兼容 ,名字由 ctr_base改为了controller
 	public static String ctr_base(){return controller;}
 	public static void ctr_base(String s){controller = s;}
-	public static int level=0;
 	
 	/**
 	 * 是否使用SSL连接，默认为false
@@ -208,6 +207,7 @@ public class Config {
 	
 	public static String dateFormat=null; //输出的date的格式化
 	public static Object dbEncoding="utf-8";
+	public static String pageEncoding="utf-8";
 	
 	public static void main(String[] args) {
 		Config.loadProperties("/web.properties");

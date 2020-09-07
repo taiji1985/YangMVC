@@ -1,10 +1,13 @@
 package org.demo;
 
 import java.lang.reflect.Method;
+
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.mvc.Controller;
 import org.docshare.mvc.Interceptor;
+
+import com.esotericsoftware.reflectasm.MethodAccess;
 
 public class Init {
 	/**
@@ -15,7 +18,7 @@ public class Init {
 		Config.addInterceptor(new Interceptor(){
 
 			@Override
-			public boolean intercept(String uri, Controller c,Method m) {
+			public boolean intercept(String uri, Controller c,MethodAccess access,String methodName,Method m) {
 				if(! uri.startsWith("/int")){ //只拦截这个
 					return true;
 				}

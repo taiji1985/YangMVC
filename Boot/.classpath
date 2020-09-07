@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="libs9/websocket/websocket-common-9.4.30.v20200611.jar"/>
 	<classpathentry kind="lib" path="libs9/websocket/websocket-server-9.4.30.v20200611.jar"/>
 	<classpathentry kind="lib" path="libs9/websocket/websocket-servlet-9.4.30.v20200611.jar"/>
+	<classpathentry kind="lib" path="libs9/log4j-1.2.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

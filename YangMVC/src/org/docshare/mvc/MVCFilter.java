@@ -43,6 +43,7 @@ public class MVCFilter implements Filter {
 	}
 	private Configuration fmCfg;
 	private ServletContext application;
+	private Rewriter rewriter=null;
 	
 	@Override
 	public void destroy() {
@@ -61,6 +62,7 @@ public class MVCFilter implements Filter {
 	
 	
 	private boolean process(String uri,String context,HttpServletRequest req, HttpServletResponse resp,FilterChain chain) throws Exception{
+		//uri = rewriter.rewrite(uri); //重写url
 		String temp = getPureURI(uri, context);
 		Log.v("process "+temp);
 		
@@ -77,6 +79,18 @@ public class MVCFilter implements Filter {
 			int t = action.lastIndexOf(".");
 			cname = action.substring(0, t);
 			method = action.substring(t+1);		
+		}
+		if(cname == null || method == null){
+			Log.i("action fail ="+action);
+			return false;
+		}
+		
+		if(! cname.endsWith("Controller") ){
+			int p = cname.lastIndexOf(".");
+			String lastname = cname.substring(p+1);
+			lastname = Character.toUpperCase(lastname.charAt(0)) + lastname.substring(1)+"Controller";
+			cname = cname.substring(0, p+1)+lastname;
+			cname = TextTool.underLineToUpper(cname);
 		}
 		boolean r  = Loader.call(uri,cname, method,req,resp);
 		if(r){
@@ -99,15 +113,7 @@ public class MVCFilter implements Filter {
 		Log.d(p2);
 		return TextTool.readAllBytes(p2);	
 	}
-	private String txt2HTML(String msg){
-		StringBuffer sBuffer = new StringBuffer();
-		sBuffer.append("<html><head><meta charset='utf-8'/></head><body>");
-		String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
-		m = m.replace(Config.controller, "<font color='red'>"+Config.controller+"</font>");
-		sBuffer.append(m);
-		sBuffer.append("</body></html>");
-		return sBuffer.toString();
-	}
+	
 	public void outErr(HttpServletResponse resp,String msg){
 //		PrintWriter pw;
 //		try {
@@ -123,23 +129,23 @@ public class MVCFilter implements Filter {
 			resp.setCharacterEncoding("utf-8");
 			resp.setContentType("text/html; charset=UTF-8");
 			pw = resp.getWriter();
-			pw.println(txt2HTML(msg));
+			pw.println(TextTool.txt2HTML(msg));
 			pw.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 	}
-	public static final String TEMP_BASE= "/org/docshare/res";
+	//public static final String TEMP_BASE= "/org/docshare/res";
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req2 = (HttpServletRequest) req;
-		req2.setCharacterEncoding("utf-8");
+		req2.setCharacterEncoding(Config.pageEncoding);
 		
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
 		if(context == null) context = "";
-		Log.d("filter > "+uri +",param = ["+RequestHelper.params(req2)+"]"); 
+		Log.d("filter > ",uri,",param = [",RequestHelper.params(req2),"]"); 
 		if(uri.contains(".")) {
 			chain.doFilter(req, resp);
 			return;
@@ -177,6 +183,7 @@ public class MVCFilter implements Filter {
 		ins = this;
 		//先从类目录的web.properties中读取
 		boolean loaded = Config.loadProperties("/web.properties");
+		//rewriter=new Rewriter(cfg.getServletContext().getRealPath("/"));
 		this.application = cfg.getServletContext();
 		if(!loaded){
 			try {
@@ -238,6 +245,7 @@ public class MVCFilter implements Filter {
 		fmCfg.setDefaultEncoding("utf-8");
 		fmCfg.setLocalizedLookup(false);
 		fmCfg.setTemplateExceptionHandler(new FreeMarkerHandler());
+		
 		//fmCfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 		TemplateLoader ctl = new ClassTemplateLoader(MVCFilter.class,
 	            "/view");

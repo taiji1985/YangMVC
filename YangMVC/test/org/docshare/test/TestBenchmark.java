@@ -10,6 +10,7 @@ import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.DBTool;
+import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 
 import com.mysql.jdbc.CommunicationsException;
@@ -48,7 +49,7 @@ public class TestBenchmark extends TestCase{
 		}	
 		long end = System.currentTimeMillis();
 		
-		Log.i("finish testDBHelper"+(end-start));
+		Log.i("finish testDBHelper  "+(end-start));
 		dbHelper.close();
 
 	}
@@ -66,11 +67,11 @@ public class TestBenchmark extends TestCase{
 			//ps.setInt(1, 1);
 //			if(i%8000 == 0)System.out.println();
 //			if(i%400 == 0)System.out.print(".");
-			tool.all().eq("id", 1).toArrayList();
+			tool.all().eq("id", 1).get(0);
 		}	
 		long end = System.currentTimeMillis();
 		
-		Log.i("finish testModel"+(end-start));
+		Log.i("finish testModel   "+(end-start));
 		dbHelper.close();
 
 	}
@@ -91,7 +92,7 @@ public class TestBenchmark extends TestCase{
 		}	
 		long end = System.currentTimeMillis();
 		
-		Log.i("finish testModel2"+(end-start));
+		Log.i("finish testModel2    "+(end-start));
 		dbHelper.close();
 
 	}
@@ -116,7 +117,7 @@ public class TestBenchmark extends TestCase{
 		}	
 		long end = System.currentTimeMillis();
 		
-		Log.i("finish testPS"+(end-start));
+		Log.i("finish testPS  "+(end-start));
 		dbHelper.close();
 	}
 	

@@ -6,8 +6,12 @@ import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.docshare.log.Log;
 import org.docshare.mvc.Controller;
 import org.docshare.orm.Model;
+import org.docshare.test.TestMVC;
 import org.docshare.util.MapHelper;
 
 import cn.org.docshare.test.Demo;
@@ -88,5 +92,10 @@ public class IndexController extends Controller {
 	}
 	public Object demo_ws(){
 		return freemarker("/ws.html");
+	}
+	
+	public String log(){
+		Log.i("hello");
+		return "ok";
 	}
 }

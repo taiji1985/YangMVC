@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.Config;
 
 public class TextTool {
 
@@ -257,5 +258,35 @@ public class TextTool {
 			sBuffer.append(s);
 		}
 		return sBuffer;		
+	}
+	/**
+	 * 下划线式的分割转 驼峰式   如： aa_bb 转 aaBb
+	 * @param s 原字符串
+	 * @return  目标字符串
+	 */
+	public static String underLineToUpper(String s){
+		char[] ca = s.toCharArray();
+		int j = 0;
+		int i;
+		for(i=0;i<ca.length-1;i++){
+			if(ca[i] == '_'){
+				ca[i+1] = Character.toUpperCase(ca[i+1]);
+				continue;
+			}
+			ca[j] = ca[i];
+			j ++;
+		}
+		ca[j] = ca[i];
+		return new String(ca, 0, ++j);
+	}
+	
+	public static String txt2HTML(String msg){
+		StringBuffer sBuffer = new StringBuffer();
+		sBuffer.append("<html><head><meta charset='utf-8'/></head><body>");
+		String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
+		m = m.replace(Config.controller, "<font color='red'>"+Config.controller+"</font>");
+		sBuffer.append(m);
+		sBuffer.append("</body></html>");
+		return sBuffer.toString();
 	}
 }

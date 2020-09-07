@@ -2,15 +2,30 @@ package org.docshare.mvc;
 
 import java.lang.reflect.Method;
 
+import com.esotericsoftware.reflectasm.MethodAccess;
+
 public abstract class Interceptor {
 	/**
 	 * 拦截器最核心的函数
 	 * @param uri 目标url
 	 * @param c 目标控制器
+	 * @param m 
 	 * @param method  对应方法
 	 * @return 不拦截返回true 
 	 */
-	public boolean intercept(String uri,Controller c, Method method){
+	public boolean intercept(String uri,Controller c, MethodAccess access,String methodName, Method m){
+		return intercept(uri,c,m);
+	}
+	
+	/**
+	 * 拦截器最核心的函数
+	 * @param uri 目标url
+	 * @param c 目标控制器
+	 * @param m 
+	 * @param method  对应方法
+	 * @return 不拦截返回true 
+	 */
+	public boolean intercept(String uri,Controller c, Method m){
 		return true;
 	}
 	/**
