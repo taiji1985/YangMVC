@@ -3,6 +3,7 @@ package org.docshare.mvc;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.MethodAccessCacher.MyParam;
 import org.docshare.mvc.anno.Param;
 import org.docshare.mvc.except.MVCException;
 import org.docshare.util.TextTool;
@@ -106,7 +108,7 @@ public class Loader {
 				return true;
 			}
 
-			m = cz.getMethod(method);
+			m = MethodAccessCacher.getMethod(cname,method);
 			Object ret = "";//返回值
 
 			if(m == null){
@@ -115,7 +117,7 @@ public class Loader {
 				runPostProcessing(uri,ins,ret); //执行后处理程序
 				return true;
 			}
-			access = MethodAccess.get(cz);
+			access = MethodAccessCacher.getMethodAccess(cname);
 			if(!runInterceptors(uri,ins,access,method,m)){
 				return true;
 			}
@@ -169,51 +171,17 @@ public class Loader {
 	 * @throws IllegalArgumentException 
 	 */
 	public static Object  runMethod(Object obj,MethodAccess access,Method method ,HttpServletRequest req){
-		Annotation[][] parameterAnnotations = method.getParameterAnnotations();  
 		
 		Object[] args  = null;
-		Class<?>[] types = method.getParameterTypes();
 		Controller controller = (Controller)obj;
-		/**
-		 * 根据参数标注进行赋值
-		 */
-		if (parameterAnnotations != null && parameterAnnotations.length != 0) {  
-			args =new Object[parameterAnnotations.length];
-	        //String[] parameterNames = new String[parameterAnnotations.length];  
-	        int i = 0;  
-	        for (Annotation[] parameterAnnotation : parameterAnnotations) {  
-	            for (Annotation annotation : parameterAnnotation) {  
-	                if (annotation instanceof Param) {  
-	                    Param param = (Param) annotation;  
-	            //        parameterNames[i] = param.value();
-	                    
-	                    args[i] = controller.param(param.value());//req.getParameter(param.value());
-	                    args[i] = convertTo(args[i],types[i].getName());
-	                    
-	                    break;
-	                }
-	            }  
-	            
-	            i++;
-	        }  
-        }
-		//再根据名字进行赋值
-		if(types.length>0){
-			Parameter[] pa = method.getParameters();
-			Log.d("use param name to inj ");
-			if(args == null){
-				args =new Object[pa.length];
-			}
-			for(int i =0;i<pa.length;i++){
-				if(args[i]!=null)continue; //如果已经被标注赋值过就，就不要再给了。
-				String name = pa[i].getName();
-				if(name == null){
-					Log.e("Loader:  you should add the -parameters to javac , for details see : https://blog.csdn.net/sanyuesan0000/article/details/80618913");
-				}
-				args[i] =  controller.param(name);//req.getParameter(name);
-				args[i] = convertTo(args[i],types[i].getName());
-			}
+		
+		MyParam[] mp = MethodAccessCacher.getMethodParam(obj.getClass().getName(), method.getName());
+		args=new Object[mp.length];
+		for(int i=0;i<args.length;i++){
+			args[i]=convertTo(controller.param(mp[i].param),mp[i].type);
 		}
+		
+		
 		return access.invoke(obj, method.getName(), args);
 	}
 	
@@ -256,4 +224,31 @@ public class Loader {
 		return v;
 		
 	}
+	
+//	@SuppressWarnings({ "unchecked", "rawtypes" })
+//	public static Method getMethod(Class clazz,String methodName) {
+//		try {
+//			Method m = null;
+//			try {
+//				m = clazz.getDeclaredMethod(methodName,(Class[])null);
+//			} catch (NoSuchMethodException e) {
+//				
+//			}
+//			//如果找到了，且是公共的，则允许访问
+//			if(m !=null &&  Modifier.isPublic(m.getModifiers()))return m; 
+//			
+//			Method[] ma = clazz.getDeclaredMethods();
+//			for(Method mm : ma){
+//				if(mm.getName().equals(methodName) &&  Modifier.isPublic(mm.getModifiers())){
+//					return mm;
+//				}
+//			}
+//		
+//			return null;//没找到。。
+//		} catch (SecurityException e) {
+//			e.printStackTrace();
+//		}
+//		return null; //因为安全问题没找到！！
+//		
+//	}
 }

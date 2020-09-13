@@ -55,7 +55,7 @@ public class MySQLDelegate implements IDBDelegate {
 					//continue;    //不跳过主键字段了
 				}
 				Object v = m.get(k);
-				if(v == null || v.toString().length() == 0){
+				if(v == null ){
 					continue;
 				}
 				if(!first){
@@ -94,7 +94,7 @@ public class MySQLDelegate implements IDBDelegate {
 			for(String k: m.changeColumns()){
 				if(k == key)continue;
 				Object v = m.get(k);
-				if(v == null || v.toString().length() == 0){
+				if(v == null ){
 					continue;
 				}
 				String type = tool.getColumnTypeName(k);

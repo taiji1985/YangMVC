@@ -1,11 +1,14 @@
 package org.docshare.mvc;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.docshare.log.Log;
 import org.docshare.util.FileTool;
+
+import com.esotericsoftware.reflectasm.MethodAccess;
 
 /**
  * 重新加载修改的class文件
@@ -88,13 +91,16 @@ class Reloader {
 	}
 	public Class<?> load(String clsName) throws ClassNotFoundException{
 		if(!Config.reloadable){
-			return Class.forName(clsName);
+			Class<?> ret = Class.forName(clsName);
+			MethodAccessCacher.putIfNoExist(clsName,ret);
 		}
 		//下面是打开了reloadable选项后的功能
 		
 		ClassLoader loader  = classIsUpdate(clsName);
 		return Class.forName(clsName, true, loader);
 	}
+	
+
 	
 	/**
 	 * 检查是否更新了，如果更新了。返回真，并记录这一次的文件修改时间

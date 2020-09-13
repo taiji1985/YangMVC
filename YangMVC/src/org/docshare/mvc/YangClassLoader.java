@@ -3,6 +3,7 @@ package org.docshare.mvc;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import org.docshare.log.Log;
 
@@ -59,9 +60,11 @@ class YangClassLoader extends ClassLoader{
 
             byte[] classData = buffer.toByteArray();
 
-            return defineClass(name,
+            Class<?> ret = defineClass(name,
                     classData, 0, classData.length);
-
+            
+            MethodAccessCacher.put(name, ret);
+            return ret;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
