@@ -1,6 +1,7 @@
-package org.docshare.util;
+package org.docshare.helper;
 
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -16,7 +17,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,9 +24,35 @@ import java.util.Scanner;
 
 import org.docshare.log.Log;
 
+
 public class FileTool {
 
-	
+	public static void copy(String source, String dest) {
+	    InputStream in = null;
+	    OutputStream out = null;
+	    try {
+	        in = new FileInputStream(new File(source));
+	        out = new FileOutputStream(new File(dest));
+
+	        byte[] buffer = new byte[4096];
+	        int len;
+
+	        while ((len = in.read(buffer)) > 0) {
+	            out.write(buffer, 0, len);
+	        }
+	    } catch (Exception e) {
+	        Log.e(e);
+	    } finally {
+	        safelyClose( in);
+	        safelyClose(out);
+	    }
+	} 
+	public static void safelyClose(Closeable out) {
+		try{
+			if(out==null)return;
+			out.close();
+		}catch(Exception exception ){}
+	}
 
 
 	/**
@@ -38,8 +64,9 @@ public class FileTool {
 	public static byte[] readBytes(String filename) {
 		byte[] ret = new byte[1024 * 10009]; // 200k
 		int p = 0;
+		FileInputStream fin=null;
 		try {
-			FileInputStream fin = new FileInputStream(filename);
+			fin = new FileInputStream(filename);
 			byte[] b = new byte[1024 * 1000];
 			while (true) {
 				int n = fin.read(b);
@@ -63,34 +90,14 @@ public class FileTool {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			safelyClose(fin);
 		}
 
 		return null;
 
 	}
-	/**
-	 * 读取文件中所有的内容，编码方式为GB2312
-	 * 该函数已过期
-	 * @param f 文件名
-	 * @return 文件内容
-	 */
-	@Deprecated
-	public static String readAll(String f) {
-		BufferedReader br = null;
-		StringBuffer sb = new StringBuffer();
-		try {
-			br = new BufferedReader(new InputStreamReader(
-					new FileInputStream(f), "GB2312"));
-			while (br.ready()) {
-				sb.append(br.readLine() + "\n");
-			}
-		} catch (Exception e) {
-			// e.printStackTrace();
-			return null;
-		}
 
-		return sb.toString();
-	}
 	/**
 	 * 读取文件中所有的内容，编码方式为GB2312 ,行为补充\r\n
 	 * 该函数已过期
@@ -107,10 +114,11 @@ public class FileTool {
 				sb.append(br.readLine() + "\r\n");
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
 			return null;
+		}finally {
+			safelyClose(br);
 		}
-
+		
 		return sb.toString();
 	}
 	/**
@@ -149,7 +157,6 @@ public class FileTool {
 			}
 			reader.close();
 		} catch (Exception e) {
-			Log.e(e);
 			e.printStackTrace();
 			return null;
 		}
@@ -347,7 +354,7 @@ public class FileTool {
 				System.out.println("load m " + al.size());
 			}
 		}
-
+		safelyClose(sc);
 		System.out.println("al= " + al.size() + "\n");
 		return al;
 	}
@@ -420,10 +427,11 @@ public class FileTool {
 	 * @return 文件内容，如果没读到，返回null
 	 */
 	public static String readResource(String fname, String charset) {
+		Scanner sc=null;
 		try {
 			InputStream sm = FileTool.class.getClassLoader()
 					.getResourceAsStream(fname);
-			Scanner sc = new Scanner(sm);
+			sc = new Scanner(sm);
 			StringBuffer sb = new StringBuffer();
 			while (sc.hasNextLine()) {
 				String line = sc.nextLine();
@@ -434,6 +442,8 @@ public class FileTool {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			sc.close();
 		}
 	}
 
