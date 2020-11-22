@@ -339,6 +339,16 @@ public class Controller {
 			root.put(name, obj);
 		}
 	}
+	public void put(String name,Object obj){
+		if(obj instanceof IBean){
+			Log.d(obj.getClass().getName()+" translate to map :");
+			obj = BeanUtil.obj2Map(obj);
+			Log.d(JSON.toJSONString(obj));
+		}
+		request.setAttribute(name, obj);
+		root.put(name, obj);
+		
+	}
 	
 	/**
 	 * 将model中的每个字段以单独的变量形式加入request中
@@ -423,7 +433,9 @@ public class Controller {
 		this.request = req;
 		this.response = resp;
 		session = request.getSession();
-		application = session.getServletContext();
+		if(session !=null){
+			application = session.getServletContext();
+		}
 		String contentType = request.getContentType();
 		//Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){
@@ -896,6 +908,17 @@ public class Controller {
 		Log.d("----------DumpParam---------");
 		Log.d("request param="+JSON.toJSONString(map));
 		Log.d("paramMap="+JSON.toJSONString(paramMap));
+	}
+	public Map<String, String[]> getParamMap(){
+		HashMap<String,String[]> ret=new HashMap<String,String[]>();
+		
+		ret.putAll(request.getParameterMap());
+		for(String key: paramMap.keySet()){
+			String[] sa=new String[1];
+			sa[0]=""+paramMap.get(key);
+			ret.put(key, sa);
+		}
+		return ret;
 	}
 	/**
 	 * 将参数中的值拷贝到对象的对应属性中 

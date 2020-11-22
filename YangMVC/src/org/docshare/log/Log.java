@@ -23,7 +23,7 @@ public class Log {
 		return df.format(new Date());
 	}
 	
-	public static <T> void i(T str) {
+	public static  void i(Object str) {
 		if(!Level.INFO.isGreaterOrEqual(level)){
 			return ;
 		}
@@ -31,7 +31,7 @@ public class Log {
 		if(!(str instanceof String)){
 			t = JSON.toJSONString(str,true);
 		}else{
-			t= (String) str;
+			t= str.toString();
 		}
 		log.info(t);
 		//System.out.println(now()+ "[info ]" + str);

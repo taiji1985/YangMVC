@@ -172,6 +172,16 @@ public class Config {
 		return null;
 		
 	}
+	
+	static Properties pro=null;
+	public static String getProperty(String key,String def){
+		if(pro == null){
+			return null;
+		}
+		
+		return pro.getProperty(key,def);
+	}
+	
 	/**
 	 * 读取properties文件
 	 * @param PROP_FILE 属性文件的路径
@@ -188,7 +198,7 @@ public class Config {
 				Log.i("Config  found ! ");
 			}
 
-			Properties pro = new Properties();	
+			pro = new Properties();	
 			pro.load(in);
 			Log.i("web.properties loaded ");
 			BeanUtil.prop2StaticField(pro, Config.class);

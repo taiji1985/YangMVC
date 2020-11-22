@@ -86,7 +86,7 @@ public class MethodAccessCacher {
 		//再根据名字进行赋值
 		if(types.length>0){
 			Parameter[] pa = method.getParameters();
-			Log.d("use param name to inj ");
+			Log.d("use param name to inj, method=",mname);
 			
 			for(int i =0;i<pa.length;i++){
 				if(mp[i]!=null)continue; //如果已经被标注赋值过就，就不要再给了。

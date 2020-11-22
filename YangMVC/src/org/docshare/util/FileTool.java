@@ -1,4 +1,4 @@
-package org.docshare.helper;
+package org.docshare.util;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -315,6 +315,7 @@ public class FileTool {
 	 * @return 存在返回true，否则为false
 	 */
 	public static boolean exists(String filename) {
+		if(filename == null) return false;
 		File f = new File(filename);
 		return f.exists();
 	}
