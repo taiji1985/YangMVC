@@ -213,6 +213,9 @@ public class MySQLDelegate implements IDBDelegate {
 					sb.append(' ');
 					sb.append(c.column);
 					sb.append(' ');
+					break;
+				default:
+					Log.e("unsupport type"+c.type);
 				}
 			}
 		}
@@ -343,7 +346,7 @@ public class MySQLDelegate implements IDBDelegate {
 	}
 
 	@Override
-	public Map<String, ?> columnOfRs(String sql,ResultSet rs) {
+	public Map<String, ColumnDesc> columnOfRs(String sql,ResultSet rs) {
 		return DBHelper.getIns().columeOfRs(sql,rs);
 	}
 

@@ -22,7 +22,7 @@ public class TextTool {
 			return null;
 		}
 		byte[] buffer = null;
-		FileInputStream fi;
+		FileInputStream fi=null;
 		try {
 			buffer = new byte[(int) fileSize];
 			fi = new FileInputStream(f);
@@ -34,11 +34,12 @@ public class TextTool {
 				offset += numRead;
 			}
 
-			fi.close();
 		} catch (FileNotFoundException e) {
 			Log.e(e);
 		} catch (IOException e) {
 			Log.e(e);
+		}finally {
+			FileTool.safelyClose(fi);
 		}
 
 		return buffer;

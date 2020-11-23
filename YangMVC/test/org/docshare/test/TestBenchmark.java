@@ -12,9 +12,11 @@ import org.docshare.orm.DBHelper;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
+import org.docshare.util.FileTool;
 
 import com.mysql.jdbc.CommunicationsException;
 
+import javafx.css.PseudoClass;
 import junit.framework.TestCase;
 
 public class TestBenchmark extends TestCase{
@@ -102,8 +104,9 @@ public class TestBenchmark extends TestCase{
 		dbHelper.conn();
 		Connection c = dbHelper.getConnection();
 		long start = System.currentTimeMillis();			
+		PreparedStatement ps=null;
 		try {
-			PreparedStatement ps = c.prepareStatement("select * from book where id = ?" );
+			ps = c.prepareStatement("select * from book where id = ?" );
 			
 			for(int i=0;i<40000;i++){  
 				ps.setInt(1, 1);
@@ -114,7 +117,9 @@ public class TestBenchmark extends TestCase{
 		} catch (CommunicationsException e) {
 			Log.e("DB Communications Fail ");
 			e.printStackTrace();
-		}	
+		}finally {
+			FileTool.safelyClose(ps);
+		}
 		long end = System.currentTimeMillis();
 		
 		Log.i("finish testPS  "+(end-start));

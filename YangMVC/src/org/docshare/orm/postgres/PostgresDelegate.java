@@ -167,6 +167,9 @@ public class PostgresDelegate implements IDBDelegate {
 				break;
 			case SQLConstains.TYPE_CUSTOM:
 				sa.add(c.column);
+				break;
+			default:
+				Log.e("unsupport type"+c.type);
 			}
 		}
 		
@@ -280,7 +283,7 @@ public class PostgresDelegate implements IDBDelegate {
 	}
 
 	@Override
-	public Map<String, ?> columnOfRs(String sql,ResultSet rs) {
+	public Map<String, ColumnDesc> columnOfRs(String sql,ResultSet rs) {
 		return DBHelper.getIns().columeOfRs(sql,rs);
 	}
 

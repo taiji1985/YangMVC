@@ -14,6 +14,7 @@ import org.docshare.mvc.except.MVCException;
 import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.StatementPool;
+import org.docshare.util.FileTool;
 import org.docshare.util.TextTool;
 
 import com.alibaba.fastjson.JSON;
@@ -107,6 +108,7 @@ public class MySQLDBHelper extends DBHelper {
 	public int updateWithArray(String sql, Object[] objs) {
 		if(con==null )conn();
 		int retry =0;
+		ResultSet last= null;
 		while(retry<3){
 			try{
 				last_id = -1;
@@ -116,7 +118,7 @@ public class MySQLDBHelper extends DBHelper {
 				}
 				
 				int ret  =  s.executeUpdate();
-				ResultSet last = s.getGeneratedKeys();
+				last = s.getGeneratedKeys();
 				
 				//ResultSet last = getRS("SELECT LAST_INSERT_ID()");
 				if(last !=null && last.next()){
@@ -132,6 +134,8 @@ public class MySQLDBHelper extends DBHelper {
 				conn();
 			}catch(SQLException e){
 				throw new MVCException(e);
+			}finally {
+				FileTool.safelyClose(last);
 			}
 		}
 		return -1;

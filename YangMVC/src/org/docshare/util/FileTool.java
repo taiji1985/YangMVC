@@ -170,11 +170,9 @@ public class FileTool {
 
 	@Deprecated
 	public static void writeUTFOLD(String f, String data) {
-		try {
-			DataOutputStream ds = new DataOutputStream(new FileOutputStream(f));
+		try(DataOutputStream ds = new DataOutputStream(new FileOutputStream(f))) {
 			data = new String(data.getBytes(), "UTF-8");
 			ds.writeUTF(data);
-			ds.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -188,15 +186,16 @@ public class FileTool {
 	 * @param data 待写入的内容
 	 */
 	public static void writeUTF(String f, String data) {
-		OutputStreamWriter out;
+		OutputStreamWriter out=null;
 		try {
 			out = new OutputStreamWriter(new FileOutputStream(f), "UTF-8");
 			out.write(data);
 			out.flush();
-			out.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			safelyClose(out);
 		}
 	}
 	/**
@@ -206,29 +205,31 @@ public class FileTool {
 	 * @param charset 编码方式
 	 */
 	public static void writeAll(String f, String data, String charset) {
-		OutputStreamWriter out;
+		OutputStreamWriter out=null;
 		try {
 			out = new OutputStreamWriter(new FileOutputStream(f), charset);
 			out.write(data);
 			out.flush();
-			out.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			safelyClose(out);
 		}
 	}
 
 	@Deprecated
 	public static void writeAll(String f, String data) {
 
-		PrintWriter pw;
+		PrintWriter pw=null;
 		try {
 
 			pw = new PrintWriter(f);
 			pw.print(data);
-			pw.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			safelyClose(pw);
 		}
 	}
 
@@ -264,13 +265,14 @@ public class FileTool {
 	 * @param d 内容
 	 */
 	public static void appendFile(String f, String d) {
-		PrintWriter pw;
+		PrintWriter pw=null;
 		try {
 			pw = new PrintWriter(new FileWriter(f, true));
 			pw.print(d);
-			pw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally {
+			safelyClose(pw);
 		}
 	}
 	/**
@@ -305,12 +307,13 @@ public class FileTool {
 	 * 删除文件
 	 * @param f 文件名
 	 */
-	public static void delFile(String f) {
+	public static boolean delFile(String f) {
 		try {
 			File file = new File(f);
 			file.delete();
+			return true;
 		} catch (Exception e) {
-
+			return false;
 		}
 	}
 	/**
@@ -325,9 +328,10 @@ public class FileTool {
 	}
 
 	public static ArrayList<Double> loadBinMatrix(String file) {
+		DataInputStream di=null;
 		try {
 			ArrayList<Double> al = new ArrayList<Double>();
-			DataInputStream di = new DataInputStream(new FileInputStream(file));
+			di = new DataInputStream(new FileInputStream(file));
 			while (di.available() >= 8) {
 				double d = di.readDouble();
 				al.add(d);
@@ -337,6 +341,8 @@ public class FileTool {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			safelyClose(di);
 		}
 
 		return null;

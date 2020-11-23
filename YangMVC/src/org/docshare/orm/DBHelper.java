@@ -236,6 +236,7 @@ public abstract class DBHelper {
 	}
 
 	public int updateWithArray(String sql, Object[] objs){
+		ResultSet last =null;
 		try {
 			conn();
 			last_id = -1;
@@ -245,7 +246,7 @@ public abstract class DBHelper {
 			}
 			
 			int ret  =  s.executeUpdate();
-			ResultSet last = s.getGeneratedKeys();
+			last = s.getGeneratedKeys();
 			
 			//ResultSet last = getRS("SELECT LAST_INSERT_ID()");
 			if(last !=null && last.next()){
@@ -253,13 +254,14 @@ public abstract class DBHelper {
 			}else{
 				last_id = -1;
 			}
-			last.close();
 			return ret;
 			
 		} catch (SQLException e) {
 			//new MVCException();
 			String msg = "exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") ;
 			throw new MVCException(e);
+		}finally{
+			FileTool.safelyClose(last);
 		}
 	}
 

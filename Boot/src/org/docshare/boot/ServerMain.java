@@ -122,7 +122,8 @@ public class ServerMain {
 			scanner= new Scanner(System.in);
 			while (true) {
 				Log.i("每按一次回车键打开一次浏览器,Press Enter key to open browser");
-				scanner.nextLine();
+				String ret = scanner.nextLine();
+				if("exit".equals(ret))break;
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
 			}
 		} catch (Exception e) {

@@ -113,7 +113,7 @@ public class LasyList extends ListAdapter {
 			return null;
 		}
 	}
-	Map<String, ?> column_desc = null;
+	Map<String, ColumnDesc> column_desc = null;
 	public void printColumnDesc(){
 		if(column_desc == null){
 			column_desc = tool.c_to_remarks;
