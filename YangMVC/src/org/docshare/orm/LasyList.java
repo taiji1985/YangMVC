@@ -141,7 +141,7 @@ public class LasyList extends ListAdapter {
 						column_desc = delegate.columnOfRs(rawSql,rs);
 					}
 					if(rs == null &&column_desc == null){ //如果查询失败，报个错。
-						column_desc = new HashMap<String, Object>();
+						column_desc = new HashMap<String, ColumnDesc>(); 
 					}
 				}else{
 					rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
