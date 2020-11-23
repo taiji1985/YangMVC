@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.docshare.log.Log;
+import org.docshare.util.FileTool;
 import org.jetbrains.annotations.NotNull;
 
 import com.alibaba.fastjson.JSON;
@@ -38,7 +39,7 @@ public class LasyList extends ListAdapter {
 		this.rawSql = rawSql;
 		tool = Model.tool("rawsql");
 		delegate = tool.getDelegate();
-		initRS();
+		//initRS();
 		toArrayList();
 	}
 
@@ -431,13 +432,12 @@ public class LasyList extends ListAdapter {
 			}
 			if(rs == null){
 				debugInfo();
-			}else{
-				rs.close();
-				rs = null;
 			}
 		} catch (SQLException e) {
 			Log.e("LasyList.toArrayList Exception " + debugInfo());
 			Log.e(e);
+		}finally{
+			FileTool.safelyClose(rs);
 		}
 		return mList;
 	}

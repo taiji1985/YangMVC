@@ -400,7 +400,7 @@ public abstract class DBHelper {
 	}
 
 	public int getVal(String sql, String column) {
-		ResultSet rs;
+		ResultSet rs=null;
 		int ret = 0;
 		try {
 			rs = getRS(sql);
@@ -409,6 +409,8 @@ public abstract class DBHelper {
 			}
 		} catch (SQLException e) {
 			throw new MVCException("Fail to getVal of column ["+column+"] from sql : "+ sql,e);
+		}finally{
+			FileTool.safelyClose(rs);
 		}
 	
 		return ret;

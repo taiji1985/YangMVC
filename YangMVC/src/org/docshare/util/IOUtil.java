@@ -21,18 +21,20 @@ public class IOUtil {
 //			sb.append(sc.nextLine());
 //			sb.append('\n');
 //		}
+		ByteArrayOutputStream bos=null;
         try {
 			byte[] buffer = new byte[1024];
 			int len;
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			 bos = new ByteArrayOutputStream();
 			while((len = in.read(buffer)) != -1) {
 			    bos.write(buffer, 0, len);
 			}
-			bos.close();
 			return new String(bos.toByteArray(),charset);
 		} catch (Exception e) {
 			Log.e(e);
 			return "";
+		}finally {
+			FileTool.safelyClose(bos);
 		}
 		
 	}

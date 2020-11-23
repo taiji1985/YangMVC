@@ -9,6 +9,7 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.DelegateFactory;
 import org.docshare.orm.IDBDelegate;
 import org.docshare.orm.SQLConstains;
+import org.docshare.util.FileTool;
 
 import junit.framework.TestCase;
 
@@ -32,5 +33,6 @@ public class TestMySQLDelegate extends TestCase{
 		//String s = delegate.buildSQL(cons, tool,null);
 		//System.out.println(s);
 		ResultSet rs = delegate.runSQL(cons, null, null, tool, "book", "*");
+		FileTool.safelyClose(rs);
 	}
 }

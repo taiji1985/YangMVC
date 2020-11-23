@@ -64,6 +64,7 @@ public class MySQLDBHelper extends DBHelper {
 			String s = rs.getString("name");
 			System.out.println(s);
 		}
+		
 		HashMap<String, ColumnDesc> cc = helper.columeOfRs("select * from book", rs);
 		System.out.println(JSON.toJSONString(cc));
 		
@@ -75,6 +76,7 @@ public class MySQLDBHelper extends DBHelper {
 		
 		cc = helper.listColumn("catalog");
 		System.out.println(JSON.toJSONString(cc));
+		rs.close();
 		
 	}
 	/**

@@ -11,6 +11,7 @@ import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.mvc.except.MVCException;
 import org.docshare.util.BeanUtil;
+import org.docshare.util.FileTool;
 
 import com.alibaba.fastjson.JSON;
 
@@ -124,7 +125,7 @@ public class DBTool {
 	 * @return 找到列column等于value的对象
 	 */
 	public Model get(String column, Object value) {
-		ResultSet rs;
+		ResultSet rs=null;
 		try {
 			rs = delegate.resultById(tname, column, value);
 			Model tb=null;
@@ -135,6 +136,8 @@ public class DBTool {
 			return tb;
 		} catch (SQLException e) {
 			Log.e(e);
+		}finally{
+			FileTool.safelyClose(rs);
 		}
 		
 		return null;

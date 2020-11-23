@@ -56,7 +56,7 @@ public class AccessDBHelper extends DBHelper {
 		    con = DriverManager.getConnection(url);
 		    System.out.println("AccessDB opened "+Config.dbname);
 		} catch (Exception e) {
-		    e.printStackTrace();
+		    Log.e(e);
 		}
 	}
 

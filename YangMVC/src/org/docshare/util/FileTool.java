@@ -1,3 +1,4 @@
+
 package org.docshare.util;
 
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -159,6 +161,8 @@ public class FileTool {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			safelyClose(br);
 		}
 
 		return sb.toString();
@@ -473,5 +477,11 @@ public class FileTool {
 			e.printStackTrace();
 		}
 
+	}
+	public static void safelyClose(AutoCloseable obj) {
+		if(obj == null) return;
+		try {
+			obj.close();
+		} catch (Exception e) {	}
 	}
 }

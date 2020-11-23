@@ -15,6 +15,7 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.IDBDelegate;
 import org.docshare.orm.Model;
 import org.docshare.orm.SQLConstains;
+import org.docshare.util.FileTool;
 import org.docshare.util.TextTool;
 
 public class AccessDelegate implements IDBDelegate {
@@ -37,8 +38,8 @@ public class AccessDelegate implements IDBDelegate {
 		ArrayList<Object> plist = new ArrayList<Object>(); //参数列表
 		if(forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0 ) ){
 			//This is an insert
-			String ks="";
-			String vs2="";
+			StringBuffer ks= new StringBuffer();
+			StringBuffer vs2=new StringBuffer();
 			boolean first=true;
 			for(String k: m.keySet()){
 				if(k.equals(key)){ //这里不再跳过主键字段
@@ -49,23 +50,23 @@ public class AccessDelegate implements IDBDelegate {
 					continue;
 				}
 				if(!first){
-					ks+=',';
-					vs2+=",";
+					ks.append(',');
+					vs2.append(',');
 				}
 				
-				ks+= "["+k+"]";
+				ks.append('[').append(k).append(']');
 				String type = tool.getColumnTypeName(k);
 				ArrayTool.valueWrapper(null, v,type);
-				vs2+="?";
+				vs2.append('?');
 				plist.add(v);
 				first = false;
 			}
-			sql = String.format("insert into [%s](%s) values(%s)", m.getTableName(),ks,vs2);
+			sql = String.format("insert into [%s](%s) values(%s)", m.getTableName(),ks.toString(),vs2.toString());
 		}else{
 			ArrayList<String> sa=new ArrayList<String>();
 			
 			for(String k: m.changeColumns()){
-				if(k == key)continue;
+				if(k != null && k.equals(key))continue;
 				Object v = m.get(k);
 				if(v == null || v.toString().length() == 0){
 					continue;
@@ -109,7 +110,7 @@ public class AccessDelegate implements IDBDelegate {
 
 	@Override
 	public long size(List<SQLConstains> cons, DBTool tool, String tbName) {
-		ResultSet rs;
+		ResultSet rs=null;
 		try {
 			rs = runSQL(cons,null,null, tool, tbName,"count(*) as CT");
 			if(rs.next()){
@@ -117,9 +118,10 @@ public class AccessDelegate implements IDBDelegate {
 				rs.close();
 				return id;
 			}
-			rs.close();
 		} catch (SQLException e) {
 			throw new MVCException("get size error", e);
+		}finally {
+			FileTool.safelyClose(rs);
 		}
 		return 0;
 	}
@@ -168,7 +170,10 @@ public class AccessDelegate implements IDBDelegate {
 				break;
 			case SQLConstains.TYPE_CUSTOM:
 				sa.add(c.column);
+			default:
+				Log.e("unsupport type"+c.type);
 			}
+			
 		}
 		
 		String tail ="";
@@ -192,7 +197,7 @@ public class AccessDelegate implements IDBDelegate {
 			try {
 				return helper.getRS("select "+prefix+" from [" + tbName+"]");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				Log.e(e);
 				return null;
 			}
 		}else{

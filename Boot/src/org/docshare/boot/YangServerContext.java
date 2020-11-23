@@ -24,6 +24,7 @@ import javax.servlet.SessionCookieConfig;
 import javax.servlet.SessionTrackingMode;
 import javax.servlet.descriptor.JspConfigDescriptor;
 import org.docshare.log.Log;
+import org.docshare.util.FileTool;
 
 
 public class YangServerContext implements ServletContext {
@@ -56,6 +57,7 @@ public class YangServerContext implements ServletContext {
 	long last_protime;
 	static final String PROP_FILE = "/web.properties";
 	private void loadProp() {
+		InputStream in = null;// new FileInputStream(new File(purl.getPath()));
 		try {
 			
 			if(pro != null)return;
@@ -77,12 +79,10 @@ public class YangServerContext implements ServletContext {
 ////			}	
 			pro = new Properties();	
 //			
-			InputStream in = null;// new FileInputStream(new File(purl.getPath()));
 			in = getClass().getResourceAsStream(PROP_FILE);
 			if(in != null){
 				pro.load(in);
 				Log.i("web.properties loaded ");
-				in.close();
 				
 			}else{
 
@@ -91,6 +91,8 @@ public class YangServerContext implements ServletContext {
 		
 		} catch (IOException e) {
 			e.printStackTrace();
+		}finally{
+			FileTool.safelyClose(in);
 		}
 	}
 	
