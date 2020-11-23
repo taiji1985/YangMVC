@@ -387,7 +387,7 @@ public class LasyList extends ListAdapter {
 	
 	@Override
 	public String toString(){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append("[");
 		for(Model m : this){
 			sb.append(m);
@@ -442,7 +442,7 @@ public class LasyList extends ListAdapter {
 		return mList;
 	}
 	public String debugInfo(){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append("LasyList[");
 		sb.append("\n   SQLConstains="+JSON.toJSONString(cons));
 		sb.append("\n	table name = "+tbName);

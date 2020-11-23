@@ -16,7 +16,7 @@ public class IOUtil {
 	}
 	public static String readStream(InputStream in,String charset){
 //		Scanner sc = new Scanner(in,charset);
-//		StringBuffer sb =new StringBuffer();
+//		StringBuilder sb =new StringBuilder();
 //		while(sc.hasNextLine()){
 //			sb.append(sc.nextLine());
 //			sb.append('\n');

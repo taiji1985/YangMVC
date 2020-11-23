@@ -135,7 +135,7 @@ public class ConfigCreator {
 			PrintWriter out = new PrintWriter(fname,"utf-8");
 			fmCfg.getTemplate("clz.flt").process(root, out);
 			out.close();
-//			StringBuffer sb = new StringBuffer();
+//			StringBuilder sb = new StringBuilder();
 //			sb.append("package "+pkg+";\n");
 //			sb.append("public class "+clsName+"{\n");
 //			for(String cname : listColumn.keySet()){

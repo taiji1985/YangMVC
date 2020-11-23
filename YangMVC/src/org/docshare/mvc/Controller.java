@@ -229,7 +229,7 @@ public class Controller {
 		String query = request.getQueryString();
 		query  =getClearQuery(query);
 		
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append("<ul class='yangmvc_page'>");
 		if(prev!=null){
 			sb.append(String.format("<li><a href='%s?page=%d&pagesz=%d%s'>&lt;&lt;</a></li>", getPath(),prev,pagesz,query));
@@ -735,21 +735,22 @@ public class Controller {
 	 * @param list 需要输出的列表
 	 */
 	public void putListTable(String name,LasyList list){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append("<table class='table table-bordered yangmvc_table '>");
 		for(Model m : list){
 			sb.append("<tr>");
 			for(String key: m.keySet()){
 				Object v = m.get(key);
-				if(v instanceof String){
-					String sv = (String)v;
-					if(sv!=null&& sv.length() > 20){
-						v = sv.substring(0, 20)+"...";
-					}
-				}
 				if(v == null){
 					v = "";
 				}
+				if(v instanceof String){
+					String sv = (String)v;
+					if(sv.length() > 20){
+						v = sv.substring(0, 20)+"...";
+					}
+				}
+				
 				sb.append("\t<td>"+v+"</td>\r\n");
 			}
 			sb.append("</tr>\r\n");
@@ -767,7 +768,7 @@ public class Controller {
 		renderForm(m,getDefaultTemp(),"");
 	}
 	public void renderForm(Model m,String template,String postTo){
-		StringBuffer sb  = new StringBuffer();
+		StringBuilder sb  = new StringBuilder();
 		sb.append("<form class='yangmvc_form' method='post' action='"+postTo+"'>");
 		for(String key : m.keySet()){
 			if(key.equals(m.key())){
@@ -1023,7 +1024,7 @@ public class Controller {
 		require(session_key, null,jump_url,"");
 	}
 	
-	public class Require{
+	public static class Require{
 		public String key;
 		public Object value;
 		public String jump_url;

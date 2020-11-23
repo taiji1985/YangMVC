@@ -1,7 +1,9 @@
 package org.docshare.boot;
 
+import org.docshare.log.Log;
+
 public class Base {
 	public void T(String msg){
-		System.out.println(msg);
+		Log.i(msg);
 	}
 }

@@ -121,7 +121,7 @@ public class TextTool {
 		if (str == null) {
 			return "";
 		}
-		StringBuffer sb =new StringBuffer();
+		StringBuilder sb =new StringBuilder();
 		for (String s : str) {
 			if (sb.length() > 0) {
 				sb.append(join_str);
@@ -206,7 +206,7 @@ public class TextTool {
 		if (str == null ||str.size() == 0) {
 			return "";
 		}
-		StringBuffer ret =new StringBuffer();
+		StringBuilder ret =new StringBuilder();
 		for (String s : str) {
 			if (ret.length() > 0) {
 				ret.append(join_str);
@@ -222,7 +222,7 @@ public class TextTool {
 		if (str == null) {
 			return "";
 		}
-		StringBuffer ret =new StringBuffer();
+		StringBuilder ret =new StringBuilder();
 		for (Object s : str) {
 			if (ret.length() > 0) {
 				ret.append(join_str);
@@ -235,7 +235,7 @@ public class TextTool {
 
 	public static String join(List<Object> params, String join_str) {
 		if(params == null) return null;
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(int i=0;i<params.size()-1;i++){
 			sb.append(""+params.get(i));
 			sb.append(",");
@@ -252,8 +252,8 @@ public class TextTool {
 		if(dotp <  0) return a;
 		return a.substring(0,dotp);
 	}
-	public static StringBuffer concat(Object ...args){
-		StringBuffer sBuffer =new StringBuffer();
+	public static StringBuilder concat(Object ...args){
+		StringBuilder sBuffer =new StringBuilder();
 		for(Object s:args){
 			sBuffer.append(s);
 		}
@@ -281,7 +281,7 @@ public class TextTool {
 	}
 	
 	public static String txt2HTML(String msg){
-		StringBuffer sBuffer = new StringBuffer();
+		StringBuilder sBuffer = new StringBuilder();
 		sBuffer.append("<html><head><meta charset='utf-8'/></head><body>");
 		String m =msg.replace("\n", "\n<br>").replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;");
 		m = m.replace(Config.controller, "<font color='red'>"+Config.controller+"</font>");

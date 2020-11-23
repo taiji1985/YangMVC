@@ -7,7 +7,7 @@ public class ArrayTool {
 	public static String join(String joiner,Collection c){
 		if(c.size() == 0) return "";
 		
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		boolean first =true;
 		for(Object o: c){
 			if(first){
@@ -25,7 +25,7 @@ public class ArrayTool {
 	}
 	@SuppressWarnings("rawtypes")
 	public static String joinWithLengthLimit(String joiner,Collection c,int len){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(Object o: c){
 			String t = "";
 			if( o == null) t= "null";
@@ -57,7 +57,7 @@ public class ArrayTool {
 	}
 
 	public static String join(String joiner, Object[] c) {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		if(c == null)return "";
 		for(Object o: c){
 			sb.append(joiner+o);

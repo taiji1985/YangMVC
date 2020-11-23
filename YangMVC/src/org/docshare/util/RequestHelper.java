@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 public class RequestHelper {
 	public static String params(HttpServletRequest request){
 		Enumeration<String> enu=request.getParameterNames();
-		StringBuffer sb =new StringBuffer();
+		StringBuilder sb =new StringBuilder();
 		boolean isFirst = true;
 		while(enu.hasMoreElements()){
 			String key=(String)enu.nextElement();

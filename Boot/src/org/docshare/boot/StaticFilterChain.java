@@ -35,7 +35,7 @@ public class StaticFilterChain implements FilterChain {
 			
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND,"File not found ! WebRoot"+req.getRequestURI());
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e(e);
 		}
 	}
 	private String getETag(String filename,long tm){
@@ -47,14 +47,7 @@ public class StaticFilterChain implements FilterChain {
 		HttpServletRequest req2 = (HttpServletRequest) req;
 		HttpServletResponse hresp = (HttpServletResponse) resp;
 		String uri = req2.getRequestURI();
-		//Log.e("StaticFilterChain called "+uri);
-//		if(uri.contains("fav.ico")){
-//			resp.setContentType("image/x-icon");
-//			OutputStream os = resp.getOutputStream();
-//			InputStream in = getClass().getResourceAsStream("/fav.ico");
-//			FileTool.writeAll(in, os);
-//			return;
-//		}
+
 		String prefix = TextTool.getPrefix(uri);
 		if(forbitMap.contains(prefix)){
 			sendForbit(req2,hresp);

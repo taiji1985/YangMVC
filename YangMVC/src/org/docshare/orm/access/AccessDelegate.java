@@ -38,8 +38,8 @@ public class AccessDelegate implements IDBDelegate {
 		ArrayList<Object> plist = new ArrayList<Object>(); //参数列表
 		if(forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0 ) ){
 			//This is an insert
-			StringBuffer ks= new StringBuffer();
-			StringBuffer vs2=new StringBuffer();
+			StringBuilder ks= new StringBuilder();
+			StringBuilder vs2=new StringBuilder();
 			boolean first=true;
 			for(String k: m.keySet()){
 				if(k.equals(key)){ //这里不再跳过主键字段

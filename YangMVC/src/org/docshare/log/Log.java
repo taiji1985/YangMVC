@@ -40,7 +40,7 @@ public class Log {
 		if(!Level.INFO.isGreaterOrEqual(level)){
 			return ;
 		}
-		StringBuffer sBuffer =new StringBuffer();
+		StringBuilder sBuffer =new StringBuilder();
 		for(String t:arr){
 			sBuffer.append(t);
 		}
@@ -63,7 +63,7 @@ public class Log {
 		if(!Level.ERROR.isGreaterOrEqual(level)){
 			return ;
 		}
-		StringBuffer sBuffer =new StringBuffer();
+		StringBuilder sBuffer =new StringBuilder();
 		for(String t:args){
 			sBuffer.append(t);
 		}
@@ -80,7 +80,7 @@ public class Log {
 		if(!Level.DEBUG.isGreaterOrEqual(level)){
 			return ;
 		}
-		StringBuffer sBuffer =new StringBuffer();
+		StringBuilder sBuffer =new StringBuilder();
 		for(String t:arr){
 			sBuffer.append(t);
 		}
@@ -102,14 +102,14 @@ public class Log {
 	
 	@SuppressWarnings("rawtypes")
 	public static void map(Map m){
-		StringBuffer stringBuffer = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(Object k:m.keySet()){
-			stringBuffer.append(',').append(k).append('=').append(m.get(k));
+			sb.append(',').append(k).append('=').append(m.get(k));
 		}
-		stringBuffer.append(']');
-		stringBuffer.setCharAt(0, '[');
-		stringBuffer.insert(0, "MAP");
-		String s= stringBuffer.toString();
+		sb.append(']');
+		sb.setCharAt(0, '[');
+		sb.insert(0, "MAP");
+		String s= sb.toString();
 		Log.i(s);
 	}
 

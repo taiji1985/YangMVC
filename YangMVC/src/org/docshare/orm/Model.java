@@ -49,7 +49,7 @@ public class Model implements Map<String,Object> {
 	}
 	private static String cls2db(String name){
 		char[] chs = name.toCharArray();
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		sb.append((""+chs[0]).toLowerCase());
 		
 		for(int i=1;i<chs.length;i++){
@@ -267,7 +267,7 @@ public class Model implements Map<String,Object> {
 	
 	@Override
 	public String toString() {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(String k:columns.keySet()){
 			sb.append(","+k+"="+columns.get(k));
 		}

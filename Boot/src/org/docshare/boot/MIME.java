@@ -8,9 +8,7 @@ import org.docshare.util.TextTool;
 
 public class MIME {
 	static HashMap<String, String> map=new HashMap<String, String>();
-	public MIME(){
-		
-	}
+
 	public static void start(){
 		map.clear();
 

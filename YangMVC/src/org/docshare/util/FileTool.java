@@ -108,7 +108,7 @@ public class FileTool {
 	 */
 	public static String readAllCRLF(String f) {
 		BufferedReader br = null;
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		try {
 			br = new BufferedReader(new InputStreamReader(
 					new FileInputStream(f), "GB2312"));
@@ -150,7 +150,7 @@ public class FileTool {
 			return null;
 
 		BufferedReader br = null;
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		try {
 			InputStreamReader reader = new InputStreamReader(in, charset);
 			br = new BufferedReader(reader);
@@ -437,7 +437,7 @@ public class FileTool {
 			InputStream sm = FileTool.class.getClassLoader()
 					.getResourceAsStream(fname);
 			sc = new Scanner(sm);
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			while (sc.hasNextLine()) {
 				String line = sc.nextLine();
 				sb.append(line);

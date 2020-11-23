@@ -132,7 +132,7 @@ public class Config {
 	}
 	
 	private static String getInteNames(ArrayList<Interceptor> list){
-		StringBuffer sb =new StringBuffer();
+		StringBuilder sb =new StringBuilder();
 		sb.append("{");
 		boolean isFirst = true;
 		for(Interceptor i :list){

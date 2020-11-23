@@ -23,7 +23,7 @@ public class MySQLDelegate implements IDBDelegate {
 	@Override
 	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
 		//String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column)
-		StringBuffer sBuffer =new StringBuffer();
+		StringBuilder sBuffer =new StringBuilder();
 		sBuffer.append("select * from `");
 		sBuffer.append(tname);
 		sBuffer.append("` where `");
@@ -46,9 +46,9 @@ public class MySQLDelegate implements IDBDelegate {
 		ArrayList<Object> plist = new ArrayList<Object>(8); //参数列表
 		if(forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0 ) ){
 			//This is an insert
-			StringBuffer ks=new StringBuffer();
+			StringBuilder ks=new StringBuilder();
 			
-			StringBuffer vs2= new StringBuffer();
+			StringBuilder vs2= new StringBuilder();
 			boolean first=true;
 			for(String k: m.keySet()){
 				if(k.equals(key)){ //这里不再跳过主键字段
@@ -74,7 +74,7 @@ public class MySQLDelegate implements IDBDelegate {
 				first = false;
 			}
 			//sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks.toString(),vs2.toString());
-			StringBuffer sqlb = new StringBuffer();
+			StringBuilder sqlb = new StringBuilder();
 			sqlb.append("insert into `");
 			sqlb.append(m.getTableName());
 			sqlb.append("`(");
@@ -105,7 +105,7 @@ public class MySQLDelegate implements IDBDelegate {
 			}
 			String ss = ArrayTool.join(",", sa);
 			//sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName(key)) );
-			StringBuffer sqlb = new StringBuffer();
+			StringBuilder sqlb = new StringBuilder();
 			sqlb.append("update `");
 			sqlb.append(m.getTableName());
 			sqlb.append("` set ");
@@ -130,7 +130,7 @@ public class MySQLDelegate implements IDBDelegate {
 	@Override
 	public int delete(String tname,String key,Object id){
 		//String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
-		StringBuffer sBuffer =new StringBuffer();
+		StringBuilder sBuffer =new StringBuilder();
 		sBuffer.append("delete from `");
 		sBuffer.append(tname).append("` where `").append(key).append("` = ?");
 		String sql = sBuffer.toString();
@@ -167,7 +167,7 @@ public class MySQLDelegate implements IDBDelegate {
 
 	public ResultSet runSQL(List<SQLConstains> cons,SQLConstains order_con,SQLConstains limit_con,DBTool tool,String tbName,String prefix){
 
-		StringBuffer sb=new StringBuffer();
+		StringBuilder sb=new StringBuilder();
 		sb.append("select ").append(prefix).append(" from `").append(tbName).append("` ");
 		final String[] fh = {"","=",">","<",">=","<=","<>"};
 		ArrayList<Object> params = new ArrayList<Object>();
@@ -241,7 +241,7 @@ public class MySQLDelegate implements IDBDelegate {
 //		SQLConstains limitc=null;
 //		SQLConstains orderc=null;
 //		String w;
-//		StringBuffer sb=new StringBuffer();
+//		StringBuilder sb=new StringBuilder();
 //		for(SQLConstains c: cons){
 //			if(c.type<fh.length){
 //				sb.setLength(0);

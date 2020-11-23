@@ -8,6 +8,7 @@ import java.net.BindException;
 import java.util.Scanner;
 
 import org.docshare.log.Log;
+import org.docshare.util.FileTool;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
@@ -40,7 +41,6 @@ public class ServerMain {
 				start();
 			} catch (Exception e) {
 				e.printStackTrace();
-				//break;
 			}
 		}
 	}
@@ -116,18 +116,20 @@ public class ServerMain {
 		}
 	}
 	
-	private static void readConsole(String url){
-		 Scanner scanner=new Scanner(System.in);
-	        while(true){
-	        	Log.i("每按一次回车键打开一次浏览器,Press Enter key to open browser");
-	        	scanner.nextLine();
-	        	try {
-		        	 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+url); 
-				} catch (Exception e) {
-					e.printStackTrace()	;
-					continue;
-				}
-	        }
+	private static void readConsole(String url) {
+		Scanner scanner  = null;
+		try {
+			scanner= new Scanner(System.in);
+			while (true) {
+				Log.i("每按一次回车键打开一次浏览器,Press Enter key to open browser");
+				scanner.nextLine();
+				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+			}
+		} catch (Exception e) {
+			Log.e(e);
+		}finally {
+			FileTool.safelyClose(scanner);
+		}
 	}
 
 }

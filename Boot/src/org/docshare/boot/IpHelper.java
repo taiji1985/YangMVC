@@ -35,7 +35,7 @@ public class IpHelper {
 	
 	public static String showPortUsed(int port){
 		Log.i("run command : netstat -aon");
-		String command = String.format("netstat -aon",port);
+		String command = "netstat -aon";//String.format("netstat -aon",port);
 
 		String sb = runCmd(command,false);
 		String[] sa  =sb.split("\n");
@@ -54,7 +54,7 @@ public class IpHelper {
 	}
 	private static String runCmd(String command,boolean waitFor) {
 		Process p;
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		try {
 			p = Runtime.getRuntime().exec(command);
 			InputStream is = p.getInputStream();
@@ -81,6 +81,6 @@ public class IpHelper {
 		String cmd = "taskkill /F /PID "+pid;
 		Log.i(cmd);
 		String r = runCmd(cmd,true);
-		System.out.println(r);
+		Log.i(r);
 	}
 }
