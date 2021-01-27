@@ -39,7 +39,7 @@ public class DBTool {
 		return delegate;
 	}
 	private DBTool(String tname){
-		Log.d("create a DBTool of "+tname);
+		Log.v("create a DBTool of "+tname);
 		this.tname = tname;
 		if("rawsql".equals(tname)){
 			c_to_remarks = new HashMap<String, ColumnDesc>();

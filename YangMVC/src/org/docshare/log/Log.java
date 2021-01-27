@@ -9,12 +9,20 @@ import java.util.Map;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import com.alibaba.fastjson.JSON;
+import com.hxtt.concurrent.w;
 
 
 public class Log {
+	public static boolean showClass = true;
 	public static String getCaller() {  
 	    StackTraceElement[] stack = (new Throwable()).getStackTrace(); 
-	    return stack[2].getClassName();
+	    for(int i=0;i<stack.length-1;i++){
+	    	String c = stack[i].getClassName();
+	    	if(!c.equals("org.docshare.log.Log")){
+	    		return c;
+	    	}
+	    }
+		return "Unknown";
 	}  
 	static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	static Logger log = Logger.getLogger("Log");
@@ -22,7 +30,11 @@ public class Log {
 	public static String now(){
 		return df.format(new Date());
 	}
-	
+	public static String W(String t){
+		if(!showClass) return t;
+		String caller = getCaller();
+		return "{"+caller+"} "+t;
+	}
 	public static  void i(Object str) {
 		if(!Level.INFO.isGreaterOrEqual(level)){
 			return ;
@@ -33,7 +45,8 @@ public class Log {
 		}else{
 			t= str.toString();
 		}
-		log.info(t);
+		log.info(W(t));
+		
 		//System.out.println(now()+ "[info ]" + str);
 	}
 	public static  void i(String ...arr){
@@ -44,7 +57,7 @@ public class Log {
 		for(String t:arr){
 			sBuffer.append(t);
 		}
-		log.info(sBuffer.toString());
+		log.info(W(sBuffer.toString()));
 	}
 
 	public static <T> void e(T i) {
@@ -56,7 +69,7 @@ public class Log {
 			s = getErrMsg((Throwable) i);
 		}
 		
-		log.error(s);
+		log.error(W(s));
 		
 	}
 	public static <T> void e(String f , String...args){
@@ -74,7 +87,7 @@ public class Log {
 		if(!Level.DEBUG.isGreaterOrEqual(level)){
 			return ;
 		}
-		log.debug(str);
+		log.debug(W(str.toString()));
 	}
 	public static  void d(String ...arr){
 		if(!Level.DEBUG.isGreaterOrEqual(level)){
@@ -84,7 +97,7 @@ public class Log {
 		for(String t:arr){
 			sBuffer.append(t);
 		}
-		log.debug(sBuffer.toString());
+		log.debug(W(sBuffer.toString()));
 	}
 	public static String getErrMsg(Throwable e){
 		try {
@@ -117,7 +130,7 @@ public class Log {
 		if(!Level.WARN.isGreaterOrEqual(level)){
 			return ;
 		}
-		log.warn(m);
+		log.warn(W(m));
 	}
 
 	public static void i(String s, Object...args) {
@@ -128,11 +141,11 @@ public class Log {
 		log.info(str);
 	}
 
-	public static void v(String string) {
+	public static void v(Object obj) {
 		if(!Level.TRACE.isGreaterOrEqual(level)){
 			return ;
 		}
-		log.trace(string);
+		log.trace(W(obj.toString()));
 	}
 
 

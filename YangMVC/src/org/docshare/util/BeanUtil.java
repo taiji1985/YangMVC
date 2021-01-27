@@ -45,7 +45,7 @@ public class BeanUtil {
 				ret.put(f.getName(), v);
 				//}
 			} catch (Exception e) {
-				e.printStackTrace();
+				Log.d(e);
 			} 
 		}
 		for(Method m: ma){
@@ -90,11 +90,12 @@ public class BeanUtil {
 
 		String getname = "get"+TextTool.firstUpper(pname);
 		Method getm = getMethod(obj, getname);
+		if(getm == null)return null;
 		try {
 			Object fieldVal = getm.invoke(obj);
 			return fieldVal;
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.d(e);
 		}
 		
 		return null;
@@ -162,7 +163,7 @@ public class BeanUtil {
 			}
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.d(e);
 		}
 		return false;
 	}
@@ -205,7 +206,7 @@ public class BeanUtil {
 				f.set(null,ov );
 				Log.d("set "+clz.getName()+" field "+name +" to "+val);
 			} catch (Exception e) {
-				e.printStackTrace();
+				Log.d(e);
 			}
 		}
 		//Log.i(Config.str());

@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import org.docshare.log.Log;
 import org.docshare.util.FileTool;
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
@@ -47,6 +48,10 @@ public class ServerMain {
     public static ContextHandler contextHandler = null;
     public static boolean supportWebSocket = true;
     public static boolean useSession = true;
+	private static SessionHandler sessionHandler=null;
+	public static SessionHandler getSessionHandler(){
+		return sessionHandler;
+	}
 	public static void start() throws Exception{
         Server server = new Server(port);
         String url = "http://127.0.0.1";
@@ -66,7 +71,8 @@ public class ServerMain {
 	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
 	        //contextHandler.setHandler(YangHandle.getIns(server));
 	        if(useSession){
-	        	collection.addHandler(new SessionHandler());
+	        	sessionHandler=new SessionHandler();
+	        	collection.addHandler(sessionHandler);
 	        }
 	        collection.addHandler(YangHandle.getIns(server));
 	        collection.addHandler(new ResourceHandler());
