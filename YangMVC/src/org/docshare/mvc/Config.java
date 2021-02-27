@@ -38,6 +38,8 @@ public class Config {
 	 */
 	public static String dbport = "3306";
 	
+	public static String encoding = "utf-8";
+	
 	/**
 	 *  数据库类型
 	 */
@@ -57,6 +59,10 @@ public class Config {
 	public static String tpl_base(){ return template;}
 	public static void tpl_base(String s){template = s;}
 	
+
+	public static String dateFormat=null; //输出的date的格式化
+	public static String dbEncoding="utf-8";
+	public static String pageEncoding="utf-8";
 	
 	/**
 	 * 控制器根包名
@@ -215,9 +221,6 @@ public class Config {
 
 	}
 	
-	public static String dateFormat=null; //输出的date的格式化
-	public static Object dbEncoding="utf-8";
-	public static String pageEncoding="utf-8";
 	
 	public static void main(String[] args) {
 		Config.loadProperties("/web.properties");
