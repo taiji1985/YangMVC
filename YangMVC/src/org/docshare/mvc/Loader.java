@@ -1,10 +1,7 @@
 package org.docshare.mvc;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.MethodAccessCacher.MyParam;
-import org.docshare.mvc.anno.Param;
 import org.docshare.mvc.except.MVCException;
 import org.docshare.util.TextTool;
 
 import com.esotericsoftware.reflectasm.MethodAccess;
+
+import sun.util.resources.cldr.zu.CalendarData_zu_ZA;
 
 public class Loader {
 	/**
@@ -110,7 +108,21 @@ public class Loader {
 
 			m = MethodAccessCacher.getMethod(cname,method);
 			Object ret = "";//返回值
-
+			
+			//添加控制器的继承支持。
+			if(m == null){ //当前类没找到这个方法，找他的父类，如果他父类是Controller类的子类（不是Controller本身）就尝试查找
+				Class<?> parentCz = cz.getSuperclass();
+				String parentClass =  parentCz.getName();
+				//如果父类不是Controller
+				if(! parentClass.equals("org.docshare.mvc.Controller")){
+					m = MethodAccessCacher.getMethod(parentClass,method);					
+					if(m!=null) {
+						cname = parentClass;
+						cz = parentCz;
+					}
+				}				
+			}
+			
 			if(m == null){
 				ret = "no such method : " + method +" , in class "+cname;
 				ins.response.setStatus(500);
@@ -123,7 +135,7 @@ public class Loader {
 			}
 			
 			
-			ret = runMethod(ins,access,m,req);
+			ret = runMethod(ins,access,m,req,cname);
 			runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			if(ins.isSingle()){
@@ -170,12 +182,14 @@ public class Loader {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static Object  runMethod(Object obj,MethodAccess access,Method method ,HttpServletRequest req){
+	public static Object  runMethod(Object obj,MethodAccess access,Method method ,HttpServletRequest req,String className){
 		
 		Object[] args  = null;
 		Controller controller = (Controller)obj;
-		
-		MyParam[] mp = MethodAccessCacher.getMethodParam(obj.getClass().getName(), method.getName());
+		if(className == null){
+			className = obj.getClass().getName();
+		}
+		MyParam[] mp = MethodAccessCacher.getMethodParam(className, method.getName());
 		args=new Object[mp.length];
 		for(int i=0;i<args.length;i++){
 			args[i]=convertTo(controller.param(mp[i].param),mp[i].type);

@@ -53,7 +53,7 @@ class CallCacheMap {
 				return true;
 			}
 			//cach.m.invoke(obj);
-			Object ret = Loader.runMethod(ins,cach.access,cach.m,req);
+			Object ret = Loader.runMethod(ins,cach.access,cach.m,req,cach.clazz.getName());
 
 			Loader.runPostProcessing(uri,ins,ret); //执行后处理程序
 			
