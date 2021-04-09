@@ -2,17 +2,11 @@ package org.docshare.orm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
-import javax.print.attribute.HashAttributeSet;
-
 import org.docshare.log.Log;
-import org.docshare.mvc.Config;
-
-import com.mysql.jdbc.CommunicationsException;
 
 
 

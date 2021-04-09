@@ -15,8 +15,6 @@ import org.docshare.util.TextTool;
 
 import com.esotericsoftware.reflectasm.MethodAccess;
 
-import sun.util.resources.cldr.zu.CalendarData_zu_ZA;
-
 public class Loader {
 	/**
 	 * 执行后处理程序 ， 如将obj转json

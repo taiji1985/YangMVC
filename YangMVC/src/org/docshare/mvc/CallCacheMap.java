@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.docshare.log.Log;
 
 import com.esotericsoftware.reflectasm.MethodAccess;
-import com.sun.accessibility.internal.resources.accessibility;
-import com.sun.beans.util.Cache;
 
 
 class CallCacheMap {

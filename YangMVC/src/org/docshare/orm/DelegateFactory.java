@@ -2,7 +2,6 @@ package org.docshare.orm;
 
 import org.docshare.orm.access.AccessDelegate;
 import org.docshare.orm.mysql.MySQLDelegate;
-import org.docshare.orm.postgres.PostgresDBHelper;
 import org.docshare.orm.postgres.PostgresDelegate;
 
 public class DelegateFactory {

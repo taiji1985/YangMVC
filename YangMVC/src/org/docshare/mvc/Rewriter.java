@@ -11,8 +11,6 @@ import java.util.regex.Pattern;
 import org.docshare.log.Log;
 import org.docshare.util.IOUtil;
 
-import com.sun.corba.se.spi.orbutil.fsm.Input;
-
 
 public class Rewriter {
 	private String root;

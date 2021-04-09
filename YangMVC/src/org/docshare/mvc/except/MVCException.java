@@ -27,7 +27,7 @@ public class MVCException extends RuntimeException{
 	}
 	public MVCException(String...args) {
 		super();
-		this.msg = TextTool.concat(args).toString();
+		this.msg = TextTool.concat((Object[])args).toString();
 	}
 	
 	@Override

@@ -10,13 +10,11 @@ import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.DBTool;
-import org.docshare.orm.LasyList;
 import org.docshare.orm.Model;
 import org.docshare.util.FileTool;
 
 import com.mysql.jdbc.CommunicationsException;
 
-import javafx.css.PseudoClass;
 import junit.framework.TestCase;
 
 public class TestBenchmark extends TestCase{
@@ -33,17 +31,14 @@ public class TestBenchmark extends TestCase{
 		
 		DBHelper dbHelper = DBHelper.getIns();
 		dbHelper.conn();
-		Connection c = dbHelper.getConnection();
+		dbHelper.getConnection();
 		//Thread.sleep(5000);
 		long start = System.currentTimeMillis();			
 		try {
 			//PreparedStatement ps = c.prepareStatement("select * from c_course where id = ?" );
 			
 			for(int i=0;i<40000;i++){  
-				//ps.setInt(1, 1);
-//				if(i%4000 == 0)System.out.println();
-//				if(i%400 == 0)System.out.print(".");
-				ResultSet rs = dbHelper.getPrepareRS("select * from book where id = ?",1);
+				dbHelper.getPrepareRS("select * from book where id = ?",1);
 			}
 		} catch (CommunicationsException e) {
 			Log.e("\nDB Communications Fail ");
@@ -60,7 +55,7 @@ public class TestBenchmark extends TestCase{
 		
 		DBHelper dbHelper = DBHelper.getIns();
 		dbHelper.conn();
-		Connection c = dbHelper.getConnection();
+		dbHelper.getConnection();
 		//Thread.sleep(5000);
 		long start = System.currentTimeMillis();			
 		//PreparedStatement ps = c.prepareStatement("select * from c_course where id = ?" );
@@ -81,7 +76,7 @@ public class TestBenchmark extends TestCase{
 		
 		DBHelper dbHelper = DBHelper.getIns();
 		dbHelper.conn();
-		Connection c = dbHelper.getConnection();
+		dbHelper.getConnection();
 		//Thread.sleep(5000);
 		long start = System.currentTimeMillis();			
 		//PreparedStatement ps = c.prepareStatement("select * from c_course where id = ?" );
@@ -110,9 +105,7 @@ public class TestBenchmark extends TestCase{
 			
 			for(int i=0;i<40000;i++){  
 				ps.setInt(1, 1);
-//				if(i%4000 == 0)System.out.println();
-//				if(i%400 == 0)System.out.print(".");
-				ResultSet resultSet= ps.executeQuery();
+ps.executeQuery();
 			}
 		} catch (CommunicationsException e) {
 			Log.e("DB Communications Fail ");
@@ -136,9 +129,7 @@ public class TestBenchmark extends TestCase{
 			Statement ps = c.createStatement();
 			
 			for(int i=0;i<40000;i++){  
-//				if(i%4000 == 0)System.out.println();
-//				if(i%400 == 0)System.out.print(".");
-				ResultSet resultSet= ps.executeQuery("select * from book where id = "+1);
+				ps.executeQuery("select * from book where id = "+1);
 			}
 		} catch (CommunicationsException e) {
 			Log.e("DB Communications Fail ");

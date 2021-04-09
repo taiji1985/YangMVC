@@ -4,12 +4,10 @@ package org.docshare.boot;
 
 
 import java.io.IOException;
-import java.net.BindException;
 import java.util.Scanner;
 
 import org.docshare.log.Log;
 import org.docshare.util.FileTool;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;

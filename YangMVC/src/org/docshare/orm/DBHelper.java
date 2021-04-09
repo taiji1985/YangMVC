@@ -15,7 +15,6 @@ import java.util.Map;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
-import org.docshare.mvc.MVCFilter;
 import org.docshare.mvc.except.MVCException;
 import org.docshare.orm.ColumnDesc.ExportTo;
 import org.docshare.orm.access.AccessDBHelper;
@@ -118,7 +117,7 @@ public abstract class DBHelper {
 			rs = dbmd.getExportedKeys(Config.dbname, null, table);
 			while(rs.next()){
 				ExportTo eTo = new ExportTo();
-                String pkTableName = rs.getString("PKTABLE_NAME");//主键表名   
+                //String pkTableName = rs.getString("PKTABLE_NAME");//主键表名   
                 String pkColumnName = rs.getString("PKCOLUMN_NAME");//主键列名    
                 String fkTableName = rs.getString("FKTABLE_NAME");//外键表名  
                 String fkColumnName = rs.getString("FKCOLUMN_NAME"); //外键列名    
@@ -258,7 +257,7 @@ public abstract class DBHelper {
 			
 		} catch (SQLException e) {
 			//new MVCException();
-			String msg = "exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") ;
+			//String msg = "exec sql fail "+ sql + " ,param = " +TextTool.join(objs, ",") ;
 			throw new MVCException(e);
 		}finally{
 			FileTool.safelyClose(last);

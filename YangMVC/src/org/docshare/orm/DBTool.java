@@ -9,7 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
-import org.docshare.mvc.except.MVCException;
 import org.docshare.util.BeanUtil;
 import org.docshare.util.FileTool;
 

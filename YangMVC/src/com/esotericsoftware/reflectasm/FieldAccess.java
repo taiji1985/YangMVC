@@ -185,6 +185,7 @@ public abstract class FieldAccess {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	static private void insertConstructor (ClassWriter cw) {
 		MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);
 		mv.visitCode();
@@ -195,6 +196,7 @@ public abstract class FieldAccess {
 		mv.visitEnd();
 	}
 
+	@SuppressWarnings("deprecation")
 	static private void insertSetObject (ClassWriter cw, String classNameInternal, ArrayList<Field> fields) {
 		int maxStack = 6;
 		MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "set", "(Ljava/lang/Object;ILjava/lang/Object;)V", null, null);
@@ -273,6 +275,7 @@ public abstract class FieldAccess {
 		mv.visitEnd();
 	}
 
+	@SuppressWarnings("deprecation")
 	static private void insertGetObject (ClassWriter cw, String classNameInternal, ArrayList<Field> fields) {
 		int maxStack = 6;
 		MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "get", "(Ljava/lang/Object;I)Ljava/lang/Object;", null, null);
@@ -572,6 +575,7 @@ public abstract class FieldAccess {
 		mv.visitEnd();
 	}
 
+	@SuppressWarnings("deprecation")
 	static private MethodVisitor insertThrowExceptionForFieldNotFound (MethodVisitor mv) {
 		mv.visitTypeInsn(NEW, "java/lang/IllegalArgumentException");
 		mv.visitInsn(DUP);
@@ -587,6 +591,7 @@ public abstract class FieldAccess {
 		return mv;
 	}
 
+	@SuppressWarnings("deprecation")
 	static private MethodVisitor insertThrowExceptionForFieldType (MethodVisitor mv, String fieldType) {
 		mv.visitTypeInsn(NEW, "java/lang/IllegalArgumentException");
 		mv.visitInsn(DUP);

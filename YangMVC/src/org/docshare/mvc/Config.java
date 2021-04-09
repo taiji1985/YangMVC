@@ -4,16 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import org.docshare.log.Log;
 import org.docshare.util.BeanUtil;
-
-import com.sun.corba.se.spi.orbutil.fsm.Input;
-import com.sun.xml.internal.ws.policy.sourcemodel.PolicyModelUnmarshaller;
 
 public class Config {
 	/**
@@ -61,7 +57,7 @@ public class Config {
 	
 
 	public static String dateFormat=null; //输出的date的格式化
-	public static String dbEncoding="utf-8";
+	public static String dbEncoding="utf8";
 	public static String pageEncoding="utf-8";
 	
 	/**
@@ -154,7 +150,6 @@ public class Config {
 	}
 	private static InputStream getPropertiesStream(String PROP_FILE){
 		try {
-			URL purl;
 			
 			
 			File f = new File(PROP_FILE); // ./web.propertes

@@ -1,14 +1,11 @@
 package org.docshare.mvc;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.docshare.log.Log;
 import org.docshare.util.FileTool;
-
-import com.esotericsoftware.reflectasm.MethodAccess;
 
 /**
  * 重新加载修改的class文件

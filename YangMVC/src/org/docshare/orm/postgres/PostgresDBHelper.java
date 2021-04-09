@@ -1,17 +1,10 @@
 package org.docshare.orm.postgres;
 
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
-import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
-
-import com.alibaba.fastjson.JSON;
 
 
 

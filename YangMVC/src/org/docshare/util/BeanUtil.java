@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Properties;
 
 import org.docshare.log.Log;
-import org.docshare.mvc.Config;
 import org.docshare.mvc.IBean;
 
 public class BeanUtil {
@@ -26,7 +25,7 @@ public class BeanUtil {
 				ret.add(TextTool.firstLower(name.substring(3)));
 			}
 		}
-		return ret; //TODO
+		return ret; 
 	}
 	public static HashMap<String, Object> obj2Map(Object obj) {
 		HashMap<String, Object> ret=new HashMap<String, Object>();

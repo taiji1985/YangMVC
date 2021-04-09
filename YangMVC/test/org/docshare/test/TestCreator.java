@@ -1,8 +1,5 @@
 package org.docshare.test;
 
-import org.docshare.mvc.Config;
-import org.docshare.orm.ConfigCreator;
-
 public class TestCreator {
 //	public void setUp(){
 //		Config.dbhost="localhost";

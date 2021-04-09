@@ -15,7 +15,6 @@ import org.docshare.orm.DBTool;
 import org.docshare.orm.IDBDelegate;
 import org.docshare.orm.Model;
 import org.docshare.orm.SQLConstains;
-import org.docshare.util.TextTool;
 
 
 public class MySQLDelegate implements IDBDelegate {
@@ -97,7 +96,7 @@ public class MySQLDelegate implements IDBDelegate {
 				if(v == null ){
 					continue;
 				}
-				String type = tool.getColumnTypeName(k);
+				//String type = tool.getColumnTypeName(k);
 				//ArrayTool.valueWrapper(k, m.get(k),type);
 				//sa.add(s);
 				sa.add("`"+k+"`=?");

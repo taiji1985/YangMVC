@@ -56,6 +56,7 @@ public class YangServerContext implements ServletContext {
 	Properties pro = null;
 	long last_protime;
 	static final String PROP_FILE = "/web.properties";
+	@SuppressWarnings("unused")
 	private void loadProp() {
 		InputStream in = null;// new FileInputStream(new File(purl.getPath()));
 		try {

@@ -1,7 +1,6 @@
 package org.docshare.test;
 
 import org.docshare.log.Log;
-import org.docshare.mvc.Config;
 import org.docshare.orm.DBTool;
 import org.docshare.orm.Model;
 

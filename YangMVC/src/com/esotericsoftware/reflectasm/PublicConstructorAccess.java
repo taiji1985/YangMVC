@@ -14,6 +14,7 @@
 
 package com.esotericsoftware.reflectasm;
 
+@SuppressWarnings("rawtypes")
 public abstract class PublicConstructorAccess extends ConstructorAccess {
 
 }

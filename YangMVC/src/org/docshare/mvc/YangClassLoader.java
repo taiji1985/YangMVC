@@ -3,7 +3,6 @@ package org.docshare.mvc;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import org.docshare.log.Log;
 

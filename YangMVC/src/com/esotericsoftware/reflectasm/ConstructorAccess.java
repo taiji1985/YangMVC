@@ -22,6 +22,7 @@ import java.lang.reflect.Modifier;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 
+@SuppressWarnings("deprecation")
 abstract public class ConstructorAccess<T> {
 	boolean isNonStaticMemberClass;
 
@@ -41,6 +42,7 @@ abstract public class ConstructorAccess<T> {
 	 *           synthetic this$0 field). */
 	abstract public T newInstance (Object enclosingInstance);
 
+	@SuppressWarnings("unchecked")
 	static public <T> ConstructorAccess<T> get (Class<T> type) {
 		Class<?> enclosingType = type.getEnclosingClass();
 		boolean isNonStaticMemberClass = enclosingType != null && type.isMemberClass() && !Modifier.isStatic(type.getModifiers());

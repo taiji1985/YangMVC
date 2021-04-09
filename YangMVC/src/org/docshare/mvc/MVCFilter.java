@@ -2,7 +2,6 @@ package org.docshare.mvc;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.HashMap;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.except.FreeMarkerHandler;
-import org.docshare.mvc.except.MVCException;
 import org.docshare.util.RequestHelper;
 import org.docshare.util.TextTool;
 
