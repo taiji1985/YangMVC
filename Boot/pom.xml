@@ -5,6 +5,10 @@
 	<artifactId>yangmvc-boot</artifactId>
 	<version>2021-04-09</version>
 	<name>yangmvc-boot</name>
+    <description>YangMVC is an efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework. 
+    	Use yangmvc-boot is something like spring-boot . Call ServerMain.main(args); in your main method can start a server.
+    </description>
+ 	<url>https://gitee.com/yangtf/YangMVC</url>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
@@ -19,6 +23,17 @@
 		<outputDirectory>bin</outputDirectory>
 		<plugins>
 			<plugin>
+		      <groupId>org.sonatype.plugins</groupId>
+		      <artifactId>nexus-staging-maven-plugin</artifactId>
+		      <version>1.6.7</version>
+		      <extensions>true</extensions>
+		      <configuration>
+		        <serverId>ossrh</serverId>
+		        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+		        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		      </configuration>
+		    </plugin>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
@@ -27,6 +42,60 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin> 
+			 <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.10.4</version>
+                        <configuration>
+					        <additionalparam>-Xdoclint:none</additionalparam>
+					         <additionalOptions>-Xdoclint:none</additionalOptions>
+					         <additionalJOption>-Xdoclint:none</additionalJOption>
+					        <aggregate>true</aggregate>
+					        <charset>UTF-8</charset><!-- utf-8读取文件 -->
+					        <encoding>UTF-8</encoding><!-- utf-8进行编码代码 -->
+					        <docencoding>UTF-8</docencoding><!-- utf-8进行编码文档 -->
+					    </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                              <!-- java8版本导致javadoc打包编译失败时候，添加-->
+                                <configuration>
+                                    <additionalparam>${javadoc.opts}</additionalparam>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
 			<!--  
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -75,11 +144,37 @@
 			<version>3.1.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-websocket -->
-		<dependency>
+		<!-- <dependency>
 		    <groupId>org.eclipse.jetty</groupId>
 		    <artifactId>jetty-websocket</artifactId>
 		    <version>8.1.0.v20120127</version>
+		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-server -->
+		<dependency>
+		    <groupId>org.eclipse.jetty.websocket</groupId>
+		    <artifactId>websocket-server</artifactId>
+		    <version>9.4.30.v20200611</version>
 		</dependency>
-		
 	</dependencies>
+	
+		<licenses>
+	  <license>
+	    <name>MIT License</name>
+	    <url>http://www.opensource.org/licenses/mit-license.php</url>
+	  </license>
+	</licenses>
+ 
+    <scm>
+        <url>https://gitee.com/yangtf/YangMVC.git</url>
+        <connection>https://gitee.com/yangtf/YangMVC.git</connection>
+        <developerConnection>https://gitee.com/yangtf/</developerConnection>
+    </scm>
+ 
+    <developers>
+        <developer>
+            <name>yangtongfeng</name>
+            <email>ytf_003@126.com</email>
+            <url>https://gitee.com/yangtf/</url>
+        </developer>
+    </developers>
 </project>
