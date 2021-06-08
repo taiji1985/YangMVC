@@ -17,4 +17,7 @@ public class MapHelper {
 		}
 		return ret;
 	}
+	public static HashMap<String, Object> empty(){
+        return new HashMap<String,Object>();
+    }
 }
