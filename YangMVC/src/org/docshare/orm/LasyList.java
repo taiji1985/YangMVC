@@ -25,6 +25,9 @@ import com.alibaba.fastjson.JSON;
  */
 public class LasyList extends ListAdapter {
 
+	static interface Each{
+		boolean one(Model m);
+	}
 
 	private ArrayList<SQLConstains> cons = new ArrayList<SQLConstains>(); //约束列表
 	private DBTool tool;
@@ -413,7 +416,7 @@ public class LasyList extends ListAdapter {
 			return arrList;
 		}
 		initRS();
-		List<Model> mList = new ArrayList<Model>();
+		List<Model> mList = new MyArrayList();
 		try {
 			arrList  = mList;
 			Set<String> cs = null; // 只显示这个集合中的列，其他列不显示。
@@ -487,6 +490,36 @@ public class LasyList extends ListAdapter {
 	}
 	
 	
+	public LasyList each(Each fun){
+		for(Model m : this){
+			fun.one(m);
+		}
+		return this;
+	}
+	public List<Model> filter(Each fun){
+		ArrayList<Model> ret= new ArrayList<Model>();
+		for(Model m : this){
+			if(fun.one(m)) ret.add(m);
+		}
+		return ret;
+	}
+	static class MyArrayList extends ArrayList<Model>{
+		private static final long serialVersionUID = 7008979830534539859L;
+		public MyArrayList each(Each fun){
+			for(Model m : this){
+				fun.one(m);
+			}
+			return this;
+		}
+		public MyArrayList filter(Each fun){
+			MyArrayList ret= new MyArrayList();
+			for(Model m : this){
+				if(fun.one(m)) ret.add(m);
+			}
+			return ret;
+		}
+	}
+
 	
 
 }

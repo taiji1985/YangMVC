@@ -34,6 +34,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.docshare.log.Log;
+
 import com.alibaba.fastjson.JSON;
 
 

@@ -73,7 +73,7 @@ public class Config {
 	public static boolean useSSL = false;
 	
 	public static String str() {
-		return "Config [\n\tdbhost=" + dbhost 
+		String ret=  "Config [\n\tdbhost=" + dbhost 
 				+", \n\tdbname=" + dbname 
 				+ ", \n\tdbusr=" + dbusr 
 				+ ", \n\tdbpwd="+ dbpwd 
@@ -87,6 +87,16 @@ public class Config {
 				+",\n\tinterceptors="+getInteNames(interceptors)
 				+", \n\tpost-process="+getInteNames(postInterceptors)
 				+ "\n]";
+		StringBuilder sb =new StringBuilder();
+		sb.append(ret);
+		
+		for(Object s: pro.keySet()){
+			sb.append("\n"+s+"="+pro.getProperty(s+""));
+		}
+		
+		return sb.toString();
+		
+		
 	}
 	static ArrayList<Interceptor> interceptors =new ArrayList<Interceptor>();
 	

@@ -22,7 +22,7 @@ public class Loader {
 	 * @param c
 	 * @param ret
 	 */
-	static void runPostProcessing(String uri,Controller c,Object ret) {
+	void runPostProcessing(String uri,Controller c,Object ret) {
 		for(Interceptor ic : Config.postInterceptors){
 			if(ret == null){
 				break; 
@@ -30,9 +30,9 @@ public class Loader {
 			ret = ic.postProcess(uri, c,ret);
 		}
 	}
-	static Reloader reloader = null;
-	static int loaderVersion = 0;
-	public static Class<?> load(String p) throws ClassNotFoundException{
+	Reloader reloader = null;
+	int loaderVersion = 0;
+	public  Class<?> load(String p) throws ClassNotFoundException{
 
 		if(reloader == null){
 			String reload_base = TextTool.getParentPackage(Config.controller);
@@ -41,7 +41,21 @@ public class Loader {
 				reload_base =Config.controller;
 			}
 			Log.i("reload base : "+reload_base);
-			reloader=new Reloader("/", reload_base);
+
+			String groovy_path = Config.getProperty("groovy", null);
+			if(groovy_path == null){
+				reloader=new Reloader("/", reload_base);
+			}else{
+				//reloader = new GroovyReloader("/", reload_base);
+				try {
+					reloader = (Reloader)Class.forName("org.docshare.mvc.GroovyReloader").newInstance();
+					reloader.setParam("/", reload_base);
+				} catch (Exception e) {
+					//e.printStackTrace();
+					Log.e(e);
+				}
+			}
+			Log.i("use reloader "+ reloader.getClass().getName());
 		}
 		
 		return reloader.load(p);
@@ -53,9 +67,18 @@ public class Loader {
 	 * key: 类名
 	 * Object: 对象
 	 */
-	static Map<String, Object> singleMap = new HashMap<String, Object>();
+	 Map<String, Object> singleMap = new HashMap<String, Object>();
 	
-	public static boolean call(String uri,String cname,String method,HttpServletRequest req,HttpServletResponse resp){
+	 static boolean isGroovyObject(Object obj){
+		//groovy.lang.GroovyObject
+		Class<?>[] ia = obj.getClass().getInterfaces();
+		
+		for(Class<?> i : ia){
+			if(i.getName().equals("groovy.lang.GroovyObject")) return true;
+		}
+		return false;
+	}
+	public  boolean call(String uri,String cname,String method,HttpServletRequest req,HttpServletResponse resp){
 		Log.d("Call " + cname + ", method = " + method);
 		
 		//load class
@@ -121,6 +144,10 @@ public class Loader {
 				}				
 			}
 			
+//			if(m == null && isGroovyObject(ins)){ //如果是groovy
+//				
+//			}
+			
 			if(m == null){
 				ret = "no such method : " + method +" , in class "+cname;
 				ins.response.setStatus(500);
@@ -160,7 +187,7 @@ public class Loader {
 	 * @param method 
 	 * @return
 	 */
-	public static boolean runInterceptors(String uri,Controller controller, MethodAccess access,String methodName, Method m){
+	public  boolean runInterceptors(String uri,Controller controller, MethodAccess access,String methodName, Method m){
 		boolean ret = true;
 		for(Interceptor ic : Config.interceptors){
 			if(ic == null) continue;
@@ -180,7 +207,7 @@ public class Loader {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	public static Object  runMethod(Object obj,MethodAccess access,Method method ,HttpServletRequest req,String className){
+	public  Object  runMethod(Object obj,MethodAccess access,Method method ,HttpServletRequest req,String className){
 		
 		Object[] args  = null;
 		Controller controller = (Controller)obj;
@@ -203,7 +230,7 @@ public class Loader {
 	 * @param type
 	 * @return
 	 */
-	private static Object convertTo(Object v,String type){
+	private  Object convertTo(Object v,String type){
 		if(v == null){
 			//要迁就一下这种基本数据类型
 			if(type.equals("int")||type.equals("float")||type.equals("double")){

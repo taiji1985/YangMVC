@@ -35,7 +35,8 @@ public class MVCException extends RuntimeException{
 		s.println("Message: "+msg);
 		if(throwable!=null){
 			throwable.printStackTrace(s);
-			s.println("~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~");
+			return;
+			//s.println("~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~");
 		}
 		super.printStackTrace(s);
 	}

@@ -47,13 +47,13 @@ class CallCacheMap {
 			}
 			ins.clearOutFlag(); //清空输出标志，说明还未输出
 
-			if(!Loader.runInterceptors(uri,ins,cach.access,cach.methodName,cach.m)){
+			if(!MVCFilter.loader.runInterceptors(uri,ins,cach.access,cach.methodName,cach.m)){
 				return true;
 			}
 			//cach.m.invoke(obj);
-			Object ret = Loader.runMethod(ins,cach.access,cach.m,req,cach.clazz.getName());
+			Object ret = MVCFilter.loader.runMethod(ins,cach.access,cach.m,req,cach.clazz.getName());
 
-			Loader.runPostProcessing(uri,ins,ret); //执行后处理程序
+			MVCFilter.loader.runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			return true;
 		} catch (Exception e) {

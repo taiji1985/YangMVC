@@ -53,7 +53,7 @@ public class MVCFilter implements Filter {
 	private String getPureURI(String Uri,String context){
 		return Uri.replaceFirst(context+"/", "");
 	}
-	
+	static Loader loader;
 	
 	
 
@@ -90,7 +90,7 @@ public class MVCFilter implements Filter {
 			cname = cname.substring(0, p+1)+lastname;
 			cname = TextTool.underLineToUpper(cname);
 		}
-		boolean r  = Loader.call(uri,cname, method,req,resp);
+		boolean r  = loader.call(uri,cname, method,req,resp);
 		if(r){
 			return true;
 		}
@@ -165,7 +165,7 @@ public class MVCFilter implements Filter {
 			controller.request = req2;
 			controller.response = (HttpServletResponse) resp;
 			controller.response.setStatus(500);
-			Loader.runPostProcessing(uri, controller, msg);
+			loader.runPostProcessing(uri, controller, msg);
 			
 			//outErr((HttpServletResponse) resp, msg);
 		}
@@ -215,6 +215,19 @@ public class MVCFilter implements Filter {
 		}else{
 			Log.i("loaded from web.properties, skip load from web.xml");
 		}
+		
+		
+		if(Config.getProperty("groovy", null) == null){
+			loader = new Loader();
+		}else{
+			try {
+				loader = (Loader) Class.forName("org.docshare.mvc.GroovyLoader").newInstance();
+			} catch (Exception e) {
+				Log.e(e);
+				loader = new Loader();
+			}			
+		}
+		
 		
 		try {
 			String initCls = Config.controller+".Init";

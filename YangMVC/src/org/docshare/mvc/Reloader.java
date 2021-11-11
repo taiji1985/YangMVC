@@ -12,17 +12,25 @@ import org.docshare.util.FileTool;
  * @author Tongfeng Yang
  *
  */
-class Reloader {
-	private String root;
-	HashMap<String, Long > last_tm=new HashMap<String, Long>();
+public class Reloader {
+	protected String root;
+	protected HashMap<String, Long > last_tm=new HashMap<String, Long>();
 	ArrayList<String> reloadList = new ArrayList<String>();
 	ClassLoader loader = null;
 	Class<?> clz = null;
-	private String reloadPkg; //需要监测重新加载的包
+	protected String reloadPkg; //需要监测重新加载的包
 	public Reloader(String clsRoot,String reloadPkg) {
+		setParam(clsRoot,reloadPkg);
+	}
+	 Reloader(){
+		
+	}
+	public void setParam(String clsRoot,String reloadPkg){
 		this.root = clsRoot;
 		this.reloadPkg = reloadPkg;
+		
 	}
+	
 	int loaderVersion = 0;
 	
 	
@@ -94,6 +102,7 @@ class Reloader {
 		//下面是打开了reloadable选项后的功能
 		
 		ClassLoader loader  = classIsUpdate(clsName);
+		
 		return Class.forName(clsName, true, loader);
 	}
 	
@@ -131,7 +140,7 @@ class Reloader {
 		return loader;
 	}
 	
-	private String clsToPath(String clsName) {
+	protected String clsToPath(String clsName) {
 		if(!root.endsWith("/"))root += "/";
 		
 		return root+clsName.replace(".","/") +".class";
@@ -151,7 +160,7 @@ class Reloader {
 			e.printStackTrace();
 		}
 	}
-	private void T(String s) {
+	protected void T(String s) {
 		System.out.println(s);
 	}
 	

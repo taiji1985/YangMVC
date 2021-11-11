@@ -70,10 +70,10 @@ public class Model implements Map<String,Object> {
 		return r == null?c:r;
 	}
 	
-	@Deprecated
-	public String getRemark(String c){
-		return remark(c);
-	}
+//	@Deprecated
+//	public String getRemark(String c){
+//		return remark(c);
+//	}
 	
 	@Override
 	public Set<String> keySet() {
@@ -360,6 +360,23 @@ public class Model implements Map<String,Object> {
 		ret.isCreated = false;
 		return ret;
 	}
+	
+	public <T> T toObject(Class<T> clz){
+		try {
+			T obj = clz.newInstance();
+			for(String key: keySet()){
+				BeanUtil.set(obj, key,  this.get(key));
+			}
+			for(String key : extra.keySet()){
+				BeanUtil.set(obj, key,  get(key));					
+			}
+			return obj;	
+		} catch (InstantiationException | IllegalAccessException e) {
+			Log.e(e);
+		}
+		return null;
+	}
+	
 	/**
 	 * 将此Model插入到数据库中
 	 * @return 影响的行数
