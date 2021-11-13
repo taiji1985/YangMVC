@@ -256,6 +256,9 @@ public class MVCFilter implements Filter {
 		fmCfg.setDefaultEncoding("utf-8");
 		fmCfg.setLocalizedLookup(false);
 		fmCfg.setTemplateExceptionHandler(new FreeMarkerHandler());
+		fmCfg.setClassicCompatible(true);
+		
+		
 		
 		//fmCfg.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 		TemplateLoader ctl = new ClassTemplateLoader(MVCFilter.class,

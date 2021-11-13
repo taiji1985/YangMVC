@@ -41,7 +41,7 @@ public class GroovyReloader extends Reloader {
 			File c = new File(groovy_path,path.replace(".class",".groovy")); //找groovy源代码
 			if(c.exists()){
 				try {
-					Log.d("load groovy "+ c.getAbsolutePath());
+					
 					return groovyLoader.parseClass(c);
 				} catch (CompilationFailedException | IOException e) {
 					Log.e(e);
@@ -92,7 +92,7 @@ public class GroovyReloader extends Reloader {
 		
 	}
 	private ClassLoader newLoader(File f){
-		T("find a file need to reload "+f.getAbsolutePath());
+		Log.d("load new file: "+f.getAbsolutePath());
 		
 		if(f.getName().endsWith(".groovy") && f.exists()){
 			groovyLoader =   new GroovyClassLoader();

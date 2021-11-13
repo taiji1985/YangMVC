@@ -69,7 +69,7 @@ public class YangHandle extends AbstractHandler {
 	}
 
 	private void T(String string) {
-		Log.i(string);
+		Log.v(string);
 	}
 
 

@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSON;
 
 
 public class Log {
-	public static boolean showClass = true;
+	public static boolean showClass = false;
 	public static String getCaller() {  
 	    StackTraceElement[] stack = (new Throwable()).getStackTrace(); 
 	    for(int i=0;i<stack.length-1;i++){

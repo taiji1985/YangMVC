@@ -666,7 +666,6 @@ public class Controller {
 				outMutiOutErr(s);
 				return;
 			}
-			Log.i("output: --------------------"+s);
 			can_out = false;
 			response.setContentType("text/html; charset=utf-8");
 			response.setCharacterEncoding("utf-8");
