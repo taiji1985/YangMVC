@@ -2,6 +2,7 @@ package org.docshare.log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -99,17 +100,14 @@ public class Log {
 		log.debug(W(sBuffer.toString()));
 	}
 	public static String getErrMsg(Throwable e){
-		try {
-			ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
-			e.printStackTrace(new java.io.PrintWriter(buf, true));
-			String  expMessage = buf.toString();
-			buf.close();
-			return expMessage;
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		return "";
+		ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
+		PrintWriter pw = new java.io.PrintWriter(buf, true); 
+		e.printStackTrace(pw);
+		pw.flush();
+		pw.close();
+		String  expMessage = buf.toString();
+		
+		return expMessage;
 	}
 	
 	@SuppressWarnings("rawtypes")

@@ -71,6 +71,10 @@ public class IndexController extends Controller {
 	public void error(){
 		renderFreeMarker("/err.html");
 	}
+	public void err(){
+		int a = 0;
+		int b = 12/a;
+	}
 	public String retstr(){
 		return "hello";
 	}

@@ -667,7 +667,9 @@ public class Controller {
 				return;
 			}
 			can_out = false;
-			response.setContentType("text/html; charset=utf-8");
+			if(! response.getContentType().contains("text/plain")){
+				response.setContentType("text/html; charset=utf-8");
+			}
 			response.setCharacterEncoding("utf-8");
 			writer = getMyPrintWriter();
 			if(s == null)writer.write("null");

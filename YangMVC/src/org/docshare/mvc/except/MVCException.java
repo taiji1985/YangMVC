@@ -2,8 +2,13 @@ package org.docshare.mvc.except;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.Set;
 
 import org.docshare.util.TextTool;
+
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
 public class MVCException extends RuntimeException{
 	private String msg = "";
@@ -34,7 +39,8 @@ public class MVCException extends RuntimeException{
 	public void printStackTrace(PrintStream s) {
 		s.println("Message: "+msg);
 		if(throwable!=null){
-			throwable.printStackTrace(s);
+			s.print(toString(throwable));
+			s.flush();
 			return;
 			//s.println("~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~");
 		}
@@ -44,11 +50,31 @@ public class MVCException extends RuntimeException{
 	public void printStackTrace(PrintWriter s) {
 		s.println("Message: "+msg);
 		if(throwable!=null){
-			throwable.printStackTrace(s);
+			//throwable.printStackTrace(s);
+			s.print(toString(throwable));
+			s.flush();
 			return;
-			//s.println("~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~");
+			//s.println("~~~~~~~~~~~~  The Message is above ~~~~~~~~~~~"); 
 		}
 		super.printStackTrace(s);
+	}
+	private String toString(Throwable t){
+		ByteOutputStream bos = new ByteOutputStream();
+		PrintWriter pw  =new PrintWriter(bos);
+		t.printStackTrace(pw);
+		pw.flush();
+		pw.close();
+		
+		String str = new String(bos.getBytes());
+		StringBuilder sb =new StringBuilder();
+		for(String s:str.split("\n")){
+			if(s.contains("org.eclipse.jetty")){
+				break;
+			}
+			sb.append(s+"\n");
+		}
+		return sb.toString();
+		
 	}
 
 }

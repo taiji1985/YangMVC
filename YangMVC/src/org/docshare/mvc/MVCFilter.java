@@ -164,7 +164,9 @@ public class MVCFilter implements Filter {
 			Controller controller = new Controller();
 			controller.request = req2;
 			controller.response = (HttpServletResponse) resp;
+			controller.response.reset();
 			controller.response.setStatus(500);
+			controller.response.setContentType("text/plain");
 			loader.runPostProcessing(uri, controller, msg);
 			
 			//outErr((HttpServletResponse) resp, msg);
