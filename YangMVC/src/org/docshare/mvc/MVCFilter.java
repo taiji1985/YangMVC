@@ -142,12 +142,29 @@ public class MVCFilter implements Filter {
 		
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
+		
+		for(URLFilter urlFilter: Config.urlFilters){
+			if(urlFilter!= null){
+				uri = urlFilter.doFilter(uri, req2, resp);;
+			}
+			if(uri == null){ //如果返回null，代表不处理
+				chain.doFilter(req, resp);
+				return;
+			}
+			if(uri.equals(URLFilter.DONE)){
+				return ;
+			}
+		}
+		
+		
 		if(context == null) context = "";
 		Log.d("filter > ",uri,",param = [",RequestHelper.params(req2),"]"); 
 		if(uri.contains(".")) {
 			chain.doFilter(req, resp);
 			return;
 		}
+		
+		
 		//如果开启了reloadable，就不再使用缓存。缓存主要是为了加速实际运行。
 		boolean succ = Config.reloadable ?false: CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
 		if(succ){

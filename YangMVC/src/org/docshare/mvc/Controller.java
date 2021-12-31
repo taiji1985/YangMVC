@@ -667,14 +667,15 @@ public class Controller {
 				return;
 			}
 			can_out = false;
-			if(! response.getContentType().contains("text/plain")){
+			String oldType = response.getContentType();
+			if( oldType == null || ! oldType.contains("text/plain")){
 				response.setContentType("text/html; charset=utf-8");
 			}
 			response.setCharacterEncoding("utf-8");
 			writer = getMyPrintWriter();
 			if(s == null)writer.write("null");
 			else writer.write(s);
-			writer.close();
+			writer.close(); 
 		} catch (IOException e) {
 			Log.e(e);
 		}

@@ -131,7 +131,7 @@ public class ServerMain {
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
 			}
 		} catch (Exception e) {
-			Log.e(e);
+			//Log.e(e);
 		}finally {
 			FileTool.safelyClose(scanner);
 		}

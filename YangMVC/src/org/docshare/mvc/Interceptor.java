@@ -42,4 +42,8 @@ public abstract class Interceptor {
 		return getClass().getName();
 	}
 
+	@Override
+	public String toString() {
+		return "Intercptor["+name()+"]";
+	}
 }

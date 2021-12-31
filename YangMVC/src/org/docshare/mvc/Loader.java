@@ -221,7 +221,21 @@ public class Loader {
 		}
 		
 		
-		return access.invoke(obj, method.getName(), args);
+		try {
+			return access.invoke(obj, method.getName(), args);
+		} catch (ClassCastException e) {
+			Log.e("class cast exception "+e.getMessage());
+			try {
+				return method.invoke(obj, args);
+			} catch (IllegalAccessException e1) {
+				Log.e("IllegalAccessException " +e1);
+			} catch (IllegalArgumentException e1) {
+				Log.e("IllegalArgumentException " +e1);
+			} catch (InvocationTargetException e1) {
+				Log.e("InvocationTargetException " +e1);
+			}
+		}
+		return null;
 	}
 	
 	/**

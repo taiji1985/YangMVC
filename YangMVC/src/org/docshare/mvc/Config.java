@@ -72,6 +72,8 @@ public class Config {
 	 */
 	public static boolean useSSL = false;
 	
+	public static ArrayList<URLFilter> urlFilters = new ArrayList<>();
+	
 	public static String str() {
 		String ret=  "Config [\n\tdbhost=" + dbhost 
 				+", \n\tdbname=" + dbname 
@@ -98,7 +100,7 @@ public class Config {
 		
 		
 	}
-	static ArrayList<Interceptor> interceptors =new ArrayList<Interceptor>();
+	public static ArrayList<Interceptor> interceptors =new ArrayList<Interceptor>();
 	
 	public static void addInterceptor(Interceptor interceptor){
 		if(interceptors.contains(interceptor)){
