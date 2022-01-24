@@ -73,10 +73,10 @@ public class HttpHelper {
 			client.getHttpConnectionManager().getParams()
 					.setConnectionTimeout(10000);// 设置连接时间
 			int status = client.executeMethod(postMethod);
-			if (status == HttpStatus.SC_OK) {
-				InputStream inputStream = postMethod.getResponseBodyAsStream();
-				response = IOUtil.readStream(inputStream,charset);
-			} else {
+			
+			InputStream inputStream = postMethod.getResponseBodyAsStream();
+			response = IOUtil.readStream(inputStream,charset);
+			if((""+status).startsWith("5")){
 				response = null;
 			}
 		} catch (Exception e) {
