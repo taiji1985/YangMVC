@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YangMVCDemo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCDemo/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -236,7 +233,7 @@
       <option name="presentableId" value="Default" />
       <updated>1671114793348</updated>
       <workItem from="1671114794520" duration="2209000" />
-      <workItem from="1671117024141" duration="3335000" />
+      <workItem from="1671117024141" duration="3742000" />
     </task>
     <servers />
   </component>
