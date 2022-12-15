@@ -11,8 +11,11 @@
         <module name="YangMVCDemo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="YangMVC" target="1.5" />
-    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="yangmvc" options="" />
+    </option>
   </component>
 </project>

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="" />
+    <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCDemo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCDemo/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +19,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -53,7 +59,7 @@
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15429688",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -230,11 +236,22 @@
       <option name="presentableId" value="Default" />
       <updated>1671114793348</updated>
       <workItem from="1671114794520" duration="2209000" />
-      <workItem from="1671117024141" duration="2058000" />
+      <workItem from="1671117024141" duration="3335000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/docshare/mvc/YangClassLoader.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
