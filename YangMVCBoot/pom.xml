@@ -29,7 +29,7 @@
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <version>2.4.1</version>
+      <version>2.4.21</version>
     </dependency>
 
 
@@ -37,7 +37,7 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-server</artifactId>
-      <version>9.4.30.v20200611</version>
+      <version>9.4.48.v20220622</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
