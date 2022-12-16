@@ -6,11 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="YangMVCBoot" />
+        <module name="yangmvc-demo" />
         <module name="yangmvc" />
-        <module name="YangMVCDemo" />
+        <module name="yangmvc-boot" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="YangMVCBoot" target="1.8" />
+      <module name="YangMVCDemo" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
