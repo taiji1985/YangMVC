@@ -4,11 +4,12 @@
 
   <groupId>org.docshare</groupId>
   <artifactId>yangmvc</artifactId>
-  <version>2022.12.15</version>
+  <version>2022.12.18</version>
   <packaging>jar</packaging>
+  <description>An efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can run independently, and it can also be applied to traditional Java Web projects. It is an efficient, fast, convenient, easy to learn and easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can be run on its own, or it can be applied to traditional Java Web projects</description>
 
   <name>YangMVC</name>
-  <url>http://maven.apache.org</url>
+  <url>https://gitee.com/yangtf/YangMVC</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -209,6 +210,17 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.13</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
       </plugin>
     </plugins>
   </build>

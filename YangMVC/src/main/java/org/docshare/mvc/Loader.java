@@ -18,9 +18,9 @@ import com.esotericsoftware.reflectasm.MethodAccess;
 public class Loader {
 	/**
 	 * 执行后处理程序 ， 如将obj转json
-	 * @param uri
-	 * @param c
-	 * @param ret
+	 * @param uri 网址
+	 * @param c  控制器
+	 * @param ret 控制器方法返回的对象
 	 */
 	void runPostProcessing(String uri,Controller c,Object ret) {
 		for(Interceptor ic : Config.postInterceptors){
@@ -67,7 +67,7 @@ public class Loader {
 	 * key: 类名
 	 * Object: 对象
 	 */
-	 Map<String, Object> singleMap = new HashMap<String, Object>();
+	 Map<String, Object> singleMap = new HashMap<>();
 	
 	 static boolean isGroovyObject(Object obj){
 		//groovy.lang.GroovyObject
@@ -83,7 +83,7 @@ public class Loader {
 		
 		//load class
 		Class<?> cz=null;
-		Object obj =null;
+		Object obj;
 		try{
 			if(singleMap.containsKey(cname)){
 				obj = singleMap.get(cname);
@@ -128,7 +128,7 @@ public class Loader {
 			}
 
 			m = MethodAccessCacher.getMethod(cname,method);
-			Object ret = "";//返回值
+			Object ret;//返回值
 			
 			//添加控制器的继承支持。
 			if(m == null){ //当前类没找到这个方法，找他的父类，如果他父类是Controller类的子类（不是Controller本身）就尝试查找
@@ -183,33 +183,29 @@ public class Loader {
 	
 	/**
 	 * 执行所有拦截器
-	 * @param m 
-	 * @param method 
-	 * @return
 	 */
-	public  boolean runInterceptors(String uri,Controller controller, MethodAccess access,String methodName, Method m){
-		boolean ret = true;
-		for(Interceptor ic : Config.interceptors){
-			if(ic == null) continue;
-			Log.d("Call Intercept "+ic.name());
-			ret = ic.intercept(uri, controller,access,methodName,m);
-			if(!ret ) return false;
+	public  boolean runInterceptors(String uri,Controller controller, MethodAccess access,String methodName, Method m) {
+		boolean result = true;
+		boolean ret;
+		for (Interceptor ic : Config.interceptors) {
+			if (ic == null) continue;
+			Log.d("Call Intercept " + ic.name());
+			ret = ic.intercept(uri, controller, access, methodName, m);
+			if (!ret) {
+				result = false;
+				break;
+			}
 		}
-		return true;
+		return result;
 	}
 	
 
 	/**
 	 * 执行方法
-	 * @param m
-	 * @param req
-	 * @throws InvocationTargetException 
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 */
 	public  Object  runMethod(Object obj,MethodAccess access,Method method ,HttpServletRequest req,String className){
 		
-		Object[] args  = null;
+		Object[] args;
 		Controller controller = (Controller)obj;
 		if(className == null){
 			className = obj.getClass().getName();
@@ -240,9 +236,9 @@ public class Loader {
 	
 	/**
 	 * 自动类型转换
-	 * @param v
-	 * @param type
-	 * @return
+	 * @param v 原对象
+	 * @param type 要转换成的类型
+	 * @return 转换后结果
 	 */
 	private  Object convertTo(Object v,String type){
 		if(v == null){
@@ -264,14 +260,14 @@ public class Loader {
     		v = Double.parseDouble(v+"");
     	}
     	else if(type.equals("java.lang.Integer")){
-    		v =new Integer(Integer.parseInt(v+""));
+    		v = Integer.parseInt(v + "");
     	}
     	else if(type.equals(Long.class.getName())){
-    		v = new Long( Long.parseLong(v+""));
+    		v = Long.parseLong(v + "");
     	}else if(type.equals(Boolean.class.getName())){
-    		v = new Boolean(Boolean.parseBoolean(v+""));
+    		v = Boolean.parseBoolean(v + "");
     	}else if(type.equals(Double.class.getName())){
-    		v = new Double(Double.parseDouble(v+""));
+    		v = Double.parseDouble(v + "");
     	}
 		
 		return v;

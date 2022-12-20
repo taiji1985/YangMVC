@@ -4,11 +4,13 @@
 
   <groupId>org.docshare</groupId>
   <artifactId>yangmvc-boot</artifactId>
-  <version>2022.12.16</version>
+  <version>2022.12.18</version>
   <packaging>jar</packaging>
-
+  <description>YangMVC is an efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework.
+    Use yangmvc-boot is something like spring-boot . Call ServerMain.main(args); in your main method can start a server.
+  </description>
+  <url>https://gitee.com/yangtf/YangMVC</url>
   <name>YangMVCBoot</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,8 +25,8 @@
     </dependency>
     <dependency>
       <groupId>org.docshare</groupId>
-      <artifactId>YangMVC</artifactId>
-      <version>2022.12.15</version>
+      <artifactId>yangmvc</artifactId>
+      <version>2022.12.18</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
@@ -202,6 +204,17 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.13</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
       </plugin>
     </plugins>
   </build>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.mvc.except.MVCException;
@@ -17,7 +18,6 @@ import org.docshare.util.FileTool;
 import org.docshare.util.TextTool;
 
 import com.alibaba.fastjson.JSON;
-import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 
 public class MySQLDBHelper extends DBHelper {
 
