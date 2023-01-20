@@ -4,15 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="">
+    <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="将YangMVC整合到Spring中">
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/log/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/GroovyReloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/GroovyReloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/Reloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/Reloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YangMVCDemo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCDemo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/groovy/cn/org/docshare/demo/TestController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/groovy/cn/org/docshare/demo/TestController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/cn/org/docshare/demo/ChildController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/cn/org/docshare/demo/ChildController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -23,6 +33,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -40,6 +53,9 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2IxEMytMCAacTjdRDABg5VqX5om" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -47,11 +63,18 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/work/yangmvc_mvn/YangMVC/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/work/yangmvc_mvn/YangMVCSpring/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -60,16 +83,18 @@
     &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15429688&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;67a980697c5a220d900367f17868b040&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\yangmvc_mvn\YangMVCSpring\src\main\resources" />
+      <recent name="D:\work\yangmvc_mvn\YangMVCBootDemo\src\main\resources" />
       <recent name="D:\work\yangmvc_mvn\YangMVC\src\main\resources" />
       <recent name="D:\work\yangmvc_mvn\YangMVCBoot\src\main\resources" />
       <recent name="D:\work\yangmvc_mvn\YangMVCBoot\src\main\groovy" />
-      <recent name="D:\work\yangmvc_mvn\yangmvc_demo\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\work\yangmvc_mvn\YangMVCBoot\src\main\resources\org\docshare\boot" />
@@ -80,10 +105,23 @@
       <command value="mvn verify install:install" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.YangMvcSpringApplication">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.docshare.example.App" />
+      <module name="yangmvc-boot-demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.docshare.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.docshare.boot.ServerMain" />
-      <module name="YangMVCBoot" />
+      <module name="yangmvc-boot" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -95,101 +133,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType">
-      <module name="yangmvc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="yangmvc" />
+    <configuration name="YangMvcSpringApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yangmvc-spring" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.docshare.yangmvc.spring.YangMvcSpringApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.docshare.yangmvc.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="yangmvc" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <module name="yangmvc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="yangmvc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="yangmvc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="yangmvc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Autodetect">
-      <module name="yangmvc" />
+      <module name="YangMVCBoot" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -204,7 +162,7 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="yangmvc" />
+      <module name="YangMVCBoot" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -222,9 +180,14 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.YangMvcSpringApplication" />
+      <item itemvalue="应用程序.App" />
+      <item itemvalue="应用程序.ServerMain" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.ServerMain" />
+        <item itemvalue="Spring Boot.YangMvcSpringApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -238,22 +201,62 @@
       <updated>1671114793348</updated>
       <workItem from="1671114794520" duration="2209000" />
       <workItem from="1671117024141" duration="3923000" />
-      <workItem from="1671149273729" duration="2864000" />
+      <workItem from="1671149273729" duration="3273000" />
+      <workItem from="1671153164587" duration="1588000" />
+      <workItem from="1671342574205" duration="16011000" />
+      <workItem from="1671974650258" duration="1121000" />
+      <workItem from="1672051682191" duration="32000" />
+      <workItem from="1672840438810" duration="687000" />
+      <workItem from="1673614755471" duration="3873000" />
+      <workItem from="1673780661267" duration="178000" />
     </task>
+    <task id="LOCAL-00001" summary="添加演示项目">
+      <created>1671154094346</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671154094346</updated>
+    </task>
+    <task id="LOCAL-00002" summary="将YangMVC整合到Spring中">
+      <created>1671501202093</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671501202093</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="添加演示项目" />
+    <MESSAGE value="将YangMVC整合到Spring中" />
+    <option name="LAST_COMMIT_MESSAGE" value="将YangMVC整合到Spring中" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>false</integration-enabled>
+    <settings-migrated>true</settings-migrated>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/docshare/mvc/YangClassLoader.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/main/java/org/docshare/mvc/Reloader.java</url>
+          <line>126</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/../../../data/maven_home/org/docshare/yangmvc/2022.12.18/yangmvc-2022.12.18-sources.jar!/org/docshare/mvc/Reloader.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

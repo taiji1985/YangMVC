@@ -4,7 +4,7 @@
 
   <groupId>org.docshare</groupId>
   <artifactId>yangmvc</artifactId>
-  <version>2022.12.18</version>
+  <version>2023.01.14</version>
   <packaging>jar</packaging>
   <description>An efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can run independently, and it can also be applied to traditional Java Web projects. It is an efficient, fast, convenient, easy to learn and easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can be run on its own, or it can be applied to traditional Java Web projects</description>
 

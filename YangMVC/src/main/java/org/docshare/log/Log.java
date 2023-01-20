@@ -25,7 +25,7 @@ public class Log {
 		return "Unknown";
 	}  
 	static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	static Logger log = Logger.getLogger("Log");
+	static Logger log = Logger.getLogger("YangMVC");
 	static Level level = Logger.getRootLogger().getLevel();
 	public static String now(){
 		return df.format(new Date());

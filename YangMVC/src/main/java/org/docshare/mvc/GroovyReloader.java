@@ -68,6 +68,8 @@ public class GroovyReloader extends Reloader {
 			path = c.getAbsolutePath();
 		}else if(! FileTool.exists(path) && FileTool.exists("bin/") && ! path.contains("bin/") ){
 			c = new File("bin",path);
+		}else if(! FileTool.exists(path) && FileTool.exists("target/classes/")){
+			c = new File("target/classes",path);
 		}
 
 		long now = c.lastModified();

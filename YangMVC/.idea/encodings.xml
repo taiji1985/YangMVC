@@ -6,7 +6,12 @@
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../YangMVCBoot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../YangMVCBoot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../YangMVCBootDemo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../YangMVCBootDemo/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../YangMVCDemo/YangMVCSpring/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../YangMVCDemo/src/main/java/org/demo/IndexController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../YangMVCDemo/src/main/java/org/demo/PmController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../YangMVCSpring/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../YangMVCSpringStarter/src/main/resources" charset="UTF-8" />
   </component>
 </project>

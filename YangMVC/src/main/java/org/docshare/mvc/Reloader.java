@@ -115,9 +115,14 @@ public class Reloader {
 	 */
 	public ClassLoader classIsUpdate(String clsName){
 		String path = clsToPath(clsName);
-		if(! FileTool.exists(path) && FileTool.exists("bin/") && ! path.contains("bin/") ){
-			path = "bin"+path;
+		if(!FileTool.exists(path)){
+			if(FileTool.exists("bin/") && ! path.contains("bin/") ){
+				path = "bin"+path;
+			}else if(FileTool.exists("target/classes/")){
+				path = "target/classes"+path;
+			}
 		}
+
 
 		File c = new File(path);
 		long now = c.lastModified();

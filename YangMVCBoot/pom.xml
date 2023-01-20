@@ -4,7 +4,7 @@
 
   <groupId>org.docshare</groupId>
   <artifactId>yangmvc-boot</artifactId>
-  <version>2022.12.18</version>
+  <version>2023.01.14</version>
   <packaging>jar</packaging>
   <description>YangMVC is an efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework.
     Use yangmvc-boot is something like spring-boot . Call ServerMain.main(args); in your main method can start a server.
@@ -26,7 +26,7 @@
     <dependency>
       <groupId>org.docshare</groupId>
       <artifactId>yangmvc</artifactId>
-      <version>2022.12.18</version>
+      <version>2023.01.14</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
@@ -90,6 +90,7 @@
 
   <build>
     <plugins>
+
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>

@@ -7,19 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="yangmvc-demo" />
-        <module name="yangmvc" />
         <module name="yangmvc-boot" />
+        <module name="yangmvc-spring" />
+        <module name="yangmvc-boot-demo" />
+        <module name="yangmvc" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="YangMVCBoot" target="1.8" />
-      <module name="YangMVCDemo" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="yangmvc" options="" />
+      <module name="yangmvc-boot-demo" options="-parameters" />
     </option>
   </component>
 </project>
