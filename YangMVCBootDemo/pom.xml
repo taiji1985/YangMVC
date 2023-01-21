@@ -79,7 +79,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.0.1</version>
         <configuration>
-          <javadocExecutable>D:/dev/jdk8/bin/javadoc.exe</javadocExecutable>
+<!--          <javadocExecutable>D:/dev/jdk8/bin/javadoc.exe</javadocExecutable>-->
           <additionalJOptions>
             <additionalJOption>-Xdoclint:none</additionalJOption>
           </additionalJOptions>
