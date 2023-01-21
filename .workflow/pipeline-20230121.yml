@@ -38,7 +38,8 @@ stages:
         artifacts:
           - name: BUILD_ARTIFACT
             path:
-              - ./target
+              - ./YangMVCBoot/target
+              - ./YangMVC/target
         settings: []
         caches:
           - ~/.m2
