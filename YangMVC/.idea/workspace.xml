@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="将YangMVC整合到Spring中">
+      <change afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/org/docshare/boot/RedisSessionDataMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/log/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/GroovyReloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/GroovyReloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/Reloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/Reloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/groovy/cn/org/docshare/demo/TestController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/groovy/cn/org/docshare/demo/TestController.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/cn/org/docshare/demo/ChildController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/cn/org/docshare/demo/ChildController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/org/docshare/boot/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/org/docshare/boot/ServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/view/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +104,7 @@
       <command value="mvn verify install:install" />
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.YangMvcSpringApplication">
+  <component name="RunManager" selected="应用程序.ServerMain">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.docshare.example.App" />
       <module name="yangmvc-boot-demo" />
@@ -187,6 +186,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.ServerMain" />
         <item itemvalue="Spring Boot.YangMvcSpringApplication" />
       </list>
     </recent_temporary>
@@ -209,6 +209,7 @@
       <workItem from="1672840438810" duration="687000" />
       <workItem from="1673614755471" duration="3873000" />
       <workItem from="1673780661267" duration="178000" />
+      <workItem from="1674263839339" duration="8673000" />
     </task>
     <task id="LOCAL-00001" summary="添加演示项目">
       <created>1671154094346</created>

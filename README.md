@@ -7,6 +7,16 @@ https://git.oschina.net/yangtf/YangMVC/attach_files
 
 请在此页下载版本号最高的版本
 
+# Maven 地址
+
+```xml
+    <dependency>
+      <groupId>org.docshare</groupId>
+      <artifactId>yangmvc-boot</artifactId>
+      <version>2023.01.21</version>
+    </dependency>
+```
+
 
 # 更新日志
 

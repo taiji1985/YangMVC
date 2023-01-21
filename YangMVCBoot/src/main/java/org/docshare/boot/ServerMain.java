@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import org.docshare.log.Log;
+import org.docshare.mvc.Config;
 import org.docshare.util.FileTool;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
@@ -14,7 +15,7 @@ import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.server.handler.ResourceHandler;
-import org.eclipse.jetty.server.session.SessionHandler;
+import org.eclipse.jetty.server.session.*;
 
 
 public class ServerMain {
@@ -46,9 +47,30 @@ public class ServerMain {
     public static ContextHandler contextHandler = null;
     public static boolean supportWebSocket = true;
     public static boolean useSession = true;
+	public static boolean useRedis = false;
 	private static SessionHandler sessionHandler=null;
 	public static SessionHandler getSessionHandler(){
 		return sessionHandler;
+	}
+
+	private static void applyRedis(){
+		Log.i("use redis sessionCache");
+		NullSessionCache dsc = new NullSessionCache(sessionHandler);
+		String redis_host = Config.getProperty("redis_host", "localhost");
+		String redis_port = Config.getProperty("redis_port","6379");
+		SessionDataMap sessionDataMap = null;
+		try {
+			Class<?> redisClass = Class.forName("org.docshare.boot.RedisSessionDataMap");
+			sessionDataMap = (SessionDataMap) redisClass.newInstance();
+
+			dsc.setSessionDataStore(new CachingSessionDataStore(sessionDataMap,
+					new NullSessionDataStore()));
+			sessionHandler.setSessionCache(dsc);
+
+		} catch (Exception e) {
+			Log.e("Unable to load redis class" +e.getMessage());
+		}
+
 	}
 	public static void start() throws Exception{
         Server server = new Server(port);
@@ -56,7 +78,7 @@ public class ServerMain {
         if(port != 80){
             url = String.format("http://127.0.0.1:%d",port);
         }
-        
+        Config.loadProperties("/web.properties");
 		try{
 			org.eclipse.jetty.util.log.Log.setLog(new YangLogger());
 	        
@@ -70,6 +92,12 @@ public class ServerMain {
 	        //contextHandler.setHandler(YangHandle.getIns(server));
 	        if(useSession){
 	        	sessionHandler=new SessionHandler();
+				//----------------------------
+				if(useRedis){
+					applyRedis();
+				}
+
+				//----------------------------
 	        	collection.addHandler(sessionHandler);
 	        }
 	        collection.addHandler(YangHandle.getIns(server));

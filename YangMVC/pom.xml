@@ -4,7 +4,7 @@
 
   <groupId>org.docshare</groupId>
   <artifactId>yangmvc</artifactId>
-  <version>2023.01.14</version>
+  <version>2023.01.21</version>
   <packaging>jar</packaging>
   <description>An efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can run independently, and it can also be applied to traditional Java Web projects. It is an efficient, fast, convenient, easy to learn and easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can be run on its own, or it can be applied to traditional Java Web projects</description>
 
@@ -95,10 +95,11 @@
       <artifactId>asm</artifactId>
       <version>7.3.1</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy -->
     <dependency>
-      <groupId>org.codehaus.groovy.maven.runtime</groupId>
-      <artifactId>gmaven-runtime-default</artifactId>
-      <version>1.0-rc-3</version>
+      <groupId>org.apache.groovy</groupId>
+      <artifactId>groovy</artifactId>
+      <version>4.0.7</version>
     </dependency>
 
   </dependencies>
