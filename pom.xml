@@ -13,8 +13,6 @@
     <modules>
         <module>YangMVC</module>
         <module>YangMVCBoot</module>
-        <module>YangMVCBootDemo</module>
-        <module>YangMVCDemo</module>
         <module>YangMVCSpring</module>
     </modules>
     <properties>
