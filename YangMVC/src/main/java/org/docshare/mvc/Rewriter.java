@@ -84,7 +84,7 @@ public class Rewriter {
 	/**
 	 * 规则匹配，重写url
 	 * @param uri
-	 * @return
+	 * @return 重写后的URL
 	 */
 	public String rewrite(String uri){
 		if(pairs==null)return uri; //do nothing if no rewrite rule

@@ -12,3 +12,4 @@ Boot/target/
 YangMVCDemo/target/
 Boot/logs
 target/
+/.idea/libraries

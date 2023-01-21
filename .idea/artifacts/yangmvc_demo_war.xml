@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="yangmvc-demo:war">
+    <output-path>$PROJECT_DIR$/YangMVCDemo/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>yangmvc-demo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="yangmvc_demo.war">
+      <element id="artifact" artifact-name="yangmvc-demo:war exploded" />
+    </root>
+  </artifact>
+</component>
