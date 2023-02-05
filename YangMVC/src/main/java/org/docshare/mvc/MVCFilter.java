@@ -15,6 +15,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.except.FreeMarkerHandler;
@@ -139,7 +140,7 @@ public class MVCFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req2 = (HttpServletRequest) req;
 		req2.setCharacterEncoding(Config.pageEncoding);
-		
+
 		String uri = req2.getRequestURI();
 		String context = req2.getContextPath();
 		

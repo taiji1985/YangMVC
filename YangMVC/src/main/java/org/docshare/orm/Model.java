@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 
 public class Model implements Map<String,Object> {
 	private String tname;
+	public boolean isNull = false;
 	private Map<String, Object> columns;
 	private Map<String,Object> extra; // append data of Model
 	DBTool joined_tool=null;// relate tool 
@@ -159,10 +160,11 @@ public class Model implements Map<String,Object> {
 		if(extra!=null && extra.containsKey(ks)){
 			return extra.get(ks);
 		}
-		
-		
+
 		String k =null;
-		if(!columns.containsKey(key) && columns.containsKey(key+"_id")){
+		if(columns.containsKey(key)){
+			return columns.get(key);
+		}else if(!columns.containsKey(key) && columns.containsKey(key+"_id")){
 			k=key+"_id";
 		}
 		//如果原本的字段就以__obj开头，则不认为其为主键
@@ -182,8 +184,8 @@ public class Model implements Map<String,Object> {
 			return tool.get(desc.pk_column, columns.get(k));
 			
 		}
-		
-		return columns.get(key);
+
+		return null;
 	}
 
 	/**

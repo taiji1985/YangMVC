@@ -11,6 +11,8 @@ import org.docshare.log.Log;
 import org.docshare.util.BeanUtil;
 
 public class Config {
+	private static  String prop_file = "/web.properties";
+	private static long lastUpdate = 0;
 	/**
 	 * 数据库主机名或IP地址
 	 */
@@ -45,6 +47,8 @@ public class Config {
 	 * 是否打开实时Reload功能
 	 */
 	public static boolean reloadable = true;
+
+	public static boolean reload_config = false;
 	
 	/**
 	 * 模板相对于WebRoot的目录路径
@@ -169,17 +173,19 @@ public class Config {
 			File f = new File(PROP_FILE); // ./web.propertes
 			if(f.exists()){
 				Log.d("read prop from "+ f);
-
+				lastUpdate = f.lastModified();
 				return new FileInputStream(f);
 			}
 			
 			f = new File("."+PROP_FILE);
 			if(f.exists()){
 				Log.d("read prop from "+ f);
+				lastUpdate = f.lastModified();
 				return new FileInputStream(f);
 			}
 			Log.d("class loader name "+Config.class.getClassLoader().toString());
 			Log.d("try load from classpath");
+
 			return Config.class.getResourceAsStream(PROP_FILE);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -204,6 +210,11 @@ public class Config {
 	 */
 	public static boolean loadProperties(String PROP_FILE){
 		InputStream in = null;
+		if(PROP_FILE != null){
+			Config.prop_file  = PROP_FILE;
+		}else{
+			PROP_FILE = Config.prop_file;
+		}
 		try {
 			in = getPropertiesStream(PROP_FILE);
 			if(in == null){
@@ -215,8 +226,14 @@ public class Config {
 
 			pro = new Properties();	
 			pro.load(in);
+			
 			Log.i("web.properties loaded ");
 			BeanUtil.prop2StaticField(pro, Config.class);
+
+			if(reload_config){
+				startReloadThread();
+			}
+
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -228,8 +245,21 @@ public class Config {
 			}
 		}
 
+
 	}
-	
+	private Thread reloadThread = null;
+	private static void startReloadThread(){
+		new Thread(()->{
+			try {
+				Thread.sleep(5000);
+				Log.d("reload cfg");
+				Config.loadProperties(null);
+			} catch (InterruptedException e) {
+				return;
+			}
+
+		}).start();
+	}
 	
 	public static void main(String[] args) {
 		Config.loadProperties("/web.properties");

@@ -345,10 +345,15 @@ public abstract class DBHelper {
 		}
 		
 		conn();
+
 		ret = new HashMap<String,ColumnDesc>();
+		if(con == null){
+			return ret;
+		}
 		try {
-			ResultSet rs = con.getMetaData().getColumns(null, "%", tb, "%");
+			ResultSet rs = con.getMetaData().getColumns(Config.dbname, "%", tb, "%");
 			while (rs.next()) {
+
 				ColumnDesc desc=new ColumnDesc();
 				
 				desc.name = rs.getString("COLUMN_NAME");

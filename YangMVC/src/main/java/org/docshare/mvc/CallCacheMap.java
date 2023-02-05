@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.docshare.log.Log;
 
@@ -40,6 +41,7 @@ class CallCacheMap {
 			}
 			Log.d("CacheCall class=", cach.clazz.getName(),",method=",cach.methodName);
 			ins.setReq(req, resp);
+			//HttpSession sess= req.getSession();
 			
 			if( ! "login".equals(cach.methodName) &&  ! ins.checkRequire()){ //如果未通过检测
 				ins.actionRequire(false);
@@ -48,6 +50,8 @@ class CallCacheMap {
 			ins.clearOutFlag(); //清空输出标志，说明还未输出
 
 			if(!MVCFilter.loader.runInterceptors(uri,ins,cach.access,cach.methodName,cach.m)){
+				HttpSession sessNew = ins.session;
+
 				return true;
 			}
 			//cach.m.invoke(obj);

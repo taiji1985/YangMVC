@@ -27,19 +27,20 @@ public class MySQLDBHelper extends DBHelper {
 	}
 	@Override
 	public void conn() {
+		String uri = null;
 		try {
 			if(con !=null && ! con.isClosed() && con.isValid(5))return;
 			statementPool.clear();//清空语句池
 			
 			Log.d("MySQLDBHelper connect to server");
-			Class.forName("com.mysql.jdbc.Driver");
-			//Class.forName("com.mysql.cj.jdbc.Driver");
+			//Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 //			String uri = String.format(
 //					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&useSSL="+Config.useSSL,
 //					Config.dbhost,Config.dbport, Config.dbname);
 			String encoding = Config.dbEncoding;
 			if(encoding.contains("utf8")) encoding = "utf8";
-			String uri = TextTool.concat("jdbc:mysql://",Config.dbhost,":",Config.dbport,"/",Config.dbname,"?characterEncoding=",encoding,"&useSSL=",Config.useSSL,"&serverTimezone=Asia/Shanghai").toString();
+			uri = TextTool.concat("jdbc:mysql://",Config.dbhost,":",Config.dbport,"/",Config.dbname,"?characterEncoding=",encoding,"&useSSL=",Config.useSSL,"&serverTimezone=Asia/Shanghai").toString();
 //			String uri = String.format(
 //					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&serverTimezone=GMT+8&useSSL="+Config.useSSL,
 //					Config.dbhost,Config.dbport, Config.dbname);
@@ -50,6 +51,7 @@ public class MySQLDBHelper extends DBHelper {
 		} catch (SQLException e) {
 			Log.e(e);
 			Log.e(Config.str());
+			throw new MVCException("connect to url fail: "+uri,e);
 		}
 	}
 

@@ -308,7 +308,6 @@ public class RedisSessionDataMap extends AbstractLifeCycle implements SessionDat
     }
 
     private byte[] keyAsBytes(String id) {
-        id= "rsess_"+id;
         if (_keyPrefix == null) {
             return id.getBytes(StandardCharsets.UTF_8);
         } else {

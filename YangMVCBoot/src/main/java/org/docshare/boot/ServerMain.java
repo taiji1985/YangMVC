@@ -53,16 +53,24 @@ public class ServerMain {
 		return sessionHandler;
 	}
 
+	public static RedisSessionDataMap sessionDataMap = null;
+	private static String _prefix=null;
+	public static void setRedisSessionPrefix(String prefix){
+		_prefix = prefix;
+		if(sessionDataMap!=null){
+			sessionDataMap.setKeyPrefix(prefix);
+		}
+		//sessionDataMap.setKeyPrefix(prefix);
+	}
 	private static void applyRedis(){
 		Log.i("use redis sessionCache");
 		NullSessionCache dsc = new NullSessionCache(sessionHandler);
 		String redis_host = Config.getProperty("redis_host", "localhost");
 		String redis_port = Config.getProperty("redis_port","6379");
-		SessionDataMap sessionDataMap = null;
 		try {
-			Class<?> redisClass = Class.forName("org.docshare.boot.RedisSessionDataMap");
-			sessionDataMap = (SessionDataMap) redisClass.newInstance();
-
+			//Class<?> redisClass = Class.forName("org.docshare.boot.RedisSessionDataMap");
+			sessionDataMap = new RedisSessionDataMap();
+			sessionDataMap.setKeyPrefix(_prefix);
 			dsc.setSessionDataStore(new CachingSessionDataStore(sessionDataMap,
 					new NullSessionDataStore()));
 			sessionHandler.setSessionCache(dsc);

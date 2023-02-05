@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c483aad6-b25f-4668-917e-d953bb7f1a2f" name="变更" comment="将YangMVC整合到Spring中">
-      <change afterPath="$PROJECT_DIR$/../pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/cn/org/docshare/demo/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/CallCacheMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/CallCacheMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/MVCFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/mvc/MVCFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/orm/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/orm/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/orm/DBTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/orm/DBTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/orm/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/orm/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/docshare/orm/mysql/MySQLDBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/docshare/orm/mysql/MySQLDBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/cn/org/docshare/demo/MyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/cn/org/docshare/demo/MyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/org/docshare/boot/RedisSessionDataMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/org/docshare/boot/RedisSessionDataMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/org/docshare/boot/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/org/docshare/boot/ServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/web.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/java/web.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../YangMVCBoot/src/main/resources/web.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../YangMVCBoot/src/main/resources/web.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +95,7 @@
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15429688",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "advanced.settings",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "spring.configuration.checksum": "67a980697c5a220d900367f17868b040",
     "vue.rearranger.settings.migration": "true"
   }
@@ -209,6 +223,10 @@
       <workItem from="1673614755471" duration="3873000" />
       <workItem from="1673780661267" duration="178000" />
       <workItem from="1674263839339" duration="8866000" />
+      <workItem from="1675168002719" duration="929000" />
+      <workItem from="1675329466720" duration="3487000" />
+      <workItem from="1675333403654" duration="2610000" />
+      <workItem from="1675557613603" duration="4546000" />
     </task>
     <task id="LOCAL-00001" summary="添加演示项目">
       <created>1671154094346</created>
@@ -229,6 +247,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

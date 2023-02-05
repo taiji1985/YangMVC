@@ -117,6 +117,16 @@ public class DBTool {
 	public Model get(Object id){
 		return get(key,id);
 	}
+
+	public Model getNotNull(Object id){
+		Model m = get(id);
+		if(m == null){
+			m = new Model(tname,columns);
+			m.isNull = true;
+		}
+		return m;
+	}
+
 	/**
 	 * 获取column列等于id的所有集合的第一个
 	 * @param column 字段名
@@ -184,6 +194,11 @@ public class DBTool {
 	public int save(Model m){
 		return save(m,false);
 	}
+
+	public Model saveAndRet(Model m ){
+		save(m,false);
+		return m;
+	}
 	public int save(Object obj,boolean isInsert ){
 		Model  m = Model.fromObject(tname, obj);
 		int r =  save(m,isInsert);
@@ -225,6 +240,11 @@ public class DBTool {
 	 */
 	public int insert(Model m){
 		return save(m,true);
+	}
+
+	public Model insertAndRet(Model m ){
+		insert(m);
+		return m;
 	}
 	
 	/**
