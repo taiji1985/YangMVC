@@ -369,9 +369,12 @@ public class Model implements Map<String,Object> {
 			for(String key: keySet()){
 				BeanUtil.set(obj, key,  this.get(key));
 			}
-			for(String key : extra.keySet()){
-				BeanUtil.set(obj, key,  get(key));					
+			if(extra!= null){
+				for(String key : extra.keySet()){
+					BeanUtil.set(obj, key,  get(key));					
+				}
 			}
+			
 			return obj;	
 		} catch (InstantiationException | IllegalAccessException e) {
 			Log.e(e);
