@@ -826,7 +826,11 @@ public class Controller {
 	 * @return 参数内容
 	 */
 	public String param(String p){
-		if(paramMap.containsKey(p))return paramMap.get(p).toString();
+		if(paramMap.containsKey(p)){
+			Object obj = paramMap.get(p);
+			if(obj!=null) return obj.toString();
+			else return null;
+		}
 		return request.getParameter(p);
 	}
 	/**
