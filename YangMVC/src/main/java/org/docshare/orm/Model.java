@@ -1,16 +1,12 @@
 package org.docshare.orm;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.docshare.log.Log;
 import org.docshare.mvc.Controller;
 import org.docshare.util.BeanUtil;
 import org.docshare.util.TextTool;
+import org.docshare.util.TimeHelper;
 import org.jetbrains.annotations.NotNull;
 
 import com.alibaba.fastjson.JSON;
@@ -186,6 +182,10 @@ public class Model implements Map<String,Object> {
 		}
 
 		return null;
+	}
+
+	public Date getDate(Object key){
+		return TimeHelper.toDate(get(key));
 	}
 
 	/**
