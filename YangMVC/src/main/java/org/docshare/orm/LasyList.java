@@ -59,7 +59,6 @@ public class LasyList extends ListAdapter {
 	 */
 	@Override
 	public int size() {
-		Log.v("size() called");
 		if(arrList!=null){
 			return arrList.size();
 		}
@@ -137,24 +136,26 @@ public class LasyList extends ListAdapter {
 	}
 	private void initRS() {
 		if (rs == null) {
-			try {
-				if(tbName == null && rawSql!= null){
-					rs  = delegate.runSQL(rawSql);
-					if(rs !=null && (column_desc==null || column_desc.size() == 0) ){
-						column_desc = delegate.columnOfRs(rawSql,rs);
-					}
-					if(rs == null &&column_desc == null){ //如果查询失败，报个错。
-						column_desc = new HashMap<String, ColumnDesc>(); 
-					}
-				}else{
-					rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
-				}
-			} catch (SQLException e) {
-				Log.e("LasyList.initRS ERROR: "+debugInfo());
-				Log.e(e);
-			}
-			
-		}
+            if(tbName == null && rawSql!= null){
+//					rs  = delegate.runSQL(rawSql);
+//					if(rs !=null && (column_desc==null || column_desc.size() == 0) ){
+//						column_desc = delegate.columnOfRs(rawSql,rs);
+//					}
+//					if(rs == null &&column_desc == null){ //如果查询失败，报个错。
+//						column_desc = new HashMap<String, ColumnDesc>();
+//					}
+                tbName = " ("+rawSql+") as rawsql ";
+                rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
+                if(rs!=null){
+                    column_desc = delegate.columnOfRs(rawSql,rs);
+                }else{
+                    column_desc = new HashMap<String, ColumnDesc>();
+                }
+            }else{
+                rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
+            }
+
+        }
 	}
 	List<Model> arrList=null; //枚举时直接放入此List中
 	int iterIndex = 0;//枚举所用的索引

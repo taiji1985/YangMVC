@@ -167,10 +167,15 @@ public class MySQLDelegate implements IDBDelegate {
 	public ResultSet runSQL(List<SQLConstains> cons,SQLConstains order_con,SQLConstains limit_con,DBTool tool,String tbName,String prefix){
 
 		StringBuilder sb=new StringBuilder();
-		sb.append("select ").append(prefix).append(" from `").append(tbName).append("` ");
+		sb.append("select ").append(prefix).append(" from ");
+		if(tbName.contains("(")){
+			sb.append(tbName);
+		}else{
+			sb.append("`").append(tbName).append("` ");
+		}
 		final String[] fh = {"","=",">","<",">=","<=","<>"};
 		ArrayList<Object> params = new ArrayList<Object>();
-		if(cons.size()>0){
+		if(!cons.isEmpty()){
 			sb.append("where ");
 			boolean first= true;
 
