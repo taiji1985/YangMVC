@@ -131,7 +131,7 @@ public class Controller {
 	 * @param val 参数值
 	 */
 	public void putParam(String key,Object val) {
-		Log.d("put param: "+key+"= "+val);
+		Log.v("put param: "+key+"= "+val);
 		paramMap.put(key, val);
 		
 	}
@@ -432,7 +432,9 @@ public class Controller {
 	public void setReq(HttpServletRequest req, HttpServletResponse resp) {
 		this.request = req;
 		this.response = resp;
-		session = request.getSession();
+		try{
+			session = request.getSession();
+		}catch (Exception e){}
 		if(session !=null){
 			application = session.getServletContext();
 		}

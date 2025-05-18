@@ -15,7 +15,7 @@ import groovy.lang.GroovyObject;
 public class GroovyLoader extends Loader {
 
 	public  boolean call(String uri,String cname,String method,HttpServletRequest req,HttpServletResponse resp){
-		Log.d("Call " + cname + ", method = " + method);
+		Log.v("Call " + cname + ", method = " + method);
 		
 		//load class
 		Class<?> cz=null;
@@ -25,7 +25,7 @@ public class GroovyLoader extends Loader {
 				obj = singleMap.get(cname);
 				cz = obj.getClass();
 				((Controller)obj).clearOutFlag();
-				Log.d("Single Mode:"+cname);
+				Log.v("Single Mode:"+cname);
 			}else{
 				cz = load(cname);
 				

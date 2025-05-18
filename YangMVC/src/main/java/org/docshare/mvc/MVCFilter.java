@@ -159,7 +159,7 @@ public class MVCFilter implements Filter {
 		
 		
 		if(context == null) context = "";
-		Log.d("filter > ",uri,",param = [",RequestHelper.params(req2),"]"); 
+		Log.d("filter > ",((HttpServletRequest) req).getMethod()," ",uri,",param = [",RequestHelper.params(req2),"]");
 		if(uri.contains(".")) {
 			chain.doFilter(req, resp);
 			return;

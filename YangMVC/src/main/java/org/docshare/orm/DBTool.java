@@ -318,7 +318,7 @@ public class DBTool {
 	
 	@Override
 	protected void finalize() throws Throwable {
-		Log.d("dbtool finalize called");
+		Log.v("dbtool finalize called");
 		try{
 			DBHelper.removeThreadLocal();
 		}catch(Exception e){

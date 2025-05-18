@@ -189,7 +189,7 @@ public class Loader {
 		boolean ret;
 		for (Interceptor ic : Config.interceptors) {
 			if (ic == null) continue;
-			Log.d("Call Intercept " + ic.name());
+			Log.v("Call Intercept " + ic.name());
 			ret = ic.intercept(uri, controller, access, methodName, m);
 			if (!ret) {
 				result = false;
