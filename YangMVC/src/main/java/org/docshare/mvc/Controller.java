@@ -124,7 +124,7 @@ public class Controller {
 
 	private boolean single = false;
 	
-	private HashMap<String, String> cookieMap = new HashMap<String, String>();
+	private HashMap<String, String> cookieMap = new HashMap<>();
 	/**
 	 * 追加参数， 同样可以用param获取到最佳的参数
 	 * @param key 参数名
@@ -504,6 +504,7 @@ public class Controller {
 	 * @return sesion中存储的该键对应的内容，如果没有返回null
 	 */
 	public Object sess(String key){
+		if(session == null) return null;
 		return session.getAttribute(key);
 	}
 	/**
@@ -512,6 +513,7 @@ public class Controller {
 	 * @param val 要设置为的值
 	 */
 	public void sess(String key,Object val){
+		if(session == null) return ;
 		session.setAttribute(key, val);
 	}
 	/**
@@ -542,6 +544,7 @@ public class Controller {
 	
 	
 	public void removeSession(String key){
+		if(session==null) return;
 		session.removeAttribute(key);
 	}
 	/**
@@ -550,6 +553,7 @@ public class Controller {
 	 * @return 变量值， 如果没有则返回null
 	 */
 	public Object app(String key){
+		if(application == null) return null;
 		return application.getAttribute("key");
 	}
 	/**
@@ -581,6 +585,7 @@ public class Controller {
 		application.setAttribute(key, val);
 	}
 	public void removeApp(String key){
+		if(application == null) return;
 		application.removeAttribute(key);
 	}
 	/**
@@ -589,6 +594,7 @@ public class Controller {
 	 * @return value 要设置成的值
 	 */
 	public String cookie(String key){
+		if(cookieMap ==  null) return null;
 		return cookieMap.get(key);
 	}
 	
@@ -1050,6 +1056,9 @@ public class Controller {
 		if(require_obj==null || require_obj.key == null){
 			return true;
 		}
+		if(session == null){
+			return false;
+		}
 		Object obj = session.getAttribute(require_obj.key);
 		if(require_obj.value ==null){
 			return obj != null;
@@ -1060,7 +1069,7 @@ public class Controller {
 	
 	/**
 	 * 根据succ的值决定是否执行跳转或显示错误的操作。此方法提供给MVCFilter使用
-	 * @param succ
+	 * @param succ 为真表示成功，为假表示失败
 	 */
 	void actionRequire(boolean succ){
 		if(succ){
@@ -1135,6 +1144,10 @@ public class Controller {
 	 */
 	private void putSession(){
 		Map<String, Object> pMap =new HashMap<String, Object>();
+		if(session ==null){
+			put("session",null);
+			return;
+		}
 		Enumeration<String> names = session.getAttributeNames();
 		while(names.hasMoreElements()){
 			String name = names.nextElement();
@@ -1172,7 +1185,7 @@ public class Controller {
 			if(out!=null){
 				e.printStackTrace((PrintWriter)out);
 			}
-			//Log.e(e);
+			Log.e(e);
 			//throw new MVCException(e);
 		}
 		

@@ -45,7 +45,7 @@ public class Reloader {
 		}
 		reloadList.clear();
 		scan(new File(reloadDir));
-		if(reloadList.size()>0){
+		if(!reloadList.isEmpty()){
 			loader = new YangClassLoader(++loaderVersion,root,reloadPkg);
 		}
 		for(String p: reloadList){
