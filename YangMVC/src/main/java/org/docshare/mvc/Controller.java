@@ -435,9 +435,7 @@ public class Controller {
 		try{
 			session = request.getSession();
 		}catch (Exception e){}
-		if(session !=null){
-			application = session.getServletContext();
-		}
+		application = request.getServletContext();
 		String contentType = request.getContentType();
 		//Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){

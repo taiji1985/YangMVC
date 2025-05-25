@@ -114,6 +114,9 @@ public class Model implements Map<String,Object> {
 	 */
 	public Integer getInt(Object key){
 		Object rObject  = get(key);
+		if(rObject == null){
+			return null;
+		}
 		if(rObject instanceof Integer){
 			return (Integer)rObject;
 		}
@@ -127,6 +130,9 @@ public class Model implements Map<String,Object> {
 	 */
 	public Long getLong(Object key){
 		Object rObject  = get(key);
+		if(rObject == null){
+			return null;
+		}
 		if(rObject instanceof Long){
 			return (Long)rObject;
 		}
@@ -141,6 +147,9 @@ public class Model implements Map<String,Object> {
 	 */
 	public Double getDouble(Object key){ 
 		Object rObject  = get(key);
+		if(rObject == null){
+			return null;
+		}
 		if(rObject instanceof Double){
 			return (Double)rObject;
 		}
