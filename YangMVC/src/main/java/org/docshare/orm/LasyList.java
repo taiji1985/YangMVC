@@ -38,7 +38,7 @@ public class LasyList extends ListAdapter {
 		tool = Model.tool("rawsql");
 		delegate = tool.getDelegate();
 		//initRS();
-		toArrayList();
+		//toArrayList();
 	}
 
 	public LasyList(DBTool tool,String tbName){
@@ -57,7 +57,11 @@ public class LasyList extends ListAdapter {
 		if(arrList!=null){
 			return arrList.size();
 		}
-		return (int)delegate.size(cons, tool, tbName);
+		String tmpTBName= tbName;
+		if(rawSql!=null) {
+			tmpTBName = " ("+rawSql+") as rawsql ";
+		}
+		return (int)delegate.size(cons, tool, tmpTBName);
 	}
 	
 	/**
@@ -132,15 +136,9 @@ public class LasyList extends ListAdapter {
 	private void initRS() {
 		if (rs == null) {
             if(tbName == null && rawSql!= null){
-//					rs  = delegate.runSQL(rawSql);
-//					if(rs !=null && (column_desc==null || column_desc.size() == 0) ){
-//						column_desc = delegate.columnOfRs(rawSql,rs);
-//					}
-//					if(rs == null &&column_desc == null){ //如果查询失败，报个错。
-//						column_desc = new HashMap<String, ColumnDesc>();
-//					}
-                tbName = " ("+rawSql+") as rawsql ";
-                rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
+
+                String tmpTBName = " ("+rawSql+") as rawsql ";
+                rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tmpTBName,column_filter);
                 if(rs!=null){
                     column_desc = delegate.columnOfRs(rawSql,rs);
                 }else{
