@@ -2,13 +2,7 @@ package org.docshare.orm;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.docshare.log.Log;
 import org.docshare.util.FileTool;
@@ -23,16 +17,17 @@ import com.alibaba.fastjson.JSON;
  * @author Administrator
  * 
  */
+@SuppressWarnings("unused")
 public class LasyList extends ListAdapter {
 
-	static interface Each{
+	public interface Each{
 		boolean one(Model m);
 	}
 
-	private ArrayList<SQLConstains> cons = new ArrayList<SQLConstains>(); //约束列表
-	private DBTool tool;
+	private final ArrayList<SQLConstains> cons = new ArrayList<>(); //约束列表
+	private final DBTool tool;
 	private ResultSet rs = null;
-	private IDBDelegate delegate;
+	private final IDBDelegate delegate;
 	private String tbName;   //表格名称
 	public DBTool getTool(){
 		return tool;
@@ -71,7 +66,7 @@ public class LasyList extends ListAdapter {
 	 */
 	public boolean exist(){
 		if(arrList!=null){
-			return arrList.size() > 0;
+			return !arrList.isEmpty();
 		}
 		return delegate.size(cons, tool, tbName) > 0;
 		
@@ -163,6 +158,7 @@ public class LasyList extends ListAdapter {
 	 * 枚举器。程序可以使用for-each写法来访问这个list。
 	 * JSTL可以使用&lt;c:forEach&gt;来访问
 	 */
+	@NotNull
 	@Override
 	public Iterator<Model> iterator() {
 		
@@ -217,8 +213,8 @@ public class LasyList extends ListAdapter {
 	@NotNull
 	public LasyList limit(int start, int len) {
 		_start = start;
-		//cons.add(new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len));
 		limit_constrain = new SQLConstains(SQLConstains.TYPE_LIMIT, "", start,len);
+		arrList = null;
 		return this;
 	}
 
@@ -241,7 +237,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList like(String column, String q) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_LIKE, column, q));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_LIKE, column, q));
 		return this;
 	}
 	/**
@@ -252,17 +248,22 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList mlike(String columnList,String q){
-		cons.add(new SQLConstains(SQLConstains.TYPE_MLIKE, columnList, q));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_MLIKE, columnList, q));
 		return this;
 	}
 
 	@NotNull
 	public LasyList eq(String column, Object val) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_EQ, column, val));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_EQ, column, val));
 		
 		return this;
 	}
+	private void addConstrain(SQLConstains c){
+		if(c == null)return;
 
+		cons.add(c);
+		arrList = null; // 添加了新条件，所以需要重新查询。
+	}
 	/**
 	 * 大于 ,相当于sql中 column &gt; val 
 	 * 会获取column制定的列大于val值的所有项 
@@ -272,7 +273,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList gt(String column, Object val) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_GT, column, val));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_GT, column, val));
 		
 		return this;
 	}
@@ -285,7 +286,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList gte(String column, Object val) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_GTE, column, val));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_GTE, column, val));
 		return this;
 	}
 
@@ -298,7 +299,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList lt(String column, Object val) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_LT, column, val));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_LT, column, val));
 		return this;
 	}
 	/**
@@ -310,7 +311,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList lte(String column, Object val) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_LTE, column, val));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_LTE, column, val));
 		return this;
 	}
 	/**
@@ -322,7 +323,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList ne(String column, Object val) {
-		cons.add(new SQLConstains(SQLConstains.TYPE_NE, column, val));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_NE, column, val));
 		return this;
 	}
 	
@@ -332,7 +333,7 @@ public class LasyList extends ListAdapter {
 	 * @return 查询结果
 	 */
 	public LasyList isNull(String column){
-		cons.add(new SQLConstains(SQLConstains.TYPE_ISNULL, column, null));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_ISNULL, column, null));
 		return this;
 	}
 
@@ -347,8 +348,8 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList orderby(String column, boolean asc) {
-		//cons.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
 		order_constrain = new SQLConstains(SQLConstains.TYPE_ORDER, column, asc);
+		arrList = null;
 		return this;
 	}
 	
@@ -359,7 +360,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList custom(String any){
-		cons.add(new SQLConstains(SQLConstains.TYPE_CUSTOM, any,null));
+		addConstrain(new SQLConstains(SQLConstains.TYPE_CUSTOM, any,null));
 		return this;
 	}
 
@@ -380,7 +381,7 @@ public class LasyList extends ListAdapter {
 				rs.close();
 				rs =null;
 			}
-		}catch(Exception e){}
+		}catch(Exception ignored){}
 	}
 	
 	@Override
@@ -406,8 +407,7 @@ public class LasyList extends ListAdapter {
 			if(v == null) continue;
 			
 			//String cc = ArrayTool.valueWrapper(k, v, tool.getColumnTypeName(k));
-			//sqlcons.add(cc);
-			cons.add(new SQLConstains(SQLConstains.TYPE_EQ, k, v));
+			addConstrain(new SQLConstains(SQLConstains.TYPE_EQ, k, v));
 		}
 		return this;
 	}
@@ -424,9 +424,7 @@ public class LasyList extends ListAdapter {
 			if(column_filter!=null && ! "*".equals(column_filter)){
 				String[] ca = column_filter.split(",");
 				cs = new HashSet<>();
-				for(String cc : ca){
-					cs.add(cc);
-				}
+                Collections.addAll(cs, ca);
 			}
 			
 			while(rs!= null && rs.next()){
@@ -446,14 +444,12 @@ public class LasyList extends ListAdapter {
 		return mList;
 	}
 	public String debugInfo(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("LasyList[");
-		sb.append("\n   SQLConstains="+JSON.toJSONString(cons));
-		sb.append("\n	table name = "+tbName);
-		sb.append("\n   rawSQL="+rawSql);
-		sb.append("]");
-		
-		return sb.toString();
+
+        return "LasyList[" +
+                "\n   SQLConstains=" + JSON.toJSONString(cons) +
+                "\n	table name = " + tbName +
+                "\n   rawSQL=" + rawSql +
+                "]";
 	}
 	/**
 	 * 将结果转换为对象数组
@@ -469,13 +465,11 @@ public class LasyList extends ListAdapter {
 			for(Model m : models){
 				ret.add(m.toObject(clazz.newInstance()));
 			}
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+		} catch (InstantiationException | IllegalAccessException e) {
+			Log.e(e);
 		}
-		
-		return ret;
+
+        return ret;
 	}
 
 
@@ -485,8 +479,7 @@ public class LasyList extends ListAdapter {
 	 * @return LasyList对象
 	 */
 	public static LasyList fromRawSql(String sql){
-		LasyList list = new LasyList(sql);
-		return list;
+        return new LasyList(sql);
 		
 	}
 	
