@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。
- * 数据只有在真正读取时（调用get函数或者被枚举）才会从数据库中读取出来。
+ * 数据只有在真正读取时如调用get函数或者被枚举时才会从数据库中读取出来。
  * 
  * @author Administrator
  * 
@@ -94,7 +94,7 @@ public class LasyList extends ListAdapter {
 		return arrList.contains(o);
 	}
 
-	HashMap<Integer, Model> row_maps = new HashMap<Integer, Model>();
+	HashMap<Integer, Model> row_maps = new HashMap<>();
 
 	/**
 	 * 根据索引获取相应的对象
@@ -142,7 +142,7 @@ public class LasyList extends ListAdapter {
                 if(rs!=null){
                     column_desc = delegate.columnOfRs(rawSql,rs);
                 }else{
-                    column_desc = new HashMap<String, ColumnDesc>();
+                    column_desc = new HashMap<>();
                 }
             }else{
                 rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
@@ -458,7 +458,7 @@ public class LasyList extends ListAdapter {
 	 */
 	public <T> List<T> toArrayList(Class<T> clazz){
 		List<Model> models = toArrayList();
-		List<T> ret = new ArrayList<T>();
+		List<T> ret = new ArrayList<>();
 		try {
 			for(Model m : models){
 				ret.add(m.toObject(clazz.newInstance()));
@@ -489,7 +489,7 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 	public List<Model> filter(Each fun){
-		ArrayList<Model> ret= new ArrayList<Model>();
+		ArrayList<Model> ret= new ArrayList<>();
 		for(Model m : this){
 			if(fun.one(m)) ret.add(m);
 		}

@@ -430,30 +430,34 @@ public class FileTool {
 	/**
 	 * 读取资源
 	 * 
-	 * @param fname
+	 * @param name
 	 *            相对根目录的文件名
 	 * @param charset
 	 *            文件编码方式
 	 * @return 文件内容，如果没读到，返回null
 	 */
-	public static String readResource(String fname, String charset) {
-		Scanner sc=null;
+	public static String readResource(String name, String charset) {
+		InputStream sm = FileTool.class.getClassLoader()
+				.getResourceAsStream(name);
+		if (sm == null) {
+			return null;
+		}
+		
+		BufferedReader reader = null;
+		StringBuilder sb = new StringBuilder();
+		
 		try {
-			InputStream sm = FileTool.class.getClassLoader()
-					.getResourceAsStream(fname);
-			sc = new Scanner(sm);
-			StringBuilder sb = new StringBuilder();
-			while (sc.hasNextLine()) {
-				String line = sc.nextLine();
-				sb.append(line);
-				sb.append("\n");
+			reader = new BufferedReader(new InputStreamReader(sm, charset));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line).append("\n");
 			}
 			return sb.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}finally {
-			sc.close();
+		} finally {
+			safelyClose(reader);
 		}
 	}
 

@@ -11,10 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 import com.alibaba.fastjson.JSON;
 
+@SuppressWarnings("unused")
 public class Model implements Map<String,Object> {
-	private String tname;
+	private final String tableName;
 	public boolean isNull = false;
-	private Map<String, Object> columns;
+	private final Map<String, Object> columns;
 	private Map<String,Object> extra; // append data of Model
 	DBTool joined_tool=null;// relate tool 
 	/**
@@ -23,55 +24,29 @@ public class Model implements Map<String,Object> {
 	 * 当该对象保存如数据库后，该值被置为false
 	 */
 	public boolean isCreated  =false; 
-	protected Model(String tname,Map<String,Object> columns){
-		this.tname = tname;
+	protected Model(String tableName,Map<String,Object> columns){
+		this.tableName = tableName;
 		//this.columns = columns;
-		this.columns = new HashMap<String, Object>();
+		this.columns = new HashMap<>();
 		if(columns != null){
 			this.columns.putAll(columns);
 		}
 	}
-	public static DBTool tool(String tname){		
-		return DBTool.getIns(tname);
+	public static DBTool tool(String tableName){
+		return DBTool.getIns(tableName);
 	}
 	public String getTableName(){
-		return tname;
+		return tableName;
 	}
-	
-	
-/*	protected String getRelateTable(){
-		String name = this.getClass().getSimpleName();
-		//name = name.toLowerCase();
-		return cls2db(name);
-	}
-	private static String cls2db(String name){
-		char[] chs = name.toCharArray();
-		StringBuilder sb = new StringBuilder();
-		sb.append((""+chs[0]).toLowerCase());
-		
-		for(int i=1;i<chs.length;i++){
-			if(Character.isUpperCase(chs[i])){
-				sb.append("_");
-				sb.append(Character.toLowerCase(chs[i]));
-			}else{
-				sb.append(chs[i]);
-			}
-		}
-	
-		return sb.toString();
-		
-	}*/
+
 	
 	public String remark(String c){
 		String r = joined_tool.getColumnRemark(c);
 		return r == null?c:r;
 	}
+
 	
-//	@Deprecated
-//	public String getRemark(String c){
-//		return remark(c);
-//	}
-	
+	@NotNull
 	@Override
 	public Set<String> keySet() {
 		return columns.keySet();
@@ -203,7 +178,7 @@ public class Model implements Map<String,Object> {
 	@Override
 	public Object remove(Object key) {
 		Object ret = null;
-		if(extra!=null) extra.remove(key);
+		if(extra!=null) ret = extra.remove(key);
 		if(ret == null){
 			ret = columns.remove(key);
 		}
@@ -219,28 +194,27 @@ public class Model implements Map<String,Object> {
 		columns.clear();
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@NotNull
 	@Override
-	public Collection values() {
-		ArrayList<Object> list = new ArrayList<Object>();
-		for(String s: keySet()){
+	public Collection<Object> values() {
+		ArrayList<Object> list = new ArrayList<>();
+		for (String s : keySet()) {
 			list.add(this.get(s));
 		}
 		return list;
 	}
 
-	@SuppressWarnings("rawtypes")
-	class ModelEntry implements Entry{
+    static class ModelEntry implements Entry<String, Object> {
 
-		private Object key;
+		private final String key;
 		private Object val;
-		public ModelEntry(Object key,Object val){
+
+		public ModelEntry(String key, Object val) {
 			this.key = key;
 			this.val = val;
 		}
 		@Override
-		public Object getKey() {
-			// TODO Auto-generated method stub
+		public String getKey() {
 			return this.key;
 		}
 
@@ -254,40 +228,40 @@ public class Model implements Map<String,Object> {
 			this.val = value;
 			return value;
 		}
-		
+
+		@Override
+		public String toString() {
+			return "ModelEntry [key=" + key + ", val=" + val + "]";
+		}
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public Set entrySet() {
-		Set s = new HashSet();
-		for(String key: this.keySet()){
-			Entry en = new ModelEntry(key,this.get(key));
-			s.add(en);
-		}
-		if(extra != null)
-		{
-			for(String key: this.extra.keySet()){
-				Entry en = new ModelEntry(key,extra.get(key));
-				s.add(en);			
-			}
-		}
-		
-		return s;
-	}
+	@NotNull
+    @Override
+    public Set<Map.Entry<String, Object>> entrySet() {
+        Set<Map.Entry<String, Object>> s = new HashSet<>();
+        for (String key : this.keySet()) {
+            Map.Entry<String, Object> en = new ModelEntry(key, this.get(key));
+            s.add(en);
+        }
+        if (extra != null) {
+            for (String key : this.extra.keySet()) {
+                Map.Entry<String, Object> en = new ModelEntry(key, extra.get(key));
+                s.add(en);
+            }
+        }
+        return s;
+    }
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for(String k:columns.keySet()){
-			sb.append(","+k+"="+columns.get(k));
+		StringBuilder sb = new StringBuilder("Model[");
+		for(String k : columns.keySet()){
+			sb.append(",").append(k).append("=").append(columns.get(k));
 		}
-		if(extra !=null){
-			sb.append(",extra="+JSON.toJSONString(extra));
+		if(extra != null){
+			sb.append(",extra=").append(JSON.toJSONString(extra));
 		}
 		sb.append("]");
-		sb.setCharAt(0, '[');
-		sb.insert(0, "Model");
 		return sb.toString();
 	}
 	/**
@@ -295,20 +269,20 @@ public class Model implements Map<String,Object> {
 	 */
 	HashSet<String> changeList = null;
 	public Set<String> changeColumns(){
-		return changeList != null?changeList : new HashSet<String>();
+		return changeList != null?changeList : new HashSet<>();
 	}
 	@Override
 	@NotNull
 	public Model put(String key, Object value) {
 		if(columns.containsKey(key)){
-			columns.put((String)key, value);
+			columns.put(key, value);
 			if(changeList == null){
-				changeList  = new HashSet<String>();
+				changeList  = new HashSet<>();
 			}
 			changeList.add(key);
 		}else{ //如果没有这个key，则添加入extra之中。
 			if(extra == null){
-				extra = new HashMap<String,Object>();
+				extra = new HashMap<>();
 			}
 			extra.put(key, value);
 		}
@@ -316,26 +290,25 @@ public class Model implements Map<String,Object> {
 	}
 	/**
 	 * 内部使用的put
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param key 字段名
+	 * @param value 值
 	 */
-	Model innerPut(String key,Object value){
+	void innerPut(String key,Object value){
 		if(columns.containsKey(key)){
-			columns.put((String)key, value);
+			columns.put(key, value);
 			
 		}else{ //如果没有这个key，则添加入extra之中。
 			if(extra == null){
-				extra = new HashMap<String,Object>();
+				extra = new HashMap<>();
 			}
 			extra.put(key, value);
 		}
-		return this;
 	}
 	@Override
-	public void putAll(Map<? extends String, ? extends Object> m) {
-		
-		
+	public void putAll(@NotNull Map<? extends String, ?> m) {
+		for (Entry<? extends String, ?> entry : m.entrySet()) {
+			put(entry.getKey(), entry.getValue());
+		}
 	}
 	public String key() {
 		return joined_tool.key;
@@ -351,13 +324,13 @@ public class Model implements Map<String,Object> {
 			try {
 				BeanUtil.set(obj, key, get(key));
 			} catch (Exception e) {
-				e.printStackTrace();
+				Log.e(e);
 			}
 		}
 		return obj;
 	}
-	public static Model fromObject(String tname,Object obj){
-		Model ret = Model.tool(tname).create();
+	public static Model fromObject(String tableName,Object obj){
+		Model ret = Model.tool(tableName).create();
 		
 		for(String key: ret.keySet()){
 			try {
@@ -437,15 +410,15 @@ public class Model implements Map<String,Object> {
 		if(joined_tool!=null){
 			return joined_tool.save(this);
 		}else{
-			Log.e("Model ,join_tool is null "+toString());
+			Log.e("Model ,join_tool is null "+ this);
 			return 0;
 		}
 	}
-	
+
 	public void dump(){
 		Log.i(this.toString());
 	}
-	
+
 	public Model fromParam(Controller c){
 		c.paramToModel(this);
 		return this;
