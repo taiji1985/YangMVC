@@ -414,6 +414,10 @@ public class Model implements Map<String,Object> {
 			return 0;
 		}
 	}
+	public Model saveAndRet(){
+		save();
+		return this;
+	}
 
 	public void dump(){
 		Log.i(this.toString());

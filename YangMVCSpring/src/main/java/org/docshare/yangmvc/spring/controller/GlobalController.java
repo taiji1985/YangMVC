@@ -33,19 +33,11 @@ public class GlobalController {
     MyFilterChain chain = new MyFilterChain();
     @RequestMapping("/**")
     public void index(HttpServletRequest  request, HttpServletResponse response){
-//        try {
-//            filter.doFilter(request,response,null);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } catch (ServletException e) {
-//            throw new RuntimeException(e);
-//        }
         init(request.getServletContext());
         try {
             filter.doFilter(request,response,chain);
         } catch (IOException | ServletException e) {
             Log.e(e);
         }
-        //String r =  request.getRequestURI();
     }
 }

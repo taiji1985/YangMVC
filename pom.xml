@@ -4,7 +4,7 @@
 
     <groupId>org.docshare</groupId>
     <artifactId>yangmvc-all</artifactId>
-    <version>2025.05.19</version>
+    <version>2025.06.19</version>
     <packaging>pom</packaging>
     <description>An efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can run independently, and it can also be applied to traditional Java Web projects. It is an efficient, fast, convenient, easy to learn and easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can be run on its own, or it can be applied to traditional Java Web projects</description>
 
@@ -41,8 +41,20 @@
         </developer>
     </developers>
 
-
-
-
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>2.0.9</version>
+	</dependency>
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-core</artifactId>
+		<version>1.5.13</version>
+	</dependency>
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+		<version>1.5.13</version>
+	</dependency>
 
 </project>

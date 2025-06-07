@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.docshare</groupId>
     <artifactId>yangmvc-spring</artifactId>
-    <version>2025.05.19</version> <!-- 这里假设版本号为2025.05.19，你可根据实际情况修改 -->
+    <version>2025.06.19</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
     <name>YangMVCSpring</name>
     <description>Integrate YangMVC to SpringBoot</description>
     <properties>
@@ -38,11 +38,19 @@
         <dependency>
             <groupId>org.docshare</groupId>
             <artifactId>yangmvc</artifactId>
-            <version>2022.12.18</version>
+            <version>2025.06.19</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.codehaus.groovy.maven.runtime</groupId>
                     <artifactId>gmaven-runtime-default</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
