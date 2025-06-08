@@ -1,176 +1,224 @@
-[toc]
-
 # YangMVC
-# 下载地址
 
-https://git.oschina.net/yangtf/YangMVC/attach_files
+一个高效、轻量级的MVC和ORM框架，提供多种部署方式和集成方案。
 
-请在此页下载版本号最高的版本
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Maven Central](https://img.shields.io/maven-central/v/org.docshare/yangmvc.svg)](https://search.maven.org/artifact/org.docshare/yangmvc)
+[![Java Version](https://img.shields.io/badge/Java-1.7%2B-blue.svg)](https://www.oracle.com/java/)
 
-# Maven 地址
+## 🚀 项目概述
+
+YangMVC是一个现代化的Java Web框架，采用约定优于配置的设计理念，让Web开发变得简单高效。框架提供了完整的MVC架构和强大的ORM功能，支持多种部署方式，满足不同场景的开发需求。
+
+### 🎯 核心特性
+
+- **🎨 约定优于配置**: IndexController对应网站根目录，BookController对应/book目录
+- **🗄️ 强大的ORM**: 无需预先生成POJO类，Model类适应任何表和视图
+- **⚡ 高效开发**: 一个jar包完成绝大多数Web网站开发
+- **🔧 多种部署**: 支持传统Web项目、Boot独立部署、Spring Boot集成
+- **📊 灵活查询**: 链式调用，支持复杂SQL和简单查询
+- **🎭 模板支持**: 无缝兼容JSTL，支持FreeMarker
+
+### 📦 项目架构
+
+本仓库包含YangMVC框架的完整生态系统：
+
+```
+YangMVC/
+├── YangMVC/           # 核心框架
+├── YangMVCBoot/       # Boot版本（独立部署）
+├── YangMVCSpring/     # Spring Boot集成版本
+├── YangMVCDemo/       # 传统Web项目示例
+└── YangMVCBootDemo/   # Boot版本示例
+```
+
+## 📋 子项目说明
+
+| 项目 | 描述 | 适用场景 |
+|------|------|----------|
+| **YangMVC** | 核心框架 | 传统Web项目，需要部署到Tomcat等容器 |
+| **YangMVCBoot** | Boot版本 | 独立运行，内置Jetty服务器，类似Spring Boot |
+| **YangMVCSpring** | Spring集成 | 与Spring Boot项目集成，享受两个框架的优势 |
+| **YangMVCDemo** | 传统示例 | 展示如何在传统Web项目中使用YangMVC |
+| **YangMVCBootDemo** | Boot示例 | 展示Boot版本的使用方法 |
+
+## 🛠️ 快速开始
+
+### Maven依赖
+
+根据您的需求选择合适的版本：
 
 ```xml
-    <dependency>
-      <groupId>org.docshare</groupId>
-      <artifactId>yangmvc-boot</artifactId>
-      <version>2023.01.21</version>
-    </dependency>
+<!-- 核心框架（传统Web项目） -->
+<dependency>
+    <groupId>org.docshare</groupId>
+    <artifactId>yangmvc</artifactId>
+    <version>2025.06.20</version>
+</dependency>
+
+<!-- Boot版本（独立部署） -->
+<dependency>
+    <groupId>org.docshare</groupId>
+    <artifactId>yangmvc-boot</artifactId>
+    <version>2025.06.20</version>
+</dependency>
+
+<!-- Spring Boot集成版本 -->
+<dependency>
+    <groupId>org.docshare</groupId>
+    <artifactId>yangmvc-spring</artifactId>
+    <version>2025.06.20</version>
+</dependency>
 ```
 
+### 简单示例
 
-# 更新日志
-
-https://gitee.com/yangtf/YangMVC/blob/master/YangMVC/update.md
-
-# 简介
-
-YangMVC是一个高效的、轻量级MVC和ORM框架。 你只需要想你的项目中丢入一个jar包，即可完成绝大多数Web网站的开发。
-
-YangMVC的网址和控制器类之间采用了默认命名约定的方法，减少了配置。如IndexController对应网站根目录， BookController对应/book目录。
-
-YangMVC提供的 ORM即为易用。
-
-LasyList list = Model.tool("book").all().gt("id",12).lt("id,33);
-
-这句话相当于sql语句 select * from book where id>12 and id<33
-
-它得到了一个线性表（数组），可以直接在JSTL和FreeMarker中使用循环来枚举。。
-
-如果有复杂sql需要些，你可以直接写sql，它同样会返回LasyList，而不是ResultSet。
-
-
-ORM框架不需要预先生成任何POJO类，所有表都映射为内置的Model类，即一个Model对象对应数据库表中的一行。。。 Model可以适应任何的表和视图。
-
-如果你确实需要将数据库中的数据转化为一个特定的java对象（POJO类),那么Model提供方法可以直接转化为你需要的类。用起来也非常方便。
-
-使用这个框架，你可以以即为高效的速度推进你的项目，而不需要为了写一个功能，去改java文件，改俩个xml文件（用SSH的同学可以冒一个泡，是不是这样）
-
-数据库的设计在初期常有不完善的地方，如果使用Hibernate这种框架，那么就需要在修改数据库后重新生成Java类。而对应的DAO类也要对应修改，这简直是噩梦。。。
-
-iBatis是你喜欢的，但它需要sql语句。YangMVC不用。。。
-# 应用场景
-## 1 App 的服务端程序 或者Vue+后端架构的后端程序
-![](images/bootdemo.jpg)
-这种架构下，你一般只需要输出JSON。你可以创建一个java工程，拖入一个yangmvc-xxx-boot.jar, 新建一个控制器。直接运行！
 ```java
-public class IndexController extends Controller{
-	public void index(){
-		//T("book") 等价于Model.tool
-		//L("book") 等价于 Model.tool("book").all()
-		LasyList list = L("book");
-		outputJSON(list);
-	}
-	public void add(){
-		Model book = T("book").create();
-		paramToModel(book); //自动收集 参数到book对象， 如参数height会保存到book的height属性中。
-		book.save();
-		output("ok");
-	}
-	public void del(){
-		int id = paramInt("id"，-1); //带默认值，自动转换类型
-		if(id<0) {
-			output("fail");
-			return;
-		}
-		T("book").del(id); //便捷的主键删除
-		output("ok");
-	}
+public class IndexController extends Controller {
+    public void index() {
+        // 简单的数据库查询
+        LasyList list = Model.tool("book").all().gt("id", 12).lt("id", 33);
+        outputJSON(list);
+    }
+    
+    public void add() {
+        Model book = Model.tool("book").create();
+        paramToModel(book); // 自动收集参数到Model对象
+        book.save();
+        output("ok");
+    }
 }
 ```
-访问http://127.0.0.1:1985/ 可以获得book表对应的json数据。
 
-http://127.0.0.1:1985/add 添加数据对应的接口地址
+## 🎯 ORM特性展示
 
-http://127.0.0.1:1985/del?id=12 删除数据对应的接口地址
+YangMVC的ORM设计极其简洁，无需复杂配置：
 
-## 2 开发Web项目
+```java
+// 等价于: SELECT * FROM book WHERE id > 12 AND id < 33
+LasyList list = Model.tool("book").all().gt("id", 12).lt("id", 33);
 
-整个web项目，你只需要手工引入一个jar包就是yangmvc-版本号.jar
-配置上，只需要在web.xml中加入数据库地址等必须的配置信息即可。
+// 链式调用，支持复杂查询
+LasyList books = Model.tool("book")
+    .all()
+    .eq("status", "published")
+    .like("title", "Java")
+    .orderBy("create_time",true)
+    .limit(10);
 
-# 交流群
+// 直接执行SQL（返回LasyList而非ResultSet）
+LasyList result = Model.tool("book").sql("SELECT * FROM book WHERE price > ?", 50);
+```
+## 🎯 应用场景
 
-您可以加交流群 QQ 753780493 
+### 1. API服务开发
+![](images/bootdemo.jpg)
 
+**移动App后端开发示例**：
+```java
+public class IndexController extends Controller{
+    public void index(){
+        //T("book") 等价于Model.tool
+        //L("book") 等价于 Model.tool("book").all()
+        LasyList list = L("book");
+        outputJSON(list);
+    }
+    
+    public void add(){
+        Model book = T("book").create();
+        paramToModel(book); //自动收集参数到book对象
+        book.save();
+        output("ok");
+    }
+    
+    public void del(){
+        int id = paramInt("id", -1); //带默认值，自动转换类型
+        if(id < 0) {
+            output("fail");
+            return;
+        }
+        T("book").del(id); //便捷的主键删除
+        output("ok");
+    }
+}
+```
 
-# 开始使用YangMVC
+**API接口访问**：
+- `http://127.0.0.1:1985/` - 获取book表JSON数据
+- `http://127.0.0.1:1985/add` - 添加数据接口
+- `http://127.0.0.1:1985/del?id=12` - 删除数据接口
 
+### 2. Web应用开发
 
-首先您需要配置开发环境。 您需要一个JDK1.7以上的版本。且需要一个Eclipse或MyEclipse。
+传统Web项目只需引入一个jar包：`yangmvc-版本号.jar`
 
-如果你只有Eclipse，请看 [这个教程](https://gitee.com/yangtf/YangMVC/wikis/A01-%E9%85%8D%E7%BD%AE-boot%E7%89%88) 。 
+在web.xml中配置数据库连接信息即可开始开发。
 
-如果使用MyEclipse请看  [A01的配置](https://gitee.com/yangtf/YangMVC/wikis/A01-%E9%85%8D%E7%BD%AE)
+### 3. 集成场景
+- **Spring Boot集成**: 使用YangMVCSpring版本
+- **微服务架构**: Boot版本支持独立部署
+- **前后端分离**: 完美支持Vue.js、React等前端框架
 
+## 💬 社区交流
 
+**QQ交流群**: 753780493
 
-# 更新日志
+欢迎加入讨论技术问题、分享使用经验！
 
-## 2018-6-5
-今后版本号以生成时间命名： 
-yangmvc-2018-6-5.jar 
-boot版本为 yangmvc-boot-2018-6-5.jar
+## 🚀 快速上手
 
-添加了生成POJO类的功能，使用方法如下
+### 环境要求
+- **JDK**: 1.7+ 版本
+- **IDE**: Eclipse、IntelliJ IDEA、MyEclipse
+- **容器**: Tomcat 6.0+ (可选，Boot版本内置Jetty)
 
+### 配置教程
+- **Eclipse用户**: [Boot版本配置教程](https://gitee.com/yangtf/YangMVC/wikis/A01-%E9%85%8D%E7%BD%AE-boot%E7%89%88)
+- **MyEclipse用户**: [传统版本配置教程](https://gitee.com/yangtf/YangMVC/wikis/A01-%E9%85%8D%E7%BD%AE)
 
-请输入数据库信息，如与中括号中相同，可以直接打回车请输入服务器域名或ip默认为: [localhost]: 
+## 📋 版本更新
 
-执行命令 
+### 2025.06.20 (当前版本)
+- 完善Spring Boot集成支持
+- 优化Boot版本性能和稳定性
+- 增强文档和示例代码
 
-java -jar yangmvc-2018-6-5.jar 
+### 2018-6-5
+**版本命名规则更新**: 采用日期命名
+- `yangmvc-2018-6-5.jar` (核心版本)
+- `yangmvc-boot-2018-6-5.jar` (Boot版本)
 
-请输入数据库名默认为: [mvc_demo]:  
+**新增POJO生成功能**:
+```bash
+java -jar yangmvc-2018-6-5.jar
+```
+按提示输入数据库信息和包名，自动生成实体类到指定目录。
 
-请输入端口号默认为: [3306]: 
+### V2.3.6
+- **兼容性提升**: 修复Tomcat 6.0文件上传问题
+- **API优化**: 移除高版本Servlet-API依赖
 
-请输入密码默认为: [123456]: 
+### V2.3.5
+- **灵活性增强**: 支持关键字作为表名和字段名
+- **便捷方法**: Model类新增getStr/getInt/getLong方法
 
-请输入用户名默认为: [root]: 
+### V2.0
+- **性能优化**: 增加gzip传输压缩
+- **稳定性**: 修复已知问题
 
-....
+## 📚 文档资源
 
-请输入需要生成的类的包名:org.yang
+### 完整文档
+[YangMVC Wiki文档](https://gitee.com/yangtf/YangMVC/wikis/pages)
 
-随后就会将代码生成到您输入的报名对应的目录下，
+### API文档
+[Javadoc在线文档](http://yangtf.gitee.io/yangmvc/YangMVC/doc/index.html)
 
-如输入org.yang,则代码生成到src/org/yang 中。
+### 核心类参考
+掌握这三个核心类，即可熟练使用框架：
 
-
-
-## V2.3.6 
-
-童鞋发现了一个bug，就是tomcat6.0 使用YangMVC 无法上传文件，经测试得知原因为， YangMVC在上传时使用了高版本的Servlet-api,而Tomcat6 不支持，所以。。。去掉了对高版本api的使用。   使其在独立的tomcat6.0上运行无任何问题。。。 
-
-## V2.3.5 
-1. 允许使用关键字作为表名和字段名
-2. 在Model中添加 getStr /getInt / getLong这些便捷的方法不需要自己强转了。
-
-## V2.0 更新内容
-  1. 增加了gzip传输功能
-  2. 修正了已知错误
-
-
-# 完整的文档请看
-
-https://gitee.com/yangtf/YangMVC/wikis/pages
-
-# javadoc 地址
-
-http://yangtf.gitee.io/yangmvc/YangMVC/doc/index.html
-
-# 最核心的几个类的Javadoc
-
-基本上来说，只要掌握这三个核心的类，就可以自如使用这个框架。
-
-控制器Controller类
-
-http://yangtf.gitee.io/yangmvc/YangMVC/doc/org/docshare/mvc/Controller.html
-
-DBTool类
-http://yangtf.gitee.io/yangmvc/YangMVC/doc/org/docshare/orm/DBTool.html
-
-LasyList类
-http://yangtf.gitee.io/yangmvc/YangMVC/doc/index.html
+- **[Controller](http://yangtf.gitee.io/yangmvc/YangMVC/doc/org/docshare/mvc/Controller.html)** - MVC控制器基类
+- **[DBTool](http://yangtf.gitee.io/yangmvc/YangMVC/doc/org/docshare/orm/DBTool.html)** - 数据库操作工具
+- **[LasyList](http://yangtf.gitee.io/yangmvc/YangMVC/doc/index.html)** - 延迟加载列表
 
 
