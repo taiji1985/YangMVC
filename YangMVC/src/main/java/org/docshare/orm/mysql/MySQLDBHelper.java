@@ -29,7 +29,7 @@ public class MySQLDBHelper extends DBHelper {
 			statementPool.clear();//清空语句池
 			String connPool =Config.getProperty("conn_pool", null);
 			if(pool == null){
-				if(connPool == null){
+				if(connPool == null || connPool.trim().isEmpty()){
 					pool = new ConnectionPool();
 				}else{
 					Class<?> clazz = Class.forName(connPool);
@@ -39,7 +39,7 @@ public class MySQLDBHelper extends DBHelper {
 			
 			con = pool.getConnection();
 
-			Log.d("MySQLDBHelper connect to server");
+			Log.d("MySQLDBHelper connect to server "+ pool.getClass().getName());
 			update("set names "+Config.dbEncoding);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			Log.e(e);

@@ -1,7 +1,6 @@
 package org.docshare.yangmvc.spring.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 import lombok.Data;
 
 import java.io.ByteArrayInputStream;
@@ -25,14 +24,20 @@ public class YangMvcProperties {
      * 所有配置项的Map
      */
     private Map<String, String> config = new HashMap<>();
-    
+
+
     /**
-     * 获取配置值
+     * 获取配置值， 对conn_pool 做了特殊处理
      * @param key 配置键
      * @return 配置值
      */
     public String getProperty(String key) {
-        return config.get(key);
+        String ret =  config.get(key);
+        if(ret == null && key.equals("conn_pool")){
+            ret = "org.docshare.yangmvc.spring.config.SpringConnectionPool";
+            config.put(key, ret);
+        }
+        return ret;
     }
     
     /**
@@ -61,6 +66,7 @@ public class YangMvcProperties {
      */
     public InputStream toPropertiesInputStream() {
         Properties properties = new Properties();
+        getProperty("conn_pool");  // 对conn_pool 做了特殊处理
         properties.putAll(config);
         
         StringBuilder sb = new StringBuilder();

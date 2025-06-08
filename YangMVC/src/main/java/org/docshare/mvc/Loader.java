@@ -33,7 +33,9 @@ public class Loader {
 	Reloader reloader = null;
 	int loaderVersion = 0;
 	public  Class<?> load(String p) throws ClassNotFoundException{
-
+		if(p.startsWith("org.docshare.mvc")){
+			return Class.forName(p);
+		}
 		if(reloader == null){
 			String reload_base = TextTool.getParentPackage(Config.controller);
 			if(reload_base.equals("org") || reload_base.equals("org.docshare")){

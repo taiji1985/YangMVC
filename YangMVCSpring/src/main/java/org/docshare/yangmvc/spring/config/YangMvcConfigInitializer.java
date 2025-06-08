@@ -55,7 +55,7 @@ public class YangMvcConfigInitializer implements CommandLineRunner {
         
         String[] keyConfigs = {
             "controller", "template", "dbhost", "dbusr", "dbname", 
-            "dbport", "dbtype", "encoding", "reloadable"
+            "dbport", "dbtype", "encoding", "reloadable","conn_pool"
         };
         
         for (String key : keyConfigs) {
