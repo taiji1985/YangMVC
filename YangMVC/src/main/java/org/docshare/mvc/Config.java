@@ -283,9 +283,9 @@ public class Config {
 		}
 	}
 
-	private Thread reloadThread = null;
+	private static Thread reloadThread = null;
 	private static void startReloadThread(){
-		new Thread(()->{
+		reloadThread = new Thread(()->{
 			try {
 				Thread.sleep(5000);
 				Log.d("reload cfg");
@@ -294,10 +294,13 @@ public class Config {
 				return;
 			}
 
-		}).start();
+		});
+		reloadThread.start();
 	}
 	
 	public static void main(String[] args) {
 		Config.loadProperties("/web.properties");
 	}
+
+	// conn_pool  如果为null，则不使用连接池。如果指定了，则使用对应的连接池进行连接。
 }

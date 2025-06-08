@@ -1,23 +1,18 @@
 package org.docshare.orm.mysql;
 
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import org.docshare.log.Log;
 import org.docshare.mvc.Config;
 import org.docshare.mvc.except.MVCException;
-import org.docshare.orm.ColumnDesc;
 import org.docshare.orm.DBHelper;
 import org.docshare.orm.StatementPool;
 import org.docshare.util.FileTool;
-import org.docshare.util.TextTool;
-
-import com.alibaba.fastjson.JSON;
 
 public class MySQLDBHelper extends DBHelper {
 
@@ -25,28 +20,28 @@ public class MySQLDBHelper extends DBHelper {
 	public MySQLDBHelper(){
 		
 	}
+	IConnectionPool pool = null;
 	@Override
 	public void conn() {
 		String uri = null;
 		try {
 			if(con !=null && ! con.isClosed() && con.isValid(5))return;
 			statementPool.clear();//清空语句池
+			String connPool =Config.getProperty("conn_pool", null);
+			if(pool == null){
+				if(connPool == null){
+					pool = new ConnectionPool();
+				}else{
+					Class<?> clazz = Class.forName(connPool);
+					pool = (IConnectionPool)clazz.newInstance();
+				}
+			}
 			
+			con = pool.getConnection();
+
 			Log.d("MySQLDBHelper connect to server");
-			//Class.forName("com.mysql.jdbc.Driver");
-			Class.forName("com.mysql.cj.jdbc.Driver");
-//			String uri = String.format(
-//					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&useSSL="+Config.useSSL,
-//					Config.dbhost,Config.dbport, Config.dbname);
-			String encoding = Config.dbEncoding;
-			if(encoding.contains("utf8")) encoding = "utf8";
-			uri = TextTool.concat("jdbc:mysql://",Config.dbhost,":",Config.dbport,"/",Config.dbname,"?characterEncoding=",encoding,"&useSSL=",Config.useSSL,"&serverTimezone=Asia/Shanghai").toString();
-//			String uri = String.format(
-//					"jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&serverTimezone=GMT+8&useSSL="+Config.useSSL,
-//					Config.dbhost,Config.dbport, Config.dbname);
-			con = DriverManager.getConnection(uri, Config.dbusr, Config.dbpwd);
 			update("set names "+Config.dbEncoding);
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			Log.e(e);
 		} catch (SQLException e) {
 			Log.e(e);
@@ -55,34 +50,6 @@ public class MySQLDBHelper extends DBHelper {
 		}
 	}
 
-	public static void main(String[] args) throws SQLException {
-		Config.dbport="3308";
-		Config.dbname="mvc_demo";
-		DBHelper helper = DBHelper.getIns();
-		helper.conn();
-		// dh.listColumn("book");
-		System.out.println(helper.keyColumn("book"));
-		
-		ResultSet rs = helper.getRS("select * from book");
-		while(rs.next()){
-			String s = rs.getString("name");
-			System.out.println(s);
-		}
-		
-		HashMap<String, ColumnDesc> cc = helper.columeOfRs("select * from book", rs);
-		System.out.println(JSON.toJSONString(cc));
-		
-		cc = helper.listColumn("book");
-		System.out.println(JSON.toJSONString(cc));
-		
-		String key = helper.keyColumn("book");
-		System.out.println(key);
-		
-		cc = helper.listColumn("catalog");
-		System.out.println(JSON.toJSONString(cc));
-		rs.close();
-		
-	}
 	/**
 	 * 执行sql语句。 该函数会发现连接断开错误并自动重试3次，如果重试三次都无法成功则抛出SQLException
 	 */

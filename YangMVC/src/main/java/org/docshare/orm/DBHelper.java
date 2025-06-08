@@ -41,12 +41,17 @@ public abstract class DBHelper {
 	public static DBHelper getIns(String type) {
 		DBHelper ins = locals.get();
 		if(ins == null || ! useCache){
-			if(type == null  || type.equals("mysql")){
-				ins = new MySQLDBHelper();	
-			}else if(type.equals("postgres")){
-				ins = new PostgresDBHelper();
-			}else if(type.equals("access")){
-				ins = new AccessDBHelper();
+			type = (type == null) ? "mysql" : type;
+			switch(type) {
+				case "mysql":
+					ins = new MySQLDBHelper();
+					break;
+				case "postgres": 
+					ins = new PostgresDBHelper();
+					break;
+				case "access":
+					ins = new AccessDBHelper();
+					break;
 			}
 			locals.set(ins);
 		}
