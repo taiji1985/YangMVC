@@ -247,6 +247,42 @@ public class Config {
 
 
 	}
+	/**
+	 * 从输入流读取properties配置
+	 * @param in 输入流
+	 * @return 加载是否成功
+	 */
+	public static boolean loadPropertiesFromStream(InputStream in){
+		if(in == null){
+			Log.e("InputStream is null");
+			return false;
+		}
+		
+		try {
+			pro = new Properties();
+			pro.load(in);
+			
+			Log.i("Properties loaded from InputStream");
+			BeanUtil.prop2StaticField(pro, Config.class);
+			
+			if(reload_config){
+				startReloadThread();
+			}
+			
+			return true;
+		} catch (IOException e) {
+			Log.e("Failed to load properties from InputStream: " + e.getMessage());
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				in.close();
+			} catch (Exception e2) {
+				// ignore
+			}
+		}
+	}
+
 	private Thread reloadThread = null;
 	private static void startReloadThread(){
 		new Thread(()->{

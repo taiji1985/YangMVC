@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.docshare</groupId>
     <artifactId>yangmvc-spring</artifactId>
-    <version>2025.06.19</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
+    <version>2025.06.20</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
     <name>YangMVCSpring</name>
     <description>Integrate YangMVC to SpringBoot</description>
     <properties>
@@ -38,12 +38,8 @@
         <dependency>
             <groupId>org.docshare</groupId>
             <artifactId>yangmvc</artifactId>
-            <version>2025.06.19</version>
+            <version>2025.06.20</version>
             <exclusions>
-                <exclusion>
-                    <groupId>org.codehaus.groovy.maven.runtime</groupId>
-                    <artifactId>gmaven-runtime-default</artifactId>
-                </exclusion>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-classic</artifactId>
@@ -52,13 +48,33 @@
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-core</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.codehaus.groovy.maven.runtime</groupId>
+                    <artifactId>gmaven-runtime-default</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.docshare.yangmvc</groupId>
+                    <artifactId>config</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.docshare.yangmvc</groupId>
+                    <artifactId>resources</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
         </dependency>
+        
+        <!-- Lombok依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
+
 
     <build>
         <plugins>

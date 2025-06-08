@@ -1,1 +1,32 @@
 
+server:
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure.logging.ConditionReportLoggingListener: ERROR
+
+# YangMVC简化配置 - 使用HashMap方式
+yangmvc:
+  config:
+    # 基本配置
+    controller: org.demo
+    template: /view
+    
+    # 数据库配置
+    dbhost: localhost
+    dbusr: root
+    dbpwd: 123456
+    dbname: docshare
+    dbport: "3306"
+    dbtype: mysql
+    dbschema: public
+    dbEncoding: utf8
+    useSSL: "false"
+    
+    # 系统配置
+    encoding: utf-8
+    pageEncoding: utf-8
+    dateFormat: yyyy-MM-dd HH:mm:ss
+    reloadable: "true"
+    reload_config: "false"
+    

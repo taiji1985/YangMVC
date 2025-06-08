@@ -102,7 +102,4 @@ public class IndexController extends Controller {
 		Log.i("hello");
 		return "ok";
 	}
-	public void apptest(){
-		output(application.getClass().getName());
-	}
 }

@@ -104,7 +104,8 @@ public class ServerMain {
 	        contextHandler.setResourceBase("./WebRoot");
 	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
 	        //contextHandler.setHandler(YangHandle.getIns(server));
-	        if(useSession){
+	        // Session support temporarily disabled due to dependency issues
+	        /*if(useSession){
 	        	sessionHandler = new SessionHandler();
 				//----------------------------
 				if(useRedis){
@@ -113,7 +114,7 @@ public class ServerMain {
 
 				//----------------------------
 	        	collection.addHandler(sessionHandler);
-	        }
+	        }*/
 	        collection.addHandler(YangHandle.getIns(server));
 	        collection.addHandler(new ResourceHandler());
 	        collection.addHandler(new DefaultHandler());
@@ -125,8 +126,6 @@ public class ServerMain {
 	        //support websocket 
 	        ServletContextHandler wsHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
 	        wsHandler.setContextPath("/ws");
-	        ServletHolder wsServletHolder = new ServletHolder(new MyWebSocketHandler());
-	        wsHandler.addServlet(wsServletHolder, "/*");
 		
 		
 		ContextHandlerCollection final_handler = new ContextHandlerCollection();
