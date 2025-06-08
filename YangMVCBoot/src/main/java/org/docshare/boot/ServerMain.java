@@ -13,9 +13,15 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.server.handler.DefaultHandler;
-import org.eclipse.jetty.server.handler.HandlerCollection;
+import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
-import org.eclipse.jetty.server.session.*;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.server.session.CachingSessionDataStore;
+// Session imports removed for basic Jetty 11 compatibility
+import org.eclipse.jetty.server.session.NullSessionCache;
+import org.eclipse.jetty.server.session.NullSessionDataStore;
+import org.eclipse.jetty.server.session.SessionHandler;
 
 
 public class ServerMain {
@@ -90,7 +96,7 @@ public class ServerMain {
 		try{
 			org.eclipse.jetty.util.log.Log.setLog(new YangLogger());
 	        
-	        HandlerCollection collection =new HandlerCollection(); 
+	        HandlerList collection = new HandlerList(); 
 
 	        contextHandler = new ContextHandler();
 	        
@@ -99,7 +105,7 @@ public class ServerMain {
 	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
 	        //contextHandler.setHandler(YangHandle.getIns(server));
 	        if(useSession){
-	        	sessionHandler=new SessionHandler();
+	        	sessionHandler = new SessionHandler();
 				//----------------------------
 				if(useRedis){
 					applyRedis();
@@ -116,18 +122,19 @@ public class ServerMain {
 	        
 	        contextHandler.setHandler(collection);
 	        if(supportWebSocket){
-		        //support websocket 
-		        ContextHandler wsHandler = new ContextHandler();
-		        wsHandler.setContextPath("/ws");
-		        wsHandler.setHandler(new MyWebSocketHandler());
-				
-				
-				ContextHandlerCollection final_handler = new ContextHandlerCollection();
-		        
-				final_handler.addHandler(wsHandler);
-		        final_handler.addHandler(contextHandler);
-		        
-		        server.setHandler(final_handler);
+	        //support websocket 
+	        ServletContextHandler wsHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+	        wsHandler.setContextPath("/ws");
+	        ServletHolder wsServletHolder = new ServletHolder(new MyWebSocketHandler());
+	        wsHandler.addServlet(wsServletHolder, "/*");
+		
+		
+		ContextHandlerCollection final_handler = new ContextHandlerCollection();
+	        
+		final_handler.addHandler(wsHandler);
+	        final_handler.addHandler(contextHandler);
+	        
+	        server.setHandler(final_handler);
 	        }else{
 	        	server.setHandler(contextHandler);
 	        }

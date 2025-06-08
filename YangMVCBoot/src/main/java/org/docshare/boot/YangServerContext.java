@@ -52,6 +52,12 @@ public class YangServerContext implements ServletContext {
 	HashMap<String, Object> attr = new HashMap<String, Object>();
 	HashMap<String, ServletContext> servletContext = new HashMap<String, ServletContext>();
 	
+	// 用于存储动态注册的Filter、Servlet和Listener
+	private HashMap<String, Filter> filters = new HashMap<String, Filter>();
+	private HashMap<String, Servlet> servlets = new HashMap<String, Servlet>();
+	private ArrayList<EventListener> listeners = new ArrayList<EventListener>();
+	private HashMap<String, String> initParameters = new HashMap<String, String>();
+	
 	
 	Properties pro = null;
 	long last_protime;
@@ -162,8 +168,13 @@ public class YangServerContext implements ServletContext {
 	}
 
 	@Override
-	public RequestDispatcher getNamedDispatcher(String arg0) {
-		//TODO
+	public RequestDispatcher getNamedDispatcher(String name) {
+		// 根据名称查找已注册的Servlet
+		Servlet servlet = servlets.get(name);
+		if (servlet != null) {
+			// 这里应该返回一个RequestDispatcher实现，但由于项目架构限制，暂时返回null
+			Log.w("getNamedDispatcher not fully implemented for: " + name);
+		}
 		return null;
 	}
 
@@ -248,140 +259,227 @@ public class YangServerContext implements ServletContext {
 		attr.put(key,val);
 	}
 	@Override
-	public Dynamic addFilter(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public Dynamic addFilter(String filterName, String className) {
+		try {
+			@SuppressWarnings("unchecked")
+			Class<? extends Filter> filterClass = (Class<? extends Filter>) Class.forName(className);
+			return addFilter(filterName, filterClass);
+		} catch (ClassNotFoundException e) {
+			Log.e("Filter class not found: " + className + ", error: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	@Override
+	public Dynamic addFilter(String filterName, Filter filter) {
+		if (filters.containsKey(filterName)) {
+			return null; // Filter already exists
+		}
+		filters.put(filterName, filter);
+		Log.i("Filter registered: " + filterName);
+		// 返回一个简单的FilterRegistration.Dynamic实现
+		return new YangFilterRegistration(filterName, filter);
+	}
+	
+	@Override
+	public Dynamic addFilter(String filterName, Class<? extends Filter> filterClass) {
+		try {
+			Filter filter = filterClass.newInstance();
+			return addFilter(filterName, filter);
+		} catch (Exception e) {
+			Log.e("Failed to create filter instance: " + filterClass.getName() + ", error: " + e.getMessage());
+			return null;
+		}
 	}
 	@Override
-	public Dynamic addFilter(String arg0, Filter arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addListener(String className) {
+		try {
+			@SuppressWarnings("unchecked")
+			Class<? extends EventListener> listenerClass = (Class<? extends EventListener>) Class.forName(className);
+			addListener(listenerClass);
+		} catch (ClassNotFoundException e) {
+			Log.e("Listener class not found: " + className + ", error: " + e.getMessage());
+		}
+	}
+	
+	@Override
+	public <T extends EventListener> void addListener(T listener) {
+		listeners.add(listener);
+		Log.i("Listener registered: " + listener.getClass().getName());
+	}
+	
+	@Override
+	public void addListener(Class<? extends EventListener> listenerClass) {
+		try {
+			EventListener listener = listenerClass.newInstance();
+			addListener(listener);
+		} catch (Exception e) {
+			Log.e("Failed to create listener instance: " + listenerClass.getName() + ", error: " + e.getMessage());
+		}
 	}
 	@Override
-	public Dynamic addFilter(String arg0, Class<? extends Filter> arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public javax.servlet.ServletRegistration.Dynamic addServlet(String servletName,
+			String className) {
+		try {
+			@SuppressWarnings("unchecked")
+			Class<? extends Servlet> servletClass = (Class<? extends Servlet>) Class.forName(className);
+			return addServlet(servletName, servletClass);
+		} catch (ClassNotFoundException e) {
+			Log.e("Servlet class not found: " + className + ", error: " + e.getMessage());
+			return null;
+		}
+	}
+	
+	@Override
+	public javax.servlet.ServletRegistration.Dynamic addServlet(String servletName,
+			Servlet servlet) {
+		if (servlets.containsKey(servletName)) {
+			return null; // Servlet already exists
+		}
+		servlets.put(servletName, servlet);
+		Log.i("Servlet registered: " + servletName);
+		// 返回一个简单的ServletRegistration.Dynamic实现
+		return new YangServletRegistration(servletName, servlet);
+	}
+	
+	@Override
+	public javax.servlet.ServletRegistration.Dynamic addServlet(String servletName,
+			Class<? extends Servlet> servletClass) {
+		try {
+			Servlet servlet = servletClass.newInstance();
+			return addServlet(servletName, servlet);
+		} catch (Exception e) {
+			Log.e("Failed to create servlet instance: " + servletClass.getName() + ", error: " + e.getMessage());
+			return null;
+		}
 	}
 	@Override
-	public void addListener(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public <T extends EventListener> void addListener(T arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void addListener(Class<? extends EventListener> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public javax.servlet.ServletRegistration.Dynamic addServlet(String arg0,
-			String arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public javax.servlet.ServletRegistration.Dynamic addServlet(String arg0,
-			Servlet arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public javax.servlet.ServletRegistration.Dynamic addServlet(String arg0,
-			Class<? extends Servlet> arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public <T extends Filter> T createFilter(Class<T> arg0)
+	public <T extends Filter> T createFilter(Class<T> filterClass)
 			throws ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return filterClass.newInstance();
+		} catch (Exception e) {
+			throw new ServletException("Failed to create filter: " + filterClass.getName(), e);
+		}
 	}
+	
 	@Override
-	public <T extends EventListener> T createListener(Class<T> arg0)
+	public <T extends EventListener> T createListener(Class<T> listenerClass)
 			throws ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return listenerClass.newInstance();
+		} catch (Exception e) {
+			throw new ServletException("Failed to create listener: " + listenerClass.getName(), e);
+		}
 	}
+	
 	@Override
-	public <T extends Servlet> T createServlet(Class<T> arg0)
+	public <T extends Servlet> T createServlet(Class<T> servletClass)
 			throws ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return servletClass.newInstance();
+		} catch (Exception e) {
+			throw new ServletException("Failed to create servlet: " + servletClass.getName(), e);
+		}
 	}
 	@Override
-	public void declareRoles(String... arg0) {
-		// TODO Auto-generated method stub
-		
+	public void declareRoles(String... roleNames) {
+		// 声明安全角色，在这个简单实现中只记录日志
+		for (String role : roleNames) {
+			Log.i("Security role declared: " + role);
+		}
 	}
+	
 	@Override
 	public ClassLoader getClassLoader() {
-		// TODO Auto-generated method stub
-		return null;
+		return Thread.currentThread().getContextClassLoader();
 	}
+	
 	@Override
 	public Set<SessionTrackingMode> getDefaultSessionTrackingModes() {
-		// TODO Auto-generated method stub
-		return null;
+		// 返回默认的会话跟踪模式
+		Set<SessionTrackingMode> modes = new java.util.HashSet<SessionTrackingMode>();
+		modes.add(SessionTrackingMode.COOKIE);
+		return modes;
 	}
+	
 	@Override
 	public int getEffectiveMajorVersion() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 3; // Servlet 3.0
 	}
+	
 	@Override
 	public int getEffectiveMinorVersion() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 0; // Servlet 3.0
 	}
+	
 	@Override
 	public Set<SessionTrackingMode> getEffectiveSessionTrackingModes() {
-		// TODO Auto-generated method stub
-		return null;
+		return new java.util.HashSet<SessionTrackingMode>(sessionTrackingModes);
 	}
 	@Override
-	public FilterRegistration getFilterRegistration(String arg0) {
-		// TODO Auto-generated method stub
+	public FilterRegistration getFilterRegistration(String filterName) {
+		Filter filter = filters.get(filterName);
+		if (filter != null) {
+			return new YangFilterRegistration(filterName, filter);
+		}
 		return null;
 	}
+	
 	@Override
 	public Map<String, ? extends FilterRegistration> getFilterRegistrations() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, FilterRegistration> registrations = new HashMap<String, FilterRegistration>();
+		for (Map.Entry<String, Filter> entry : filters.entrySet()) {
+			registrations.put(entry.getKey(), new YangFilterRegistration(entry.getKey(), entry.getValue()));
+		}
+		return registrations;
 	}
+	
 	@Override
 	public JspConfigDescriptor getJspConfigDescriptor() {
-		// TODO Auto-generated method stub
+		// JSP配置描述符，在这个简单实现中返回null
 		return null;
 	}
+	
 	@Override
-	public ServletRegistration getServletRegistration(String arg0) {
-		// TODO Auto-generated method stub
+	public ServletRegistration getServletRegistration(String servletName) {
+		Servlet servlet = servlets.get(servletName);
+		if (servlet != null) {
+			return new YangServletRegistration(servletName, servlet);
+		}
 		return null;
 	}
+	
 	@Override
 	public Map<String, ? extends ServletRegistration> getServletRegistrations() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, ServletRegistration> registrations = new HashMap<String, ServletRegistration>();
+		for (Map.Entry<String, Servlet> entry : servlets.entrySet()) {
+			registrations.put(entry.getKey(), new YangServletRegistration(entry.getKey(), entry.getValue()));
+		}
+		return registrations;
 	}
 	@Override
 	public SessionCookieConfig getSessionCookieConfig() {
-		// TODO Auto-generated method stub
-		return null;
+		// 返回一个简单的SessionCookieConfig实现
+		return new YangSessionCookieConfig();
 	}
+	
 	@Override
-	public boolean setInitParameter(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean setInitParameter(String name, String value) {
+		if (initParameters.containsKey(name)) {
+			return false; // 参数已存在
+		}
+		initParameters.put(name, value);
+		Log.i("Init parameter set: " + name + " = " + value);
+		return true;
 	}
+	
+	private Set<SessionTrackingMode> sessionTrackingModes = getDefaultSessionTrackingModes();
+	
 	@Override
-	public void setSessionTrackingModes(Set<SessionTrackingMode> arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes) {
+		this.sessionTrackingModes = new java.util.HashSet<SessionTrackingMode>(sessionTrackingModes);
+		Log.i("Session tracking modes set: " + sessionTrackingModes);
 	}
 	//---------------------
 	@Override
