@@ -13,6 +13,7 @@
     <modules>
         <module>YangMVC</module>
         <module>YangMVCBoot</module>
+        <module>YangMVCBootDemo</module>
         <module>YangMVCSpring</module>
     </modules>
     <properties>
@@ -40,27 +41,27 @@
             <url>https://gitee.com/yangtf/</url>
         </developer>
     </developers>
-
-	<dependency>
-		<groupId>org.slf4j</groupId>
-		<artifactId>slf4j-api</artifactId>
-		<version>2.0.9</version>
-	</dependency>
-	<dependency>
-		<groupId>ch.qos.logback</groupId>
-		<artifactId>logback-core</artifactId>
-		<version>1.5.13</version>
-	</dependency>
-	<dependency>
-		<groupId>ch.qos.logback</groupId>
-		<artifactId>logback-classic</artifactId>
-		<version>1.5.13</version>
-		<exclusions>
-			<exclusion>
-				<groupId>org.codehaus.groovy.maven.runtime</groupId>
-				<artifactId>gmaven-runtime-default</artifactId>
-			</exclusion>
-		</exclusions>
-	</dependency>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.13</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.groovy.maven.runtime</groupId>
+                    <artifactId>gmaven-runtime-default</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 </project>

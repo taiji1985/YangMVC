@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.docshare.log.Log;
-import org.docshare.orm.mysql.IConnectionPool;
+import org.docshare.yangmvc.log.Log;
+import org.docshare.yangmvc.orm.mysql.IConnectionPool;
 import org.docshare.yangmvc.spring.util.SpringContextUtil;
 
 public class SpringConnectionPool implements IConnectionPool {

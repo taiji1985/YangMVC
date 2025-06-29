@@ -1,6 +1,6 @@
 package org.docshare.yangmvc.spring.controller;
 
-import org.docshare.mvc.Config;
+import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.spring.config.YangMvcProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

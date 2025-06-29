@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.docshare</groupId>
     <artifactId>yangmvc-spring</artifactId>
-    <version>2025.06.20</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
+    <version>2025.06.29</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
     <name>YangMVCSpring</name>
     <description>Integrate YangMVC to SpringBoot</description>
     <properties>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.docshare</groupId>
             <artifactId>yangmvc</artifactId>
-            <version>2025.06.20</version>
+            <version>2025.06.29</version>
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>

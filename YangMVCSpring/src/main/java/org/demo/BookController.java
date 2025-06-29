@@ -3,7 +3,7 @@ package org.demo;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.docshare.mvc.Controller;
+import org.docshare.yangmvc.mvc.Controller;
 import org.docshare.yangmvc.spring.util.SpringContextUtil;
 import org.docshare.yangmvc.spring.service.BookService;
 

@@ -1,6 +1,6 @@
 package org.docshare.yangmvc.spring.config;
 
-import org.docshare.mvc.MVCFilter;
+import org.docshare.yangmvc.mvc.MVCFilter;
 import org.docshare.yangmvc.spring.util.WrapperFilterConfig;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
@@ -30,7 +30,6 @@ public class MVCFilterInitializer implements ServletContextAware {
     
     /**
      * 在Bean初始化完成后立即执行MVCFilter初始化
-     * @PostConstruct确保在CommandLineRunner之前执行
      */
     @PostConstruct
     public void initMVCFilter() {

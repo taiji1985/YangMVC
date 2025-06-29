@@ -2,9 +2,9 @@ package org.demo;
 
 import java.util.List;
 
-import org.docshare.log.Log;
-import org.docshare.mvc.Controller;
-import org.docshare.orm.Model;
+import org.docshare.yangmvc.log.Log;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.orm.Model;
 
 public class UserController extends Controller {
     public List<Model> list() {

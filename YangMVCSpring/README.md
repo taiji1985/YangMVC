@@ -123,7 +123,7 @@ YangMVCSpring/
 ```java
 package org.demo;
 
-import org.docshare.mvc.Controller;
+import org.docshare.yangmvc.mvc.Controller;
 
 public class IndexController extends Controller {
     public String index() {
@@ -139,13 +139,14 @@ public class IndexController extends Controller {
 ```java
 package org.demo;
 
-import org.docshare.mvc.Controller;
+import org.docshare.yangmvc.mvc.Controller;
 import org.docshare.yangmvc.spring.util.SpringContextUtil;
 import org.docshare.yangmvc.spring.service.BookService;
+
 import java.util.List;
 
 public class BookController extends Controller {
-    
+
     /**
      * 使用Spring托管服务获取书籍列表
      */
@@ -153,7 +154,7 @@ public class BookController extends Controller {
         BookService bookService = SpringContextUtil.getBean(BookService.class);
         return bookService.getAllBooks();
     }
-    
+
     /**
      * 根据ID获取书籍
      */
@@ -286,7 +287,7 @@ public class SpringConnectionPool implements IConnectionPool {
 ```java
 package org.demo;
 
-import org.docshare.mvc.Controller;
+import org.docshare.yangmvc.mvc.Controller;
 
 public class UserController extends Controller {
     public String list() {

@@ -1,6 +1,6 @@
 package org.docshare.example.controller;
 
-import org.docshare.mvc.Controller;
+import org.docshare.yangmvc.mvc.Controller;
 
 public class IndexController extends Controller {
     public String index(String name){

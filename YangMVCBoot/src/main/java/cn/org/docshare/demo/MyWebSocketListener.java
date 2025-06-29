@@ -2,7 +2,7 @@ package cn.org.docshare.demo;
 
 import java.util.Date;
 
-import org.docshare.log.Log;
+import org.docshare.yangmvc.log.Log;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;

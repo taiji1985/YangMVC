@@ -1,7 +1,7 @@
 package org.docshare.yangmvc.spring.config;
 
-import org.docshare.mvc.Config;
-import org.docshare.log.Log;
+import org.docshare.yangmvc.mvc.Config;
+import org.docshare.yangmvc.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

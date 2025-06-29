@@ -1,5 +1,5 @@
 package cn.org.docshare.demo;
-import org.docshare.mvc.Controller
+import org.docshare.yangmvc.mvc.Controller
 
 class GController extends Controller {
 	def hello(){

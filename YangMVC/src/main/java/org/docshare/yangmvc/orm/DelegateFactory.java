@@ -1,0 +1,21 @@
+package org.docshare.yangmvc.orm;
+
+import org.docshare.yangmvc.orm.access.AccessDelegate;
+import org.docshare.yangmvc.orm.mysql.MySQLDelegate;
+import org.docshare.yangmvc.orm.postgres.PostgresDelegate;
+
+public class DelegateFactory {
+	static IDBDelegate mysqlDelegate=new MySQLDelegate();
+	static IDBDelegate pgDelegate=new PostgresDelegate();
+	static IDBDelegate accessDelegate=new AccessDelegate();
+	public static IDBDelegate getIns(String dbtype){
+		if(dbtype.equals("mysql")){
+			return mysqlDelegate;
+		}else if(dbtype.equals("postgres")){
+			return pgDelegate;
+		}else if(dbtype.equals("access")){
+			return accessDelegate;
+		}
+		return null;
+	}
+}

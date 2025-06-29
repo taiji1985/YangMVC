@@ -1,7 +1,7 @@
 package org.docshare.yangmvc.spring.controller;
 
-import org.docshare.log.Log;
-import org.docshare.mvc.MVCFilter;
+import org.docshare.yangmvc.log.Log;
+import org.docshare.yangmvc.mvc.MVCFilter;
 import org.docshare.yangmvc.spring.config.MVCFilterInitializer;
 import org.docshare.yangmvc.spring.util.MyFilterChain;
 import org.springframework.stereotype.Controller;

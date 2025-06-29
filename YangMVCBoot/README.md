@@ -32,7 +32,7 @@ YangMVCBoot是YangMVC框架的Boot版本，提供了开箱即用的Web服务器�
 ### 最简单的启动方式
 
 ```java
-import org.docshare.boot.ServerMain;
+import org.docshare.yangmvc.boot.ServerMain;
 
 public class Application {
     public static void main(String[] args) {
@@ -46,21 +46,21 @@ public class Application {
 ```java
 package cn.org.docshare.demo;
 
-import org.docshare.mvc.Controller;
-import org.docshare.util.MapHelper;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.util.MapHelper;
 
 public class IndexController extends Controller {
-    
+
     // 访问 http://localhost:1985/
     public void index() {
         renderFreeMarker("/index.html");
     }
-    
+
     // 访问 http://localhost:1985/json
     public void json() {
         outputJSON(MapHelper.toMap("message", "Hello YangMVC!", "timestamp", System.currentTimeMillis()));
     }
-    
+
     // 访问 http://localhost:1985/hello
     public void hello() {
         output("Hello World!");

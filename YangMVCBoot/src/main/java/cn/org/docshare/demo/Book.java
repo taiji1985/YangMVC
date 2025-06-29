@@ -1,6 +1,6 @@
 package cn.org.docshare.demo;
 
-import org.docshare.mvc.IBean;
+import org.docshare.yangmvc.mvc.IBean;
 /**
  * @author Tongfeng yang
  *

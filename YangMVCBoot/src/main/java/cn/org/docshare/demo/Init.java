@@ -1,7 +1,7 @@
 package cn.org.docshare.demo;
 
-import org.docshare.boot.MyWebSocketHandler;
-import org.docshare.log.Log;
+import org.docshare.yangmvc.boot.MyWebSocketHandler;
+import org.docshare.yangmvc.log.Log;
 
 public class Init {
 	public Init() {

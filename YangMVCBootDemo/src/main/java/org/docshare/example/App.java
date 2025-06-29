@@ -1,6 +1,6 @@
 package org.docshare.example;
 
-import org.docshare.boot.ServerMain;
+import org.docshare.yangmvc.boot.ServerMain;
 
 /**
  * Hello world!
