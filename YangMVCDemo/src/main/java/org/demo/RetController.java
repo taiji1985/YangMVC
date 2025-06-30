@@ -1,7 +1,7 @@
 package org.demo;
 
-import org.docshare.mvc.Controller;
-import org.docshare.util.MapHelper;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.util.MapHelper;
 
 public class RetController extends Controller {
 	public String index(){

@@ -387,13 +387,13 @@ public class Model implements Map<String,Object> {
 		return joined_tool.save(this,false);
 	}
 	
-	public void remove(){
+	public int remove(){
 
 		if(joined_tool == null){
 			Log.e("Model didn't connect to a tool ,can't save"+this);
-			return;
+			return 0;
 		}
-		joined_tool.del(this);
+		return joined_tool.del(this);
 	}
 	/**
 	 * 获取我的DBTool

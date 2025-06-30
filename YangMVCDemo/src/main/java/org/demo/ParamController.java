@@ -1,7 +1,6 @@
 package org.demo;
-
-import org.docshare.mvc.Controller;
-import org.docshare.mvc.anno.Param;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.mvc.anno.Param;
 
 public class ParamController extends Controller {
 	public void index(){

@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import org.docshare.log.Log;
-import org.docshare.mvc.Controller;
-import org.docshare.orm.LasyList;
-import org.docshare.orm.Model;
+import org.docshare.yangmvc.log.Log;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.orm.LasyList;
+import org.docshare.yangmvc.orm.Model;
 
 
 public class IndexController extends Controller {

@@ -12,6 +12,7 @@
     <url>https://gitee.com/yangtf/YangMVC</url>
     <modules>
         <module>YangMVC</module>
+        <module>YangMVCDemo</module>
         <module>YangMVCBoot</module>
         <module>YangMVCBootDemo</module>
         <module>YangMVCSpring</module>

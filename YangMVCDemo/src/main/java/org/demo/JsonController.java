@@ -1,9 +1,8 @@
 package org.demo;
 
-import org.docshare.mvc.Controller;
-import org.docshare.orm.DBTool;
-import org.docshare.orm.LasyList;
-import org.docshare.orm.Model;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.orm.LasyList;
+import org.docshare.yangmvc.orm.Model;
 
 class Ret{
 	public String result="ok";
@@ -11,8 +10,7 @@ class Ret{
 }
 public class JsonController extends Controller {
 	public void index(){
-		DBTool tool = Model.tool("book");
-		LasyList list = tool.all().limit(30);
+		LasyList list = Model.tool("book").all().limit(30);
 		outputJSON(list);
 	}
 	
@@ -22,13 +20,13 @@ public class JsonController extends Controller {
 		int ct = paramInt("ct", 1);
 		
 
-		DBTool tool = Model.tool("dingcan");
-		Model m = tool.create();
-		m.put("book_id",bookid);
-		m.put("uid"	, uid);
-		m.put("ct", ct);
+		Model m = Model.tool("dingcan")
+			.create()
+			.put("book_id", bookid)
+			.put("uid", uid)
+			.put("ct", ct)
+			.saveAndRet();
 		
-		tool.save(m);
 		outputJSON(new Ret());
 	}
 }

@@ -1,8 +1,7 @@
 package org.demo.db;
-
-import org.docshare.orm.LasyList;
+import org.docshare.yangmvc.orm.LasyList;
 import java.util.List;
-import org.docshare.orm.Model;
+import org.docshare.yangmvc.orm.Model;
 
 public class Catalog{
 	public Integer id;	

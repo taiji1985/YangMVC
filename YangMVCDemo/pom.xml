@@ -4,7 +4,7 @@
   <groupId>org.docshare</groupId>
   <artifactId>yangmvc-demo</artifactId>
   <packaging>war</packaging>
-  <version>2025.06.19</version>
+  <version>2025.06.29</version>
   <name>yangmvc-demo</name>
   <url>https://gitee.com/yangtf/YangMVC</url>
   <description>This is a demo of web project based on yangmvc</description>
@@ -25,7 +25,7 @@
     <dependency>
       <groupId>org.docshare</groupId>
       <artifactId>yangmvc</artifactId>
-      <version>2025.06.19</version>
+      <version>2025.06.29</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

@@ -2,7 +2,7 @@ package org.demo;
 
 
 import org.demo.db.Book;
-import org.docshare.mvc.Controller;
+import org.docshare.yangmvc.mvc.Controller;
 
 public class PojoController extends Controller{
 	public void index(){

@@ -2,10 +2,10 @@ package org.demo;
 
 import java.lang.reflect.Method;
 
-import org.docshare.log.Log;
-import org.docshare.mvc.Config;
-import org.docshare.mvc.Controller;
-import org.docshare.mvc.Interceptor;
+import org.docshare.yangmvc.log.Log;
+import org.docshare.yangmvc.mvc.Config;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.mvc.Interceptor;
 
 import com.esotericsoftware.reflectasm.MethodAccess;
 

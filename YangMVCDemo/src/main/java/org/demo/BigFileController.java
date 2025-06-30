@@ -6,10 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.docshare.log.Log;
-import org.docshare.mvc.Controller;
-import org.docshare.util.FileTool;
-import org.docshare.util.TextTool;
+import org.docshare.yangmvc.log.Log;
+import org.docshare.yangmvc.mvc.Controller;
+import org.docshare.yangmvc.util.FileTool;
+import org.docshare.yangmvc.util.TextTool;
 
 public class BigFileController extends Controller {
 	public void index(){
