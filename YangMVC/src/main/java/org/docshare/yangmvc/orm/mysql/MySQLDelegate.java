@@ -3,6 +3,7 @@ package org.docshare.yangmvc.orm.mysql;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -145,7 +146,7 @@ public class MySQLDelegate implements IDBDelegate {
 	public long size(List<SQLConstains> cons, DBTool tool, String tbName) {
 		ResultSet rs;
 		try {
-			rs = runSQL(cons, null,null,tool, tbName,"count(*) as CT");
+			rs = runSQL(cons, null,null,tool, tbName,"count(*) as CT",null);
 			if(rs!=null){
 				if(rs.next()){
 					long id = rs.getLong("CT");
@@ -153,8 +154,6 @@ public class MySQLDelegate implements IDBDelegate {
 					return id;
 				}
 				rs.close();
-			}else{
-				
 			}
 		} catch (SQLException e) {
 			//e.printStackTrace();
@@ -163,8 +162,7 @@ public class MySQLDelegate implements IDBDelegate {
 		return 0;
 	}
 	@Override
-
-	public ResultSet runSQL(List<SQLConstains> cons,SQLConstains order_con,SQLConstains limit_con,DBTool tool,String tbName,String prefix){
+	public ResultSet runSQL(List<SQLConstains> cons,List<SQLConstains> order_cons,SQLConstains limit_con,DBTool tool,String tbName,String prefix,Object[] myParams){
 
 		StringBuilder sb=new StringBuilder();
 		sb.append("select ").append(prefix).append(" from ");
@@ -175,6 +173,9 @@ public class MySQLDelegate implements IDBDelegate {
 		}
 		final String[] fh = {"","=",">","<",">=","<=","<>"};
 		ArrayList<Object> params = new ArrayList<Object>();
+		if(myParams!=null){
+            params.addAll(Arrays.asList(myParams));
+		}
 		if(!cons.isEmpty()){
 			sb.append("where ");
 			boolean first= true;
@@ -223,8 +224,17 @@ public class MySQLDelegate implements IDBDelegate {
 				}
 			}
 		}
-		if(order_con!=null){
-			sb.append(" order by `").append(order_con.column).append("` ").append((Boolean)order_con.value?"asc ":"desc ");
+		if(order_cons!=null && !order_cons.isEmpty()){
+			sb.append(" order by ");
+			boolean first = true;
+			for(SQLConstains order_con : order_cons){
+				if(!first){
+					sb.append(", ");
+				}
+				first = false;
+				sb.append("`").append(order_con.column).append("` ").append((Boolean)order_con.value?"asc":"desc");
+			}
+			sb.append(" ");
 		}
 		if(limit_con!=null){
 			sb.append(" limit ?,?");

@@ -3,6 +3,7 @@ package org.docshare.yangmvc.orm.access;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -112,7 +113,7 @@ public class AccessDelegate implements IDBDelegate {
 	public long size(List<SQLConstains> cons, DBTool tool, String tbName) {
 		ResultSet rs=null;
 		try {
-			rs = runSQL(cons,null,null, tool, tbName,"count(*) as CT");
+			rs = runSQL(cons,null,null, tool, tbName,"count(*) as CT",null);
 			if(rs.next()){
 				long id = rs.getLong("CT");
 				rs.close();
@@ -125,11 +126,14 @@ public class AccessDelegate implements IDBDelegate {
 		}
 		return 0;
 	}
-	public ResultSet runSQL(List<SQLConstains> cons,SQLConstains orderc,SQLConstains limitc,DBTool tool,String tbName,String prefix){
+	public ResultSet runSQL(List<SQLConstains> cons,List<SQLConstains> order_cons,SQLConstains limitc,DBTool tool,String tbName,String prefix,Object[] args){
 		if(tbName == null) return null ;//参数检查，表名不能为空
 		
 		ArrayList<String> sa = new ArrayList<String>();
 		ArrayList<Object> params = new ArrayList<Object>();
+		if(args!=null){
+            params.addAll(Arrays.asList(args));
+		}
 		final String[] fh = {"","=",">","<",">=","<=","<>"};
 //		SQLConstains limitc=null;
 //		SQLConstains orderc=null;
@@ -166,7 +170,7 @@ public class AccessDelegate implements IDBDelegate {
 				limitc = c;
 				break;
 			case SQLConstains.TYPE_ORDER:
-				orderc = c;
+				order_cons.add(c);
 				break;
 			case SQLConstains.TYPE_CUSTOM:
 				sa.add(c.column);
@@ -178,11 +182,16 @@ public class AccessDelegate implements IDBDelegate {
 		}
 		
 		String tail ="";
-		if(orderc!=null){
-			//tail += String.format(" order by %s %s", orderc.column,(Boolean)orderc.value?"asc":"desc");
-			tail += String.format(" order by [%s] %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
-			//params.add((Boolean)orderc.value?"asc":"desc");
-			
+		if(order_cons!=null && !order_cons.isEmpty()){
+			tail += " order by ";
+			boolean first = true;
+			for(SQLConstains orderc : order_cons){
+				if(!first){
+					tail += ", ";
+				}
+				first = false;
+				tail += String.format("[%s] %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
+			}
 		}
 		if( limitc!=null){
 			//tail += String.format(" limit %d,%d", limitc.value,limitc.value2);

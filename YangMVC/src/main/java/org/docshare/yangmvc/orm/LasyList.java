@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * 使用了延迟加载技术的List。其中的all()方法并非读取所有数据。
- * 数据只有在真正读取时如调用get函数或者被枚举时才会从数据库中读取出来。
+ * 数据只有在真正读取时如调用get函数或者被枚举时才会从数据库中读取出来.
  * 
  * @author Administrator
  * 
@@ -33,12 +33,17 @@ public class LasyList extends ListAdapter {
 		return tool;
 	}
 	private String rawSql = null;
-	private LasyList(String rawSql){
+	private Object[] args;
+	private LasyList(String rawSql,Object[] args){
 		this.rawSql = rawSql;
 		tool = Model.tool("rawsql");
 		delegate = tool.getDelegate();
-		//initRS();
-		//toArrayList();
+		this.rawSql = rawSql;
+		if(args == null){
+			this.args = new Object[0];
+		}else{
+			this.args = args;
+		}
 	}
 
 	public LasyList(DBTool tool,String tbName){
@@ -138,14 +143,14 @@ public class LasyList extends ListAdapter {
             if(tbName == null && rawSql!= null){
 
                 String tmpTBName = " ("+rawSql+") as rawsql ";
-                rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tmpTBName,column_filter);
+                rs =  delegate.runSQL(cons,order_constrains,limit_constrain, tool, tmpTBName,column_filter,args);
                 if(rs!=null){
                     column_desc = delegate.columnOfRs(rawSql,rs);
                 }else{
                     column_desc = new HashMap<>();
                 }
             }else{
-                rs =  delegate.runSQL(cons,order_constrain,limit_constrain, tool, tbName,column_filter);
+                rs =  delegate.runSQL(cons,order_constrains,limit_constrain, tool, tbName,column_filter,args);
             }
 
         }
@@ -335,7 +340,7 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
-	private SQLConstains order_constrain=null;
+	private List<SQLConstains> order_constrains=new ArrayList<>();
 	/**
 	 * 设置排序规则
 	 * @param column
@@ -346,7 +351,21 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList orderby(String column, boolean asc) {
-		order_constrain = new SQLConstains(SQLConstains.TYPE_ORDER, column, asc);
+		order_constrains.clear();
+		order_constrains.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
+		arrList = null;
+		return this;
+	}
+	
+	/**
+	 * 添加排序规则（支持多个排序字段）
+	 * @param column 排序依据的列
+	 * @param asc 当asc为true时，是升序，否则为降序
+	 * @return 查询结果
+	 */
+	@NotNull
+	public LasyList addOrderby(String column, boolean asc) {
+		order_constrains.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
 		arrList = null;
 		return this;
 	}
@@ -367,26 +386,27 @@ public class LasyList extends ListAdapter {
 	 * @return 过滤后的LasyList对象（还是this当前对象，方便级联使用）
 	 */
 	public Model one() {
-		limit(_start, 1);//通过加limit减少数据库的查询的量。
-		Model model = get(0);
-		closeRS();
-		return model;
-	}
-	private void closeRS(){
-		try{
-			Log.v("LasyList finalized");
-			if(rs !=null){
-				rs.close();
-				rs =null;
-			}
-		}catch(Exception ignored){}
-	}
+        limit(_start, 1);
+        Model model = get(0);
+        closeRS();
+        return model;
+    }
+
+    private void closeRS(){
+        try{
+            Log.v("LasyList finalized");
+            if(rs !=null){
+                rs.close();
+                rs =null;
+            }
+        }catch(Exception ignored){}
+    }
 	
-	@Override
-	protected void finalize() throws Throwable {
-		closeRS();
-		super.finalize();
-	}
+//	@Override
+//	protected void finalize() throws Throwable {
+//		closeRS();
+//		super.finalize();
+//	}
 	
 	@Override
 	public String toString(){
@@ -424,7 +444,7 @@ public class LasyList extends ListAdapter {
 				cs = new HashSet<>();
                 Collections.addAll(cs, ca);
 			}
-			
+
 			while(rs!= null && rs.next()){
 				Model m = tool.db2Table(rs,column_desc,cs);
 				
@@ -434,11 +454,12 @@ public class LasyList extends ListAdapter {
 				debugInfo();
 			}
 		} catch (SQLException e) {
-			Log.e("LasyList.toArrayList Exception " + debugInfo());
-			Log.e(e);
-		}finally{
-			FileTool.safelyClose(rs);
-		}
+            Log.e("LasyList.toArrayList Exception " + debugInfo());
+            Log.e(e);
+        } finally {
+            FileTool.safelyClose(rs);
+            closeRS();
+        }
 		return mList;
 	}
 	public String debugInfo(){
@@ -465,6 +486,8 @@ public class LasyList extends ListAdapter {
 			}
 		} catch (InstantiationException | IllegalAccessException e) {
 			Log.e(e);
+		}finally {
+			closeRS();
 		}
 
         return ret;
@@ -476,11 +499,12 @@ public class LasyList extends ListAdapter {
 	 * @param sql sql语句
 	 * @return LasyList对象
 	 */
-	public static LasyList fromRawSql(String sql){
-        return new LasyList(sql);
-		
+	public static LasyList fromRawSql(String sql,Object[] args){
+        return new LasyList(sql,args);
 	}
-	
+	public static LasyList fromRawSql(String sql){
+		return new LasyList(sql,new Object[0]);
+	}
 	
 	public LasyList each(Each fun){
 		for(Model m : this){
@@ -511,7 +535,4 @@ public class LasyList extends ListAdapter {
 			return ret;
 		}
 	}
-
-	
-
 }

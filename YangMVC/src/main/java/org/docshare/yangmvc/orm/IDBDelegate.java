@@ -29,5 +29,5 @@ public interface IDBDelegate {
 	void commit();
 	void rollback();
 
-	ResultSet runSQL(List<SQLConstains> cons,SQLConstains orderby,SQLConstains limit, DBTool tool, String tbName, String prefix);
+	ResultSet runSQL(List<SQLConstains> cons,List<SQLConstains> orderby,SQLConstains limit, DBTool tool, String tbName, String prefix,Object[] args);
 }
