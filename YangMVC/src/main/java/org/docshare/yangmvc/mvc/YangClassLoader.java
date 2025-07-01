@@ -26,8 +26,11 @@ class YangClassLoader extends ClassLoader{
 	public Class<?> loadClass(String name) throws ClassNotFoundException {
     	
 
-        if(!name.startsWith(reloadPackage))
-                return YangClassLoader.class.getClassLoader().loadClass(name);
+        if(!name.startsWith(reloadPackage)){
+			Class<?> ret= YangClassLoader.class.getClassLoader().loadClass(name);			
+            MethodAccessCacher.put(name, ret);
+			return ret;
+		}
         try {
         	Log.d("YangClassLoader v"+version +", load "+name);
 //            String url = "file:C:/data/projects/tutorials/web/WEB-INF/" +
