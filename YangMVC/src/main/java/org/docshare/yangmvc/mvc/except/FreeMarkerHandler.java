@@ -1,8 +1,9 @@
 package org.docshare.yangmvc.mvc.except;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Writer;
+
+import org.docshare.yangmvc.log.Log;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateException;
@@ -13,11 +14,10 @@ public class FreeMarkerHandler implements TemplateExceptionHandler  {
 	@Override
 	public void handleTemplateException(TemplateException e,
 			Environment env, Writer out) throws TemplateException {
-		ByteArrayOutputStream ba  = new ByteArrayOutputStream();
 		try {
 			out.write("Freemarker Error: "+ e.getMessage());
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			Log.e(e1);
 		}
 //		try {
 //			

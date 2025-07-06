@@ -86,11 +86,9 @@ public class FileTool {
 			return newr;
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}finally {
 			safelyClose(fin);
 		}
@@ -191,8 +189,7 @@ public class FileTool {
 			out.write(data);
 			out.flush();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}finally {
 			safelyClose(out);
 		}
@@ -210,8 +207,7 @@ public class FileTool {
 			out.write(data);
 			out.flush();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}finally {
 			safelyClose(out);
 		}
@@ -338,8 +334,7 @@ public class FileTool {
 			di.close();
 			return al;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		}finally {
 			safelyClose(di);
 		}

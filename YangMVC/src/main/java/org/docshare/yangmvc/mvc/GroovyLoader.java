@@ -98,7 +98,7 @@ public class GroovyLoader extends Loader {
 			
 			if(m == null){
 				ret = "no such method : " + method +" , in class "+cname;
-				ins.response.setStatus(500);
+				ins.response().setStatus(500);
 				runPostProcessing(uri,ins,ret); //执行后处理程序
 				return true;
 			}

@@ -12,7 +12,8 @@ public class MyController extends IndexController {
 
 	public String set(){
 		sess("hello",new Date());
-		return session.getId();
+		return session().getId();
+
 	}
 	public String get(){
 		return sess("hello")+"";

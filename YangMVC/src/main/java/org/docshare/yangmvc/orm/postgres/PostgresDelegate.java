@@ -118,16 +118,15 @@ public class PostgresDelegate implements IDBDelegate {
 		return DBHelper.getIns().update(sql,id);
 	}
 
-	@SuppressWarnings("unused")
 	public ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName){
 		return runSQL(cons,null,null, tool, tbName,"*",null);
 	}
 
 	@Override
-	public long size(List<SQLConstains> cons, DBTool tool, String tbName) {
+	public long size(List<SQLConstains> cons, DBTool tool, String tbName, Object[] myParams) {
 		ResultSet rs;
 		try {
-			rs = runSQL(cons,null,null, tool, tbName,"count(*) as CT",null);
+			rs = runSQL(cons,null,null, tool, tbName,"count(*) as CT",myParams);
 			if(rs.next()){
 				long id = rs.getLong("CT");
 				rs.close();

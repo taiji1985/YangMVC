@@ -4,7 +4,7 @@
 
   <groupId>org.docshare</groupId>
   <artifactId>yangmvc</artifactId>
-  <version>2025.06.29</version>
+  <version>2025.07.06</version>
   <packaging>jar</packaging>
   <description>An efficient, fast, convenient, easy to learn, easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can run independently, and it can also be applied to traditional Java Web projects. It is an efficient, fast, convenient, easy to learn and easy to use MVC framework and ORM framework. It is seamless compatible with JSTL and supports FreeMarker. It can be run on its own, or it can be applied to traditional Java Web projects</description>
 
@@ -49,12 +49,12 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>1.5.13</version>
+      <version>1.2.12</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.5.13</version>
+      <version>1.2.12</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
@@ -93,6 +93,13 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>4.11.0</version>
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->

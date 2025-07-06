@@ -40,7 +40,7 @@ public class MVCFilter implements Filter {
 	}
 	private Configuration fmCfg;
 	private ServletContext application;
-	private Rewriter rewriter=null;
+	// private Rewriter rewriter=null;
 	
 	@Override
 	public void destroy() {
@@ -178,11 +178,10 @@ public class MVCFilter implements Filter {
 			Log.e(msg);
 
 			Controller controller = new Controller();
-			controller.request = req2;
-			controller.response = (HttpServletResponse) resp;
-			controller.response.reset();
-			controller.response.setStatus(500);
-			controller.response.setContentType("text/plain");
+			controller.setReq(req2, (HttpServletResponse) resp);
+			controller.response().reset();
+			controller.response().setStatus(500);
+			controller.response().setContentType("text/plain");
 			loader.runPostProcessing(uri, controller, msg);
 			
 			//outErr((HttpServletResponse) resp, msg);

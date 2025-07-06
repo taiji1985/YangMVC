@@ -12,6 +12,7 @@ import org.docshare.yangmvc.util.BeanUtil;
 
 public class Config {
 	private static  String prop_file = "/web.properties";
+	@SuppressWarnings("unused")
 	private static long lastUpdate = 0;
 	/**
 	 * 数据库主机名或IP地址

@@ -15,7 +15,7 @@ public interface IDBDelegate {
 
 	//String buildSQL(List<SQLConstains> cons, DBTool tool, String sqlfrom);
 	//ResultSet runSQL(List<SQLConstains> cons,DBTool tool,String tbName);
-	long size(List<SQLConstains> cons,DBTool tool,String tbName);
+	long size(List<SQLConstains> cons,DBTool tool,String tbName,Object[] myParams);
 
 	ResultSet runSQL(String rawSql) throws SQLException;
 

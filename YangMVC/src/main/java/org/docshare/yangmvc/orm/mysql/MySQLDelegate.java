@@ -143,10 +143,10 @@ public class MySQLDelegate implements IDBDelegate {
 //	}
 
 	@Override
-	public long size(List<SQLConstains> cons, DBTool tool, String tbName) {
+	public long size(List<SQLConstains> cons, DBTool tool, String tbName, Object[] myParams) {
 		ResultSet rs;
 		try {
-			rs = runSQL(cons, null,null,tool, tbName,"count(*) as CT",null);
+			rs = runSQL(cons, null,null,tool, tbName,"count(*) as CT",myParams);
 			if(rs!=null){
 				if(rs.next()){
 					long id = rs.getLong("CT");

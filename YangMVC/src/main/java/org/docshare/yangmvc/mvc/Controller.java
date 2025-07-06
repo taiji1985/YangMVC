@@ -98,32 +98,95 @@ public class Controller {
 	private static final String M_FLAG="multipart/form-data";
 
 	/**
-	 * 请求对象，同jsp中的request。 但请优先使用param等函数
+	 * 请求上下文，使用ThreadLocal确保线程安全
 	 */
-	public HttpServletRequest request;
-	/**
-	 * 响应对象，同jsp中的response。 但请优先使用output、outputJSON等函数
-	 */
-	public HttpServletResponse response;
-	/**
-	 * 会话对象。同jsp中的session。但请优先使用sess函数
-	 */
-	public HttpSession session; 
-	/**
-	 * 输出对象，类似jsp中的out对象，但请优先使用output、outputJSON、downloadFile等函数。
-	 */
-	protected PrintWriter writer = null;
-	private Map<String, Object> paramMap=new HashMap<String, Object>();
+	private ThreadLocal<RequestContext> context = new ThreadLocal<RequestContext>() {
+		@Override
+		protected RequestContext initialValue() {
+			return new RequestContext();
+		}
+	};
 
 	/**
-	 * 同jsp中的application对象。
+	 * 单例模式标志
 	 */
-	public ServletContext application;
-
-
 	private boolean single = false;
 	
-	private HashMap<String, String> cookieMap = new HashMap<>();
+	/**
+	 * 获取当前线程的请求上下文
+	 */
+	protected RequestContext getContext() {
+		return context.get();
+	}
+	
+	/**
+	 * 清理当前线程的请求上下文
+	 */
+	public void clearContext() {
+		RequestContext ctx = context.get();
+		if (ctx != null) {
+			ctx.clear();
+		}
+		context.remove();
+	}
+	
+
+	
+
+	
+	/**
+	 * 获取当前请求的HttpServletRequest对象
+	 * @return HttpServletRequest对象，如果没有请求上下文则返回null
+	 */
+	public HttpServletRequest request() {
+		RequestContext ctx = getContext();
+		return ctx != null ? ctx.getRequest() : null;
+	}
+	
+	/**
+	 * 获取当前请求的HttpServletResponse对象
+	 * @return HttpServletResponse对象，如果没有请求上下文则返回null
+	 */
+	public HttpServletResponse response() {
+		RequestContext ctx = getContext();
+		return ctx != null ? ctx.getResponse() : null;
+	}
+	
+	/**
+	 * 获取当前请求的HttpSession对象
+	 * @return HttpSession对象，如果没有请求上下文则返回null
+	 */
+	public HttpSession session() {
+		RequestContext ctx = getContext();
+		return ctx != null ? ctx.getSession() : null;
+	}
+	
+	/**
+	 * 获取当前应用的ServletContext对象
+	 * @return ServletContext对象，如果没有请求上下文则返回null
+	 */
+	public ServletContext application() {
+		RequestContext ctx = getContext();
+		return ctx != null ? ctx.getApplication() : null;
+	}
+	
+	/**
+	 * 获取当前请求的PrintWriter对象
+	 * @return PrintWriter对象，如果没有请求上下文则返回null
+	 */
+	public PrintWriter writer() {
+		RequestContext ctx = getContext();
+		return ctx != null ? ctx.getWriter() : null;
+	}
+	
+	/**
+	 * 获取当前请求的JSON数据
+	 * @return JSON字符串，如果没有请求上下文则返回null
+	 */
+	public String json() {
+		RequestContext ctx = getContext();
+		return ctx != null ? ctx.getJson() : null;
+	}
 	/**
 	 * 追加参数， 同样可以用param获取到最佳的参数
 	 * @param key 参数名
@@ -131,7 +194,7 @@ public class Controller {
 	 */
 	public void putParam(String key,Object val) {
 		Log.v("put param: "+key+"= "+val);
-		paramMap.put(key, val);
+		getContext().getParamMap().put(key, val);
 		
 	}
 	/**
@@ -139,21 +202,21 @@ public class Controller {
 	 * @return 当为Get请求时返回真，否则返回假。
 	 */
 	public boolean isGet(){
-		return request.getMethod().toLowerCase().equals("get");
+		return request().getMethod().toLowerCase().equals("get");
 	}
 	/**
 	 * 返回当前请求是否为Post请求，
 	 * @return 当为Post请求时返回真，否则返回假。
 	 */
 	public boolean isPost(){
-		return request.getMethod().toLowerCase().equals("post");
+		return request().getMethod().toLowerCase().equals("post");
 	}
 	/**
 	 * 获取HTTP请求的方法，GET/POST/PUT 等
 	 * @return http请求类型
 	 */
 	public String method() {
-		return request.getMethod();
+		return request().getMethod();
 	}
 	
 	/**
@@ -161,7 +224,7 @@ public class Controller {
 	 * @return 控制器对应的URL路径
 	 */
 	public String getPath(){
-		String uri = request.getRequestURI();
+		String uri = request().getRequestURI();
 		//uri = uri.replace(context, "");
 		return uri;
 	}
@@ -170,8 +233,8 @@ public class Controller {
 	 * @return 模板路径
 	 */
 	public String getDefaultTemp(){
-		String uri = request.getRequestURI() +".jsp";
-		String context = request.getContextPath();
+		String uri = request().getRequestURI() +".jsp";
+		String context = request().getContextPath();
 		uri = uri.replace(context, "").replace("/.jsp", "/index.jsp");
 		return uri;
 	}
@@ -225,7 +288,7 @@ public class Controller {
 		end  = (start +10)<pagec ? start+10:end;
 		start = (end - 10 )>=0 ? end-10:start;
 		List<Integer> pagelist = new ArrayList<Integer>();
-		String query = request.getQueryString();
+		String query = request().getQueryString();
 		query  =getClearQuery(query);
 		
 		StringBuilder sb = new StringBuilder();
@@ -280,9 +343,9 @@ public class Controller {
 	 * 内部使用的属性，为了防止用户反复输出，设置一个flag，在开始一次新的请求时清空flag。
 	 */
 	void clearOutFlag(){
-		can_out = true;
+		getContext().setCanOut(true);
 	}
-	private boolean can_out =true;
+
 	/**
 	 * 获取整形参数 ,已过时，请使用paramInt(String pname,int def)
 	 * @deprecated
@@ -306,7 +369,7 @@ public class Controller {
 	public void render() {
 		render(getDefaultTemp());
 	}
-	Map<String,Object> root = new HashMap<String, Object>(); //渲染模板所用数据
+
 	/**
 	 * 向request中放入数据，方便在jsp中使用getAttribute获取，或者
 	 * 使用EL表达式读取<br>
@@ -324,8 +387,8 @@ public class Controller {
 			obj = BeanUtil.obj2Map(obj);
 			Log.d(JSON.toJSONString(obj));
 		}
-		request.setAttribute(name, obj);
-		root.put(name, obj);
+		request().setAttribute(name, obj);
+		getContext().getRoot().put(name, obj);
 		for(int i=0;i<others.length-1;i+=2){
 			obj=others[i+1];
 			name =(String)others[i];
@@ -334,8 +397,8 @@ public class Controller {
 				obj = BeanUtil.obj2Map(obj);
 				Log.d(JSON.toJSONString(obj));
 			}
-			request.setAttribute(name, obj);
-			root.put(name, obj);
+			request().setAttribute(name, obj);
+			getContext().getRoot().put(name, obj);
 		}
 	}
 	public void put(String name,Object obj){
@@ -344,8 +407,8 @@ public class Controller {
 			obj = BeanUtil.obj2Map(obj);
 			Log.d(JSON.toJSONString(obj));
 		}
-		request.setAttribute(name, obj);
-		root.put(name, obj);
+		request().setAttribute(name, obj);
+		getContext().getRoot().put(name, obj);
 		
 	}
 	
@@ -365,11 +428,11 @@ public class Controller {
 	 */
 	public boolean existFile(String path){
 		@SuppressWarnings("deprecation")
-		String p = request.getRealPath(path);
+		String p = request().getRealPath(path);
 		if(p==null){
-			//p = request.getServletContext().getRealPath(path);
+			//p = request().getServletContext().getRealPath(path);
 			try {
-				return  null !=  application.getResource(path);
+				return  null !=  application().getResource(path);
 			} catch (MalformedURLException e) {
 				return false;
 			}
@@ -382,7 +445,7 @@ public class Controller {
 	 * @param view jsp文件位置
 	 */
 	public void render(String view) {
-		if(!can_out){
+		if(!getContext().isCanOut()){
 			try {
 				outMutiOutErr("view "+view);
 			} catch (IOException e) {
@@ -390,7 +453,7 @@ public class Controller {
 			}
 			return;
 		}
-		can_out = false;
+		getContext().setCanOut(false);
 		
 		String path = Config.template + view;
 		
@@ -405,23 +468,23 @@ public class Controller {
 		
 		
 		
-		RequestDispatcher d = request.getRequestDispatcher(path);
+		RequestDispatcher d = request().getRequestDispatcher(path);
 		try {
 			Log.d("dispatcher to " + path);
-			d.forward(request, response);
+			d.forward(request(), response());
 		} catch (ServletException e) {
 			Log.e(e);
 		} catch (IOException e) {
 			Log.e(e);
 		}
 	}
-	private String json = null;
+
 	/**
 	 * 当content-type 为application/json ,该函数获取传来的json字符串
 	 * @return 所有json字符串
 	 */
 	public String paramJSON(){
-		return json ; 
+		return getContext().getJson(); 
 	}
 	/**
 	 * 由过滤器调用这个方法来传送 request和response对象
@@ -429,16 +492,27 @@ public class Controller {
 	 * @param resp 响应
 	 */
 	public void setReq(HttpServletRequest req, HttpServletResponse resp) {
-		this.request = req;
-		this.response = resp;
+		// 获取当前线程的请求上下文
+		RequestContext ctx = getContext();
+		
+		// 设置请求和响应对象到上下文
+		ctx.setRequest(req);
+		ctx.setResponse(resp);
+		
+		// 设置session和application到上下文
 		try{
-			session = request.getSession();
+			HttpSession sess = req.getSession();
+			ctx.setSession(sess);
 		}catch (Exception e){}
-		application = request.getServletContext();
-		String contentType = request.getContentType();
+		
+		ServletContext app = req.getServletContext();
+		ctx.setServletContext(app);
+		
+		clearOutFlag();
+		String contentType = req.getContentType();
 		//Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){
-			UploadProcesser processer  = new UploadProcesser(this, request, response,application);
+			UploadProcesser processer  = new UploadProcesser(this, req, resp, app);
 			try {
 				processer.process();
 			} catch (FileUploadException e) {
@@ -455,15 +529,16 @@ public class Controller {
 			InputStream in = null;
 			try {
 				Log.d("start read json ....");
-				in = request.getInputStream();
-				json = FileTool.readAll(in, "utf-8");
-				if(json!=null){
-					json = json.trim();
+				in = req.getInputStream();
+				String jsonData = FileTool.readAll(in, "utf-8");
+				if(jsonData!=null){
+					jsonData = jsonData.trim();
 				}
-				if(json.startsWith("{")){ //如果是一个对象，给予解包
+				ctx.setJson(jsonData);
+				if(jsonData != null && jsonData.startsWith("{")){ //如果是一个对象，给予解包
 					jsonToParam();
 				}
-				Log.d("json readed "+json);
+				Log.d("json readed "+jsonData);
 			} catch (IOException e) {
 				Log.e(e);
 				e.printStackTrace();
@@ -478,9 +553,11 @@ public class Controller {
 			
 		}
 		
-		Cookie[] cookies = request.getCookies();
+		Cookie[] cookies = req.getCookies();
 		
 		if(cookies!=null){
+			HashMap<String, String> cookieMap = ctx.getCookieMap();
+			cookieMap.clear(); // 清理旧的cookie数据
 			for(Cookie c  : cookies){
 				cookieMap.put(c.getName(), c.getValue());
 			}
@@ -490,19 +567,20 @@ public class Controller {
 	 * 将json中的数据转入param，使得用户察觉不到什么异常。
 	 */
 	public void jsonToParam(){
+		String json = getContext().getJson();
 		if(json == null)return;
 		JSONObject obj = JSON.parseObject(json);
 		
-		paramMap.putAll(obj);
+		getContext().getParamMap().putAll(obj);
 	}
 	/**
 	 * 获取Session中key制定变量的值
 	 * @param key 关键字
-	 * @return sesion中存储的该键对应的内容，如果没有返回null
+	 * @return session中存储的该键对应的内容，如果没有返回null
 	 */
 	public Object sess(String key){
-		if(session == null) return null;
-		return session.getAttribute(key);
+		if(session() == null) return null;
+		return session().getAttribute(key);
 	}
 	/**
 	 * 设置Session中key变量的值为val
@@ -510,8 +588,8 @@ public class Controller {
 	 * @param val 要设置为的值
 	 */
 	public void sess(String key,Object val){
-		if(session == null) return ;
-		session.setAttribute(key, val);
+		if(session() == null) return ;
+		session().setAttribute(key, val);
 	}
 	/**
 	 * 获取int类型session变量
@@ -541,8 +619,8 @@ public class Controller {
 	
 	
 	public void removeSession(String key){
-		if(session==null) return;
-		session.removeAttribute(key);
+		if(session()==null) return;
+		session().removeAttribute(key);
 	}
 	/**
 	 * 获取application对象中存储 的变量
@@ -550,8 +628,8 @@ public class Controller {
 	 * @return 变量值， 如果没有则返回null
 	 */
 	public Object app(String key){
-		if(application == null) return null;
-		return application.getAttribute("key");
+		if(application() == null) return null;
+		return application().getAttribute(key);
 	}
 	/**
 	 * 获取application对象中存储 的变量
@@ -579,11 +657,11 @@ public class Controller {
 		return o == null?null:o.toString();
 	}
 	public void app(String key,Object val){
-		application.setAttribute(key, val);
+		application().setAttribute(key, val);
 	}
 	public void removeApp(String key){
-		if(application == null) return;
-		application.removeAttribute(key);
+		if(application() == null) return;
+		application().removeAttribute(key);
 	}
 	/**
 	 * 获取cookie
@@ -591,6 +669,7 @@ public class Controller {
 	 * @return value 要设置成的值
 	 */
 	public String cookie(String key){
+		HashMap<String, String> cookieMap = getContext().getCookieMap();
 		if(cookieMap ==  null) return null;
 		return cookieMap.get(key);
 	}
@@ -605,8 +684,8 @@ public class Controller {
 	public String cookie(String key ,Object value,int period_ms){
 		Cookie cookie = new Cookie(key,""+value);
 		cookie.setMaxAge(period_ms);
-		response.addCookie(cookie);
-		cookieMap.put(key, ""+value);
+		response().addCookie(cookie);
+		getContext().getCookieMap().put(key, ""+value);
 		return value+"";
 	}
 	/**
@@ -615,7 +694,7 @@ public class Controller {
 	 */
 	public void removeCookie(String key){
 		cookie(key,null,0); 
-		cookieMap.remove(key);
+		getContext().getCookieMap().remove(key);
 	}
 	
 	void error(String s){
@@ -649,13 +728,16 @@ public class Controller {
 
 		PrintWriter out = null;  
         try {
-			if (enable_gzip && GzipUtil.isGzipSupported(request) ) {  
-			    response.setHeader("Content-Encoding", "gzip");
+			HttpServletRequest req = getContext().getRequest();
+			HttpServletResponse resp = getContext().getResponse();
+			if (enable_gzip && GzipUtil.isGzipSupported(req) ) {  
+			    resp.setHeader("Content-Encoding", "gzip");
 			    
-			    out = GzipUtil.getGzipWriter(response);  
+			    out = GzipUtil.getGzipWriter(resp);  
 			} else {  
-			    out = response.getWriter();  
+			    out = resp.getWriter();  
 			}
+			getContext().setWriter(out);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
@@ -667,17 +749,17 @@ public class Controller {
 	 */
 	public void output(String s) {
 		try {
-			if(!can_out){
+			if(!getContext().isCanOut()){
 				outMutiOutErr(s);
 				return;
 			}
-			can_out = false;
-			String oldType = response.getContentType();
+			getContext().setCanOut(false);
+			String oldType = response().getContentType();
 			if( oldType == null || ! oldType.contains("text/plain")){
-				response.setContentType("text/html; charset=utf-8");
+				response().setContentType("text/html; charset=utf-8");
 			}
-			response.setCharacterEncoding("utf-8");
-			writer = getMyPrintWriter();
+			response().setCharacterEncoding("utf-8");
+			PrintWriter writer = getMyPrintWriter();
 			if(s == null)writer.write("null");
 			else writer.write(s);
 			writer.close(); 
@@ -693,7 +775,7 @@ public class Controller {
 	public boolean outputBytes(byte[] ba){
 		OutputStream oo;
 		try {
-			oo = response.getOutputStream();
+			oo = response().getOutputStream();
 			oo.write(ba);
 			oo.close();
 			return true;
@@ -712,9 +794,9 @@ public class Controller {
 	public void outputJSON(Object obj,boolean pretty){
 		try {
 			
-			response.setCharacterEncoding("utf-8");
-			response.setContentType("text/json;charset=utf-8");
-			writer = getMyPrintWriter();
+			response().setCharacterEncoding("utf-8");
+			response().setContentType("text/json;charset=utf-8");
+			PrintWriter writer = getMyPrintWriter();
 			
 			if(obj == null){
 				writer.write("{}");
@@ -815,8 +897,9 @@ public class Controller {
 	 */
 	public String urlParam(String p){
 		//如果paramMap中有。 这个paramMap是在UploadProcesser中调用putParam修改的。 
+		Map<String, Object> paramMap = getContext().getParamMap();
 		if(paramMap.containsKey(p))return paramMap.get(p).toString();
-		String s =  request.getParameter(p);
+		String s =  request().getParameter(p);
 		if(s == null)return null;
 		try {
 			s = new String(s.getBytes("ISO-8859-1"),"utf-8");
@@ -831,12 +914,13 @@ public class Controller {
 	 * @return 参数内容
 	 */
 	public String param(String p){
+		Map<String, Object> paramMap = getContext().getParamMap();
 		if(paramMap.containsKey(p)){
 			Object obj = paramMap.get(p);
 			if(obj!=null) return obj.toString();
 			else return null;
 		}
-		return request.getParameter(p);
+		return request().getParameter(p);
 	}
 	/**
 	 * 制定默认值并获取URL参数，如果参数不存在，则返回默认值。参数存在返回参数值。
@@ -917,15 +1001,16 @@ public class Controller {
 		return obj;
 	}
 	public void dumpParam() {
-		Map<String, String[]> map = request.getParameterMap();
+		Map<String, String[]> map = request().getParameterMap();
 		Log.d("----------DumpParam---------");
 		Log.d("request param="+JSON.toJSONString(map));
-		Log.d("paramMap="+JSON.toJSONString(paramMap));
+		Log.d("paramMap="+JSON.toJSONString(getContext().getParamMap()));
 	}
 	public Map<String, String[]> getParamMap(){
 		HashMap<String,String[]> ret=new HashMap<String,String[]>();
 		
-		ret.putAll(request.getParameterMap());
+		ret.putAll(request().getParameterMap());
+		Map<String, Object> paramMap = getContext().getParamMap();
 		for(String key: paramMap.keySet()){
 			String[] sa=new String[1];
 			sa[0]=""+paramMap.get(key);
@@ -966,13 +1051,17 @@ public class Controller {
 	 */
 	public void jump(String url){
 		try {
-			if(!can_out){
-				outMutiOutErr("jump to url");
-				return;
+			if(!getContext().isCanOut()){
+				try {
+					outMutiOutErr("jump to url");
+					return;
+				} catch (IOException e) {
+					Log.e(e);
+				}
 			}
-			can_out = false;
+			getContext().setCanOut(false);
 			
-			response.sendRedirect(url);
+			getContext().getResponse().sendRedirect(url);
 		} catch (IOException e) {
 			Log.e(e);
 		}
@@ -999,7 +1088,7 @@ public class Controller {
 	 * @return 获取当前支持的语言
 	 */
 	public String getLang(){
-		String lang = request.getHeader("Accept-Language");
+		String lang = request().getHeader("Accept-Language");
 		if(lang == null){
 			return "en";
 		}else{
@@ -1021,11 +1110,12 @@ public class Controller {
 	 * @param err 如果jump_url 为空，则不跳转，显示一个错误信息
 	 */
 	public void require(String session_key,Object value,String jump_url,String err){
-		require_obj =new Require();
-		require_obj.key = session_key;
-		require_obj.value = value;
-		require_obj.jump_url = jump_url;
-		require_obj.err= err;
+		Require requireObj = new Require();
+		requireObj.key = session_key;
+		requireObj.value = value;
+		requireObj.jump_url = jump_url;
+		requireObj.err= err;
+		getContext().setRequireObj(requireObj);
 	}
 	/**
 	 * 限制当前类所有方法的访问权限，一般在构造函数中调用。
@@ -1043,25 +1133,27 @@ public class Controller {
 		public String err;
 	}
 	
-	Require require_obj= null;
+
 	
 	/**
 	 * 检查是否满足条件
 	 * @return 满足为真，不满足为假
 	 */
 	boolean checkRequire(){
-		if(require_obj==null || require_obj.key == null){
+		Require requireObj = getContext().getRequireObj();
+		if(requireObj==null || requireObj.key == null){
 			return true;
 		}
-		if(session == null){
+		HttpSession sess = getContext().getSession();
+		if(sess == null){
 			return false;
 		}
-		Object obj = session.getAttribute(require_obj.key);
-		if(require_obj.value ==null){
+		Object obj = sess.getAttribute(requireObj.key);
+		if(requireObj.value ==null){
 			return obj != null;
 		}
 		
-		return  require_obj.value.equals(obj);
+		return  requireObj.value.equals(obj);
 	}
 	
 	/**
@@ -1072,10 +1164,11 @@ public class Controller {
 		if(succ){
 			return;
 		}else{
-			if(require_obj.jump_url == null){
-				output(require_obj.err);
+			Require requireObj = getContext().getRequireObj();
+			if(requireObj.jump_url == null){
+				output(requireObj.err);
 			}else{
-				jump(require_obj.jump_url);
+				jump(requireObj.jump_url);
 			}
 		}
 	}
@@ -1085,43 +1178,19 @@ public class Controller {
 	 */
 	public void download(String path){
 		//String true_path = request.getServletContext().getRealPath(path);
-		response.setContentType("application/x-download");
+		response().setContentType("application/x-download");
 		String filedisplay = new File(path).getName();		
-		response.addHeader("Content-Disposition","attachment;filename=" + filedisplay); 
+		response().addHeader("Content-Disposition","attachment;filename=" + filedisplay); 
 		try {
-			request.getRequestDispatcher(path).forward(request, response);
+			request().getRequestDispatcher(path).forward(request(), response());
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-//		try { 
-//			ServletOutputStream o = response.getOutputStream();
-//			InputStream in = new FileInputStream(true_path);
-//			byte[] buf=new byte[1024];
-//			int r = 0;
-//			while(true){
-//				r = in.read(buf);
-//				if(r <= 0) break;
-//				o.write(buf, 0, r);
-//			}
-//			o.flush();
-//			o.close();
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-
-		
+			Log.e(e);
+		}		
 	}
 	public void header(String name,String val){
-		response.addHeader(name,val);
+		response().addHeader(name,val);
 	}
 	
 	/**
@@ -1130,7 +1199,7 @@ public class Controller {
 	 */
 	public String reqBody(){
 		try {
-			return IOUtil.readStream(request.getInputStream());
+			return IOUtil.readStream(request().getInputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1141,14 +1210,14 @@ public class Controller {
 	 */
 	private void putSession(){
 		Map<String, Object> pMap =new HashMap<String, Object>();
-		if(session ==null){
+		if(session() ==null){
 			put("session",null);
 			return;
 		}
-		Enumeration<String> names = session.getAttributeNames();
+		Enumeration<String> names = session().getAttributeNames();
 		while(names.hasMoreElements()){
 			String name = names.nextElement();
-			pMap.put(name, session.getAttribute(name));
+			pMap.put(name, session().getAttribute(name));
 		}
 		put("session",pMap);
 	}
@@ -1161,22 +1230,22 @@ public class Controller {
 		try {		
 			//先吧param压如
 			Map<String, Object> pMap =new HashMap<String, Object>();
-			Enumeration<String> names = request.getParameterNames();
+			Enumeration<String> names = request().getParameterNames();
 			while(names.hasMoreElements()){
 				String name = names.nextElement();
-				pMap.put(name, request.getParameter(name));
+				pMap.put(name, request().getParameter(name));
 			}
-			pMap.putAll(paramMap);
+			pMap.putAll(getContext().getParamMap());
 			put("param",pMap);
 			
 			//压如session
 			putSession();
 			
-			response.setContentType("text/html; charset=utf-8");
-			response.setCharacterEncoding("utf-8");
+			response().setContentType("text/html; charset=utf-8");
+			response().setCharacterEncoding("utf-8");
 			Template tpl = MVCFilter.getIns().getFmCfg().getTemplate(path);
 			out = getMyPrintWriter();
-			tpl.process(root, out);
+			tpl.process(getContext().getRoot(), out);
 			out.close();
 		} catch (Exception e) {
 			if(out!=null){
@@ -1223,6 +1292,6 @@ public class Controller {
 		return json(obj,false);
 	}
 	public void dump(){
-		Log.i(json(request.getParameterMap(),true));
+		Log.i(json(request().getParameterMap(),true));
 	}
 }

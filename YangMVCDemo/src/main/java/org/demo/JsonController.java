@@ -20,7 +20,7 @@ public class JsonController extends Controller {
 		int ct = paramInt("ct", 1);
 		
 
-		Model m = Model.tool("dingcan")
+		Model.tool("dingcan")
 			.create()
 			.put("book_id", bookid)
 			.put("uid", uid)

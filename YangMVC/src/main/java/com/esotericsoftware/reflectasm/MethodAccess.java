@@ -27,7 +27,7 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({"rawtypes", "deprecation"})
 public abstract class MethodAccess {
 	private String[] methodNames;
 	private Class[][] parameterTypes;

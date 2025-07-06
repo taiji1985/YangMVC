@@ -67,6 +67,7 @@ public class ServerMain {
 		}
 		//sessionDataMap.setKeyPrefix(prefix);
 	}
+	@SuppressWarnings("unused")
 	private static void applyRedis(){
 		Log.i("use redis sessionCache");
 		NullSessionCache dsc = new NullSessionCache(sessionHandler);

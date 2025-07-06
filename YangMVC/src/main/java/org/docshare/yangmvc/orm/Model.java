@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.alibaba.fastjson.JSON;
 
-@SuppressWarnings("unused")
 public class Model implements Map<String,Object> {
 	private final String tableName;
 	public boolean isNull = false;

@@ -45,7 +45,7 @@ public class BigFileController extends Controller {
 		
 		if(c.blockFile == null){ //这时候要做合并
 			String newFile = randomFile(c.name);
-			FileOutputStream fos = new FileOutputStream(application.getRealPath(newFile));
+			FileOutputStream fos = new FileOutputStream(application().getRealPath(newFile));
 			@SuppressWarnings("unchecked")
 			HashMap<Integer, Chunk> cMap = (HashMap<Integer, Chunk>) sess("mfile_upload");
 			for(int i=0;i<c.index;i++){
@@ -58,7 +58,7 @@ public class BigFileController extends Controller {
 					Log.e("chuck block file is null , index = "+chunk.index,"");
 					break; 
 				}
-				String realPath = application.getRealPath(chunk.blockFile);
+				String realPath = application().getRealPath(chunk.blockFile);
 				byte[] readed = FileTool.readBytes(realPath);
 				fos.write(readed);
 				FileTool.delFile(realPath);

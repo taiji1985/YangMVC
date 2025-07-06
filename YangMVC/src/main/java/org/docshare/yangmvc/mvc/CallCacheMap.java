@@ -2,13 +2,9 @@ package org.docshare.yangmvc.mvc;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.docshare.yangmvc.log.Log;
-
 import com.esotericsoftware.reflectasm.MethodAccess;
 
 
@@ -41,17 +37,13 @@ class CallCacheMap {
 			}
 			Log.d("CacheCall class=", cach.clazz.getName(),",method=",cach.methodName);
 			ins.setReq(req, resp);
-			//HttpSession sess= req.getSession();
 			
 			if( ! "login".equals(cach.methodName) &&  ! ins.checkRequire()){ //如果未通过检测
 				ins.actionRequire(false);
 				return true;
 			}
-			ins.clearOutFlag(); //清空输出标志，说明还未输出
 
 			if(!MVCFilter.loader.runInterceptors(uri,ins,cach.access,cach.methodName,cach.m)){
-				HttpSession sessNew = ins.session;
-
 				return true;
 			}
 			//cach.m.invoke(obj);
@@ -67,8 +59,7 @@ class CallCacheMap {
 		return false;
 		
 	}
-	@SuppressWarnings("rawtypes")
-	public static void addCache(String uri,Class clazz,MethodAccess access,String methodName,Controller single,Method m){
+	public static void addCache(String uri,Class<?> clazz,MethodAccess access,String methodName,Controller single,Method m){
 		CallCache cache = new CallCache();
 		cache.clazz = clazz;
 		cache.access = access;

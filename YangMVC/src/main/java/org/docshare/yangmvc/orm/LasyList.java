@@ -17,7 +17,6 @@ import com.alibaba.fastjson.JSON;
  * @author Administrator
  * 
  */
-@SuppressWarnings("unused")
 public class LasyList extends ListAdapter {
 
 	public interface Each{
@@ -66,7 +65,7 @@ public class LasyList extends ListAdapter {
 		if(rawSql!=null) {
 			tmpTBName = " ("+rawSql+") as rawsql ";
 		}
-		return (int)delegate.size(cons, tool, tmpTBName);
+		return (int)delegate.size(cons, tool, tmpTBName, args);
 	}
 	
 	/**
@@ -77,7 +76,7 @@ public class LasyList extends ListAdapter {
 		if(arrList!=null){
 			return !arrList.isEmpty();
 		}
-		return delegate.size(cons, tool, tbName) > 0;
+		return delegate.size(cons, tool, tbName, args) > 0;
 		
 	}
 

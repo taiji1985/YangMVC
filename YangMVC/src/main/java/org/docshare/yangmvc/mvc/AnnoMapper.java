@@ -16,6 +16,7 @@ public class AnnoMapper {
 	public HashMap<String, CallCache> annoMap = new HashMap<String, CallCache>();
 
 	private HashSet<String> forbidMethod = new HashSet<String>();
+	@SuppressWarnings("unused")
 	private void scanForbidMethod(){
 		forbidMethod.clear();
 		Method[] mlist = Controller.class.getMethods();
@@ -77,7 +78,7 @@ public class AnnoMapper {
 //
 //		}
 //	}
-
+	@SuppressWarnings("unused")
 	private String getPathByName(String cname, String mName) {
 		cname = cname.replace(Config.controller + ".", ""); // org.demo.haha.BookController
 															// ->

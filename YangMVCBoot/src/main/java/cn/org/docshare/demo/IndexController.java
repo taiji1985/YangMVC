@@ -19,7 +19,7 @@ public class IndexController extends Controller {
 		Log.i(new File(".").getCanonicalPath());
 		renderFreeMarker("/index.html");
 	}
-	public void json(){
+	public void json_demo(){
 		outputJSON(Book.createSimple()) ;
 	}
 	
@@ -45,23 +45,24 @@ public class IndexController extends Controller {
 	public void setsess(){
 		String t =new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()); 
 		sess("a",t);
-		output("a is set to "+t+", sessionId="+session.getId());
+		output("a is set to "+t+", sessionId="+session().getId());
 	}
 	public void getsess(){
-		output("a is "+sess("a")+" , sessionId = "+session.getId());
+		output("a is "+sess("a")+" , sessionId = "+session().getId());
 	}public void delsess(){
 		removeSession("a");
-		output("session is removed , sessionId = "+session.getId());
+		output("session is removed , sessionId = "+session().getId());
 	}
 	public void pm(){
 		output(param("p"));
 	}
 	public void app(){
-		output("context = "+application.hashCode());
+		output("context = "+application().hashCode());
 	}
 	public void app2(){
-		ServletContext context = application;
-		output("context = "+context +",haha="+request.getSession()+",session servletContext="+request.getSession().getServletContext());
+		ServletContext context = application();
+		output("context = "+context +",haha="+request().getSession()+",session servletContext="+request().getSession().getServletContext());
+
 		
 	}
 	public void fmParam(){
@@ -76,6 +77,7 @@ public class IndexController extends Controller {
 	}
 	public void err(){
 		int a = 0;
+		@SuppressWarnings("unused")
 		int b = 12/a;
 	}
 	public String retstr(){

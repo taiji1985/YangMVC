@@ -41,7 +41,7 @@ public class IndexController extends Controller {
 
 	}
 	public void renderDemo(){
-		request.setAttribute("a", "sss");
+		request().setAttribute("a", "sss");
 		render();
 
 	}

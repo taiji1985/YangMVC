@@ -8,7 +8,6 @@ import java.util.ListIterator;
 abstract class ListAdapter implements List<Model> {
 
 	public List<Model> toArrayList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
