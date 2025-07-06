@@ -2,11 +2,13 @@ package org.docshare.yangmvc.mvc;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.docshare.yangmvc.log.Log;
 import com.esotericsoftware.reflectasm.MethodAccess;
-
 
 class CallCacheMap {
 	/**
@@ -24,13 +26,13 @@ class CallCacheMap {
 		public String methodName;
 		public Controller single =null;//如果是单例模式，则保存对应的对象，否则保存null
 	}
-	static HashMap<String, CallCache> map=new HashMap<String, CallCache>();
+	static Map<String, CallCache> url2CallCache=new ConcurrentHashMap<String, CallCache>();
 	
 	public static boolean runCallCache(String uri,HttpServletRequest req,HttpServletResponse resp){
-		if(!map.containsKey(uri))return false;
+		if(!url2CallCache.containsKey(uri))return false;
 		
 		try {
-			CallCache cach = map.get(uri);
+			CallCache cach = url2CallCache.get(uri);
 			Controller ins=cach.single;
 			if(ins == null){ //单例
 				ins = (Controller) cach.clazz.newInstance();
@@ -67,7 +69,7 @@ class CallCacheMap {
 		cache.single = single;
 		cache.m=m;
 		
-		map.put(uri, cache);
+		url2CallCache.put(uri, cache);
 	}
 
 }

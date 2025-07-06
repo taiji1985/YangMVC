@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.docshare.yangmvc.log.Log;
 import org.docshare.yangmvc.mvc.anno.Param;
@@ -12,7 +14,7 @@ import org.docshare.yangmvc.mvc.anno.Param;
 import com.esotericsoftware.reflectasm.MethodAccess;
 
 public class MethodAccessCacher {
-	private static HashMap<String, MethodAccess> ma_map = new HashMap<>();
+	private static Map<String, MethodAccess> ma_map = new ConcurrentHashMap<>();
 	public static MethodAccess getMethodAccess(String clsName){
 		return ma_map.get(clsName);
 	}
@@ -29,7 +31,7 @@ public class MethodAccessCacher {
 		ma_map.put(name, access);
 		buildMethodMap(name,clz);
 	}
-	private static HashMap<String, Method> method_map = new HashMap<>();
+	private static Map<String, Method> method_map = new ConcurrentHashMap<>();
 	private static void buildMethodMap(String clzName,Class<?> clazz){
 		Method[] ma = clazz.getDeclaredMethods();
 		for(Method mm : ma){

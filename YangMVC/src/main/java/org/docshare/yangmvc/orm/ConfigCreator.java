@@ -56,14 +56,19 @@ public class ConfigCreator {
 		}
 	}
 	public static void main(String[] args) throws SQLException, MalformedTemplateNameException, ParseException, TemplateException, IOException {
-		PropLoader.loadToStatic("/last.properties", Config.class);
-		System.out.print("请输入数据库信息，如与中括号中相同，可以直接打回车");
-		Config.dbhost = read("请输入服务器域名或ip",Config.dbhost);
-		Config.dbname = read("请输入数据库名",Config.dbname);
-		Config.dbport = read("请输入端口号",Config.dbport);
-		Config.dbpwd = read("请输入密码", Config.dbpwd);
-		Config.dbusr = read("请输入用户名", Config.dbusr);
-		Config.dbtype = read("请输入类型", Config.dbtype);
+		boolean succ = Config.loadProperties("/web.properties");
+		if(!succ){
+			PropLoader.loadToStatic("/last.properties", Config.class);
+			System.out.print("请输入数据库信息，如与中括号中相同，可以直接打回车");
+			Config.dbhost = read("请输入服务器域名或ip",Config.dbhost);
+			Config.dbname = read("请输入数据库名",Config.dbname);
+			Config.dbport = read("请输入端口号",Config.dbport);
+			Config.dbpwd = read("请输入密码", Config.dbpwd);
+			Config.dbusr = read("请输入用户名", Config.dbusr);
+			Config.dbtype = read("请输入类型", Config.dbtype);
+		}else{
+			Log.i("加载配置文件成功");
+		}
 		
 		
 		
@@ -90,7 +95,12 @@ public class ConfigCreator {
 			System.out.println("您没有输入包名，取消生成");
 			return;
 		}
+		System.out.println("请选择源代码目录1: src , 2 : src/main/java/");
+		int dirType = sc.nextInt();
 		String dir = "src/"+ pkg.replace(".", "/")+"/";
+		if(dirType == 2){
+			dir = "src/main/java/"+ pkg.replace(".", "/")+"/";
+		}
 		FileTool.makeDir(dir);
 
 		Configuration fmCfg = new Configuration(Configuration.VERSION_2_3_25);  

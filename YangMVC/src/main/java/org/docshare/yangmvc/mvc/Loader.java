@@ -2,8 +2,8 @@ package org.docshare.yangmvc.mvc;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +34,7 @@ public class Loader {
 	int loaderVersion = 0;
 	public  Class<?> load(String p) throws ClassNotFoundException{
 		if(p.startsWith("org.docshare.yangmvc")){
-			return Class.forName(p);
+			return this.getClass().getClassLoader().loadClass(p);
 		}
 		if(reloader == null){
 			String reload_base = TextTool.getParentPackage(Config.controller);
@@ -69,7 +69,7 @@ public class Loader {
 	 * key: 类名
 	 * Object: 对象
 	 */
-	 Map<String, Object> singleMap = new HashMap<>();
+	 Map<String, Object> singleMap = new ConcurrentHashMap<>();
 	
 	 static boolean isGroovyObject(Object obj){
 		//groovy.lang.GroovyObject

@@ -50,7 +50,7 @@ class YangClassLoader extends ClassLoader{
         		return null;
         	}
         	//int data = input.read();
-        	byte[] buf =new byte[1024];
+        	byte[] buf =new byte[10240];
             int num = input.read(buf);
             
         	while(num > 0){

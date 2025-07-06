@@ -1,8 +1,8 @@
 package ${pkg};
 
-import org.docshare.orm.LasyList;
+import org.docshare.yangmvc.orm.LasyList;
 import java.util.List;
-import org.docshare.orm.Model;
+import org.docshare.yangmvc.orm.Model;
 import java.util.Date;
 
 public class ${clsName}{
@@ -56,12 +56,14 @@ public class ${clsName}{
 	public static int delByKey(Object key){
 		return Model.tool(TABLE_NAME).del(key);
 	}
+<#if key?? && key?has_content>
 	/**
 	*	删除当前对象
 	*/
 	public void remove(){
-		Model.tool(TABLE_NAME).del(${key!"id"});
+		Model.tool(TABLE_NAME).del(this.${key});
 	}
+</#if>
 	
 	public static List<${clsName}> allArray(){
 		return Model.tool(TABLE_NAME).all().toArrayList(${clsName}.class);
