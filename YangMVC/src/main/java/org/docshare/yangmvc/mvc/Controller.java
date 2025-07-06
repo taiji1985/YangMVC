@@ -100,7 +100,7 @@ public class Controller {
 	/**
 	 * 请求上下文，使用ThreadLocal确保线程安全
 	 */
-	private ThreadLocal<RequestContext> context = new ThreadLocal<RequestContext>() {
+	private static ThreadLocal<RequestContext> context = new ThreadLocal<RequestContext>() {
 		@Override
 		protected RequestContext initialValue() {
 			return new RequestContext();
@@ -159,6 +159,17 @@ public class Controller {
 	public HttpSession session() {
 		RequestContext ctx = getContext();
 		return ctx != null ? ctx.getSession() : null;
+	}
+	
+	/**
+	 * 设置当前请求的HttpSession对象
+	 * @param session HttpSession对象
+	 */
+	public void setSession(HttpSession session) {
+		RequestContext ctx = getContext();
+		if (ctx != null) {
+			ctx.setSession(session);
+		}
 	}
 	
 	/**
@@ -494,6 +505,7 @@ public class Controller {
 	public void setReq(HttpServletRequest req, HttpServletResponse resp) {
 		// 获取当前线程的请求上下文
 		RequestContext ctx = getContext();
+		ctx.clear();
 		
 		// 设置请求和响应对象到上下文
 		ctx.setRequest(req);

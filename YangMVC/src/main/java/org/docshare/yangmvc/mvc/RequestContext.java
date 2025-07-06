@@ -110,6 +110,11 @@ public class RequestContext {
     public void setParamMap(Map<String, Object> paramMap) {
         this.paramMap = paramMap;
     }
+    public void clearParamMap(){
+        if(this.paramMap!=null){
+            this.paramMap.clear();
+        }
+    }
     
     public ServletContext getApplication() {
         return application;
