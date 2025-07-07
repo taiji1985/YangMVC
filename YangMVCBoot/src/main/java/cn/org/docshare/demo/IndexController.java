@@ -45,7 +45,7 @@ public class IndexController extends Controller {
 	public void setsess(){
 		String t =new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()); 
 		sess("a",t);
-		output("a is set to "+t+", sessionId="+session().getId());
+		output("a is set to "+t+", sessionId="+session());
 	}
 	public void getsess(){
 		output("a is "+sess("a")+" , sessionId = "+session().getId());

@@ -4,8 +4,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.docshare.yangmvc.log.Log;
@@ -15,23 +15,34 @@ import com.esotericsoftware.reflectasm.MethodAccess;
 
 public class MethodAccessCacher {
 	private static Map<String, MethodAccess> ma_map = new ConcurrentHashMap<>();
+	private static Map<String, Class<?>> class_map = new ConcurrentHashMap<>();
 	public static MethodAccess getMethodAccess(String clsName){
 		return ma_map.get(clsName);
 	}
 	public static Method getMethod(String clsName,String methodName){
+		if(!method_map_builded.contains(clsName)){
+			buildMethodMap(clsName, class_map.get(clsName));
+		}
 		return method_map.get(clsName+"."+methodName);
 	}
 	/**
 	 * 每次加载类都缓存器MethodAccess和Method，加速查找
-	 * @param name
-	 * @param clz
+	 * @param name 类名
+	 * @param clz 类
 	 */
 	public static void put(String name,Class<?> clz){
+		if(name.endsWith("MethodAccess")){
+			return ;
+		}
+		method_map_builded.remove(name);
+		class_map.put(name, clz);
 		MethodAccess access = MethodAccess.get(clz);
 		ma_map.put(name, access);
-		buildMethodMap(name,clz);
+		
+		//buildMethodMap(name,clz); //不在加载的时候
 	}
 	private static Map<String, Method> method_map = new ConcurrentHashMap<>();
+	private static Set<String> method_map_builded = ConcurrentHashMap.newKeySet();
 	private static void buildMethodMap(String clzName,Class<?> clazz){
 		Method[] ma = clazz.getDeclaredMethods();
 		for(Method mm : ma){
@@ -41,12 +52,20 @@ public class MethodAccessCacher {
 				cacheMethodParam(mname,mm);
 			}
 		}
+		method_map_builded.add(clzName);
 	}
 	public static void putIfNoExist(String clsName, Class<?> ret) {
+		// 使用double-checked locking模式避免竞态条件
 		if(ma_map.containsKey(clsName)){
 			return;
 		}
-		put(clsName, ret);
+		synchronized(MethodAccessCacher.class) {
+			// 再次检查，防止在获取锁的过程中其他线程已经添加了
+			if(ma_map.containsKey(clsName)){
+				return;
+			}
+			put(clsName, ret);
+		}
 	}
 	public static class MyParam{
 		public String param;
@@ -55,7 +74,7 @@ public class MethodAccessCacher {
 	public static MyParam[] getMethodParam(String clsName,String methodName){
 		return method_param_map.get(clsName+"."+methodName);
 	}
-	private static HashMap<String, MyParam[]> method_param_map = new HashMap<>();
+	private static Map<String, MyParam[]> method_param_map = new ConcurrentHashMap<>();
 	public static void cacheMethodParam(String mname,Method method){
 		Annotation[][] parameterAnnotations = method.getParameterAnnotations();  
 
@@ -103,5 +122,8 @@ public class MethodAccessCacher {
 			}
 		}
 		method_param_map.put(mname, mp);
+	}
+	public static void asyncPut(String name, Class<?> ret) {
+		put(name, ret);
 	}
 }

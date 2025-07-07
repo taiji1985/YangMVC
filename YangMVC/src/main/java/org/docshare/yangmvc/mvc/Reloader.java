@@ -2,7 +2,8 @@ package org.docshare.yangmvc.mvc;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.docshare.yangmvc.log.Log;
 import org.docshare.yangmvc.util.FileTool;
@@ -14,7 +15,7 @@ import org.docshare.yangmvc.util.FileTool;
  */
 public class Reloader {
 	protected String root;
-	protected HashMap<String, Long > last_tm=new HashMap<String, Long>();
+	protected Map<String, Long > last_tm=new ConcurrentHashMap<String, Long>();
 	ArrayList<String> reloadList = new ArrayList<String>();
 	ClassLoader loader = null;
 	Class<?> clz = null;
@@ -98,12 +99,14 @@ public class Reloader {
 		if(!Config.reloadable){
 			Class<?> ret = Class.forName(clsName);
 			MethodAccessCacher.putIfNoExist(clsName,ret);
+			return ret;
 		}
 		//下面是打开了reloadable选项后的功能
 		
 		ClassLoader loader  = classIsUpdate(clsName);
 		
-		return Class.forName(clsName, true, loader);
+		// return Class.forName(clsName, true, loader);
+		return loader.loadClass(clsName);
 	}
 	
 

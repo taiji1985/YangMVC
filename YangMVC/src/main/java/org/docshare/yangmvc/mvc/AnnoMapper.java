@@ -3,6 +3,10 @@ package org.docshare.yangmvc.mvc;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.docshare.yangmvc.mvc.CallCacheMap.CallCache;
 import org.docshare.yangmvc.util.TextTool;
 
@@ -13,9 +17,9 @@ import org.docshare.yangmvc.util.TextTool;
  * 
  */
 public class AnnoMapper {
-	public HashMap<String, CallCache> annoMap = new HashMap<String, CallCache>();
+	public Map<String, CallCache> annoMap = new ConcurrentHashMap<String, CallCache>();
 
-	private HashSet<String> forbidMethod = new HashSet<String>();
+	private Set<String> forbidMethod = ConcurrentHashMap.newKeySet();
 	@SuppressWarnings("unused")
 	private void scanForbidMethod(){
 		forbidMethod.clear();
