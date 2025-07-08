@@ -155,6 +155,12 @@ public class PostgresDelegate implements IDBDelegate {
 				continue;
 			}
 			switch(c.type){
+				case SQLConstains.TYPE_ISNULL:
+					sa.add(String.format(" \"%s\" is NULL ", c.column));
+					break;
+				case SQLConstains.TYPE_ISNOTNULL:
+					sa.add(String.format(" \"%s\" is not NULL ", c.column));
+					break;
 				case SQLConstains.TYPE_LIKE:
 					String w = String.format("  \"%s\" like ? ", c.column);
 					sa.add(w);
@@ -199,10 +205,10 @@ public class PostgresDelegate implements IDBDelegate {
 			}
 		}
 		if( limitc!=null){
-			//tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
-			tail += " limit ?,?";
-			params.add(limitc.value);
-			params.add(limitc.value2);
+			// PostgreSQL使用 LIMIT count OFFSET start 语法
+			tail += " limit ? offset ?";
+			params.add(limitc.value2); // count (限制数量)
+			params.add(limitc.value);  // offset (偏移量)
 		}
 		
 		DBHelper helper = DBHelper.getIns(DBHelper.DB_POSTGRES);

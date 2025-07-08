@@ -212,4 +212,41 @@ public class BeanUtil {
 		
 	}
 
+	public static void copyProperties(Object from,Object to){
+		if(from == null || to == null){
+			return;
+		}
+		
+		// 获取from对象的所有字段
+		Field[] fromFields = from.getClass().getFields();
+		for(Field fromField : fromFields){
+			try {
+				String fieldName = fromField.getName();
+				Object value = fromField.get(from);
+				
+				// 尝试设置到to对象中
+				set(to, fieldName, value);
+			} catch (Exception e) {
+				Log.d(e);
+			}
+		}
+		
+		// 通过getter方法获取属性值
+		Method[] fromMethods = from.getClass().getMethods();
+		for(Method method : fromMethods){
+			String methodName = method.getName();
+			if(methodName.startsWith("get") && !methodName.equals("getClass") && methodName.length() > 3){
+				try {
+					Object value = method.invoke(from, (Object[]) null);
+					String propertyName = TextTool.firstLower(methodName.substring(3));
+					
+					// 尝试设置到to对象中
+					set(to, propertyName, value);
+				} catch (Exception e) {
+					Log.d(e);
+				}
+			}
+		}
+	}
+
 }

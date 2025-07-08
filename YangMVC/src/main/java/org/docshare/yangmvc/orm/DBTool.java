@@ -199,8 +199,14 @@ public class DBTool {
 		save(m,false);
 		return m;
 	}
-	public int save(Object obj,boolean isInsert ){
+	
+	public int save(Object obj,boolean isInsert,Set<String> changeList ){
+
 		Model  m = Model.fromObject(tname, obj);
+		// 如果设定了changeList ,就只更新这个
+		if(changeList!=null && changeList.size()>0){
+			m.setChangeList(changeList);
+		}
 		int r =  save(m,isInsert);
 		if(r!=0){ //将获得的主键返回
 			String key  = m.key();
@@ -208,8 +214,11 @@ public class DBTool {
 		}
 		return r;
 	}
+	public int save(Object obj,boolean isInsert){
+		return save(obj,isInsert,null);
+	}
 	public int save(Object obj){
-		return save(obj,false);
+		return save(obj,false,null);
 	}
 	/**
 	 * 更新或保存数据。

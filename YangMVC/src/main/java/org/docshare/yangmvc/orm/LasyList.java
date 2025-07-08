@@ -339,6 +339,12 @@ public class LasyList extends ListAdapter {
 		return this;
 	}
 
+	public LasyList isNotNull(String column){
+		addConstrain(new SQLConstains(SQLConstains.TYPE_ISNOTNULL, column, null));
+		return this;
+	}
+
+
 	private List<SQLConstains> order_constrains=new ArrayList<>();
 	/**
 	 * 设置排序规则

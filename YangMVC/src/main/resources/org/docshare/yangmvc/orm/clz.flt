@@ -3,24 +3,40 @@ package ${pkg};
 import org.docshare.yangmvc.orm.LasyList;
 import java.util.List;
 import org.docshare.yangmvc.orm.Model;
-import java.util.Date;
+import java.util.HashSet;
 
 public class ${clsName}{
 	<#list columns?keys as c>
-	public ${columns[c].javaType} ${columns[c].name};	
+	public ${columns[c].fullJavaType} ${columns[c].name};	
 	</#list>
+	private HashSet<String> changeList=null;
+
+	<#list columns?keys as c>
+	/**
+	 * 设置${columns[c].name}的值
+	 */
+	public ${clsName} put${columns[c].camelName}(${columns[c].fullJavaType} ${columns[c].name}){
+		this.${columns[c].name} = ${columns[c].name};
+		if(changeList == null){
+			changeList = new HashSet<String>();
+		}
+		changeList.add("${columns[c].name}");
+		return this;
+	}
+	</#list>
+	
 	public static final String TABLE_NAME = "${tb}";
 	/**
 	*	更新
 	*/
 	public int update(){
-		return Model.tool(TABLE_NAME).save(this);
+		return Model.tool(TABLE_NAME).save(this,false,changeList);
 	}
 	/**
 	*	插入
 	*/
 	public int insert(){
-		return Model.tool(TABLE_NAME).save(this,true);
+		return Model.tool(TABLE_NAME).save(this,true,changeList);
 	}
 	
 	/**

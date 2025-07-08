@@ -197,6 +197,10 @@ public class MySQLDelegate implements IDBDelegate {
 					//w = String.format(" `%s` is NULL ", c.column);
 					sb.append(" `").append(c.column).append("` is NULL ");
 					break;
+				case SQLConstains.TYPE_ISNOTNULL:
+					sb.append(" `").append(c.column).append("` is not NULL ");
+					break;
+
 				case SQLConstains.TYPE_LIKE:
 					
 					sb.append(" `").append(c.column).append("` like ? ");

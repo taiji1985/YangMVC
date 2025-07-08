@@ -2,6 +2,10 @@ package org.docshare.yangmvc.orm;
 
 import java.util.ArrayList;
 
+import org.docshare.yangmvc.util.TextTool;
+
+import groovyjarjarpicocli.CommandLine.Help.TextTable;
+
 /**
  * 每一列的描述
  * @author Administrator
@@ -15,6 +19,7 @@ public class ColumnDesc {
 	public String pk_table = null; //如果是null,则不是外键  (导入外键，我的键是别人的主键）
 	public String pk_column = null;
 	public String tb;
+	
 	
 	public static class ExportTo{
 		public String table;
@@ -36,8 +41,23 @@ public class ColumnDesc {
 		if(t.contains("double")) return "Double";
 		if(t.contains("char")) return "String";
 		if(t.contains("text")) return "String";
-		if(t.contains("date") || t.contains("time")) return "DateTime";
+		if(t.contains("date") || t.contains("time")) return "Date";
 		return "String";
+	}
+	public String getFullJavaType(){
+		String t = typeName.toLowerCase();
+		if(t.contains("int")) return "java.lang.Integer";
+		if(t.contains("long")) return "java.lang.Long"; 
+		if(t.contains("double")) return "java.lang.Double";
+		if(t.contains("char")) return "java.lang.String";
+		if(t.contains("text")) return "java.lang.String";
+		if(t.contains("date") || t.contains("time")) return "java.util.Date";
+		return "java.lang.String";
+	}
+
+	public String getCamelName(){
+		String camelName = TextTool.underLineToUpper(name);
+		return Character.toUpperCase(camelName.charAt(0)) + camelName.substring(1);
 	}
 	
 	public ColumnDesc() {

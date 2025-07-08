@@ -270,6 +270,10 @@ public class Model implements Map<String,Object> {
 	public Set<String> changeColumns(){
 		return changeList != null?changeList : new HashSet<>();
 	}
+	public void setChangeList(Set<String> changeList){
+		this.changeList = new HashSet<>();
+		this.changeList.addAll(changeList);
+	}
 	@Override
 	@NotNull
 	public Model put(String key, Object value) {

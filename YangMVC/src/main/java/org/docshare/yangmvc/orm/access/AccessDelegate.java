@@ -147,6 +147,12 @@ public class AccessDelegate implements IDBDelegate {
 				continue;
 			}
 			switch(c.type){
+			case SQLConstains.TYPE_ISNULL:
+				sa.add(String.format(" [%s] is NULL ", c.column));
+				break;
+			case SQLConstains.TYPE_ISNOTNULL:
+				sa.add(String.format(" [%s] is not NULL ", c.column));
+				break;
 			case SQLConstains.TYPE_LIKE:
 				//String w = String.format("  [%s] like '$%s$' ", c.column, c.value).replace("$","%");
 				//sa.add(w);
@@ -193,19 +199,21 @@ public class AccessDelegate implements IDBDelegate {
 				tail += String.format("[%s] %s", orderc.column , (Boolean)orderc.value?"asc":"desc");
 			}
 		}
+		// Access数据库不支持LIMIT语法，需要使用TOP语法
+		String topClause = "";
 		if( limitc!=null){
-			//tail += String.format(" limit %d,%d", limitc.value,limitc.value2);
-			tail += " limit ?,?";
-			params.add(limitc.value);
-			params.add(limitc.value2);
+			// Access使用TOP语法，但只支持TOP n，不支持OFFSET
+			// 这里只能实现简单的TOP功能
+			int count = (Integer)limitc.value2;
+			topClause = " TOP " + count;
 		}
 		
-		DBHelper helper = DBHelper.getIns("mysql");
+		DBHelper helper = DBHelper.getIns("access");
 		String c=  TextTool.join2(sa, " and ") +  tail;
 		if(c.trim().length() == 0){ //如果没有任何条件，则直接查询
 			
 			try {
-				return helper.getRS("select "+prefix+" from [" + tbName+"]");
+				return helper.getRS("select"+topClause+" "+prefix+" from [" + tbName+"]");
 			} catch (SQLException e) {
 				Log.e(e);
 				return null;
@@ -215,7 +223,11 @@ public class AccessDelegate implements IDBDelegate {
 			if(!c.startsWith("limit") && ! c.startsWith("order")){
 				c  = " where " +c ;
 			}else c = " " +c;
-			String sql = "select "+prefix+" from ["+tbName +"] "+c;
+			// 移除limit相关的条件，因为Access使用TOP
+			if(c.contains("limit")){
+				c = c.replaceAll("\\s*limit\\s*\\?\\s*,\\s*\\?\\s*", "");
+			}
+			String sql = "select"+topClause+" "+prefix+" from ["+tbName +"] "+c;
 			try {
 				return helper.getRS(sql,params);
 			} catch (SQLException e) {
