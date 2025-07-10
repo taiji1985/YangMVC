@@ -74,6 +74,14 @@ public class Log {
         }
         e(sBuffer.toString());
     }
+    public static void e(String msg,Throwable err){
+        String errorMsg = msg;
+        if(err != null){
+            errorMsg = msg + "\n" + getErrMsg(err);
+        }
+        log.error(W(errorMsg));
+    }
+
 
     public static <T> void d(T str) { 
 

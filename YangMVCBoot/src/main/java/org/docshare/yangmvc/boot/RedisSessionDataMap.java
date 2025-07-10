@@ -3,7 +3,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
-import java.net.URI;
+
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.zip.DeflaterOutputStream;
@@ -25,7 +25,8 @@ import org.eclipse.jetty.util.component.AbstractLifeCycle;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Protocol;
-import redis.clients.util.JedisURIHelper;
+//import java.net.URI;
+// import redis.clients.util.JedisURIHelper;
 
 /**
  * RedisSessionDataMap
@@ -117,18 +118,18 @@ public class RedisSessionDataMap extends AbstractLifeCycle implements SessionDat
                 + _port + (_database != Protocol.DEFAULT_DATABASE ? "/" + _database : "/");
     }
 
-    public void setUrl(String url) {
-        URI uri = URI.create(url);
-        if (JedisURIHelper.isValid(uri)) {
-            setHost(uri.getHost());
-            setPort(uri.getPort());
-            setPassword(JedisURIHelper.getPassword(uri));
-            setDatabase(JedisURIHelper.getDBIndex(uri));
-            setSSL(uri.getScheme().equals("rediss"));
-        } else {
-            throw new IllegalArgumentException("Url: " + url);
-        }
-    }
+    // public void setUrl(String url) {
+    //     URI uri = URI.create(url);
+    //     if (JedisURIHelper.isValid(uri)) {
+    //         setHost(uri.getHost());
+    //         setPort(uri.getPort());
+    //         setPassword(JedisURIHelper.getPassword(uri));
+    //         setDatabase(JedisURIHelper.getDBIndex(uri));
+    //         setSSL(uri.getScheme().equals("rediss"));
+    //     } else {
+    //         throw new IllegalArgumentException("Url: " + url);
+    //     }
+    // }
 
     public int getConnectionTimeout() {
         return _connectionTimeout;
@@ -250,7 +251,7 @@ public class RedisSessionDataMap extends AbstractLifeCycle implements SessionDat
         if (isStarted()) {
             throw new IllegalStateException("Context set after RedisSessionDataMap started");
         }
-        GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
+        GenericObjectPoolConfig<Jedis> poolConfig = new GenericObjectPoolConfig<>();
         poolConfig.setMaxIdle(_maxIdle);
         poolConfig.setMinIdle(_minIdle);
         poolConfig.setMaxTotal(_maxTotal);

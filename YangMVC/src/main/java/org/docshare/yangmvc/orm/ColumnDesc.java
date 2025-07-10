@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.docshare.yangmvc.util.TextTool;
 
-import groovyjarjarpicocli.CommandLine.Help.TextTable;
 
 /**
  * 每一列的描述

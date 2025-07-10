@@ -81,6 +81,10 @@ public class Model implements Map<String,Object> {
 		Object rObject  = get(key);
 		return rObject == null?null:rObject.toString();
 	}
+
+	public String getString(Object key){
+		return getStr(key);
+	}
 	/**
 	 * 以整数形式返回字段值，如果原本为非整数，则尝试转换（如果无法转换则报错）
 	 * @param key 字段的名称
