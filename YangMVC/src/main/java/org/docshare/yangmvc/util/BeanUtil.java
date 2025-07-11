@@ -166,33 +166,115 @@ public class BeanUtil {
 		}
 		return false;
 	}
-	private static Object transType(Object obj,String toType){
-		if(obj == null)return null;
+	private static Object transType(Object obj, String toType) {
+		// 最优先：如果对象为null，直接返回
+		if (obj == null) return null;
 		
+		// 最高效：如果类型一致，直接返回原对象
+		String objTypeName = obj.getClass().getSimpleName();
+		if (objTypeName.equals(toType) || obj.getClass().getName().equals(toType)) {
+			return obj;
+		}
 		
+		// 处理特殊的对象类型转换 - 使用switch优化instanceof检查
+		switch (objTypeName) {
+			case "LocalDateTime":
+				if ("Date".equals(toType)) {
+					java.time.LocalDateTime ldt = (java.time.LocalDateTime) obj;
+					return java.util.Date.from(ldt.atZone(java.time.ZoneId.systemDefault()).toInstant());
+				}
+				break;
+				
+			case "Date":
+				java.util.Date date = (java.util.Date) obj;
+				java.time.Instant instant = date.toInstant();
+				java.time.ZoneId zone = java.time.ZoneId.systemDefault();
+				
+				switch (toType) {
+					case "LocalDateTime":
+					case "java.time.LocalDateTime":
+						return instant.atZone(zone).toLocalDateTime();
+					case "ZonedDateTime":
+					case "java.time.ZonedDateTime":
+						return instant.atZone(zone);
+					case "OffsetDateTime":
+					case "java.time.OffsetDateTime":
+						return instant.atOffset(java.time.OffsetDateTime.now().getOffset());
+				}
+				break;
+				
+			case "ZonedDateTime":
+				java.time.ZonedDateTime zdt = (java.time.ZonedDateTime) obj;
+				switch (toType) {
+					case "Date":
+						return java.util.Date.from(zdt.toInstant());
+					case "LocalDateTime":
+					case "java.time.LocalDateTime":
+						return zdt.toLocalDateTime();
+					case "OffsetDateTime":
+					case "java.time.OffsetDateTime":
+						return zdt.toOffsetDateTime();
+				}
+				break;
+				
+			case "OffsetDateTime":
+				java.time.OffsetDateTime odt = (java.time.OffsetDateTime) obj;
+				switch (toType) {
+					case "Date":
+						return java.util.Date.from(odt.toInstant());
+					case "LocalDateTime":
+					case "java.time.LocalDateTime":
+						return odt.toLocalDateTime();
+					case "ZonedDateTime":
+					case "java.time.ZonedDateTime":
+						return odt.toZonedDateTime();
+				}
+				break;
+		}
+
+		// 字符串转换处理
 		String sval = obj.toString();
-		if(toType.equals("String")){
-			return sval;
-		}
-		if(toType.equals("int") || toType.equals("Integer")){
-			return Integer.parseInt(sval);
-		}
-		toType = toType.toLowerCase();
-		if(toType.equals("long") ){
-			return Long.parseLong(sval);
-		}
-		if(toType.equals("float")){
-			return Float.parseFloat(sval);
-		}
-		if(toType.equals("double")){
-			return Double.parseDouble(sval);
-		}
-		if(toType.equals("boolean") || toType.equals("java.lang.Boolean")){
-			return Boolean.parseBoolean(sval);
-		}
 		
-		return obj; //unknown ,return orignal
+		// 标准化类型名称
+		String normalizedType = normalizeTypeName(toType);
 		
+		switch (normalizedType) {
+			case "string":
+				return sval;
+			case "int":
+			case "integer":
+				return Integer.parseInt(sval);
+			case "long":
+				return Long.parseLong(sval);
+			case "float":
+				return Float.parseFloat(sval);
+			case "double":
+				return Double.parseDouble(sval);
+			case "boolean":
+			case "java.lang.boolean":
+				return Boolean.parseBoolean(sval);
+			case "date":
+				return TimeHelper.s2d(sval);
+			case "localdatetime":
+			case "java.time.localdatetime":
+				return TimeHelper.s2ldt(sval);
+			case "zoneddatetime":
+			case "java.time.zoneddatetime":
+				return TimeHelper.s2zdt(sval);
+			case "offsetdatetime":
+			case "java.time.offsetdatetime":
+				return TimeHelper.s2odt(sval);
+			default:
+				return obj; // unknown, return original
+		}
+	}
+	
+	/**
+	 * 标准化类型名称，统一转换为小写并处理常见的类型别名
+	 */
+	private static String normalizeTypeName(String toType) {
+		if (toType == null) return "";
+		return toType.toLowerCase().trim();
 	}
 	public static void prop2StaticField(Properties prop,Class<?> clz){
 		Field[] fa = clz.getFields();
