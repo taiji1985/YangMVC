@@ -16,6 +16,7 @@ import org.docshare.yangmvc.orm.DBTool;
 import org.docshare.yangmvc.orm.IDBDelegate;
 import org.docshare.yangmvc.orm.Model;
 import org.docshare.yangmvc.orm.SQLConstains;
+import org.docshare.yangmvc.util.TextTool;
 
 
 public class MySQLDelegate implements IDBDelegate {
@@ -250,7 +251,8 @@ public class MySQLDelegate implements IDBDelegate {
 			DBHelper helper = DBHelper.getIns("mysql");
 			return helper.getRS(sql,params);
 		} catch (SQLException e) {
-			throw new MVCException("runSQL error: [ "+sql+" ]", e);
+			throw new MVCException("runSQL error: [ "+sql+" ] ,params="+TextTool.join(params, ",") +"err = "+e.getMessage(), e);
+
 		}
 	}
 //	public ResultSet runSQLOld(List<SQLConstains> cons,SQLConstains limit_con,SQLConstains order_con,DBTool tool,String tbName,String prefix){

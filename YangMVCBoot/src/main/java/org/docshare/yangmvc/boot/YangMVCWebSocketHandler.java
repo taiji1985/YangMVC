@@ -3,13 +3,12 @@ package org.docshare.yangmvc.boot;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.annotation.WebServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 import org.docshare.yangmvc.log.Log;
 
-@WebServlet(name = "MyWebSocketServlet", urlPatterns = { "/ws" })
-public class MyWebSocketHandler extends WebSocketServlet {
+// @WebServlet(name = "MyWebSocketServlet", urlPatterns = { "/ws" })
+public class YangMVCWebSocketHandler extends WebSocketServlet {
     private static List<Class<?>> registeredClasses = new ArrayList<>();
     private static WebSocketServletFactory factory;
     
@@ -25,7 +24,7 @@ public class MyWebSocketHandler extends WebSocketServlet {
         }
         registeredClasses.clear();
         
-        MyWebSocketHandler.factory = factory;
+        YangMVCWebSocketHandler.factory = factory;
     }
     
     public static void register(Class<?> clazz) {

@@ -45,6 +45,8 @@ class YangClassLoader extends ClassLoader{
 			if (!name.startsWith(reloadPackage)) {
 				// 使用父类加载器加载非指定包的类
 				try {
+					Log.d("YangClassLoader use Parent Loader "+getParent().getClass().getName()+" -> "+name);
+
 					Class<?> parentClass = getParent().loadClass(name);
 					if (resolve) {
 						resolveClass(parentClass);

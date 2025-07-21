@@ -37,7 +37,7 @@ public class Loader {
 			return this.getClass().getClassLoader().loadClass(p);
 		}
 		if(reloader == null){
-			String reload_base = TextTool.getParentPackage(Config.controller);
+			String reload_base = Config.controller; // TextTool.getParentPackage(Config.controller);
 			if(reload_base.equals("org") || reload_base.equals("org.docshare")){
 				Log.e("reload base can not be 'org' or 'org.docshare', so we use your controller base as reload base.");
 				reload_base =Config.controller;

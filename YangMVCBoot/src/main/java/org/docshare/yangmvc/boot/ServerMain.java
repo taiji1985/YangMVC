@@ -123,17 +123,17 @@ public class ServerMain {
 	        
 	        contextHandler.setHandler(collection);
 	        if(supportWebSocket){
-	        //support websocket 
-	        ServletContextHandler wsHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
-	        wsHandler.setContextPath("/ws");
-		
-		
-		ContextHandlerCollection final_handler = new ContextHandlerCollection();
-	        
-		final_handler.addHandler(wsHandler);
-	        final_handler.addHandler(contextHandler);
-	        
-	        server.setHandler(final_handler);
+				//support websocket 
+				ServletContextHandler wsHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+				wsHandler.setContextPath("/ws");
+				wsHandler.addServlet(YangMVCWebSocketHandler.class, "/*");
+			
+				ContextHandlerCollection final_handler = new ContextHandlerCollection();
+					
+				final_handler.addHandler(wsHandler);
+				final_handler.addHandler(contextHandler);
+					
+				server.setHandler(final_handler);
 	        }else{
 	        	server.setHandler(contextHandler);
 	        }
