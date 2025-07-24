@@ -44,15 +44,31 @@ public class MethodAccessCacher {
 	private static Map<String, Method> method_map = new ConcurrentHashMap<>();
 	private static Set<String> method_map_builded = ConcurrentHashMap.newKeySet();
 	private static void buildMethodMap(String clzName,Class<?> clazz){
-		Method[] ma = clazz.getDeclaredMethods();
-		for(Method mm : ma){
-			if( Modifier.isPublic(mm.getModifiers())){
-				String mname = clzName+"."+mm.getName();
-				method_map.put(mname, mm);
-				cacheMethodParam(mname,mm);
+		if(clazz == null){
+			try {
+				clazz = Class.forName(clzName);
+			} catch (ClassNotFoundException e) {
+				Log.e(e);
+				return;
 			}
 		}
-		method_map_builded.add(clzName);
+		if(clazz == null){
+			return;
+		}
+		try{
+			Method[] ma = clazz.getDeclaredMethods();
+			for(Method mm : ma){
+				if( Modifier.isPublic(mm.getModifiers())){
+					String mname = clzName+"."+mm.getName();
+					method_map.put(mname, mm);
+					cacheMethodParam(mname,mm);
+				}
+			}
+			method_map_builded.add(clzName);
+		}catch(Exception e){
+			Log.e(e);
+		}
+		
 	}
 	public static void putIfNoExist(String clsName, Class<?> ret) {
 		// 使用double-checked locking模式避免竞态条件
