@@ -142,4 +142,11 @@ public class MethodAccessCacher {
 	public static void asyncPut(String name, Class<?> ret) {
 		put(name, ret);
 	}
+	public static Method getMethod(Class<?> parentCz, String methodName) {
+		String clsName = parentCz.getName();
+		if(!method_map_builded.contains(clsName)){
+			buildMethodMap(clsName,parentCz);
+		}
+		return method_map.get(clsName+"."+methodName);
+	}
 }

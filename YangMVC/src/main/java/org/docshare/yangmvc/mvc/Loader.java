@@ -138,7 +138,7 @@ public class Loader {
 				String parentClass =  parentCz.getName();
 				//如果父类不是Controller
 				if(! parentClass.equals("org.docshare.mvc.Controller")){
-					m = MethodAccessCacher.getMethod(parentClass,method);					
+					m = MethodAccessCacher.getMethod(parentCz,method);					
 					if(m!=null) {
 						cname = parentClass;
 						cz = parentCz;
