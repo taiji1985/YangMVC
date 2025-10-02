@@ -76,7 +76,11 @@ public class LasyList extends ListAdapter {
 		if(arrList!=null){
 			return !arrList.isEmpty();
 		}
-		return delegate.size(cons, tool, tbName, args) > 0;
+		String tmpTBName= tbName;
+		if(rawSql!=null) {
+			tmpTBName = " ("+rawSql+") as rawsql ";
+		}
+		return delegate.size(cons, tool, tmpTBName, args) > 0;
 		
 	}
 
