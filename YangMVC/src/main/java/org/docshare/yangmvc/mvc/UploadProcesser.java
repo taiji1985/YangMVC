@@ -83,19 +83,32 @@ class UploadProcesser {
 	    boolean isInMemory = item.isInMemory();
 	    long sizeInBytes = item.getSize();
 	    //String tmpdir = System.getProperty("java.io.tmpdir");
-	    String sep=System.getProperty("line.separator");
 	    //tmpdir = tmpdir.endsWith(sep)?tmpdir:tmpdir+sep;
 	    String path = randomFileName(fileName);
-	    String real = app.getRealPath(path);
 	    
-	    File f = new File(real);
-		if(!f.getParentFile().exists()){
-			Log.d("mkdir "+f.getParent());
-			f.getParentFile().mkdirs();
+	    // 获取 web 应用的根目录
+	    String webRoot = app.getRealPath("/");
+	    if (webRoot == null) {
+	        // 如果无法获取 web 根目录，使用当前工作目录
+	        webRoot = "./WebRoot/";
+	    }
+		String real = path;
+		if(real.startsWith("/")){
+			real = webRoot+real;
+		}else{
+			real = path;
 		}
-		
+		real= real.replace("//", "/");
+	    
+	    // 构建完整的文件路径
+	    //String real =  path.replace("/", File.separator);
 	    
 	    File uploadedFile = new File(real);
+	    // 确保父目录存在
+		if(!uploadedFile.getParentFile().exists()){
+			Log.d("mkdir "+uploadedFile.getParent());
+			uploadedFile.getParentFile().mkdirs();
+		}
 	    try {
 			item.write(uploadedFile);
 			Log.d("write param "+ fieldName +" file to "+ real);
