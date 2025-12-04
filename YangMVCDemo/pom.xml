@@ -43,6 +43,14 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.2</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>
@@ -65,9 +73,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.2.1</version>
         <configuration>
           <attach>true</attach>
+          <encoding>UTF-8</encoding>
         </configuration>
         <executions>
           <execution>
@@ -93,6 +102,15 @@
           <docencoding>UTF-8</docencoding>
           <charset>UTF-8</charset>
           <useStandardDocletOptions>true</useStandardDocletOptions>
+          <additionalJOptions>
+            <additionalJOption>-Xdoclint:none</additionalJOption>
+            <additionalJOption>-encoding</additionalJOption>
+            <additionalJOption>UTF-8</additionalJOption>
+            <additionalJOption>-charset</additionalJOption>
+            <additionalJOption>UTF-8</additionalJOption>
+            <additionalJOption>-docencoding</additionalJOption>
+            <additionalJOption>UTF-8</additionalJOption>
+          </additionalJOptions>
         </configuration>
       </plugin>
       <!-- Gpg Signature -->
