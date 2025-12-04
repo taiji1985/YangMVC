@@ -26,7 +26,7 @@ import freemarker.template.TemplateException;
 public class ConfigCreator {
 	static Scanner sc =new Scanner(System.in);
 	static String read(String msg,String def){
-		System.out.print(msg+"默认为: ["+def+"]: ");
+		System.out.print(msg+" default is: ["+def+"]: ");
 		String line = sc.nextLine();
 		if(line.length() == 0) return def;
 		else return line;
@@ -59,15 +59,15 @@ public class ConfigCreator {
 		boolean succ = Config.loadProperties("/web.properties");
 		if(!succ){
 			PropLoader.loadToStatic("/last.properties", Config.class);
-			System.out.print("请输入数据库信息，如与中括号中相同，可以直接打回车");
-			Config.dbhost = read("请输入服务器域名或ip",Config.dbhost);
-			Config.dbname = read("请输入数据库名",Config.dbname);
-			Config.dbport = read("请输入端口号",Config.dbport);
-			Config.dbpwd = read("请输入密码", Config.dbpwd);
-			Config.dbusr = read("请输入用户名", Config.dbusr);
-			Config.dbtype = read("请输入类型", Config.dbtype);
+			System.out.print("Please enter database information, press Enter to accept defaults in brackets: ");
+			Config.dbhost = read("Enter server hostname or IP",Config.dbhost);
+			Config.dbname = read("Enter database name",Config.dbname);
+			Config.dbport = read("Enter port number",Config.dbport);
+			Config.dbpwd = read("Enter password", Config.dbpwd);
+			Config.dbusr = read("Enter username", Config.dbusr);
+			Config.dbtype = read("Enter database type", Config.dbtype);
 		}else{
-			Log.i("加载配置文件成功");
+			Log.i("Configuration file loaded successfully");
 		}
 		
 		
@@ -89,13 +89,13 @@ public class ConfigCreator {
 			FileTool.writeUTF(fname, json);
 			System.out.println("write " + fname);
 		}
-		System.out.print("请输入需要生成的类的包名:");
+		System.out.print("Enter package name for generated classes:");
 		String pkg = sc.next();
 		if(pkg.length() == 0 ){
-			System.out.println("您没有输入包名，取消生成");
+			System.out.println("No package name entered, generation cancelled");
 			return;
 		}
-		System.out.println("请选择源代码目录1: src , 2 : src/main/java/");
+		System.out.println("Select source code directory 1: src , 2 : src/main/java/");
 		int dirType = sc.nextInt();
 		String dir = "src/"+ pkg.replace(".", "/")+"/";
 		if(dirType == 2){

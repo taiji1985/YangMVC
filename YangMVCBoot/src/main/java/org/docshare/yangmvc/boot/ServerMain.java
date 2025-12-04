@@ -105,7 +105,7 @@ public class ServerMain {
 	        contextHandler.setClassLoader(Thread.currentThread().getContextClassLoader());
 	        //contextHandler.setHandler(YangHandle.getIns(server));
 	        // Session support temporarily disabled due to dependency issues
-	        /*if(useSession){
+	        if(useSession){
 	        	sessionHandler = new SessionHandler();
 				//----------------------------
 				if(useRedis){
@@ -114,7 +114,7 @@ public class ServerMain {
 
 				//----------------------------
 	        	collection.addHandler(sessionHandler);
-	        }*/
+	        }
 	        collection.addHandler(YangHandle.getIns(server));
 	        collection.addHandler(new ResourceHandler());
 	        collection.addHandler(new DefaultHandler());
@@ -139,16 +139,16 @@ public class ServerMain {
 	        }
 	        server.start();
 	        
-	        Log.i("服务器已经开启 Server is Started");
+	        Log.i("Server is Started");
 	        Log.i("please visit "+url);
 	        IpHelper.showIP();
 	        readConsole(url);
 	        
 	        //server.join(); 
 		}catch (IOException e) {
-			Log.e("绑定端口号错误，一般是是因为端口号被其他应用占用了。 binding port error :"+port);
+			Log.e("Port binding error, port may be occupied by another application :"+port);
 			String pid = IpHelper.showPortUsed(port);
-			//重试！！
+			//Retry!!
 			if(System.getProperty("os.name").contains("Win")){
 				try {
 					IpHelper.killPID(pid);
@@ -167,7 +167,7 @@ public class ServerMain {
 		try {
 			scanner= new Scanner(System.in);
 			while (true) {
-				Log.i("每按一次回车键打开一次浏览器,Press Enter key to open browser");
+				Log.i("Press Enter key to open browser");
 				String ret = scanner.nextLine();
 				if("exit".equals(ret))break;
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);

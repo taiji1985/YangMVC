@@ -23,7 +23,7 @@ public class GlobalController {
         MVCFilter filter = MVCFilterInitializer.getFilter();
         
         if (filter == null) {
-            Log.e("MVCFilter未初始化，请检查MVCFilterInitializer配置");
+            Log.e("MVCFilter not initialized, please check MVCFilterInitializer configuration");
             return;
         }
         

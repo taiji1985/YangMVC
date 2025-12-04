@@ -59,7 +59,7 @@ public class SimpleConfigTestController {
         Map<String, Object> result = new HashMap<>();
         result.put("key", key);
         result.put("spring_value", yangMvcSimpleProperties.getProperty(key));
-        result.put("yangmvc_value", Config.getProperty(key, "未找到"));
+        result.put("yangmvc_value", Config.getProperty(key, "not found"));
         return result;
     }
     
@@ -81,7 +81,7 @@ public class SimpleConfigTestController {
             result.put("success", success);
             result.put("key", key);
             result.put("value", value);
-            result.put("message", success ? "配置更新成功" : "配置更新失败");
+            result.put("message", success ? "Configuration update successful" : "Configuration update failed");
             
         } catch (Exception e) {
             result.put("success", false);
@@ -129,7 +129,7 @@ public class SimpleConfigTestController {
             boolean success = Config.loadPropertiesFromStream(configStream);
             
             result.put("success", success);
-            result.put("message", success ? "配置重新加载成功" : "配置重新加载失败");
+            result.put("message", success ? "Configuration reload successful" : "Configuration reload failed");
             result.put("config_size", yangMvcSimpleProperties.size());
             
         } catch (Exception e) {

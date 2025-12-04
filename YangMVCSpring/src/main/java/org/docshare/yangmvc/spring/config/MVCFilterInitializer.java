@@ -39,9 +39,9 @@ public class MVCFilterInitializer implements ServletContextAware {
         filter = new MVCFilter();
         try {
             filter.init(new WrapperFilterConfig(servletContext));
-            System.out.println("MVCFilter初始化成功 - 在YangMvcConfigInitializer之前执行");
+            System.out.println("MVCFilter initialized successfully - executing before YangMvcConfigInitializer");
         } catch (ServletException e) {
-            System.err.println("MVCFilter初始化失败: " + e.getMessage());
+            System.err.println("MVCFilter initialization failed: " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -470,7 +470,7 @@ public class Controller {
 		
 		if(!existFile(path)){
 			Log.e("model file not found "+ path);
-			output("模板文件不存在:"+path);
+			output("Template file not found:"+path);
 			return;
 		}
 		
@@ -713,7 +713,7 @@ public class Controller {
 		
 	}
 	private void outMutiOutErr(String s) throws IOException{
-		throw new IOException("童鞋，请不要在一个控制器方法中，写入多个输出语句。每个控制器每次执行只能输出一次。你是不是在if中忘了写return ? \n 您试图输出："+s);
+		throw new IOException("Please do not use multiple output statements in a single controller method. Each controller can only output once per execution. Did you forget to add return in an if statement? \n Attempted output: "+s);
 	}
 	
 	private static  boolean enable_gzip = true;
@@ -864,7 +864,7 @@ public class Controller {
 	
 	public void renderForm(Model m){
 		if(m == null){
-			output("未找到该对象");
+			output("Object not found");
 			return;
 		}
 		renderForm(m,getDefaultTemp(),"");
@@ -1051,9 +1051,6 @@ public class Controller {
 	public void checkNull(String name,Object obj) throws NullParamException{
 		if(obj == null){
 			String msg="Param should not be NULL: "+name;
-			if(getLang().contains("zh")){
-				msg ="参数不能为空.这个问题一般是缺少url参数或form表单参数所致"+name;
-			}
 			throw new NullParamException(msg);
 		}
 	}

@@ -403,7 +403,7 @@ public abstract class DBHelper {
 			
 		} catch (SQLException e) {
 			Log.e(e);
-			System.out.println("---------- 这个错误绝大多数情况不会影响程序的正常运行，错误原因：只是获取不到表"+tb+"的主键");
+			System.out.println("---------- This error usually does not affect normal program execution, reason: unable to get primary key for table "+tb);
 		}  
 
 		return ret;

@@ -63,7 +63,7 @@ public class Poster {
         
         URL restURL = new URL(url);
         
-        Log.d("链接："+url);
+        Log.d("Link:"+url);
         int t= 0;//调用接口出错次数
         while(t<1) {
             try {
@@ -111,12 +111,12 @@ public class Poster {
                 return resultStr;
             } catch (Exception e) {
                 t++;
-                Log.e("=======>出错次数(requset error )：" + t);
+                Log.e("=======>Error count:" + t);
                 e.printStackTrace();
             }
         }
         
-        throw new Exception("网络异常,请稍后再试");
+        throw new Exception("Network error, please try again later");
 
     }
     
@@ -132,7 +132,7 @@ public class Poster {
         // 编码请求参数
         for (String name : parameters.keySet()) {
             Object object = parameters.get(name);
-            Log.d("类型："+object.getClass());
+            Log.d("Type:"+object.getClass());
             if(object instanceof Integer) {
                 sb.append(name).append("=").append(java.net.URLEncoder.encode((String)object, "UTF-8"))
                 .append("&");
@@ -160,7 +160,7 @@ public class Poster {
     
     public static String doPost(String url, Map<String, Object> parameters,String token) throws Exception {
         String params = paramsConvert(parameters);
-        Log.d("参数："+params.toString());
+        Log.d("Parameters:"+params.toString());
         return doPost(url, params,token);
     }
     

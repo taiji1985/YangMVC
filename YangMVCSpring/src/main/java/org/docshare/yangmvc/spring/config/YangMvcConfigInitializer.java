@@ -22,7 +22,7 @@ public class YangMvcConfigInitializer implements CommandLineRunner {
     
     @Override
     public void run(String... args) throws Exception {
-        Log.i("开始初始化YangMVC配置...");
+        Log.i("Starting YangMVC configuration initialization...");
         
         try {
             // 将HashMap配置转换为InputStream，然后传给Config类
@@ -32,17 +32,17 @@ public class YangMvcConfigInitializer implements CommandLineRunner {
             boolean success = Config.loadPropertiesFromStream(configStream);
             
             if (success) {
-                Log.i("YangMVC配置初始化成功！");
-                Log.i("配置项数量: " + yangMvcSimpleProperties.size());
+                Log.i("YangMVC configuration initialized successfully!");
+                Log.i("Configuration item count: " + yangMvcSimpleProperties.size());
                 
                 // 打印一些关键配置信息
                 printKeyConfigs();
             } else {
-                Log.e("YangMVC配置初始化失败！");
+                Log.e("YangMVC configuration initialization failed!");
             }
-            
+
         } catch (Exception e) {
-            Log.e("YangMVC配置初始化过程中发生异常: " + e.getMessage());
+            Log.e("Exception occurred during YangMVC configuration initialization: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -51,7 +51,7 @@ public class YangMvcConfigInitializer implements CommandLineRunner {
      * 打印关键配置信息
      */
     private void printKeyConfigs() {
-        Log.i("=== YangMVC关键配置信息 ===");
+        Log.i("=== YangMVC Key Configuration Information ===");
         
         String[] keyConfigs = {
             "controller", "template", "dbhost", "dbusr", "dbname", 

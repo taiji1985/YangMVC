@@ -234,7 +234,7 @@ public class DBTool {
 			return 0;
 		}
 		if(key == null){
-			Log.e("DBTool.save table must has a Key ,数据库表必须有主键");
+			Log.e("DBTool.save table must has a Key, database table must have primary key");
 			return 0;
 		}
 		int r =  delegate.save(this, m, key, isInsert);

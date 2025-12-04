@@ -24,7 +24,7 @@ public class IpHelper {
 			while (addresses.hasMoreElements()) {
 				ip = (InetAddress) addresses.nextElement();
 				if (ip != null && ip instanceof Inet4Address) {
-					Log.i("本机的IP = " + ip.getHostAddress());
+					Log.i("Local IP = " + ip.getHostAddress());
 				}
 			}
 		}
@@ -44,7 +44,7 @@ public class IpHelper {
 				//find 
 				Log.i(s);
 				String[] saa = s.split(" ");
-				Log.i("进程 "+saa[saa.length-1]+" 占用了 "+port+ " 端口 ");
+				Log.i("Process "+saa[saa.length-1]+" is using port "+port);
 				return saa[saa.length-1];
 			}
 		}
@@ -77,7 +77,7 @@ public class IpHelper {
 	public static void killPID(String pid) {
 		if(pid==null || pid.length() == 0) return;
 		
-		Log.i("正在尝试杀死占用端口的进程 , try to kill process that use the port ");
+		Log.i("Trying to kill process that is using the port");
 		String cmd = "taskkill /F /PID "+pid;
 		Log.i(cmd);
 		String r = runCmd(cmd,true);
