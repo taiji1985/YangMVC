@@ -281,6 +281,27 @@ public class TextTool {
 		return new String(ca, 0, ++j);
 	}
 	
+	/**
+	 * 连字符式的分割转 驼峰式   如： aa-bb 转 aaBb
+	 * @param s 原字符串
+	 * @return  目标字符串
+	 */
+	public static String hyphenToUpper(String s){
+		char[] ca = s.toCharArray();
+		int j = 0;
+		int i;
+		for(i=0;i<ca.length-1;i++){
+			if(ca[i] == '-'){
+				ca[i+1] = Character.toUpperCase(ca[i+1]);
+				continue;
+			}
+			ca[j] = ca[i];
+			j ++;
+		}
+		ca[j] = ca[i];
+		return new String(ca, 0, ++j);
+	}
+	
 	public static String txt2HTML(String msg){
 		StringBuilder sBuffer = new StringBuilder();
 		sBuffer.append("<html><head><meta charset='utf-8'/></head><body>");

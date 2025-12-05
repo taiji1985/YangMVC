@@ -61,6 +61,10 @@ public class MVCFilter implements Filter {
 	private boolean process(String uri,String context,HttpServletRequest req, HttpServletResponse resp,FilterChain chain) throws Exception{
 		//uri = rewriter.rewrite(uri); //重写url
 		String temp = getPureURI(uri, context);
+		// 处理url中的连字符，转换为驼峰式。注意：getRequestURI获取的uri不包含查询参数(?a=b)，所以参数中的连字符不会被处理。
+		if(temp.contains("-")){
+			temp = TextTool.hyphenToUpper(temp);
+		}
 		Log.v("process "+temp);
 		
 		if(!temp.contains("/")){
