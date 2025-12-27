@@ -16,6 +16,8 @@
         <module>YangMVCBoot</module>
         <module>YangMVCBootDemo</module>
         <module>YangMVCSpring</module>
+        <module>YangMVCSpringBootStarter</module>
+        <module>YangMVCSpringBootStarterDemo</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

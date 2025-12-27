@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🚀 YangMVC Spring Boot Starter Demo</h1>
+            <p class="subtitle">${message}</p>
+        </header>
+
+        <nav class="nav">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/hello/index" class="nav-link">Hello示例</a>
+            <a href="/user/list" class="nav-link">用户管理</a>
+            <a href="/api/test" class="nav-link" target="_blank">API测试</a>
+        </nav>
+
+        <main class="main">
+            <section class="features">
+                <h2>✨ 核心特性</h2>
+                <ul class="feature-list">
+                    <% for (String feature : features) { %>
+                    <li>${feature}</li>
+                    <% } %>
+                </ul>
+            </section>
+
+            <section class="examples">
+                <h2>📝 示例接口</h2>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h3>基础示例</h3>
+                        <ul>
+                            <li><a href="/hello/index">/hello/index</a> - 首页</li>
+                            <li><a href="/hello/json" target="_blank">/hello/json</a> - JSON响应</li>
+                            <li><a href="/hello/echo?name=YangMVC" target="_blank">/hello/echo?name=xxx</a> - 参数接收</li>
+                            <li><a href="/hello/session" target="_blank">/hello/session</a> - Session使用</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-card">
+                        <h3>更多示例</h3>
+                        <ul>
+                            <li><a href="/hello/redirect">/hello/redirect</a> - 重定向示例</li>
+                            <li><a href="/api/stats" target="_blank">/api/stats</a> - 系统统计</li>
+                            <li><a href="/h2-console" target="_blank">/h2-console</a> - H2数据库控制台</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-card">
+                        <h3>REST API</h3>
+                        <ul>
+                            <li><a href="/api/test" target="_blank">/api/test</a> - API测试</li>
+                            <li><a href="/api/stats" target="_blank">/api/stats</a> - 统计信息</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="code-example">
+                <h2>💡 快速开始</h2>
+                <pre><code>1. 添加依赖：
+&lt;dependency&gt;
+    &lt;groupId&gt;org.docshare&lt;/groupId&gt;
+    &lt;artifactId&gt;yangmvc-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;2025.07.06&lt;/version&gt;
+&lt;/dependency&gt;
+
+2. 配置application.yml：
+yangmvc:
+  controller: com.example.controllers
+  template: /templates
+
+3. 创建Controller：
+public class HelloController extends Controller {
+    public String index() {
+        put("message", "Hello YangMVC!");
+        return "ok";
+    }
+}
+
+就这么简单！✨</code></pre>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by <a href="https://gitee.com/yangtf/YangMVC" target="_blank">YangMVC</a> |
+               <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a></p>
+        </footer>
+    </div>
+</body>
+</html>

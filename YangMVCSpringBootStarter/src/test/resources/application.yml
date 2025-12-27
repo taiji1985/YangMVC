@@ -1,0 +1,10 @@
+yangmvc:
+  controller: org.docshare.yangmvc.springboot.sample
+  template: /view
+  reloadable: true
+  encoding: utf-8
+
+logging:
+  level:
+    org.docshare: DEBUG
+    root: INFO
