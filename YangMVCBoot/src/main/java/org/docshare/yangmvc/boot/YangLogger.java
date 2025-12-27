@@ -1,16 +1,18 @@
 package org.docshare.yangmvc.boot;
 
-import org.docshare.yangmvc.log.Log;
-import org.eclipse.jetty.util.log.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-class YangLogger implements Logger{
+class YangLogger implements org.eclipse.jetty.util.log.Logger{
+	private static final Logger logger = LoggerFactory.getLogger(YangLogger.class);
+
 	static boolean showJettyDebug = false;
 
 
 	@Override
 	public void debug(String arg0, Throwable arg1) {
 		if(showJettyDebug){
-			Log.d(arg0);
+			logger.debug("{}", arg0);
 		}
 		
 	}
@@ -18,7 +20,7 @@ class YangLogger implements Logger{
 
 
 	@Override
-	public Logger getLogger(String arg0) {
+	public org.eclipse.jetty.util.log.Logger getLogger(String arg0) {
 		return this;
 	}
 
@@ -42,7 +44,7 @@ class YangLogger implements Logger{
 
 	@Override
 	public void warn(String arg0, Throwable arg1) {
-		Log.w(arg0);
+		logger.warn("{}", arg0);
 	}
 
 
@@ -50,48 +52,48 @@ class YangLogger implements Logger{
 	@Override
 	public void debug(Throwable arg0) {
 		if(showJettyDebug){
-			Log.d(arg0);
+			logger.debug("{}", arg0);
 		}
 	}
 
 	@Override
 	public void debug(String arg0, Object... arg1) {
 		if(showJettyDebug){
-			Log.d(String.format(arg0, arg1));
+			logger.debug(String.format(arg0, arg1));
 		}
 	}
 
 	@Override
 	public void ignore(Throwable arg0) {
 		if(showJettyDebug){
-			Log.d(arg0);
+			logger.debug("{}", arg0);
 		}
 	}
 
 	@Override
 	public void info(Throwable arg0) {
-		Log.i(arg0);
+		logger.info("{}", arg0);
 	}
 
 	@Override
 	public void info(String arg0, Object... arg1) {
-		Log.i(String.format(arg0, arg1));
+		logger.info(String.format(arg0, arg1));
 	}
 
 	@Override
 	public void info(String arg0, Throwable arg1) {
-		Log.i(arg0, arg1);
+		logger.info(arg0, arg1);
 		
 	}
 
 	@Override
 	public void warn(Throwable arg0) {
-			Log.d(arg0);
+			logger.debug("{}", arg0);
 	}
 
 	@Override
 	public void warn(String arg0, Object... arg1) {
-		Log.d(String.format(arg0, arg1));
+		logger.debug(String.format(arg0, arg1));
 	}
 
 

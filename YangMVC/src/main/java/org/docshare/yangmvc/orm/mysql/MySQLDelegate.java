@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.except.MVCException;
 import org.docshare.yangmvc.orm.ArrayTool;
 import org.docshare.yangmvc.orm.ColumnDesc;
@@ -20,6 +21,8 @@ import org.docshare.yangmvc.util.TextTool;
 
 
 public class MySQLDelegate implements IDBDelegate {
+	private static final Logger logger = LoggerFactory.getLogger(MySQLDelegate.class);
+
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
@@ -38,7 +41,7 @@ public class MySQLDelegate implements IDBDelegate {
 	@Override
 	public int save(DBTool tool, Model m, String key, boolean forceInsert ){
 		if(m == null){
-			Log.e("can not save a null object");
+			logger.error("can not save a null object");
 			return 0;
 		}
 		Object id = m.get(key);
@@ -87,7 +90,7 @@ public class MySQLDelegate implements IDBDelegate {
 		}else{
 			int csize = m.changeColumns().size();
 			if(csize == 0){
-				Log.i("no change data for update "+sql);
+				logger.info("no change data for update "+sql);
 				return 0;
 			}
 
@@ -115,12 +118,12 @@ public class MySQLDelegate implements IDBDelegate {
 			sqlb.append(ArrayTool.valueWrapper(key, id,tool.getColumnTypeName(key)));
 			sql = sqlb.toString();
 		}
-		Log.d("DBTool run sql: "+sql+"  params=["+ArrayTool.joinWithLengthLimit(",", plist,20)+"]");
+		logger.debug("DBTool run sql: "+sql+"  params=["+ArrayTool.joinWithLengthLimit(",", plist,20)+"]");
 		Object[] objs = plist.toArray();
 		DBHelper helper = DBHelper.getIns("mysql");
 		
 		int d = helper.updateWithArray(sql,objs);
-		Log.d("return "+d);
+		logger.debug("return "+d);
 		if(d != 0 &&(id == null|| forceInsert)){
 			id = helper.getLastId();			
 			m.put(key, id);
@@ -135,7 +138,7 @@ public class MySQLDelegate implements IDBDelegate {
 		sBuffer.append("delete from `");
 		sBuffer.append(tname).append("` where `").append(key).append("` = ?");
 		String sql = sBuffer.toString();
-		Log.d("DBTool run sql: "+ sql +" ,param  = "+id);
+		logger.debug("DBTool run sql: "+ sql +" ,param  = "+id);
 		return DBHelper.getIns().update(sql,id);
 	}
 
@@ -225,7 +228,7 @@ public class MySQLDelegate implements IDBDelegate {
 					sb.append(' ');
 					break;
 				default:
-					Log.e("unsupport type"+c.type);
+					logger.error("unsupport type"+c.type);
 				}
 			}
 		}

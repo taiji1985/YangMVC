@@ -24,7 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileUploadException;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.except.NullParamException;
 import org.docshare.yangmvc.orm.DBTool;
 import org.docshare.yangmvc.orm.LasyList;
@@ -48,6 +49,8 @@ import freemarker.template.Template;
  *
  */
 public class Controller {
+	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+
 	/**
 	 * 用来标志输出类型的特殊类
 	 */
@@ -204,7 +207,7 @@ public class Controller {
 	 * @param val 参数值
 	 */
 	public void putParam(String key,Object val) {
-		Log.v("put param: "+key+"= "+val);
+		logger.trace("put param: "+key+"= "+val);
 		getContext().getParamMap().put(key, val);
 		
 	}
@@ -289,7 +292,7 @@ public class Controller {
 		Integer page =  (Integer) paramInt("page", 1);
 		Integer pagesz =  (Integer) paramInt("pagesz", pagesize);
 		int pagec = (int) Math.floor(total/pagesz)+1;
-		Log.d(total/pagesz);
+		logger.debug("{}", total/pagesz);
 		
 		Integer prev = page - 1 <= 0 ? null: page-1;
 		Integer next = page+1>pagec? null:page+1;
@@ -331,7 +334,7 @@ public class Controller {
 		put("page_next", next);
 		put("page_list",pagelist);
 		put("page_now", page);
-		Log.i("page_data = "+sb);
+		logger.info("page_data = "+sb);
 		return list.page(page, pagesz);
 		
 	}
@@ -394,9 +397,9 @@ public class Controller {
 	 */
 	public void put(String name,Object obj,Object... others){
 		if(obj instanceof IBean){
-			Log.d(obj.getClass().getName()+" translate to map :");
+			logger.debug("{}", obj.getClass().getName()+" translate to map :");
 			obj = BeanUtil.obj2Map(obj);
-			Log.d(JSON.toJSONString(obj));
+			logger.debug(JSON.toJSONString(obj));
 		}
 		request().setAttribute(name, obj);
 		getContext().getRoot().put(name, obj);
@@ -404,9 +407,9 @@ public class Controller {
 			obj=others[i+1];
 			name =(String)others[i];
 			if(obj instanceof IBean){
-				Log.d(obj.getClass().getName()+" translate to map :");
+				logger.debug("{}", obj.getClass().getName()+" translate to map :");
 				obj = BeanUtil.obj2Map(obj);
-				Log.d(JSON.toJSONString(obj));
+				logger.debug(JSON.toJSONString(obj));
 			}
 			request().setAttribute(name, obj);
 			getContext().getRoot().put(name, obj);
@@ -414,9 +417,9 @@ public class Controller {
 	}
 	public void put(String name,Object obj){
 		if(obj instanceof IBean){
-			Log.d(obj.getClass().getName()+" translate to map :");
+			logger.debug("{}", obj.getClass().getName()+" translate to map :");
 			obj = BeanUtil.obj2Map(obj);
-			Log.d(JSON.toJSONString(obj));
+			logger.debug(JSON.toJSONString(obj));
 		}
 		request().setAttribute(name, obj);
 		getContext().getRoot().put(name, obj);
@@ -469,7 +472,7 @@ public class Controller {
 		String path = Config.template + view;
 		
 		if(!existFile(path)){
-			Log.e("model file not found "+ path);
+			logger.error("model file not found "+ path);
 			output("Template file not found:"+path);
 			return;
 		}
@@ -481,12 +484,12 @@ public class Controller {
 		
 		RequestDispatcher d = request().getRequestDispatcher(path);
 		try {
-			Log.d("dispatcher to " + path);
+			logger.debug("dispatcher to " + path);
 			d.forward(request(), response());
 		} catch (ServletException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 	}
 
@@ -522,14 +525,14 @@ public class Controller {
 		
 		clearOutFlag();
 		String contentType = req.getContentType();
-		//Log.d("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
+		//logger.debug("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){
 			UploadProcesser processer  = new UploadProcesser(this, req, resp, app);
 			try {
 				processer.process();
 			} catch (FileUploadException e) {
-				String s = Log.getErrMsg(e);
-				Log.e(s);
+				String s = getErrMsg(e);
+				logger.error("", s);
 				output(s);
 			}
 		}
@@ -540,7 +543,7 @@ public class Controller {
 		  ){
 			InputStream in = null;
 			try {
-				Log.d("start read json ....");
+				logger.debug("start read json ....");
 				in = req.getInputStream();
 				String jsonData = FileTool.readAll(in, "utf-8");
 				if(jsonData!=null){
@@ -550,9 +553,9 @@ public class Controller {
 				if(jsonData != null && jsonData.startsWith("{")){ //如果是一个对象，给予解包
 					jsonToParam();
 				}
-				Log.d("json readed "+jsonData);
+				logger.debug("json readed "+jsonData);
 			} catch (IOException e) {
-				Log.e(e);
+				logger.error("", e);
 				e.printStackTrace();
 			}finally {
 				if(in!=null){
@@ -776,7 +779,7 @@ public class Controller {
 			else writer.write(s);
 			writer.close(); 
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 	}
 	/**
@@ -827,7 +830,7 @@ public class Controller {
 			}
 			writer.close();
 		} catch (Exception e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 	}
 	
@@ -1014,9 +1017,9 @@ public class Controller {
 	}
 	public void dumpParam() {
 		Map<String, String[]> map = request().getParameterMap();
-		Log.d("----------DumpParam---------");
-		Log.d("request param="+JSON.toJSONString(map));
-		Log.d("paramMap="+JSON.toJSONString(getContext().getParamMap()));
+		logger.debug("----------DumpParam---------");
+		logger.debug("request param="+JSON.toJSONString(map));
+		logger.debug("paramMap="+JSON.toJSONString(getContext().getParamMap()));
 	}
 	public Map<String, String[]> getParamMap(){
 		HashMap<String,String[]> ret=new HashMap<String,String[]>();
@@ -1065,14 +1068,14 @@ public class Controller {
 					outMutiOutErr("jump to url");
 					return;
 				} catch (IOException e) {
-					Log.e(e);
+					logger.error("", e);
 				}
 			}
 			getContext().setCanOut(false);
 			
 			getContext().getResponse().sendRedirect(url);
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 	}
 	/**
@@ -1193,9 +1196,9 @@ public class Controller {
 		try {
 			request().getRequestDispatcher(path).forward(request(), response());
 		} catch (ServletException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}		
 	}
 	public void header(String name,String val){
@@ -1260,7 +1263,7 @@ public class Controller {
 			if(out!=null){
 				e.printStackTrace((PrintWriter)out);
 			}
-			Log.e(e);
+			logger.error("", e);
 			//throw new MVCException(e);
 		}
 		
@@ -1289,7 +1292,7 @@ public class Controller {
 		try {
 			method.invoke(this);
 		} catch (Exception e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 	}
 	
@@ -1301,6 +1304,15 @@ public class Controller {
 		return json(obj,false);
 	}
 	public void dump(){
-		Log.i(json(request().getParameterMap(),true));
+		logger.info("{}", json(request().getParameterMap(),true));
+	}
+	
+	private static String getErrMsg(Throwable e){
+		java.io.ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
+		java.io.PrintWriter pw = new java.io.PrintWriter(buf, true);
+		e.printStackTrace(pw);
+		pw.flush();
+		pw.close();
+		return buf.toString();
 	}
 }

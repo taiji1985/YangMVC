@@ -13,7 +13,8 @@ import javax.net.ssl.SSLParameters;
 import javax.net.ssl.SSLSocketFactory;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.eclipse.jetty.server.session.SessionContext;
 import org.eclipse.jetty.server.session.SessionData;
@@ -35,6 +36,8 @@ import redis.clients.jedis.Protocol;
  */
 @ManagedObject
 public class RedisSessionDataMap extends AbstractLifeCycle implements SessionDataMap {
+	private static final Logger logger = LoggerFactory.getLogger(RedisSessionDataMap.class);
+
     public static final String DEFAULT_HOST = "localhost";
     public static final String DEFAULT_PORT = "6379";
     protected SessionContext _context; //context associated with this session data map
@@ -265,7 +268,7 @@ public class RedisSessionDataMap extends AbstractLifeCycle implements SessionDat
      */
     @Override
     public SessionData load(String id) throws Exception {
-        Log.d("RedisSessionDataMap load "+id);
+        logger.debug("RedisSessionDataMap load "+id);
         if (!isStarted()) {
             throw new IllegalStateException("Not started");
         }
@@ -323,7 +326,7 @@ public class RedisSessionDataMap extends AbstractLifeCycle implements SessionDat
     @Override
     public void store(String id, SessionData data) throws Exception {
 
-        Log.d("RedisSessionDataMap store "+id);
+        logger.debug("RedisSessionDataMap store "+id);
         if (!isStarted()) {
             throw new IllegalStateException("Not started");
         }
@@ -370,7 +373,7 @@ public class RedisSessionDataMap extends AbstractLifeCycle implements SessionDat
     @Override
     public boolean delete(String id) throws Exception {
 
-        Log.d("RedisSessionDataMap delete "+id);
+        logger.debug("RedisSessionDataMap delete "+id);
         if (!isStarted()) {
             throw new IllegalStateException("Not started");
         }

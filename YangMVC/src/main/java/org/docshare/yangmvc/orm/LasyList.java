@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.FileTool;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,6 +19,8 @@ import com.alibaba.fastjson.JSON;
  * 
  */
 public class LasyList extends ListAdapter {
+	private static final Logger logger = LoggerFactory.getLogger(LasyList.class);
+
 
 	public interface Each{
 		boolean one(Model m);
@@ -89,7 +92,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@Override
 	public boolean isEmpty() {
-		Log.d("isEmpty() called");
+		logger.debug("isEmpty() called");
 		return size() == 0;
 	}
 	/**
@@ -118,7 +121,7 @@ public class LasyList extends ListAdapter {
 			}
 			return arrList.get(index);
 		}catch(IndexOutOfBoundsException e){
-			Log.d(e);
+			logger.debug("{}", e);
 			return null;
 		}
 	}
@@ -403,7 +406,7 @@ public class LasyList extends ListAdapter {
 
     private void closeRS(){
         try{
-            Log.v("LasyList finalized");
+            logger.trace("LasyList finalized");
             if(rs !=null){
                 rs.close();
                 rs =null;
@@ -463,8 +466,8 @@ public class LasyList extends ListAdapter {
 				debugInfo();
 			}
 		} catch (SQLException e) {
-            Log.e("LasyList.toArrayList Exception " + debugInfo());
-            Log.e(e);
+            logger.error("LasyList.toArrayList Exception " + debugInfo());
+            logger.error("", e);
         } finally {
             FileTool.safelyClose(rs);
             closeRS();
@@ -494,7 +497,7 @@ public class LasyList extends ListAdapter {
 				ret.add(m.toObject(clazz.newInstance()));
 			}
 		} catch (InstantiationException | IllegalAccessException e) {
-			Log.e(e);
+			logger.error("", e);
 		}finally {
 			closeRS();
 		}

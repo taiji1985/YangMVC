@@ -10,9 +10,12 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IpHelper {
+	private static final Logger logger = LoggerFactory.getLogger(IpHelper.class);
+
 	public static void showIP() throws SocketException {
 		Enumeration<?> allNetInterfaces = NetworkInterface.getNetworkInterfaces();
 		InetAddress ip = null;
@@ -24,7 +27,7 @@ public class IpHelper {
 			while (addresses.hasMoreElements()) {
 				ip = (InetAddress) addresses.nextElement();
 				if (ip != null && ip instanceof Inet4Address) {
-					Log.i("Local IP = " + ip.getHostAddress());
+					logger.info("Local IP = " + ip.getHostAddress());
 				}
 			}
 		}
@@ -34,7 +37,7 @@ public class IpHelper {
 	}
 	
 	public static String showPortUsed(int port){
-		Log.i("run command : netstat -aon");
+		logger.info("run command : netstat -aon");
 		String command = "netstat -aon";//String.format("netstat -aon",port);
 
 		String sb = runCmd(command,false);
@@ -42,9 +45,9 @@ public class IpHelper {
 		for(String s : sa){
 			if(s.contains(port+"") && s.contains("LISTENING")){
 				//find 
-				Log.i(s);
+				logger.info("{}", s);
 				String[] saa = s.split(" ");
-				Log.i("Process "+saa[saa.length-1]+" is using port "+port);
+				logger.info("Process "+saa[saa.length-1]+" is using port "+port);
 				return saa[saa.length-1];
 			}
 		}
@@ -68,19 +71,19 @@ public class IpHelper {
 			is.close();
 			if(waitFor)p.waitFor();
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (InterruptedException e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 		return sb.toString();
 	}
 	public static void killPID(String pid) {
 		if(pid==null || pid.length() == 0) return;
 		
-		Log.i("Trying to kill process that is using the port");
+		logger.info("Trying to kill process that is using the port");
 		String cmd = "taskkill /F /PID "+pid;
-		Log.i(cmd);
+		logger.info("{}", cmd);
 		String r = runCmd(cmd,true);
-		Log.i(r);
+		logger.info("{}", r);
 	}
 }

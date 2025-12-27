@@ -5,7 +5,8 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.except.MVCException;
 
 import com.esotericsoftware.reflectasm.MethodAccess;
@@ -13,9 +14,11 @@ import com.esotericsoftware.reflectasm.MethodAccess;
 import groovy.lang.GroovyObject;
 
 public class GroovyLoader extends Loader {
+	private static final Logger logger = LoggerFactory.getLogger(GroovyLoader.class);
+
 
 	public  boolean call(String uri,String cname,String method,HttpServletRequest req,HttpServletResponse resp){
-		Log.v("Call " + cname + ", method = " + method);
+		logger.trace("Call " + cname + ", method = " + method);
 		
 		//load class
 		Class<?> cz=null;
@@ -25,7 +28,7 @@ public class GroovyLoader extends Loader {
 				obj = singleMap.get(cname);
 				cz = obj.getClass();
 				((Controller)obj).clearOutFlag();
-				Log.v("Single Mode:"+cname);
+				logger.trace("Single Mode:"+cname);
 			}else{
 				cz = load(cname);
 				
@@ -34,7 +37,7 @@ public class GroovyLoader extends Loader {
 				}
 				obj = cz.newInstance();
 				if(! (obj instanceof Controller)){
-					Log.e("error : The Class is not subclass of Controller: "+cname);
+					logger.error("error : The Class is not subclass of Controller: "+cname);
 					return false;
 				}
 				((Controller)obj).clearOutFlag();

@@ -9,12 +9,15 @@ import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 简单的FilterRegistration.Dynamic实现
  */
 public class YangFilterRegistration implements FilterRegistration.Dynamic {
+	private static final Logger logger = LoggerFactory.getLogger(YangFilterRegistration.class);
+
 	
 	private String filterName;
 	private Filter filter;
@@ -28,13 +31,13 @@ public class YangFilterRegistration implements FilterRegistration.Dynamic {
 	@Override
 	public void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes,
 			boolean isMatchAfter, String... servletNames) {
-		Log.i("Filter mapping added for servlets: " + java.util.Arrays.toString(servletNames));
+		logger.info("Filter mapping added for servlets: " + java.util.Arrays.toString(servletNames));
 	}
 
 	@Override
 	public void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes,
 			boolean isMatchAfter, String... urlPatterns) {
-		Log.i("Filter mapping added for URL patterns: " + java.util.Arrays.toString(urlPatterns));
+		logger.info("Filter mapping added for URL patterns: " + java.util.Arrays.toString(urlPatterns));
 	}
 
 	@Override
@@ -69,7 +72,7 @@ public class YangFilterRegistration implements FilterRegistration.Dynamic {
 
 	@Override
 	public boolean setInitParameter(String name, String value) {
-		Log.i("Filter init parameter set: " + name + " = " + value);
+		logger.info("Filter init parameter set: " + name + " = " + value);
 		return true;
 	}
 
@@ -84,7 +87,7 @@ public class YangFilterRegistration implements FilterRegistration.Dynamic {
 	@Override
 	public void setAsyncSupported(boolean isAsyncSupported) {
 		this.asyncSupported = isAsyncSupported;
-		Log.i("Filter async support set to: " + isAsyncSupported);
+		logger.info("Filter async support set to: " + isAsyncSupported);
 	}
 
 	public boolean isAsyncSupported() {

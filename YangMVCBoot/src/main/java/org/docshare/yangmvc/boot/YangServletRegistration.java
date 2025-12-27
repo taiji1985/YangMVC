@@ -9,12 +9,15 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletRegistration;
 import javax.servlet.ServletSecurityElement;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 简单的ServletRegistration.Dynamic实现
  */
 public class YangServletRegistration implements ServletRegistration.Dynamic {
+	private static final Logger logger = LoggerFactory.getLogger(YangServletRegistration.class);
+
 	
 	private String servletName;
 	private Servlet servlet;
@@ -29,7 +32,7 @@ public class YangServletRegistration implements ServletRegistration.Dynamic {
 
 	@Override
 	public Set<String> addMapping(String... urlPatterns) {
-		Log.i("Servlet mapping added: " + java.util.Arrays.toString(urlPatterns));
+		logger.info("Servlet mapping added: " + java.util.Arrays.toString(urlPatterns));
 		return new java.util.HashSet<String>();
 	}
 
@@ -65,7 +68,7 @@ public class YangServletRegistration implements ServletRegistration.Dynamic {
 
 	@Override
 	public boolean setInitParameter(String name, String value) {
-		Log.i("Servlet init parameter set: " + name + " = " + value);
+		logger.info("Servlet init parameter set: " + name + " = " + value);
 		return true;
 	}
 
@@ -80,29 +83,29 @@ public class YangServletRegistration implements ServletRegistration.Dynamic {
 	@Override
 	public void setAsyncSupported(boolean isAsyncSupported) {
 		this.asyncSupported = isAsyncSupported;
-		Log.i("Servlet async support set to: " + isAsyncSupported);
+		logger.info("Servlet async support set to: " + isAsyncSupported);
 	}
 
 	@Override
 	public void setLoadOnStartup(int loadOnStartup) {
 		this.loadOnStartup = loadOnStartup;
-		Log.i("Servlet load on startup set to: " + loadOnStartup);
+		logger.info("Servlet load on startup set to: " + loadOnStartup);
 	}
 
 	@Override
 	public void setMultipartConfig(MultipartConfigElement multipartConfig) {
-		Log.i("Servlet multipart config set");
+		logger.info("Servlet multipart config set");
 	}
 
 	@Override
 	public void setRunAsRole(String roleName) {
 		this.runAsRole = roleName;
-		Log.i("Servlet run-as role set to: " + roleName);
+		logger.info("Servlet run-as role set to: " + roleName);
 	}
 
 	@Override
 	public Set<String> setServletSecurity(ServletSecurityElement constraint) {
-		Log.i("Servlet security constraint set");
+		logger.info("Servlet security constraint set");
 		return new java.util.HashSet<String>();
 	}
 

@@ -2,12 +2,15 @@ package org.docshare.yangmvc.orm.postgres;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.orm.DBHelper;
 
 
 public class PostgresDBHelper extends DBHelper {
+	private static final Logger logger = LoggerFactory.getLogger(PostgresDBHelper.class);
+
 
 	//防止用户自己调用构造函数
 	public PostgresDBHelper(){
@@ -26,10 +29,10 @@ public class PostgresDBHelper extends DBHelper {
 			con = DriverManager.getConnection(uri, Config.dbusr, Config.dbpwd);
 			
 		} catch (ClassNotFoundException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (SQLException e) {
-			Log.e(e);
-			Log.e(Config.str());
+			logger.error("", e);
+			logger.error(Config.str());
 		}
 	
 	}
@@ -47,9 +50,9 @@ public class PostgresDBHelper extends DBHelper {
 //			ResultSet rs = dbmd.getImportedKeys(Config.dbname, null, table);
 //			
 //	//		ResultSetMetaData meta = rs.getMetaData();
-//	//		Log.d("column count "+meta.getColumnCount());
+//	//		logger.debug("column count "+meta.getColumnCount());
 //	//		for(int i=1;i<=meta.getColumnCount();i++){
-//	//			Log.d(meta.getColumnName(i));
+//	//			logger.debug(meta.getColumnName(i));
 //	//		}
 //			while(rs.next()){
 //				String pk_table = rs.getString("PKTABLE_NAME");

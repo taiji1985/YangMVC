@@ -14,13 +14,16 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.util.FileTool;
 import org.docshare.yangmvc.util.TextTool;
 import org.eclipse.jetty.util.security.Credential.MD5;
 
 public class StaticFilterChain implements FilterChain {
+	private static final Logger logger = LoggerFactory.getLogger(StaticFilterChain.class);
+
 	HashSet<String> forbitMap = new HashSet<String>();
 	public StaticFilterChain(){
 		String[] arr = {"class","dll","exe","java","xml","properties"};
@@ -35,7 +38,7 @@ public class StaticFilterChain implements FilterChain {
 			
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND,"File not found ! WebRoot"+req.getRequestURI());
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 	}
 	private String getETag(String filename,long tm){
@@ -84,7 +87,7 @@ public class StaticFilterChain implements FilterChain {
 		if(in != null){
 			try {
 				String type = MIME.getMIMEType(uri);
-				Log.v("data type is "+type);
+				logger.trace("data type is "+type);
 				if(type != null){
 					hresp.setContentType(type);
 				}

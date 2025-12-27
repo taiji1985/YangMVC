@@ -8,12 +8,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.anno.Param;
 
 import com.esotericsoftware.reflectasm.MethodAccess;
 
 public class MethodAccessCacher {
+	private static final Logger logger = LoggerFactory.getLogger(MethodAccessCacher.class);
+
 	private static Map<String, MethodAccess> ma_map = new ConcurrentHashMap<>();
 	private static Map<String, Class<?>> class_map = new ConcurrentHashMap<>();
 	public static MethodAccess getMethodAccess(String clsName){
@@ -48,7 +51,7 @@ public class MethodAccessCacher {
 			try {
 				clazz = Class.forName(clzName);
 			} catch (ClassNotFoundException e) {
-				Log.e(e);
+				logger.error("", e);
 				return;
 			}
 		}
@@ -66,7 +69,7 @@ public class MethodAccessCacher {
 			}
 			method_map_builded.add(clzName);
 		}catch(Exception e){
-			Log.e(e);
+			logger.error("", e);
 		}
 		
 	}
@@ -123,13 +126,13 @@ public class MethodAccessCacher {
 		//再根据名字进行赋值
 		if(types.length>0){
 			Parameter[] pa = method.getParameters();
-			//Log.d("use param name to inj, method=",mname);
+			//logger.debug("use param name to inj, method=",mname);
 			
 			for(int i =0;i<pa.length;i++){
 				if(mp[i]!=null)continue; //如果已经被标注赋值过就，就不要再给了。
 				String name = pa[i].getName();
 				if(name == null){
-					Log.e("Loader:  you should add the -parameters to javac , for details see : https://blog.csdn.net/sanyuesan0000/article/details/80618913");
+					logger.error("Loader:  you should add the -parameters to javac , for details see : https://blog.csdn.net/sanyuesan0000/article/details/80618913");
 				}
 
                 mp[i] =new MyParam();

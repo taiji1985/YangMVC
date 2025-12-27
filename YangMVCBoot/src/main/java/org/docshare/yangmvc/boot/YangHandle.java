@@ -4,7 +4,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.MVCFilter;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
@@ -12,6 +13,8 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 
 public class YangHandle extends AbstractHandler {
+	private static final Logger logger = LoggerFactory.getLogger(YangHandle.class);
+
 
 	StaticFilterChain chain =new StaticFilterChain();
 	
@@ -69,7 +72,7 @@ public class YangHandle extends AbstractHandler {
 	}
 
 	private void T(String string) {
-		Log.v(string);
+		logger.trace("{}", string);
 	}
 
 

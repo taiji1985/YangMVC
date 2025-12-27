@@ -2,9 +2,12 @@ package org.docshare.yangmvc.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IOUtil {
+	private static final Logger logger = LoggerFactory.getLogger(IOUtil.class);
+
 	public static String readStream(InputStream in){
 		return readStream(in,"utf-8");
 	}
@@ -25,7 +28,7 @@ public class IOUtil {
 			}
 			return new String(bos.toByteArray(),charset);
 		} catch (Exception e) {
-			Log.e(e);
+			logger.error("", e);
 			return "";
 		}finally {
 			FileTool.safelyClose(bos);

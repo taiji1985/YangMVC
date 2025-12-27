@@ -1,7 +1,8 @@
 package org.docshare.yangmvc.spring.config;
 
 import org.docshare.yangmvc.mvc.Config;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,13 +17,15 @@ import java.io.InputStream;
  */
 @Component
 public class YangMvcConfigInitializer implements CommandLineRunner {
+	private static final Logger logger = LoggerFactory.getLogger(YangMvcConfigInitializer.class);
+
     
     @Autowired
     private YangMvcProperties yangMvcSimpleProperties;
     
     @Override
     public void run(String... args) throws Exception {
-        Log.i("Starting YangMVC configuration initialization...");
+        logger.info("Starting YangMVC configuration initialization...");
         
         try {
             // 将HashMap配置转换为InputStream，然后传给Config类
@@ -32,17 +35,17 @@ public class YangMvcConfigInitializer implements CommandLineRunner {
             boolean success = Config.loadPropertiesFromStream(configStream);
             
             if (success) {
-                Log.i("YangMVC configuration initialized successfully!");
-                Log.i("Configuration item count: " + yangMvcSimpleProperties.size());
+                logger.info("YangMVC configuration initialized successfully!");
+                logger.info("Configuration item count: " + yangMvcSimpleProperties.size());
                 
                 // 打印一些关键配置信息
                 printKeyConfigs();
             } else {
-                Log.e("YangMVC configuration initialization failed!");
+                logger.error("YangMVC configuration initialization failed!");
             }
 
         } catch (Exception e) {
-            Log.e("Exception occurred during YangMVC configuration initialization: " + e.getMessage());
+            logger.error("Exception occurred during YangMVC configuration initialization: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -51,7 +54,7 @@ public class YangMvcConfigInitializer implements CommandLineRunner {
      * 打印关键配置信息
      */
     private void printKeyConfigs() {
-        Log.i("=== YangMVC Key Configuration Information ===");
+        logger.info("=== YangMVC Key Configuration Information ===");
         
         String[] keyConfigs = {
             "controller", "template", "dbhost", "dbusr", "dbname", 
@@ -61,11 +64,11 @@ public class YangMvcConfigInitializer implements CommandLineRunner {
         for (String key : keyConfigs) {
             String value = yangMvcSimpleProperties.getProperty(key);
             if (value != null) {
-                Log.i(key + " = " + value);
+                logger.info("{}", key + " = " + value);
             }
         }
         
-        Log.i("=========================");
+        logger.info("=========================");
     }
     
     /**

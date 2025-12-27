@@ -6,13 +6,16 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Properties;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 
 public class PropLoader {
+	private static final Logger logger = LoggerFactory.getLogger(PropLoader.class);
+
 	public static void setField(Field f,Object obj,String var){
 		try {
-			Log.d("set "+f.getName()+" to "+var);
+			logger.debug("set "+f.getName()+" to "+var);
 			Class<?> type = f.getType();
 			if(type == int.class){
 				f.set(null, Integer.parseInt(var));
@@ -49,7 +52,7 @@ public class PropLoader {
 
 	public static void main(String[] args) {
 		loadToStatic(PROP_FILE, Config.class);
-		Log.i(Config.str());
+		logger.info(Config.str());
 	}
 
 	private static Properties loadProp(String fileName) {
@@ -57,14 +60,14 @@ public class PropLoader {
 			Properties pro;
 
 			URL purl = PropLoader.class.getResource(PROP_FILE);
-			Log.d("read prop from " + purl);
-			Log.d("class loader name "
+			logger.debug("read prop from " + purl);
+			logger.debug("class loader name "
 					+ PropLoader.class.getClassLoader().toString());
 			if (purl == null) {
-				Log.e("Config file NOT found : "+fileName);
+				logger.error("Config file NOT found : "+fileName);
 				// return;
 			} else {
-				Log.i("Config file found ! ");
+				logger.info("Config file found ! ");
 			}
 
 			pro = new Properties();
@@ -74,11 +77,11 @@ public class PropLoader {
 			in = PropLoader.class.getResourceAsStream(PROP_FILE);
 			if (in != null) {
 				pro.load(in);
-				Log.i(fileName+" loaded ");
+				logger.info("{}", fileName+" loaded ");
 				in.close();
 			} else {
 
-				Log.i(fileName+" NOT load ");
+				logger.info("{}", fileName+" NOT load ");
 			}
 			return pro;
 

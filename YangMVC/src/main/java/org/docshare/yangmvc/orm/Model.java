@@ -2,7 +2,8 @@ package org.docshare.yangmvc.orm;
 
 import java.util.*;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Controller;
 import org.docshare.yangmvc.util.BeanUtil;
 import org.docshare.yangmvc.util.TextTool;
@@ -12,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import com.alibaba.fastjson.JSON;
 
 public class Model implements Map<String,Object> {
+	private static final Logger logger = LoggerFactory.getLogger(Model.class);
+
 	private final String tableName;
 	public boolean isNull = false;
 	private final Map<String, Object> columns;
@@ -331,7 +334,7 @@ public class Model implements Map<String,Object> {
 			try {
 				BeanUtil.set(obj, key, get(key));
 			} catch (Exception e) {
-				Log.e(e);
+				logger.error("", e);
 			}
 		}
 		return obj;
@@ -344,8 +347,8 @@ public class Model implements Map<String,Object> {
 				Object val = BeanUtil.get(obj, key);
 				ret.put(key, val);
 			} catch (Exception e) {
-				Log.d("can't set model of property: " + key );
-				Log.d(e);
+				logger.debug("can't set model of property: " + key );
+				logger.debug("{}", e);
 			}
 		}
 		ret.isCreated = false;
@@ -366,7 +369,7 @@ public class Model implements Map<String,Object> {
 			
 			return obj;	
 		} catch (InstantiationException | IllegalAccessException e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 		return null;
 	}
@@ -377,7 +380,7 @@ public class Model implements Map<String,Object> {
 	 */
 	public int insert(){
 		if(joined_tool == null){
-			Log.e("Model didn't connect to a tool ,can't save"+this);
+			logger.error("Model didn't connect to a tool ,can't save"+this);
 			return 0;
 		}
 		return joined_tool.insert(this);
@@ -388,7 +391,7 @@ public class Model implements Map<String,Object> {
 	 */
 	public int update(){
 		if(joined_tool == null){
-			Log.e("Model didn't connect to a tool ,can't save"+this);
+			logger.error("Model didn't connect to a tool ,can't save"+this);
 			return 0;
 		}
 		return joined_tool.save(this,false);
@@ -397,7 +400,7 @@ public class Model implements Map<String,Object> {
 	public int remove(){
 
 		if(joined_tool == null){
-			Log.e("Model didn't connect to a tool ,can't save"+this);
+			logger.error("Model didn't connect to a tool ,can't save"+this);
 			return 0;
 		}
 		return joined_tool.del(this);
@@ -417,7 +420,7 @@ public class Model implements Map<String,Object> {
 		if(joined_tool!=null){
 			return joined_tool.save(this);
 		}else{
-			Log.e("Model ,join_tool is null "+ this);
+			logger.error("Model ,join_tool is null "+ this);
 			return 0;
 		}
 	}
@@ -427,7 +430,7 @@ public class Model implements Map<String,Object> {
 	}
 
 	public void dump(){
-		Log.i(this.toString());
+		logger.info(this.toString());
 	}
 
 	public Model fromParam(Controller c){

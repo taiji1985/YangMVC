@@ -7,10 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.IBean;
 
 public class BeanUtil {
+	private static final Logger logger = LoggerFactory.getLogger(BeanUtil.class);
+
 	public static List<String> propList(Object obj){
 		List<String> ret = new ArrayList<String>();
 		Field[] fa = obj.getClass().getFields();
@@ -44,7 +47,7 @@ public class BeanUtil {
 				ret.put(f.getName(), v);
 				//}
 			} catch (Exception e) {
-				Log.d(e);
+				logger.debug("{}", e);
 			} 
 		}
 		for(Method m: ma){
@@ -94,7 +97,7 @@ public class BeanUtil {
 			Object fieldVal = getm.invoke(obj);
 			return fieldVal;
 		} catch (Exception e) {
-			Log.d(e);
+			logger.debug("{}", e);
 		}
 		
 		return null;
@@ -117,7 +120,7 @@ public class BeanUtil {
 			}
 			return true;
 		}catch (SecurityException e) {
-			Log.e("SecurityException");
+			logger.error("SecurityException");
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
 			//e.printStackTrace();
@@ -125,13 +128,13 @@ public class BeanUtil {
 			String t ;
 			if(val == null) t = null;
 			else t = val.toString();
-			Log.e("arg type not match class=%s , fiend = %s , valtype = %s  val=  %s",obj.getClass().getName(),pname,val.getClass().getName(),t);
+			logger.error("arg type not match class=%s , fiend = %s , valtype = %s  val=  %s",obj.getClass().getName(),pname,val.getClass().getName(),t);
 			//e.printStackTrace();
 		} catch (IllegalAccessException e) {
 			String getname = "get"+TextTool.firstUpper(pname);
 			Method getm = getMethod(obj, getname);
 			if(getm == null){
-				Log.e("IllegalAccessException of class %s ,field  %s    make sure the class and field are all public"
+				logger.error("IllegalAccessException of class %s ,field  %s    make sure the class and field are all public"
 						,obj.getClass().getName(),pname);
 				//e.printStackTrace();
 			}
@@ -162,7 +165,7 @@ public class BeanUtil {
 			}
 			return true;
 		} catch (Exception e) {
-			Log.d(e);
+			logger.debug("{}", e);
 		}
 		return false;
 	}
@@ -285,12 +288,12 @@ public class BeanUtil {
 				Object ov = transType(val,f.getType().getName());
 				if(ov == null)continue;
 				f.set(null,ov );
-				Log.d("set "+clz.getName()+" field "+name +" to "+val);
+				logger.debug("set "+clz.getName()+" field "+name +" to "+val);
 			} catch (Exception e) {
-				Log.d(e);
+				logger.debug("{}", e);
 			}
 		}
-		//Log.i(Config.str());
+		//logger.info(Config.str());
 		
 	}
 
@@ -309,7 +312,7 @@ public class BeanUtil {
 				// 尝试设置到to对象中
 				set(to, fieldName, value);
 			} catch (Exception e) {
-				Log.d(e);
+				logger.debug("{}", e);
 			}
 		}
 		
@@ -325,7 +328,7 @@ public class BeanUtil {
 					// 尝试设置到to对象中
 					set(to, propertyName, value);
 				} catch (Exception e) {
-					Log.d(e);
+					logger.debug("{}", e);
 				}
 			}
 		}

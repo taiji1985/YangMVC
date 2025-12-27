@@ -2,26 +2,29 @@ package cn.org.docshare.demo;
 
 import java.util.Date;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 @WebSocket
 public class MyWebSocketListener implements WebSocketListener {
+	private static final Logger logger = LoggerFactory.getLogger(MyWebSocketListener.class);
+
 	private Session session;
 	@Override
 	public void onWebSocketConnect(Session session) {
-		Log.i("upgrade req "+ session.getUpgradeRequest().getRequestURI());
+		logger.info("upgrade req "+ session.getUpgradeRequest().getRequestURI());
 		
-		Log.i("MyWebSocketListener onWebSocketConnect->"+session.getRemoteAddress());
+		logger.info("MyWebSocketListener onWebSocketConnect->"+session.getRemoteAddress());
 		this.session = session;
 	}
     //发送String
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onWebSocketText(String message) {
-		Log.i("MyWebSocketListener onWebSocketText");
+		logger.info("MyWebSocketListener onWebSocketText");
 		if (session.isOpen()) {
 			// echo the message back
 			session.getRemote().sendString(new Date().toLocaleString() , null);
@@ -30,17 +33,17 @@ public class MyWebSocketListener implements WebSocketListener {
     //发送byte[]
 	@Override
 	public void onWebSocketBinary(byte[] payload, int offset, int len) {
-		Log.i("MyWebSocketListener onWebSocketBinary");
+		logger.info("MyWebSocketListener onWebSocketBinary");
 	}
  
 	@Override
 	public void onWebSocketError(Throwable cause) {
-		Log.i("MyWebSocketListener Error->" + cause.getMessage());
+		logger.info("MyWebSocketListener Error->" + cause.getMessage());
 	}
  
 	@Override
 	public void onWebSocketClose(int statusCode, String reason) {
-		Log.i("MyWebSocketListener onWebSocketClose");
+		logger.info("MyWebSocketListener onWebSocketClose");
 		this.session = null;
 	}
 

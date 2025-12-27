@@ -8,15 +8,18 @@ import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Controller;
 import org.docshare.yangmvc.orm.Model;
 import org.docshare.yangmvc.util.MapHelper;
 
 import cn.org.docshare.test.Demo;
 public class IndexController extends Controller {
+	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+
 	public void index() throws IOException {
-		Log.i(new File(".").getCanonicalPath());
+		logger.info("{}", new File(".").getCanonicalPath());
 		renderFreeMarker("/index.html");
 	}
 	public void json_demo(){
@@ -101,7 +104,7 @@ public class IndexController extends Controller {
 	}
 	
 	public String log(){
-		Log.i("hello");
+		logger.info("hello");
 		return "ok";
 	}
 }

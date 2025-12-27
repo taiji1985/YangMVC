@@ -34,12 +34,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 
 
 public class Poster {
+	private static final Logger logger = LoggerFactory.getLogger(Poster.class);
+
 	public static String doPostJSON(String url,Object params, String token) {
 		String pp=JSON.toJSONString(params);
 		try {
@@ -63,7 +66,7 @@ public class Poster {
         
         URL restURL = new URL(url);
         
-        Log.d("Link:"+url);
+        logger.debug("Link:"+url);
         int t= 0;//调用接口出错次数
         while(t<1) {
             try {
@@ -111,7 +114,7 @@ public class Poster {
                 return resultStr;
             } catch (Exception e) {
                 t++;
-                Log.e("=======>Error count:" + t);
+                logger.error("=======>Error count:" + t);
                 e.printStackTrace();
             }
         }
@@ -132,7 +135,7 @@ public class Poster {
         // 编码请求参数
         for (String name : parameters.keySet()) {
             Object object = parameters.get(name);
-            Log.d("Type:"+object.getClass());
+            logger.debug("Type:"+object.getClass());
             if(object instanceof Integer) {
                 sb.append(name).append("=").append(java.net.URLEncoder.encode((String)object, "UTF-8"))
                 .append("&");
@@ -160,7 +163,7 @@ public class Poster {
     
     public static String doPost(String url, Map<String, Object> parameters,String token) throws Exception {
         String params = paramsConvert(parameters);
-        Log.d("Parameters:"+params.toString());
+        logger.debug("Parameters:"+params.toString());
         return doPost(url, params,token);
     }
     
@@ -168,8 +171,8 @@ public class Poster {
     	Map<String,String> map = new HashMap<>();
     	map.put("loginName"	, "admin");
     	map.put("password", "123456");
-    	//Log.i(Poster.doPostJSON("http://localhost:8001/shiro-api/login", map,null));
+    	//logger.info(Poster.doPostJSON("http://localhost:8001/shiro-api/login", map,null));
     	String token = "15D1821DFC4851E0E67C85D5335A68BA";
-    	Log.i(Poster.doPostJSON("http://localhost:8001/shiro-api/check?token="+token,"",token));
+    	logger.info(Poster.doPostJSON("http://localhost:8001/shiro-api/check?token="+token,"",token));
     }
 }

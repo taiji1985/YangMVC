@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.FileTool;
 
 /**
@@ -14,6 +15,8 @@ import org.docshare.yangmvc.util.FileTool;
  *
  */
 public class Reloader {
+	private static final Logger logger = LoggerFactory.getLogger(Reloader.class);
+
 	protected String root;
 	protected Map<String, Long > last_tm=new ConcurrentHashMap<String, Long>();
 	ArrayList<String> reloadList = new ArrayList<String>();
@@ -192,7 +195,7 @@ public class Reloader {
 						
 					} catch (Exception e) {
 						e.printStackTrace();
-						Log.i("Reloader Thread Exception ,restart 30 second later ");
+						logger.info("Reloader Thread Exception ,restart 30 second later ");
 						try {
 							Thread.sleep(30*1000);
 						} catch (InterruptedException e1) {

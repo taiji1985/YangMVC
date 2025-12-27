@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -17,12 +18,14 @@ import org.docshare.yangmvc.log.Log;
  *
  */
 public class StatementPool {
+	private static final Logger logger = LoggerFactory.getLogger(StatementPool.class);
+
 	
 	HashMap<String, PreparedStatement> cache = new HashMap<>();
 	public PreparedStatement get(Connection con,String sql) throws SQLException{
 		PreparedStatement p ;
 		if(cache.containsKey(sql)) {
-			Log.v("StatementPool: return cached PreparedStatement" );
+			logger.trace("StatementPool: return cached PreparedStatement" );
 			p=cache.get(sql);
 			//p.clearParameters();
 		}

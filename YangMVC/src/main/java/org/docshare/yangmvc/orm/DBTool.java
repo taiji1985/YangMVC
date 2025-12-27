@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.util.BeanUtil;
 import org.docshare.yangmvc.util.FileTool;
@@ -28,6 +29,8 @@ import com.alibaba.fastjson.JSON;
 
 
 public class DBTool {
+	private static final Logger logger = LoggerFactory.getLogger(DBTool.class);
+
 	private String tname;
 	private HashMap<String,Object> columns; //所有列的列名,及其值（值都为空）
 	public Map<String, ColumnDesc> c_to_remarks;
@@ -38,7 +41,7 @@ public class DBTool {
 		return delegate;
 	}
 	private DBTool(String tname){
-		Log.v("create a DBTool of "+tname);
+		logger.trace("create a DBTool of "+tname);
 		this.tname = tname;
 		if("rawsql".equals(tname)){
 			c_to_remarks = new HashMap<String, ColumnDesc>();
@@ -78,12 +81,12 @@ public class DBTool {
 	public String getColumnTypeName(String column){
 		ColumnDesc d = c_to_remarks.get(column);
 		if(d == null){
-			Log.d("getColumnTypeName find null "+ column +" reload column info ");
+			logger.debug("getColumnTypeName find null "+ column +" reload column info ");
 			c_to_remarks = delegate.listColumn(tname,false);
-			Log.d("reload data = "+ JSON.toJSONString(c_to_remarks));
+			logger.debug("reload data = "+ JSON.toJSONString(c_to_remarks));
 			d = c_to_remarks.get(column);
 			if(d == null){
-				Log.d("getColumnTypeName is null again ,return varchar" + column );
+				logger.debug("getColumnTypeName is null again ,return varchar" + column );
 			}
 			return "varchar";
 		}
@@ -144,7 +147,7 @@ public class DBTool {
 			rs.close();
 			return tb;
 		} catch (SQLException e) {
-			Log.e(e);
+			logger.error("", e);
 		}finally{
 			FileTool.safelyClose(rs);
 		}
@@ -230,11 +233,11 @@ public class DBTool {
 	 */
 	public int save(Model m,boolean isInsert){
 		if(m == null){
-			Log.e("DBTool save a null model "+ m +", tname is "+tname);
+			logger.error("DBTool save a null model "+ m +", tname is "+tname);
 			return 0;
 		}
 		if(key == null){
-			Log.e("DBTool.save table must has a Key, database table must have primary key");
+			logger.error("DBTool.save table must has a Key, database table must have primary key");
 			return 0;
 		}
 		int r =  delegate.save(this, m, key, isInsert);
@@ -283,7 +286,7 @@ public class DBTool {
 					v = rs.getObject(key);
 				}
 			} catch (SQLException e) {
-				Log.e(e);
+				logger.error("", e);
 			}
 			tb.innerPut(key, v);
 		}
@@ -327,7 +330,7 @@ public class DBTool {
 	
 	@Override
 	protected void finalize() throws Throwable {
-		Log.v("dbtool finalize called");
+		logger.trace("dbtool finalize called");
 		try{
 			DBHelper.removeThreadLocal();
 		}catch(Exception e){
@@ -345,7 +348,7 @@ public class DBTool {
 	}
 
 	public int run(String sql,Object...objects) {
-		Log.i("DBTool run :" ,sql ,"  param=[",ArrayTool.join(",", objects)+"]" );
+		logger.info("DBTool run :" ,sql ,"  param=[",ArrayTool.join(",", objects)+"]" );
 		return DBHelper.getIns().update(sql,objects);
 	}
 	

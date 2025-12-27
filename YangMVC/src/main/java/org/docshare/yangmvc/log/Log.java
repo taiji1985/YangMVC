@@ -12,6 +12,8 @@ import com.alibaba.fastjson.JSON;
 
 
 public class Log {
+	private static final Logger logger = LoggerFactory.getLogger(Log.class);
+
     public static boolean showClass = false;
     public static String getCaller() {  
         StackTraceElement[] stack = (new Throwable()).getStackTrace(); 
@@ -133,6 +135,5 @@ public class Log {
 
         log.trace(W(obj.toString()));
     }
-
 
 }

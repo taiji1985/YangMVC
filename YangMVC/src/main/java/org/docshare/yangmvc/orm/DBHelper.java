@@ -13,7 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.mvc.except.MVCException;
 import org.docshare.yangmvc.orm.access.AccessDBHelper;
@@ -25,6 +26,8 @@ import org.docshare.yangmvc.util.TextTool;
 import com.alibaba.fastjson.JSON;
 
 public abstract class DBHelper {
+	private static final Logger logger = LoggerFactory.getLogger(DBHelper.class);
+
 
 	public static final String DB_MYSQL = "mysql";
 	public static final String DB_POSTGRES = "postgres";
@@ -73,7 +76,7 @@ public abstract class DBHelper {
 		try{
 			locals.remove();
 		}catch (Exception e) {
-			//Log.e(e);
+			//logger.error("", e);
 		}
 	}
 
@@ -101,9 +104,9 @@ public abstract class DBHelper {
 			ResultSet rs = dbmd.getImportedKeys(Config.dbname, null, table);
 			
 	//		ResultSetMetaData meta = rs.getMetaData();
-	//		Log.d("column count "+meta.getColumnCount());
+	//		logger.debug("column count "+meta.getColumnCount());
 	//		for(int i=1;i<=meta.getColumnCount();i++){
-	//			Log.d(meta.getColumnName(i));
+	//			logger.debug(meta.getColumnName(i));
 	//		}
 			
 			while(rs.next()){
@@ -163,7 +166,7 @@ public abstract class DBHelper {
 		Statement s;
 		conn();
 		s = con.createStatement();
-		Log.d("DBHelper"+" Exec : "+sql);
+		logger.debug("DBHelper"+" Exec : "+sql);
 		return s.executeQuery(sql);
 	}
 	
@@ -215,7 +218,7 @@ public abstract class DBHelper {
 				int c = m.getColumnCount();
 				for(int i=1;i<=c;i++){
 					String name =m.getColumnLabel(i);
-					//Log.d("name = " +m.getColumnName(i) +", label = "+ name);
+					//logger.debug("name = " +m.getColumnName(i) +", label = "+ name);
 					//Object val = m.get
 					String tb = m.getTableName(i);
 					ColumnDesc cd = new ColumnDesc(name, m.getColumnType(i), m.getColumnLabel(i),tb);
@@ -230,7 +233,7 @@ public abstract class DBHelper {
 	private Map<String, HashMap<String,ColumnDesc>> desc_cached = new HashMap<String, HashMap<String,ColumnDesc>>();
 	
 	public void  clearDescCache(){
-		Log.v("clear desc cache ...");
+		logger.trace("clear desc cache ...");
 		this.desc_cached.clear();
 	}
 	
@@ -314,10 +317,10 @@ public abstract class DBHelper {
 			
 			String json = FileTool.readAll(in, "utf-8");
 			if(json == null){
-				Log.d("read columnSave not found "+path);
+				logger.debug("read columnSave not found "+path);
 				return null;
 			}
-			Log.d("readed columnSave succ " + tb +",path="+path);
+			logger.debug("readed columnSave succ " + tb +",path="+path);
 			ColumnSave save = JSON.parseObject(json, ColumnSave.class);
 			return save.listColumn;
 			
@@ -375,7 +378,7 @@ public abstract class DBHelper {
 		
 		
 		} catch (SQLException e) {
-			//Log.e(e);
+			//logger.error("", e);
 			throw new MVCException("Fail to list columns of table "+tb,e);
 		}
 		
@@ -402,7 +405,7 @@ public abstract class DBHelper {
 			rs.close();
 			
 		} catch (SQLException e) {
-			Log.e(e);
+			logger.error("", e);
 			System.out.println("---------- This error usually does not affect normal program execution, reason: unable to get primary key for table "+tb);
 		}  
 
@@ -434,14 +437,14 @@ public abstract class DBHelper {
 
 	@Override
 	protected void finalize() throws Throwable {
-		Log.d("DBHelper cleared");
+		logger.debug("DBHelper cleared");
 		close();
 		
 		super.finalize();
 	}
 
 	protected void printParams(String sql, List<Object> params) {
-		Log.d("PrintParams: "+sql +" params= {"+TextTool.join(params, ",")+"}");
+		logger.debug("PrintParams: "+sql +" params= {"+TextTool.join(params, ",")+"}");
 		
 	}
 
@@ -508,7 +511,7 @@ public abstract class DBHelper {
 	//				return;
 	//			}
 	//		} catch (SQLException e) {
-	//			Log.e(e);
+	//			logger.error("", e);
 	//			
 	//		}
 	//		

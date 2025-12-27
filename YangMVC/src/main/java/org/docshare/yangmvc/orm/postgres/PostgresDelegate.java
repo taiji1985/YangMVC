@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.except.MVCException;
 import org.docshare.yangmvc.orm.ArrayTool;
 import org.docshare.yangmvc.orm.ColumnDesc;
@@ -20,6 +21,8 @@ import org.docshare.yangmvc.util.TextTool;
 
 
 public class PostgresDelegate implements IDBDelegate {
+	private static final Logger logger = LoggerFactory.getLogger(PostgresDelegate.class);
+
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tableName,String column,Object id) throws SQLException {
@@ -29,7 +32,7 @@ public class PostgresDelegate implements IDBDelegate {
 	@Override
 	public int save(DBTool tool, Model m, String key, boolean forceInsert) {
 		if (m == null) {
-			Log.e("can not save a null object");
+			logger.error("can not save a null object");
 			return 0;
 		}
 		Object id = m.get(key);
@@ -79,7 +82,7 @@ public class PostgresDelegate implements IDBDelegate {
 						m.getTableName(),
 						ArrayTool.valueWrapper(key, id, tool.getColumnTypeName("id"))
 				);
-				Log.i("no change data for update " + sql);
+				logger.info("no change data for update " + sql);
 				return 0;
 			}
 
@@ -98,12 +101,12 @@ public class PostgresDelegate implements IDBDelegate {
 			);
 		}
 
-		Log.d("DBTool run sql: " + sql + "  params=[" + ArrayTool.joinWithLengthLimit(",", plist, 20) + "]");
+		logger.debug("DBTool run sql: " + sql + "  params=[" + ArrayTool.joinWithLengthLimit(",", plist, 20) + "]");
 		Object[] objs = plist.toArray();
 		DBHelper helper = DBHelper.getIns(DBHelper.DB_POSTGRES);
 
 		int d = helper.updateWithArray(sql, objs);
-		Log.d("return " + d);
+		logger.debug("return " + d);
 		if (d != 0 && (id == null || forceInsert)) {
 			id = helper.getLastId();
 			m.put(key, id);
@@ -114,7 +117,7 @@ public class PostgresDelegate implements IDBDelegate {
 	@Override
 	public int delete(String tableName,String key,Object id){
 		String sql = String.format("delete from \"%s\" where \"%s\" = ?", tableName,key);
-		Log.d("DBTool run sql: "+sql +" ,param  = "+id);
+		logger.debug("DBTool run sql: "+sql +" ,param  = "+id);
 		return DBHelper.getIns().update(sql,id);
 	}
 
@@ -188,7 +191,7 @@ public class PostgresDelegate implements IDBDelegate {
 					sa.add(c.column);
 					break;
 				default:
-					Log.e("unsupport type"+c.type);
+					logger.error("unsupport type"+c.type);
 			}
 		}
 		

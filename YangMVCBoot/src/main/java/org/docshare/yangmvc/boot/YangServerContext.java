@@ -23,11 +23,14 @@ import javax.servlet.ServletRegistration;
 import javax.servlet.SessionCookieConfig;
 import javax.servlet.SessionTrackingMode;
 import javax.servlet.descriptor.JspConfigDescriptor;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.FileTool;
 
 
 public class YangServerContext implements ServletContext {
+	private static final Logger logger = LoggerFactory.getLogger(YangServerContext.class);
+
 	
 	private static YangServerContext ins;
 
@@ -70,18 +73,18 @@ public class YangServerContext implements ServletContext {
 			if(pro != null)return;
 
 			URL purl = getClass().getResource(PROP_FILE);
-			Log.d("read prop from "+purl);
-			Log.d("class loader name "+getClass().getClassLoader().toString());
+			logger.debug("read prop from "+purl);
+			logger.debug("class loader name "+getClass().getClassLoader().toString());
 			
 			if(purl == null){
-				Log.e("Config file NOT found : web.properties ");
+				logger.error("Config file NOT found : web.properties ");
 //				return;
 			}else{
-				Log.i("Config file found ! ");
+				logger.info("Config file found ! ");
 			}
 ////			File f  = new File(purl.getPath());
 ////			if(!f.exists()){
-////				Log.i("web.properties not found ");
+////				logger.info("web.properties not found ");
 ////				return ;
 ////			}	
 			pro = new Properties();	
@@ -89,11 +92,11 @@ public class YangServerContext implements ServletContext {
 			in = getClass().getResourceAsStream(PROP_FILE);
 			if(in != null){
 				pro.load(in);
-				Log.i("web.properties loaded ");
+				logger.info("web.properties loaded ");
 				
 			}else{
 
-				Log.i("web.properties NOT load ");
+				logger.info("web.properties NOT load ");
 			}
 		
 		} catch (IOException e) {
@@ -173,7 +176,7 @@ public class YangServerContext implements ServletContext {
 		Servlet servlet = servlets.get(name);
 		if (servlet != null) {
 			// 这里应该返回一个RequestDispatcher实现，但由于项目架构限制，暂时返回null
-			Log.w("getNamedDispatcher not fully implemented for: " + name);
+			logger.warn("getNamedDispatcher not fully implemented for: " + name);
 		}
 		return null;
 	}
@@ -231,19 +234,19 @@ public class YangServerContext implements ServletContext {
 
 	@Override
 	public void log(String str) {
-		Log.i(str);
+		logger.info("{}", str);
 	}
 
 	@Override
 	public void log(Exception e, String msg) {
-		Log.i(msg);
+		logger.info("{}", msg);
 		
 		e.printStackTrace(System.out);
 	}
 
 	@Override
 	public void log(String msg, Throwable e) {
-		Log.i(msg);
+		logger.info("{}", msg);
 		
 		e.printStackTrace(System.out);
 		
@@ -265,7 +268,7 @@ public class YangServerContext implements ServletContext {
 			Class<? extends Filter> filterClass = (Class<? extends Filter>) Class.forName(className);
 			return addFilter(filterName, filterClass);
 		} catch (ClassNotFoundException e) {
-			Log.e("Filter class not found: " + className + ", error: " + e.getMessage());
+			logger.error("Filter class not found: " + className + ", error: " + e.getMessage());
 			return null;
 		}
 	}
@@ -276,7 +279,7 @@ public class YangServerContext implements ServletContext {
 			return null; // Filter already exists
 		}
 		filters.put(filterName, filter);
-		Log.i("Filter registered: " + filterName);
+		logger.info("Filter registered: " + filterName);
 		// 返回一个简单的FilterRegistration.Dynamic实现
 		return new YangFilterRegistration(filterName, filter);
 	}
@@ -287,7 +290,7 @@ public class YangServerContext implements ServletContext {
 			Filter filter = filterClass.newInstance();
 			return addFilter(filterName, filter);
 		} catch (Exception e) {
-			Log.e("Failed to create filter instance: " + filterClass.getName() + ", error: " + e.getMessage());
+			logger.error("Failed to create filter instance: " + filterClass.getName() + ", error: " + e.getMessage());
 			return null;
 		}
 	}
@@ -298,14 +301,14 @@ public class YangServerContext implements ServletContext {
 			Class<? extends EventListener> listenerClass = (Class<? extends EventListener>) Class.forName(className);
 			addListener(listenerClass);
 		} catch (ClassNotFoundException e) {
-			Log.e("Listener class not found: " + className + ", error: " + e.getMessage());
+			logger.error("Listener class not found: " + className + ", error: " + e.getMessage());
 		}
 	}
 	
 	@Override
 	public <T extends EventListener> void addListener(T listener) {
 		listeners.add(listener);
-		Log.i("Listener registered: " + listener.getClass().getName());
+		logger.info("Listener registered: " + listener.getClass().getName());
 	}
 	
 	@Override
@@ -314,7 +317,7 @@ public class YangServerContext implements ServletContext {
 			EventListener listener = listenerClass.newInstance();
 			addListener(listener);
 		} catch (Exception e) {
-			Log.e("Failed to create listener instance: " + listenerClass.getName() + ", error: " + e.getMessage());
+			logger.error("Failed to create listener instance: " + listenerClass.getName() + ", error: " + e.getMessage());
 		}
 	}
 	@Override
@@ -325,7 +328,7 @@ public class YangServerContext implements ServletContext {
 			Class<? extends Servlet> servletClass = (Class<? extends Servlet>) Class.forName(className);
 			return addServlet(servletName, servletClass);
 		} catch (ClassNotFoundException e) {
-			Log.e("Servlet class not found: " + className + ", error: " + e.getMessage());
+			logger.error("Servlet class not found: " + className + ", error: " + e.getMessage());
 			return null;
 		}
 	}
@@ -337,7 +340,7 @@ public class YangServerContext implements ServletContext {
 			return null; // Servlet already exists
 		}
 		servlets.put(servletName, servlet);
-		Log.i("Servlet registered: " + servletName);
+		logger.info("Servlet registered: " + servletName);
 		// 返回一个简单的ServletRegistration.Dynamic实现
 		return new YangServletRegistration(servletName, servlet);
 	}
@@ -349,7 +352,7 @@ public class YangServerContext implements ServletContext {
 			Servlet servlet = servletClass.newInstance();
 			return addServlet(servletName, servlet);
 		} catch (Exception e) {
-			Log.e("Failed to create servlet instance: " + servletClass.getName() + ", error: " + e.getMessage());
+			logger.error("Failed to create servlet instance: " + servletClass.getName() + ", error: " + e.getMessage());
 			return null;
 		}
 	}
@@ -386,7 +389,7 @@ public class YangServerContext implements ServletContext {
 	public void declareRoles(String... roleNames) {
 		// 声明安全角色，在这个简单实现中只记录日志
 		for (String role : roleNames) {
-			Log.i("Security role declared: " + role);
+			logger.info("Security role declared: " + role);
 		}
 	}
 	
@@ -470,7 +473,7 @@ public class YangServerContext implements ServletContext {
 			return false; // 参数已存在
 		}
 		initParameters.put(name, value);
-		Log.i("Init parameter set: " + name + " = " + value);
+		logger.info("Init parameter set: " + name + " = " + value);
 		return true;
 	}
 	
@@ -479,7 +482,7 @@ public class YangServerContext implements ServletContext {
 	@Override
 	public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes) {
 		this.sessionTrackingModes = new java.util.HashSet<SessionTrackingMode>(sessionTrackingModes);
-		Log.i("Session tracking modes set: " + sessionTrackingModes);
+		logger.info("Session tracking modes set: " + sessionTrackingModes);
 	}
 	//---------------------
 	@Override

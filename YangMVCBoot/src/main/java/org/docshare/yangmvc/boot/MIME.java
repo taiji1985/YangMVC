@@ -2,11 +2,14 @@ package org.docshare.yangmvc.boot;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.FileTool;
 import org.docshare.yangmvc.util.TextTool;
 
 public class MIME {
+	private static final Logger logger = LoggerFactory.getLogger(MIME.class);
+
 	static HashMap<String, String> map=new HashMap<String, String>();
 
 	public static void start(){
@@ -20,7 +23,7 @@ public class MIME {
 			map.put(prefix.trim(), mime.trim());
 		}
 		FileTool.safelyClose(scanner);
-		Log.d("MIME load "+map.size()+" items");
+		logger.debug("MIME load "+map.size()+" items");
 	}
 	/**
 	 * 根据文件后缀名获得对应的MIME类型。
@@ -28,7 +31,7 @@ public class MIME {
 	 * @param file
 	 */
 	public static String getMIMEType(String fname) {
-		Log.v("MIME "+fname);
+		logger.trace("MIME "+fname);
 		String ret =  map.get(TextTool.getPrefix(fname));
 		return ret == null?"text/html":ret;
 	}

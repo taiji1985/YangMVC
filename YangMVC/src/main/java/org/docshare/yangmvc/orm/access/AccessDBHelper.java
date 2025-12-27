@@ -6,12 +6,15 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.orm.ColumnDesc;
 import org.docshare.yangmvc.orm.DBHelper;
 
 public class AccessDBHelper extends DBHelper {
+	private static final Logger logger = LoggerFactory.getLogger(AccessDBHelper.class);
+
 	/**
 	 * 列举sql返回的所有的行
 	 * @param sql sql语句
@@ -36,14 +39,14 @@ public class AccessDBHelper extends DBHelper {
 				int c = m.getColumnCount();
 				for(int i=1;i<=c;i++){
 					String name =m.getColumnLabel(i);
-					//Log.d("name = " +m.getColumnName(i) +", label = "+ name);
+					//logger.debug("name = " +m.getColumnName(i) +", label = "+ name);
 					//Object val = m.get
 					String tb = m.getTableName(i);
 					ColumnDesc cd = new ColumnDesc(name, m.getColumnType(i), m.getColumnLabel(i),tb);
 					ret.put(name, cd);
 				}
 			} catch (SQLException e) {
-				Log.e(e);
+				logger.error("", e);
 			}
 			return ret;
 	}
@@ -56,7 +59,7 @@ public class AccessDBHelper extends DBHelper {
 		    con = DriverManager.getConnection(url);
 		    System.out.println("AccessDB opened "+Config.dbname);
 		} catch (Exception e) {
-		    Log.e(e);
+		    logger.error("", e);
 		}
 	}
 

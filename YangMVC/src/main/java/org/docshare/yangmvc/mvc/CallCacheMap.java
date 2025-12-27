@@ -6,10 +6,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.esotericsoftware.reflectasm.MethodAccess;
 
 class CallCacheMap {
+	private static final Logger logger = LoggerFactory.getLogger(CallCacheMap.class);
+
 	/**
 	 * 为了减少路径映射中字符串处理所设置的缓存
 	 * @author Administrator
@@ -36,7 +39,7 @@ class CallCacheMap {
 			if(ins == null){ //单例
 				ins = (Controller) cach.clazz.newInstance();
 			}
-			Log.d("CacheCall class=", cach.clazz.getName(),",method=",cach.methodName);
+			logger.debug("CacheCall class=", cach.clazz.getName(),",method=",cach.methodName);
 			ins.setReq(req, resp);
 			
 			if( ! "login".equals(cach.methodName) &&  ! ins.checkRequire()){ //如果未通过检测
@@ -54,7 +57,7 @@ class CallCacheMap {
 			
 			return true;
 		} catch (Exception e) {
-			Log.e("run action method error: "+uri);
+			logger.error("run action method error: "+uri);
 			e.printStackTrace();
 		}
 		return false;

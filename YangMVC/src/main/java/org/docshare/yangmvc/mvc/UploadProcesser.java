@@ -16,10 +16,13 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.TextTool;
 
 class UploadProcesser {
+	private static final Logger logger = LoggerFactory.getLogger(UploadProcesser.class);
+
 
 	private HttpServletRequest request;
 	private Controller c;
@@ -106,14 +109,14 @@ class UploadProcesser {
 	    File uploadedFile = new File(real);
 	    // 确保父目录存在
 		if(!uploadedFile.getParentFile().exists()){
-			Log.d("mkdir "+uploadedFile.getParent());
+			logger.debug("mkdir "+uploadedFile.getParent());
 			uploadedFile.getParentFile().mkdirs();
 		}
 	    try {
 			item.write(uploadedFile);
-			Log.d("write param "+ fieldName +" file to "+ real);
+			logger.debug("write param "+ fieldName +" file to "+ real);
 		} catch (Exception e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 	    c.putParam(fieldName, path);
 	    

@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // @WebServlet(name = "MyWebSocketServlet", urlPatterns = { "/ws" })
 public class YangMVCWebSocketHandler extends WebSocketServlet {
+	private static final Logger logger = LoggerFactory.getLogger(YangMVCWebSocketHandler.class);
+
     private static List<Class<?>> registeredClasses = new ArrayList<>();
     private static WebSocketServletFactory factory;
     
@@ -19,7 +22,7 @@ public class YangMVCWebSocketHandler extends WebSocketServlet {
         
         // 注册所有待注册的类
         for (Class<?> clazz : registeredClasses) {
-            Log.i("register WebSocket Handler: " + clazz.getName());
+            logger.info("register WebSocket Handler: " + clazz.getName());
             factory.register(clazz);
         }
         registeredClasses.clear();
@@ -31,7 +34,7 @@ public class YangMVCWebSocketHandler extends WebSocketServlet {
         if (factory == null) {
             registeredClasses.add(clazz);
         } else {
-            Log.i("register WebSocket Handler: " + clazz.getName());
+            logger.info("register WebSocket Handler: " + clazz.getName());
             factory.register(clazz);
         }
     }

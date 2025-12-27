@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import org.codehaus.groovy.control.CompilationFailedException;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.FileTool;
 
 import groovy.lang.GroovyClassLoader;
@@ -15,6 +16,8 @@ import groovy.lang.GroovyClassLoader;
  *
  */
 public class GroovyReloader extends Reloader {
+	private static final Logger logger = LoggerFactory.getLogger(GroovyReloader.class);
+
 
 	public GroovyReloader(){
 		
@@ -43,10 +46,10 @@ public class GroovyReloader extends Reloader {
 					
 					return groovyLoader.parseClass(c);
 				} catch (CompilationFailedException | IOException e) {
-					Log.e(e);
+					logger.error("", e);
 				}
 			}
-			Log.d("file path "+ c.getAbsolutePath());
+			logger.debug("file path "+ c.getAbsolutePath());
 			
 		}
 		
@@ -93,7 +96,7 @@ public class GroovyReloader extends Reloader {
 		
 	}
 	private ClassLoader newLoader(File f){
-		Log.d("load new file: "+f.getAbsolutePath());
+		logger.debug("load new file: "+f.getAbsolutePath());
 		
 		if(f.getName().endsWith(".groovy") && f.exists()){
 			groovyLoader =   new GroovyClassLoader();

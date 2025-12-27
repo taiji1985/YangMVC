@@ -3,13 +3,16 @@ package org.docshare.yangmvc.mvc.except;
 import java.io.IOException;
 import java.io.Writer;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 public class FreeMarkerHandler implements TemplateExceptionHandler  {
+	private static final Logger logger = LoggerFactory.getLogger(FreeMarkerHandler.class);
+
 
 	@Override
 	public void handleTemplateException(TemplateException e,
@@ -17,7 +20,7 @@ public class FreeMarkerHandler implements TemplateExceptionHandler  {
 		try {
 			out.write("Freemarker Error: "+ e.getMessage());
 		} catch (IOException e1) {
-			Log.e(e1);
+			logger.error("", e1);
 		}
 //		try {
 //			
@@ -31,9 +34,9 @@ public class FreeMarkerHandler implements TemplateExceptionHandler  {
 ////			out.write(ba.toString());
 //			out.write("");
 //		} catch (UnsupportedEncodingException e1) {
-//			Log.e(e1);
+//			logger.error("", e1);
 //		} catch (IOException e2) {
-//			Log.e(e2);
+//			logger.error("", e2);
 //		}
 //		
 	}

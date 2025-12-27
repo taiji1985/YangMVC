@@ -7,10 +7,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.BeanUtil;
 
 public class Config {
+	private static final Logger logger = LoggerFactory.getLogger(Config.class);
+
 	private static  String prop_file = "/web.properties";
 	@SuppressWarnings("unused")
 	private static long lastUpdate = 0;
@@ -115,7 +118,7 @@ public class Config {
 			return;
 		}
 		interceptors.add(interceptor);
-		Log.d("Config.addInterceptor added, name ="+interceptor.name());
+		logger.debug("Config.addInterceptor added, name ="+interceptor.name());
 	}
 	
 	public static void removeInterceptor(Interceptor interceptor){
@@ -145,7 +148,7 @@ public class Config {
 		}else{
 			postInterceptors.add(interceptor);
 		}
-		Log.d("Config.addPostInterceptor added, name ="+interceptor.name());
+		logger.debug("Config.addPostInterceptor added, name ="+interceptor.name());
 	}
 	
 	public static void removePostInterceptor(Interceptor interceptor){
@@ -173,19 +176,19 @@ public class Config {
 			
 			File f = new File(PROP_FILE); // ./web.propertes
 			if(f.exists()){
-				Log.d("read prop from "+ f);
+				logger.debug("read prop from "+ f);
 				lastUpdate = f.lastModified();
 				return new FileInputStream(f);
 			}
 			
 			f = new File("."+PROP_FILE);
 			if(f.exists()){
-				Log.d("read prop from "+ f);
+				logger.debug("read prop from "+ f);
 				lastUpdate = f.lastModified();
 				return new FileInputStream(f);
 			}
-			Log.d("class loader name "+Config.class.getClassLoader().toString());
-			Log.d("try load from classpath");
+			logger.debug("class loader name "+Config.class.getClassLoader().toString());
+			logger.debug("try load from classpath");
 
 			return Config.class.getResourceAsStream(PROP_FILE);
 		} catch (Exception e) {
@@ -219,16 +222,16 @@ public class Config {
 		try {
 			in = getPropertiesStream(PROP_FILE);
 			if(in == null){
-				Log.e("Config file NOT found : web.properties ");
+				logger.error("Config file NOT found : web.properties ");
 				return false;
 			}else{
-				Log.i("Config  found ! ");
+				logger.info("Config  found ! ");
 			}
 
 			pro = new Properties();	
 			pro.load(in);
 			
-			Log.i("web.properties loaded ");
+			logger.info("web.properties loaded ");
 			BeanUtil.prop2StaticField(pro, Config.class);
 
 			if(reload_config){
@@ -255,7 +258,7 @@ public class Config {
 	 */
 	public static boolean loadPropertiesFromStream(InputStream in){
 		if(in == null){
-			Log.e("InputStream is null");
+			logger.error("InputStream is null");
 			return false;
 		}
 		
@@ -263,7 +266,7 @@ public class Config {
 			pro = new Properties();
 			pro.load(in);
 			
-			Log.i("Properties loaded from InputStream");
+			logger.info("Properties loaded from InputStream");
 			BeanUtil.prop2StaticField(pro, Config.class);
 			
 			if(reload_config){
@@ -272,7 +275,7 @@ public class Config {
 			
 			return true;
 		} catch (IOException e) {
-			Log.e("Failed to load properties from InputStream: " + e.getMessage());
+			logger.error("Failed to load properties from InputStream: " + e.getMessage());
 			e.printStackTrace();
 			return false;
 		} finally {
@@ -289,7 +292,7 @@ public class Config {
 		reloadThread = new Thread(()->{
 			try {
 				Thread.sleep(5000);
-				Log.d("reload cfg");
+				logger.debug("reload cfg");
 				Config.loadProperties(null);
 			} catch (InterruptedException e) {
 				return;

@@ -8,7 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.MethodAccessCacher.MyParam;
 import org.docshare.yangmvc.mvc.except.MVCException;
 import org.docshare.yangmvc.util.TextTool;
@@ -16,6 +17,8 @@ import org.docshare.yangmvc.util.TextTool;
 import com.esotericsoftware.reflectasm.MethodAccess;
 
 public class Loader {
+	private static final Logger logger = LoggerFactory.getLogger(Loader.class);
+
 	/**
 	 * 执行后处理程序 ， 如将obj转json
 	 * @param uri 网址
@@ -39,10 +42,10 @@ public class Loader {
 		if(reloader == null){
 			String reload_base = Config.controller; // TextTool.getParentPackage(Config.controller);
 			if(reload_base.equals("org") || reload_base.equals("org.docshare")){
-				Log.e("reload base can not be 'org' or 'org.docshare', so we use your controller base as reload base.");
+				logger.error("reload base can not be 'org' or 'org.docshare', so we use your controller base as reload base.");
 				reload_base =Config.controller;
 			}
-			Log.i("reload base : "+reload_base);
+			logger.info("reload base : "+reload_base);
 
 			String groovy_path = Config.getProperty("groovy", null);
 			if(groovy_path == null){
@@ -54,10 +57,10 @@ public class Loader {
 					reloader.setParam("/", reload_base);
 				} catch (Exception e) {
 					//e.printStackTrace();
-					Log.e(e);
+					logger.error("", e);
 				}
 			}
-			Log.i("use reloader "+ reloader.getClass().getName());
+			logger.info("use reloader "+ reloader.getClass().getName());
 		}
 		
 		return reloader.load(p);
@@ -81,7 +84,7 @@ public class Loader {
 		return false;
 	}
 	public  boolean call(String uri,String cname,String method,HttpServletRequest req,HttpServletResponse resp){
-		Log.d("Call " + cname + ", method = " + method);
+		logger.debug("Call " + cname + ", method = " + method);
 		
 		//load class
 		Class<?> cz=null;
@@ -91,7 +94,7 @@ public class Loader {
 				obj = singleMap.get(cname);
 				cz = obj.getClass();
 				((Controller)obj).clearOutFlag();
-				Log.d("Single Mode:"+cname);
+				logger.debug("Single Mode:"+cname);
 			}else{
 				cz = load(cname);
 				
@@ -100,7 +103,7 @@ public class Loader {
 				}
 				obj = cz.newInstance();
 				if(! (obj instanceof Controller)){
-					Log.e("error : The Class is not subclass of Controller: "+cname);
+					logger.error("error : The Class is not subclass of Controller: "+cname);
 					return false;
 				}
 				((Controller)obj).clearOutFlag();
@@ -192,7 +195,7 @@ public class Loader {
 		boolean ret;
 		for (Interceptor ic : Config.interceptors) {
 			if (ic == null) continue;
-			Log.v("Call Intercept " + ic.name());
+			logger.trace("Call Intercept " + ic.name());
 			ret = ic.intercept(uri, controller, access, methodName, m);
 			if (!ret) {
 				result = false;
@@ -223,15 +226,15 @@ public class Loader {
 		try {
 			return access.invoke(obj, method.getName(), args);
 		} catch (ClassCastException e) {
-			Log.e("class cast exception "+e.getMessage());
+			logger.error("class cast exception "+e.getMessage());
 			try {
 				return method.invoke(obj, args);
 			} catch (IllegalAccessException e1) {
-				Log.e("IllegalAccessException " +e1);
+				logger.error("IllegalAccessException " +e1);
 			} catch (IllegalArgumentException e1) {
-				Log.e("IllegalArgumentException " +e1);
+				logger.error("IllegalArgumentException " +e1);
 			} catch (InvocationTargetException e1) {
-				Log.e("InvocationTargetException " +e1);
+				logger.error("InvocationTargetException " +e1);
 			}
 		}
 		return null;

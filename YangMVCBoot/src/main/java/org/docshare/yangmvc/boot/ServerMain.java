@@ -6,7 +6,8 @@ package org.docshare.yangmvc.boot;
 import java.io.IOException;
 import java.util.Scanner;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.util.FileTool;
 import org.eclipse.jetty.server.Server;
@@ -24,13 +25,15 @@ import org.eclipse.jetty.server.session.SessionHandler;
 
 
 public class ServerMain {
+	private static final Logger logger = LoggerFactory.getLogger(ServerMain.class);
+
 	
 	private static int port = 1985;
 	static void parseParam(String[] args){
-		Log.i("Usage: java -jar xxx.jar [port] [nowebsocket] ");
-		Log.i("   eg: java -jar aa_boot.jar ");
-		Log.i("   eg: java -jar aa_boot.jar 80 nowebsocket ");
-		Log.i("   That means listen at port 80 and use no websocket");
+		logger.info("Usage: java -jar xxx.jar [port] [nowebsocket] ");
+		logger.info("   eg: java -jar aa_boot.jar ");
+		logger.info("   eg: java -jar aa_boot.jar 80 nowebsocket ");
+		logger.info("   That means listen at port 80 and use no websocket");
 		if(args.length>=1 ){
 			port = Integer.parseInt(args[0]);
 		}
@@ -39,7 +42,7 @@ public class ServerMain {
 		}
 	}
 	public static void main(String[] args) {
-		Log.i("Server start .........");
+		logger.info("Server start .........");
 		parseParam(args);
 		if(true){
 			try {
@@ -69,7 +72,7 @@ public class ServerMain {
 	}
 	@SuppressWarnings("unused")
 	private static void applyRedis(){
-		Log.i("use redis sessionCache");
+		logger.info("use redis sessionCache");
 		NullSessionCache dsc = new NullSessionCache(sessionHandler);
 		String redis_host = Config.getProperty("redis_host", "localhost");
 		String redis_port = Config.getProperty("redis_port","6379");
@@ -82,7 +85,7 @@ public class ServerMain {
 			sessionHandler.setSessionCache(dsc);
 
 		} catch (Exception e) {
-			Log.e("Unable to load redis class" +e.getMessage());
+			logger.error("Unable to load redis class" +e.getMessage());
 		}
 
 	}
@@ -139,14 +142,14 @@ public class ServerMain {
 	        }
 	        server.start();
 	        
-	        Log.i("Server is Started");
-	        Log.i("please visit "+url);
+	        logger.info("Server is Started");
+	        logger.info("please visit "+url);
 	        IpHelper.showIP();
 	        readConsole(url);
 	        
 	        //server.join(); 
 		}catch (IOException e) {
-			Log.e("Port binding error, port may be occupied by another application :"+port);
+			logger.error("Port binding error, port may be occupied by another application :"+port);
 			String pid = IpHelper.showPortUsed(port);
 			//Retry!!
 			if(System.getProperty("os.name").contains("Win")){
@@ -156,7 +159,7 @@ public class ServerMain {
 					server.start();
 			        readConsole(url);
 				} catch (Exception e1) {
-					Log.e(e1);
+					logger.error("", e1);
 				}
 			}
 		}
@@ -167,13 +170,13 @@ public class ServerMain {
 		try {
 			scanner= new Scanner(System.in);
 			while (true) {
-				Log.i("Press Enter key to open browser");
+				logger.info("Press Enter key to open browser");
 				String ret = scanner.nextLine();
 				if("exit".equals(ret))break;
 				Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
 			}
 		} catch (Exception e) {
-			//Log.e(e);
+			//logger.error("", e);
 		}finally {
 			FileTool.safelyClose(scanner);
 		}

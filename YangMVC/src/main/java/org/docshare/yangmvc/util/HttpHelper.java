@@ -10,9 +10,12 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HttpHelper {
+	private static final Logger logger = LoggerFactory.getLogger(HttpHelper.class);
+
 	/**
 	 * 执行get请求
 	 * @param url 网页路径
@@ -38,9 +41,9 @@ public class HttpHelper {
 				response = null;
 			}
 		} catch (HttpException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}
 		return response;
 	}

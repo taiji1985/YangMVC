@@ -1,6 +1,7 @@
 package org.docshare.yangmvc.spring.controller;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.MVCFilter;
 import org.docshare.yangmvc.spring.config.MVCFilterInitializer;
 import org.docshare.yangmvc.spring.util.MyFilterChain;
@@ -14,6 +15,8 @@ import java.io.IOException;
 
 @Controller
 public class GlobalController {
+	private static final Logger logger = LoggerFactory.getLogger(GlobalController.class);
+
     
     private final MyFilterChain chain = new MyFilterChain();
     
@@ -23,14 +26,14 @@ public class GlobalController {
         MVCFilter filter = MVCFilterInitializer.getFilter();
         
         if (filter == null) {
-            Log.e("MVCFilter not initialized, please check MVCFilterInitializer configuration");
+            logger.error("MVCFilter not initialized, please check MVCFilterInitializer configuration");
             return;
         }
         
         try {
             filter.doFilter(request, response, chain);
         } catch (IOException | ServletException e) {
-            Log.e(e);
+            logger.error("", e);
         }
     }
 }

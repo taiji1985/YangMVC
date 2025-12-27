@@ -16,10 +16,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.docshare.yangmvc.log.Log;
 import org.docshare.yangmvc.mvc.except.FreeMarkerHandler;
 import org.docshare.yangmvc.util.RequestHelper;
 import org.docshare.yangmvc.util.TextTool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.cache.FileTemplateLoader;
@@ -34,6 +35,7 @@ import freemarker.template.TemplateNotFoundException;
 
 
 public class MVCFilter implements Filter {
+	private static final Logger logger = LoggerFactory.getLogger(MVCFilter.class);
 	private static MVCFilter ins;
 	static MVCFilter getIns(){
 		return ins;
@@ -65,7 +67,7 @@ public class MVCFilter implements Filter {
 		if(temp.contains("-")){
 			temp = TextTool.hyphenToUpper(temp);
 		}
-		Log.v("process "+temp);
+		logger.trace("process {}", temp);
 		
 		if(!temp.contains("/")){
 			temp = "index/"+temp;
@@ -82,7 +84,7 @@ public class MVCFilter implements Filter {
 			method = action.substring(t+1);		
 		}
 		if(cname == null || method == null){
-			Log.i("action fail ="+action);
+			logger.info("action fail ={}", action);
 			return false;
 		}
 		
@@ -97,8 +99,8 @@ public class MVCFilter implements Filter {
 		if(r){
 			return true;
 		}
-		
-		Log.i("action fail ="+action);
+
+		logger.info("action fail ={}", action);
 		return false;
 	}
 	
@@ -111,8 +113,8 @@ public class MVCFilter implements Filter {
 			return null;
 		}
 		String p2= u.getPath();
-		Log.d(p2);
-		return TextTool.readAllBytes(p2);	
+		logger.debug("{}", p2);
+		return TextTool.readAllBytes(p2);
 	}
 	
 	public void outErr(HttpServletResponse resp,String msg){
@@ -159,9 +161,9 @@ public class MVCFilter implements Filter {
 			}
 		}
 		
-		
+
 		if(context == null) context = "";
-		Log.d("filter > ",((HttpServletRequest) req).getMethod()," ",uri,",param = [",RequestHelper.params(req2),"]");
+		logger.debug("filter > {} {}, param = [{}]", ((HttpServletRequest) req).getMethod(), uri, RequestHelper.params(req2));
 		if(uri.contains(".")) {
 			chain.doFilter(req, resp);
 			return;
@@ -178,8 +180,8 @@ public class MVCFilter implements Filter {
 		try {
 			process(uri,context,req2,(HttpServletResponse)resp,chain);
 		} catch (Exception e) {
-			String msg=Log.getErrMsg(e);
-			Log.e(msg);
+			String msg = getErrMsg(e);
+			logger.error("", msg);
 
 			Controller controller = new Controller();
 			controller.setReq(req2, (HttpServletResponse) resp);
@@ -208,7 +210,7 @@ public class MVCFilter implements Filter {
 			try {
 				String tpl = cfg.getInitParameter("template");
 				if(tpl == null){
-					Log.i("no configure in web.xml ");
+					logger.info("no configure in web.xml ");
 				}else{
 					Config.template = tpl;
 				}
@@ -230,11 +232,11 @@ public class MVCFilter implements Filter {
 					Config.reloadable = Boolean.parseBoolean(loadConfig("reloadable", Config.reloadable+""));
 				}
 			} catch (Exception e1) {
-				Log.e("can't load YangMVC config from  web.xml------------");
+				logger.error("can't load YangMVC config from  web.xml------------");
 				//e1.printStackTrace();
-			} 
+			}
 		}else{
-			Log.i("loaded from web.properties, skip load from web.xml");
+			logger.info("loaded from web.properties, skip load from web.xml");
 		}
 		
 		
@@ -244,27 +246,27 @@ public class MVCFilter implements Filter {
 			try {
 				loader = (Loader) Class.forName("org.docshare.yangmvc.mvc.GroovyLoader").newInstance();
 			} catch (Exception e) {
-				Log.e(e);
+				logger.error("", e);
 				loader = new Loader();
-			}			
+			}
 		}
 		
 		
 		try {
 			String initCls = Config.controller+".Init";
-			Log.d("try load init class " + initCls);
+			logger.debug("try load init class {}", initCls);
 			Class.forName(initCls).newInstance();
 		} catch (ClassNotFoundException e) {
-			Log.d("init class not found");
+			logger.debug("init class not found");
 		} catch (InstantiationException e) {
-			Log.e("init class can not Instantiation : InstantiationException ");
+			logger.error("init class can not Instantiation : InstantiationException ");
 		} catch (IllegalAccessException e) {
-			Log.e("init class can not Instantiation : IllegalAccessException");
+			logger.error("init class can not Instantiation : IllegalAccessException");
 		}
 		initFreeMarker();
 		String hidePwd = Config.dbpwd;
 		Config.dbpwd = "[hidden]";
-		Log.i(Config.str());
+		logger.info(Config.str());
 		Config.dbpwd = hidePwd;
 		
 	}
@@ -293,17 +295,17 @@ public class MVCFilter implements Filter {
 			ftl1 = new FileTemplateLoader(new File(Config.template)); // /view
 			mtl = new MultiTemplateLoader(new TemplateLoader[] {
 			           wtl,ftl1 , ctl  });
-			Log.i("[template dir] "+ application.getRealPath(Config.template));
-			Log.i("[template dir] "+ new File(Config.template).getAbsolutePath());
-			Log.i("[template dir] classpath "+Config.template); // /view
-			Log.i("Find template dir ,use it !");
+			logger.info("[template dir] {}", application.getRealPath(Config.template));
+			logger.info("[template dir] {}", new File(Config.template).getAbsolutePath());
+			logger.info("[template dir] classpath {}", Config.template); // /view
+			logger.info("Find template dir ,use it !");
 		} catch (IOException e) {
 			//e.printStackTrace();
-			//Log.i("view/ dir not found !  ,use classpath");
+			//logger.info("view/ dir not found !  ,use classpath");
 			mtl = new MultiTemplateLoader(new TemplateLoader[] {
 			           wtl,ctl  });
-			Log.i("[template dir] "+ application.getRealPath(Config.template));
-			Log.i("[template dir] classpath /view");
+			logger.info("[template dir] {}", application.getRealPath(Config.template));
+			logger.info("[template dir] classpath /view");
 		}
 		
 		fmCfg.setTemplateLoader(mtl);
@@ -313,6 +315,16 @@ public class MVCFilter implements Filter {
 	public static Template getTemplate(String name) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException{
 		return getIns().getFmCfg().getTemplate(name);
 	}
+
+	private static String getErrMsg(Throwable e){
+		java.io.ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
+		java.io.PrintWriter pw = new java.io.PrintWriter(buf, true);
+		e.printStackTrace(pw);
+		pw.flush();
+		pw.close();
+		return buf.toString();
+	}
+
 	HashMap<String,Object> map = new HashMap<String,Object>();
 
 }

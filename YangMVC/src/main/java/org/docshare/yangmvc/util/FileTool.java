@@ -23,10 +23,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class FileTool {
+	private static final Logger logger = LoggerFactory.getLogger(FileTool.class);
+
 
 	public static void copy(String source, String dest) {
 	    InputStream in = null;
@@ -42,7 +45,7 @@ public class FileTool {
 	            out.write(buffer, 0, len);
 	        }
 	    } catch (Exception e) {
-	        Log.e(e);
+	        logger.error("", e);
 	    } finally {
 	        safelyClose( in);
 	        safelyClose(out);
@@ -86,9 +89,9 @@ public class FileTool {
 			return newr;
 
 		} catch (FileNotFoundException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}finally {
 			safelyClose(fin);
 		}
@@ -189,7 +192,7 @@ public class FileTool {
 			out.write(data);
 			out.flush();
 		} catch (Exception e) {
-			Log.e(e);
+			logger.error("", e);
 		}finally {
 			safelyClose(out);
 		}
@@ -207,7 +210,7 @@ public class FileTool {
 			out.write(data);
 			out.flush();
 		} catch (Exception e) {
-			Log.e(e);
+			logger.error("", e);
 		}finally {
 			safelyClose(out);
 		}
@@ -334,7 +337,7 @@ public class FileTool {
 			di.close();
 			return al;
 		} catch (Exception e) {
-			Log.e(e);
+			logger.error("", e);
 		}finally {
 			safelyClose(di);
 		}

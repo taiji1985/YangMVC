@@ -7,10 +7,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 
 public class TextTool {
+	private static final Logger logger = LoggerFactory.getLogger(TextTool.class);
+
 
 	public static byte[] readAllBytes(String fname) {
 		File f = new File(fname);
@@ -35,9 +38,9 @@ public class TextTool {
 			}
 
 		} catch (FileNotFoundException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (IOException e) {
-			Log.e(e);
+			logger.error("", e);
 		}finally {
 			FileTool.safelyClose(fi);
 		}

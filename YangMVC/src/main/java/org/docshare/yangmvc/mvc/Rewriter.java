@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.util.IOUtil;
 
 
 public class Rewriter {
+	private static final Logger logger = LoggerFactory.getLogger(Rewriter.class);
+
 	private String root;
 
 	public Rewriter(String root){
@@ -23,7 +26,7 @@ public class Rewriter {
 		File f = new File(filepath);
 		if(f.exists()){
 			try {
-				Log.d("find ",filepath," at ",f.getAbsolutePath());
+				logger.debug("find ",filepath," at ",f.getAbsolutePath());
 				return new FileInputStream(f);
 			} catch (FileNotFoundException e) {
 			}
@@ -32,7 +35,7 @@ public class Rewriter {
 		f=new File(root+filepath);
 		if(f.exists()){
 			try {
-				Log.d("find ",filepath," at ",f.getAbsolutePath());
+				logger.debug("find ",filepath," at ",f.getAbsolutePath());
 				return new FileInputStream(f);
 			} catch (FileNotFoundException e) {
 			}
@@ -40,7 +43,7 @@ public class Rewriter {
 		//在尝试classpath
 		InputStream ret= getClass().getResourceAsStream(filepath);
 		if(ret!=null){
-			Log.d("find ",filepath," at classpath");
+			logger.debug("find ",filepath," at classpath");
 		}
 		return ret;
 	}	
@@ -62,7 +65,7 @@ public class Rewriter {
 		this.root =root;
 		InputStream in = tryGetInputStream("/rewrite.txt");
 		if(in == null){
-			Log.i("can not find /rewrite.txt");
+			logger.info("can not find /rewrite.txt");
 			return;
 		}
 		String string = IOUtil.readStream(in, "utf-8");
@@ -92,7 +95,7 @@ public class Rewriter {
 			Matcher m = p.pattern.matcher(uri);
 			String n=m.replaceFirst(p.replace);
 			if(!n.equals(uri)){
-				Log.d("Rewrite ",uri," to ",n);
+				logger.debug("Rewrite ",uri," to ",n);
 				return n;
 			}
 		}

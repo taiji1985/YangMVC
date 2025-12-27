@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.util.BeanUtil;
 import org.docshare.yangmvc.util.FileTool;
@@ -24,6 +25,8 @@ import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.TemplateException;
 
 public class ConfigCreator {
+	private static final Logger logger = LoggerFactory.getLogger(ConfigCreator.class);
+
 	static Scanner sc =new Scanner(System.in);
 	static String read(String msg,String def){
 		System.out.print(msg+" default is: ["+def+"]: ");
@@ -33,7 +36,7 @@ public class ConfigCreator {
 	}
 	public void testRead(){
 		String s = FileTool.readResource("tbconfig/book.json","utf-8");
-		Log.i(s);
+		logger.info("{}", s);
 	}
 	public static class Foreign{
 		public Foreign(String javaType, String fk_column, String fk_table) {
@@ -67,7 +70,7 @@ public class ConfigCreator {
 			Config.dbusr = read("Enter username", Config.dbusr);
 			Config.dbtype = read("Enter database type", Config.dbtype);
 		}else{
-			Log.i("Configuration file loaded successfully");
+			logger.info("Configuration file loaded successfully");
 		}
 		
 		

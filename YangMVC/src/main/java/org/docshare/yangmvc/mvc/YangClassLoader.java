@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class YangClassLoader extends ClassLoader{
+	private static final Logger logger = LoggerFactory.getLogger(YangClassLoader.class);
+
     private int version;
 	private Object root;
 	private String reloadPackage;
@@ -45,7 +48,7 @@ class YangClassLoader extends ClassLoader{
 			if (!name.startsWith(reloadPackage)) {
 				// 使用父类加载器加载非指定包的类
 				try {
-					Log.d("YangClassLoader use Parent Loader "+getParent().getClass().getName()+" -> "+name);
+					logger.debug("YangClassLoader use Parent Loader "+getParent().getClass().getName()+" -> "+name);
 
 					Class<?> parentClass = getParent().loadClass(name);
 					if (resolve) {
@@ -80,13 +83,13 @@ class YangClassLoader extends ClassLoader{
 
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		Log.d("YangClassLoader v" + version + ", finding " + name);
+		logger.debug("YangClassLoader v" + version + ", finding " + name);
 
 		// 加载类字节码
 		String path = name2Path(name);
 		try (InputStream input = getClass().getResourceAsStream(path)) {
 			if (input == null) {
-				Log.d("YangClassLoader can not find class file: " + path);
+				logger.debug("YangClassLoader can not find class file: " + path);
 				throw new ClassNotFoundException("Class file not found: " + path);
 			}
 
@@ -99,13 +102,13 @@ class YangClassLoader extends ClassLoader{
 			}
 			byte[] classData = buffer.toByteArray();
 
-			Log.d("YangClassLoader defining class: " + name);
+			logger.debug("YangClassLoader defining class: " + name);
 			
 			// 添加类转换调试信息
 			if (classData.length > 0) {
-				Log.d("Class data size: " + classData.length + " bytes");
+				logger.debug("Class data size: " + classData.length + " bytes");
 			} else {
-				Log.w("Warning: Empty class data for " + name);
+				logger.warn("Warning: Empty class data for " + name);
 				throw new ClassNotFoundException("Empty class data for " + name);
 			}
 			
@@ -115,23 +118,23 @@ class YangClassLoader extends ClassLoader{
 				// 为新版JDK提供更好的兼容性
 				definedClass = defineClass(name, classData, 0, classData.length, getClass().getProtectionDomain());
 			} catch (SecurityException e) {
-				Log.w("Security exception with ProtectionDomain, trying without: " + e.getMessage());
+				logger.warn("Security exception with ProtectionDomain, trying without: " + e.getMessage());
 				// 如果使用ProtectionDomain失败，尝试不使用
 				definedClass = defineClass(name, classData, 0, classData.length);
 			}
 			
-			Log.d("YangClassLoader loaded class: " + name);
+			logger.debug("YangClassLoader loaded class: " + name);
 			
 			// 缓存类访问信息
 			MethodAccessCacher.asyncPut(name, definedClass);
-			Log.d("YangClassLoader cached class: " + name);
+			logger.debug("YangClassLoader cached class: " + name);
 			
 			return definedClass;
 		} catch (IOException e) {
-			Log.e("Error loading class " + name + ": " + e.getMessage());
+			logger.error("Error loading class " + name + ": " + e.getMessage());
 			throw new ClassNotFoundException("IO error loading class " + name, e);
 		} catch (SecurityException | ClassFormatError e) {
-			Log.e("Error defining class " + name + ": " + e.getMessage());
+			logger.error("Error defining class " + name + ": " + e.getMessage());
 			throw new ClassNotFoundException("Error defining class " + name, e);
 		}
 	}

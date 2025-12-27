@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
-import org.docshare.yangmvc.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.mvc.except.MVCException;
 import org.docshare.yangmvc.orm.DBHelper;
@@ -15,6 +16,8 @@ import org.docshare.yangmvc.orm.StatementPool;
 import org.docshare.yangmvc.util.FileTool;
 
 public class MySQLDBHelper extends DBHelper {
+	private static final Logger logger = LoggerFactory.getLogger(MySQLDBHelper.class);
+
 
 	//防止用户自己调用构造函数
 	public MySQLDBHelper(){
@@ -39,13 +42,13 @@ public class MySQLDBHelper extends DBHelper {
 			
 			con = pool.getConnection();
 
-			Log.d("MySQLDBHelper connect to server "+ pool.getClass().getName());
+			logger.debug("MySQLDBHelper connect to server "+ pool.getClass().getName());
 			update("set names "+Config.dbEncoding);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			Log.e(e);
+			logger.error("", e);
 		} catch (SQLException e) {
-			Log.e(e);
-			Log.e(Config.str());
+			logger.error("", e);
+			logger.error(Config.str());
 			throw new MVCException("connect to url fail: "+uri,e);
 		}
 	}
@@ -67,7 +70,7 @@ public class MySQLDBHelper extends DBHelper {
 				return s.executeQuery();
 			} catch (CommunicationsException e) {
 				retry++;
-				Log.i("reconnect db retry="+retry);
+				logger.info("reconnect db retry="+retry);
 				conn();
 			}
 		}
@@ -100,7 +103,7 @@ public class MySQLDBHelper extends DBHelper {
 				return ret;
 			}catch(CommunicationsException e){
 				retry++;
-				Log.i("reconnect db retry="+retry);
+				logger.info("reconnect db retry="+retry);
 				conn();
 			}catch(SQLException e){
 				throw new MVCException(e);
