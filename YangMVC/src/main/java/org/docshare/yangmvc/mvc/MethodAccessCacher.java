@@ -39,9 +39,20 @@ public class MethodAccessCacher {
 		}
 		method_map_builded.remove(name);
 		class_map.put(name, clz);
-		MethodAccess access = MethodAccess.get(clz);
+		MethodAccess access = null;
+		try {
+			access = MethodAccess.get(clz);
+			if (access == null) {
+				logger.warn("MethodAccess.get() returned null for class: " + name +
+					", classloader: " + clz.getClassLoader() +
+					". Will use standard reflection as fallback.");
+			}
+		} catch (Exception e) {
+			logger.warn("MethodAccess.get() failed for class: " + name + ", error: " + e.getMessage() +
+				". Will use standard reflection as fallback.");
+		}
 		ma_map.put(name, access);
-		
+
 		//buildMethodMap(name,clz); //不在加载的时候
 	}
 	private static Map<String, Method> method_map = new ConcurrentHashMap<>();

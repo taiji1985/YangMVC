@@ -210,7 +210,7 @@ public class Loader {
 	 * 执行方法
 	 */
 	public  Object  runMethod(Object obj,MethodAccess access,Method method ,HttpServletRequest req,String className){
-		
+
 		Object[] args;
 		Controller controller = (Controller)obj;
 		if(className == null){
@@ -221,8 +221,22 @@ public class Loader {
 		for(int i=0;i<args.length;i++){
 			args[i]=convertTo(controller.param(mp[i].param),mp[i].type);
 		}
-		
-		
+
+		// 如果MethodAccess不可用，使用标准反射
+		if (access == null) {
+			logger.debug("Using standard reflection for " + className + "." + method.getName());
+			try {
+				return method.invoke(obj, args);
+			} catch (IllegalAccessException e1) {
+				logger.error("IllegalAccessException " +e1);
+			} catch (IllegalArgumentException e1) {
+				logger.error("IllegalArgumentException " +e1);
+			} catch (InvocationTargetException e1) {
+				logger.error("InvocationTargetException " +e1);
+			}
+			return null;
+		}
+
 		try {
 			return access.invoke(obj, method.getName(), args);
 		} catch (ClassCastException e) {
