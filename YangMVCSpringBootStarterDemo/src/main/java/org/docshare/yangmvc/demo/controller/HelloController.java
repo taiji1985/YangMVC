@@ -24,7 +24,7 @@ public class HelloController extends Controller {
             "简洁的API - 轻松开发Web应用",
             "强大的ORM功能 - 内置轻量级ORM框架"
         });
-        render("/hello/index.html");
+        renderFreeMarker("/hello/index.html");
     }
 
     /**
@@ -38,7 +38,7 @@ public class HelloController extends Controller {
             "item1", "item2", "item3", "item4", "item5"
         });
         put("timestamp", System.currentTimeMillis());
-        render("/hello/json.html");
+        renderFreeMarker("/hello/json.html");
     }
 
     /**
@@ -53,7 +53,7 @@ public class HelloController extends Controller {
         put("name", name);
         put("greeting", "Hello, " + name + "!");
         put("timestamp", System.currentTimeMillis());
-        render("/hello/echo.html");
+        renderFreeMarker("/hello/echo.html");
     }
 
     /**
@@ -84,7 +84,7 @@ public class HelloController extends Controller {
         put("message", "这是您第 " + count + " 次访问");
         put("lastVisitTime", new java.util.Date());
 
-        render("/hello/session.html");
+        renderFreeMarker("/hello/session.html");
     }
 
     /**
@@ -95,7 +95,7 @@ public class HelloController extends Controller {
         put("title", "关于 YangMVC");
         put("description", "YangMVC 是一个轻量级的 Java MVC 框架");
         put("version", "2025.07.06");
-        render("/hello/about.html");
+        renderFreeMarker("/hello/about.html");
     }
 
     /**

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .user-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+        }
+        .field {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .field:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: 600;
+            color: #495057;
+            width: 100px;
+            flex-shrink: 0;
+        }
+        .value {
+            color: #212529;
+            flex: 1;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            margin: 0 auto 30px;
+        }
+        .actions {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #764ba2;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👤 ${title}</h1>
+        </div>
+
+        <div class="content">
+            <div class="avatar">
+                ${user.name?substring(0, 1)!'?'}
+            </div>
+
+            <div class="user-card">
+                <div class="field">
+                    <div class="label">用户 ID:</div>
+                    <div class="value">${user.id}</div>
+                </div>
+                <div class="field">
+                    <div class="label">姓名:</div>
+                    <div class="value">${user.name}</div>
+                </div>
+                <div class="field">
+                    <div class="label">邮箱:</div>
+                    <div class="value">${user.email}</div>
+                </div>
+                <div class="field">
+                    <div class="label">年龄:</div>
+                    <div class="value">${user.age} 岁</div>
+                </div>
+                <div class="field">
+                    <div class="label">城市:</div>
+                    <div class="value">${user.city}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="/user/edit?id=${user.id}" class="btn btn-primary">✏️ 编辑</a>
+            <a href="/user/list" class="btn btn-secondary">← 返回列表</a>
+        </div>
+    </div>
+</body>
+</html>

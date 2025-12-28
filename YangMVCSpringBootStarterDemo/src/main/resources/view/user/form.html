@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .form {
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .actions {
+            padding: 20px 40px;
+            background: #f8f9fa;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #764ba2;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .required {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><#if user??>✏️ 编辑用户<#else>➕ 添加用户</#if></h1>
+        </div>
+
+        <form class="form" action="/user/save" method="POST">
+            <#if user??>
+            <input type="hidden" name="id" value="${user.id}" />
+            </#if>
+
+            <div class="form-group">
+                <label for="name">姓名 <span class="required">*</span></label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="<#if user??>${user.name}</#if>"
+                    required
+                    placeholder="请输入姓名"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="email">邮箱 <span class="required">*</span></label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="<#if user??>${user.email}</#if>"
+                    required
+                    placeholder="请输入邮箱"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="age">年龄</label>
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    value="<#if user??>${user.age}</#if>"
+                    min="1"
+                    max="150"
+                    placeholder="请输入年龄"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="city">城市</label>
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value="<#if user??>${user.city}</#if>"
+                    placeholder="请输入城市"
+                />
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">💾 保存</button>
+                <a href="/user/list" class="btn btn-secondary">取消</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 表单验证
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (!name) {
+                e.preventDefault();
+                alert('请输入姓名');
+                return false;
+            }
+
+            if (!email) {
+                e.preventDefault();
+                alert('请输入邮箱');
+                return false;
+            }
+
+            // 邮箱格式验证
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                alert('请输入有效的邮箱地址');
+                return false;
+            }
+        });
+    </script>
+</body>
+</html>

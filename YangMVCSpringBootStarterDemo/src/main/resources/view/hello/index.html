@@ -24,9 +24,9 @@
             <section class="features">
                 <h2>✨ 核心特性</h2>
                 <ul class="feature-list">
-                    <% for (String feature : features) { %>
+                    <#list features as feature>
                     <li>${feature}</li>
-                    <% } %>
+                    </#list>
                 </ul>
             </section>
 

@@ -2,6 +2,20 @@
 
 ## 📚 文档导航
 
+### 核心对比文档
+
+1. **[Spring MVC vs YangMVC 反射调用对比](./Spring_MVC_vs_YangMVC_反射调用对比.md)**
+   - Spring MVC 和 YangMVC 的方法调用机制对比
+   - ReflectASM vs 标准反射的性能差异
+   - 参数绑定、缓存策略对比
+   - 适合理解框架底层实现
+
+2. **[YangMVC 值得改进的方向](./YangMVC值得改进的方向.md)**
+   - 按优先级分类的改进建议
+   - P1: ReflectASM 稳定性、启动优化
+   - P2: 响应缓存、类型安全参数绑定、集成测试
+   - P3: 代码生成器、监控接口、文档系统
+
 ### 性能对比文档
 路径: `docs/performance-comparison/`
 

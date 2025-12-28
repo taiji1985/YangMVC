@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo - YangMVC Spring Boot Starter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .message {
+            font-size: 24px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 5px;
+        }
+        .form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        input[type="submit"]:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Echo 功能演示</h1>
+
+        <div class="message">
+            ${greeting}
+        </div>
+
+        <div class="info">
+            <p><strong>您的名字:</strong> ${name}</p>
+            <p><strong>时间戳:</strong> ${timestamp}</p>
+        </div>
+
+        <div class="form">
+            <form action="/hello/echo" method="GET">
+                <label for="name">请输入您的名字:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name">
+                <input type="submit" value="提交">
+            </form>
+        </div>
+
+        <p style="margin-top: 20px;">
+            <a href="/hello/index">← 返回首页</a>
+        </p>
+    </div>
+</body>
+</html>

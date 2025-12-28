@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session演示 - YangMVC Spring Boot Starter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .refresh-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .refresh-btn:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Session 功能演示</h1>
+
+        <div class="stat-card">
+            <p>访问次数</p>
+            <div class="stat-number">${visitCount}</div>
+        </div>
+
+        <div class="info-box">
+            <p><strong>${message}</strong></p>
+            <p><strong>上次访问时间:</strong> ${lastVisitTime}</p>
+        </div>
+
+        <p>
+            <a href="/hello/sessionDemo" class="refresh-btn">刷新页面</a>
+            <a href="/hello/index" class="refresh-btn" style="background: #4caf50;">返回首页</a>
+        </p>
+
+        <div style="margin-top: 30px; padding: 15px; background: #fff3cd; border-radius: 5px; font-size: 14px;">
+            <strong>提示:</strong> 每次刷新页面，访问次数都会增加。这个数据存储在服务器端的 Session 中。
+        </div>
+    </div>
+</body>
+</html>

@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.except.NullParamException;
@@ -441,18 +442,41 @@ public class Controller {
 	 * @return 存在返回true，否则返回false
 	 */
 	public boolean existFile(String path){
-		@SuppressWarnings("deprecation")
-		String p = request().getRealPath(path);
-		if(p==null){
-			//p = request().getServletContext().getRealPath(path);
-			try {
-				return  null !=  application().getResource(path);
-			} catch (MalformedURLException e) {
-				return false;
+		// 方法1: 尝试使用 ServletContext.getResource (适用于 Web 资源)
+		try {
+			if (application().getResource(path) != null) {
+				logger.debug("Resource found via ServletContext.getResource: " + path);
+				return true;
 			}
-		}else{
-			return new File(p).exists();
+		} catch (MalformedURLException e1) {
+			logger.debug("ServletContext.getResource failed for: " + path);
 		}
+
+		// 方法2: 尝试使用 classpath 资源加载 (适用于 Spring Boot JAR 包内的资源)
+		// 去掉开头的 /，因为 ClassLoader.getResource 不接受以 / 开头的路径
+		String classpathPath = path.startsWith("/") ? path.substring(1) : path;
+		try {
+			if (Thread.currentThread().getContextClassLoader().getResource(classpathPath) != null) {
+				logger.debug("Resource found via ClassLoader: " + classpathPath);
+				return true;
+			}
+		} catch (Exception e2) {
+			logger.debug("ClassLoader.getResource failed for: " + classpathPath);
+		}
+
+		// 方法3: 尝试使用 ServletContext.getRealPath (适用于解压的文件系统)
+		@SuppressWarnings("deprecation")
+		String realPath = request().getRealPath(path);
+		if (realPath != null) {
+			File file = new File(realPath);
+			if (file.exists()) {
+				logger.debug("Resource found via getRealPath: " + realPath);
+				return true;
+			}
+		}
+
+		logger.debug("Resource not found: " + path);
+		return false;
 	}
 	/**
 	 * 渲染一个模板，模板为参数view指定，这个路径是相对于配置中的template目录的。
@@ -483,13 +507,39 @@ public class Controller {
 		
 		
 		RequestDispatcher d = request().getRequestDispatcher(path);
+		boolean forwardSuccess = false;
 		try {
 			logger.debug("dispatcher to " + path);
 			d.forward(request(), response());
+			forwardSuccess = true;
 		} catch (ServletException e) {
-			logger.error("", e);
+			logger.debug("RequestDispatcher.forward failed: " + e.getMessage());
 		} catch (IOException e) {
-			logger.error("", e);
+			logger.debug("RequestDispatcher.forward failed: " + e.getMessage());
+		}
+
+		// 如果 forward 失败，尝试直接读取 classpath 资源 (Spring Boot JAR 场景)
+		if (!forwardSuccess && !response().isCommitted()) {
+			try {
+				String classpathPath = path.startsWith("/") ? path.substring(1) : path;
+				InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(classpathPath);
+				if (is != null) {
+					logger.info("Reading template from classpath: " + classpathPath);
+					response().setContentType("text/html;charset=" + Config.encoding);
+					String templateContent = IOUtils.toString(is, Config.encoding);
+					is.close();
+					// 简单的 $variable 替换
+					java.util.Map<String, Object> context = getContext().getRoot();
+					for (String key : context.keySet()) {
+						templateContent = templateContent.replace("$" + key,
+							context.get(key) != null ? context.get(key).toString() : "");
+					}
+					response().getWriter().write(templateContent);
+					return;
+				}
+			} catch (Exception ex) {
+				logger.error("Fallback to classpath resource failed", ex);
+			}
 		}
 	}
 

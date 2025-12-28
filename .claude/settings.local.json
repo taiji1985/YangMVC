@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(mvn clean compile:*)",
-      "Bash(mvn package:*)"
+      "Bash(mvn package:*)",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(for file in *.html:*)",
+      "Bash(do sed:*)",
+      "Bash(done)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []

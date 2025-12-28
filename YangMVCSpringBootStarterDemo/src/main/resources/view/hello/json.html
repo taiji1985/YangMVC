@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON数据 - YangMVC Spring Boot Starter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #4caf50;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JSON 数据展示</h1>
+
+        <span class="status">${status}</span>
+        <p>${message}</p>
+
+        <h3>数据数组:</h3>
+        <pre>
+{
+  "status": "${status}",
+  "message": "${message}",
+  "timestamp": ${timestamp},
+  "data": [
+    <#list data as item>
+    "${item}"<#if item_has_next>,</#if>
+    </#list>
+  ]
+}
+        </pre>
+
+        <a href="/hello/index" class="back-link">← 返回首页</a>
+    </div>
+</body>
+</html>

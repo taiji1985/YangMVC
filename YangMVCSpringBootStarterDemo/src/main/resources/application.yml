@@ -29,10 +29,12 @@ spring:
       enabled: true
       path: /h2-console
 
-  # DevTools配置 - 禁用重启以避免类加载器问题
+  # DevTools配置
   devtools:
     restart:
-      enabled: false
+      enabled: true  # 启用自动重启
+    livereload:
+      enabled: true  # 启用浏览器自动刷新
 
 # 日志配置
 logging:
