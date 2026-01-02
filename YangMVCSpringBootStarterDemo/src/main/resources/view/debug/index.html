@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>${title!}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #333; }
+        .debug-section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .debug-section h2 { color: #2196F3; margin-top: 0; }
+        pre { background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .btn { display: inline-block; padding: 10px 20px; margin: 5px; background: #2196F3; color: white; text-decoration: none; border-radius: 4px; }
+        .btn:hover { background: #1976D2; }
+    </style>
+</head>
+<body>
+    <h1>${title!}</h1>
+
+    <div class="debug-section">
+        <h2>调试工具</h2>
+        <p>点击下面的链接查看数据库调试信息：</p>
+
+        <p>
+            <a href="/debug/student/structure" class="btn" target="_blank">查看student表结构</a>
+        </p>
+
+        <p>
+            <a href="/debug/student/data" class="btn" target="_blank">查看student表数据</a>
+        </p>
+
+        <p>
+            <a href="/db/student/list" class="btn" target="_blank">返回学生列表</a>
+        </p>
+    </div>
+
+    <div class="debug-section">
+        <h2>使用说明</h2>
+        <ol>
+            <li>点击"查看student表结构"可以看到表中的字段名和类型</li>
+            <li>点击"查看student表数据"可以看到实际的数据内容</li>
+            <li>如果字段名不对，需要在模板中修改对应的字段名</li>
+        </ol>
+    </div>
+
+    <div class="debug-section">
+        <h2>常见问题</h2>
+        <p><strong>问题</strong>：数据显示为空或字段不显示</p>
+        <p><strong>原因</strong>：数据库字段名与模板中使用的字段名不匹配</p>
+        <p><strong>解决</strong>：检查实际的字段名，然后在模板中使用正确的字段名</p>
+    </div>
+</body>
+</html>

@@ -6,7 +6,7 @@ Model类是YangMVC框架中的核心ORM组件，实现了`Map<String,Object>`接
 
 ## 类信息
 
-- **包名**: `org.docshare.orm`
+- **包名**: `org.docshare.yangmvc.orm`
 - **实现接口**: `Map<String,Object>`
 - **设计模式**: ActiveRecord模式
 - **特点**: 动态映射，无需预定义实体类

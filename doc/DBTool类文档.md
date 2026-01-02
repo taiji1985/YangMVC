@@ -6,7 +6,7 @@ DBTool类是YangMVC框架ORM功能的核心类，负责数据库表的查询、�
 
 ## 类信息
 
-- **包名**: `org.docshare.orm`
+- **包名**: `org.docshare.yangmvc.orm`
 - **作者**: Tongfeng Yang
 - **设计模式**: Builder模式、工厂模式、单例模式
 - **特点**: 链式调用、延迟加载、自动缓存

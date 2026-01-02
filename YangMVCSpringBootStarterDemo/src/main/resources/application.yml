@@ -11,23 +11,22 @@ yangmvc:
 # Spring数据源配置
 spring:
   datasource:
-    # 使用H2内存数据库（Demo环境）
-    url: jdbc:h2:mem:demodb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    # 使用MySQL数据库
+    url: jdbc:mysql://localhost:3309/teach?useSSL=false&serverTimezone=UTC&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
 
-    # 如果要使用MySQL，取消下面的注释并注释掉上面的H2配置
-    #url: jdbc:mysql://localhost:3306/yangmvc_demo?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #username: root
-    #password: your_password
+    # H2配置（已禁用）
+    #url: jdbc:h2:mem:demodb
+    #driver-class-name: org.h2.Driver
+    #username: sa
+    #password:
 
-  # H2控制台（可选）
+  # H2控制台（已禁用）
   h2:
     console:
-      enabled: true
-      path: /h2-console
+      enabled: false
 
   # DevTools配置
   devtools:

@@ -10,7 +10,9 @@
       "Bash(for file in *.html:*)",
       "Bash(do sed:*)",
       "Bash(done)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(mysql:*)",
+      "Bash(mvn clean install:*)"
     ],
     "deny": [],
     "ask": []

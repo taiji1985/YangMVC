@@ -6,7 +6,7 @@ Controller类是YangMVC框架中所有控制器的父类，提供了完整的MVC
 
 ## 类信息
 
-- **包名**: `org.docshare.mvc`
+- **包名**: `org.docshare.yangmvc.mvc`
 - **作者**: 杨同峰
 - **继承关系**: 所有业务控制器都需要继承此类
 - **设计模式**: 模板方法模式，提供基础功能，子类实现具体业务逻辑
@@ -39,7 +39,8 @@ public String param(String name)
 public String param(String name, String defaultValue)
 
 // 获取整数参数
-public int paramInt(String name, int defaultValue)
+public Integer paramInt(String p)           // 返回Integer，参数不存在返回null
+public Integer paramInt(String p, int def)  // 返回整数，参数不存在返回默认值
 
 // 获取参数映射
 public Map<String, String[]> getParamMap()
@@ -60,7 +61,7 @@ public class BookController extends Controller {
     public void add() {
         // 获取参数
         String title = param("title");
-        int price = paramInt("price", 0);
+        Integer price = paramInt("price", 0);
         
         // 或者自动收集到Model
         Model book = Model.tool("book").create();

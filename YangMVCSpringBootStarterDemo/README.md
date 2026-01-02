@@ -613,6 +613,153 @@ public class MyController extends Controller {
 }
 ```
 
+
+## 💾 数据库功能演示
+
+本项目包含完整的数据库操作演示，使用 YangMVC 的 ORM 功能操作 MySQL 数据库。
+
+### 数据库配置
+
+项目使用 `teach` 数据库，包含以下表：
+
+- **student** - 学生表
+- **course** - 课程表
+- **user** - 用户表
+- **selection** - 选课表
+
+### 配置数据源
+
+在 `application.yml` 中配置 MySQL 连接：
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3309/teach?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+```
+
+### 访问数据库演示
+
+启动应用后，访问以下 URL 体验数据库功能：
+
+#### 学生管理
+
+- **学生列表**: http://localhost:8080/db/student/list
+- **添加学生**: http://localhost:8080/db/student/add
+- **编辑学生**: http://localhost:8080/db/student/edit?id=1
+
+#### JSON API
+
+- **获取单个学生**: http://localhost:8080/db/student/get?id=1
+- **学生统计**: http://localhost:8080/db/student/stats
+- **课程列表 API**: http://localhost:8080/db/course/api
+- **搜索课程**: http://localhost:8080/db/course/search?keyword=java
+
+#### 数据库首页
+
+- **数据库演示首页**: http://localhost:8080/db/index
+
+### YangMVC ORM API 速查
+
+#### 1. 查询数据
+
+```java
+// 获取表的工具对象
+Model.tool("表名")
+
+// 查询所有记录
+LasyList students = Model.tool("student").all();
+
+// 根据主键获取
+Model student = Model.tool("student").get(1);
+
+// 条件查询
+LasyList list = Model.tool("student").all()
+    .eq("name", "张三")
+    .gt("height", 170);
+
+// 模糊查询
+LasyList list = Model.tool("course").all()
+    .like("course_name", "%Java%");
+```
+
+#### 2. 创建和保存
+
+```java
+// 创建新记录
+Model student = Model.tool("student").create();
+student.put("name", "张三");
+student.put("height", 175.0);
+student.put("weight", 70.0);
+student.save();  // 保存到数据库
+```
+
+#### 3. 更新数据
+
+```java
+// 获取并更新
+Model student = Model.tool("student").get(1);
+student.put("height", 180.0);
+student.save();  // 保存更新
+```
+
+#### 4. 删除数据
+
+```java
+// 根据主键删除
+Model.tool("student").del(1);
+
+// 或通过 Model 对象删除
+Model student = Model.tool("student").get(1);
+student.delete();
+```
+
+#### 5. 分页和排序
+
+```java
+// 分页查询
+LasyList students = Model.tool("student").all()
+    .orderby("id", false)
+    .page(1, 10);
+
+// 排序
+LasyList students = Model.tool("student").all()
+    .orderby("height", false);  // 降序
+```
+
+### Model 对象方法
+
+```java
+// 获取字段值
+Object id = model.get("id");
+String name = model.getStr("name");
+Integer age = model.getInt("age");
+Double height = model.getDouble("height");
+
+// 设置字段值
+model.put("name", "李四");
+model.put("age", 20);
+
+// 保存到数据库
+model.save();
+
+// 获取所有字段名
+String[] keys = model.keys();
+```
+
+### 完整示例
+
+查看 `DbDemoController.java` 了解完整的 CRUD 操作示例：
+
+- **查询列表**: `studentList()` 方法
+- **查询单个**: `studentGet()` 方法
+- **新增记录**: `studentSave()` 方法（id 为 null 时）
+- **更新记录**: `studentSave()` 方法（id 不为 null 时）
+- **删除记录**: `studentDelete()` 方法
+- **统计查询**: `studentStats()` 方法
+
 ## 📦 Demo 项目
 
 本目录包含完整的 Demo 项目，展示了各种用法：

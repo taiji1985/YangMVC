@@ -48,7 +48,7 @@ public class UserController extends Controller {
      * 访问路径: /user/edit?id=1
      */
     public void edit() {
-        Integer id = intParam("id");
+        Integer id = paramInt("id");
         User user = getUserById(id);
         if (user != null) {
             put("user", user);
@@ -56,7 +56,7 @@ public class UserController extends Controller {
             renderFreeMarker("/user/form.html");
         } else {
             put("error", "用户不存在");
-            jsonError(404, "用户不存在");
+            renderFreeMarker("/user/error.html");
         }
     }
 
@@ -65,7 +65,7 @@ public class UserController extends Controller {
      * 访问路径: /user/view?id=1
      */
     public void view() {
-        Integer id = intParam("id");
+        Integer id = paramInt("id");
         User user = getUserById(id);
         if (user != null) {
             put("user", user);
@@ -73,7 +73,7 @@ public class UserController extends Controller {
             renderFreeMarker("/user/view.html");
         } else {
             put("error", "用户不存在");
-            jsonError(404, "用户不存在");
+            renderFreeMarker("/user/error.html");
         }
     }
 
@@ -82,10 +82,10 @@ public class UserController extends Controller {
      * 访问路径: /user/save (POST)
      */
     public Object save() {
-        Integer id = intParam("id");
+        Integer id = paramInt("id");
         String name = param("name");
         String email = param("email");
-        Integer age = intParam("age");
+        Integer age = paramInt("age");
         String city = param("city");
 
         // 简单验证
@@ -117,7 +117,7 @@ public class UserController extends Controller {
      * 访问路径: /user/delete?id=1
      */
     public Object delete() {
-        Integer id = intParam("id");
+        Integer id = paramInt("id");
 
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("status", "success");

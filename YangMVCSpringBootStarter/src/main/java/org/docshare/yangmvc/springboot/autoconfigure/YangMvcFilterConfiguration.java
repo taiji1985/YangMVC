@@ -1,6 +1,7 @@
 package org.docshare.yangmvc.springboot.autoconfigure;
 
 import org.docshare.yangmvc.mvc.Config;
+import org.docshare.yangmvc.springboot.application.ContextHolder;
 import org.docshare.yangmvc.springboot.filter.DelayedInitMVCFilter;
 import org.docshare.yangmvc.springboot.properties.YangMvcProperties;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -74,18 +76,25 @@ public class YangMvcFilterConfiguration {
      * 这个Runner会在应用启动后执行，确保：
      * 1. YangMVC配置已加载
      * 2. MVCFilter已正确初始化
+     * 3. ApplicationContext已设置到ContextHolder
      *
      * @param properties          YangMVC配置属性
      * @param dataSourceProvider  Spring Boot数据源（可选）
+     * @param applicationContext  Spring应用上下文
      * @return CommandLineRunner实例
      */
     @Bean
     public CommandLineRunner yangMvcInitializer(
             YangMvcProperties properties,
-            ObjectProvider<DataSource> dataSourceProvider) {
+            ObjectProvider<DataSource> dataSourceProvider,
+            ApplicationContext applicationContext) {
 
         return args -> {
             logger.info("Initializing YangMVC...");
+
+            // 设置ApplicationContext到ContextHolder，供SpringBootConnectionPool使用
+            ContextHolder.setApplicationContext(applicationContext);
+            logger.info("ApplicationContext has been set to ContextHolder for SpringBootConnectionPool");
 
             // 检查Spring Boot是否配置了DataSource
             if (dataSourceProvider.getIfAvailable() != null) {

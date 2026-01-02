@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title!"YangMVC 方法参数自动映射演示"}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .info-box code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+
+        .demo-section {
+            margin-bottom: 40px;
+        }
+
+        .demo-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .demo-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .demo-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .demo-card .url {
+            background: #2d3748;
+            color: #48bb78;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+
+        .demo-card .description {
+            color: #666;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .demo-card .method-signature {
+            background: #1a202c;
+            color: #63b3ed;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .demo-card .try-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .demo-card .try-button:hover {
+            background: #5568d3;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+
+        .badge.new {
+            background: #ef4444;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 YangMVC 方法参数自动映射</h1>
+            <p>无需手动获取参数，让代码更简洁优雅</p>
+        </div>
+
+        <div class="content">
+            <div class="info-box">
+                <h3>✨ 核心特性</h3>
+                <p>YangMVC支持将HTTP请求参数自动映射到控制器方法的参数中。只需在<code>pom.xml</code>中添加<code>-parameters</code>编译参数即可使用。</p>
+                <p style="margin-top: 10px;"><strong>传统方式</strong> vs <strong>自动映射</strong>：</p>
+                <pre style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin-top: 10px;">
+<span style="color: #999;">// ❌ 传统方式</span>
+public void login() {
+    String username = param("username");
+    String password = param("password");
+}
+
+<span style="color: #999;">// ✅ 自动映射</span>
+public void login(String username, String password) {
+    // 直接使用参数
+}</pre>
+            </div>
+
+            <div class="demo-section">
+                <h2>📋 演示示例</h2>
+
+                <!-- 示例1 -->
+                <div class="demo-card">
+                    <h3>1️⃣ 基本运算 <span class="badge">简单</span></h3>
+                    <div class="description">演示两个整数相加，展示基本类型参数的自动映射</div>
+                    <div class="method-signature">public Integer add(Integer a, Integer b)</div>
+                    <div class="url">GET /param/add?a=10&b=20</div>
+                    <a href="/param/add?a=10&b=20" class="try-button" target="_blank">🎯 试一试</a>
+                </div>
+
+                <!-- 示例2 -->
+                <div class="demo-card">
+                    <h3>2️⃣ 字符串参数 <span class="badge">简单</span></h3>
+                    <div class="description">演示字符串参数的自动映射，包含空值处理</div>
+                    <div class="method-signature">public String greeting(String name)</div>
+                    <div class="url">GET /param/greeting?name=张三</div>
+                    <a href="/param/greeting?name=张三" class="try-button" target="_blank">🎯 试一试</a>
+                    <a href="/param/greeting" class="try-button" target="_blank">🎯 试一试（无参数）</a>
+                </div>
+
+                <!-- 示例3 -->
+                <div class="demo-card">
+                    <h3>3️⃣ 多种类型 <span class="badge">综合</span></h3>
+                    <div class="description">演示同时使用String、Integer、Double、Boolean等多种类型参数</div>
+                    <div class="method-signature">public Object multi(String username, Integer age, Double price, Boolean active)</div>
+                    <div class="url">GET /param/multi?username=admin&age=25&price=99.9&active=true</div>
+                    <a href="/param/multi?username=admin&age=25&price=99.9&active=true" class="try-button" target="_blank">🎯 试一试</a>
+                </div>
+
+                <!-- 示例4 -->
+                <div class="demo-card">
+                    <h3>4️⃣ 分页查询 <span class="badge new">实用</span></h3>
+                    <div class="description">实际应用中常用的分页查询功能</div>
+                    <div class="method-signature">public Object users(Integer page, Integer pageSize)</div>
+                    <div class="url">GET /param/users?page=1&pageSize=10</div>
+                    <a href="/param/users?page=1&pageSize=5" class="try-button" target="_blank">🎯 试一试</a>
+                </div>
+
+                <!-- 示例5 -->
+                <div class="demo-card">
+                    <h3>5️⃣ 模糊搜索 <span class="badge new">实用</span></h3>
+                    <div class="description">演示数据库模糊查询功能</div>
+                    <div class="method-signature">public Object search(String keyword)</div>
+                    <div class="url">GET /param/search?keyword=张</div>
+                    <a href="/param/search?keyword=张" class="try-button" target="_blank">🎯 试一试</a>
+                </div>
+
+                <!-- 示例6 -->
+                <div class="demo-card">
+                    <h3>6️⃣ 用户登录 <span class="badge new">实际场景</span></h3>
+                    <div class="description">模拟用户登录场景，包含参数验证</div>
+                    <div class="method-signature">public Object login(String username, String password)</div>
+                    <div class="url">GET /param/login?username=admin&password=123456</div>
+                    <a href="/param/login?username=admin&password=123456" class="try-button" target="_blank">🎯 试一试</a>
+                </div>
+
+                <!-- 示例7 -->
+                <div class="demo-card">
+                    <h3>7️⃣ 保存数据 <span class="badge new">实际场景</span></h3>
+                    <div class="description">演示数据保存操作，需要POST请求</div>
+                    <div class="method-signature">public Object saveUser(String name, Double height, Double weight)</div>
+                    <div class="url">POST /param/saveUser + JSON Body</div>
+                    <div style="color: #666; font-size: 0.9em; margin-top: 10px;">
+                        💡 提示：此接口需要使用Postman或curl等工具测试
+                    </div>
+                </div>
+
+                <!-- 示例8 -->
+                <div class="demo-card">
+                    <h3>8️⃣ 混合使用 <span class="badge">高级</span></h3>
+                    <div class="description">演示自动映射和手动获取参数的混合使用</div>
+                    <div class="method-signature">public Object mixed(String name) // name自动映射，id手动获取</div>
+                    <div class="url">GET /param/mixed?name=王五&id=1</div>
+                    <a href="/param/mixed?name=王五&id=1" class="try-button" target="_blank">🎯 试一试</a>
+                </div>
+            </div>
+
+            <div class="info-box" style="background: #fff3cd; border-left-color: #ffc107;">
+                <h3>⚠️ 注意事项</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>必须在<code>pom.xml</code>中添加<code>-parameters</code>编译参数</li>
+                    <li>参数名必须与HTTP请求参数名<strong>完全一致</strong>（区分大小写）</li>
+                    <li>如果参数不存在，自动映射的参数值为<code>null</code></li>
+                    <li>建议对可能为<code>null</code>的参数进行判空处理</li>
+                    <li>支持类型：String、Integer、Long、Double、Boolean等基本类型</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>YangMVC Framework - 方法参数自动映射演示</p>
+            <p style="margin-top: 5px;">版本: 2025.07.06 | 更新: 2026-01-02</p>
+        </footer>
+    </div>
+</body>
+</html>

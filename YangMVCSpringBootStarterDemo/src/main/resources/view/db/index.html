@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${title!}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #333; }
+        .section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .section h2 { color: #2196F3; }
+        ul { line-height: 2; }
+        a { color: #2196F3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>${title!}</h1>
+
+    <div class="section">
+        <h2>学生管理</h2>
+        <ul>
+            <li><a href="/db-demo/studentList">学生列表</a></li>
+            <li><a href="/db-demo/studentAdd">添加学生</a></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>课程管理</h2>
+        <ul>
+            <li><a href="/db-demo/courseList">课程列表</a></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>JSON API</h2>
+        <ul>
+            <li><a href="/db-demo/studentGet?id=1" target="_blank">获取单个学生 (JSON)</a></li>
+            <li><a href="/db-demo/studentStats" target="_blank">学生统计 (JSON)</a></li>
+            <li><a href="/db-demo/courseApi" target="_blank">课程列表 API (JSON)</a></li>
+            <li><a href="/db-demo/courseSearch?keyword=java" target="_blank">搜索课程 (JSON)</a></li>
+        </ul>
+    </div>
+</body>
+</html>

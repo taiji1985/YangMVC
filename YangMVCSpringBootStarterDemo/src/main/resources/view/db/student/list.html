@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${title!}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #2196F3; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        .btn { padding: 8px 16px; margin: 5px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-primary { background-color: #2196F3; color: white; }
+        .btn-danger { background-color: #f44336; color: white; }
+        .btn-warning { background-color: #ff9800; color: white; }
+        a { text-decoration: none; }
+        .back { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="back">
+        <a href="/db-demo/" class="btn btn-primary">返回首页</a>
+        <a href="/db-demo/studentAdd" class="btn btn-primary">添加学生</a>
+    </div>
+
+    <h1>${title!}（共 ${total!0} 人）</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>身高</th>
+                <th>体重</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <#list students as student>
+            <tr>
+                <td>${student.id!}</td>
+                <td>${student.name!}</td>
+                <td>${student.height!}</td>
+                <td>${student.weight!}</td>
+                <td>
+                    <a href="/db-demo/studentEdit?id=${student.id!}" class="btn btn-warning">编辑</a>
+                    <button onclick="deleteStudent(${student.id!})" class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+        </#list>
+        </tbody>
+    </table>
+
+    <script>
+        function deleteStudent(id) {
+            if (confirm('确定要删除这个学生吗？')) {
+                fetch('/db-demo/studentDelete?id=' + id, {method: 'GET'})
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert('删除成功');
+                            location.reload();
+                        } else {
+                            alert('删除失败: ' + data.message);
+                        }
+                    });
+            }
+        }
+    </script>
+</body>
+</html>
