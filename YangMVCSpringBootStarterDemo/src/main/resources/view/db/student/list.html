@@ -20,7 +20,7 @@
 <body>
     <div class="back">
         <a href="/db-demo/" class="btn btn-primary">返回首页</a>
-        <a href="/db-demo/studentAdd" class="btn btn-primary">添加学生</a>
+        <a href="/db-demo/student-add" class="btn btn-primary">添加学生</a>
     </div>
 
     <h1>${title!}（共 ${total!0} 人）</h1>
@@ -43,7 +43,7 @@
                 <td>${student.height!}</td>
                 <td>${student.weight!}</td>
                 <td>
-                    <a href="/db-demo/studentEdit?id=${student.id!}" class="btn btn-warning">编辑</a>
+                    <a href="/db-demo/student-edit?id=${student.id!}" class="btn btn-warning">编辑</a>
                     <button onclick="deleteStudent(${student.id!})" class="btn btn-danger">删除</button>
                 </td>
             </tr>
@@ -54,7 +54,7 @@
     <script>
         function deleteStudent(id) {
             if (confirm('确定要删除这个学生吗？')) {
-                fetch('/db-demo/studentDelete?id=' + id, {method: 'GET'})
+                fetch('/db-demo/student-delete?id=' + id, {method: 'GET'})
                     .then(res => res.json())
                     .then(data => {
                         if (data.status === 'success') {

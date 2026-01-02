@@ -16,11 +16,11 @@
     </style>
 </head>
 <body>
-    <a href="/db-demo/studentList" class="btn btn-secondary">返回列表</a>
+    <a href="/db-demo/student-list" class="btn btn-secondary">返回列表</a>
 
     <h1>${title!}</h1>
 
-    <form action="/db-demo/studentSave" method="POST">
+    <form action="/db-demo/student-save" method="POST">
         <#if student??>
             <input type="hidden" name="id" value="${student.id!}">
         </#if>
@@ -41,7 +41,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">保存</button>
-        <a href="/db-demo/studentList" class="btn btn-secondary">取消</a>
+        <a href="/db-demo/student-list" class="btn btn-secondary">取消</a>
     </form>
 </body>
 </html>
