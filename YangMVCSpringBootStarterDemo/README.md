@@ -1,262 +1,650 @@
-# YangMVC Spring Boot Starter Demo
+# YangMVC Spring Boot Starter - 使用指南
 
-这是 [YangMVC Spring Boot Starter](https://gitee.com/yangtf/YangMVC) 的完整示例项目。
+本指南演示如何将 Spring Boot 项目与 [YangMVC](https://gitee.com/yangtf/YangMVC) 框架集成。
+
+## 📖 什么是 YangMVC Spring Boot Starter？
+
+YangMVC Spring Boot Starter 是一个自动化配置包，让你在 Spring Boot 项目中零配置使用 YangMVC 框架。
+
+### 核心特性
+
+- **零配置启动** - 只需添加依赖即可使用
+- **自动数据源集成** - 自动使用 Spring Boot 的 DataSource
+- **简洁的 API** - 比传统 Controller 更简洁
+- **内置 ORM** - 轻量级数据库操作
+- **FreeMarker 模板** - 自动集成模板引擎
 
 ## 🚀 快速开始
 
-### 1. 进入项目目录
+### 步骤 1: 添加依赖
 
-```bash
-cd YangMVCSpringBootStarterDemo
+在你的 Spring Boot 项目的 `pom.xml` 中添加：
+
+```xml
+<dependencies>
+    <!-- YangMVC Spring Boot Starter -->
+    <dependency>
+        <groupId>org.docshare</groupId>
+        <artifactId>yangmvc-spring-boot-starter</artifactId>
+        <version>2025.07.06</version>
+    </dependency>
+
+    <!-- Spring Boot Web（通常已有） -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- Spring Boot JDBC（用于数据源支持） -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+</dependencies>
 ```
 
-### 2. 运行应用
+### 步骤 2: 创建配置文件
 
-```bash
-mvn spring-boot:run
+在 `application.yml` 或 `application.properties` 中添加 YangMVC 配置：
+
+**application.yml:**
+
+```yaml
+yangmvc:
+  controller: com.yourpackage.controller  # 你的 Controller 包名
+  template: /view                          # 模板目录（classpath 路径）
+  reloadable: false                        # 生产环境设为 false
+  encoding: utf-8
 ```
 
-或者：
+**application.properties:**
 
-```bash
-mvn clean package
-java -jar target/yangmvc-spring-boot-starter-demo-2025.07.06.jar
+```properties
+yangmvc.controller=com.yourpackage.controller
+yangmvc.template=/view
+yangmvc.reloadable=false
+yangmvc.encoding=utf-8
 ```
 
-### 3. 访问应用
+### 步骤 3: 创建 Controller
 
-应用启动后，访问以下URL：
-
-- **首页**: http://localhost:8080/hello/index
-- **JSON示例**: http://localhost:8080/hello/json
-- **参数示例**: http://localhost:8080/hello/echo?name=YangMVC
-- **Session示例**: http://localhost:8080/hello/sessionDemo
-- **重定向示例**: http://localhost:8080/hello/redirect
-- **API测试**: http://localhost:8080/api/test
-- **系统统计**: http://localhost:8080/api/stats
-- **H2控制台**: http://localhost:8080/h2-console
-
-## 📁 项目结构
-
-```
-YangMVCSpringBootStarterDemo/
-├── src/main/
-│   ├── java/org/docshare/yangmvc/demo/
-│   │   ├── DemoApplication.java          # 主应用类
-│   │   └── controller/
-│   │       ├── HelloController.java      # 基础示例
-│   │       └── ApiController.java        # REST API
-│   └── resources/
-│       ├── application.yml               # 应用配置
-│       ├── db/
-│       │   ├── schema.sql                # 数据库表结构
-│       │   └── data.sql                  # 示例数据
-│       ├── templates/                    # 模板文件
-│       │   └── hello/index.html
-│       └── static/                       # 静态资源
-│           ├── css/style.css
-│           └── js/app.js
-└── pom.xml
-```
-
-## 🎯 功能演示
-
-### 1. 基础示例 (HelloController)
-
-| 方法 | URL | 说明 |
-|------|-----|------|
-| `index()` | `/hello/index` | 首页展示 |
-| `json()` | `/hello/json` | JSON响应 |
-| `echo()` | `/hello/echo?name=xxx` | 参数接收 |
-| `redirect()` | `/hello/redirect` | 重定向 |
-| `sessionDemo()` | `/hello/sessionDemo` | Session管理 |
-
-### 2. REST API (ApiController)
-
-| 方法 | URL | 说明 |
-|------|-----|------|
-| `test()` | `/api/test` | API测试 |
-| `stats()` | `/api/stats` | 系统统计 |
-| `form()` | `/api/form` (POST) | 表单提交 |
-
-## 💻 代码示例
-
-### 创建Controller
+在你的 controller 包下创建类，继承 `org.docshare.yangmvc.mvc.Controller`：
 
 ```java
-package org.docshare.yangmvc.demo.controller;
+package com.yourpackage.controller;
 
 import org.docshare.yangmvc.mvc.Controller;
 
-public class MyController extends Controller {
+public class HelloController extends Controller {
 
-    // 访问路径: /my/index
+    // 访问路径: /hello/index
     public void index() {
         put("title", "我的页面");
         put("message", "Hello YangMVC!");
-        render("my/index.html");
+        renderFreeMarker("/hello/index.html");
     }
 
-    // 访问路径: /my/json
-    public String json() {
-        put("status", "success");
-        put("data", "some data");
-        return "ok";  // 自动返回JSON
+    // 访问路径: /hello/json
+    public Object json() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", "success");
+        result.put("data", "some data");
+        return result;  // 自动转换为 JSON
     }
 }
 ```
 
-### URL映射规则
+### 步骤 4: 创建模板文件
 
-- 控制器类名: `HelloController` -> URL路径: `/hello/*`
-- 方法名: `index()` -> URL: `/hello/index`
-- 完整URL: http://localhost:8080/hello/index
+在 `src/main/resources/view/` 目录下创建模板：
 
-### 返回类型
+`src/main/resources/view/hello/index.html:`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${title!}</title>
+</head>
+<body>
+    <h1>${message!}</h1>
+</body>
+</html>
+```
+
+### 步骤 5: 启动应用
+
+运行你的 Spring Boot 应用，访问：
+- http://localhost:8080/hello/index
+- http://localhost:8080/hello/json
+
+**就这么简单！** YangMVC 会自动扫描配置的包并注册路由。
+
+## 📦 完整集成示例
+
+### 项目结构
+
+```
+your-spring-boot-project/
+├── src/main/
+│   ├── java/com/yourpackage/
+│   │   ├── YourApplication.java           # Spring Boot 主类
+│   │   └── controller/
+│   │       ├── HelloController.java       # YangMVC Controller
+│   │       └── UserController.java        # 另一个 Controller
+│   └── resources/
+│       ├── application.yml                # Spring Boot 配置
+│       ├── view/                          # YangMVC 模板目录
+│       │   ├── hello/
+│       │   │   └── index.html
+│       │   └── user/
+│       │       └── list.html
+│       └── static/                        # 静态资源
+│           ├── css/
+│           └── js/
+└── pom.xml
+```
+
+### 完整的 pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.18</version>
+    </parent>
+
+    <groupId>com.yourpackage</groupId>
+    <artifactId>your-app</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <yangmvc.version>2025.07.06</yangmvc.version>
+    </properties>
+
+    <dependencies>
+        <!-- YangMVC Spring Boot Starter -->
+        <dependency>
+            <groupId>org.docshare</groupId>
+            <artifactId>yangmvc-spring-boot-starter</artifactId>
+            <version>${yangmvc.version}</version>
+        </dependency>
+
+        <!-- Spring Boot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Boot JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- 数据库驱动（根据需要选择） -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- 或 MySQL -->
+        <!--
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        -->
+    </dependencies>
+</project>
+```
+
+### 完整的 application.yml
+
+```yaml
+server:
+  port: 8080
+
+# YangMVC 配置
+yangmvc:
+  controller: com.yourpackage.controller
+  template: /view
+  reloadable: false
+  encoding: utf-8
+
+# Spring 数据源配置（YangMVC 会自动使用）
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+# 日志配置
+logging:
+  level:
+    com.yourpackage: DEBUG
+    org.docshare.yangmvc: DEBUG
+```
+
+## 🔄 从 Spring Boot Controller 迁移
+
+### 传统 Spring Boot Controller
 
 ```java
-// 返回JSON
-public String json() {
-    put("key", "value");
-    return "ok";  // 自动转为JSON
+@RestController
+@RequestMapping("/api/user")
+public class UserController {
+
+    @GetMapping("/{id}")
+    public Map<String, Object> getUser(@PathVariable Long id) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", "success");
+        result.put("id", id);
+        return result;
+    }
+
+    @PostMapping
+    public Map<String, Object> createUser(@RequestBody User user) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", "success");
+        result.put("user", user);
+        return result;
+    }
+}
+```
+
+### YangMVC Controller
+
+```java
+public class UserController extends Controller {
+
+    // 访问路径: /user/get?id=123
+    public Object get() {
+        Long id = longParam("id");
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", "success");
+        result.put("id", id);
+        return result;
+    }
+
+    // 访问路径: /user/create (POST)
+    public Object create() {
+        User user = paramToObject(User.class);
+        Map<String, Object> result = new HashMap<>();
+        result.put("status", "success");
+        result.put("user", user);
+        return result;
+    }
+}
+```
+
+### 对比优势
+
+| 特性 | Spring Boot Controller | YangMVC Controller |
+|------|----------------------|-------------------|
+| 代码量 | 需要注解 | 零注解 |
+| URL 映射 | `@RequestMapping` 等注解 | 方法名即 URL |
+| 参数获取 | `@RequestParam`, `@PathVariable` | `param()`, `intParam()` |
+| 返回 JSON | `@ResponseBody` 或 `@RestController` | 返回对象自动转 JSON |
+| 模板渲染 | 需要 `ModelAndView` | `renderFreeMarker()` |
+
+## 🎯 URL 映射规则
+
+YangMVC 使用约定优于配置的原则：
+
+### 命名规则
+
+```
+Controller 类名       URL 路径           示例
+HelloController   →   /hello/*      →   /hello/index, /hello/test
+UserController    →   /user/*       →   /user/list, /user/add
+ApiUserController →   /apiuser/*    →   /apiuser/get, /apiuser/list
+```
+
+### 方法名映射
+
+```java
+public class HelloController extends Controller {
+    public void index()       // /hello/index
+    public void list()        // /hello/list
+    public void addUser()     // /hello/addUser
+    public Object getJson()   // /hello/getJson
+}
+```
+
+## 📝 核心 API
+
+### 1. 参数获取
+
+```java
+public void demo() {
+    // 获取字符串参数
+    String name = param("name");
+
+    // 获取整数参数
+    Integer age = intParam("age");
+
+    // 获取长整数参数
+    Long id = longParam("id");
+
+    // 获取默认值
+    String name = param("name", "default");
+}
+```
+
+### 2. 返回数据
+
+```java
+// 返回 JSON
+public Object jsonData() {
+    Map<String, Object> result = new HashMap<>();
+    result.put("status", "success");
+    return result;  // 自动转 JSON
 }
 
+// 返回单个对象
+public Object user() {
+    return new User(1, "张三");
+}
+
+// 返回数组
+public Object users() {
+    return new User[]{
+        new User(1, "张三"),
+        new User(2, "李四")
+    };
+}
+```
+
+### 3. 渲染模板
+
+```java
 // 渲染模板
 public void page() {
-    put("data", "value");
-    render();  // 默认模板
+    put("title", "页面标题");
+    put("users", getUserList());
+    renderFreeMarker("/user/list.html");
 }
+```
 
-// 渲染指定模板
-public void custom() {
-    put("data", "value");
-    render("custom/template.html");
-}
+### 4. 重定向
 
-// 重定向
+```java
 public void redirect() {
     jump("/hello/index");
 }
 ```
 
-## 💾 数据库配置
+### 5. Session 操作
 
-### 默认配置（H2内存数据库）
+```java
+// 存储 Session
+sess("username", "张三");
+sess("userId", 123);
 
-项目默认使用H2内存数据库，无需额外配置。
+// 获取 Session
+String username = (String) sess("username");
+Integer userId = (Integer) sess("userId");
+```
 
-H2控制台访问：
-- URL: http://localhost:8080/h2-console
-- JDBC URL: `jdbc:h2:mem:demodb`
-- 用户名: `sa`
-- 密码: (空)
+### 6. 输出文本
 
-### 使用MySQL
+```java
+public void text() {
+    response().setContentType("text/plain;charset=utf-8");
+    output("纯文本输出");
+}
+```
 
-修改 `application.yml`：
+## 🔌 数据库集成
+
+YangMVC 会自动使用 Spring Boot 配置的 DataSource。
+
+### 配置数据源
 
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/yangmvc_demo?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/mydb?useSSL=false&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: your_password
+    password: password
 ```
 
-并添加MySQL依赖：
+### 使用 YangMVC ORM
 
-```xml
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-</dependency>
+```java
+public class UserController extends Controller {
+
+    // 查询列表
+    public Object list() {
+        List<User> users = DB.list(User.class);
+        return users;
+    }
+
+    // 根据 ID 查询
+    public Object get() {
+        Integer id = intParam("id");
+        User user = DB.get(User.class, id);
+        return user;
+    }
+
+    // 保存
+    public Object save() {
+        User user = paramToObject(User.class);
+        DB.save(user);
+        return success("保存成功");
+    }
+
+    // 更新
+    public Object update() {
+        User user = paramToObject(User.class);
+        DB.update(user);
+        return success("更新成功");
+    }
+
+    // 删除
+    public Object delete() {
+        Integer id = intParam("id");
+        DB.delete(User.class, id);
+        return success("删除成功");
+    }
+}
 ```
 
-创建数据库：
+## 🔧 配置详解
 
-```sql
-CREATE DATABASE yangmvc_demo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
+### YangMVC 配置参数
 
-执行初始化脚本：
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `yangmvc.controller` | String | 是 | 无 | Controller 包名 |
+| `yangmvc.template` | String | 否 | `/view` | 模板目录路径 |
+| `yangmvc.reloadable` | Boolean | 否 | `false` | 是否启用热加载 |
+| `yangmvc.encoding` | String | 否 | `utf-8` | 编码格式 |
 
-```bash
-mysql -u root -p yangmvc_demo < src/main/resources/db/schema.sql
-mysql -u root -p yangmvc_demo < src/main/resources/db/data.sql
-```
-
-## 🔧 配置说明
-
-### YangMVC配置
+### 开发环境配置
 
 ```yaml
 yangmvc:
-  controller: org.docshare.yangmvc.demo.controller  # 控制器包名
-  template: /templates                               # 模板目录
-  reloadable: true                                   # 热加载（开发环境）
+  controller: com.yourpackage.controller
+  template: /view
+  reloadable: true   # 开发环境开启热加载
   encoding: utf-8
+
+logging:
+  level:
+    org.docshare.yangmvc: DEBUG  # 开启调试日志
 ```
 
-### 数据源配置
+### 生产环境配置
 
-Spring Boot会自动配置数据源，YangMVC会自动使用。
+```yaml
+yangmvc:
+  controller: com.yourpackage.controller
+  template: /view
+  reloadable: false  # 生产环境关闭热加载
+  encoding: utf-8
 
-## 📝 注意事项
+logging:
+  level:
+    org.docshare.yangmvc: INFO  # 只显示重要日志
+```
 
-1. **模板引擎**: 使用FreeMarker或JSP，需要确保模板文件在配置的目录下
-2. **热加载**: 开发环境建议开启 `reloadable: true`
-3. **数据库**: 默认使用H2，生产环境建议使用MySQL或其他数据库
-4. **端口**: 默认8080，可在 `application.yml` 中修改
+## 🎨 模板使用
 
-## 🐛 问题排查
+### 模板位置
 
-### 应用无法启动
+模板文件放在：`src/main/resources/view/`
 
-- 检查端口是否被占用
-- 查看日志输出的错误信息
-- 确认Maven依赖已正确下载
+### FreeMarker 模板示例
 
-### Controller无法访问
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${title!}</title>
+</head>
+<body>
+    <h1>${message!}</h1>
 
-- 检查controller包名配置是否正确
-- 确认Controller类在配置的包下
-- 查看启动日志中的错误信息
+    <#if users??>
+        <table>
+            <#list users as user>
+                <tr>
+                    <td>${user.id!}</td>
+                    <td>${user.name!}</td>
+                    <td>${user.email!}</td>
+                </tr>
+            </#list>
+        </table>
+    </#if>
+</body>
+</html>
+```
 
-### 数据库连接失败
+## 🐛 常见问题
 
-- 检查数据库配置是否正确
+### 1. Controller 无法访问
+
+**问题**: 访问 URL 返回 404
+
+**解决**:
+- 检查 `application.yml` 中 `yangmvc.controller` 包名是否正确
+- 确认 Controller 类在配置的包下
+- 确认 Controller 继承了 `org.docshare.yangmvc.mvc.Controller`
+- 查看启动日志是否有错误
+
+### 2. 模板找不到
+
+**问题**: 渲染模板时报错找不到文件
+
+**解决**:
+- 确认模板文件在 `src/main/resources/view/` 目录
+- 检查 `application.yml` 中 `yangmvc.template` 配置
+- `renderFreeMarker()` 中的路径应以 `/` 开头
+
+### 3. JSON 乱码
+
+**问题**: 返回的 JSON 中文乱码
+
+**解决**:
+- 检查 `yangmvc.encoding` 是否设置为 `utf-8`
+
+### 4. 数据库连接失败
+
+**问题**: 无法连接数据库
+
+**解决**:
+- 检查 `spring.datasource` 配置是否正确
 - 确认数据库服务已启动
-- 验证数据库用户名密码
+- 验证用户名和密码
 
-## 🎨 自定义开发
+## 📚 进阶话题
 
-### 添加新的Controller
+### 与 Spring Boot Controller 共存
 
-1. 在 `controller` 包下创建新的类
-2. 继承 `Controller`
-3. 实现方法，方法名即为URL路径的一部分
+YangMVC 可以和 Spring Boot 的 Controller 共存：
 
-### 添加静态资源
+```java
+// Spring Boot Controller
+@RestController
+@RequestMapping("/api/v1")
+public class SpringController {
+    @GetMapping("/test")
+    public String test() {
+        return "Spring Boot Controller";
+    }
+}
 
-将CSS、JS、图片等文件放在：
-- `src/main/resources/static/css/`
-- `src/main/resources/static/js/`
-- `src/main/resources/static/images/`
+// YangMVC Controller
+public class YangMVCController extends Controller {
+    public void test() {
+        // /yangmvc/test
+        renderFreeMarker("/test.html");
+    }
+}
+```
 
-### 添加模板文件
+### 使用 Spring Bean
 
-将HTML模板放在：
-- `src/main/resources/templates/`
+在 YangMVC Controller 中使用 Spring Bean：
 
-## 📚 相关链接
+```java
+import org.docshare.yangmvc.springboot.util.SpringContextHolder;
 
-- [YangMVC官方文档](https://gitee.com/yangtf/YangMVC)
-- [YangMVC Spring Boot Starter](../YangMVCSpringBootStarter/)
-- [Spring Boot官方文档](https://spring.io/projects/spring-boot)
-- [H2数据库文档](https://www.h2database.com/html/)
+public class MyController extends Controller {
+    public void index() {
+        // 获取 Spring Bean
+        MyService service = SpringContextHolder.getBean(MyService.class);
+        service.doSomething();
+        renderFreeMarker("/index.html");
+    }
+}
+```
+
+## 📦 Demo 项目
+
+本目录包含完整的 Demo 项目，展示了各种用法：
+
+- **HelloController** - 基础用法
+- **ApiController** - REST API 示例
+- **UserController** - CRUD 操作示例
+
+运行 Demo：
+
+```bash
+cd YangMVCSpringBootStarterDemo
+mvn spring-boot:run
+```
+
+访问：
+- http://localhost:8080/hello/index
+- http://localhost:8080/user/list
+- http://localhost:8080/api/test
+
+## 📚 相关资源
+
+- [YangMVC 官方文档](https://gitee.com/yangtf/YangMVC)
+- [YangMVC Spring Boot Starter 源码](../YangMVCSpringBootStarter/)
+- [Spring Boot 官方文档](https://spring.io/projects/spring-boot)
+- [FreeMarker 文档](https://freemarker.apache.org/docs/)
 
 ## 📄 许可证
 
 [MIT License](../LICENSE)
 
+---
+
+**作者**: YangMVC Team
+**版本**: 2025.07.06
