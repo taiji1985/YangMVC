@@ -511,7 +511,7 @@ public class LasyList extends ListAdapter {
 	 * @param sql sql语句
 	 * @return LasyList对象
 	 */
-	public static LasyList fromRawSql(String sql,Object[] args){
+	public static LasyList fromRawSql(String sql,String... args){
         return new LasyList(sql,args);
 	}
 	public static LasyList fromRawSql(String sql){
