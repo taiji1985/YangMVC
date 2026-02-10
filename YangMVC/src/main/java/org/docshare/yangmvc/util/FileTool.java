@@ -154,8 +154,9 @@ public class FileTool {
 		try {
 			InputStreamReader reader = new InputStreamReader(in, charset);
 			br = new BufferedReader(reader);
-			while (br.ready()) {
-				sb.append(br.readLine() + "\n");
+			String line;
+			while ((line = br.readLine()) != null) {  // 修复：使用 readLine() 返回值判断，而不是 ready()
+				sb.append(line).append("\n");
 			}
 			reader.close();
 		} catch (Exception e) {

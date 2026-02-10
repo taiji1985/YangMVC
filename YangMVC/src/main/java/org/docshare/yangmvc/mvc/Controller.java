@@ -133,6 +133,18 @@ public class Controller {
 		}
 		context.remove();
 	}
+
+	/**
+	 * 清理当前线程的请求上下文（静态方法）
+	 * 用于在请求处理完成后清理 ThreadLocal，避免内存泄漏和数据污染
+	 */
+	public static void clearCurrentContext() {
+		RequestContext ctx = context.get();
+		if (ctx != null) {
+			ctx.clear();
+		}
+		context.remove();
+	}
 	
 
 	
@@ -559,23 +571,22 @@ public class Controller {
 		// 获取当前线程的请求上下文
 		RequestContext ctx = getContext();
 		ctx.clear();
-		
+
 		// 设置请求和响应对象到上下文
 		ctx.setRequest(req);
 		ctx.setResponse(resp);
-		
+
 		// 设置session和application到上下文
 		try{
 			HttpSession sess = req.getSession();
 			ctx.setSession(sess);
 		}catch (Exception e){}
-		
+
 		ServletContext app = req.getServletContext();
 		ctx.setServletContext(app);
-		
+
 		clearOutFlag();
 		String contentType = req.getContentType();
-		//logger.debug("Controller contentType = "+contentType +", uri = "+req.getRequestURI());
 		if(contentType!=null && contentType.startsWith(M_FLAG)){
 			UploadProcesser processer  = new UploadProcesser(this, req, resp, app);
 			try {
@@ -587,13 +598,12 @@ public class Controller {
 			}
 		}
 		//只有请求的contentType 为json时才进行json转换
-		if(contentType!=null && 
+		if(contentType!=null &&
 				(contentType.contains("application/json")
 						|| contentType.contains("text/json"))
 		  ){
 			InputStream in = null;
 			try {
-				logger.debug("start read json ....");
 				in = req.getInputStream();
 				String jsonData = FileTool.readAll(in, "utf-8");
 				if(jsonData!=null){
@@ -603,7 +613,6 @@ public class Controller {
 				if(jsonData != null && jsonData.startsWith("{")){ //如果是一个对象，给予解包
 					jsonToParam();
 				}
-				logger.debug("json readed "+jsonData);
 			} catch (IOException e) {
 				logger.error("", e);
 				e.printStackTrace();
@@ -635,7 +644,7 @@ public class Controller {
 		String json = getContext().getJson();
 		if(json == null)return;
 		JSONObject obj = JSON.parseObject(json);
-		
+
 		getContext().getParamMap().putAll(obj);
 	}
 	/**

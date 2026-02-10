@@ -142,58 +142,63 @@ public class MVCFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req2 = (HttpServletRequest) req;
-		req2.setCharacterEncoding(Config.pageEncoding);
+		try {
+			HttpServletRequest req2 = (HttpServletRequest) req;
+			req2.setCharacterEncoding(Config.pageEncoding);
 
-		String uri = req2.getRequestURI();
-		String context = req2.getContextPath();
-		
-		for(URLFilter urlFilter: Config.urlFilters){
-			if(urlFilter!= null){
-				uri = urlFilter.doFilter(uri, req2, resp);;
+			String uri = req2.getRequestURI();
+			String context = req2.getContextPath();
+
+			for(URLFilter urlFilter: Config.urlFilters){
+				if(urlFilter!= null){
+					uri = urlFilter.doFilter(uri, req2, resp);;
+				}
+				if(uri == null){ //如果返回null，代表不处理
+					chain.doFilter(req, resp);
+					return;
+				}
+				if(uri.equals(URLFilter.DONE)){
+					return ;
+				}
 			}
-			if(uri == null){ //如果返回null，代表不处理
+
+
+			if(context == null) context = "";
+			// 注意：调用 request.getParameter*() 会消耗 InputStream，导致 JSON 请求无法读取
+			// 所以这里只记录基本信息，不记录参数
+			logger.debug("filter > {} {}", ((HttpServletRequest) req).getMethod(), uri);
+			if(uri.contains(".")) {
 				chain.doFilter(req, resp);
 				return;
 			}
-			if(uri.equals(URLFilter.DONE)){
-				return ;
+
+
+			//如果开启reloadable，就不使用缓存。缓存主要是为了加速实际运行。
+			boolean succ = !Config.reloadable && CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
+			if(succ){
+				return;
 			}
-		}
-		
 
-		if(context == null) context = "";
-		logger.debug("filter > {} {}, param = [{}]", ((HttpServletRequest) req).getMethod(), uri, RequestHelper.params(req2));
-		if(uri.contains(".")) {
-			chain.doFilter(req, resp);
-			return;
-		}
-		
-		
-		//如果开启了reloadable，就不再使用缓存。缓存主要是为了加速实际运行。
-		boolean succ = Config.reloadable ?false: CallCacheMap.runCallCache(uri, req2, (HttpServletResponse) resp);
-		if(succ){
-			return;
-		}
-		
-		
-		try {
-			process(uri,context,req2,(HttpServletResponse)resp,chain);
-		} catch (Exception e) {
-			String msg = getErrMsg(e);
-			logger.error("", msg);
 
-			Controller controller = new Controller();
-			controller.setReq(req2, (HttpServletResponse) resp);
-			controller.response().reset();
-			controller.response().setStatus(500);
-			controller.response().setContentType("text/plain");
-			loader.runPostProcessing(uri, controller, msg);
-			
-			//outErr((HttpServletResponse) resp, msg);
+			try {
+				process(uri,context,req2,(HttpServletResponse)resp,chain);
+			} catch (Exception e) {
+				String msg = getErrMsg(e);
+				logger.error("", msg);
+
+				Controller controller = new Controller();
+				controller.setReq(req2, (HttpServletResponse) resp);
+				controller.response().reset();
+				controller.response().setStatus(500);
+				controller.response().setContentType("text/plain");
+				loader.runPostProcessing(uri, controller, msg);
+
+				//outErr((HttpServletResponse) resp, msg);
+			}
+		} finally {
+			// 清理 ThreadLocal，避免内存泄漏和数据污染
+			Controller.clearCurrentContext();
 		}
-		
-		
 	}
 	private String loadConfig(String cfgName,String def){
 		String r = application.getInitParameter(cfgName);
