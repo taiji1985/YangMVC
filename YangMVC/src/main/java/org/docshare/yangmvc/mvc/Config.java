@@ -100,6 +100,32 @@ public class Config {
 	public static boolean single_all_controllers = false;
 
 	/**
+	 * 连接探活的时间窗（毫秒）：在这段时间内复用连接时不再调用 {@code isValid()}。
+	 * 原来每条 SQL 前都 ping 一次（一次网络往返）；默认 30 秒。
+	 */
+	public static int db_valid_interval_ms = 30000;
+
+	/**
+	 * 自研语句池的上限（按 SQL 条数）。超过后按 LRU 淘汰并 close。
+	 */
+	public static int db_statement_cache_size = 128;
+
+	/**
+	 * {@code Model.get("xxx")} 是否允许隐式外键查询（列里没有 xxx、但有 xxx_id 时现场查库）。
+	 * 默认 true（旧行为）；排查 N+1 时可以置为 false。
+	 */
+	public static boolean model_fk_lookup = true;
+
+	/**
+	 * 内置连接池大小（配合 {@code conn_pool=org.docshare.yangmvc.orm.mysql.SimpleConnectionPool}
+	 * 与 {@link #db_close_per_request}=true 使用）。
+	 */
+	public static int db_pool_size = 16;
+
+	/** 内置连接池借连接的超时（毫秒）。 */
+	public static int db_pool_timeout_ms = 5000;
+
+	/**
 	 * web.properties 的解码方式：auto / utf-8 / gbk / gb18030 ...
 	 * auto：先按 UTF-8 严格解码，失败后退回 ISO-8859-1（与旧行为一致）。
 	 */

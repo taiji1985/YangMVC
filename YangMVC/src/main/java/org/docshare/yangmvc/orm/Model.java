@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.mvc.Controller;
 import org.docshare.yangmvc.util.BeanUtil;
 import org.docshare.yangmvc.util.TextTool;
@@ -74,6 +75,18 @@ public class Model implements Map<String,Object> {
 	
 	@Override
 	public boolean containsValue(Object value) {
+		for (Object v : columns.values()) {
+			if (java.util.Objects.equals(v, value)) {
+				return true;
+			}
+		}
+		if (extra != null) {
+			for (Object v : extra.values()) {
+				if (java.util.Objects.equals(v, value)) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	/**
@@ -188,7 +201,18 @@ public class Model implements Map<String,Object> {
 			}
 		}
 		if(k !=null){ //try to visit foreign key
+			if(!Config.model_fk_lookup){
+				return null;
+			}
+			if(joined_tool == null){
+				logger.debug("Model has no joined tool, skip foreign key lookup: {}", k);
+				return null;
+			}
 			ColumnDesc desc = joined_tool.getColumnDesc(k);
+			if(desc == null){ //元数据里没有这列（rawSql/过滤列）
+				logger.debug("no column desc for foreign key: {}", k);
+				return null;
+			}
 			if(desc.pk_table == null){ //没有这个主键
 				return null;
 			}
@@ -274,19 +298,60 @@ public class Model implements Map<String,Object> {
 	@NotNull
     @Override
     public Set<Map.Entry<String, Object>> entrySet() {
-        Set<Map.Entry<String, Object>> s = new HashSet<>();
-        for (String key : this.keySet()) {
-            Map.Entry<String, Object> en = new ModelEntry(key, this.get(key));
-            s.add(en);
-        }
-        if (extra != null) {
-            for (String key : this.extra.keySet()) {
-                Map.Entry<String, Object> en = new ModelEntry(key, extra.get(key));
-                s.add(en);
-            }
-        }
-        return s;
+        return entrySetView;
     }
+
+	/**
+	 * entrySet 的"活视图"：不再每次序列化都 new 一个 HashSet + N 个 Entry。
+	 * fastjson 序列化 Map 时正是走 entrySet()，列表接口能少掉大量小对象。
+	 */
+	private final Set<Map.Entry<String, Object>> entrySetView = new EntrySetView();
+
+	private final class EntrySetView extends AbstractSet<Map.Entry<String, Object>> {
+		@Override
+		public Iterator<Map.Entry<String, Object>> iterator() {
+			return new EntryIterator();
+		}
+
+		@Override
+		public int size() {
+			return columns.size() + (extra == null ? 0 : extra.size());
+		}
+	}
+
+	private final class EntryIterator implements Iterator<Map.Entry<String, Object>> {
+		private final Iterator<String> colKeys = columns.keySet().iterator();
+		private Iterator<String> extraKeys;
+
+		@Override
+		public boolean hasNext() {
+			if (colKeys.hasNext()) {
+				return true;
+			}
+			if (extraKeys == null) {
+				extraKeys = extra == null ? Collections.<String>emptyList().iterator() : extra.keySet().iterator();
+			}
+			return extraKeys.hasNext();
+		}
+
+		@Override
+		public Map.Entry<String, Object> next() {
+			if (colKeys.hasNext()) {
+				String k = colKeys.next();
+				return new ModelEntry(k, columns.get(k));
+			}
+			if (extraKeys == null) {
+				extraKeys = extra == null ? Collections.<String>emptyList().iterator() : extra.keySet().iterator();
+			}
+			String k = extraKeys.next();
+			return new ModelEntry(k, extra.get(k));
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+	}
 	
 	@Override
 	public String toString() {

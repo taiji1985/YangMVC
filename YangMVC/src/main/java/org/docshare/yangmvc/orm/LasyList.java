@@ -31,6 +31,8 @@ public class LasyList extends ListAdapter {
 	private ResultSet rs = null;
 	private final IDBDelegate delegate;
 	private String tbName;   //表格名称
+	/** count(*) 缓存，-1 表示未计算；加约束时失效 */
+	private long countCache = -1;
 	public DBTool getTool(){
 		return tool;
 	}
@@ -57,18 +59,22 @@ public class LasyList extends ListAdapter {
 	
 
 	/**
-	 * 返回列表的大小，使用select count(*)的方式进行查询获取。并根据limit进行修正
+	 * 返回列表的大小，使用select count(*)的方式进行查询获取（结果会缓存，加约束时失效）。
 	 */
 	@Override
 	public int size() {
 		if(arrList!=null){
 			return arrList.size();
 		}
+		if(countCache >= 0){
+			return (int) Math.min(countCache, Integer.MAX_VALUE);
+		}
 		String tmpTBName= tbName;
 		if(rawSql!=null) {
 			tmpTBName = " ("+rawSql+") as rawsql ";
 		}
-		return (int)delegate.size(cons, tool, tmpTBName, args);
+		countCache = delegate.size(cons, tool, tmpTBName, args);
+		return (int) Math.min(countCache, Integer.MAX_VALUE);
 	}
 	
 	/**
@@ -76,15 +82,7 @@ public class LasyList extends ListAdapter {
 	 * @return 存在返回true，否则为false
 	 */
 	public boolean exist(){
-		if(arrList!=null){
-			return !arrList.isEmpty();
-		}
-		String tmpTBName= tbName;
-		if(rawSql!=null) {
-			tmpTBName = " ("+rawSql+") as rawsql ";
-		}
-		return delegate.size(cons, tool, tmpTBName, args) > 0;
-		
+		return size() > 0;
 	}
 
 	/**判断列表是否为空
@@ -281,6 +279,7 @@ public class LasyList extends ListAdapter {
 
 		cons.add(c);
 		arrList = null; // 添加了新条件，所以需要重新查询。
+		countCache = -1; // count 也要重算
 	}
 	/**
 	 * 大于 ,相当于sql中 column &gt; val 

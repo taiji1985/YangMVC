@@ -529,6 +529,10 @@ public abstract class DBHelper {
 	}
 
 	public void commit() {
+		if(con == null){
+			logger.warn("commit() called without a connection, ignored");
+			return;
+		}
 		try {
 			con.commit();
 		} catch (SQLException e) {
@@ -543,6 +547,10 @@ public abstract class DBHelper {
 	}
 
 	public void rollback() {
+		if(con == null){
+			logger.warn("rollback() called without a connection, ignored");
+			return;
+		}
 			try {
 				con.rollback();
 				con.setAutoCommit(true);

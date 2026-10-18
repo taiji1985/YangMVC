@@ -82,4 +82,16 @@ public class DBHelperEndRequestTest {
 		DBHelper.endRequest(); // 不应抛异常
 		assertNull(DBHelper.locals.get());
 	}
+
+	@Test
+	public void commitAndRollbackWithoutConnectionDoNotThrow() {
+		DBHelper h = new DBHelper() {
+			@Override
+			public void conn() {
+				// no-op
+			}
+		};
+		h.commit();
+		h.rollback();
+	}
 }

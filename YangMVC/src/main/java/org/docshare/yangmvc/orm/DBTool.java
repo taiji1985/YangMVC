@@ -55,23 +55,29 @@ public class DBTool {
 		}
 		if( ! tname.equals("rawsql")){ //原始sql没有key
 			key = delegate.keyColumn(tname);
+			if(key == null){
+				// 无主键表（例如 setting/ttmp）：只能查，不能 save()/del(id)
+				logger.warn("table `{}` has no primary key: Model.save()/del(id) will not work, read-only", tname);
+			}
 		}
 	}
 	/**
-	 * 获取列的注释
+	 * 获取列的注释；列不存在时返回列名本身（不再 NPE）。
 	 * @param column 列名
 	 * @return 指定列的列名
 	 */
 	public String getColumnRemark(String column){
-		return c_to_remarks.get(column).remark;
+		ColumnDesc d = c_to_remarks.get(column);
+		return d == null ? column : d.remark;
 	}
 	/**
-	 * 获取列的类型（int类型）
+	 * 获取列的类型（int类型）；列不存在时返回 VARCHAR（不再 NPE）。
 	 * @param column 字段名
 	 * @return 类型
 	 */
 	public int getColumnType(String column){
-		return c_to_remarks.get(column).type;
+		ColumnDesc d = c_to_remarks.get(column);
+		return d == null ? java.sql.Types.VARCHAR : d.type;
 	}
 	/**
 	 * 获取列的类型名
@@ -118,6 +124,10 @@ public class DBTool {
 	 * @return 符合条件的模型
 	 */
 	public Model get(Object id){
+		if(key == null){
+			logger.warn("table `{}` has no primary key, can not get(id)", tname);
+			return null;
+		}
 		return get(key,id);
 	}
 
@@ -276,15 +286,23 @@ public class DBTool {
 		if(c == null){
 			c = columns; 
 		}
-		Model tb = new Model(tname,(Map<String, Object>) c);
+		Map<String,?> cols = c;
+		if(column_set != null && !column_set.isEmpty()){
+			// columnFilter 指定了列：Model 里只放这几列，JSON 就不会出现一堆 null 字段
+			Map<String,Object> sub = new HashMap<String,Object>();
+			for(String k : column_set){
+				if(c.containsKey(k)){
+					sub.put(k, null);
+				}
+			}
+			cols = sub;
+		}
+		Model tb = new Model(tname,(Map<String, Object>) cols);
 		tb.joined_tool = this;
-		for(String key : c.keySet()){
+		for(String key : cols.keySet()){
 			Object v=null;
 			try {
-				//如果过滤集不存在，或者包含这个 key 的时候，才显示，否则不显示
-				if(column_set==null || column_set.contains(key)){
-					v = rs.getObject(key);
-				}
+				v = rs.getObject(key);
 			} catch (SQLException e) {
 				logger.error("", e);
 			}
@@ -303,6 +321,10 @@ public class DBTool {
 	 * @return 影响的数据库的行数
 	 */
 	public int del(Object id) {
+		if(key == null){
+			logger.warn("table `{}` has no primary key, can not del(id)", tname);
+			return 0;
+		}
 		return delegate.delete(tname, key, id);
 	}
 	/**

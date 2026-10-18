@@ -1,6 +1,7 @@
 package org.docshare.yangmvc.orm.mysql;
 
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,12 +25,39 @@ public class MySQLDBHelper extends DBHelper {
 		
 	}
 	IConnectionPool pool = null;
+	/** 上次探活成功的时间，用于 db_valid_interval_ms 时间窗 */
+	private long lastValidAt = 0;
+
 	@Override
 	public void conn() {
 		String uri = null;
 		try {
-			if(con !=null && ! con.isClosed() && con.isValid(5))return;
-			statementPool.clear();//清空语句池
+			long now = System.currentTimeMillis();
+			if (con != null) {
+				boolean closed;
+				try {
+					closed = con.isClosed();
+				} catch (SQLException e) {
+					closed = true;
+				}
+				if (!closed) {
+					// 时间窗内直接复用：避免每条 SQL 前都 ping 一次（一次网络往返）
+					if (now - lastValidAt < Config.db_valid_interval_ms) {
+						return;
+					}
+					if (con.isValid(5)) {
+						lastValidAt = now;
+						return;
+					}
+				}
+				// 连接已断/已关：先关掉再重建，避免泄漏底层 socket
+				try {
+					con.close();
+				} catch (SQLException ignored) {
+				}
+				con = null;
+			}
+			statementPool.clear();//清空语句池（会 close 旧语句）
 			String connPool =Config.getProperty("conn_pool", null);
 			if(pool == null){
 				if(connPool == null || connPool.trim().isEmpty()){
@@ -41,6 +69,7 @@ public class MySQLDBHelper extends DBHelper {
 			}
 			
 			con = pool.getConnection();
+			lastValidAt = System.currentTimeMillis();
 
 			logger.debug("MySQLDBHelper connect to server "+ pool.getClass().getName());
 			update("set names "+Config.dbEncoding);
@@ -51,6 +80,21 @@ public class MySQLDBHelper extends DBHelper {
 			logger.error(Config.str());
 			throw new MVCException("connect to url fail: "+uri,e);
 		}
+	}
+
+	/**
+	 * 丢弃当前连接（通信异常时调用），下一次 conn() 会重建。
+	 */
+	private void invalidateConnection() {
+		try {
+			if (con != null) {
+				con.close();
+			}
+		} catch (Exception ignored) {
+		}
+		con = null;
+		lastValidAt = 0;
+		statementPool.clear();
 	}
 
 	/**
@@ -71,6 +115,7 @@ public class MySQLDBHelper extends DBHelper {
 			} catch (CommunicationsException e) {
 				retry++;
 				logger.info("reconnect db retry="+retry);
+				invalidateConnection();
 				conn();
 			}
 		}
@@ -104,6 +149,7 @@ public class MySQLDBHelper extends DBHelper {
 			}catch(CommunicationsException e){
 				retry++;
 				logger.info("reconnect db retry="+retry);
+				invalidateConnection();
 				conn();
 			}catch(SQLException e){
 				throw new MVCException(e);
@@ -113,7 +159,33 @@ public class MySQLDBHelper extends DBHelper {
 		}
 		return -1;
 	}
-	
-	
+
+	/**
+	 * 关闭连接：
+	 * <ul>
+	 *   <li>用了内置/自定义连接池且实现了 {@link IConnectionPool2} 时，归还给池；</li>
+	 *   <li>否则直接 close。</li>
+	 * </ul>
+	 */
+	@Override
+	public void close() {
+		Connection c = con;
+		con = null;
+		lastValidAt = 0;
+		statementPool.clear();
+		if (c == null) {
+			return;
+		}
+		try {
+			if (pool instanceof IConnectionPool2) {
+				((IConnectionPool2) pool).release(c);
+			} else {
+				c.close();
+			}
+		} catch (Exception e) {
+			logger.debug("close connection failed: {}", e.toString());
+		}
+	}
+
 	StatementPool statementPool =new StatementPool();
 }
