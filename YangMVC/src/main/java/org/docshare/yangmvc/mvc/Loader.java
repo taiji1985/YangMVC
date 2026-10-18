@@ -128,6 +128,8 @@ public class Loader {
 				Controller created = (Controller) obj;
 				created.clearOutFlag();
 				if(created.isSingle()){
+					// 全局单例模式下也要做字段审计（这类控制器没有自己调 setSingle）
+					created.auditSingletonFields();
 					// 并发首次请求时只允许一个实例胜出，保证"全局一个单例"
 					Object prev = singleMap.putIfAbsent(cname, created);
 					if(prev != null){

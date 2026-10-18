@@ -92,6 +92,14 @@ public class Config {
 	public static boolean strict_singleton = false;
 
 	/**
+	 * 全局单例：true 时**所有控制器**都按单例处理（等价于每个控制器都调 {@code setSingle(true)}）。
+	 *
+	 * <p>默认 false。开启前请确认控制器没有实例字段（可先打开 {@link #strict_singleton} 跑一轮）；
+	 * 单个控制器可以用 {@code setSingle(false)} 退出全局单例。
+	 */
+	public static boolean single_all_controllers = false;
+
+	/**
 	 * web.properties 的解码方式：auto / utf-8 / gbk / gb18030 ...
 	 * auto：先按 UTF-8 严格解码，失败后退回 ISO-8859-1（与旧行为一致）。
 	 */

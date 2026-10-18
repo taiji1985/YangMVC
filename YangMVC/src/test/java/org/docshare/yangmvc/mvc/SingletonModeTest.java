@@ -83,18 +83,60 @@ public class SingletonModeTest {
 		}
 	}
 
+	/** 不调 setSingle，靠全局开关生效 */
+	public static class GlobalCtl extends Controller {
+		static final AtomicInteger created = new AtomicInteger();
+		static final Set<Integer> served = ConcurrentHashMap.newKeySet();
+
+		public GlobalCtl() {
+			created.incrementAndGet();
+		}
+
+		public String hi() {
+			served.add(System.identityHashCode(this));
+			return "ok";
+		}
+	}
+
+	/** 全局单例模式下显式退出 */
+	public static class GlobalOptOutCtl extends Controller {
+		static final AtomicInteger created = new AtomicInteger();
+
+		public GlobalOptOutCtl() {
+			created.incrementAndGet();
+			setSingle(false);
+		}
+
+		public String hi() {
+			return "ok";
+		}
+	}
+
+	/** 全局单例 + 有字段：审计要在 Loader 侧触发 */
+	public static class GlobalWithFieldCtl extends Controller {
+		private int counter;
+
+		public String hi() {
+			counter++;
+			return "ok";
+		}
+	}
+
 	private boolean oldReloadable;
 	private boolean oldStrict;
+	private boolean oldGlobalSingle;
 	private Loader oldLoader;
 
 	@Before
 	public void setUp() {
 		oldReloadable = Config.reloadable;
 		oldStrict = Config.strict_singleton;
+		oldGlobalSingle = Config.single_all_controllers;
 		oldLoader = MVCFilter.loader;
 
 		Config.reloadable = false; // 走非热加载路径，避免测试里启动 watcher
 		Config.strict_singleton = false;
+		Config.single_all_controllers = false;
 		MVCFilter.loader = new Loader();
 		Loader.clearSingletons();
 		CallCacheMap.clear();
@@ -104,6 +146,7 @@ public class SingletonModeTest {
 	public void tearDown() {
 		Config.reloadable = oldReloadable;
 		Config.strict_singleton = oldStrict;
+		Config.single_all_controllers = oldGlobalSingle;
 		MVCFilter.loader = oldLoader;
 		Loader.clearSingletons();
 		CallCacheMap.clear();
@@ -191,6 +234,55 @@ public class SingletonModeTest {
 
 		c.setSingle(false);
 		assertFalse("取消单例后应该立即从单例表移除", Loader.singleMap.containsKey(c.getClass().getName()));
+	}
+
+	// ---------------- 全局单例配置 ----------------
+
+	@Test
+	public void globalSwitchMakesControllersSingleton() throws Exception {
+		Config.single_all_controllers = true;
+		GlobalCtl.created.set(0);
+		GlobalCtl.served.clear();
+
+		invoke(GlobalCtl.class.getName(), "hi");
+		invoke(GlobalCtl.class.getName(), "hi");
+
+		assertEquals("全局开关下应该只创建一个实例", 1, GlobalCtl.created.get());
+		assertEquals("两次请求应该由同一个实例服务", 1, GlobalCtl.served.size());
+		assertEquals(1, Loader.singleMap.size());
+	}
+
+	@Test
+	public void explicitFalseOptsOutOfGlobal() throws Exception {
+		Config.single_all_controllers = true;
+		GlobalOptOutCtl.created.set(0);
+
+		invoke(GlobalOptOutCtl.class.getName(), "hi");
+		invoke(GlobalOptOutCtl.class.getName(), "hi");
+
+		assertEquals("setSingle(false) 应该能退出全局单例", 2, GlobalOptOutCtl.created.get());
+		assertTrue(Loader.singleMap.isEmpty());
+	}
+
+	@Test
+	public void globalSwitchAuditsFieldsInLoader() {
+		Config.single_all_controllers = true;
+		Config.strict_singleton = true;
+		try {
+			invoke(GlobalWithFieldCtl.class.getName(), "hi");
+			fail("全局单例 + strict 模式下，有实例字段的控制器应该在 Loader 里被拦下");
+		} catch (Exception e) {
+			Throwable t = e;
+			boolean found = false;
+			while (t != null) {
+				if (t.getMessage() != null && t.getMessage().contains("counter")) {
+					found = true;
+					break;
+				}
+				t = t.getCause();
+			}
+			assertTrue("异常链里应该指出字段 counter: " + e, found);
+		}
 	}
 
 	// ------------------------------------------------------------------

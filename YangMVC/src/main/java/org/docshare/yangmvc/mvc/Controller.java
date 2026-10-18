@@ -115,9 +115,15 @@ public class Controller {
 	};
 
 	/**
-	 * 单例模式标志
+	 * 单例模式标志。
+	 *
+	 * <p>{@code null} = 没有显式设置，跟随 {@link Config#single_all_controllers}；
+	 * {@code TRUE/FALSE} = 控制器自己用 {@link #setSingle(boolean)} 显式指定（优先级最高）。
 	 */
-	private boolean single = false;
+	private Boolean single = null;
+
+	/** 字段审计只做一次，避免 setSingle(true) 与 Loader 各报一遍 */
+	private boolean singletonAudited = false;
 	
 	/**
 	 * 获取当前线程的请求上下文
@@ -1173,7 +1179,7 @@ public class Controller {
 	 * @param single 设置为true为单例，否则每次请求创建一个该控制器对象
 	 */
 	public void setSingle(boolean single){
-		this.single = single;
+		this.single = Boolean.valueOf(single);
 		if(!single){
 			Loader.forgetSingleton(getClass().getName());
 			return;
@@ -1183,8 +1189,13 @@ public class Controller {
 
 	/**
 	 * 单例字段审计：控制器自己声明的非 static 字段都是"跨请求共享"的，既危险又难查。
+	 * 幂等（每个实例只审一次），由 {@link #setSingle(boolean)} 与 {@link Loader} 在全局单例模式下调用。
 	 */
-	private void auditSingletonFields(){
+	void auditSingletonFields(){
+		if(singletonAudited){
+			return;
+		}
+		singletonAudited = true;
 		Field[] fields = getClass().getDeclaredFields();
 		for(Field f : fields){
 			if(Modifier.isStatic(f.getModifiers()) || f.isSynthetic()){
@@ -1201,11 +1212,18 @@ public class Controller {
 	}
 
 	/**
-	 * 返回当前控制器是否是单例模式
+	 * 返回当前控制器是否按单例处理。
+	 *
+	 * <p>优先级：{@link #setSingle(boolean)} 的显式设置 &gt; {@link Config#single_all_controllers}。
+	 * 也就是说显式 {@code setSingle(false)} 可以在"全局单例"模式下单独退出。
+	 *
 	 * @return 是否为单例
 	 */
 	public boolean isSingle(){
-		return single;
+		if(single != null){
+			return single.booleanValue();
+		}
+		return Config.single_all_controllers;
 	}
 	
 	/**
