@@ -18,6 +18,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.docshare.yangmvc.mvc.anno.Singleton;
 import org.docshare.yangmvc.mvc.except.MVCException;
 import org.junit.After;
 import org.junit.Before;
@@ -118,6 +119,67 @@ public class SingletonModeTest {
 
 		public String hi() {
 			counter++;
+			return "ok";
+		}
+	}
+
+	/** 用注解声明单例 */
+	@Singleton
+	public static class AnnotatedCtl extends Controller {
+		static final AtomicInteger created = new AtomicInteger();
+		static final Set<Integer> served = ConcurrentHashMap.newKeySet();
+
+		public AnnotatedCtl() {
+			created.incrementAndGet();
+		}
+
+		public String hi() {
+			served.add(System.identityHashCode(this));
+			return "ok";
+		}
+	}
+
+	/** 注解了但显式退出单例 */
+	@Singleton
+	public static class AnnotatedOptOutCtl extends Controller {
+		static final AtomicInteger created = new AtomicInteger();
+
+		public AnnotatedOptOutCtl() {
+			created.incrementAndGet();
+			setSingle(false);
+		}
+
+		public String hi() {
+			return "ok";
+		}
+	}
+
+	/** 注解 + 有字段：审计要能报出来 */
+	@Singleton
+	public static class AnnotatedWithFieldCtl extends Controller {
+		private int counter;
+
+		public String hi() {
+			counter++;
+			return "ok";
+		}
+	}
+
+	/** 注解标在基类上（@Inherited），子类也应该按单例 */
+	@Singleton
+	public static class AnnotatedBase extends Controller {
+	}
+
+	public static class InheritedCtl extends AnnotatedBase {
+		static final AtomicInteger created = new AtomicInteger();
+		static final Set<Integer> served = ConcurrentHashMap.newKeySet();
+
+		public InheritedCtl() {
+			created.incrementAndGet();
+		}
+
+		public String hi() {
+			served.add(System.identityHashCode(this));
 			return "ok";
 		}
 	}
@@ -272,17 +334,68 @@ public class SingletonModeTest {
 			invoke(GlobalWithFieldCtl.class.getName(), "hi");
 			fail("全局单例 + strict 模式下，有实例字段的控制器应该在 Loader 里被拦下");
 		} catch (Exception e) {
-			Throwable t = e;
-			boolean found = false;
-			while (t != null) {
-				if (t.getMessage() != null && t.getMessage().contains("counter")) {
-					found = true;
-					break;
-				}
-				t = t.getCause();
-			}
-			assertTrue("异常链里应该指出字段 counter: " + e, found);
+			assertTrue("异常链里应该指出字段 counter: " + e, hasMessage(e, "counter"));
 		}
+	}
+
+	// ---------------- @Singleton 注解 ----------------
+
+	@Test
+	public void annotatedControllerIsSingleton() throws Exception {
+		AnnotatedCtl.created.set(0);
+		AnnotatedCtl.served.clear();
+
+		invoke(AnnotatedCtl.class.getName(), "hi");
+		invoke(AnnotatedCtl.class.getName(), "hi");
+
+		assertEquals(1, AnnotatedCtl.created.get());
+		assertEquals("两次请求应该由同一个实例服务", 1, AnnotatedCtl.served.size());
+		assertEquals(1, Loader.singleMap.size());
+	}
+
+	@Test
+	public void annotatedControllerCanOptOut() throws Exception {
+		AnnotatedOptOutCtl.created.set(0);
+
+		invoke(AnnotatedOptOutCtl.class.getName(), "hi");
+		invoke(AnnotatedOptOutCtl.class.getName(), "hi");
+
+		assertEquals("setSingle(false) 应该能盖过注解", 2, AnnotatedOptOutCtl.created.get());
+		assertTrue(Loader.singleMap.isEmpty());
+	}
+
+	@Test
+	public void annotatedControllerIsAudited() {
+		Config.strict_singleton = true;
+		try {
+			invoke(AnnotatedWithFieldCtl.class.getName(), "hi");
+			fail("注解单例 + strict 模式下，有实例字段的控制器应该被拦下");
+		} catch (Exception e) {
+			assertTrue("异常链里应该指出字段 counter: " + e, hasMessage(e, "counter"));
+		}
+	}
+
+	@Test
+	public void annotationIsInherited() throws Exception {
+		InheritedCtl.created.set(0);
+		InheritedCtl.served.clear();
+
+		invoke(InheritedCtl.class.getName(), "hi");
+		invoke(InheritedCtl.class.getName(), "hi");
+
+		assertEquals("基类上的 @Singleton 应该对子类生效", 1, InheritedCtl.created.get());
+		assertEquals(1, InheritedCtl.served.size());
+	}
+
+	private static boolean hasMessage(Throwable e, String kw) {
+		Throwable t = e;
+		while (t != null) {
+			if (t.getMessage() != null && t.getMessage().contains(kw)) {
+				return true;
+			}
+			t = t.getCause();
+		}
+		return false;
 	}
 
 	// ------------------------------------------------------------------

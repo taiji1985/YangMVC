@@ -30,6 +30,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.except.MVCException;
+import org.docshare.yangmvc.mvc.anno.Singleton;
 import org.docshare.yangmvc.mvc.except.NullParamException;
 import org.docshare.yangmvc.orm.DBTool;
 import org.docshare.yangmvc.orm.LasyList;
@@ -1214,14 +1215,18 @@ public class Controller {
 	/**
 	 * 返回当前控制器是否按单例处理。
 	 *
-	 * <p>优先级：{@link #setSingle(boolean)} 的显式设置 &gt; {@link Config#single_all_controllers}。
-	 * 也就是说显式 {@code setSingle(false)} 可以在"全局单例"模式下单独退出。
+	 * <p>优先级：{@link #setSingle(boolean)} 的显式设置 &gt;
+	 * 类上的 {@link Singleton} 注解 &gt; {@link Config#single_all_controllers}。
+	 * 也就是说显式 {@code setSingle(false)} 可以在"注解/全局单例"模式下单独退出。
 	 *
 	 * @return 是否为单例
 	 */
 	public boolean isSingle(){
 		if(single != null){
 			return single.booleanValue();
+		}
+		if(getClass().isAnnotationPresent(Singleton.class)){
+			return true;
 		}
 		return Config.single_all_controllers;
 	}
