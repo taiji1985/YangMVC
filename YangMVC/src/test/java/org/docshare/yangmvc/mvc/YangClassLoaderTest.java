@@ -16,9 +16,8 @@ public class YangClassLoaderTest {
             // 测试加载系统类（应该委托给父类加载器）
             Class<?> stringClass = loader.loadClass("java.lang.String");
             assertNotNull("应该能够加载系统类", stringClass);
-            assertEquals("系统类应该由系统类加载器加载", 
-                ClassLoader.getSystemClassLoader().getClass(), 
-                stringClass.getClassLoader().getClass());
+            // 注意：java.lang.String 是 bootstrap 加载的，getClassLoader() 为 null
+            assertSame("系统类应该委托给父类加载器", String.class, stringClass);
             
             System.out.println("✓ 系统类加载测试通过");
             

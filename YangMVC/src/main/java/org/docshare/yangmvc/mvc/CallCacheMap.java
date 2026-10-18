@@ -33,8 +33,8 @@ class CallCacheMap {
 	public static boolean runCallCache(String uri,HttpServletRequest req,HttpServletResponse resp){
 		if(!url2CallCache.containsKey(uri))return false;
 		
+		CallCache cach = url2CallCache.get(uri);
 		try {
-			CallCache cach = url2CallCache.get(uri);
 			Controller ins=cach.single;
 			if(ins == null){ //单例
 				ins = (Controller) cach.clazz.newInstance();
@@ -56,11 +56,13 @@ class CallCacheMap {
 			MVCFilter.loader.runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			return true;
-		} catch (Exception e) {
+		} catch (Throwable e) {
+			// 关键：这里必须"接管"请求。返回 false 会让 MVCFilter 走正常路径再执行一遍，
+			// 造成同一次请求执行两次（重复插入/重复发码）。见 P0-1。
 			logger.error("run action method error: "+uri);
-			e.printStackTrace();
+			MVCFilter.renderError(uri, req, resp, e);
+			return true;
 		}
-		return false;
 		
 	}
 	public static void addCache(String uri,Class<?> clazz,MethodAccess access,String methodName,Controller single,Method m){

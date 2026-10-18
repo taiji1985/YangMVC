@@ -1,9 +1,15 @@
 package org.docshare.yangmvc.mvc;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
+import java.nio.ByteBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.CodingErrorAction;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -53,6 +59,37 @@ public class Config {
 	public static boolean reloadable = true;
 
 	public static boolean reload_config = false;
+
+	/**
+	 * 更新数据库时，是否把 null 值写成 NULL。
+	 * 默认 false：与旧行为一致（null 列被跳过，无法把列改成 NULL）。
+	 * 需要"把某列清空"时请用 Model.putNull(col)，并把这个开关置为 true。
+	 */
+	public static boolean db_update_null = false;
+
+	/**
+	 * 请求结束时是否关闭 JDBC 连接（配合连接池使用）。
+	 * 默认 false：保持旧的"线程内复用一条连接"行为。
+	 */
+	public static boolean db_close_per_request = false;
+
+	/**
+	 * 列名是否必须存在于表元数据中。
+	 * 默认 false：只做危险字符校验（任何正常列名都能通过）。
+	 */
+	public static boolean ident_strict = false;
+
+	/**
+	 * 是否允许把父类的 public 方法当成 URL 接口（历史行为）。
+	 * 默认 true。确认业务不依赖继承来的 action 后可以置为 false。
+	 */
+	public static boolean inherited_action = true;
+
+	/**
+	 * web.properties 的解码方式：auto / utf-8 / gbk / gb18030 ...
+	 * auto：先按 UTF-8 严格解码，失败后退回 ISO-8859-1（与旧行为一致）。
+	 */
+	public static String prop_encoding = "auto";
 	
 	/**
 	 * 模板相对于WebRoot的目录路径
@@ -176,19 +213,19 @@ public class Config {
 			
 			File f = new File(PROP_FILE); // ./web.propertes
 			if(f.exists()){
-				logger.debug("read prop from "+ f);
+				logger.info("read prop from {}", f.getAbsolutePath());
 				lastUpdate = f.lastModified();
 				return new FileInputStream(f);
 			}
 			
 			f = new File("."+PROP_FILE);
 			if(f.exists()){
-				logger.debug("read prop from "+ f);
+				logger.info("read prop from {}", f.getAbsolutePath());
 				lastUpdate = f.lastModified();
 				return new FileInputStream(f);
 			}
 			logger.debug("class loader name "+Config.class.getClassLoader().toString());
-			logger.debug("try load from classpath");
+			logger.info("read prop from classpath {}", PROP_FILE);
 
 			return Config.class.getResourceAsStream(PROP_FILE);
 		} catch (Exception e) {
@@ -196,6 +233,65 @@ public class Config {
 		}
 		return null;
 		
+	}
+
+	/**
+	 * 读取 properties，并按 {@link #prop_encoding} 的策略解码。
+	 *
+	 * <p>历史实现用的是 {@code Properties.load(InputStream)}，它按 ISO-8859-1 解码，
+	 * 于是 UTF-8 的中文值会变成乱码。这里改成先读字节再自己解码：
+	 * 先严格按 UTF-8，失败后退回 ISO-8859-1（与旧行为一致），
+	 * 如果文件里声明了 {@code prop_encoding=gbk} 之类，再按它重新解码一次。
+	 */
+	static Properties readProperties(InputStream in) throws IOException {
+		if (in == null) {
+			throw new IOException("InputStream is null");
+		}
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(1024);
+		byte[] buf = new byte[4096];
+		int n;
+		while ((n = in.read(buf)) > 0) {
+			bos.write(buf, 0, n);
+		}
+		byte[] raw = bos.toByteArray();
+
+		String text = decodeStrictUtf8(raw);
+		boolean utf8 = text != null;
+		if (!utf8) {
+			text = new String(raw, StandardCharsets.ISO_8859_1);
+			logger.warn("{} is not valid UTF-8, fallback to ISO-8859-1; convert it to UTF-8 to avoid garbled text", prop_file);
+		}
+
+		Properties ret = new Properties();
+		ret.load(new StringReader(text));
+
+		String enc = ret.getProperty("prop_encoding", "auto");
+		if (!utf8 && enc != null) {
+			enc = enc.trim();
+			if (!enc.isEmpty() && !"auto".equalsIgnoreCase(enc)
+					&& !"utf-8".equalsIgnoreCase(enc) && !"utf8".equalsIgnoreCase(enc)) {
+				try {
+					Properties p2 = new Properties();
+					p2.load(new StringReader(new String(raw, enc)));
+					ret = p2;
+					logger.info("{} decoded as {}", prop_file, enc);
+				} catch (Exception e) {
+					logger.warn("can not decode {} as {}, keep ISO-8859-1 result", prop_file, enc);
+				}
+			}
+		}
+		return ret;
+	}
+
+	private static String decodeStrictUtf8(byte[] raw) {
+		try {
+			return StandardCharsets.UTF_8.newDecoder()
+					.onMalformedInput(CodingErrorAction.REPORT)
+					.onUnmappableCharacter(CodingErrorAction.REPORT)
+					.decode(ByteBuffer.wrap(raw)).toString();
+		} catch (CharacterCodingException e) {
+			return null;
+		}
 	}
 	
 	static Properties pro=null;
@@ -228,8 +324,7 @@ public class Config {
 				logger.info("Config  found ! ");
 			}
 
-			pro = new Properties();	
-			pro.load(in);
+			pro = readProperties(in);
 			
 			logger.info("web.properties loaded ");
 			BeanUtil.prop2StaticField(pro, Config.class);
@@ -263,8 +358,7 @@ public class Config {
 		}
 		
 		try {
-			pro = new Properties();
-			pro.load(in);
+			pro = readProperties(in);
 			
 			logger.info("Properties loaded from InputStream");
 			BeanUtil.prop2StaticField(pro, Config.class);

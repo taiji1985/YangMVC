@@ -270,6 +270,15 @@ public class LasyList extends ListAdapter {
 	private void addConstrain(SQLConstains c){
 		if(c == null)return;
 
+		if(c.type != SQLConstains.TYPE_CUSTOM){
+			// 列名是拼进 SQL 的（只有值走 ? 参数化），必须校验，防止标识符注入
+			if(c.type == SQLConstains.TYPE_MLIKE){
+				Ident.assertColumnList(tool, c.column);
+			}else{
+				Ident.assertColumn(tool, c.column);
+			}
+		}
+
 		cons.add(c);
 		arrList = null; // 添加了新条件，所以需要重新查询。
 	}
@@ -363,6 +372,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList orderby(String column, boolean asc) {
+		Ident.assertColumn(tool, column);
 		order_constrains.clear();
 		order_constrains.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
 		arrList = null;
@@ -377,6 +387,7 @@ public class LasyList extends ListAdapter {
 	 */
 	@NotNull
 	public LasyList addOrderby(String column, boolean asc) {
+		Ident.assertColumn(tool, column);
 		order_constrains.add(new SQLConstains(SQLConstains.TYPE_ORDER, column, asc));
 		arrList = null;
 		return this;

@@ -5,12 +5,33 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class TimeHelper {
-	static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	/** 线程安全；原来这里是 static SimpleDateFormat，并发下会抛异常或算错。 */
+	private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	/** 解析用（比输出宽松：允许 2026-1-1 0:0:0 这类写法）。 */
+	private static final DateTimeFormatter FMT_PARSE = DateTimeFormatter.ofPattern("yyyy-M-d H:m:s");
+
 	public static String format(Date end) {
-		return simpleDateFormat.format(end);
+		if (end == null) {
+			return null;
+		}
+		return FMT.format(LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault()));
+	}
+
+	private static Date parseDefaultFormat(String s) {
+		try {
+			return Date.from(LocalDateTime.parse(s, FMT_PARSE).atZone(ZoneId.systemDefault()).toInstant());
+		} catch (Exception e) {
+			// 兼容旧行为：SimpleDateFormat 会忽略尾部多余字符（如 ".123"）
+			try {
+				return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(s);
+			} catch (Exception e2) {
+				return null;
+			}
+		}
 	}
 	public static Date extractBirthdayFromIdCard(String idCardNumber) {
         try {
@@ -135,7 +156,8 @@ public class TimeHelper {
 	   try {
 		   // 尝试默认格式 yyyy-MM-dd HH:mm:ss
 		   if(dateStr.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}")){
-			   return simpleDateFormat.parse(dateStr);
+			   Date d = parseDefaultFormat(dateStr);
+			   if(d != null) return d;
 		   }
 		   
 		   // 尝试日期格式 yyyy-MM-dd

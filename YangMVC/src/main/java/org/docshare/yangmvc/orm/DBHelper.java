@@ -80,6 +80,56 @@ public abstract class DBHelper {
 		}
 	}
 
+	/**
+	 * 一次请求结束时的数据库收尾（由 MVCFilter 在 finally 里调用）。
+	 *
+	 * <p>主要作用是兜住"开了事务但没提交就抛异常"的情况：否则这条连接会一直停在
+	 * autoCommit=false，之后同一线程处理的请求的写入都不会提交（表现为偶发丢写/锁表）。
+	 *
+	 * <p>默认不关闭连接（保持"线程内复用一条连接"的旧行为）；
+	 * 需要连接池时把 {@link Config#db_close_per_request} 置为 true，这里就会归还连接。
+	 */
+	public static void endRequest() {
+		DBHelper h;
+		try {
+			h = locals.get();
+		} catch (Exception e) {
+			return;
+		}
+		if (h == null) {
+			return;
+		}
+		try {
+			h.rollbackIfNeeded();
+		} catch (Throwable t) {
+			logger.warn("rollback at request end failed", t);
+		}
+		if (Config.db_close_per_request) {
+			try {
+				h.close();
+			} catch (Throwable t) {
+				logger.warn("close connection at request end failed", t);
+			} finally {
+				locals.remove();
+			}
+		}
+	}
+
+	private void rollbackIfNeeded() {
+		if (con == null) {
+			return;
+		}
+		try {
+			if (!con.isClosed() && !con.getAutoCommit()) {
+				con.rollback();
+				con.setAutoCommit(true);
+				logger.warn("rolled back an uncommitted transaction at request end");
+			}
+		} catch (SQLException e) {
+			logger.warn("can not rollback uncommitted transaction", e);
+		}
+	}
+
 	protected Connection con = null;
 	protected Object last_id;
 
@@ -464,12 +514,19 @@ public abstract class DBHelper {
 	 * 启动事务 ， 所有提交在sql会在调用commit后被执行。
 	 */
 	public void beginTransation() {
+		conn(); // 原来 con 为 null 时这里会 NPE
 		try {
 			con.setAutoCommit(false);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new MVCException("Fail to begin transaction ", e);
 		}
-		
+	}
+
+	/**
+	 * beginTransation 的正确拼写别名。
+	 */
+	public void beginTransaction() {
+		beginTransation();
 	}
 
 	public void commit() {

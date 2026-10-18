@@ -26,10 +26,10 @@ public class Log {
         return "Unknown";
     }  
     
-    static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    static java.time.format.DateTimeFormatter df = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     static Logger log = LoggerFactory.getLogger("YangMVC");
     public static String now(){
-        return df.format(new Date());
+        return df.format(java.time.LocalDateTime.now());
     }
     public static String W(String t){
         if(!showClass) return t;

@@ -6,15 +6,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.except.MVCException;
+import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.orm.ArrayTool;
 import org.docshare.yangmvc.orm.ColumnDesc;
 import org.docshare.yangmvc.orm.DBHelper;
 import org.docshare.yangmvc.orm.DBTool;
 import org.docshare.yangmvc.orm.IDBDelegate;
+import org.docshare.yangmvc.orm.Ident;
 import org.docshare.yangmvc.orm.Model;
 import org.docshare.yangmvc.orm.SQLConstains;
 import org.docshare.yangmvc.util.TextTool;
@@ -26,6 +29,7 @@ public class MySQLDelegate implements IDBDelegate {
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
+		Ident.assertSafe(column);
 		//String.format("select * from `%s` where `%s` = ? limit 0,1",tname,column)
 		StringBuilder sBuffer =new StringBuilder(64);
 		sBuffer.append("select * from `");
@@ -71,8 +75,6 @@ public class MySQLDelegate implements IDBDelegate {
 				ks.append(k);
 				ks.append('`');
 				
-				String type = tool.getColumnTypeName(k);
-				ArrayTool.valueWrapper(null, v,type);
 				vs2.append('?');
 				plist.add(v);
 				first = false;
@@ -88,15 +90,23 @@ public class MySQLDelegate implements IDBDelegate {
 			sqlb.append(")");
 			sql = sqlb.toString();
 		}else{
-			int csize = m.changeColumns().size();
-			if(csize == 0){
+			Set<String> changed = m.changeColumns();
+			if(changed == null || changed.isEmpty()){
 				logger.info("no change data for update "+sql);
 				return 0;
 			}
 
-			ArrayList<String> sa=new ArrayList<String>(csize);
-			for(String k: m.changeColumns()){
-				if(k == key)continue;
+			ArrayList<String> sa=new ArrayList<String>(changed.size());
+			for(String k: changed){
+				if(k.equals(key))continue;
+				if(!m.hasColumn(k))continue; // extra 里的附加字段不参与更新
+				if(m.isNullColumn(k)){
+					// putNull 显式置空；默认不写 NULL，保持旧行为
+					if(Config.db_update_null){
+						sa.add("`"+k+"`=NULL");
+					}
+					continue;
+				}
 				Object v = m.get(k);
 				if(v == null ){
 					continue;
@@ -105,7 +115,12 @@ public class MySQLDelegate implements IDBDelegate {
 				//ArrayTool.valueWrapper(k, m.get(k),type);
 				//sa.add(s);
 				sa.add("`"+k+"`=?");
-				plist.add(m.get(k));
+				plist.add(v);
+			}
+			if(sa.isEmpty()){
+				// 改动全是 null（旧实现会拼出 "update t set  where id=?" 这种非法 SQL）
+				logger.info("no effective change for update, table={} ,key={}", m.getTableName(), id);
+				return 0;
 			}
 			String ss = ArrayTool.join(",", sa);
 			//sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName(key)) );
@@ -133,6 +148,7 @@ public class MySQLDelegate implements IDBDelegate {
 	
 	@Override
 	public int delete(String tname,String key,Object id){
+		Ident.assertSafe(key);
 		//String sql = String.format("delete from `%s` where `%s` = ?", tname,key);
 		StringBuilder sBuffer =new StringBuilder(64);
 		sBuffer.append("delete from `");

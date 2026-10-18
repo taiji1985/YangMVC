@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.docshare.yangmvc.mvc.except.FreeMarkerHandler;
+import org.docshare.yangmvc.orm.DBHelper;
 import org.docshare.yangmvc.util.RequestHelper;
 import org.docshare.yangmvc.util.TextTool;
 import org.slf4j.Logger;
@@ -183,21 +184,57 @@ public class MVCFilter implements Filter {
 			try {
 				process(uri,context,req2,(HttpServletResponse)resp,chain);
 			} catch (Exception e) {
-				String msg = getErrMsg(e);
-				logger.error("", msg);
-
-				Controller controller = new Controller();
-				controller.setReq(req2, (HttpServletResponse) resp);
-				controller.response().reset();
-				controller.response().setStatus(500);
-				controller.response().setContentType("text/plain");
-				loader.runPostProcessing(uri, controller, msg);
-
-				//outErr((HttpServletResponse) resp, msg);
+				renderError(uri, req2, (HttpServletResponse) resp, e);
 			}
 		} finally {
+			// 兜住"开了事务却没提交"的连接，避免污染同一线程后续请求
+			try {
+				DBHelper.endRequest();
+			} catch (Throwable t) {
+				logger.warn("DBHelper.endRequest failed", t);
+			}
 			// 清理 ThreadLocal，避免内存泄漏和数据污染
 			Controller.clearCurrentContext();
+		}
+	}
+
+	/**
+	 * 统一的错误出口：500 + 走一遍后处理器（/api 下会被加密封装）。
+	 *
+	 * <p>除了 {@link #doFilter} 的异常分支，{@link CallCacheMap} 也会调用它——
+	 * 缓存路径里的异常必须"由它自己接管"，绝不能再回落到正常路径执行第二遍。
+	 */
+	static void renderError(String uri, HttpServletRequest req, HttpServletResponse resp, Throwable e) {
+		String msg = getErrMsg(e);
+		logger.error(msg);
+
+		Controller controller = new Controller();
+		try {
+			controller.setReq(req, resp);
+		} catch (Throwable t) {
+			logger.debug("setReq in error page failed: {}", t.toString());
+		}
+		try {
+			if (resp != null && !resp.isCommitted()) {
+				resp.reset();
+			}
+			if (resp != null) {
+				resp.setStatus(500);
+				resp.setContentType("text/plain");
+			}
+		} catch (Throwable t) {
+			logger.debug("reset response in error page failed: {}", t.toString());
+		}
+		try {
+			if (loader != null) {
+				loader.runPostProcessing(uri, controller, msg);
+			} else if (resp != null) {
+				PrintWriter pw = resp.getWriter();
+				pw.print(msg);
+				pw.flush();
+			}
+		} catch (Throwable t) {
+			logger.error("write error page failed", t);
 		}
 	}
 	private String loadConfig(String cfgName,String def){

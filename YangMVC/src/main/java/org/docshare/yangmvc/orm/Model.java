@@ -196,6 +196,9 @@ public class Model implements Map<String,Object> {
 		if(extra!= null){
 			extra.clear();
 		}
+		if(nullList != null){
+			nullList.clear();
+		}
 		
 		columns.clear();
 	}
@@ -274,6 +277,8 @@ public class Model implements Map<String,Object> {
 	 * 记录所有被改变的记录，以便于生成更新用的sql语句。
 	 */
 	HashSet<String> changeList = null;
+	/** 被 putNull() 显式标记为"写 NULL"的列。 */
+	HashSet<String> nullList = null;
 	public Set<String> changeColumns(){
 		return changeList != null?changeList : new HashSet<>();
 	}
@@ -281,6 +286,49 @@ public class Model implements Map<String,Object> {
 		this.changeList = new HashSet<>();
 		this.changeList.addAll(changeList);
 	}
+
+	/**
+	 * 判断某个名字是不是这张表的真实字段（而不是 put() 放进 extra 的附加数据）。
+	 */
+	public boolean hasColumn(String key){
+		return key != null && columns.containsKey(key);
+	}
+
+	/**
+	 * 显式把某一列更新为 NULL（默认行为下 save() 会跳过 null 值，无法清空列）。
+	 * 需要同时开启 Config.db_update_null=true 才会真正写 NULL。
+	 * @param key 列名
+	 * @return 当前对象，便于级联
+	 */
+	public Model putNull(String key){
+		if(key == null) return this;
+		if(!columns.containsKey(key)){
+			logger.warn("putNull: '{}' is not a column of table {}, it will be ignored by save()", key, tableName);
+			if(extra == null){
+				extra = new HashMap<>();
+			}
+			extra.put(key, null);
+			return this;
+		}
+		if(changeList == null){
+			changeList = new HashSet<>();
+		}
+		changeList.add(key);
+		if(nullList == null){
+			nullList = new HashSet<>();
+		}
+		nullList.add(key);
+		columns.put(key, null);
+		return this;
+	}
+
+	/**
+	 * 该列是否被 putNull() 标记为"写 NULL"。
+	 */
+	public boolean isNullColumn(String key){
+		return key != null && nullList != null && nullList.contains(key);
+	}
+
 	@Override
 	@NotNull
 	public Model put(String key, Object value) {
@@ -290,6 +338,10 @@ public class Model implements Map<String,Object> {
 				changeList  = new HashSet<>();
 			}
 			changeList.add(key);
+			if(value != null && nullList != null){
+				// 又给了真实值，取消之前的"置空"意图
+				nullList.remove(key);
+			}
 		}else{ //如果没有这个key，则添加入extra之中。
 			if(extra == null){
 				extra = new HashMap<>();

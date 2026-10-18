@@ -1,5 +1,6 @@
 package org.docshare.yangmvc.mvc;
 
+import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.docshare.yangmvc.mvc.MethodAccessCacher.MyParam;
+import org.docshare.yangmvc.mvc.anno.NotAction;
 import org.docshare.yangmvc.mvc.except.MVCException;
 import org.docshare.yangmvc.util.TextTool;
 
@@ -132,26 +134,8 @@ public class Loader {
 				return true;
 			}
 
-			m = MethodAccessCacher.getMethod(cname,method);
+			m = findActionMethod(cz, method);
 			Object ret;//返回值
-			
-			//添加控制器的继承支持。
-			if(m == null){ //当前类没找到这个方法，找他的父类，如果他父类是Controller类的子类（不是Controller本身）就尝试查找
-				Class<?> parentCz = cz.getSuperclass();
-				String parentClass =  parentCz.getName();
-				//如果父类不是Controller
-				if(! parentClass.equals("org.docshare.mvc.Controller")){
-					m = MethodAccessCacher.getMethod(parentCz,method);					
-					if(m!=null) {
-						cname = parentClass;
-						cz = parentCz;
-					}
-				}				
-			}
-			
-//			if(m == null && isGroovyObject(ins)){ //如果是groovy
-//				
-//			}
 			
 			if(m == null){
 				ret = "no such method : " + method +" , in class "+cname;
@@ -160,13 +144,17 @@ public class Loader {
 				runPostProcessing(uri,ins,ret); //执行后处理程序
 				return true;
 			}
-			access = MethodAccessCacher.getMethodAccess(cname);
+
+			// 方法可能声明在父类（"继承来的 action"）：参数名与 MethodAccess 都要按声明类取。
+			// 但 CallCacheMap 里仍然保留具体的控制器类，否则缓存会实例化出父类对象。
+			String declName = m.getDeclaringClass().getName();
+			access = MethodAccessCacher.getMethodAccess(declName);
 			if(!runInterceptors(uri,ins,access,method,m)){
 				return true;
 			}
 			
 			
-			ret = runMethod(ins,access,m,req,cname);
+			ret = runMethod(ins,access,m,req,declName);
 			runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			if(ins.isSingle()){
@@ -187,6 +175,55 @@ public class Loader {
 	
 
 	
+	/**
+	 * 找出要执行的 action 方法。
+	 *
+	 * <p>先找控制器自己声明的方法；找不到再去<b>直接父类</b>里找（"继承来的 action"，
+	 * 保持历史行为）。父类是框架的 {@link Controller} 本身时不再找——它的
+	 * output/param/download/require 这些工具方法绝不能直接暴露成 URL。
+	 *
+	 * <p>历史实现把包名写成了 {@code org.docshare.mvc.Controller}（少了一段 yangmvc），
+	 * 判断永远成立，于是 Controller 的工具方法被当成了接口 —— 这里一并修掉。
+	 *
+	 * @param cz         控制器类
+	 * @param methodName 方法名
+	 * @return 找到的方法，没有则返回 null
+	 */
+	static Method findActionMethod(Class<?> cz, String methodName) {
+		if (cz == null || methodName == null) {
+			return null;
+		}
+		Method m = MethodAccessCacher.getMethod(cz.getName(), methodName);
+		if (m != null) {
+			return isNotAction(m) ? null : m;
+		}
+
+		Class<?> parent = cz.getSuperclass();
+		if (parent == null || parent == Controller.class || !Controller.class.isAssignableFrom(parent)) {
+			return null;
+		}
+		Method pm = MethodAccessCacher.getMethod(parent, methodName);
+		if (pm == null) {
+			return null;
+		}
+		if (!Config.inherited_action) {
+			logger.warn("action '{}.{}' is inherited from {}, but inherited_action=false, rejected",
+					cz.getName(), methodName, parent.getName());
+			return null;
+		}
+		if (isNotAction(pm) || isNotAction(parent)) {
+			return null;
+		}
+		logger.warn("action '{}.{}' is inherited from {}; add @NotAction to the base method if it should not be an endpoint",
+				cz.getName(), methodName, parent.getName());
+		return pm;
+	}
+
+	private static boolean isNotAction(AnnotatedElement e) {
+		return e != null && e.isAnnotationPresent(NotAction.class);
+	}
+
+
 	/**
 	 * 执行所有拦截器
 	 */
