@@ -99,6 +99,33 @@ public class OrmMiscTest {
 	}
 
 	@Test
+	public void modifyingValuesWhileIteratingEntrySetIsAllowed() throws Exception {
+		Model m = model("t", "a", "b");
+		m.put("a", "1");
+		m.put("b", "2");
+
+		// 正常操作：边迭代边改 Model 的值，不应该抛 ConcurrentModificationException
+		for (Map.Entry<String, Object> e : m.entrySet()) {
+			m.put(e.getKey(), "v-" + e.getKey());
+		}
+
+		assertEquals("v-a", m.getStr("a"));
+		assertEquals("v-b", m.getStr("b"));
+	}
+
+	@Test
+	public void addingExtraWhileIteratingIsAllowed() throws Exception {
+		Model m = model("t", "a");
+		m.put("a", 1);
+
+		for (Map.Entry<String, Object> e : m.entrySet()) {
+			m.put("extra", "x"); // 进 extra，也不应该影响本次迭代
+		}
+
+		assertEquals("x", m.getStr("extra"));
+	}
+
+	@Test
 	public void fastjsonSerializationStillWorks() throws Exception {
 		Model m = model("t", "a", "b");
 		m.put("a", "hello");

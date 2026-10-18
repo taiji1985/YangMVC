@@ -304,13 +304,23 @@ public class Model implements Map<String,Object> {
 	/**
 	 * entrySet 的"活视图"：不再每次序列化都 new 一个 HashSet + N 个 Entry。
 	 * fastjson 序列化 Map 时正是走 entrySet()，列表接口能少掉大量小对象。
+	 *
+	 * <p>迭代器在创建时对 key 做一次快照（只复制 String 引用，不复制 Entry），
+	 * 所以<b>边迭代边改 Model 的值是安全的</b>（不会 ConcurrentModificationException），
+	 * 取到的值是最新的；迭代过程中新增的 extra 字段不会出现在本次迭代里。
 	 */
 	private final Set<Map.Entry<String, Object>> entrySetView = new EntrySetView();
 
 	private final class EntrySetView extends AbstractSet<Map.Entry<String, Object>> {
 		@Override
 		public Iterator<Map.Entry<String, Object>> iterator() {
-			return new EntryIterator();
+			int n = columns.size() + (extra == null ? 0 : extra.size());
+			ArrayList<String> keys = new ArrayList<String>(n);
+			keys.addAll(columns.keySet());
+			if (extra != null) {
+				keys.addAll(extra.keySet());
+			}
+			return new EntryIterator(keys.iterator());
 		}
 
 		@Override
@@ -320,31 +330,27 @@ public class Model implements Map<String,Object> {
 	}
 
 	private final class EntryIterator implements Iterator<Map.Entry<String, Object>> {
-		private final Iterator<String> colKeys = columns.keySet().iterator();
-		private Iterator<String> extraKeys;
+		private final Iterator<String> keys;
+
+		EntryIterator(Iterator<String> keys) {
+			this.keys = keys;
+		}
 
 		@Override
 		public boolean hasNext() {
-			if (colKeys.hasNext()) {
-				return true;
-			}
-			if (extraKeys == null) {
-				extraKeys = extra == null ? Collections.<String>emptyList().iterator() : extra.keySet().iterator();
-			}
-			return extraKeys.hasNext();
+			return keys.hasNext();
 		}
 
 		@Override
 		public Map.Entry<String, Object> next() {
-			if (colKeys.hasNext()) {
-				String k = colKeys.next();
-				return new ModelEntry(k, columns.get(k));
+			String k = keys.next();
+			Object v;
+			if (columns.containsKey(k)) {
+				v = columns.get(k);
+			} else {
+				v = extra == null ? null : extra.get(k);
 			}
-			if (extraKeys == null) {
-				extraKeys = extra == null ? Collections.<String>emptyList().iterator() : extra.keySet().iterator();
-			}
-			String k = extraKeys.next();
-			return new ModelEntry(k, extra.get(k));
+			return new ModelEntry(k, v);
 		}
 
 		@Override
