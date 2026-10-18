@@ -1,6 +1,8 @@
 package org.docshare.yangmvc.util;
 
 import java.lang.reflect.Type;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -20,6 +22,8 @@ import com.alibaba.fastjson2.writer.ObjectWriter;
  * 这里统一保持 1.x 的口径：
  * <ul>
  *   <li>Date 用 {@link JSONWriter.Feature#WriterUtilDateAsMillis}（毫秒数）；</li>
+ *   <li>{@code java.sql.Timestamp}/{@code java.sql.Date}/{@code java.sql.Time} 有各自的 writer，
+ *       不受上面的 feature 影响，必须单独注册成毫秒数（1.x 全是毫秒）；</li>
  *   <li>LocalDateTime 注册一个输出 {@code yyyy-MM-dd'T'HH:mm:ss[.SSS]} 的 writer。</li>
  * </ul>
  * 业务代码请优先用 {@link #toJson(Object)} / {@link #toJson(Object, boolean)}，
@@ -46,6 +50,21 @@ public final class Json {
 				writer.writeString(s);
 			}
 		});
+
+		// fastjson2 对 java.sql.* 有专用 writer，会忽略 WriterUtilDateAsMillis；这里统一成 1.x 的毫秒数
+		ObjectWriter<Object> millisWriter = new ObjectWriter<Object>() {
+			@Override
+			public void write(JSONWriter writer, Object object, Object fieldName, Type fieldType, long features) {
+				if (object == null) {
+					writer.writeNull();
+					return;
+				}
+				writer.writeInt64(((java.util.Date) object).getTime());
+			}
+		};
+		JSONFactory.getDefaultObjectWriterProvider().register(Timestamp.class, millisWriter);
+		JSONFactory.getDefaultObjectWriterProvider().register(java.sql.Date.class, millisWriter);
+		JSONFactory.getDefaultObjectWriterProvider().register(Time.class, millisWriter);
 	}
 
 	private Json() {

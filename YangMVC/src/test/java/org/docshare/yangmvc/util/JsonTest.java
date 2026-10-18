@@ -25,6 +25,13 @@ public class JsonTest {
 	}
 
 	@Test
+	public void sqlDatesAreMillis() {
+		assertEquals("1792201495123", Json.toJson(new java.sql.Timestamp(1792201495123L)));
+		assertEquals("1792201495123", Json.toJson(new java.sql.Date(1792201495123L)));
+		assertEquals("1792201495123", Json.toJson(new java.sql.Time(1792201495123L)));
+	}
+
+	@Test
 	public void localDateTimeKeepsIsoT() {
 		LocalDateTime ldt = LocalDateTime.of(2026, 10, 18, 13, 47, 22);
 		assertEquals("\"2026-10-18T13:47:22\"", Json.toJson(ldt));
