@@ -10,9 +10,31 @@
     </parent>
     <groupId>org.docshare</groupId>
     <artifactId>yangmvc-spring</artifactId>
-    <version>2026.10.18</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
+    <version>2026.10.18</version>
     <name>YangMVCSpring</name>
     <description>Integrate YangMVC to SpringBoot</description>
+    <url>https://gitee.com/yangtf/YangMVC</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://gitee.com/yangtf/YangMVC.git</url>
+        <connection>https://gitee.com/yangtf/YangMVC.git</connection>
+        <developerConnection>https://gitee.com/yangtf/</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>yangtongfeng</name>
+            <email>ytf_003@126.com</email>
+            <url>https://gitee.com/yangtf/</url>
+        </developer>
+    </developers>
     <properties>
         <java.version>17</java.version>
         <javac.version>17</javac.version>
@@ -129,6 +151,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.6</version>
+                <configuration>
+                    <keyname>938BC00AACF9329018497F94791F237D8D1E5DB8</keyname>
+                    <passphraseServerId>gpg.passphrase</passphraseServerId>
+                    <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                    </gpgArguments>
+                </configuration>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
