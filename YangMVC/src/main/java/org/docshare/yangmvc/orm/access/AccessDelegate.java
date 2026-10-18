@@ -43,38 +43,22 @@ public class AccessDelegate implements IDBDelegate {
 		
 		ArrayList<Object> plist = new ArrayList<Object>(); //参数列表
 		if(forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0 ) ){
-			//This is an insert
-			StringBuilder ks= new StringBuilder();
-			StringBuilder vs2=new StringBuilder();
-			boolean first=true;
-			for(String k: m.keySet()){
-				if(k.equals(key)){ //这里不再跳过主键字段
-					//continue;    //不跳过主键字段了
-				}
-				Object v = m.get(k);
-				if(v == null || v.toString().length() == 0){
-					continue;
-				}
-				if(!first){
-					ks.append(',');
-					vs2.append(',');
-				}
-				
-				ks.append('[').append(k).append(']');
-				String type = tool.getColumnTypeName(k);
-				ArrayTool.valueWrapper(null, v,type);
-				vs2.append('?');
-				plist.add(v);
-				first = false;
-			}
-			sql = String.format("insert into [%s](%s) values(%s)", m.getTableName(),ks.toString(),vs2.toString());
+			sql = buildInsertSql(m, plist);
 		}else{
 			ArrayList<String> sa=new ArrayList<String>();
 			
 			for(String k: m.changeColumns()){
 				if(k != null && k.equals(key))continue;
+				if(!m.hasColumn(k))continue;
+				if(m.isNullColumn(k)){
+					sa.add("["+k+"]=NULL");
+					continue;
+				}
 				Object v = m.get(k);
 				if(v == null || v.toString().length() == 0){
+					if(v == null && org.docshare.yangmvc.mvc.Config.db_update_null){
+						sa.add("["+k+"]=NULL");
+					}
 					continue;
 				}
 				sa.add("["+k+"]=?");
@@ -101,6 +85,35 @@ public class AccessDelegate implements IDBDelegate {
 		return d;//helper.getLastId();
 	}
 	
+	/**
+	 * 构建 INSERT：{@code putNull} 的列写字面量 NULL；其余 null/空串跳过（用默认值）。
+	 */
+	static String buildInsertSql(Model m, java.util.List<Object> plist) {
+		StringBuilder ks = new StringBuilder();
+		StringBuilder vs = new StringBuilder();
+		boolean first = true;
+		for (String k : m.keySet()) {
+			boolean explicitNull = m.isNullColumn(k);
+			Object v = m.get(k);
+			if (!explicitNull && (v == null || v.toString().length() == 0)) {
+				continue;
+			}
+			if (!first) {
+				ks.append(',');
+				vs.append(',');
+			}
+			ks.append('[').append(k).append(']');
+			if (explicitNull) {
+				vs.append("NULL");
+			} else {
+				vs.append('?');
+				plist.add(v);
+			}
+			first = false;
+		}
+		return "insert into [" + m.getTableName() + "](" + ks + ") values(" + vs + ")";
+	}
+
 	@Override
 	public int delete(String tname,String key,Object id){
 		Ident.assertSafe(key);

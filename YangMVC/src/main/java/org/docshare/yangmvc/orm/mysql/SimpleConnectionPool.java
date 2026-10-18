@@ -124,13 +124,28 @@ public class SimpleConnectionPool implements IConnectionPool2 {
 			if (i.con.isClosed()) {
 				return false;
 			}
-			// 空闲太久才探活，避免每次借出都多一个往返
-			if (System.currentTimeMillis() - i.since > Config.db_valid_interval_ms) {
+			long idleMs = System.currentTimeMillis() - i.since;
+			// 空闲太久直接丢弃（让数据库回收）
+			if (idleMs > Math.max(0, Config.db_pool_idle_ms)) {
+				return false;
+			}
+			// 空闲超过探活时间窗才 ping，避免每次借出都多一个往返
+			if (idleMs > Config.db_valid_interval_ms) {
 				return i.con.isValid(2);
 			}
 			return true;
 		} catch (SQLException e) {
 			return false;
+		}
+	}
+
+	/**
+	 * 关闭所有空闲连接（应用停止/测试用）。
+	 */
+	public void close() {
+		Idle i;
+		while ((i = idle.pollFirst()) != null) {
+			discard(i.con);
 		}
 	}
 

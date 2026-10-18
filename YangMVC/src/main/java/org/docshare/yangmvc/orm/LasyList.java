@@ -106,22 +106,29 @@ public class LasyList extends ListAdapter {
 	HashMap<Integer, Model> row_maps = new HashMap<>();
 
 	/**
-	 * 根据索引获取相应的对象
+	 * 根据索引获取相应的对象。
 	 * @param index 索引值，以0开头
-	 * @return 返回列表的第index个元素，如果index越界 ，返回null
+	 * @return 返回列表的第index个元素
+	 * @throws IndexOutOfBoundsException 索引越界（与 {@link java.util.List} 契约一致）
 	 */
 	@Override
 	public Model get(int index) {
 		toArrayList();
-		try{
-			if(arrList == null || index >= arrList.size() || index < 0){
-				return null;
-			}
-			return arrList.get(index);
-		}catch(IndexOutOfBoundsException e){
-			logger.debug("{}", e);
+		if(arrList == null || index < 0 || index >= arrList.size()){
+			throw new IndexOutOfBoundsException("index " + index + ", size " + (arrList == null ? 0 : arrList.size()));
+		}
+		return arrList.get(index);
+	}
+
+	/**
+	 * 越界时返回 null（旧行为，方便不想写 try/catch 的代码）。
+	 */
+	public Model getOrNull(int index) {
+		toArrayList();
+		if(arrList == null || index < 0 || index >= arrList.size()){
 			return null;
 		}
+		return arrList.get(index);
 	}
 	Map<String, ColumnDesc> column_desc = null;
 	public void printColumnDesc(){
@@ -409,9 +416,9 @@ public class LasyList extends ListAdapter {
 	 */
 	public Model one() {
         limit(_start, 1);
-        Model model = get(0);
+        List<Model> list = toArrayList();
         closeRS();
-        return model;
+        return list.isEmpty() ? null : list.get(0);
     }
 
     private void closeRS(){

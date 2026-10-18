@@ -60,6 +60,51 @@ public class DBTool {
 				logger.warn("table `{}` has no primary key: Model.save()/del(id) will not work, read-only", tname);
 			}
 		}
+		metaLoadedAt = System.currentTimeMillis();
+	}
+
+	/** 元数据上次加载时间（用于 db_meta_refresh_ms） */
+	private volatile long metaLoadedAt = 0;
+	private final Object metaLock = new Object();
+
+	/**
+	 * 按 {@link Config#db_meta_refresh_ms} 检查是否需要重新读取表结构。
+	 * 默认 0 = 不刷新（旧行为）。
+	 */
+	public boolean refreshColumnsIfExpired() {
+		int ttl = Config.db_meta_refresh_ms;
+		if (ttl <= 0 || "rawsql".equals(tname)) {
+			return false;
+		}
+		if (System.currentTimeMillis() - metaLoadedAt < ttl) {
+			return false;
+		}
+		return refreshColumns();
+	}
+
+	/**
+	 * 立即重新读取表结构（列/主键）。运行中 ALTER TABLE 后可以手动调用。
+	 */
+	public boolean refreshColumns() {
+		if ("rawsql".equals(tname)) {
+			return false;
+		}
+		synchronized (metaLock) {
+			Map<String, ColumnDesc> fresh = delegate.listColumn(tname, false);
+			if (fresh == null || fresh.isEmpty()) {
+				return false;
+			}
+			c_to_remarks = fresh;
+			HashMap<String, Object> cols = new HashMap<String, Object>();
+			for (String s : fresh.keySet()) {
+				cols.put(s, null);
+			}
+			columns = cols;
+			key = delegate.keyColumn(tname);
+			metaLoadedAt = System.currentTimeMillis();
+			logger.info("reloaded column metadata for `{}`: {} columns", tname, fresh.size());
+			return true;
+		}
 	}
 	/**
 	 * 获取列的注释；列不存在时返回列名本身（不再 NPE）。
@@ -147,6 +192,7 @@ public class DBTool {
 	 * @return 找到列column等于value的对象
 	 */
 	public Model get(String column, Object value) {
+		refreshColumnsIfExpired();
 		ResultSet rs=null;
 		try {
 			rs = delegate.resultById(tname, column, value);
@@ -167,6 +213,7 @@ public class DBTool {
 	}
 	
 	public Model create(){
+		refreshColumnsIfExpired();
 		Model model =new Model(tname, columns);
 		model.isCreated = true;
 		model.joined_tool = this;
@@ -246,6 +293,7 @@ public class DBTool {
 			logger.error("DBTool save a null model "+ m +", tname is "+tname);
 			return 0;
 		}
+		refreshColumnsIfExpired();
 		if(key == null){
 			logger.error("DBTool.save table must has a Key, database table must have primary key");
 			return 0;
@@ -277,6 +325,7 @@ public class DBTool {
 	 * @return LasyList对象
 	 */
 	public LasyList all(){
+		refreshColumnsIfExpired();
 		LasyList list = new LasyList(this,tname);
 		return list;
 	}

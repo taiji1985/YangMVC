@@ -40,43 +40,30 @@ public class PostgresDelegate implements IDBDelegate {
 		Object id = m.get(key);
 		String sql;
 
+
 		ArrayList<Object> plist = new ArrayList<>(); // 参数列表
 		if (forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0)) {
-			// This is an insert
-			StringBuilder ks = new StringBuilder();
-			StringBuilder vs2 = new StringBuilder();
-
-			boolean first = true;
-			for (String k : m.keySet()) {
-				Object v = m.get(k);
-				if (v == null || v.toString().isEmpty()) {
-					continue;
-				}
-				if (!first) {
-					ks.append(',');
-					vs2.append(',');
-				}
-
-				ks.append("\"").append(k).append("\"");
-				String type = tool.getColumnTypeName(k);
-				ArrayTool.valueWrapper(null, v, type);
-				vs2.append("?");
-				plist.add(v);
-				first = false;
-			}
-			sql = String.format("insert into \"%s\"(%s) values(%s)", m.getTableName(), ks, vs2);
+			sql = buildInsertSql(m, plist);
 		} else {
 			ArrayList<String> sa = new ArrayList<>();
 
 			for (String k : m.changeColumns()) {
-				Object v = m.get(k);
-				if (v == null || v.toString().isEmpty()) {
+				if (k.equals(key) || !m.hasColumn(k)) {
 					continue;
 				}
-				String type = tool.getColumnTypeName(k);
-				ArrayTool.valueWrapper(k, m.get(k), type);
+				if (m.isNullColumn(k)) {
+					sa.add("\"" + k + "\"=NULL");
+					continue;
+				}
+				Object v = m.get(k);
+				if (v == null || v.toString().isEmpty()) {
+					if (v == null && org.docshare.yangmvc.mvc.Config.db_update_null) {
+						sa.add("\"" + k + "\"=NULL");
+					}
+					continue;
+				}
 				sa.add("\"" + k + "\"=?");
-				plist.add(m.get(k));
+				plist.add(v);
 			}
 
 			if (sa.isEmpty()) {
@@ -114,6 +101,36 @@ public class PostgresDelegate implements IDBDelegate {
 		return d;
 	}
 	
+	/**
+	 * 构建 INSERT：{@code Model.putNull(col)} 的列写成字面量 NULL，
+	 * 其余 null / 空串跳过（PostgreSQL 这里保留"空串也用默认值"的旧行为）。
+	 */
+	static String buildInsertSql(Model m, List<Object> plist) {
+		StringBuilder ks = new StringBuilder();
+		StringBuilder vs = new StringBuilder();
+		boolean first = true;
+		for (String k : m.keySet()) {
+			boolean explicitNull = m.isNullColumn(k);
+			Object v = m.get(k);
+			if (!explicitNull && (v == null || v.toString().isEmpty())) {
+				continue;
+			}
+			if (!first) {
+				ks.append(',');
+				vs.append(',');
+			}
+			ks.append('"').append(k).append('"');
+			if (explicitNull) {
+				vs.append("NULL");
+			} else {
+				vs.append('?');
+				plist.add(v);
+			}
+			first = false;
+		}
+		return "insert into \"" + m.getTableName() + "\"(" + ks + ") values(" + vs + ")";
+	}
+
 	@Override
 	public int delete(String tableName,String key,Object id){
 		Ident.assertSafe(key);

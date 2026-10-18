@@ -125,6 +125,15 @@ public class Config {
 	/** 内置连接池借连接的超时（毫秒）。 */
 	public static int db_pool_timeout_ms = 5000;
 
+	/** 内置连接池空闲连接的保留时间（毫秒），超过后借出时丢弃。 */
+	public static int db_pool_idle_ms = 300000;
+
+	/**
+	 * 表结构（列元数据）自动刷新间隔（毫秒）。0 = 不自动刷新（默认，保持旧行为）。
+	 * 运行中会 ALTER TABLE 的环境可以设成 60000。
+	 */
+	public static int db_meta_refresh_ms = 0;
+
 	/**
 	 * web.properties 的解码方式：auto / utf-8 / gbk / gb18030 ...
 	 * auto：先按 UTF-8 严格解码，失败后退回 ISO-8859-1（与旧行为一致）。
