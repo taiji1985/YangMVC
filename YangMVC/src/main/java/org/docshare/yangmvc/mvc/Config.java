@@ -90,6 +90,34 @@ public class Config {
 	 * auto：先按 UTF-8 严格解码，失败后退回 ISO-8859-1（与旧行为一致）。
 	 */
 	public static String prop_encoding = "auto";
+
+	/**
+	 * 热加载：后台扫描 class 文件的间隔（毫秒）。0 = 不启后台线程，退回"请求时检查当前类"的模式。
+	 */
+	public static int reload_scan_interval_ms = 1000;
+
+	/**
+	 * 热加载：抖动窗口（毫秒）。一次编译改动多个 class 时，等安静下来再整代替换。
+	 */
+	public static int reload_debounce_ms = 500;
+
+	/**
+	 * 热加载：不参与热加载的包。
+	 * 支持两种写法：{@code *.service}（包名中任意一段叫 service）与
+	 * {@code org.docshare.l2exam.oss}（完整包前缀）。命中者一律由父加载器加载（改了要重启）。
+	 */
+	public static String reload_exclude_packages = "*.service,*.pojo";
+
+	/**
+	 * 热加载：class 文件所在目录。空 = 自动探测（bin / target/classes / CodeSource）。
+	 */
+	public static String class_root = null;
+
+	/**
+	 * 热加载模式下是否仍然使用 ReflectASM。默认 false：
+	 * ReflectASM 在 JDK16+ 需要 --add-opens 才能定义 access 类，且它的生成类会占 Metaspace。
+	 */
+	public static boolean reload_reflectasm = false;
 	
 	/**
 	 * 模板相对于WebRoot的目录路径

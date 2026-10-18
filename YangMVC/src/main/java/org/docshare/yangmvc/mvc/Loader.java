@@ -74,7 +74,14 @@ public class Loader {
 	 * key: 类名
 	 * Object: 对象
 	 */
-	 Map<String, Object> singleMap = new ConcurrentHashMap<>();
+	 static final Map<String, Object> singleMap = new ConcurrentHashMap<>();
+
+	/**
+	 * 热加载换代时清空单例表：单例对象的 Class 会钉住旧 loader。
+	 */
+	static void clearSingletons(){
+		singleMap.clear();
+	}
 	
 	 static boolean isGroovyObject(Object obj){
 		//groovy.lang.GroovyObject
@@ -193,7 +200,7 @@ public class Loader {
 		if (cz == null || methodName == null) {
 			return null;
 		}
-		Method m = MethodAccessCacher.getMethod(cz.getName(), methodName);
+		Method m = MethodAccessCacher.getMethod(cz, methodName);
 		if (m != null) {
 			return isNotAction(m) ? null : m;
 		}
@@ -262,33 +269,41 @@ public class Loader {
 		// 如果MethodAccess不可用，使用标准反射
 		if (access == null) {
 			logger.debug("Using standard reflection for " + className + "." + method.getName());
-			try {
-				return method.invoke(obj, args);
-			} catch (IllegalAccessException e1) {
-				logger.error("IllegalAccessException " +e1);
-			} catch (IllegalArgumentException e1) {
-				logger.error("IllegalArgumentException " +e1);
-			} catch (InvocationTargetException e1) {
-				logger.error("InvocationTargetException " +e1);
-			}
-			return null;
+			return invokeReflectively(obj, method, args);
 		}
 
 		try {
 			return access.invoke(obj, method.getName(), args);
 		} catch (ClassCastException e) {
 			logger.error("class cast exception "+e.getMessage());
-			try {
-				return method.invoke(obj, args);
-			} catch (IllegalAccessException e1) {
-				logger.error("IllegalAccessException " +e1);
-			} catch (IllegalArgumentException e1) {
-				logger.error("IllegalArgumentException " +e1);
-			} catch (InvocationTargetException e1) {
-				logger.error("InvocationTargetException " +e1);
-			}
+			return invokeReflectively(obj, method, args);
 		}
-		return null;
+	}
+
+	/**
+	 * 普通反射调用。
+	 *
+	 * <p>注意：控制器抛出的异常必须原样往外抛。老实现这里把 InvocationTargetException
+	 * 吞掉返回 null，结果是"热加载/无 ReflectASM 时，业务异常变成 200 空响应"，
+	 * 而且 {@link CallCacheMap} 也看不到异常、无法走统一错误页。
+	 */
+	private Object invokeReflectively(Object obj, Method method, Object[] args) {
+		try {
+			return method.invoke(obj, args);
+		} catch (InvocationTargetException e) {
+			Throwable cause = e.getCause() == null ? e : e.getCause();
+			if (cause instanceof RuntimeException) {
+				throw (RuntimeException) cause;
+			}
+			if (cause instanceof Error) {
+				throw (Error) cause;
+			}
+			throw new MVCException(cause);
+		} catch (IllegalAccessException e) {
+			throw new MVCException("can not access " + method, e);
+		} catch (IllegalArgumentException e) {
+			throw new MVCException("arguments not match " + method, e);
+		}
 	}
 	
 	/**

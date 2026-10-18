@@ -1,141 +1,141 @@
 package org.docshare.yangmvc.mvc;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class YangClassLoader extends ClassLoader{
+/**
+ * 热加载用的类加载器。
+ *
+ * <p>设计要点（都是踩过的坑）：
+ * <ol>
+ *   <li><b>parallel capable</b>：不注册的话 {@code getClassLoadingLock()} 返回 {@code this}，
+ *       所有类加载全局串行，而且会与别的锁形成环路（历史上就是在这里卡死的）。</li>
+ *   <li><b>findClass 里只读文件 + defineClass</b>：不调 {@code getResourceAsStream}（会去问父加载器）、
+ *       不调 {@code getProtectionDomain()}、更不调 {@code MethodAccessCacher}（ReflectASM 内部会
+ *       反过来加载类，形成锁顺序反转）。</li>
+ *   <li>一个"代"一个 loader，由 {@link Reloader} 整代替换。</li>
+ * </ol>
+ */
+class YangClassLoader extends ClassLoader {
+
 	private static final Logger logger = LoggerFactory.getLogger(YangClassLoader.class);
 
-    private int version;
-	private Object root;
-	private String reloadPackage;
-	public YangClassLoader(int v,String clsRoot,String reloadPackage) {
-    	this.version = v;
-    	if(! clsRoot.endsWith("/")){
-    		clsRoot+= "/";
-    	}
-    	this.root = clsRoot;
-    	this.reloadPackage = reloadPackage;
+	static {
+		// 必须在类初始化时注册；否则 getClassLoadingLock(name) 退化成 this
+		registerAsParallelCapable();
 	}
-	public String name2Path(String cname){
-		return root + cname.replace(".", "/")+".class";
+
+	private final int version;
+	private final String classRoot;
+	private final String reloadPackage;
+
+	public YangClassLoader(int v, String clsRoot, String reloadPackage) {
+		// 显式指定 parent 为"框架所在 loader"：在 WAR/Tomcat 下比默认的 system loader 更正确
+		super(YangClassLoader.class.getClassLoader());
+		this.version = v;
+		this.classRoot = normalizeDir(clsRoot);
+		this.reloadPackage = reloadPackage;
+	}
+
+	/** 当前是第几代，用于排查"是不是换代了" */
+	int getVersion() {
+		return version;
+	}
+
+	private static String normalizeDir(String dir) {
+		if (dir == null) {
+			return null;
+		}
+		String d = dir.replace('\\', '/');
+		while (d.endsWith("/") && d.length() > 1) {
+			d = d.substring(0, d.length() - 1);
+		}
+		return d;
+	}
+
+	public String name2Path(String cname) {
+		String root = classRoot == null ? "" : classRoot + "/";
+		return root + cname.replace(".", "/") + ".class";
 	}
 
 	@Override
 	public Class<?> loadClass(String name) throws ClassNotFoundException {
-		return loadClass(name, true);
+		return loadClass(name, false);
 	}
 
 	@Override
 	protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-		// 同步加载过程，避免并发问题
 		synchronized (getClassLoadingLock(name)) {
-			// 首先检查类是否已经加载
-			Class<?> loadedClass = findLoadedClass(name);
-			if (loadedClass != null) {
-				if (resolve) {
-					resolveClass(loadedClass);
-				}
-				return loadedClass;
-			}
-
-			// 检查是否属于需要重新加载的包
-			if (!name.startsWith(reloadPackage)) {
-				// 使用父类加载器加载非指定包的类
-				try {
-					logger.debug("YangClassLoader use Parent Loader "+getParent().getClass().getName()+" -> "+name);
-
-					Class<?> parentClass = getParent().loadClass(name);
-					if (resolve) {
-						resolveClass(parentClass);
+			Class<?> loaded = findLoadedClass(name);
+			if (loaded == null) {
+				if (!ReloadFilter.isReloadable(name, reloadPackage)) {
+					// 不在热加载范围（含 service/pojo 等排除项）→ 一律父加载器，保证只有一份
+					loaded = getParent().loadClass(name);
+				} else {
+					try {
+						loaded = findClass(name);
+					} catch (ClassNotFoundException e) {
+						// 目录里没有这个 class 文件时退回父加载器（兼容旧行为）
+						loaded = getParent().loadClass(name);
 					}
-					return parentClass;
-				} catch (ClassNotFoundException e) {
-					// 如果父类加载器无法加载，继续尝试自定义加载
 				}
 			}
-
-			// 尝试使用findClass方法加载类
-			try {
-				Class<?> clazz = findClass(name);
-				if (resolve) {
-					resolveClass(clazz);
-				}
-				return clazz;
-			} catch (ClassNotFoundException e) {
-				// 如果自定义加载失败，委托给父类加载器
-				if (name.startsWith(reloadPackage)) {
-					Class<?> parentClass = getParent().loadClass(name);
-					if (resolve) {
-						resolveClass(parentClass);
-					}
-					return parentClass;
-				}
-				throw e;
+			if (resolve) {
+				resolveClass(loaded);
 			}
+			return loaded;
 		}
 	}
 
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
-		logger.debug("YangClassLoader v" + version + ", finding " + name);
+		byte[] data = readClassBytes(name);
+		if (data == null) {
+			throw new ClassNotFoundException("Class file not found: " + name2Path(name));
+		}
+		if (logger.isDebugEnabled()) {
+			logger.debug("YangClassLoader v{} define {} ({} bytes)", version, name, data.length);
+		}
+		return defineClass(name, data, 0, data.length);
+	}
 
-		// 加载类字节码
-		String path = name2Path(name);
-		try (InputStream input = getClass().getResourceAsStream(path)) {
-			if (input == null) {
-				logger.debug("YangClassLoader can not find class file: " + path);
-				throw new ClassNotFoundException("Class file not found: " + path);
+	/**
+	 * 直接从磁盘读 class 字节。找不到返回 null。
+	 */
+	private byte[] readClassBytes(String name) {
+		if (classRoot == null) {
+			return null;
+		}
+		File f = new File(name2Path(name));
+		if (!f.isFile()) {
+			return null;
+		}
+		InputStream in = null;
+		try {
+			in = new FileInputStream(f);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream((int) Math.max(1024, f.length()));
+			byte[] buf = new byte[8192];
+			int n;
+			while ((n = in.read(buf)) > 0) {
+				bos.write(buf, 0, n);
 			}
-
-			// 读取类字节码
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			byte[] buf = new byte[10240];
-			int num;
-			while ((num = input.read(buf)) != -1) {
-				buffer.write(buf, 0, num);
-			}
-			byte[] classData = buffer.toByteArray();
-
-			logger.debug("YangClassLoader defining class: " + name);
-			
-			// 添加类转换调试信息
-			if (classData.length > 0) {
-				logger.debug("Class data size: " + classData.length + " bytes");
-			} else {
-				logger.warn("Warning: Empty class data for " + name);
-				throw new ClassNotFoundException("Empty class data for " + name);
-			}
-			
-			// 定义类 - 使用更安全的方式
-			Class<?> definedClass;
-			try {
-				// 为新版JDK提供更好的兼容性
-				definedClass = defineClass(name, classData, 0, classData.length, getClass().getProtectionDomain());
-			} catch (SecurityException e) {
-				logger.warn("Security exception with ProtectionDomain, trying without: " + e.getMessage());
-				// 如果使用ProtectionDomain失败，尝试不使用
-				definedClass = defineClass(name, classData, 0, classData.length);
-			}
-			
-			logger.debug("YangClassLoader loaded class: " + name);
-			
-			// 缓存类访问信息
-			MethodAccessCacher.asyncPut(name, definedClass);
-			logger.debug("YangClassLoader cached class: " + name);
-			
-			return definedClass;
+			return bos.toByteArray();
 		} catch (IOException e) {
-			logger.error("Error loading class " + name + ": " + e.getMessage());
-			throw new ClassNotFoundException("IO error loading class " + name, e);
-		} catch (SecurityException | ClassFormatError e) {
-			logger.error("Error defining class " + name + ": " + e.getMessage());
-			throw new ClassNotFoundException("Error defining class " + name, e);
+			logger.warn("read class file failed: {}", f.getAbsolutePath(), e);
+			return null;
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException ignored) {
+				}
+			}
 		}
 	}
 }

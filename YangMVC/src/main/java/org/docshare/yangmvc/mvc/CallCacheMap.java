@@ -76,4 +76,11 @@ class CallCacheMap {
 		url2CallCache.put(uri, cache);
 	}
 
+	/**
+	 * 热加载换代时调用：清掉缓存的 Class/Method/Singleton，避免继续使用旧代的类。
+	 */
+	public static void clear(){
+		url2CallCache.clear();
+	}
+
 }
