@@ -66,26 +66,20 @@ public class ModelNullUpdateTest {
 		DBTool tool = Mockito.mock(DBTool.class);
 		MySQLDelegate delegate = new MySQLDelegate();
 
-		// 旧实现会走到 "update `question` set  where id=9" 然后抛 SQL 异常；
-		// 新实现应当直接返回 0（不碰数据库）。
-		int ret = delegate.save(tool, m, "id", false);
-		assertEquals(0, ret);
-	}
-
-	@Test
-	public void putNullWithoutDbUpdateNullIsSkipped() throws Exception {
-		Model m = newModel();
-		m.put("id", 9);
-		m.putNull("video_url");
-
 		boolean old = org.docshare.yangmvc.mvc.Config.db_update_null;
-		org.docshare.yangmvc.mvc.Config.db_update_null = false;
+		org.docshare.yangmvc.mvc.Config.db_update_null = false; // 保证普通 null 被跳过
 		try {
-			DBTool tool = Mockito.mock(DBTool.class);
-			MySQLDelegate delegate = new MySQLDelegate();
-			assertEquals("默认行为：置空请求被忽略（保持旧行为）", 0, delegate.save(tool, m, "id", false));
+			// 旧实现会走到 "update `question` set  where id=9" 然后抛 SQL 异常；
+			// 新实现应当直接返回 0（不碰数据库）。
+			int ret = delegate.save(tool, m, "id", false);
+			assertEquals(0, ret);
 		} finally {
 			org.docshare.yangmvc.mvc.Config.db_update_null = old;
 		}
 	}
+
+	/**
+	 * putNull 的 SQL 生成见 {@code MySQLDelegateSqlTest#putNullWorksEvenWhenDbUpdateNullIsOff}：
+	 * 新语义下 putNull 一定写 NULL，所以不能再用 save() 断言"返回 0"（那会去连数据库）。
+	 */
 }

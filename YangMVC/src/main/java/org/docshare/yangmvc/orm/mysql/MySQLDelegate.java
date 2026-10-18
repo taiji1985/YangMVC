@@ -53,85 +53,13 @@ public class MySQLDelegate implements IDBDelegate {
 		
 		ArrayList<Object> plist = new ArrayList<Object>(8); //参数列表
 		if(forceInsert || m.isCreated || id == null || (id instanceof Integer && (Integer)id <= 0 ) ){
-			//This is an insert
-			StringBuilder ks=new StringBuilder(64);
-			
-			StringBuilder vs2= new StringBuilder(64);
-			boolean first=true;
-			for(String k: m.keySet()){
-				if(k.equals(key)){ //这里不再跳过主键字段
-					//continue;    //不跳过主键字段了
-				}
-				Object v = m.get(k);
-				if(v == null ){
-					continue;
-				}
-				if(!first){
-					ks.append(',');
-					vs2.append(',');
-				}
-				//  ks += "`"+k+"`"; 被优化
-				ks.append('`');
-				ks.append(k);
-				ks.append('`');
-				
-				vs2.append('?');
-				plist.add(v);
-				first = false;
-			}
-			//sql = String.format("insert into `%s`(%s) values(%s)", m.getTableName(),ks.toString(),vs2.toString());
-			StringBuilder sqlb = new StringBuilder(128);
-			sqlb.append("insert into `");
-			sqlb.append(m.getTableName());
-			sqlb.append("`(");
-			sqlb.append(ks);
-			sqlb.append(") values(");
-			sqlb.append(vs2);
-			sqlb.append(")");
-			sql = sqlb.toString();
+			sql = buildInsertSql(m, plist);
 		}else{
-			Set<String> changed = m.changeColumns();
-			if(changed == null || changed.isEmpty()){
-				logger.info("no change data for update "+sql);
-				return 0;
-			}
-
-			ArrayList<String> sa=new ArrayList<String>(changed.size());
-			for(String k: changed){
-				if(k.equals(key))continue;
-				if(!m.hasColumn(k))continue; // extra 里的附加字段不参与更新
-				if(m.isNullColumn(k)){
-					// putNull 显式置空；默认不写 NULL，保持旧行为
-					if(Config.db_update_null){
-						sa.add("`"+k+"`=NULL");
-					}
-					continue;
-				}
-				Object v = m.get(k);
-				if(v == null ){
-					continue;
-				}
-				//String type = tool.getColumnTypeName(k);
-				//ArrayTool.valueWrapper(k, m.get(k),type);
-				//sa.add(s);
-				sa.add("`"+k+"`=?");
-				plist.add(v);
-			}
-			if(sa.isEmpty()){
-				// 改动全是 null（旧实现会拼出 "update t set  where id=?" 这种非法 SQL）
+			sql = buildUpdateSql(m, key, id, plist);
+			if(sql == null){
 				logger.info("no effective change for update, table={} ,key={}", m.getTableName(), id);
 				return 0;
 			}
-			String ss = ArrayTool.join(",", sa);
-			//sql=String.format("update `%s` set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName(key)) );
-			StringBuilder sqlb = new StringBuilder(128);
-			sqlb.append("update `");
-			sqlb.append(m.getTableName());
-			sqlb.append("` set ");
-			sqlb.append(ss);
-			sqlb.append(" where ");
-			sqlb.append(ArrayTool.valueWrapper(key, id,tool.getColumnTypeName(key)));
-			sql = sqlb.toString();
 		}
 		logger.debug("DBTool run sql: "+sql+"  params=["+ArrayTool.joinWithLengthLimit(",", plist,20)+"]");
 		Object[] objs = plist.toArray();
@@ -144,6 +72,91 @@ public class MySQLDelegate implements IDBDelegate {
 			m.put(key, id);
 		}
 		return d;//helper.getLastId();
+	}
+
+	/**
+	 * 构建 INSERT。
+	 *
+	 * <p>规则：
+	 * <ul>
+	 *   <li>{@code Model.putNull(col)} 标记的列写成字面量 {@code NULL}（显式要求空值）；</li>
+	 *   <li>其余值为 null 的列直接跳过（让数据库用列默认值，这是旧行为）。</li>
+	 * </ul>
+	 */
+	static String buildInsertSql(Model m, List<Object> plist) {
+		StringBuilder ks = new StringBuilder(64);
+		StringBuilder vs2 = new StringBuilder(64);
+		boolean first = true;
+		for (String k : m.keySet()) {
+			boolean explicitNull = m.isNullColumn(k);
+			Object v = m.get(k);
+			if (!explicitNull && v == null) {
+				continue;
+			}
+			if (!first) {
+				ks.append(',');
+				vs2.append(',');
+			}
+			ks.append('`').append(k).append('`');
+			if (explicitNull) {
+				vs2.append("NULL");
+			} else {
+				vs2.append('?');
+				plist.add(v);
+			}
+			first = false;
+		}
+		StringBuilder sqlb = new StringBuilder(128);
+		sqlb.append("insert into `").append(m.getTableName()).append("`(")
+				.append(ks).append(") values(").append(vs2).append(")");
+		return sqlb.toString();
+	}
+
+	/**
+	 * 构建 UPDATE；没有可更新的列时返回 null。
+	 *
+	 * <p>主键值走 {@code ?} 参数（旧实现是用 {@link ArrayTool#valueWrapper} 拼字面量，
+	 * 字符串主键里带引号就会破坏 SQL）。
+	 *
+	 * <p>{@code putNull} 显式置空；普通 null 值默认跳过，
+	 * {@link Config#db_update_null}=true 时也写成 {@code NULL}。
+	 */
+	static String buildUpdateSql(Model m, String key, Object id, List<Object> plist) {
+		Set<String> changed = m.changeColumns();
+		if (changed == null || changed.isEmpty()) {
+			return null;
+		}
+		ArrayList<String> sa = new ArrayList<String>(changed.size());
+		for (String k : changed) {
+			if (k.equals(key)) {
+				continue;
+			}
+			if (!m.hasColumn(k)) {
+				continue; // extra 里的附加字段不参与更新
+			}
+			if (m.isNullColumn(k)) {
+				sa.add("`" + k + "`=NULL");
+				continue;
+			}
+			Object v = m.get(k);
+			if (v == null) {
+				if (Config.db_update_null) {
+					sa.add("`" + k + "`=NULL");
+				}
+				continue;
+			}
+			sa.add("`" + k + "`=?");
+			plist.add(v);
+		}
+		if (sa.isEmpty()) {
+			return null;
+		}
+		StringBuilder sqlb = new StringBuilder(128);
+		sqlb.append("update `").append(m.getTableName()).append("` set ")
+				.append(ArrayTool.join(",", sa))
+				.append(" where `").append(key).append("` = ?");
+		plist.add(id);
+		return sqlb.toString();
 	}
 	
 	@Override

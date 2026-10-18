@@ -77,22 +77,20 @@ public class AccessDelegate implements IDBDelegate {
 				if(v == null || v.toString().length() == 0){
 					continue;
 				}
-				String type = tool.getColumnTypeName(k);
-				ArrayTool.valueWrapper(k, m.get(k),type);
-				//sa.add(s);
 				sa.add("["+k+"]=?");
-				plist.add(m.get(k));
+				plist.add(v);
 			}
-			String ss = ArrayTool.join(",", sa);
-			sql=String.format("update [%s] set %s where %s", m.getTableName(),ss,ArrayTool.valueWrapper(key, id,tool.getColumnTypeName("id")) );
-			if(m.changeColumns().size() == 0){
-				logger.info("no change data for update "+sql);
+			if(sa.isEmpty()){
+				logger.info("no effective change for update, table={} ,key={}", m.getTableName(), id);
 				return 0;
 			}
+			// 主键值走 ? 参数（旧实现是拼字面量，字符串主键带引号会破坏 SQL）
+			sql=String.format("update [%s] set %s where [%s] = ?", m.getTableName(),ArrayTool.join(",", sa),key);
+			plist.add(id);
 		}
 		logger.debug("DBTool run sql: "+sql+"  params=["+ArrayTool.joinWithLengthLimit(",", plist,20)+"]");
 		Object[] objs = plist.toArray();
-		DBHelper helper = DBHelper.getIns("mysql");
+		DBHelper helper = DBHelper.getIns("access");
 		
 		int d = helper.updateWithArray(sql,objs);
 		logger.debug("return "+d);

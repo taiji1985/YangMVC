@@ -1,5 +1,6 @@
 package org.docshare.yangmvc.orm;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.slf4j.Logger;
@@ -101,8 +102,19 @@ public class Model implements Map<String,Object> {
 		if(rObject instanceof Integer){
 			return (Integer)rObject;
 		}
-		String str = rObject +"";
-		return Integer.parseInt(str);
+		if(rObject instanceof Number){
+			// DOUBLE/DECIMAL/BIGINT 都以 Number 返回：小数截断，但超出 int 范围要报错
+			long l = ((Number)rObject).longValue();
+			if(l > Integer.MAX_VALUE || l < Integer.MIN_VALUE){
+				throw new ArithmeticException("getInt(" + key + "): value out of int range: " + rObject);
+			}
+			return (int)l;
+		}
+		BigDecimal bd = toBigDecimal(key, rObject);
+		if(bd.compareTo(INT_MAX) > 0 || bd.compareTo(INT_MIN) < 0){
+			throw new ArithmeticException("getInt(" + key + "): value out of int range: " + rObject);
+		}
+		return bd.intValue(); // 95.9 -> 95（截断，与 Java 一致）
 	}
 	/**
 	 * 以长整数形式返回字段值，如果原本为非整数，则尝试转换（如果无法转换则报错）
@@ -117,8 +129,10 @@ public class Model implements Map<String,Object> {
 		if(rObject instanceof Long){
 			return (Long)rObject;
 		}
-		String str = rObject +"";
-		return Long.parseLong(str);
+		if(rObject instanceof Number){
+			return ((Number)rObject).longValue();
+		}
+		return toBigDecimal(key, rObject).longValue();
 	}
 	
 	/**
@@ -126,16 +140,29 @@ public class Model implements Map<String,Object> {
 	 * @param key 字段的名称
 	 * @return 字段你的值（整数）
 	 */
-	public Double getDouble(Object key){ 
+	public Double getDouble(Object key){
 		Object rObject  = get(key);
 		if(rObject == null){
 			return null;
 		}
 		if(rObject instanceof Double){
-			return (Double)rObject;
+			return (Double) rObject;
 		}
-		String str = rObject +""; 
-		return Double.parseDouble(str);
+		if(rObject instanceof Number){
+			return ((Number)rObject).doubleValue();
+		}
+		return Double.parseDouble(rObject.toString().trim());
+	}
+
+	private static final BigDecimal INT_MAX = BigDecimal.valueOf(Integer.MAX_VALUE);
+	private static final BigDecimal INT_MIN = BigDecimal.valueOf(Integer.MIN_VALUE);
+
+	private static BigDecimal toBigDecimal(Object key, Object value) {
+		try {
+			return new BigDecimal(value.toString().trim());
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException("Model value of '" + key + "' is not a number: " + value);
+		}
 	}
 	
 	@Override

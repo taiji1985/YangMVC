@@ -206,9 +206,8 @@ public abstract class DBHelper {
 
 	public ResultSet getPrepareRS(String sql, Object a, Object b)
 			throws SQLException {
-		twoArray.clear();
 		twoArray.set(0, a);
-		twoArray.set(0, b);
+		twoArray.set(1, b);
 		return getRS(sql,twoArray);
 	}
 

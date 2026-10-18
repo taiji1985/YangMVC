@@ -80,11 +80,7 @@ public class PostgresDelegate implements IDBDelegate {
 			}
 
 			if (sa.isEmpty()) {
-				sql = String.format("update \"%s\" set 1=1 where %s",
-						m.getTableName(),
-						ArrayTool.valueWrapper(key, id, tool.getColumnTypeName("id"))
-				);
-				logger.info("no change data for update " + sql);
+				logger.info("no effective change for update, table={} ,key={}", m.getTableName(), id);
 				return 0;
 			}
 
@@ -96,11 +92,13 @@ public class PostgresDelegate implements IDBDelegate {
 				sb.append(sa.get(i));
 			}
 
-			sql = String.format("update \"%s\" set %s where %s",
+			// 主键值走 ? 参数（旧实现是拼字面量，字符串主键带引号会破坏 SQL）
+			sql = String.format("update \"%s\" set %s where \"%s\" = ?",
 					m.getTableName(),
 					sb,
-					ArrayTool.valueWrapper(key, id, tool.getColumnTypeName("id"))
+					key
 			);
+			plist.add(id);
 		}
 
 		logger.debug("DBTool run sql: " + sql + "  params=[" + ArrayTool.joinWithLengthLimit(",", plist, 20) + "]");
