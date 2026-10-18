@@ -18,7 +18,9 @@ import org.docshare.yangmvc.mvc.except.MVCException;
  */
 public final class Ident {
 
-	private static final char[] FORBIDDEN = { '`', '\'', '"', ';', '(', ')', ' ', '\t', '\r', '\n', '/', '\\' };
+	private static final char[] FORBIDDEN = { '`', '\'', '"', ';', '(', ')', ' ', '\t', '\r', '\n', '/', '\\',
+			// Access 用 [列名] 引用标识符，']' 能提前闭合方括号，所以也拦掉（MySQL/PostgreSQL 的列名里不会出现方括号）
+			'[', ']' };
 
 	private Ident() {
 	}

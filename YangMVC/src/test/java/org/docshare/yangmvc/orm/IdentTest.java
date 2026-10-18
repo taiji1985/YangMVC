@@ -31,7 +31,9 @@ public class IdentTest {
 	public void dangerousNamesRejected() {
 		String[] bad = {
 				"a`b", "a'b", "a\"b", "a;b", "a b", "a--b", "a/*b", "a*/b",
-				"a)b", "a(b", "a/b", "a\\b", "a#b", "id = 1 or 1=1"
+				"a)b", "a(b", "a/b", "a\\b", "a#b", "id = 1 or 1=1",
+				// Access 用 [列名] 引用标识符，']' 能提前闭合，必须拦掉
+				"a]b", "a[b"
 		};
 		for (String s : bad) {
 			assertThrows("should reject: " + s, MVCException.class, () -> Ident.assertSafe(s));

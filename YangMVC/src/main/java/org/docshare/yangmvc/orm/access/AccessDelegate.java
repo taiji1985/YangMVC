@@ -15,6 +15,7 @@ import org.docshare.yangmvc.orm.ColumnDesc;
 import org.docshare.yangmvc.orm.DBHelper;
 import org.docshare.yangmvc.orm.DBTool;
 import org.docshare.yangmvc.orm.IDBDelegate;
+import org.docshare.yangmvc.orm.Ident;
 import org.docshare.yangmvc.orm.Model;
 import org.docshare.yangmvc.orm.SQLConstains;
 import org.docshare.yangmvc.util.FileTool;
@@ -26,6 +27,7 @@ public class AccessDelegate implements IDBDelegate {
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tname,String column,Object id) throws SQLException {
+		Ident.assertSafe(column);
 		ResultSet rs = DBHelper.getIns().getPrepareRS(String.format("select * from [%s] where [%s] = ? limit 0,1",tname,column),id);
 		return rs;
 	}
@@ -103,6 +105,7 @@ public class AccessDelegate implements IDBDelegate {
 	
 	@Override
 	public int delete(String tname,String key,Object id){
+		Ident.assertSafe(key);
 		String sql = String.format("delete from [%s] where [%s] = ?", tname,key);
 		logger.debug("DBTool run sql: "+sql +" ,param  = "+id);
 		return DBHelper.getIns().update(sql,id);

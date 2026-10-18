@@ -15,6 +15,7 @@ import org.docshare.yangmvc.orm.ColumnDesc;
 import org.docshare.yangmvc.orm.DBHelper;
 import org.docshare.yangmvc.orm.DBTool;
 import org.docshare.yangmvc.orm.IDBDelegate;
+import org.docshare.yangmvc.orm.Ident;
 import org.docshare.yangmvc.orm.Model;
 import org.docshare.yangmvc.orm.SQLConstains;
 import org.docshare.yangmvc.util.TextTool;
@@ -26,6 +27,7 @@ public class PostgresDelegate implements IDBDelegate {
 	public Map<String, ColumnDesc> c_to_remarks;
 	@Override
 	public ResultSet resultById(String tableName,String column,Object id) throws SQLException {
+		Ident.assertSafe(column);
         return DBHelper.getIns().getPrepareRS(String.format("select * from \"%s\" where \"%s\" = ? limit 1",tableName,column),id);
 	}
 
@@ -116,6 +118,7 @@ public class PostgresDelegate implements IDBDelegate {
 	
 	@Override
 	public int delete(String tableName,String key,Object id){
+		Ident.assertSafe(key);
 		String sql = String.format("delete from \"%s\" where \"%s\" = ?", tableName,key);
 		logger.debug("DBTool run sql: "+sql +" ,param  = "+id);
 		return DBHelper.getIns().update(sql,id);
