@@ -112,12 +112,6 @@ public class Config {
 	 * 热加载：class 文件所在目录。空 = 自动探测（bin / target/classes / CodeSource）。
 	 */
 	public static String class_root = null;
-
-	/**
-	 * 热加载模式下是否仍然使用 ReflectASM。默认 false：
-	 * ReflectASM 在 JDK16+ 需要 --add-opens 才能定义 access 类，且它的生成类会占 Metaspace。
-	 */
-	public static boolean reload_reflectasm = false;
 	
 	/**
 	 * 模板相对于WebRoot的目录路径

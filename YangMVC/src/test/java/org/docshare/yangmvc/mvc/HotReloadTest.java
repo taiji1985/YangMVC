@@ -44,7 +44,6 @@ public class HotReloadTest {
 	private int oldInterval;
 	private int oldDebounce;
 	private String oldExclude;
-	private boolean oldReflectasm;
 
 	@Before
 	public void setUp() throws Exception {
@@ -54,7 +53,6 @@ public class HotReloadTest {
 		oldInterval = Config.reload_scan_interval_ms;
 		oldDebounce = Config.reload_debounce_ms;
 		oldExclude = Config.reload_exclude_packages;
-		oldReflectasm = Config.reload_reflectasm;
 
 		root = new File(System.getProperty("java.io.tmpdir"), "yangmvc-hot-" + System.nanoTime());
 		root.mkdirs();
@@ -75,7 +73,6 @@ public class HotReloadTest {
 		Config.reload_scan_interval_ms = oldInterval;
 		Config.reload_debounce_ms = oldDebounce;
 		Config.reload_exclude_packages = oldExclude;
-		Config.reload_reflectasm = oldReflectasm;
 		MethodAccessCacher.clear();
 		CallCacheMap.clear();
 		Loader.clearSingletons();

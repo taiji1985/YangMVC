@@ -31,12 +31,12 @@ public class MethodAccessCacher {
 	/**
 	 * 热加载模式下是否使用 ReflectASM。
 	 *
-	 * <p>默认不用：ReflectASM 1.11 在 JDK16+ 需要 --add-opens 才能定义 access 类，
-	 * 而且它会在"加载类"的锁里反向加载类（历史死锁来源），生成类还会占 Metaspace。
-	 * 热加载是低频操作，改用普通反射即可。
+	 * <p>热加载模式固定不用：ReflectASM 1.11 在 JDK16+ 需要 --add-opens 才能定义 access 类，
+	 * 而且它的生成类会占 Metaspace。热加载是低频操作，改用普通反射即可
+	 * （action 每请求只调用一次，反射的额外开销相对一次 DB 查询可以忽略）。
 	 */
 	private static boolean useReflectasm(){
-		return !Config.reloadable || Config.reload_reflectasm;
+		return !Config.reloadable;
 	}
 	/**
 	 * 每次加载类都缓存器MethodAccess和Method，加速查找
