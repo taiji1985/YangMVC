@@ -181,6 +181,14 @@ public class RequestContext {
     }
     
     /**
+     * 当前线程是否绑定着一个请求（request != null）。
+     * 用于 setReq 的自检：为 true 时说明上一次请求没有清理，或者有人在同一线程里重复绑定。
+     */
+    public boolean isActive() {
+        return request != null;
+    }
+
+    /**
      * 清理所有数据
      */
     public void clear() {

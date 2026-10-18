@@ -82,6 +82,15 @@ public class Loader {
 	static void clearSingletons(){
 		singleMap.clear();
 	}
+
+	/**
+	 * 把某个控制器从单例表里移除（{@code setSingle(false)} 时调用，让"取消单例"立即生效）。
+	 */
+	static void forgetSingleton(String cname){
+		if(cname != null){
+			singleMap.remove(cname);
+		}
+	}
 	
 	 static boolean isGroovyObject(Object obj){
 		//groovy.lang.GroovyObject
@@ -99,8 +108,9 @@ public class Loader {
 		Class<?> cz=null;
 		Object obj;
 		try{
-			if(singleMap.containsKey(cname)){
-				obj = singleMap.get(cname);
+			// 注意：ConcurrentHashMap 不允许 null value，所以这里用一次 get 判断即可
+			obj = singleMap.get(cname);
+			if(obj != null){
 				cz = obj.getClass();
 				((Controller)obj).clearOutFlag();
 				logger.debug("Single Mode:"+cname);
@@ -115,7 +125,17 @@ public class Loader {
 					logger.error("error : The Class is not subclass of Controller: "+cname);
 					return false;
 				}
-				((Controller)obj).clearOutFlag();
+				Controller created = (Controller) obj;
+				created.clearOutFlag();
+				if(created.isSingle()){
+					// 并发首次请求时只允许一个实例胜出，保证"全局一个单例"
+					Object prev = singleMap.putIfAbsent(cname, created);
+					if(prev != null){
+						obj = prev;
+						cz = prev.getClass();
+						((Controller)prev).clearOutFlag();
+					}
+				}
 			}
 		}catch(Exception e){
 			Throwable cause = e.getCause();
@@ -165,7 +185,8 @@ public class Loader {
 			runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			if(ins.isSingle()){
-				singleMap.put(cname, ins);
+				// 正常情况在创建时就 putIfAbsent 进去了；这里兜住"在 action 里才调 setSingle(true)"的写法
+				singleMap.putIfAbsent(cname, ins);
 				CallCacheMap.addCache(uri, cz, access,method, ins,m);
 			}else{
 				CallCacheMap.addCache(uri, cz, access,method, null,m);

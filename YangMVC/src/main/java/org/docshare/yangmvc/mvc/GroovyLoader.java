@@ -24,8 +24,8 @@ public class GroovyLoader extends Loader {
 		Class<?> cz=null;
 		Object obj =null;
 		try{
-			if(singleMap.containsKey(cname)){
-				obj = singleMap.get(cname);
+			obj = singleMap.get(cname);
+			if(obj != null){
 				cz = obj.getClass();
 				((Controller)obj).clearOutFlag();
 				logger.trace("Single Mode:"+cname);
@@ -115,7 +115,7 @@ public class GroovyLoader extends Loader {
 			runPostProcessing(uri,ins,ret); //执行后处理程序
 			
 			if(ins.isSingle()){
-				singleMap.put(cname, ins);
+				singleMap.putIfAbsent(cname, ins);
 				CallCacheMap.addCache(uri, cz, access,method, ins,m);
 			}else{
 				CallCacheMap.addCache(uri, cz, access,method, null,m);

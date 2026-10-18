@@ -7,7 +7,9 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -27,6 +29,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.docshare.yangmvc.mvc.except.MVCException;
 import org.docshare.yangmvc.mvc.except.NullParamException;
 import org.docshare.yangmvc.orm.DBTool;
 import org.docshare.yangmvc.orm.LasyList;
@@ -124,8 +127,12 @@ public class Controller {
 	}
 	
 	/**
-	 * 清理当前线程的请求上下文
+	 * 清理当前线程的请求上下文（{@link #clearCurrentContext()} 的实例版本）。
+	 *
+	 * @deprecated 用静态方法 {@link #clearCurrentContext()}；两者作用完全相同，
+	 * 保留这个方法只是为了不破坏已有调用。
 	 */
+	@Deprecated
 	public void clearContext() {
 		RequestContext ctx = context.get();
 		if (ctx != null) {
@@ -563,13 +570,26 @@ public class Controller {
 		return getContext().getJson(); 
 	}
 	/**
-	 * 由过滤器调用这个方法来传送 request和response对象
+	 * 由过滤器调用这个方法来绑定本次请求（request/response/session/application/参数）。
+	 *
+	 * <p>注意它操作的是 {@code static ThreadLocal} 里<b>当前线程</b>的那一份上下文，
+	 * 而不是这个实例自己的状态：不同线程彼此隔离，互不影响。
+	 * 同一线程里重复调用会**重置**上下文（上一个绑定的参数/会话会被丢弃），
+	 * 所以请只在请求边界调用（Loader / CallCacheMap / MVCFilter），
+	 * 不要在 controller A 的 action 里 {@code new B(); B.setReq(...)} ——
+	 * 那样 A 后面读到的就是 B 绑定的上下文了。需要复用逻辑请抽成 service。
+	 *
 	 * @param req 请求
 	 * @param resp 响应
 	 */
 	public void setReq(HttpServletRequest req, HttpServletResponse resp) {
 		// 获取当前线程的请求上下文
 		RequestContext ctx = getContext();
+		if (ctx.isActive() && logger.isDebugEnabled()) {
+			// 正常请求不会走到这里；出现说明上一个请求没清理，或有人在同一线程里重复绑定
+			logger.debug("setReq() called while a request is still bound on thread {}; previous context will be discarded",
+					Thread.currentThread().getName());
+		}
 		ctx.clear();
 
 		// 设置请求和响应对象到上下文
@@ -1138,14 +1158,48 @@ public class Controller {
 		}
 	}
 	/**
-	 * 设置当前控制器为单例模式， 需要注意的是，只有不使用除了request、response、session之外的类变量的才可以使用单例。
-	 * 单例模式可以优化性能，但也请慎用，做好测试。
-	 * 如果是文件上传，则不应使用单例模式，因为会用到类变量。
+	 * 设置当前控制器为单例模式。
+	 *
+	 * <p><b>只能在构造函数里调用</b>（例如 {@code public BookController(){ setSingle(true); }}）。
+	 * 单例只复用"方法"，请求状态全部放在 {@link RequestContext}（ThreadLocal）里，
+	 * 所以<b>控制器里不能有实例字段</b>——否则就是跨用户串数据。
+	 *
+	 * <p>为了尽早发现这种误用，这里会检查"本类自己声明的实例字段"：
+	 * 默认打 WARN；{@link Config#strict_singleton}=true 时直接抛异常（建议开发/测试期打开）。
+	 * 父类的字段不检查（例如 BaseController 里的无状态工具字段）。
+	 *
+	 * <p>另外，{@code setSingle(false)} 会把它从单例表里移除，立即生效。
+	 *
 	 * @param single 设置为true为单例，否则每次请求创建一个该控制器对象
 	 */
 	public void setSingle(boolean single){
 		this.single = single;
+		if(!single){
+			Loader.forgetSingleton(getClass().getName());
+			return;
+		}
+		auditSingletonFields();
 	}
+
+	/**
+	 * 单例字段审计：控制器自己声明的非 static 字段都是"跨请求共享"的，既危险又难查。
+	 */
+	private void auditSingletonFields(){
+		Field[] fields = getClass().getDeclaredFields();
+		for(Field f : fields){
+			if(Modifier.isStatic(f.getModifiers()) || f.isSynthetic()){
+				continue;
+			}
+			String msg = "controller " + getClass().getName() + " is singleton but declares instance field '"
+					+ f.getName() + "' (" + f.getType().getName() + "); "
+					+ "it is shared by all requests — move it into the ThreadLocal context or remove setSingle(true)";
+			if(Config.strict_singleton){
+				throw new MVCException(msg);
+			}
+			logger.warn(msg);
+		}
+	}
+
 	/**
 	 * 返回当前控制器是否是单例模式
 	 * @return 是否为单例

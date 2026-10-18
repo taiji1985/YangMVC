@@ -86,6 +86,12 @@ public class Config {
 	public static boolean inherited_action = true;
 
 	/**
+	 * 单例模式的严格检查：控制器调用 setSingle(true) 时，如果它自己声明了实例字段，
+	 * 默认只打 WARN；置为 true 则直接抛异常（建议只在开发/测试环境开）。
+	 */
+	public static boolean strict_singleton = false;
+
+	/**
 	 * web.properties 的解码方式：auto / utf-8 / gbk / gb18030 ...
 	 * auto：先按 UTF-8 严格解码，失败后退回 ISO-8859-1（与旧行为一致）。
 	 */
