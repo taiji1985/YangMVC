@@ -13,7 +13,7 @@ import org.docshare.yangmvc.mvc.Config;
 import org.docshare.yangmvc.util.BeanUtil;
 import org.docshare.yangmvc.util.FileTool;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 
 /**
  * ORM类库最核心的类。 负责数据库表的查询。所有数据库查询均需先创建此类。 <br>

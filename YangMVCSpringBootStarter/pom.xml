@@ -12,16 +12,16 @@
     </parent>
 
     <artifactId>yangmvc-spring-boot-starter</artifactId>
-    <version>2025.07.06</version>
+    <version>2026.10.18</version>
     <packaging>jar</packaging>
 
     <name>YangMVC Spring Boot Starter</name>
     <description>Spring Boot Starter for YangMVC - Auto-configuration for YangMVC framework</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <spring-boot.version>2.7.18</spring-boot.version>
-        <yangmvc.version>2025.07.06</yangmvc.version>
+        <yangmvc.version>2026.10.18</yangmvc.version>
     </properties>
 
     <dependencyManagement>

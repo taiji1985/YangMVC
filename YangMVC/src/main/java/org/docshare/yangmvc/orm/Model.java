@@ -12,7 +12,7 @@ import org.docshare.yangmvc.util.TextTool;
 import org.docshare.yangmvc.util.TimeHelper;
 import org.jetbrains.annotations.NotNull;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 
 public class Model implements Map<String,Object> {
 	private static final Logger logger = LoggerFactory.getLogger(Model.class);

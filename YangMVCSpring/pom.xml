@@ -5,17 +5,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.1</version>
+        <version>2.7.18</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.docshare</groupId>
     <artifactId>yangmvc-spring</artifactId>
-    <version>2025.07.06</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
+    <version>2026.10.18</version> <!-- 这里假设版本号为2025.06.19，你可根据实际情况修改 -->
     <name>YangMVCSpring</name>
     <description>Integrate YangMVC to SpringBoot</description>
     <properties>
-        <java.version>1.8</java.version>
-        <javac.version>1.8</javac.version>
+        <java.version>17</java.version>
+        <javac.version>17</javac.version>
     </properties>
     <dependencies>
         <dependency>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.docshare</groupId>
             <artifactId>yangmvc</artifactId>
-            <version>2025.07.06</version>
+            <version>2026.10.18</version>
             <exclusions>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
@@ -82,8 +82,9 @@
         
         <!-- MySQL驱动 -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.4.0</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>

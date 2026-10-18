@@ -39,11 +39,12 @@ import org.docshare.yangmvc.util.BeanUtil;
 import org.docshare.yangmvc.util.FileTool;
 import org.docshare.yangmvc.util.GzipUtil;
 import org.docshare.yangmvc.util.IOUtil;
+import org.docshare.yangmvc.util.Json;
 import org.docshare.yangmvc.util.TextTool;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.JSONWriter;
 
 import freemarker.template.Template;
 
@@ -904,13 +905,10 @@ public class Controller {
 			}else{
 				String string;
 				if(param("datefmt")!=null){
-					if(pretty){
-						string = JSON.toJSONString(obj,SerializerFeature.PrettyFormat,SerializerFeature.WriteDateUseDateFormat);
-					}else{
-						string = JSON.toJSONString(obj,SerializerFeature.WriteDateUseDateFormat);
-					}
+					// 与 fastjson 1.x 的 WriteDateUseDateFormat 一致
+					string = Json.toJsonWithDateFormat(obj, "yyyy-MM-dd HH:mm:ss", pretty);
 				}else{
-					string= JSON.toJSONString(obj,pretty);
+					string = Json.toJson(obj, pretty);
 				}
 				writer.write(string);
 			}
@@ -1433,7 +1431,7 @@ public class Controller {
 	}
 	
 	public String json(Object obj,boolean pretty){
-		return JSON.toJSONString(obj,pretty);
+		return Json.toJson(obj, pretty);
 	}
 	
 	public String json(Object obj){

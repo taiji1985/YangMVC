@@ -1,20 +1,42 @@
 package org.docshare.yangmvc.util;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 简单的 HTTP 工具（GET / 表单 POST）。
+ *
+ * <p>历史实现用的是 commons-httpclient 3.1（2011 年 EOL，CVE-2012-5783 无修复），
+ * 这里换成 Apache HttpClient 4.5（Java 8 兼容），对外方法签名保持不变：
+ * {@link #get(String)}、{@link #get(String, String)}、{@link #post(String, Map)}、
+ * {@link #post(String, Map, String)}。
+ */
 public class HttpHelper {
 	private static final Logger logger = LoggerFactory.getLogger(HttpHelper.class);
+
+	private static final CloseableHttpClient CLIENT = HttpClients.custom()
+			.setDefaultRequestConfig(RequestConfig.custom()
+					.setConnectTimeout(10000)
+					.setConnectionRequestTimeout(10000)
+					.setSocketTimeout(10000)
+					.build())
+			.build();
 
 	/**
 	 * 执行get请求
@@ -22,31 +44,24 @@ public class HttpHelper {
 	 * @return 如果失败返回null，否则返回内容
 	 */
 	public static String get(String url) {
-		return get(url,"utf-8");
+		return get(url, "utf-8");
 	}
-	static HttpClient client = new HttpClient();
-	public static String get(String url,String charset) {
-		GetMethod method = new GetMethod(url);
 
-		client.getHttpConnectionManager().getParams()
-				.setConnectionTimeout(10000);// 设置连接时间
-
-		String response=null;
-		try {
-			int status = client.executeMethod(method);
-			if (status == HttpStatus.SC_OK) {
-				InputStream inputStream = method.getResponseBodyAsStream();
-				response = IOUtil.readStream(inputStream,charset);
-			} else {
-				response = null;
+	public static String get(String url, String charset) {
+		HttpGet method = new HttpGet(url);
+		try (CloseableHttpResponse resp = CLIENT.execute(method)) {
+			int status = resp.getStatusLine().getStatusCode();
+			if (status != 200) {
+				return null;
 			}
-		} catch (HttpException e) {
-			logger.error("", e);
+			HttpEntity entity = resp.getEntity();
+			return entity == null ? "" : EntityUtils.toString(entity, charset);
 		} catch (IOException e) {
 			logger.error("", e);
+			return null;
 		}
-		return response;
 	}
+
 	/**
 	 * 执行post请求，返回页面内容
 	 * @param postUrl 网址
@@ -54,8 +69,9 @@ public class HttpHelper {
 	 * @return 如果失败返回null，否则返回内容
 	 */
 	public static String post(String postUrl, Map<String, Object> params) {
-		return post(postUrl,params,"utf-8");
+		return post(postUrl, params, "utf-8");
 	}
+
 	/**
 	 * 执行post请求，返回页面内容
 	 * @param postUrl 网址
@@ -63,41 +79,29 @@ public class HttpHelper {
 	 * @param charset 编码方式
 	 * @return 如果失败返回null，否则返回内容
 	 */
-	public static String post(String postUrl, Map<String, Object> params,String charset) {
+	public static String post(String postUrl, Map<String, Object> params, String charset) {
+		HttpPost method = new HttpPost(postUrl);
 		String response = "";
-		PostMethod postMethod = new PostMethod(postUrl);
-		if (params != null) {
-			for (String key : params.keySet()) {
-				postMethod.addParameter(key, params.get(key).toString());
-			}
-		}
 		try {
-			client.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, charset);
-			client.getHttpConnectionManager().getParams()
-					.setConnectionTimeout(10000);// 设置连接时间
-			int status = client.executeMethod(postMethod);
-			
-			InputStream inputStream = postMethod.getResponseBodyAsStream();
-			response = IOUtil.readStream(inputStream,charset);
-			if((""+status).startsWith("5")){
-				response = null;
+			if (params != null) {
+				List<NameValuePair> form = new ArrayList<NameValuePair>(params.size());
+				for (Map.Entry<String, Object> e : params.entrySet()) {
+					Object v = e.getValue();
+					form.add(new BasicNameValuePair(e.getKey(), v == null ? "" : v.toString()));
+				}
+				method.setEntity(new UrlEncodedFormEntity(form, charset));
+			}
+			try (CloseableHttpResponse resp = CLIENT.execute(method)) {
+				int status = resp.getStatusLine().getStatusCode();
+				HttpEntity entity = resp.getEntity();
+				response = entity == null ? "" : EntityUtils.toString(entity, charset);
+				if (String.valueOf(status).startsWith("5")) {
+					return null;
+				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			// 释放连接
-			postMethod.releaseConnection();
+			logger.error("", e);
 		}
 		return response;
 	}
-
-//	public static void main(String[] args) {
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("a", "12");
-//		String ret = HttpHelper.post("http://localhost:8080/", map);
-//		System.out.println(ret);
-//		
-//		ret = HttpHelper.get("http://localhost:8080/");
-//		System.out.println(ret);
-//	}
 }

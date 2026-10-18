@@ -8,7 +8,8 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONWriter;
 
 
 public class Log {
@@ -40,7 +41,7 @@ public class Log {
 
         String t ;
         if(!(str instanceof String)){
-            t = JSON.toJSONString(str,true);
+            t = JSON.toJSONString(str, JSONWriter.Feature.PrettyFormat);
         }else{
             t= str.toString();
         }

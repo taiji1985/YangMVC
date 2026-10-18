@@ -132,7 +132,7 @@ public class OrmMiscTest {
 		m.put("b", 2);
 		m.put("c", "extra");
 
-		String json = com.alibaba.fastjson.JSON.toJSONString(m);
+		String json = com.alibaba.fastjson2.JSON.toJSONString(m);
 		assertTrue(json, json.contains("\"a\":\"hello\""));
 		assertTrue(json, json.contains("\"b\":2"));
 		assertTrue(json, json.contains("\"c\":\"extra\""));
